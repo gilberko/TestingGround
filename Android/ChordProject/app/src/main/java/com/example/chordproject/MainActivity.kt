@@ -24,7 +24,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -119,7 +121,8 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var amplitudeHistory by remember { mutableStateOf(FloatArray(HISTORY_SIZE)) }
     var frameResults    by remember { mutableStateOf<List<FrameResult>>(emptyList()) }
     val recordedChunks  = remember { mutableListOf<ShortArray>() }
-    var recordingJob    by remember { mutableStateOf<Job?>(null) }
+    var recordingJob      by remember { mutableStateOf<Job?>(null) }
+    var currentFrameIndex by remember { mutableStateOf(-1) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -147,7 +150,12 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 amplitudeHistory = FloatArray(HISTORY_SIZE) { i ->
                     if (i < HISTORY_SIZE - 1) prev[i + 1] else amp.coerceIn(0f, 1f)
                 }
+                val posMs = player?.currentPosition ?: 0
+                val posSec = posMs / 1000f
+                currentFrameIndex = frameResults.indexOfLast { it.timeSeconds <= posSec }
             }
+        } else {
+            currentFrameIndex = -1
         }
     }
 
@@ -301,6 +309,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                         visualizer = null
                         player?.apply { stop(); release() }
                         player = null
+                        currentFrameIndex = -1
                         appState = AppState.ANALYZED
                     } else {
                         val mp = MediaPlayer().apply {
@@ -311,6 +320,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                 player = null
                                 visualizer?.apply { enabled = false; release() }
                                 visualizer = null
+                                currentFrameIndex = -1
                                 appState = AppState.ANALYZED
                             }
                             start()
@@ -343,6 +353,44 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         // ── Timeline ──────────────────────────────────────────────────────────
         if (appState == AppState.ANALYZED || appState == AppState.PLAYING) {
             Spacer(modifier = Modifier.height(16.dp))
+
+            // Now Playing card — visible only during playback with a valid frame
+            if (appState == AppState.PLAYING && currentFrameIndex >= 0) {
+                val currentFrame = frameResults[currentFrameIndex]
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .background(Color(0xFF0D47A1), shape = RoundedCornerShape(8.dp))
+                        .padding(12.dp)
+                ) {
+                    Column {
+                        Text(
+                            "NOW PLAYING",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color(0xFF90CAF9)
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Row {
+                            Text("Chord:  ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
+                            Text(
+                                currentFrame.chord,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color(0xFF66BB6A)
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text("Notes: ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
+                            Text(
+                                currentFrame.notes.joinToString(" "),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color(0xFF90CAF9)
+                            )
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
             // Header row
             Row(
                 modifier = Modifier
@@ -354,19 +402,32 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 Text("Chord", color = Color.White, style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(2f))
                 Text("Notes", color = Color.White, style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(2f))
             }
+
+            val listState = rememberLazyListState()
+            LaunchedEffect(currentFrameIndex) {
+                if (currentFrameIndex >= 0)
+                    listState.animateScrollToItem(currentFrameIndex)
+            }
+
             LazyColumn(
+                state = listState,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-                items(frameResults) { frame ->
+                items(frameResults.size) { index ->
+                    val frame    = frameResults[index]
                     val hasChord = frame.chord != "(no chord)"
+                    val isCurrent = index == currentFrameIndex
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(
-                                if (hasChord) Color(0xFF1B5E20).copy(alpha = 0.35f)
-                                else          Color(0xFF424242).copy(alpha = 0.10f)
+                                when {
+                                    isCurrent -> Color(0xFF0D47A1).copy(alpha = 0.4f)
+                                    hasChord  -> Color(0xFF1B5E20).copy(alpha = 0.35f)
+                                    else      -> Color(0xFF424242).copy(alpha = 0.10f)
+                                }
                             )
                             .padding(horizontal = 16.dp, vertical = 3.dp)
                     ) {
