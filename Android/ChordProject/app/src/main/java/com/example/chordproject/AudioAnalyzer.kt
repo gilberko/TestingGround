@@ -79,14 +79,20 @@ object AudioAnalyzer {
 
     private fun detectChord(pitchClasses: Set<Int>): String {
         if (pitchClasses.size < 2) return "(no chord)"
-        var bestScore = 0
-        var bestChord = "(no chord)"
+        var bestScore        = 0
+        var bestTemplateSize = Int.MAX_VALUE
+        var bestChord        = "(no chord)"
         for (root in 0..11) {
             for ((name, intervals) in CHORD_TEMPLATES) {
                 val matched = intervals.count { ((root + it) % 12) in pitchClasses }
-                if (matched >= 2 && matched > bestScore) {
-                    bestScore = matched
-                    bestChord = "${NOTE_NAMES[root]} $name"
+                if (matched >= 2) {
+                    val better = matched > bestScore ||
+                                 (matched == bestScore && intervals.size < bestTemplateSize)
+                    if (better) {
+                        bestScore        = matched
+                        bestTemplateSize = intervals.size
+                        bestChord        = "${NOTE_NAMES[root]} $name"
+                    }
                 }
             }
         }
