@@ -176,6 +176,8 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ar.startRecording()
             audioRecord = ar
             recordedChunks.clear()
+            frameResults    = emptyList()
+            amplitudeHistory = FloatArray(HISTORY_SIZE)
             appState = AppState.RECORDING
 
             val readSize = bufSize / 2  // shorts per read
