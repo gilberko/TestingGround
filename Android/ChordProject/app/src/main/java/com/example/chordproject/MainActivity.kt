@@ -46,6 +46,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.chordproject.ui.theme.ChordProjectTheme
@@ -63,8 +65,9 @@ import kotlinx.coroutines.withContext
 
 enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING }
 
-private const val HISTORY_SIZE = 80
-private const val SAMPLE_RATE  = 44100
+private const val HISTORY_SIZE  = 80
+private const val WAVEFORM_SIZE = 512
+private const val SAMPLE_RATE   = 44100
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,6 +122,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var player          by remember { mutableStateOf<MediaPlayer?>(null) }
     var visualizer      by remember { mutableStateOf<Visualizer?>(null) }
     var amplitudeHistory by remember { mutableStateOf(FloatArray(HISTORY_SIZE)) }
+    var waveformSamples  by remember { mutableStateOf(FloatArray(WAVEFORM_SIZE)) }
     var frameResults    by remember { mutableStateOf<List<FrameResult>>(emptyList()) }
     val recordedChunks  = remember { mutableListOf<ShortArray>() }
     var recordingJob      by remember { mutableStateOf<Job?>(null) }
@@ -176,8 +180,9 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ar.startRecording()
             audioRecord = ar
             recordedChunks.clear()
-            frameResults    = emptyList()
+            frameResults     = emptyList()
             amplitudeHistory = FloatArray(HISTORY_SIZE)
+            waveformSamples  = FloatArray(WAVEFORM_SIZE)
             appState = AppState.RECORDING
 
             val readSize = bufSize / 2  // shorts per read
@@ -192,11 +197,17 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     var sumSq = 0.0
                     for (s in chunk) { val v = s.toFloat() / 32768f; sumSq += v * v }
                     val rms = sqrt(sumSq / read).toFloat()
+                    // Downsample chunk to WAVEFORM_SIZE points for oscilloscope display
+                    val stride = maxOf(1, read / WAVEFORM_SIZE)
+                    val wf = FloatArray(WAVEFORM_SIZE) { i ->
+                        buf[minOf(i * stride, read - 1)].toFloat() / 32768f
+                    }
                     withContext(Dispatchers.Main) {
                         val prev = amplitudeHistory
                         amplitudeHistory = FloatArray(HISTORY_SIZE) { i ->
                             if (i < HISTORY_SIZE - 1) prev[i + 1] else rms.coerceIn(0f, 1f)
                         }
+                        waveformSamples = wf
                     }
                 }
             }
@@ -249,14 +260,29 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 .clip(RoundedCornerShape(8.dp))
                 .background(Color(0xFF1A1A1A))
         ) {
-            val barWidth = size.width / HISTORY_SIZE
-            amplitudeHistory.forEachIndexed { i, amp ->
-                val barHeight = (size.height * amp).coerceAtLeast(1f)
-                drawRect(
-                    color = barColor,
-                    topLeft = Offset(i * barWidth, size.height - barHeight),
-                    size = Size((barWidth - 1f).coerceAtLeast(1f), barHeight)
-                )
+            if (appState == AppState.RECORDING) {
+                // Oscilloscope waveform
+                val midY = size.height / 2f
+                drawLine(Color(0xFF616161), Offset(0f, midY), Offset(size.width, midY), strokeWidth = 1f)
+                val path = Path()
+                val step = size.width / waveformSamples.size
+                waveformSamples.forEachIndexed { i, s ->
+                    val x = i * step
+                    val y = midY - s * midY * 0.9f
+                    if (i == 0) path.moveTo(x, y) else path.lineTo(x, y)
+                }
+                drawPath(path, color = barColor, style = Stroke(width = 2f))
+            } else {
+                // Amplitude bar graph
+                val barWidth = size.width / HISTORY_SIZE
+                amplitudeHistory.forEachIndexed { i, amp ->
+                    val barHeight = (size.height * amp).coerceAtLeast(1f)
+                    drawRect(
+                        color = barColor,
+                        topLeft = Offset(i * barWidth, size.height - barHeight),
+                        size = Size((barWidth - 1f).coerceAtLeast(1f), barHeight)
+                    )
+                }
             }
         }
 
