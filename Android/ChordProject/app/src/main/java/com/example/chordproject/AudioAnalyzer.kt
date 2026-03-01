@@ -99,6 +99,37 @@ object AudioAnalyzer {
         return bestChord
     }
 
+    private const val MIN_CHORD_FRAMES = 5
+
+    private fun smoothChords(frames: List<FrameResult>): List<FrameResult> {
+        if (frames.isEmpty()) return frames
+        val result = frames.toMutableList()
+        var currentChord = frames.first().chord
+        var pendingChord = currentChord
+        var pendingCount = 0
+        for (i in frames.indices) {
+            val raw = frames[i].chord
+            when {
+                raw == currentChord -> {
+                    pendingChord = raw; pendingCount = 0
+                }
+                raw == pendingChord -> {
+                    pendingCount++
+                    if (pendingCount >= MIN_CHORD_FRAMES) {
+                        currentChord = pendingChord; pendingCount = 0
+                    } else {
+                        result[i] = result[i].copy(chord = currentChord)
+                    }
+                }
+                else -> {
+                    pendingChord = raw; pendingCount = 1
+                    result[i] = result[i].copy(chord = currentChord)
+                }
+            }
+        }
+        return result
+    }
+
     fun analyze(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
         val results  = mutableListOf<FrameResult>()
         val window   = hammingWindow(FRAME_SIZE)
@@ -148,6 +179,6 @@ object AudioAnalyzer {
             )
             frameStart += HOP_SIZE
         }
-        return results
+        return smoothChords(results)
     }
 }

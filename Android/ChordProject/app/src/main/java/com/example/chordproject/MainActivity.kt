@@ -27,6 +27,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
+import androidx.compose.animation.core.Animatable
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -50,6 +51,11 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.Image
 import com.example.chordproject.ui.theme.ChordProjectTheme
 import java.io.File
 import java.io.FileOutputStream
@@ -75,8 +81,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ChordProjectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AudioRecorderScreen(modifier = Modifier.padding(innerPadding))
+                var showSplash by remember { mutableStateOf(true) }
+                LaunchedEffect(Unit) {
+                    kotlinx.coroutines.delay(2000)
+                    showSplash = false
+                }
+                if (showSplash) {
+                    SplashScreen()
+                } else {
+                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                        AudioRecorderScreen(modifier = Modifier.padding(innerPadding))
+                    }
                 }
             }
         }
@@ -108,6 +123,54 @@ private fun writeWavFile(file: File, samples: ShortArray, sampleRate: Int) {
     for (s in samples) buf.putShort(s)
 
     FileOutputStream(file).use { it.write(buf.array()) }
+}
+
+@Composable
+fun SplashScreen() {
+    val alpha = remember { Animatable(0f) }
+    LaunchedEffect(Unit) {
+        alpha.animateTo(1f, animationSpec = androidx.compose.animation.core.tween(600))
+    }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF0A0A0A))
+            .alpha(alpha.value),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                painter = painterResource(R.drawable.ic_launcher_foreground),
+                contentDescription = "Guitar icon",
+                modifier = Modifier
+                    .background(Color(0xFF1A1A1A), shape = androidx.compose.foundation.shape.CircleShape)
+                    .padding(16.dp)
+                    .height(160.dp)
+                    .fillMaxWidth(0.45f)
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            Text(
+                "CHORD",
+                fontSize = 52.sp,
+                fontWeight = FontWeight.ExtraBold,
+                letterSpacing = 8.sp,
+                color = Color(0xFFE53935)
+            )
+            Text(
+                "ANALYZER",
+                fontSize = 36.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 12.sp,
+                color = Color(0xFFFFFFFF)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                "♩ ♪ ♫ ♬",
+                fontSize = 22.sp,
+                color = Color(0xFF888888)
+            )
+        }
+    }
 }
 
 @Composable
@@ -238,8 +301,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Chord Analyzer", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(8.dp))
         Text(statusText, style = MaterialTheme.typography.bodyLarge)
 
         if (appState == AppState.ANALYZED || appState == AppState.PLAYING) {
