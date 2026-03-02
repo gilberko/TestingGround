@@ -13,7 +13,8 @@ object AudioAnalyzer {
     private const val HOP_SIZE   = 2048
     private const val MIN_FREQ   = 80.0
     private const val MAX_FREQ   = 2000.0
-    private const val PEAK_THRESHOLD = 0.15f
+    private const val PEAK_THRESHOLD = 0.25f
+    private const val SILENCE_THRESHOLD = 0.008f  // ~-42 dBFS; tune if needed
 
     private val NOTE_NAMES = arrayOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
 
@@ -140,6 +141,21 @@ object AudioAnalyzer {
 
         var frameStart = 0
         while (frameStart + FRAME_SIZE <= pcmSamples.size) {
+            val timeSeconds = frameStart.toFloat() / sampleRate
+
+            // Silence gate: skip frame if signal energy is too low
+            var sumSq = 0.0
+            for (i in 0 until FRAME_SIZE) {
+                val s = pcmSamples[frameStart + i].toFloat() / 32768f
+                sumSq += s * s
+            }
+            val rms = sqrt(sumSq / FRAME_SIZE).toFloat()
+            if (rms < SILENCE_THRESHOLD) {
+                results.add(FrameResult(timeSeconds, emptyList(), "(silence)"))
+                frameStart += HOP_SIZE
+                continue
+            }
+
             // Apply Hamming window
             for (i in 0 until FRAME_SIZE) {
                 real[i] = pcmSamples[frameStart + i].toFloat() / 32768f * window[i]
@@ -172,7 +188,7 @@ object AudioAnalyzer {
 
             results.add(
                 FrameResult(
-                    timeSeconds = frameStart.toFloat() / sampleRate,
+                    timeSeconds = timeSeconds,
                     notes       = notes.toList(),
                     chord       = detectChord(pitchClasses)
                 )
