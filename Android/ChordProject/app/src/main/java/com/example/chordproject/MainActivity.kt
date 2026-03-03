@@ -186,7 +186,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var visualizer      by remember { mutableStateOf<Visualizer?>(null) }
     var amplitudeHistory by remember { mutableStateOf(FloatArray(HISTORY_SIZE)) }
     var waveformSamples  by remember { mutableStateOf(FloatArray(WAVEFORM_SIZE)) }
-    var frameResults    by remember { mutableStateOf<List<FrameResult>>(emptyList()) }
+    var aggregatedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
     val recordedChunks  = remember { mutableListOf<ShortArray>() }
     var recordingJob      by remember { mutableStateOf<Job?>(null) }
     var currentFrameIndex by remember { mutableStateOf(-1) }
@@ -219,7 +219,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 }
                 val posMs = player?.currentPosition ?: 0
                 val posSec = posMs / 1000f
-                currentFrameIndex = frameResults.indexOfLast { it.timeSeconds <= posSec }
+                currentFrameIndex = aggregatedResults.indexOfLast { it.startTimeSeconds <= posSec }
             }
         } else {
             currentFrameIndex = -1
@@ -243,7 +243,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ar.startRecording()
             audioRecord = ar
             recordedChunks.clear()
-            frameResults     = emptyList()
+            aggregatedResults = emptyList()
             amplitudeHistory = FloatArray(HISTORY_SIZE)
             waveformSamples  = FloatArray(WAVEFORM_SIZE)
             appState = AppState.RECORDING
@@ -376,10 +376,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                             writeWavFile(outputFile, samples, SAMPLE_RATE)
 
                             appState = AppState.ANALYZING
-                            val results = withContext(Dispatchers.Default) {
+                            val rawResults = withContext(Dispatchers.Default) {
                                 AudioAnalyzer.analyze(samples, SAMPLE_RATE)
                             }
-                            frameResults = results
+                            aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.HOP_SIZE.toFloat() / SAMPLE_RATE)
                             appState = AppState.ANALYZED
                         }
                     } else {
@@ -445,7 +445,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
             // Now Playing card — visible only during playback with a valid frame
             if (appState == AppState.PLAYING && currentFrameIndex >= 0) {
-                val currentFrame = frameResults[currentFrameIndex]
+                val currentSeg = aggregatedResults[currentFrameIndex]
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -463,14 +463,14 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                         Row {
                             Text("Chord:  ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
                             Text(
-                                currentFrame.chord,
+                                currentSeg.chord,
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color(0xFF66BB6A)
                             )
                             Spacer(modifier = Modifier.weight(1f))
                             Text("Notes: ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
                             Text(
-                                currentFrame.notes.joinToString(" "),
+                                currentSeg.notes.joinToString(" "),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color(0xFF90CAF9)
                             )
@@ -504,9 +504,9 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-                items(frameResults.size) { index ->
-                    val frame    = frameResults[index]
-                    val hasChord = frame.chord != "(no chord)"
+                items(aggregatedResults.size) { index ->
+                    val seg      = aggregatedResults[index]
+                    val hasChord = seg.chord != "(no chord)"
                     val isCurrent = index == currentFrameIndex
                     Row(
                         modifier = Modifier
@@ -521,18 +521,18 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                             .padding(horizontal = 16.dp, vertical = 3.dp)
                     ) {
                         Text(
-                            "%.2fs".format(frame.timeSeconds),
+                            "%.2fs".format(seg.startTimeSeconds),
                             style    = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.weight(1f)
                         )
                         Text(
-                            frame.chord,
+                            seg.chord,
                             style    = MaterialTheme.typography.bodySmall,
                             color    = if (hasChord) Color(0xFF66BB6A) else Color.Gray,
                             modifier = Modifier.weight(2f)
                         )
                         Text(
-                            frame.notes.joinToString(" "),
+                            seg.notes.joinToString(" "),
                             style    = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.weight(2f)
                         )

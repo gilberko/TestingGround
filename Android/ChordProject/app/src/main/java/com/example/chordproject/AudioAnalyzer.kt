@@ -8,9 +8,36 @@ data class FrameResult(
     val chord: String
 )
 
+data class AggregatedFrameResult(
+    val startTimeSeconds: Float,
+    val endTimeSeconds: Float,
+    val notes: List<String>,
+    val chord: String,
+    val frameCount: Int
+)
+
+fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<AggregatedFrameResult> {
+    if (frames.isEmpty()) return emptyList()
+    val result = mutableListOf<AggregatedFrameResult>()
+    var groupStart = frames[0]
+    var count = 1
+    for (i in 1 until frames.size) {
+        val frame = frames[i]
+        if (frame.chord == groupStart.chord && frame.notes == groupStart.notes) {
+            count++
+        } else {
+            result.add(AggregatedFrameResult(groupStart.timeSeconds, frame.timeSeconds, groupStart.notes, groupStart.chord, count))
+            groupStart = frame
+            count = 1
+        }
+    }
+    result.add(AggregatedFrameResult(groupStart.timeSeconds, groupStart.timeSeconds + count * hopSizeSeconds, groupStart.notes, groupStart.chord, count))
+    return result
+}
+
 object AudioAnalyzer {
     private const val FRAME_SIZE = 4096
-    private const val HOP_SIZE   = 2048
+    const val HOP_SIZE           = 2048
     private const val MIN_FREQ   = 80.0
     private const val MAX_FREQ   = 2000.0
     private const val PEAK_THRESHOLD = 0.25f
