@@ -127,7 +127,7 @@ object AudioAnalyzer {
         return bestChord
     }
 
-    private const val MIN_CHORD_FRAMES = 5
+    private const val MIN_CHORD_FRAMES = 3  // was 5; ~140ms at 46ms/frame
 
     private fun smoothChords(frames: List<FrameResult>): List<FrameResult> {
         if (frames.isEmpty()) return frames
@@ -138,6 +138,18 @@ object AudioAnalyzer {
         for (i in frames.indices) {
             val raw = frames[i].chord
             when {
+                // Silence is unambiguous — accept immediately, reset pending state
+                raw == "(silence)" -> {
+                    currentChord = "(silence)"
+                    pendingChord = "(silence)"
+                    pendingCount = 0
+                }
+                // Coming out of silence — accept immediately, no smoothing lag needed
+                currentChord == "(silence)" -> {
+                    currentChord = raw
+                    pendingChord = raw
+                    pendingCount = 0
+                }
                 raw == currentChord -> {
                     pendingChord = raw; pendingCount = 0
                 }
