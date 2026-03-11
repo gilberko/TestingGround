@@ -35,13 +35,23 @@ fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<Aggr
     return result
 }
 
+enum class AnalysisMethod { FFT, CQT }
+
 object AudioAnalyzer {
-    private const val FRAME_SIZE = 4096
-    const val HOP_SIZE           = 2048
-    private const val MIN_FREQ   = 80.0
-    private const val MAX_FREQ   = 2000.0
-    private const val PEAK_THRESHOLD = 0.25f
-    private const val SILENCE_THRESHOLD = 0.008f  // ~-42 dBFS; tune if needed
+    private const val FRAME_SIZE         = 4096
+    const val HOP_SIZE                   = 2048
+    private const val MIN_FREQ           = 80.0
+    private const val MAX_FREQ           = 2000.0
+    private const val PEAK_THRESHOLD     = 0.25f
+    private const val SILENCE_THRESHOLD  = 0.008f  // ~-42 dBFS; tune if needed
+
+    private const val CQT_FRAME_SIZE         = 8192    // larger FFT for better low-freq resolution
+    private const val CQT_HOP_SIZE           = 2048    // same hop as FFT → same timeline
+    private const val CQT_BINS_TOTAL         = 60      // C2–C7, 5 octaves × 12 semitones
+    private const val CQT_F0                 = 65.406f // C2 in Hz
+    private const val CQT_Q                  = 17.3f   // 1 / (2^(1/12) - 1)
+    private const val CHROMA_THRESHOLD       = 0.05f   // min L2-norm before treating as silence
+    private const val CHROMA_MIN_SIMILARITY  = 0.5f    // minimum cosine score to name a chord
 
     private val NOTE_NAMES = arrayOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
 
@@ -56,6 +66,14 @@ object AudioAnalyzer {
         "Sus2"  to intArrayOf(0, 2, 7),
         "Sus4"  to intArrayOf(0, 5, 7)
     )
+
+    // All 96 chroma templates (8 types × 12 roots), pre-normalized — built once at init
+    private val CHROMA_TEMPLATES: Map<String, FloatArray> = buildChromaTemplates()
+
+    // Pre-allocated CQT buffers (analysis is single-threaded on Dispatchers.Default)
+    private val cqtWindow = hammingWindow(CQT_FRAME_SIZE)
+    private val cqtReal   = FloatArray(CQT_FRAME_SIZE)
+    private val cqtImag   = FloatArray(CQT_FRAME_SIZE)
 
     fun hammingWindow(size: Int): FloatArray =
         FloatArray(size) { i -> (0.54 - 0.46 * cos(2.0 * PI * i / (size - 1))).toFloat() }
@@ -103,6 +121,104 @@ object AudioAnalyzer {
             }
             len *= 2
         }
+    }
+
+    private fun buildChromaTemplates(): Map<String, FloatArray> {
+        val templates = mutableMapOf<String, FloatArray>()
+        for (root in 0..11) {
+            for ((name, intervals) in CHORD_TEMPLATES) {
+                val chroma = FloatArray(12)
+                for (interval in intervals) chroma[(root + interval) % 12] = 1f
+                l2Normalize(chroma)
+                templates["${NOTE_NAMES[root]} $name"] = chroma
+            }
+        }
+        return templates
+    }
+
+    private fun l2Normalize(vec: FloatArray) {
+        var norm = 0f
+        for (v in vec) norm += v * v
+        norm = sqrt(norm)
+        if (norm < 1e-6f) return
+        for (i in vec.indices) vec[i] /= norm
+    }
+
+    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): FloatArray? {
+        // Silence gate
+        var sumSq = 0.0
+        for (i in 0 until CQT_FRAME_SIZE) {
+            val s = pcmSamples[frameStart + i].toFloat() / 32768f
+            sumSq += s * s
+        }
+        val rms = sqrt(sumSq / CQT_FRAME_SIZE).toFloat()
+        if (rms < SILENCE_THRESHOLD) return null
+
+        // Hamming window + copy to FFT buffers
+        for (i in 0 until CQT_FRAME_SIZE) {
+            cqtReal[i] = pcmSamples[frameStart + i].toFloat() / 32768f * cqtWindow[i]
+            cqtImag[i] = 0f
+        }
+        fft(cqtReal, cqtImag)
+
+        // Magnitude spectrum (positive frequencies only)
+        val mag = FloatArray(CQT_FRAME_SIZE / 2) { i ->
+            sqrt(cqtReal[i] * cqtReal[i] + cqtImag[i] * cqtImag[i])
+        }
+
+        // CQT accumulation: 60 bins (C2–C7)
+        val cqtBins = FloatArray(CQT_BINS_TOTAL)
+        for (k in 0 until CQT_BINS_TOTAL) {
+            val fk    = CQT_F0 * 2.0.pow(k.toDouble() / 12.0).toFloat()
+            val bwk   = fk / CQT_Q
+            val loFFT = ((fk - bwk / 2f) * CQT_FRAME_SIZE / sampleRate).toInt().coerceAtLeast(0)
+            val hiFFT = ((fk + bwk / 2f) * CQT_FRAME_SIZE / sampleRate).toInt().coerceAtMost(CQT_FRAME_SIZE / 2 - 1)
+            var weightedSum = 0f
+            for (b in loFFT..hiFFT) {
+                val binFreq = b.toFloat() * sampleRate / CQT_FRAME_SIZE
+                val normalizedOffset = (binFreq - fk) / (bwk / 2f)
+                val weight = (0.54 + 0.46 * cos(PI * normalizedOffset)).toFloat()
+                weightedSum += weight * mag[b]
+            }
+            cqtBins[k] = weightedSum
+        }
+
+        // Fold to 12 chroma bins
+        val chroma = FloatArray(12)
+        for (k in 0 until CQT_BINS_TOTAL) chroma[k % 12] += cqtBins[k]
+
+        // L2-normalize; return null if below threshold
+        var norm = 0f
+        for (v in chroma) norm += v * v
+        norm = sqrt(norm)
+        if (norm < CHROMA_THRESHOLD) return null
+        for (i in chroma.indices) chroma[i] /= norm
+
+        return chroma
+    }
+
+    private fun notesFromChroma(chroma: FloatArray): List<String> {
+        val maxVal = chroma.maxOrNull() ?: return emptyList()
+        return (0..11).filter { chroma[it] >= maxVal * 0.4f }.map { NOTE_NAMES[it] }
+    }
+
+    private fun detectChordFromChroma(chroma: FloatArray): String {
+        var bestScore        = Float.NEGATIVE_INFINITY
+        var bestTemplateSize = Int.MAX_VALUE
+        var bestChord        = "(no chord)"
+        for ((name, template) in CHROMA_TEMPLATES) {
+            var score = 0f
+            for (i in 0..11) score += chroma[i] * template[i]
+            val typeName     = name.substring(name.indexOf(' ') + 1)
+            val templateSize = CHORD_TEMPLATES[typeName]?.size ?: 3
+            val better = score > bestScore || (score == bestScore && templateSize < bestTemplateSize)
+            if (better) {
+                bestScore        = score
+                bestTemplateSize = templateSize
+                bestChord        = name
+            }
+        }
+        return if (bestScore < CHROMA_MIN_SIMILARITY) "(no chord)" else bestChord
     }
 
     private fun detectChord(pitchClasses: Set<Int>): String {
@@ -170,7 +286,7 @@ object AudioAnalyzer {
         return result
     }
 
-    fun analyze(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
+    private fun analyzeFFT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
         val results  = mutableListOf<FrameResult>()
         val window   = hammingWindow(FRAME_SIZE)
         val real     = FloatArray(FRAME_SIZE)
@@ -236,4 +352,29 @@ object AudioAnalyzer {
         }
         return smoothChords(results)
     }
+
+    private fun analyzeCQT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
+        val results = mutableListOf<FrameResult>()
+        var frameStart = 0
+        while (frameStart + CQT_FRAME_SIZE <= pcmSamples.size) {
+            val timeSeconds = frameStart.toFloat() / sampleRate
+            val chroma = computeChroma(pcmSamples, frameStart, sampleRate)
+            results.add(
+                if (chroma == null)
+                    FrameResult(timeSeconds, emptyList(), "(silence)")
+                else
+                    FrameResult(timeSeconds, notesFromChroma(chroma), detectChordFromChroma(chroma))
+            )
+            frameStart += CQT_HOP_SIZE
+        }
+        return smoothChords(results)
+    }
+
+    fun analyze(pcmSamples: ShortArray, sampleRate: Int, method: AnalysisMethod = AnalysisMethod.FFT): List<FrameResult> =
+        when (method) {
+            AnalysisMethod.FFT -> analyzeFFT(pcmSamples, sampleRate)
+            AnalysisMethod.CQT -> analyzeCQT(pcmSamples, sampleRate)
+        }
+
+    fun hopSizeFor(method: AnalysisMethod) = if (method == AnalysisMethod.CQT) CQT_HOP_SIZE else HOP_SIZE
 }

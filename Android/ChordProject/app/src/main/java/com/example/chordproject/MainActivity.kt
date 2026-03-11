@@ -32,6 +32,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -190,6 +191,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     val recordedChunks  = remember { mutableListOf<ShortArray>() }
     var recordingJob      by remember { mutableStateOf<Job?>(null) }
     var currentFrameIndex by remember { mutableStateOf(-1) }
+    var analysisMethod by remember { mutableStateOf(AnalysisMethod.FFT) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -313,6 +315,26 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text("FFT", style = MaterialTheme.typography.bodyMedium,
+                 color = if (analysisMethod == AnalysisMethod.FFT) Color.White else Color.Gray)
+            Switch(
+                checked = analysisMethod == AnalysisMethod.CQT,
+                onCheckedChange = { useCqt ->
+                    analysisMethod = if (useCqt) AnalysisMethod.CQT else AnalysisMethod.FFT
+                },
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED,
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
+            Text("CQT", style = MaterialTheme.typography.bodyMedium,
+                 color = if (analysisMethod == AnalysisMethod.CQT) Color.White else Color.Gray)
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
@@ -377,9 +399,9 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
                             appState = AppState.ANALYZING
                             val rawResults = withContext(Dispatchers.Default) {
-                                AudioAnalyzer.analyze(samples, SAMPLE_RATE)
+                                AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod)
                             }
-                            aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.HOP_SIZE.toFloat() / SAMPLE_RATE)
+                            aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.hopSizeFor(analysisMethod).toFloat() / SAMPLE_RATE)
                             appState = AppState.ANALYZED
                         }
                     } else {
