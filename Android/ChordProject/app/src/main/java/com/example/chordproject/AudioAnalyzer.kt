@@ -35,6 +35,21 @@ fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<Aggr
     return result
 }
 
+fun simplifyMelody(frames: List<AggregatedFrameResult>): List<AggregatedFrameResult> {
+    var prevNotes = emptySet<String>()
+    return frames.map { frame ->
+        val simplified = when {
+            frame.notes.size <= 2 -> frame.notes
+            else -> {
+                val changed = frame.notes.filter { it !in prevNotes }
+                (if (changed.isNotEmpty()) changed else frame.notes).take(2)
+            }
+        }
+        prevNotes = frame.notes.toSet()
+        frame.copy(notes = simplified)
+    }
+}
+
 enum class AnalysisMethod { FFT, CQT }
 
 object AudioAnalyzer {

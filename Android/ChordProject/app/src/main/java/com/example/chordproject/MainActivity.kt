@@ -1,6 +1,8 @@
 package com.example.chordproject
 
 import android.Manifest
+import android.content.Intent
+import androidx.core.content.FileProvider
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaPlayer
@@ -192,6 +194,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var recordingJob      by remember { mutableStateOf<Job?>(null) }
     var currentFrameIndex by remember { mutableStateOf(-1) }
     var analysisMethod by remember { mutableStateOf(AnalysisMethod.FFT) }
+    var simplifiedResults by remember { mutableStateOf<List<AggregatedFrameResult>?>(null) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -246,6 +249,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             audioRecord = ar
             recordedChunks.clear()
             aggregatedResults = emptyList()
+            simplifiedResults = null
             amplitudeHistory = FloatArray(HISTORY_SIZE)
             waveformSamples  = FloatArray(WAVEFORM_SIZE)
             appState = AppState.RECORDING
@@ -333,6 +337,11 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             Text("CQT", style = MaterialTheme.typography.bodyMedium,
                  color = if (analysisMethod == AnalysisMethod.CQT) Color.White else Color.Gray)
         }
+        Text(
+            "Analysis method: ${analysisMethod.name}",
+            style = MaterialTheme.typography.bodySmall,
+            color = Color(0xFF90CAF9)
+        )
         Spacer(modifier = Modifier.height(8.dp))
 
         Canvas(
@@ -452,6 +461,40 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             }
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Button(
+                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING,
+                onClick = {
+                    simplifiedResults = if (simplifiedResults != null) null
+                    else simplifyMelody(aggregatedResults)
+                }
+            ) { Text(if (simplifiedResults != null) "Show Full Notes" else "Simplify Melody") }
+
+            Button(
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING)
+                          && aggregatedResults.isNotEmpty(),
+                onClick = {
+                    scope.launch(Dispatchers.IO) {
+                        val file = TablaturePdfGenerator.generate(
+                            context, simplifiedResults ?: aggregatedResults
+                        )
+                        withContext(Dispatchers.Main) {
+                            val uri = FileProvider.getUriForFile(
+                                context, "${context.packageName}.fileprovider", file
+                            )
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = "application/pdf"
+                                putExtra(Intent.EXTRA_STREAM, uri)
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            context.startActivity(Intent.createChooser(intent, "Share Tablature PDF"))
+                        }
+                    }
+                }
+            ) { Text("Export PDF") }
+        }
+
         if (permissionDenied) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -520,14 +563,15 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     listState.animateScrollToItem(currentFrameIndex)
             }
 
+            val displayResults = simplifiedResults ?: aggregatedResults
             LazyColumn(
                 state = listState,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-                items(aggregatedResults.size) { index ->
-                    val seg      = aggregatedResults[index]
+                items(displayResults.size) { index ->
+                    val seg      = displayResults[index]
                     val hasChord = seg.chord != "(no chord)"
                     val isCurrent = index == currentFrameIndex
                     Row(
