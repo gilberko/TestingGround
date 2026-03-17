@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:/Code/TestingGround/Android/App2\" && python generate_verbs.py)",
+      "Bash(cd \"C:/Code/TestingGround/Android/App2\" && ./gradlew assembleRelease 2>&1)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/bin/**)",
+      "Bash(/dev/null ls:*)",
+      "Bash(cd \"C:/Code/TestingGround/Android/App2\" && JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease 2>&1)"
+    ]
+  }
+}
