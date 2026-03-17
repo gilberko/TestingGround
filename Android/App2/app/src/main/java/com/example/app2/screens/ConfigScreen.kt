@@ -15,6 +15,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -24,15 +25,41 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.app2.data.model.RegularityFilter
 import com.example.app2.data.model.Subject
 import com.example.app2.data.model.Tense
 import com.example.app2.quiz.ConfigViewModel
+
+private val ACTIVE_TENSES = listOf(
+    Tense.INDICATIVO_PRESENTE,
+    Tense.INDICATIVO_PRETERITO_PERFEITO,
+    Tense.INDICATIVO_PRETERITO_IMPERFEITO,
+    Tense.INDICATIVO_PRETERITO_MAIS_QUE_PERFEITO,
+    Tense.INDICATIVO_FUTURO,
+    Tense.INDICATIVO_CONDICIONAL,
+    Tense.CONJUNTIVO_PRESENTE,
+    Tense.CONJUNTIVO_PRETERITO_IMPERFEITO,
+    Tense.CONJUNTIVO_FUTURO,
+    Tense.IMPERATIVO_AFIRMATIVO,
+    Tense.IMPERATIVO_NEGATIVO
+)
+
+private val NON_FINITE_TENSES = listOf(Tense.GERUND)
+
+private val PASSIVE_TENSES = listOf(
+    Tense.PASSIVA_PRESENTE,
+    Tense.PASSIVA_PRETERITO_PERFEITO,
+    Tense.PASSIVA_PRETERITO_IMPERFEITO,
+    Tense.PASSIVA_FUTURO,
+    Tense.PASSIVA_CONDICIONAL
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     val selectedTenses by configViewModel.selectedTenses.collectAsState()
     val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
+    val regularityFilter by configViewModel.regularityFilter.collectAsState()
 
     Scaffold(
         topBar = {
@@ -52,9 +79,10 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp)
         ) {
+            // Active Tenses section
             item {
                 Text(
-                    text = "Tenses",
+                    text = "Active Tenses",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
                 )
@@ -65,7 +93,7 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
             }
-            items(Tense.entries) { tense ->
+            items(ACTIVE_TENSES) { tense ->
                 Row(
                     modifier = Modifier.fillMaxWidth().height(48.dp),
                     verticalAlignment = Alignment.CenterVertically
@@ -77,6 +105,52 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                     Text(text = tense.displayLabel, modifier = Modifier.padding(start = 8.dp))
                 }
             }
+
+            // Non-Finite Forms section
+            item {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = "Non-Finite Forms",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+            items(NON_FINITE_TENSES) { tense ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = tense in selectedTenses,
+                        onCheckedChange = { configViewModel.toggleTense(tense) }
+                    )
+                    Text(text = tense.displayLabel, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            // Passive Voice section
+            item {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = "Passive Voice",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+            items(PASSIVE_TENSES) { tense ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = tense in selectedTenses,
+                        onCheckedChange = { configViewModel.toggleTense(tense) }
+                    )
+                    Text(text = tense.displayLabel, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            // Subjects section
             item {
                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                 Text(
@@ -101,6 +175,28 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                         onCheckedChange = { configViewModel.toggleSubject(subject) }
                     )
                     Text(text = subject.displayLabel, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            // Verb Regularity section
+            item {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = "Verb Regularity",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+            items(RegularityFilter.entries) { filter ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = filter == regularityFilter,
+                        onClick = { configViewModel.setRegularityFilter(filter) }
+                    )
+                    Text(text = filter.displayLabel, modifier = Modifier.padding(start = 8.dp))
                 }
             }
         }

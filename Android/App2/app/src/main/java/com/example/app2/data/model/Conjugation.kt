@@ -11,7 +11,13 @@ enum class Tense(val displayLabel: String) {
     CONJUNTIVO_PRETERITO_IMPERFEITO("Imperfeito do Conjuntivo"),
     CONJUNTIVO_FUTURO("Futuro do Conjuntivo"),
     IMPERATIVO_AFIRMATIVO("Imperativo Afirmativo"),
-    IMPERATIVO_NEGATIVO("Imperativo Negativo")
+    IMPERATIVO_NEGATIVO("Imperativo Negativo"),
+    GERUND("Gerúndio"),
+    PASSIVA_PRESENTE("Voz Passiva — Presente"),
+    PASSIVA_PRETERITO_PERFEITO("Voz Passiva — Pret. Perfeito"),
+    PASSIVA_PRETERITO_IMPERFEITO("Voz Passiva — Pret. Imperfeito"),
+    PASSIVA_FUTURO("Voz Passiva — Futuro"),
+    PASSIVA_CONDICIONAL("Voz Passiva — Condicional")
 }
 
 enum class Subject(val displayLabel: String) {
@@ -22,3 +28,12 @@ enum class Subject(val displayLabel: String) {
     VOS("vós"),
     ELES("eles/elas/vocês")
 }
+
+enum class RegularityFilter(val displayLabel: String) {
+    ALL("All verbs"),
+    REGULAR_ONLY("Regular only"),
+    IRREGULAR_ONLY("Irregular only")
+}
+
+val Verb.isIrregular: Boolean
+    get() = conjugationType.contains("irregular")

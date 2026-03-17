@@ -7,7 +7,9 @@ data class Verb(
     val infinitive: String,
     val english: String,
     val conjugationType: String,
-    val conjugations: VerbConjugations
+    val conjugations: VerbConjugations,
+    val gerundOverride: String? = null,
+    val pastParticipleOverride: String? = null
 )
 
 @Serializable

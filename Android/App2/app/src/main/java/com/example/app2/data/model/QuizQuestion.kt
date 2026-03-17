@@ -3,7 +3,7 @@ package com.example.app2.data.model
 data class QuizQuestion(
     val verb: Verb,
     val tense: Tense,
-    val subject: Subject,
+    val subject: Subject?,
     val correctAnswer: String,
     val choices: List<String>
 )

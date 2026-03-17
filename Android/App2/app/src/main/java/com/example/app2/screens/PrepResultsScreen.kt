@@ -24,22 +24,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.app2.navigation.Screen
-import com.example.app2.quiz.QuizViewModel
+import com.example.app2.quiz.PrepViewModel
 
 @Composable
-fun ResultsScreen(
+fun PrepResultsScreen(
     navController: NavHostController,
     onPlayAgain: () -> Unit,
     onHome: () -> Unit
 ) {
-    val quizViewModel: QuizViewModel = viewModel(
-        navController.getBackStackEntry(Screen.Quiz.route)
+    val prepViewModel: PrepViewModel = viewModel(
+        navController.getBackStackEntry(Screen.PrepQuiz.route)
     )
-    val state by quizViewModel.state.collectAsState()
+    val state by prepViewModel.state.collectAsState()
     val score = state.score
     val total = state.questions.size
 
@@ -108,8 +109,11 @@ fun ResultsScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = record.question.verb.infinitive,
-                                style = MaterialTheme.typography.titleMedium
+                                text = record.question.sentence,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.weight(1f),
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis
                             )
                             Text(
                                 text = if (record.wasCorrect) "✓" else "✗",
@@ -117,14 +121,8 @@ fun ResultsScreen(
                                 color = if (record.wasCorrect) Color(0xFF2E7D32) else Color(0xFFC62828)
                             )
                         }
-                        val subjectPart = record.question.subject?.displayLabel?.let { " • $it" } ?: ""
                         Text(
-                            text = "${record.question.tense.displayLabel}$subjectPart",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Text(
-                            text = "Correct: ${record.question.correctAnswer}",
+                            text = "Correct: ${record.question.answer}",
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color(0xFF2E7D32)
                         )

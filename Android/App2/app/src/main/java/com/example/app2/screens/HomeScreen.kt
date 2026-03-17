@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit) {
+fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -57,14 +58,18 @@ fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "European Portuguese • 250 verbs • 11 tenses",
+                text = "European Portuguese • 250 verbs • 17 tenses",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(48.dp))
             Button(onClick = onStartQuiz) {
-                Text("Start Quiz")
+                Text("Conjugation Quiz")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedButton(onClick = onStartPrepQuiz) {
+                Text("Preposition Practice")
             }
         }
     }

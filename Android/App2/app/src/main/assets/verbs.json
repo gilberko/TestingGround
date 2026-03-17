@@ -13389,7 +13389,8 @@
         "vos": "escrevais",
         "eles": "escrevam"
       }
-    }
+    },
+    "pastParticipleOverride": "escrito"
   },
   {
     "infinitive": "descrever",
@@ -15900,7 +15901,8 @@
         "vos": "vejais",
         "eles": "vejam"
       }
-    }
+    },
+    "pastParticipleOverride": "visto"
   },
   {
     "infinitive": "valer",
@@ -16179,7 +16181,8 @@
         "vos": "abrais",
         "eles": "abram"
       }
-    }
+    },
+    "pastParticipleOverride": "aberto"
   },
   {
     "infinitive": "subir",
@@ -18411,7 +18414,8 @@
         "vos": "cubrais",
         "eles": "cubram"
       }
-    }
+    },
+    "pastParticipleOverride": "coberto"
   },
   {
     "infinitive": "descobrir",
@@ -18504,7 +18508,8 @@
         "vos": "descubrais",
         "eles": "descubram"
       }
-    }
+    },
+    "pastParticipleOverride": "descoberto"
   },
   {
     "infinitive": "seguir",
@@ -21387,7 +21392,8 @@
         "vos": "façais",
         "eles": "façam"
       }
-    }
+    },
+    "pastParticipleOverride": "feito"
   },
   {
     "infinitive": "poder",
@@ -21945,7 +21951,8 @@
         "vos": "digais",
         "eles": "digam"
       }
-    }
+    },
+    "pastParticipleOverride": "dito"
   },
   {
     "infinitive": "pôr",
@@ -22038,7 +22045,9 @@
         "vos": "ponhais",
         "eles": "ponham"
       }
-    }
+    },
+    "pastParticipleOverride": "posto",
+    "gerundOverride": "pondo"
   },
   {
     "infinitive": "caber",

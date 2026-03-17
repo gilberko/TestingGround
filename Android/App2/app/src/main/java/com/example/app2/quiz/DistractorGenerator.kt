@@ -4,6 +4,14 @@ import com.example.app2.data.model.Subject
 import com.example.app2.data.model.Tense
 import com.example.app2.data.model.Verb
 
+private val PASSIVE_TENSES = setOf(
+    Tense.PASSIVA_PRESENTE,
+    Tense.PASSIVA_PRETERITO_PERFEITO,
+    Tense.PASSIVA_PRETERITO_IMPERFEITO,
+    Tense.PASSIVA_FUTURO,
+    Tense.PASSIVA_CONDICIONAL
+)
+
 object DistractorGenerator {
 
     fun generate(
@@ -161,6 +169,75 @@ object DistractorGenerator {
                 Subject.VOS -> c.imperativoNegativo.vos
                 Subject.ELES -> c.imperativoNegativo.eles
             }
+            Tense.GERUND -> null  // handled by separate gerund path
+            Tense.PASSIVA_PRESENTE,
+            Tense.PASSIVA_PRETERITO_PERFEITO,
+            Tense.PASSIVA_PRETERITO_IMPERFEITO,
+            Tense.PASSIVA_FUTURO,
+            Tense.PASSIVA_CONDICIONAL -> VerbForms.passiveForm(verb, tense, subject)
         }
+    }
+
+    fun generateGerundDistractors(
+        verb: Verb,
+        correctAnswer: String,
+        allVerbs: List<Verb>
+    ): List<String> {
+        return allVerbs
+            .filter { it.infinitive != verb.infinitive }
+            .shuffled()
+            .mapNotNull { other ->
+                val g = VerbForms.gerund(other)
+                if (g != correctAnswer) g else null
+            }
+            .distinct()
+            .take(3)
+    }
+
+    fun generatePassiveDistractors(
+        verb: Verb,
+        tense: Tense,
+        subject: Subject,
+        correctAnswer: String,
+        allVerbs: List<Verb>
+    ): List<String> {
+        val distractors = mutableSetOf<String>()
+
+        // Strategy A: same verb, same tense, different subjects
+        Subject.entries.forEach { otherSubject ->
+            if (otherSubject != subject && distractors.size < 3) {
+                val form = VerbForms.passiveForm(verb, tense, otherSubject)
+                if (form != null && form != correctAnswer) distractors.add(form)
+            }
+        }
+
+        // Strategy B: different verbs, same tense, same subject
+        if (distractors.size < 3) {
+            allVerbs
+                .filter { it.infinitive != verb.infinitive }
+                .shuffled()
+                .forEach { otherVerb ->
+                    if (distractors.size >= 3) return@forEach
+                    val form = VerbForms.passiveForm(otherVerb, tense, subject)
+                    if (form != null && form != correctAnswer) distractors.add(form)
+                }
+        }
+
+        // Fallback: any verb/passive-tense/subject combo
+        if (distractors.size < 3) {
+            allVerbs.shuffled().forEach { anyVerb ->
+                PASSIVE_TENSES.forEach { anyTense ->
+                    Subject.entries.forEach { anySubject ->
+                        if (distractors.size >= 3) return@forEach
+                        val form = VerbForms.passiveForm(anyVerb, anyTense, anySubject)
+                        if (form != null && form != correctAnswer && !distractors.contains(form))
+                            distractors.add(form)
+                    }
+                }
+                if (distractors.size >= 3) return@forEach
+            }
+        }
+
+        return distractors.take(3)
     }
 }

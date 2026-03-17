@@ -14,7 +14,6 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -24,30 +23,28 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.app2.data.model.Tense
-import com.example.app2.quiz.ConfigViewModel
-import com.example.app2.quiz.QuizEvent
-import com.example.app2.quiz.QuizViewModel
+import com.example.app2.quiz.PrepEvent
+import com.example.app2.quiz.PrepViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QuizScreen(
-    configViewModel: ConfigViewModel,
+fun PrepQuizScreen(
     onQuizComplete: () -> Unit,
-    quizViewModel: QuizViewModel = viewModel()
+    prepViewModel: PrepViewModel = viewModel()
 ) {
-    val state by quizViewModel.state.collectAsState()
-    val selectedTenses by configViewModel.selectedTenses.collectAsState()
-    val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
-    val regularityFilter by configViewModel.regularityFilter.collectAsState()
+    val state by prepViewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
-        quizViewModel.startNewQuiz(selectedTenses, selectedSubjects, regularityFilter)
-        quizViewModel.events.collect { event ->
+        prepViewModel.startNewQuiz()
+        prepViewModel.events.collect { event ->
             when (event) {
-                QuizEvent.QuizComplete -> onQuizComplete()
+                PrepEvent.QuizComplete -> onQuizComplete()
             }
         }
     }
@@ -73,49 +70,25 @@ fun QuizScreen(
             )
 
             if (question != null) {
-                SuggestionChip(
-                    onClick = {},
-                    label = { Text(question.tense.displayLabel) }
-                )
-
-                val subjectLabel = question.subject?.displayLabel ?: ""
-                if (subjectLabel.isNotEmpty()) {
-                    Text(
-                        text = subjectLabel,
-                        style = MaterialTheme.typography.headlineLarge
-                    )
-                }
-
-                val promptText = when (question.tense) {
-                    Tense.GERUND -> "What is the gerund of ${question.verb.infinitive}?"
-                    Tense.PASSIVA_PRESENTE,
-                    Tense.PASSIVA_PRETERITO_PERFEITO,
-                    Tense.PASSIVA_PRETERITO_IMPERFEITO,
-                    Tense.PASSIVA_FUTURO,
-                    Tense.PASSIVA_CONDICIONAL -> "Voz passiva:"
-                    else -> null
-                }
-
                 ElevatedCard(modifier = Modifier.fillMaxWidth()) {
                     Column(
                         modifier = Modifier.padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        if (promptText != null) {
-                            Text(
-                                text = promptText,
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
+                        val parts = question.sentence.split("___")
+                        val annotated = buildAnnotatedString {
+                            parts.forEachIndexed { index, part ->
+                                append(part)
+                                if (index < parts.size - 1) {
+                                    withStyle(SpanStyle(fontWeight = FontWeight.Bold, color = Color(0xFF1565C0))) {
+                                        append("___")
+                                    }
+                                }
+                            }
                         }
                         Text(
-                            text = question.verb.infinitive,
-                            style = MaterialTheme.typography.headlineMedium
-                        )
-                        Text(
-                            text = question.verb.english,
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            text = annotated,
+                            style = MaterialTheme.typography.bodyLarge
                         )
                     }
                 }
@@ -125,12 +98,12 @@ fun QuizScreen(
                 question.choices.forEach { choice ->
                     val buttonColor = when {
                         !state.isAnswerRevealed -> null
-                        choice == question.correctAnswer -> Color(0xFF2E7D32)
+                        choice == question.answer -> Color(0xFF2E7D32)
                         choice == state.selectedAnswer -> Color(0xFFC62828)
                         else -> null
                     }
                     OutlinedButton(
-                        onClick = { quizViewModel.selectAnswer(choice) },
+                        onClick = { prepViewModel.selectAnswer(choice) },
                         enabled = !state.isAnswerRevealed,
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -142,10 +115,17 @@ fun QuizScreen(
                 }
 
                 if (state.isAnswerRevealed) {
+                    question.hint?.let { hint ->
+                        Text(
+                            text = hint,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                     Spacer(modifier = Modifier.height(8.dp))
                     val isLastQuestion = state.currentIndex >= total - 1
                     Button(
-                        onClick = { quizViewModel.nextQuestion() },
+                        onClick = { prepViewModel.nextQuestion() },
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(if (isLastQuestion) "See Results" else "Next")
