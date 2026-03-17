@@ -26,18 +26,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.app2.quiz.ConfigViewModel
 import com.example.app2.quiz.QuizEvent
 import com.example.app2.quiz.QuizViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizScreen(
+    configViewModel: ConfigViewModel,
     onQuizComplete: () -> Unit,
     quizViewModel: QuizViewModel = viewModel()
 ) {
     val state by quizViewModel.state.collectAsState()
+    val selectedTenses by configViewModel.selectedTenses.collectAsState()
+    val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
 
     LaunchedEffect(Unit) {
+        quizViewModel.startNewQuiz(selectedTenses, selectedSubjects)
         quizViewModel.events.collect { event ->
             when (event) {
                 QuizEvent.QuizComplete -> onQuizComplete()

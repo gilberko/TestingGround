@@ -86,10 +86,7 @@ fun ResultsScreen(
             OutlinedButton(onClick = onHome, modifier = Modifier.weight(1f)) {
                 Text("Home")
             }
-            Button(onClick = {
-                quizViewModel.startNewQuiz()
-                onPlayAgain()
-            }, modifier = Modifier.weight(1f)) {
+            Button(onClick = onPlayAgain, modifier = Modifier.weight(1f)) {
                 Text("Play Again")
             }
         }

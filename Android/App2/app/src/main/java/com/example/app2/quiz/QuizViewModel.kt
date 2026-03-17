@@ -38,30 +38,39 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
     private val _events = MutableSharedFlow<QuizEvent>()
     val events = _events.asSharedFlow()
 
-    init {
-        startNewQuiz()
-    }
+    private var lastAllowedTenses: Set<Tense> = emptySet()
+    private var lastAllowedSubjects: Set<Subject> = emptySet()
 
-    fun startNewQuiz() {
-        val questions = generateQuestions()
+    fun startNewQuiz(
+        allowedTenses: Set<Tense> = lastAllowedTenses,
+        allowedSubjects: Set<Subject> = lastAllowedSubjects
+    ) {
+        lastAllowedTenses = allowedTenses
+        lastAllowedSubjects = allowedSubjects
+        val questions = generateQuestions(allowedTenses, allowedSubjects)
         _state.value = QuizState(questions = questions)
     }
 
-    private fun generateQuestions(): List<QuizQuestion> {
+    private fun generateQuestions(
+        allowedTenses: Set<Tense>,
+        allowedSubjects: Set<Subject>
+    ): List<QuizQuestion> {
         val verbs = repository.verbs
+        val effectiveTenses = if (allowedTenses.isEmpty()) Tense.entries.toList() else allowedTenses.toList()
+        val effectiveSubjects = if (allowedSubjects.isEmpty()) Subject.entries.toList() else allowedSubjects.toList()
+        val imperativoSubjects = effectiveSubjects.filter { it != Subject.EU }
+
         val questions = mutableListOf<QuizQuestion>()
         val used = mutableSetOf<String>()
-
-        // Subjects valid for imperativo
-        val imperativoSubjects = listOf(Subject.TU, Subject.ELE, Subject.NOS, Subject.VOS, Subject.ELES)
 
         repeat(10) {
             var attempts = 0
             while (attempts < 100) {
+                val tense = effectiveTenses.random()
+                val isImperativo = tense == Tense.IMPERATIVO_AFIRMATIVO || tense == Tense.IMPERATIVO_NEGATIVO
+                if (isImperativo && imperativoSubjects.isEmpty()) { attempts++; continue }
+                val subject = if (isImperativo) imperativoSubjects.random() else effectiveSubjects.random()
                 val verb = verbs.random()
-                val tense = Tense.entries.random()
-                val subject = if (tense == Tense.IMPERATIVO_AFIRMATIVO || tense == Tense.IMPERATIVO_NEGATIVO)
-                    imperativoSubjects.random() else Subject.entries.random()
                 val key = "${verb.infinitive}|${tense}|${subject}"
                 if (key in used) { attempts++; continue }
 
