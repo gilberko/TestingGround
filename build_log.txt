@@ -1,0 +1,87 @@
+=== Compiling ===
+Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35222 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+WavFile.cpp
+wav_play.cpp
+Generating Code...
+Microsoft (R) Incremental Linker Version 14.44.35222.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:wav_play.exe 
+WavFile.obj 
+wav_play.obj 
+=== Running ===
+Opened: C:\temp_wav\Alarm08.wav
+  Channels:    2
+  Sample rate: 22050 Hz
+  Bits/sample: 16
+  Duration:    5.73234 s
+  Samples:     126398
+
+Playing with FFT analysis (chunk size: 2048 samples)...
+
+[0.00s] Top freqs:  1044Hz C6 (0.02)  1055Hz C6 (0.02)  1034Hz C6 (0.01)  1066Hz C6 (0.00)  1023Hz C6 (0.00)
+[0.09s] Top freqs:  1044Hz C6 (0.01)  1055Hz C6 (0.01)  1034Hz C6 (0.00)  1066Hz C6 (0.00)  1012Hz B5 (0.00)
+[0.19s] Top freqs:  1314Hz E6 (0.01)  1324Hz E6 (0.01)  1044Hz C6 (0.00)  1303Hz E6 (0.00)  1055Hz C6 (0.00)
+[0.28s] Top freqs:  1044Hz C6 (0.01)  1055Hz C6 (0.01)  1034Hz C6 (0.01)  1066Hz C6 (0.01)  1023Hz C6 (0.00)
+[0.37s] Top freqs:  1044Hz C6 (0.00)  1055Hz C6 (0.00)  1034Hz C6 (0.00)  1066Hz C6 (0.00)  1077Hz C6 (0.00)
+[0.46s] Top freqs:  883Hz A5 (0.03)  872Hz A5 (0.02)  894Hz A5 (0.01)  861Hz A5 (0.00)  1044Hz C6 (0.00)
+[0.56s] Top freqs:  700Hz F5 (0.02)  689Hz F5 (0.02)  711Hz F5 (0.01)  883Hz A5 (0.01)  872Hz A5 (0.01)
+[0.65s] Top freqs:  700Hz F5 (0.01)  689Hz F5 (0.01)  711Hz F5 (0.01)  883Hz A5 (0.00)  872Hz A5 (0.00)
+[0.74s] Top freqs:  657Hz E5 (0.01)  668Hz E5 (0.01)  646Hz E5 (0.01)  678Hz E5 (0.00)  700Hz F5 (0.00)
+[0.84s] Top freqs:  657Hz E5 (0.01)  668Hz E5 (0.00)  883Hz A5 (0.00)  872Hz A5 (0.00)  646Hz E5 (0.00)
+[0.93s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  883Hz A5 (0.00)  646Hz E5 (0.00)  894Hz A5 (0.00)
+[1.02s] Top freqs:  883Hz A5 (0.00)  657Hz E5 (0.00)  894Hz A5 (0.00)  700Hz F5 (0.00)  668Hz E5 (0.00)
+[1.11s] Top freqs:  657Hz E5 (0.00)  872Hz A5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  700Hz F5 (0.00)
+[1.21s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  872Hz A5 (0.00)  646Hz E5 (0.00)  689Hz F5 (0.00)
+[1.30s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  646Hz E5 (0.00)  883Hz A5 (0.00)  894Hz A5 (0.00)
+[1.39s] Top freqs:  894Hz A5 (0.00)  657Hz E5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  711Hz F5 (0.00)
+[1.49s] Top freqs:  668Hz E5 (0.00)  883Hz A5 (0.00)  657Hz E5 (0.00)  894Hz A5 (0.00)  700Hz F5 (0.00)
+[1.58s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  700Hz F5 (0.00)  872Hz A5 (0.00)  883Hz A5 (0.00)
+[1.67s] Top freqs:  872Hz A5 (0.00)  883Hz A5 (0.00)  646Hz E5 (0.00)  689Hz F5 (0.00)  861Hz A5 (0.00)
+[1.76s] Top freqs:  657Hz E5 (0.00)  883Hz A5 (0.00)  872Hz A5 (0.00)  646Hz E5 (0.00)  700Hz F5 (0.00)
+[1.86s] Top freqs:  883Hz A5 (0.00)  668Hz E5 (0.00)  657Hz E5 (0.00)  894Hz A5 (0.00)  700Hz F5 (0.00)
+[1.95s] Top freqs:  668Hz E5 (0.00)  657Hz E5 (0.00)  883Hz A5 (0.00)  678Hz E5 (0.00)  894Hz A5 (0.00)
+[2.04s] Top freqs:  657Hz E5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  872Hz A5 (0.00)  700Hz F5 (0.00)
+[2.14s] Top freqs:  1044Hz C6 (0.02)  1055Hz C6 (0.02)  1034Hz C6 (0.01)  1066Hz C6 (0.00)  1023Hz C6 (0.00)
+[2.23s] Top freqs:  1044Hz C6 (0.01)  1055Hz C6 (0.01)  1034Hz C6 (0.00)  1066Hz C6 (0.00)  1012Hz B5 (0.00)
+[2.32s] Top freqs:  1314Hz E6 (0.01)  1324Hz E6 (0.01)  1044Hz C6 (0.00)  1303Hz E6 (0.00)  1335Hz E6 (0.00)
+[2.41s] Top freqs:  1044Hz C6 (0.01)  1055Hz C6 (0.01)  1034Hz C6 (0.01)  1066Hz C6 (0.01)  1023Hz C6 (0.00)
+[2.51s] Top freqs:  1044Hz C6 (0.00)  1055Hz C6 (0.00)  1034Hz C6 (0.00)  1077Hz C6 (0.00)  1066Hz C6 (0.00)
+[2.60s] Top freqs:  883Hz A5 (0.03)  872Hz A5 (0.02)  894Hz A5 (0.01)  861Hz A5 (0.00)  1044Hz C6 (0.00)
+[2.69s] Top freqs:  700Hz F5 (0.02)  689Hz F5 (0.02)  711Hz F5 (0.01)  883Hz A5 (0.01)  872Hz A5 (0.01)
+[2.79s] Top freqs:  700Hz F5 (0.01)  689Hz F5 (0.01)  711Hz F5 (0.01)  883Hz A5 (0.00)  872Hz A5 (0.00)
+[2.88s] Top freqs:  657Hz E5 (0.01)  668Hz E5 (0.01)  646Hz E5 (0.01)  678Hz E5 (0.00)  700Hz F5 (0.00)
+[2.97s] Top freqs:  657Hz E5 (0.01)  668Hz E5 (0.00)  883Hz A5 (0.00)  872Hz A5 (0.00)  646Hz E5 (0.00)
+[3.07s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  883Hz A5 (0.00)  646Hz E5 (0.00)  894Hz A5 (0.00)
+[3.16s] Top freqs:  883Hz A5 (0.00)  657Hz E5 (0.00)  700Hz F5 (0.00)  894Hz A5 (0.00)  668Hz E5 (0.00)
+[3.25s] Top freqs:  657Hz E5 (0.00)  872Hz A5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  700Hz F5 (0.00)
+[3.34s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  872Hz A5 (0.00)  646Hz E5 (0.00)  689Hz F5 (0.00)
+[3.44s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  646Hz E5 (0.00)  883Hz A5 (0.00)  700Hz F5 (0.00)
+[3.53s] Top freqs:  657Hz E5 (0.00)  894Hz A5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  700Hz F5 (0.00)
+[3.62s] Top freqs:  668Hz E5 (0.00)  883Hz A5 (0.00)  657Hz E5 (0.00)  894Hz A5 (0.00)  700Hz F5 (0.00)
+[3.72s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  872Hz A5 (0.00)  883Hz A5 (0.00)  700Hz F5 (0.00)
+[3.81s] Top freqs:  872Hz A5 (0.00)  883Hz A5 (0.00)  646Hz E5 (0.00)  689Hz F5 (0.00)  861Hz A5 (0.00)
+[3.90s] Top freqs:  657Hz E5 (0.00)  883Hz A5 (0.00)  646Hz E5 (0.00)  872Hz A5 (0.00)  700Hz F5 (0.00)
+[3.99s] Top freqs:  657Hz E5 (0.00)  668Hz E5 (0.00)  883Hz A5 (0.00)  894Hz A5 (0.00)  700Hz F5 (0.00)
+[4.09s] Top freqs:  668Hz E5 (0.00)  657Hz E5 (0.00)  883Hz A5 (0.00)  678Hz E5 (0.00)  894Hz A5 (0.00)
+[4.18s] Top freqs:  657Hz E5 (0.00)  883Hz A5 (0.00)  668Hz E5 (0.00)  872Hz A5 (0.00)  700Hz F5 (0.00)
+[4.27s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[4.37s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[4.46s] Top freqs:  65Hz C2 (0.00)  183Hz F#3 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[4.55s] Top freqs:  65Hz C2 (0.00)  54Hz A1 (0.00)  183Hz F#3 (0.00)  420Hz G#4 (0.00)  172Hz F3 (0.00)
+[4.64s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  420Hz G#4 (0.00)  172Hz F3 (0.00)
+[4.74s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[4.83s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[4.92s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.02s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.11s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.20s] Top freqs:  65Hz C2 (0.00)  183Hz F#3 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.29s] Top freqs:  65Hz C2 (0.00)  183Hz F#3 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.39s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.48s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+[5.57s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  172Hz F3 (0.00)  54Hz A1 (0.00)  420Hz G#4 (0.00)
+[5.67s] Top freqs:  183Hz F#3 (0.00)  65Hz C2 (0.00)  54Hz A1 (0.00)  172Hz F3 (0.00)  420Hz G#4 (0.00)
+
+Done.

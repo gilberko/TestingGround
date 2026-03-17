@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:\\\\Code\\\\TestingGround\\\\Android\\\\ChordProject:*)",
+      "Bash(./gradlew assembleDebug:*)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug:*)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" PATH=\"$JAVA_HOME/bin:$PATH\" java:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" PATH=\"$JAVA_HOME/bin:$PATH\" ./gradlew assembleRelease:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease:*)",
+      "Bash(./gradlew assembleRelease:*)"
+    ]
+  }
+}
