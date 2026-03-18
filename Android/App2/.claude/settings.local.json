@@ -20,7 +20,14 @@
       "Bash(xargs grep:*)",
       "Bash(./gradlew assembleRelease 2>&1)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease 2>&1)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(adb devices:*)",
+      "Bash(ADB=\"/c/Users/gilbe/AppData/Local/Android/Sdk/platform-tools/adb.exe\")",
+      "Bash(\"$ADB\" devices:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
+      "Bash(\"$ADB\" logcat:*)"
     ]
   }
 }
