@@ -7,9 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -36,6 +40,7 @@ import com.example.app2.quiz.PrepViewModel
 @Composable
 fun PrepQuizScreen(
     onQuizComplete: () -> Unit,
+    onOpenTutorial: () -> Unit = {},
     prepViewModel: PrepViewModel = viewModel()
 ) {
     val state by prepViewModel.state.collectAsState()
@@ -54,7 +59,14 @@ fun PrepQuizScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Question ${state.currentIndex + 1} / $total") })
+            TopAppBar(
+                title = { Text("Question ${state.currentIndex + 1} / $total") },
+                actions = {
+                    IconButton(onClick = onOpenTutorial) {
+                        Icon(Icons.Default.Info, contentDescription = "Tutorial")
+                    }
+                }
+            )
         }
     ) { innerPadding ->
         Column(

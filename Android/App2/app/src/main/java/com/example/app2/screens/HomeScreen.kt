@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit) {
+fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit, onOpenTutorial: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -70,6 +70,10 @@ fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQui
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedButton(onClick = onStartPrepQuiz) {
                 Text("Preposition Practice")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedButton(onClick = onOpenTutorial) {
+                Text("Tutorial")
             }
         }
     }

@@ -29,6 +29,7 @@ import com.example.app2.data.model.RegularityFilter
 import com.example.app2.data.model.Subject
 import com.example.app2.data.model.Tense
 import com.example.app2.quiz.ConfigViewModel
+import com.example.app2.quiz.QuizMode
 
 private val ACTIVE_TENSES = listOf(
     Tense.INDICATIVO_PRESENTE,
@@ -57,6 +58,7 @@ private val PASSIVE_TENSES = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
+    val quizMode by configViewModel.quizMode.collectAsState()
     val selectedTenses by configViewModel.selectedTenses.collectAsState()
     val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
     val regularityFilter by configViewModel.regularityFilter.collectAsState()
@@ -79,8 +81,36 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp)
         ) {
+            // Answer Mode section
+            item {
+                Text(
+                    text = "Answer Mode",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
+                )
+            }
+            items(QuizMode.entries) { mode ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = mode == quizMode,
+                        onClick = { configViewModel.setQuizMode(mode) }
+                    )
+                    Text(
+                        text = when (mode) {
+                            QuizMode.MULTIPLE_CHOICE -> "Multiple Choice"
+                            QuizMode.FREE_TEXT -> "Free Text"
+                        },
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+            }
+
             // Active Tenses section
             item {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                 Text(
                     text = "Active Tenses",
                     style = MaterialTheme.typography.titleMedium,

@@ -146,7 +146,7 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
         val state = _state.value
         if (state.isAnswerRevealed) return
         val question = state.questions.getOrNull(state.currentIndex) ?: return
-        val wasCorrect = answer == question.correctAnswer
+        val wasCorrect = answer.equals(question.correctAnswer, ignoreCase = true)
         _state.update {
             it.copy(
                 selectedAnswer = answer,

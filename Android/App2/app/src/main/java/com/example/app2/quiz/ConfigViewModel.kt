@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ConfigViewModel : ViewModel() {
+    private val _quizMode = MutableStateFlow(QuizMode.MULTIPLE_CHOICE)
+    val quizMode: StateFlow<QuizMode> = _quizMode.asStateFlow()
+
     private val _selectedTenses = MutableStateFlow<Set<Tense>>(emptySet())
     val selectedTenses: StateFlow<Set<Tense>> = _selectedTenses.asStateFlow()
 
@@ -30,5 +33,9 @@ class ConfigViewModel : ViewModel() {
 
     fun setRegularityFilter(filter: RegularityFilter) {
         _regularityFilter.value = filter
+    }
+
+    fun setQuizMode(mode: QuizMode) {
+        _quizMode.value = mode
     }
 }
