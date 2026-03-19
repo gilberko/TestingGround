@@ -13,6 +13,7 @@ enum class Tense(val displayLabel: String) {
     IMPERATIVO_AFIRMATIVO("Imperativo Afirmativo"),
     IMPERATIVO_NEGATIVO("Imperativo Negativo"),
     GERUND("Gerúndio"),
+    INFINITIVO_PESSOAL("Infinitivo Pessoal"),
     PASSIVA_PRESENTE("Voz Passiva — Presente"),
     PASSIVA_PRETERITO_PERFEITO("Voz Passiva — Pret. Perfeito"),
     PASSIVA_PRETERITO_IMPERFEITO("Voz Passiva — Pret. Imperfeito"),

@@ -170,6 +170,14 @@ object DistractorGenerator {
                 Subject.ELES -> c.imperativoNegativo.eles
             }
             Tense.GERUND -> null  // handled by separate gerund path
+            Tense.INFINITIVO_PESSOAL -> when (subject) {
+                Subject.EU   -> verb.conjugations.infinitivoPessoal?.eu
+                Subject.TU   -> verb.conjugations.infinitivoPessoal?.tu
+                Subject.ELE  -> verb.conjugations.infinitivoPessoal?.ele
+                Subject.NOS  -> verb.conjugations.infinitivoPessoal?.nos
+                Subject.VOS  -> verb.conjugations.infinitivoPessoal?.vos
+                Subject.ELES -> verb.conjugations.infinitivoPessoal?.eles
+            }
             Tense.PASSIVA_PRESENTE,
             Tense.PASSIVA_PRETERITO_PERFEITO,
             Tense.PASSIVA_PRETERITO_IMPERFEITO,

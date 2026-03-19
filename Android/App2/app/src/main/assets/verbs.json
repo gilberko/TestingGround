@@ -76,6 +76,14 @@
         "vos": "falardes",
         "eles": "falarem"
       },
+      "infinitivoPessoal": {
+        "eu": "falar",
+        "tu": "falares",
+        "ele": "falar",
+        "nos": "falarmos",
+        "vos": "falardes",
+        "eles": "falarem"
+      },
       "imperativoAfirmativo": {
         "tu": "fala",
         "ele": "fale",
@@ -162,6 +170,14 @@
         "eles": "andassem"
       },
       "conjuntivoFuturo": {
+        "eu": "andar",
+        "tu": "andares",
+        "ele": "andar",
+        "nos": "andarmos",
+        "vos": "andardes",
+        "eles": "andarem"
+      },
+      "infinitivoPessoal": {
         "eu": "andar",
         "tu": "andares",
         "ele": "andar",
@@ -262,6 +278,14 @@
         "vos": "cantardes",
         "eles": "cantarem"
       },
+      "infinitivoPessoal": {
+        "eu": "cantar",
+        "tu": "cantares",
+        "ele": "cantar",
+        "nos": "cantarmos",
+        "vos": "cantardes",
+        "eles": "cantarem"
+      },
       "imperativoAfirmativo": {
         "tu": "canta",
         "ele": "cante",
@@ -348,6 +372,14 @@
         "eles": "trabalhassem"
       },
       "conjuntivoFuturo": {
+        "eu": "trabalhar",
+        "tu": "trabalhares",
+        "ele": "trabalhar",
+        "nos": "trabalharmos",
+        "vos": "trabalhardes",
+        "eles": "trabalharem"
+      },
+      "infinitivoPessoal": {
         "eu": "trabalhar",
         "tu": "trabalhares",
         "ele": "trabalhar",
@@ -448,6 +480,14 @@
         "vos": "gostardes",
         "eles": "gostarem"
       },
+      "infinitivoPessoal": {
+        "eu": "gostar",
+        "tu": "gostares",
+        "ele": "gostar",
+        "nos": "gostarmos",
+        "vos": "gostardes",
+        "eles": "gostarem"
+      },
       "imperativoAfirmativo": {
         "tu": "gosta",
         "ele": "goste",
@@ -534,6 +574,14 @@
         "eles": "usassem"
       },
       "conjuntivoFuturo": {
+        "eu": "usar",
+        "tu": "usares",
+        "ele": "usar",
+        "nos": "usarmos",
+        "vos": "usardes",
+        "eles": "usarem"
+      },
+      "infinitivoPessoal": {
         "eu": "usar",
         "tu": "usares",
         "ele": "usar",
@@ -634,6 +682,14 @@
         "vos": "comprardes",
         "eles": "comprarem"
       },
+      "infinitivoPessoal": {
+        "eu": "comprar",
+        "tu": "comprares",
+        "ele": "comprar",
+        "nos": "comprarmos",
+        "vos": "comprardes",
+        "eles": "comprarem"
+      },
       "imperativoAfirmativo": {
         "tu": "compra",
         "ele": "compre",
@@ -720,6 +776,14 @@
         "eles": "mudassem"
       },
       "conjuntivoFuturo": {
+        "eu": "mudar",
+        "tu": "mudares",
+        "ele": "mudar",
+        "nos": "mudarmos",
+        "vos": "mudardes",
+        "eles": "mudarem"
+      },
+      "infinitivoPessoal": {
         "eu": "mudar",
         "tu": "mudares",
         "ele": "mudar",
@@ -820,6 +884,14 @@
         "vos": "entrardes",
         "eles": "entrarem"
       },
+      "infinitivoPessoal": {
+        "eu": "entrar",
+        "tu": "entrares",
+        "ele": "entrar",
+        "nos": "entrarmos",
+        "vos": "entrardes",
+        "eles": "entrarem"
+      },
       "imperativoAfirmativo": {
         "tu": "entra",
         "ele": "entre",
@@ -906,6 +978,14 @@
         "eles": "encontrassem"
       },
       "conjuntivoFuturo": {
+        "eu": "encontrar",
+        "tu": "encontrares",
+        "ele": "encontrar",
+        "nos": "encontrarmos",
+        "vos": "encontrardes",
+        "eles": "encontrarem"
+      },
+      "infinitivoPessoal": {
         "eu": "encontrar",
         "tu": "encontrares",
         "ele": "encontrar",
@@ -1006,6 +1086,14 @@
         "vos": "esperardes",
         "eles": "esperarem"
       },
+      "infinitivoPessoal": {
+        "eu": "esperar",
+        "tu": "esperares",
+        "ele": "esperar",
+        "nos": "esperarmos",
+        "vos": "esperardes",
+        "eles": "esperarem"
+      },
       "imperativoAfirmativo": {
         "tu": "espera",
         "ele": "espere",
@@ -1092,6 +1180,14 @@
         "eles": "ganhassem"
       },
       "conjuntivoFuturo": {
+        "eu": "ganhar",
+        "tu": "ganhares",
+        "ele": "ganhar",
+        "nos": "ganharmos",
+        "vos": "ganhardes",
+        "eles": "ganharem"
+      },
+      "infinitivoPessoal": {
         "eu": "ganhar",
         "tu": "ganhares",
         "ele": "ganhar",
@@ -1192,6 +1288,14 @@
         "vos": "gastardes",
         "eles": "gastarem"
       },
+      "infinitivoPessoal": {
+        "eu": "gastar",
+        "tu": "gastares",
+        "ele": "gastar",
+        "nos": "gastarmos",
+        "vos": "gastardes",
+        "eles": "gastarem"
+      },
       "imperativoAfirmativo": {
         "tu": "gasta",
         "ele": "gaste",
@@ -1278,6 +1382,14 @@
         "eles": "levassem"
       },
       "conjuntivoFuturo": {
+        "eu": "levar",
+        "tu": "levares",
+        "ele": "levar",
+        "nos": "levarmos",
+        "vos": "levardes",
+        "eles": "levarem"
+      },
+      "infinitivoPessoal": {
         "eu": "levar",
         "tu": "levares",
         "ele": "levar",
@@ -1378,6 +1490,14 @@
         "vos": "olhardes",
         "eles": "olharem"
       },
+      "infinitivoPessoal": {
+        "eu": "olhar",
+        "tu": "olhares",
+        "ele": "olhar",
+        "nos": "olharmos",
+        "vos": "olhardes",
+        "eles": "olharem"
+      },
       "imperativoAfirmativo": {
         "tu": "olha",
         "ele": "olhe",
@@ -1464,6 +1584,14 @@
         "eles": "passassem"
       },
       "conjuntivoFuturo": {
+        "eu": "passar",
+        "tu": "passares",
+        "ele": "passar",
+        "nos": "passarmos",
+        "vos": "passardes",
+        "eles": "passarem"
+      },
+      "infinitivoPessoal": {
         "eu": "passar",
         "tu": "passares",
         "ele": "passar",
@@ -1564,6 +1692,14 @@
         "vos": "perguntardes",
         "eles": "perguntarem"
       },
+      "infinitivoPessoal": {
+        "eu": "perguntar",
+        "tu": "perguntares",
+        "ele": "perguntar",
+        "nos": "perguntarmos",
+        "vos": "perguntardes",
+        "eles": "perguntarem"
+      },
       "imperativoAfirmativo": {
         "tu": "pergunta",
         "ele": "pergunte",
@@ -1650,6 +1786,14 @@
         "eles": "precisassem"
       },
       "conjuntivoFuturo": {
+        "eu": "precisar",
+        "tu": "precisares",
+        "ele": "precisar",
+        "nos": "precisarmos",
+        "vos": "precisardes",
+        "eles": "precisarem"
+      },
+      "infinitivoPessoal": {
         "eu": "precisar",
         "tu": "precisares",
         "ele": "precisar",
@@ -1750,6 +1894,14 @@
         "vos": "tratardes",
         "eles": "tratarem"
       },
+      "infinitivoPessoal": {
+        "eu": "tratar",
+        "tu": "tratares",
+        "ele": "tratar",
+        "nos": "tratarmos",
+        "vos": "tratardes",
+        "eles": "tratarem"
+      },
       "imperativoAfirmativo": {
         "tu": "trata",
         "ele": "trate",
@@ -1836,6 +1988,14 @@
         "eles": "viajassem"
       },
       "conjuntivoFuturo": {
+        "eu": "viajar",
+        "tu": "viajares",
+        "ele": "viajar",
+        "nos": "viajarmos",
+        "vos": "viajardes",
+        "eles": "viajarem"
+      },
+      "infinitivoPessoal": {
         "eu": "viajar",
         "tu": "viajares",
         "ele": "viajar",
@@ -1936,6 +2096,14 @@
         "vos": "visitardes",
         "eles": "visitarem"
       },
+      "infinitivoPessoal": {
+        "eu": "visitar",
+        "tu": "visitares",
+        "ele": "visitar",
+        "nos": "visitarmos",
+        "vos": "visitardes",
+        "eles": "visitarem"
+      },
       "imperativoAfirmativo": {
         "tu": "visita",
         "ele": "visite",
@@ -2022,6 +2190,14 @@
         "eles": "acabassem"
       },
       "conjuntivoFuturo": {
+        "eu": "acabar",
+        "tu": "acabares",
+        "ele": "acabar",
+        "nos": "acabarmos",
+        "vos": "acabardes",
+        "eles": "acabarem"
+      },
+      "infinitivoPessoal": {
         "eu": "acabar",
         "tu": "acabares",
         "ele": "acabar",
@@ -2122,6 +2298,14 @@
         "vos": "ajudardes",
         "eles": "ajudarem"
       },
+      "infinitivoPessoal": {
+        "eu": "ajudar",
+        "tu": "ajudares",
+        "ele": "ajudar",
+        "nos": "ajudarmos",
+        "vos": "ajudardes",
+        "eles": "ajudarem"
+      },
       "imperativoAfirmativo": {
         "tu": "ajuda",
         "ele": "ajude",
@@ -2208,6 +2392,14 @@
         "eles": "amassem"
       },
       "conjuntivoFuturo": {
+        "eu": "amar",
+        "tu": "amares",
+        "ele": "amar",
+        "nos": "amarmos",
+        "vos": "amardes",
+        "eles": "amarem"
+      },
+      "infinitivoPessoal": {
         "eu": "amar",
         "tu": "amares",
         "ele": "amar",
@@ -2308,6 +2500,14 @@
         "vos": "apresentardes",
         "eles": "apresentarem"
       },
+      "infinitivoPessoal": {
+        "eu": "apresentar",
+        "tu": "apresentares",
+        "ele": "apresentar",
+        "nos": "apresentarmos",
+        "vos": "apresentardes",
+        "eles": "apresentarem"
+      },
       "imperativoAfirmativo": {
         "tu": "apresenta",
         "ele": "apresente",
@@ -2394,6 +2594,14 @@
         "eles": "aumentassem"
       },
       "conjuntivoFuturo": {
+        "eu": "aumentar",
+        "tu": "aumentares",
+        "ele": "aumentar",
+        "nos": "aumentarmos",
+        "vos": "aumentardes",
+        "eles": "aumentarem"
+      },
+      "infinitivoPessoal": {
         "eu": "aumentar",
         "tu": "aumentares",
         "ele": "aumentar",
@@ -2494,6 +2702,14 @@
         "vos": "caminhardes",
         "eles": "caminharem"
       },
+      "infinitivoPessoal": {
+        "eu": "caminhar",
+        "tu": "caminhares",
+        "ele": "caminhar",
+        "nos": "caminharmos",
+        "vos": "caminhardes",
+        "eles": "caminharem"
+      },
       "imperativoAfirmativo": {
         "tu": "caminha",
         "ele": "caminhe",
@@ -2580,6 +2796,14 @@
         "eles": "celebrassem"
       },
       "conjuntivoFuturo": {
+        "eu": "celebrar",
+        "tu": "celebrares",
+        "ele": "celebrar",
+        "nos": "celebrarmos",
+        "vos": "celebrardes",
+        "eles": "celebrarem"
+      },
+      "infinitivoPessoal": {
         "eu": "celebrar",
         "tu": "celebrares",
         "ele": "celebrar",
@@ -2680,6 +2904,14 @@
         "vos": "cobrardes",
         "eles": "cobrarem"
       },
+      "infinitivoPessoal": {
+        "eu": "cobrar",
+        "tu": "cobrares",
+        "ele": "cobrar",
+        "nos": "cobrarmos",
+        "vos": "cobrardes",
+        "eles": "cobrarem"
+      },
       "imperativoAfirmativo": {
         "tu": "cobra",
         "ele": "cobre",
@@ -2766,6 +2998,14 @@
         "eles": "combinassem"
       },
       "conjuntivoFuturo": {
+        "eu": "combinar",
+        "tu": "combinares",
+        "ele": "combinar",
+        "nos": "combinarmos",
+        "vos": "combinardes",
+        "eles": "combinarem"
+      },
+      "infinitivoPessoal": {
         "eu": "combinar",
         "tu": "combinares",
         "ele": "combinar",
@@ -2866,6 +3106,14 @@
         "vos": "contardes",
         "eles": "contarem"
       },
+      "infinitivoPessoal": {
+        "eu": "contar",
+        "tu": "contares",
+        "ele": "contar",
+        "nos": "contarmos",
+        "vos": "contardes",
+        "eles": "contarem"
+      },
       "imperativoAfirmativo": {
         "tu": "conta",
         "ele": "conte",
@@ -2952,6 +3200,14 @@
         "eles": "cortassem"
       },
       "conjuntivoFuturo": {
+        "eu": "cortar",
+        "tu": "cortares",
+        "ele": "cortar",
+        "nos": "cortarmos",
+        "vos": "cortardes",
+        "eles": "cortarem"
+      },
+      "infinitivoPessoal": {
         "eu": "cortar",
         "tu": "cortares",
         "ele": "cortar",
@@ -3052,6 +3308,14 @@
         "vos": "criardes",
         "eles": "criarem"
       },
+      "infinitivoPessoal": {
+        "eu": "criar",
+        "tu": "criares",
+        "ele": "criar",
+        "nos": "criarmos",
+        "vos": "criardes",
+        "eles": "criarem"
+      },
       "imperativoAfirmativo": {
         "tu": "cria",
         "ele": "crie",
@@ -3138,6 +3402,14 @@
         "eles": "cuidassem"
       },
       "conjuntivoFuturo": {
+        "eu": "cuidar",
+        "tu": "cuidares",
+        "ele": "cuidar",
+        "nos": "cuidarmos",
+        "vos": "cuidardes",
+        "eles": "cuidarem"
+      },
+      "infinitivoPessoal": {
         "eu": "cuidar",
         "tu": "cuidares",
         "ele": "cuidar",
@@ -3238,6 +3510,14 @@
         "vos": "deixardes",
         "eles": "deixarem"
       },
+      "infinitivoPessoal": {
+        "eu": "deixar",
+        "tu": "deixares",
+        "ele": "deixar",
+        "nos": "deixarmos",
+        "vos": "deixardes",
+        "eles": "deixarem"
+      },
       "imperativoAfirmativo": {
         "tu": "deixa",
         "ele": "deixe",
@@ -3324,6 +3604,14 @@
         "eles": "descansassem"
       },
       "conjuntivoFuturo": {
+        "eu": "descansar",
+        "tu": "descansares",
+        "ele": "descansar",
+        "nos": "descansarmos",
+        "vos": "descansardes",
+        "eles": "descansarem"
+      },
+      "infinitivoPessoal": {
         "eu": "descansar",
         "tu": "descansares",
         "ele": "descansar",
@@ -3424,6 +3712,14 @@
         "vos": "desenhardes",
         "eles": "desenharem"
       },
+      "infinitivoPessoal": {
+        "eu": "desenhar",
+        "tu": "desenhares",
+        "ele": "desenhar",
+        "nos": "desenharmos",
+        "vos": "desenhardes",
+        "eles": "desenharem"
+      },
       "imperativoAfirmativo": {
         "tu": "desenha",
         "ele": "desenhe",
@@ -3510,6 +3806,14 @@
         "eles": "desejassem"
       },
       "conjuntivoFuturo": {
+        "eu": "desejar",
+        "tu": "desejares",
+        "ele": "desejar",
+        "nos": "desejarmos",
+        "vos": "desejardes",
+        "eles": "desejarem"
+      },
+      "infinitivoPessoal": {
         "eu": "desejar",
         "tu": "desejares",
         "ele": "desejar",
@@ -3610,6 +3914,14 @@
         "vos": "durardes",
         "eles": "durarem"
       },
+      "infinitivoPessoal": {
+        "eu": "durar",
+        "tu": "durares",
+        "ele": "durar",
+        "nos": "durarmos",
+        "vos": "durardes",
+        "eles": "durarem"
+      },
       "imperativoAfirmativo": {
         "tu": "dura",
         "ele": "dure",
@@ -3696,6 +4008,14 @@
         "eles": "ensinassem"
       },
       "conjuntivoFuturo": {
+        "eu": "ensinar",
+        "tu": "ensinares",
+        "ele": "ensinar",
+        "nos": "ensinarmos",
+        "vos": "ensinardes",
+        "eles": "ensinarem"
+      },
+      "infinitivoPessoal": {
         "eu": "ensinar",
         "tu": "ensinares",
         "ele": "ensinar",
@@ -3796,6 +4116,14 @@
         "vos": "errardes",
         "eles": "errarem"
       },
+      "infinitivoPessoal": {
+        "eu": "errar",
+        "tu": "errares",
+        "ele": "errar",
+        "nos": "errarmos",
+        "vos": "errardes",
+        "eles": "errarem"
+      },
       "imperativoAfirmativo": {
         "tu": "erra",
         "ele": "erre",
@@ -3882,6 +4210,14 @@
         "eles": "estudassem"
       },
       "conjuntivoFuturo": {
+        "eu": "estudar",
+        "tu": "estudares",
+        "ele": "estudar",
+        "nos": "estudarmos",
+        "vos": "estudardes",
+        "eles": "estudarem"
+      },
+      "infinitivoPessoal": {
         "eu": "estudar",
         "tu": "estudares",
         "ele": "estudar",
@@ -3982,6 +4318,14 @@
         "vos": "fechardes",
         "eles": "fecharem"
       },
+      "infinitivoPessoal": {
+        "eu": "fechar",
+        "tu": "fechares",
+        "ele": "fechar",
+        "nos": "fecharmos",
+        "vos": "fechardes",
+        "eles": "fecharem"
+      },
       "imperativoAfirmativo": {
         "tu": "fecha",
         "ele": "feche",
@@ -4068,6 +4412,14 @@
         "eles": "guardassem"
       },
       "conjuntivoFuturo": {
+        "eu": "guardar",
+        "tu": "guardares",
+        "ele": "guardar",
+        "nos": "guardarmos",
+        "vos": "guardardes",
+        "eles": "guardarem"
+      },
+      "infinitivoPessoal": {
         "eu": "guardar",
         "tu": "guardares",
         "ele": "guardar",
@@ -4168,6 +4520,14 @@
         "vos": "imaginardes",
         "eles": "imaginarem"
       },
+      "infinitivoPessoal": {
+        "eu": "imaginar",
+        "tu": "imaginares",
+        "ele": "imaginar",
+        "nos": "imaginarmos",
+        "vos": "imaginardes",
+        "eles": "imaginarem"
+      },
       "imperativoAfirmativo": {
         "tu": "imagina",
         "ele": "imagine",
@@ -4254,6 +4614,14 @@
         "eles": "lavassem"
       },
       "conjuntivoFuturo": {
+        "eu": "lavar",
+        "tu": "lavares",
+        "ele": "lavar",
+        "nos": "lavarmos",
+        "vos": "lavardes",
+        "eles": "lavarem"
+      },
+      "infinitivoPessoal": {
         "eu": "lavar",
         "tu": "lavares",
         "ele": "lavar",
@@ -4354,6 +4722,14 @@
         "vos": "lembrardes",
         "eles": "lembrarem"
       },
+      "infinitivoPessoal": {
+        "eu": "lembrar",
+        "tu": "lembrares",
+        "ele": "lembrar",
+        "nos": "lembrarmos",
+        "vos": "lembrardes",
+        "eles": "lembrarem"
+      },
       "imperativoAfirmativo": {
         "tu": "lembra",
         "ele": "lembre",
@@ -4440,6 +4816,14 @@
         "eles": "limpassem"
       },
       "conjuntivoFuturo": {
+        "eu": "limpar",
+        "tu": "limpares",
+        "ele": "limpar",
+        "nos": "limparmos",
+        "vos": "limpardes",
+        "eles": "limparem"
+      },
+      "infinitivoPessoal": {
         "eu": "limpar",
         "tu": "limpares",
         "ele": "limpar",
@@ -4540,6 +4924,14 @@
         "vos": "mandardes",
         "eles": "mandarem"
       },
+      "infinitivoPessoal": {
+        "eu": "mandar",
+        "tu": "mandares",
+        "ele": "mandar",
+        "nos": "mandarmos",
+        "vos": "mandardes",
+        "eles": "mandarem"
+      },
       "imperativoAfirmativo": {
         "tu": "manda",
         "ele": "mande",
@@ -4626,6 +5018,14 @@
         "eles": "melhorassem"
       },
       "conjuntivoFuturo": {
+        "eu": "melhorar",
+        "tu": "melhorares",
+        "ele": "melhorar",
+        "nos": "melhorarmos",
+        "vos": "melhorardes",
+        "eles": "melhorarem"
+      },
+      "infinitivoPessoal": {
         "eu": "melhorar",
         "tu": "melhorares",
         "ele": "melhorar",
@@ -4726,6 +5126,14 @@
         "vos": "misturardes",
         "eles": "misturarem"
       },
+      "infinitivoPessoal": {
+        "eu": "misturar",
+        "tu": "misturares",
+        "ele": "misturar",
+        "nos": "misturarmos",
+        "vos": "misturardes",
+        "eles": "misturarem"
+      },
       "imperativoAfirmativo": {
         "tu": "mistura",
         "ele": "misture",
@@ -4812,6 +5220,14 @@
         "eles": "mostrassem"
       },
       "conjuntivoFuturo": {
+        "eu": "mostrar",
+        "tu": "mostrares",
+        "ele": "mostrar",
+        "nos": "mostrarmos",
+        "vos": "mostrardes",
+        "eles": "mostrarem"
+      },
+      "infinitivoPessoal": {
         "eu": "mostrar",
         "tu": "mostrares",
         "ele": "mostrar",
@@ -4912,6 +5328,14 @@
         "vos": "nadardes",
         "eles": "nadarem"
       },
+      "infinitivoPessoal": {
+        "eu": "nadar",
+        "tu": "nadares",
+        "ele": "nadar",
+        "nos": "nadarmos",
+        "vos": "nadardes",
+        "eles": "nadarem"
+      },
       "imperativoAfirmativo": {
         "tu": "nada",
         "ele": "nade",
@@ -4998,6 +5422,14 @@
         "eles": "organizassem"
       },
       "conjuntivoFuturo": {
+        "eu": "organizar",
+        "tu": "organizares",
+        "ele": "organizar",
+        "nos": "organizarmos",
+        "vos": "organizardes",
+        "eles": "organizarem"
+      },
+      "infinitivoPessoal": {
         "eu": "organizar",
         "tu": "organizares",
         "ele": "organizar",
@@ -5098,6 +5530,14 @@
         "vos": "parardes",
         "eles": "pararem"
       },
+      "infinitivoPessoal": {
+        "eu": "parar",
+        "tu": "parares",
+        "ele": "parar",
+        "nos": "pararmos",
+        "vos": "parardes",
+        "eles": "pararem"
+      },
       "imperativoAfirmativo": {
         "tu": "para",
         "ele": "pare",
@@ -5184,6 +5624,14 @@
         "eles": "pensassem"
       },
       "conjuntivoFuturo": {
+        "eu": "pensar",
+        "tu": "pensares",
+        "ele": "pensar",
+        "nos": "pensarmos",
+        "vos": "pensardes",
+        "eles": "pensarem"
+      },
+      "infinitivoPessoal": {
         "eu": "pensar",
         "tu": "pensares",
         "ele": "pensar",
@@ -5284,6 +5732,14 @@
         "vos": "preparardes",
         "eles": "prepararem"
       },
+      "infinitivoPessoal": {
+        "eu": "preparar",
+        "tu": "preparares",
+        "ele": "preparar",
+        "nos": "prepararmos",
+        "vos": "preparardes",
+        "eles": "prepararem"
+      },
       "imperativoAfirmativo": {
         "tu": "prepara",
         "ele": "prepare",
@@ -5370,6 +5826,14 @@
         "eles": "provassem"
       },
       "conjuntivoFuturo": {
+        "eu": "provar",
+        "tu": "provares",
+        "ele": "provar",
+        "nos": "provarmos",
+        "vos": "provardes",
+        "eles": "provarem"
+      },
+      "infinitivoPessoal": {
         "eu": "provar",
         "tu": "provares",
         "ele": "provar",
@@ -5470,6 +5934,14 @@
         "vos": "realizardes",
         "eles": "realizarem"
       },
+      "infinitivoPessoal": {
+        "eu": "realizar",
+        "tu": "realizares",
+        "ele": "realizar",
+        "nos": "realizarmos",
+        "vos": "realizardes",
+        "eles": "realizarem"
+      },
       "imperativoAfirmativo": {
         "tu": "realiza",
         "ele": "realize",
@@ -5556,6 +6028,14 @@
         "eles": "reparassem"
       },
       "conjuntivoFuturo": {
+        "eu": "reparar",
+        "tu": "reparares",
+        "ele": "reparar",
+        "nos": "repararmos",
+        "vos": "reparardes",
+        "eles": "repararem"
+      },
+      "infinitivoPessoal": {
         "eu": "reparar",
         "tu": "reparares",
         "ele": "reparar",
@@ -5656,6 +6136,14 @@
         "vos": "respeitardes",
         "eles": "respeitarem"
       },
+      "infinitivoPessoal": {
+        "eu": "respeitar",
+        "tu": "respeitares",
+        "ele": "respeitar",
+        "nos": "respeitarmos",
+        "vos": "respeitardes",
+        "eles": "respeitarem"
+      },
       "imperativoAfirmativo": {
         "tu": "respeita",
         "ele": "respeite",
@@ -5742,6 +6230,14 @@
         "eles": "roubassem"
       },
       "conjuntivoFuturo": {
+        "eu": "roubar",
+        "tu": "roubares",
+        "ele": "roubar",
+        "nos": "roubarmos",
+        "vos": "roubardes",
+        "eles": "roubarem"
+      },
+      "infinitivoPessoal": {
         "eu": "roubar",
         "tu": "roubares",
         "ele": "roubar",
@@ -5842,6 +6338,14 @@
         "vos": "salvardes",
         "eles": "salvarem"
       },
+      "infinitivoPessoal": {
+        "eu": "salvar",
+        "tu": "salvares",
+        "ele": "salvar",
+        "nos": "salvarmos",
+        "vos": "salvardes",
+        "eles": "salvarem"
+      },
       "imperativoAfirmativo": {
         "tu": "salva",
         "ele": "salve",
@@ -5928,6 +6432,14 @@
         "eles": "separassem"
       },
       "conjuntivoFuturo": {
+        "eu": "separar",
+        "tu": "separares",
+        "ele": "separar",
+        "nos": "separarmos",
+        "vos": "separardes",
+        "eles": "separarem"
+      },
+      "infinitivoPessoal": {
         "eu": "separar",
         "tu": "separares",
         "ele": "separar",
@@ -6028,6 +6540,14 @@
         "vos": "tentardes",
         "eles": "tentarem"
       },
+      "infinitivoPessoal": {
+        "eu": "tentar",
+        "tu": "tentares",
+        "ele": "tentar",
+        "nos": "tentarmos",
+        "vos": "tentardes",
+        "eles": "tentarem"
+      },
       "imperativoAfirmativo": {
         "tu": "tenta",
         "ele": "tente",
@@ -6114,6 +6634,14 @@
         "eles": "tirassem"
       },
       "conjuntivoFuturo": {
+        "eu": "tirar",
+        "tu": "tirares",
+        "ele": "tirar",
+        "nos": "tirarmos",
+        "vos": "tirardes",
+        "eles": "tirarem"
+      },
+      "infinitivoPessoal": {
         "eu": "tirar",
         "tu": "tirares",
         "ele": "tirar",
@@ -6214,6 +6742,14 @@
         "vos": "tomardes",
         "eles": "tomarem"
       },
+      "infinitivoPessoal": {
+        "eu": "tomar",
+        "tu": "tomares",
+        "ele": "tomar",
+        "nos": "tomarmos",
+        "vos": "tomardes",
+        "eles": "tomarem"
+      },
       "imperativoAfirmativo": {
         "tu": "toma",
         "ele": "tome",
@@ -6300,6 +6836,14 @@
         "eles": "treinassem"
       },
       "conjuntivoFuturo": {
+        "eu": "treinar",
+        "tu": "treinares",
+        "ele": "treinar",
+        "nos": "treinarmos",
+        "vos": "treinardes",
+        "eles": "treinarem"
+      },
+      "infinitivoPessoal": {
         "eu": "treinar",
         "tu": "treinares",
         "ele": "treinar",
@@ -6400,6 +6944,14 @@
         "vos": "voltardes",
         "eles": "voltarem"
       },
+      "infinitivoPessoal": {
+        "eu": "voltar",
+        "tu": "voltares",
+        "ele": "voltar",
+        "nos": "voltarmos",
+        "vos": "voltardes",
+        "eles": "voltarem"
+      },
       "imperativoAfirmativo": {
         "tu": "volta",
         "ele": "volte",
@@ -6486,6 +7038,14 @@
         "eles": "chamassem"
       },
       "conjuntivoFuturo": {
+        "eu": "chamar",
+        "tu": "chamares",
+        "ele": "chamar",
+        "nos": "chamarmos",
+        "vos": "chamardes",
+        "eles": "chamarem"
+      },
+      "infinitivoPessoal": {
         "eu": "chamar",
         "tu": "chamares",
         "ele": "chamar",
@@ -6586,6 +7146,14 @@
         "vos": "deitardes",
         "eles": "deitarem"
       },
+      "infinitivoPessoal": {
+        "eu": "deitar",
+        "tu": "deitares",
+        "ele": "deitar",
+        "nos": "deitarmos",
+        "vos": "deitardes",
+        "eles": "deitarem"
+      },
       "imperativoAfirmativo": {
         "tu": "deita",
         "ele": "deite",
@@ -6672,6 +7240,14 @@
         "eles": "gritassem"
       },
       "conjuntivoFuturo": {
+        "eu": "gritar",
+        "tu": "gritares",
+        "ele": "gritar",
+        "nos": "gritarmos",
+        "vos": "gritardes",
+        "eles": "gritarem"
+      },
+      "infinitivoPessoal": {
         "eu": "gritar",
         "tu": "gritares",
         "ele": "gritar",
@@ -6772,6 +7348,14 @@
         "vos": "juntardes",
         "eles": "juntarem"
       },
+      "infinitivoPessoal": {
+        "eu": "juntar",
+        "tu": "juntares",
+        "ele": "juntar",
+        "nos": "juntarmos",
+        "vos": "juntardes",
+        "eles": "juntarem"
+      },
       "imperativoAfirmativo": {
         "tu": "junta",
         "ele": "junte",
@@ -6858,6 +7442,14 @@
         "eles": "levantassem"
       },
       "conjuntivoFuturo": {
+        "eu": "levantar",
+        "tu": "levantares",
+        "ele": "levantar",
+        "nos": "levantarmos",
+        "vos": "levantardes",
+        "eles": "levantarem"
+      },
+      "infinitivoPessoal": {
         "eu": "levantar",
         "tu": "levantares",
         "ele": "levantar",
@@ -6958,6 +7550,14 @@
         "vos": "morardes",
         "eles": "morarem"
       },
+      "infinitivoPessoal": {
+        "eu": "morar",
+        "tu": "morares",
+        "ele": "morar",
+        "nos": "morarmos",
+        "vos": "morardes",
+        "eles": "morarem"
+      },
       "imperativoAfirmativo": {
         "tu": "mora",
         "ele": "more",
@@ -7044,6 +7644,14 @@
         "eles": "notassem"
       },
       "conjuntivoFuturo": {
+        "eu": "notar",
+        "tu": "notares",
+        "ele": "notar",
+        "nos": "notarmos",
+        "vos": "notardes",
+        "eles": "notarem"
+      },
+      "infinitivoPessoal": {
         "eu": "notar",
         "tu": "notares",
         "ele": "notar",
@@ -7144,6 +7752,14 @@
         "vos": "ocupardes",
         "eles": "ocuparem"
       },
+      "infinitivoPessoal": {
+        "eu": "ocupar",
+        "tu": "ocupares",
+        "ele": "ocupar",
+        "nos": "ocuparmos",
+        "vos": "ocupardes",
+        "eles": "ocuparem"
+      },
       "imperativoAfirmativo": {
         "tu": "ocupa",
         "ele": "ocupe",
@@ -7230,6 +7846,14 @@
         "eles": "aceitassem"
       },
       "conjuntivoFuturo": {
+        "eu": "aceitar",
+        "tu": "aceitares",
+        "ele": "aceitar",
+        "nos": "aceitarmos",
+        "vos": "aceitardes",
+        "eles": "aceitarem"
+      },
+      "infinitivoPessoal": {
         "eu": "aceitar",
         "tu": "aceitares",
         "ele": "aceitar",
@@ -7330,6 +7954,14 @@
         "vos": "admirardes",
         "eles": "admirarem"
       },
+      "infinitivoPessoal": {
+        "eu": "admirar",
+        "tu": "admirares",
+        "ele": "admirar",
+        "nos": "admirarmos",
+        "vos": "admirardes",
+        "eles": "admirarem"
+      },
       "imperativoAfirmativo": {
         "tu": "admira",
         "ele": "admire",
@@ -7416,6 +8048,14 @@
         "eles": "afirmassem"
       },
       "conjuntivoFuturo": {
+        "eu": "afirmar",
+        "tu": "afirmares",
+        "ele": "afirmar",
+        "nos": "afirmarmos",
+        "vos": "afirmardes",
+        "eles": "afirmarem"
+      },
+      "infinitivoPessoal": {
         "eu": "afirmar",
         "tu": "afirmares",
         "ele": "afirmar",
@@ -7516,6 +8156,14 @@
         "vos": "alimentardes",
         "eles": "alimentarem"
       },
+      "infinitivoPessoal": {
+        "eu": "alimentar",
+        "tu": "alimentares",
+        "ele": "alimentar",
+        "nos": "alimentarmos",
+        "vos": "alimentardes",
+        "eles": "alimentarem"
+      },
       "imperativoAfirmativo": {
         "tu": "alimenta",
         "ele": "alimente",
@@ -7602,6 +8250,14 @@
         "eles": "anunciassem"
       },
       "conjuntivoFuturo": {
+        "eu": "anunciar",
+        "tu": "anunciares",
+        "ele": "anunciar",
+        "nos": "anunciarmos",
+        "vos": "anunciardes",
+        "eles": "anunciarem"
+      },
+      "infinitivoPessoal": {
         "eu": "anunciar",
         "tu": "anunciares",
         "ele": "anunciar",
@@ -7702,6 +8358,14 @@
         "vos": "apoiardes",
         "eles": "apoiarem"
       },
+      "infinitivoPessoal": {
+        "eu": "apoiar",
+        "tu": "apoiares",
+        "ele": "apoiar",
+        "nos": "apoiarmos",
+        "vos": "apoiardes",
+        "eles": "apoiarem"
+      },
       "imperativoAfirmativo": {
         "tu": "apoia",
         "ele": "apoie",
@@ -7788,6 +8452,14 @@
         "eles": "arrumassem"
       },
       "conjuntivoFuturo": {
+        "eu": "arrumar",
+        "tu": "arrumares",
+        "ele": "arrumar",
+        "nos": "arrumarmos",
+        "vos": "arrumardes",
+        "eles": "arrumarem"
+      },
+      "infinitivoPessoal": {
         "eu": "arrumar",
         "tu": "arrumares",
         "ele": "arrumar",
@@ -7888,6 +8560,14 @@
         "vos": "assinardes",
         "eles": "assinarem"
       },
+      "infinitivoPessoal": {
+        "eu": "assinar",
+        "tu": "assinares",
+        "ele": "assinar",
+        "nos": "assinarmos",
+        "vos": "assinardes",
+        "eles": "assinarem"
+      },
       "imperativoAfirmativo": {
         "tu": "assina",
         "ele": "assine",
@@ -7974,6 +8654,14 @@
         "eles": "assustassem"
       },
       "conjuntivoFuturo": {
+        "eu": "assustar",
+        "tu": "assustares",
+        "ele": "assustar",
+        "nos": "assustarmos",
+        "vos": "assustardes",
+        "eles": "assustarem"
+      },
+      "infinitivoPessoal": {
         "eu": "assustar",
         "tu": "assustares",
         "ele": "assustar",
@@ -8074,6 +8762,14 @@
         "vos": "comparardes",
         "eles": "compararem"
       },
+      "infinitivoPessoal": {
+        "eu": "comparar",
+        "tu": "comparares",
+        "ele": "comparar",
+        "nos": "compararmos",
+        "vos": "comparardes",
+        "eles": "compararem"
+      },
       "imperativoAfirmativo": {
         "tu": "compara",
         "ele": "compare",
@@ -8160,6 +8856,14 @@
         "eles": "completassem"
       },
       "conjuntivoFuturo": {
+        "eu": "completar",
+        "tu": "completares",
+        "ele": "completar",
+        "nos": "completarmos",
+        "vos": "completardes",
+        "eles": "completarem"
+      },
+      "infinitivoPessoal": {
         "eu": "completar",
         "tu": "completares",
         "ele": "completar",
@@ -8260,6 +8964,14 @@
         "vos": "confirmardes",
         "eles": "confirmarem"
       },
+      "infinitivoPessoal": {
+        "eu": "confirmar",
+        "tu": "confirmares",
+        "ele": "confirmar",
+        "nos": "confirmarmos",
+        "vos": "confirmardes",
+        "eles": "confirmarem"
+      },
       "imperativoAfirmativo": {
         "tu": "confirma",
         "ele": "confirme",
@@ -8346,6 +9058,14 @@
         "eles": "consultassem"
       },
       "conjuntivoFuturo": {
+        "eu": "consultar",
+        "tu": "consultares",
+        "ele": "consultar",
+        "nos": "consultarmos",
+        "vos": "consultardes",
+        "eles": "consultarem"
+      },
+      "infinitivoPessoal": {
         "eu": "consultar",
         "tu": "consultares",
         "ele": "consultar",
@@ -8446,6 +9166,14 @@
         "vos": "continuardes",
         "eles": "continuarem"
       },
+      "infinitivoPessoal": {
+        "eu": "continuar",
+        "tu": "continuares",
+        "ele": "continuar",
+        "nos": "continuarmos",
+        "vos": "continuardes",
+        "eles": "continuarem"
+      },
       "imperativoAfirmativo": {
         "tu": "continua",
         "ele": "continue",
@@ -8532,6 +9260,14 @@
         "eles": "controlassem"
       },
       "conjuntivoFuturo": {
+        "eu": "controlar",
+        "tu": "controlares",
+        "ele": "controlar",
+        "nos": "controlarmos",
+        "vos": "controlardes",
+        "eles": "controlarem"
+      },
+      "infinitivoPessoal": {
         "eu": "controlar",
         "tu": "controlares",
         "ele": "controlar",
@@ -8632,6 +9368,14 @@
         "vos": "conversardes",
         "eles": "conversarem"
       },
+      "infinitivoPessoal": {
+        "eu": "conversar",
+        "tu": "conversares",
+        "ele": "conversar",
+        "nos": "conversarmos",
+        "vos": "conversardes",
+        "eles": "conversarem"
+      },
       "imperativoAfirmativo": {
         "tu": "conversa",
         "ele": "converse",
@@ -8718,6 +9462,14 @@
         "eles": "copiassem"
       },
       "conjuntivoFuturo": {
+        "eu": "copiar",
+        "tu": "copiares",
+        "ele": "copiar",
+        "nos": "copiarmos",
+        "vos": "copiardes",
+        "eles": "copiarem"
+      },
+      "infinitivoPessoal": {
         "eu": "copiar",
         "tu": "copiares",
         "ele": "copiar",
@@ -8818,6 +9570,14 @@
         "vos": "declarardes",
         "eles": "declararem"
       },
+      "infinitivoPessoal": {
+        "eu": "declarar",
+        "tu": "declarares",
+        "ele": "declarar",
+        "nos": "declararmos",
+        "vos": "declarardes",
+        "eles": "declararem"
+      },
       "imperativoAfirmativo": {
         "tu": "declara",
         "ele": "declare",
@@ -8904,6 +9664,14 @@
         "eles": "desculpassem"
       },
       "conjuntivoFuturo": {
+        "eu": "desculpar",
+        "tu": "desculpares",
+        "ele": "desculpar",
+        "nos": "desculparmos",
+        "vos": "desculpardes",
+        "eles": "desculparem"
+      },
+      "infinitivoPessoal": {
         "eu": "desculpar",
         "tu": "desculpares",
         "ele": "desculpar",
@@ -9004,6 +9772,14 @@
         "vos": "espantardes",
         "eles": "espantarem"
       },
+      "infinitivoPessoal": {
+        "eu": "espantar",
+        "tu": "espantares",
+        "ele": "espantar",
+        "nos": "espantarmos",
+        "vos": "espantardes",
+        "eles": "espantarem"
+      },
       "imperativoAfirmativo": {
         "tu": "espanta",
         "ele": "espante",
@@ -9090,6 +9866,14 @@
         "eles": "plantassem"
       },
       "conjuntivoFuturo": {
+        "eu": "plantar",
+        "tu": "plantares",
+        "ele": "plantar",
+        "nos": "plantarmos",
+        "vos": "plantardes",
+        "eles": "plantarem"
+      },
+      "infinitivoPessoal": {
         "eu": "plantar",
         "tu": "plantares",
         "ele": "plantar",
@@ -9190,6 +9974,14 @@
         "vos": "cozinhardes",
         "eles": "cozinharem"
       },
+      "infinitivoPessoal": {
+        "eu": "cozinhar",
+        "tu": "cozinhares",
+        "ele": "cozinhar",
+        "nos": "cozinharmos",
+        "vos": "cozinhardes",
+        "eles": "cozinharem"
+      },
       "imperativoAfirmativo": {
         "tu": "cozinha",
         "ele": "cozinhe",
@@ -9276,6 +10068,14 @@
         "eles": "cansassem"
       },
       "conjuntivoFuturo": {
+        "eu": "cansar",
+        "tu": "cansares",
+        "ele": "cansar",
+        "nos": "cansarmos",
+        "vos": "cansardes",
+        "eles": "cansarem"
+      },
+      "infinitivoPessoal": {
         "eu": "cansar",
         "tu": "cansares",
         "ele": "cansar",
@@ -9376,6 +10176,14 @@
         "vos": "poupardes",
         "eles": "pouparem"
       },
+      "infinitivoPessoal": {
+        "eu": "poupar",
+        "tu": "poupares",
+        "ele": "poupar",
+        "nos": "pouparmos",
+        "vos": "poupardes",
+        "eles": "pouparem"
+      },
       "imperativoAfirmativo": {
         "tu": "poupa",
         "ele": "poupe",
@@ -9462,6 +10270,14 @@
         "eles": "aproximassem"
       },
       "conjuntivoFuturo": {
+        "eu": "aproximar",
+        "tu": "aproximares",
+        "ele": "aproximar",
+        "nos": "aproximarmos",
+        "vos": "aproximardes",
+        "eles": "aproximarem"
+      },
+      "infinitivoPessoal": {
         "eu": "aproximar",
         "tu": "aproximares",
         "ele": "aproximar",
@@ -9562,6 +10378,14 @@
         "vos": "trepardes",
         "eles": "treparem"
       },
+      "infinitivoPessoal": {
+        "eu": "trepar",
+        "tu": "trepares",
+        "ele": "trepar",
+        "nos": "treparmos",
+        "vos": "trepardes",
+        "eles": "treparem"
+      },
       "imperativoAfirmativo": {
         "tu": "trepa",
         "ele": "trepe",
@@ -9648,6 +10472,14 @@
         "eles": "empurrassem"
       },
       "conjuntivoFuturo": {
+        "eu": "empurrar",
+        "tu": "empurrares",
+        "ele": "empurrar",
+        "nos": "empurrarmos",
+        "vos": "empurrardes",
+        "eles": "empurrarem"
+      },
+      "infinitivoPessoal": {
         "eu": "empurrar",
         "tu": "empurrares",
         "ele": "empurrar",
@@ -9748,6 +10580,14 @@
         "vos": "puxardes",
         "eles": "puxarem"
       },
+      "infinitivoPessoal": {
+        "eu": "puxar",
+        "tu": "puxares",
+        "ele": "puxar",
+        "nos": "puxarmos",
+        "vos": "puxardes",
+        "eles": "puxarem"
+      },
       "imperativoAfirmativo": {
         "tu": "puxa",
         "ele": "puxe",
@@ -9834,6 +10674,14 @@
         "eles": "segurassem"
       },
       "conjuntivoFuturo": {
+        "eu": "segurar",
+        "tu": "segurares",
+        "ele": "segurar",
+        "nos": "segurarmos",
+        "vos": "segurardes",
+        "eles": "segurarem"
+      },
+      "infinitivoPessoal": {
         "eu": "segurar",
         "tu": "segurares",
         "ele": "segurar",
@@ -9934,6 +10782,14 @@
         "vos": "apertardes",
         "eles": "apertarem"
       },
+      "infinitivoPessoal": {
+        "eu": "apertar",
+        "tu": "apertares",
+        "ele": "apertar",
+        "nos": "apertarmos",
+        "vos": "apertardes",
+        "eles": "apertarem"
+      },
       "imperativoAfirmativo": {
         "tu": "aperta",
         "ele": "aperte",
@@ -10020,6 +10876,14 @@
         "eles": "enganassem"
       },
       "conjuntivoFuturo": {
+        "eu": "enganar",
+        "tu": "enganares",
+        "ele": "enganar",
+        "nos": "enganarmos",
+        "vos": "enganardes",
+        "eles": "enganarem"
+      },
+      "infinitivoPessoal": {
         "eu": "enganar",
         "tu": "enganares",
         "ele": "enganar",
@@ -10120,6 +10984,14 @@
         "vos": "explicardes",
         "eles": "explicarem"
       },
+      "infinitivoPessoal": {
+        "eu": "explicar",
+        "tu": "explicares",
+        "ele": "explicar",
+        "nos": "explicarmos",
+        "vos": "explicardes",
+        "eles": "explicarem"
+      },
       "imperativoAfirmativo": {
         "tu": "explica",
         "ele": "explique",
@@ -10206,6 +11078,14 @@
         "eles": "tocassem"
       },
       "conjuntivoFuturo": {
+        "eu": "tocar",
+        "tu": "tocares",
+        "ele": "tocar",
+        "nos": "tocarmos",
+        "vos": "tocardes",
+        "eles": "tocarem"
+      },
+      "infinitivoPessoal": {
         "eu": "tocar",
         "tu": "tocares",
         "ele": "tocar",
@@ -10306,6 +11186,14 @@
         "vos": "ficardes",
         "eles": "ficarem"
       },
+      "infinitivoPessoal": {
+        "eu": "ficar",
+        "tu": "ficares",
+        "ele": "ficar",
+        "nos": "ficarmos",
+        "vos": "ficardes",
+        "eles": "ficarem"
+      },
       "imperativoAfirmativo": {
         "tu": "fica",
         "ele": "fique",
@@ -10392,6 +11280,14 @@
         "eles": "buscassem"
       },
       "conjuntivoFuturo": {
+        "eu": "buscar",
+        "tu": "buscares",
+        "ele": "buscar",
+        "nos": "buscarmos",
+        "vos": "buscardes",
+        "eles": "buscarem"
+      },
+      "infinitivoPessoal": {
         "eu": "buscar",
         "tu": "buscares",
         "ele": "buscar",
@@ -10492,6 +11388,14 @@
         "vos": "marcardes",
         "eles": "marcarem"
       },
+      "infinitivoPessoal": {
+        "eu": "marcar",
+        "tu": "marcares",
+        "ele": "marcar",
+        "nos": "marcarmos",
+        "vos": "marcardes",
+        "eles": "marcarem"
+      },
       "imperativoAfirmativo": {
         "tu": "marca",
         "ele": "marque",
@@ -10578,6 +11482,14 @@
         "eles": "colocassem"
       },
       "conjuntivoFuturo": {
+        "eu": "colocar",
+        "tu": "colocares",
+        "ele": "colocar",
+        "nos": "colocarmos",
+        "vos": "colocardes",
+        "eles": "colocarem"
+      },
+      "infinitivoPessoal": {
         "eu": "colocar",
         "tu": "colocares",
         "ele": "colocar",
@@ -10678,6 +11590,14 @@
         "vos": "comunicardes",
         "eles": "comunicarem"
       },
+      "infinitivoPessoal": {
+        "eu": "comunicar",
+        "tu": "comunicares",
+        "ele": "comunicar",
+        "nos": "comunicarmos",
+        "vos": "comunicardes",
+        "eles": "comunicarem"
+      },
       "imperativoAfirmativo": {
         "tu": "comunica",
         "ele": "comunique",
@@ -10764,6 +11684,14 @@
         "eles": "verificassem"
       },
       "conjuntivoFuturo": {
+        "eu": "verificar",
+        "tu": "verificares",
+        "ele": "verificar",
+        "nos": "verificarmos",
+        "vos": "verificardes",
+        "eles": "verificarem"
+      },
+      "infinitivoPessoal": {
         "eu": "verificar",
         "tu": "verificares",
         "ele": "verificar",
@@ -10864,6 +11792,14 @@
         "vos": "indicardes",
         "eles": "indicarem"
       },
+      "infinitivoPessoal": {
+        "eu": "indicar",
+        "tu": "indicares",
+        "ele": "indicar",
+        "nos": "indicarmos",
+        "vos": "indicardes",
+        "eles": "indicarem"
+      },
       "imperativoAfirmativo": {
         "tu": "indica",
         "ele": "indique",
@@ -10950,6 +11886,14 @@
         "eles": "fabricassem"
       },
       "conjuntivoFuturo": {
+        "eu": "fabricar",
+        "tu": "fabricares",
+        "ele": "fabricar",
+        "nos": "fabricarmos",
+        "vos": "fabricardes",
+        "eles": "fabricarem"
+      },
+      "infinitivoPessoal": {
         "eu": "fabricar",
         "tu": "fabricares",
         "ele": "fabricar",
@@ -11050,6 +11994,14 @@
         "vos": "aplicardes",
         "eles": "aplicarem"
       },
+      "infinitivoPessoal": {
+        "eu": "aplicar",
+        "tu": "aplicares",
+        "ele": "aplicar",
+        "nos": "aplicarmos",
+        "vos": "aplicardes",
+        "eles": "aplicarem"
+      },
       "imperativoAfirmativo": {
         "tu": "aplica",
         "ele": "aplique",
@@ -11136,6 +12088,14 @@
         "eles": "brincassem"
       },
       "conjuntivoFuturo": {
+        "eu": "brincar",
+        "tu": "brincares",
+        "ele": "brincar",
+        "nos": "brincarmos",
+        "vos": "brincardes",
+        "eles": "brincarem"
+      },
+      "infinitivoPessoal": {
         "eu": "brincar",
         "tu": "brincares",
         "ele": "brincar",
@@ -11236,6 +12196,14 @@
         "vos": "pagardes",
         "eles": "pagarem"
       },
+      "infinitivoPessoal": {
+        "eu": "pagar",
+        "tu": "pagares",
+        "ele": "pagar",
+        "nos": "pagarmos",
+        "vos": "pagardes",
+        "eles": "pagarem"
+      },
       "imperativoAfirmativo": {
         "tu": "paga",
         "ele": "pague",
@@ -11322,6 +12290,14 @@
         "eles": "chegassem"
       },
       "conjuntivoFuturo": {
+        "eu": "chegar",
+        "tu": "chegares",
+        "ele": "chegar",
+        "nos": "chegarmos",
+        "vos": "chegardes",
+        "eles": "chegarem"
+      },
+      "infinitivoPessoal": {
         "eu": "chegar",
         "tu": "chegares",
         "ele": "chegar",
@@ -11422,6 +12398,14 @@
         "vos": "jogardes",
         "eles": "jogarem"
       },
+      "infinitivoPessoal": {
+        "eu": "jogar",
+        "tu": "jogares",
+        "ele": "jogar",
+        "nos": "jogarmos",
+        "vos": "jogardes",
+        "eles": "jogarem"
+      },
       "imperativoAfirmativo": {
         "tu": "joga",
         "ele": "jogue",
@@ -11508,6 +12492,14 @@
         "eles": "ligassem"
       },
       "conjuntivoFuturo": {
+        "eu": "ligar",
+        "tu": "ligares",
+        "ele": "ligar",
+        "nos": "ligarmos",
+        "vos": "ligardes",
+        "eles": "ligarem"
+      },
+      "infinitivoPessoal": {
         "eu": "ligar",
         "tu": "ligares",
         "ele": "ligar",
@@ -11608,6 +12600,14 @@
         "vos": "carregardes",
         "eles": "carregarem"
       },
+      "infinitivoPessoal": {
+        "eu": "carregar",
+        "tu": "carregares",
+        "ele": "carregar",
+        "nos": "carregarmos",
+        "vos": "carregardes",
+        "eles": "carregarem"
+      },
       "imperativoAfirmativo": {
         "tu": "carrega",
         "ele": "carregue",
@@ -11694,6 +12694,14 @@
         "eles": "navegassem"
       },
       "conjuntivoFuturo": {
+        "eu": "navegar",
+        "tu": "navegares",
+        "ele": "navegar",
+        "nos": "navegarmos",
+        "vos": "navegardes",
+        "eles": "navegarem"
+      },
+      "infinitivoPessoal": {
         "eu": "navegar",
         "tu": "navegares",
         "ele": "navegar",
@@ -11794,6 +12802,14 @@
         "vos": "negardes",
         "eles": "negarem"
       },
+      "infinitivoPessoal": {
+        "eu": "negar",
+        "tu": "negares",
+        "ele": "negar",
+        "nos": "negarmos",
+        "vos": "negardes",
+        "eles": "negarem"
+      },
       "imperativoAfirmativo": {
         "tu": "nega",
         "ele": "negue",
@@ -11880,6 +12896,14 @@
         "eles": "obrigassem"
       },
       "conjuntivoFuturo": {
+        "eu": "obrigar",
+        "tu": "obrigares",
+        "ele": "obrigar",
+        "nos": "obrigarmos",
+        "vos": "obrigardes",
+        "eles": "obrigarem"
+      },
+      "infinitivoPessoal": {
         "eu": "obrigar",
         "tu": "obrigares",
         "ele": "obrigar",
@@ -11980,6 +13004,14 @@
         "vos": "desligardes",
         "eles": "desligarem"
       },
+      "infinitivoPessoal": {
+        "eu": "desligar",
+        "tu": "desligares",
+        "ele": "desligar",
+        "nos": "desligarmos",
+        "vos": "desligardes",
+        "eles": "desligarem"
+      },
       "imperativoAfirmativo": {
         "tu": "desliga",
         "ele": "desligue",
@@ -12066,6 +13098,14 @@
         "eles": "apagassem"
       },
       "conjuntivoFuturo": {
+        "eu": "apagar",
+        "tu": "apagares",
+        "ele": "apagar",
+        "nos": "apagarmos",
+        "vos": "apagardes",
+        "eles": "apagarem"
+      },
+      "infinitivoPessoal": {
         "eu": "apagar",
         "tu": "apagares",
         "ele": "apagar",
@@ -12166,6 +13206,14 @@
         "vos": "começardes",
         "eles": "começarem"
       },
+      "infinitivoPessoal": {
+        "eu": "começar",
+        "tu": "começares",
+        "ele": "começar",
+        "nos": "começarmos",
+        "vos": "começardes",
+        "eles": "começarem"
+      },
       "imperativoAfirmativo": {
         "tu": "começa",
         "ele": "comece",
@@ -12252,6 +13300,14 @@
         "eles": "dançassem"
       },
       "conjuntivoFuturo": {
+        "eu": "dançar",
+        "tu": "dançares",
+        "ele": "dançar",
+        "nos": "dançarmos",
+        "vos": "dançardes",
+        "eles": "dançarem"
+      },
+      "infinitivoPessoal": {
         "eu": "dançar",
         "tu": "dançares",
         "ele": "dançar",
@@ -12352,6 +13408,14 @@
         "vos": "alcançardes",
         "eles": "alcançarem"
       },
+      "infinitivoPessoal": {
+        "eu": "alcançar",
+        "tu": "alcançares",
+        "ele": "alcançar",
+        "nos": "alcançarmos",
+        "vos": "alcançardes",
+        "eles": "alcançarem"
+      },
       "imperativoAfirmativo": {
         "tu": "alcança",
         "ele": "alcance",
@@ -12438,6 +13502,14 @@
         "eles": "avançassem"
       },
       "conjuntivoFuturo": {
+        "eu": "avançar",
+        "tu": "avançares",
+        "ele": "avançar",
+        "nos": "avançarmos",
+        "vos": "avançardes",
+        "eles": "avançarem"
+      },
+      "infinitivoPessoal": {
         "eu": "avançar",
         "tu": "avançares",
         "ele": "avançar",
@@ -12538,6 +13610,14 @@
         "vos": "beberdes",
         "eles": "beberem"
       },
+      "infinitivoPessoal": {
+        "eu": "beber",
+        "tu": "beberes",
+        "ele": "beber",
+        "nos": "bebermos",
+        "vos": "beberdes",
+        "eles": "beberem"
+      },
       "imperativoAfirmativo": {
         "tu": "bebe",
         "ele": "beba",
@@ -12624,6 +13704,14 @@
         "eles": "comessem"
       },
       "conjuntivoFuturo": {
+        "eu": "comer",
+        "tu": "comeres",
+        "ele": "comer",
+        "nos": "comermos",
+        "vos": "comerdes",
+        "eles": "comerem"
+      },
+      "infinitivoPessoal": {
         "eu": "comer",
         "tu": "comeres",
         "ele": "comer",
@@ -12724,6 +13812,14 @@
         "vos": "venderdes",
         "eles": "venderem"
       },
+      "infinitivoPessoal": {
+        "eu": "vender",
+        "tu": "venderes",
+        "ele": "vender",
+        "nos": "vendermos",
+        "vos": "venderdes",
+        "eles": "venderem"
+      },
       "imperativoAfirmativo": {
         "tu": "vende",
         "ele": "venda",
@@ -12810,6 +13906,14 @@
         "eles": "corressem"
       },
       "conjuntivoFuturo": {
+        "eu": "correr",
+        "tu": "correres",
+        "ele": "correr",
+        "nos": "corrermos",
+        "vos": "correrdes",
+        "eles": "correrem"
+      },
+      "infinitivoPessoal": {
         "eu": "correr",
         "tu": "correres",
         "ele": "correr",
@@ -12910,6 +14014,14 @@
         "vos": "viverdes",
         "eles": "viverem"
       },
+      "infinitivoPessoal": {
+        "eu": "viver",
+        "tu": "viveres",
+        "ele": "viver",
+        "nos": "vivermos",
+        "vos": "viverdes",
+        "eles": "viverem"
+      },
       "imperativoAfirmativo": {
         "tu": "vive",
         "ele": "viva",
@@ -12996,6 +14108,14 @@
         "eles": "recebessem"
       },
       "conjuntivoFuturo": {
+        "eu": "receber",
+        "tu": "receberes",
+        "ele": "receber",
+        "nos": "recebermos",
+        "vos": "receberdes",
+        "eles": "receberem"
+      },
+      "infinitivoPessoal": {
         "eu": "receber",
         "tu": "receberes",
         "ele": "receber",
@@ -13096,6 +14216,14 @@
         "vos": "sofrerdes",
         "eles": "sofrerem"
       },
+      "infinitivoPessoal": {
+        "eu": "sofrer",
+        "tu": "sofreres",
+        "ele": "sofrer",
+        "nos": "sofrermos",
+        "vos": "sofrerdes",
+        "eles": "sofrerem"
+      },
       "imperativoAfirmativo": {
         "tu": "sofre",
         "ele": "sofra",
@@ -13182,6 +14310,14 @@
         "eles": "metessem"
       },
       "conjuntivoFuturo": {
+        "eu": "meter",
+        "tu": "meteres",
+        "ele": "meter",
+        "nos": "metermos",
+        "vos": "meterdes",
+        "eles": "meterem"
+      },
+      "infinitivoPessoal": {
         "eu": "meter",
         "tu": "meteres",
         "ele": "meter",
@@ -13282,6 +14418,14 @@
         "vos": "romperdes",
         "eles": "romperem"
       },
+      "infinitivoPessoal": {
+        "eu": "romper",
+        "tu": "romperes",
+        "ele": "romper",
+        "nos": "rompermos",
+        "vos": "romperdes",
+        "eles": "romperem"
+      },
       "imperativoAfirmativo": {
         "tu": "rompe",
         "ele": "rompa",
@@ -13368,6 +14512,14 @@
         "eles": "escrevessem"
       },
       "conjuntivoFuturo": {
+        "eu": "escrever",
+        "tu": "escreveres",
+        "ele": "escrever",
+        "nos": "escrevermos",
+        "vos": "escreverdes",
+        "eles": "escreverem"
+      },
+      "infinitivoPessoal": {
         "eu": "escrever",
         "tu": "escreveres",
         "ele": "escrever",
@@ -13469,6 +14621,14 @@
         "vos": "descreverdes",
         "eles": "descreverem"
       },
+      "infinitivoPessoal": {
+        "eu": "descrever",
+        "tu": "descreveres",
+        "ele": "descrever",
+        "nos": "descrevermos",
+        "vos": "descreverdes",
+        "eles": "descreverem"
+      },
       "imperativoAfirmativo": {
         "tu": "descreve",
         "ele": "descreva",
@@ -13555,6 +14715,14 @@
         "eles": "dependessem"
       },
       "conjuntivoFuturo": {
+        "eu": "depender",
+        "tu": "dependeres",
+        "ele": "depender",
+        "nos": "dependermos",
+        "vos": "dependerdes",
+        "eles": "dependerem"
+      },
+      "infinitivoPessoal": {
         "eu": "depender",
         "tu": "dependeres",
         "ele": "depender",
@@ -13655,6 +14823,14 @@
         "vos": "aprenderdes",
         "eles": "aprenderem"
       },
+      "infinitivoPessoal": {
+        "eu": "aprender",
+        "tu": "aprenderes",
+        "ele": "aprender",
+        "nos": "aprendermos",
+        "vos": "aprenderdes",
+        "eles": "aprenderem"
+      },
       "imperativoAfirmativo": {
         "tu": "aprende",
         "ele": "aprenda",
@@ -13741,6 +14917,14 @@
         "eles": "compreendessem"
       },
       "conjuntivoFuturo": {
+        "eu": "compreender",
+        "tu": "compreenderes",
+        "ele": "compreender",
+        "nos": "compreendermos",
+        "vos": "compreenderdes",
+        "eles": "compreenderem"
+      },
+      "infinitivoPessoal": {
         "eu": "compreender",
         "tu": "compreenderes",
         "ele": "compreender",
@@ -13841,6 +15025,14 @@
         "vos": "responderdes",
         "eles": "responderem"
       },
+      "infinitivoPessoal": {
+        "eu": "responder",
+        "tu": "responderes",
+        "ele": "responder",
+        "nos": "respondermos",
+        "vos": "responderdes",
+        "eles": "responderem"
+      },
       "imperativoAfirmativo": {
         "tu": "responde",
         "ele": "responda",
@@ -13927,6 +15119,14 @@
         "eles": "defendessem"
       },
       "conjuntivoFuturo": {
+        "eu": "defender",
+        "tu": "defenderes",
+        "ele": "defender",
+        "nos": "defendermos",
+        "vos": "defenderdes",
+        "eles": "defenderem"
+      },
+      "infinitivoPessoal": {
         "eu": "defender",
         "tu": "defenderes",
         "ele": "defender",
@@ -14027,6 +15227,14 @@
         "vos": "suspenderdes",
         "eles": "suspenderem"
       },
+      "infinitivoPessoal": {
+        "eu": "suspender",
+        "tu": "suspenderes",
+        "ele": "suspender",
+        "nos": "suspendermos",
+        "vos": "suspenderdes",
+        "eles": "suspenderem"
+      },
       "imperativoAfirmativo": {
         "tu": "suspende",
         "ele": "suspenda",
@@ -14113,6 +15321,14 @@
         "eles": "resolvessem"
       },
       "conjuntivoFuturo": {
+        "eu": "resolver",
+        "tu": "resolveres",
+        "ele": "resolver",
+        "nos": "resolvermos",
+        "vos": "resolverdes",
+        "eles": "resolverem"
+      },
+      "infinitivoPessoal": {
         "eu": "resolver",
         "tu": "resolveres",
         "ele": "resolver",
@@ -14213,6 +15429,14 @@
         "vos": "devolverdes",
         "eles": "devolverem"
       },
+      "infinitivoPessoal": {
+        "eu": "devolver",
+        "tu": "devolveres",
+        "ele": "devolver",
+        "nos": "devolvermos",
+        "vos": "devolverdes",
+        "eles": "devolverem"
+      },
       "imperativoAfirmativo": {
         "tu": "devolve",
         "ele": "devolva",
@@ -14299,6 +15523,14 @@
         "eles": "envolvessem"
       },
       "conjuntivoFuturo": {
+        "eu": "envolver",
+        "tu": "envolveres",
+        "ele": "envolver",
+        "nos": "envolvermos",
+        "vos": "envolverdes",
+        "eles": "envolverem"
+      },
+      "infinitivoPessoal": {
         "eu": "envolver",
         "tu": "envolveres",
         "ele": "envolver",
@@ -14399,6 +15631,14 @@
         "vos": "moverdes",
         "eles": "moverem"
       },
+      "infinitivoPessoal": {
+        "eu": "mover",
+        "tu": "moveres",
+        "ele": "mover",
+        "nos": "movermos",
+        "vos": "moverdes",
+        "eles": "moverem"
+      },
       "imperativoAfirmativo": {
         "tu": "move",
         "ele": "mova",
@@ -14485,6 +15725,14 @@
         "eles": "absorvessem"
       },
       "conjuntivoFuturo": {
+        "eu": "absorver",
+        "tu": "absorveres",
+        "ele": "absorver",
+        "nos": "absorvermos",
+        "vos": "absorverdes",
+        "eles": "absorverem"
+      },
+      "infinitivoPessoal": {
         "eu": "absorver",
         "tu": "absorveres",
         "ele": "absorver",
@@ -14585,6 +15833,14 @@
         "vos": "conhecerdes",
         "eles": "conhecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "conhecer",
+        "tu": "conheceres",
+        "ele": "conhecer",
+        "nos": "conhecermos",
+        "vos": "conhecerdes",
+        "eles": "conhecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "conhece",
         "ele": "conheça",
@@ -14671,6 +15927,14 @@
         "eles": "parecessem"
       },
       "conjuntivoFuturo": {
+        "eu": "parecer",
+        "tu": "pareceres",
+        "ele": "parecer",
+        "nos": "parecermos",
+        "vos": "parecerdes",
+        "eles": "parecerem"
+      },
+      "infinitivoPessoal": {
         "eu": "parecer",
         "tu": "pareceres",
         "ele": "parecer",
@@ -14771,6 +16035,14 @@
         "vos": "merecerdes",
         "eles": "merecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "merecer",
+        "tu": "mereceres",
+        "ele": "merecer",
+        "nos": "merecermos",
+        "vos": "merecerdes",
+        "eles": "merecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "merece",
         "ele": "mereça",
@@ -14857,6 +16129,14 @@
         "eles": "crescessem"
       },
       "conjuntivoFuturo": {
+        "eu": "crescer",
+        "tu": "cresceres",
+        "ele": "crescer",
+        "nos": "crescermos",
+        "vos": "crescerdes",
+        "eles": "crescerem"
+      },
+      "infinitivoPessoal": {
         "eu": "crescer",
         "tu": "cresceres",
         "ele": "crescer",
@@ -14957,6 +16237,14 @@
         "vos": "oferecerdes",
         "eles": "oferecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "oferecer",
+        "tu": "ofereceres",
+        "ele": "oferecer",
+        "nos": "oferecermos",
+        "vos": "oferecerdes",
+        "eles": "oferecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "oferece",
         "ele": "ofereça",
@@ -15043,6 +16331,14 @@
         "eles": "aparecessem"
       },
       "conjuntivoFuturo": {
+        "eu": "aparecer",
+        "tu": "apareceres",
+        "ele": "aparecer",
+        "nos": "aparecermos",
+        "vos": "aparecerdes",
+        "eles": "aparecerem"
+      },
+      "infinitivoPessoal": {
         "eu": "aparecer",
         "tu": "apareceres",
         "ele": "aparecer",
@@ -15143,6 +16439,14 @@
         "vos": "desaparecerdes",
         "eles": "desaparecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "desaparecer",
+        "tu": "desapareceres",
+        "ele": "desaparecer",
+        "nos": "desaparecermos",
+        "vos": "desaparecerdes",
+        "eles": "desaparecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "desaparece",
         "ele": "desapareça",
@@ -15229,6 +16533,14 @@
         "eles": "reconhecessem"
       },
       "conjuntivoFuturo": {
+        "eu": "reconhecer",
+        "tu": "reconheceres",
+        "ele": "reconhecer",
+        "nos": "reconhecermos",
+        "vos": "reconhecerdes",
+        "eles": "reconhecerem"
+      },
+      "infinitivoPessoal": {
         "eu": "reconhecer",
         "tu": "reconheceres",
         "ele": "reconhecer",
@@ -15329,6 +16641,14 @@
         "vos": "estabelecerdes",
         "eles": "estabelecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "estabelecer",
+        "tu": "estabeleceres",
+        "ele": "estabelecer",
+        "nos": "estabelecermos",
+        "vos": "estabelecerdes",
+        "eles": "estabelecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "estabelece",
         "ele": "estabeleça",
@@ -15415,6 +16735,14 @@
         "eles": "pertencessem"
       },
       "conjuntivoFuturo": {
+        "eu": "pertencer",
+        "tu": "pertenceres",
+        "ele": "pertencer",
+        "nos": "pertencermos",
+        "vos": "pertencerdes",
+        "eles": "pertencerem"
+      },
+      "infinitivoPessoal": {
         "eu": "pertencer",
         "tu": "pertenceres",
         "ele": "pertencer",
@@ -15515,6 +16843,14 @@
         "vos": "aquecerdes",
         "eles": "aquecerem"
       },
+      "infinitivoPessoal": {
+        "eu": "aquecer",
+        "tu": "aqueceres",
+        "ele": "aquecer",
+        "nos": "aquecermos",
+        "vos": "aquecerdes",
+        "eles": "aquecerem"
+      },
       "imperativoAfirmativo": {
         "tu": "aquece",
         "ele": "aqueça",
@@ -15601,6 +16937,14 @@
         "eles": "esquecessem"
       },
       "conjuntivoFuturo": {
+        "eu": "esquecer",
+        "tu": "esqueceres",
+        "ele": "esquecer",
+        "nos": "esquecermos",
+        "vos": "esquecerdes",
+        "eles": "esquecerem"
+      },
+      "infinitivoPessoal": {
         "eu": "esquecer",
         "tu": "esqueceres",
         "ele": "esquecer",
@@ -15701,6 +17045,14 @@
         "vos": "perderdes",
         "eles": "perderem"
       },
+      "infinitivoPessoal": {
+        "eu": "perder",
+        "tu": "perderes",
+        "ele": "perder",
+        "nos": "perdermos",
+        "vos": "perderdes",
+        "eles": "perderem"
+      },
       "imperativoAfirmativo": {
         "tu": "perde",
         "ele": "perca",
@@ -15787,6 +17139,14 @@
         "eles": "lessem"
       },
       "conjuntivoFuturo": {
+        "eu": "ler",
+        "tu": "leres",
+        "ele": "ler",
+        "nos": "lermos",
+        "vos": "lerdes",
+        "eles": "lerem"
+      },
+      "infinitivoPessoal": {
         "eu": "ler",
         "tu": "leres",
         "ele": "ler",
@@ -15887,6 +17247,14 @@
         "vos": "virdes",
         "eles": "virem"
       },
+      "infinitivoPessoal": {
+        "eu": "ver",
+        "tu": "veres",
+        "ele": "ver",
+        "nos": "vermos",
+        "vos": "verdes",
+        "eles": "verem"
+      },
       "imperativoAfirmativo": {
         "tu": "vê",
         "ele": "veja",
@@ -15974,6 +17342,14 @@
         "eles": "valessem"
       },
       "conjuntivoFuturo": {
+        "eu": "valer",
+        "tu": "valeres",
+        "ele": "valer",
+        "nos": "valermos",
+        "vos": "valerdes",
+        "eles": "valerem"
+      },
+      "infinitivoPessoal": {
         "eu": "valer",
         "tu": "valeres",
         "ele": "valer",
@@ -16074,6 +17450,14 @@
         "vos": "partirdes",
         "eles": "partirem"
       },
+      "infinitivoPessoal": {
+        "eu": "partir",
+        "tu": "partires",
+        "ele": "partir",
+        "nos": "partirmos",
+        "vos": "partirdes",
+        "eles": "partirem"
+      },
       "imperativoAfirmativo": {
         "tu": "parte",
         "ele": "parta",
@@ -16160,6 +17544,14 @@
         "eles": "abrissem"
       },
       "conjuntivoFuturo": {
+        "eu": "abrir",
+        "tu": "abrires",
+        "ele": "abrir",
+        "nos": "abrirmos",
+        "vos": "abrirdes",
+        "eles": "abrirem"
+      },
+      "infinitivoPessoal": {
         "eu": "abrir",
         "tu": "abrires",
         "ele": "abrir",
@@ -16261,6 +17653,14 @@
         "vos": "subirdes",
         "eles": "subirem"
       },
+      "infinitivoPessoal": {
+        "eu": "subir",
+        "tu": "subires",
+        "ele": "subir",
+        "nos": "subirmos",
+        "vos": "subirdes",
+        "eles": "subirem"
+      },
       "imperativoAfirmativo": {
         "tu": "sobe",
         "ele": "suba",
@@ -16347,6 +17747,14 @@
         "eles": "dividissem"
       },
       "conjuntivoFuturo": {
+        "eu": "dividir",
+        "tu": "dividires",
+        "ele": "dividir",
+        "nos": "dividirmos",
+        "vos": "dividirdes",
+        "eles": "dividirem"
+      },
+      "infinitivoPessoal": {
         "eu": "dividir",
         "tu": "dividires",
         "ele": "dividir",
@@ -16447,6 +17855,14 @@
         "vos": "existirdes",
         "eles": "existirem"
       },
+      "infinitivoPessoal": {
+        "eu": "existir",
+        "tu": "existires",
+        "ele": "existir",
+        "nos": "existirmos",
+        "vos": "existirdes",
+        "eles": "existirem"
+      },
       "imperativoAfirmativo": {
         "tu": "existe",
         "ele": "exista",
@@ -16533,6 +17949,14 @@
         "eles": "insistissem"
       },
       "conjuntivoFuturo": {
+        "eu": "insistir",
+        "tu": "insistires",
+        "ele": "insistir",
+        "nos": "insistirmos",
+        "vos": "insistirdes",
+        "eles": "insistirem"
+      },
+      "infinitivoPessoal": {
         "eu": "insistir",
         "tu": "insistires",
         "ele": "insistir",
@@ -16633,6 +18057,14 @@
         "vos": "resistirdes",
         "eles": "resistirem"
       },
+      "infinitivoPessoal": {
+        "eu": "resistir",
+        "tu": "resistires",
+        "ele": "resistir",
+        "nos": "resistirmos",
+        "vos": "resistirdes",
+        "eles": "resistirem"
+      },
       "imperativoAfirmativo": {
         "tu": "resiste",
         "ele": "resista",
@@ -16719,6 +18151,14 @@
         "eles": "assistissem"
       },
       "conjuntivoFuturo": {
+        "eu": "assistir",
+        "tu": "assistires",
+        "ele": "assistir",
+        "nos": "assistirmos",
+        "vos": "assistirdes",
+        "eles": "assistirem"
+      },
+      "infinitivoPessoal": {
         "eu": "assistir",
         "tu": "assistires",
         "ele": "assistir",
@@ -16819,6 +18259,14 @@
         "vos": "discutirdes",
         "eles": "discutirem"
       },
+      "infinitivoPessoal": {
+        "eu": "discutir",
+        "tu": "discutires",
+        "ele": "discutir",
+        "nos": "discutirmos",
+        "vos": "discutirdes",
+        "eles": "discutirem"
+      },
       "imperativoAfirmativo": {
         "tu": "discute",
         "ele": "discuta",
@@ -16905,6 +18353,14 @@
         "eles": "permitissem"
       },
       "conjuntivoFuturo": {
+        "eu": "permitir",
+        "tu": "permitires",
+        "ele": "permitir",
+        "nos": "permitirmos",
+        "vos": "permitirdes",
+        "eles": "permitirem"
+      },
+      "infinitivoPessoal": {
         "eu": "permitir",
         "tu": "permitires",
         "ele": "permitir",
@@ -17005,6 +18461,14 @@
         "vos": "admitirdes",
         "eles": "admitirem"
       },
+      "infinitivoPessoal": {
+        "eu": "admitir",
+        "tu": "admitires",
+        "ele": "admitir",
+        "nos": "admitirmos",
+        "vos": "admitirdes",
+        "eles": "admitirem"
+      },
       "imperativoAfirmativo": {
         "tu": "admite",
         "ele": "admita",
@@ -17091,6 +18555,14 @@
         "eles": "emitissem"
       },
       "conjuntivoFuturo": {
+        "eu": "emitir",
+        "tu": "emitires",
+        "ele": "emitir",
+        "nos": "emitirmos",
+        "vos": "emitirdes",
+        "eles": "emitirem"
+      },
+      "infinitivoPessoal": {
         "eu": "emitir",
         "tu": "emitires",
         "ele": "emitir",
@@ -17191,6 +18663,14 @@
         "vos": "omitirdes",
         "eles": "omitirem"
       },
+      "infinitivoPessoal": {
+        "eu": "omitir",
+        "tu": "omitires",
+        "ele": "omitir",
+        "nos": "omitirmos",
+        "vos": "omitirdes",
+        "eles": "omitirem"
+      },
       "imperativoAfirmativo": {
         "tu": "omite",
         "ele": "omita",
@@ -17277,6 +18757,14 @@
         "eles": "transferissem"
       },
       "conjuntivoFuturo": {
+        "eu": "transferir",
+        "tu": "transferires",
+        "ele": "transferir",
+        "nos": "transferirmos",
+        "vos": "transferirdes",
+        "eles": "transferirem"
+      },
+      "infinitivoPessoal": {
         "eu": "transferir",
         "tu": "transferires",
         "ele": "transferir",
@@ -17377,6 +18865,14 @@
         "vos": "progredirdes",
         "eles": "progredirem"
       },
+      "infinitivoPessoal": {
+        "eu": "progredir",
+        "tu": "progredires",
+        "ele": "progredir",
+        "nos": "progredirmos",
+        "vos": "progredirdes",
+        "eles": "progredirem"
+      },
       "imperativoAfirmativo": {
         "tu": "progrede",
         "ele": "progreda",
@@ -17463,6 +18959,14 @@
         "eles": "sentissem"
       },
       "conjuntivoFuturo": {
+        "eu": "sentir",
+        "tu": "sentires",
+        "ele": "sentir",
+        "nos": "sentirmos",
+        "vos": "sentirdes",
+        "eles": "sentirem"
+      },
+      "infinitivoPessoal": {
         "eu": "sentir",
         "tu": "sentires",
         "ele": "sentir",
@@ -17563,6 +19067,14 @@
         "vos": "mentirdes",
         "eles": "mentirem"
       },
+      "infinitivoPessoal": {
+        "eu": "mentir",
+        "tu": "mentires",
+        "ele": "mentir",
+        "nos": "mentirmos",
+        "vos": "mentirdes",
+        "eles": "mentirem"
+      },
       "imperativoAfirmativo": {
         "tu": "mente",
         "ele": "minta",
@@ -17649,6 +19161,14 @@
         "eles": "ferissem"
       },
       "conjuntivoFuturo": {
+        "eu": "ferir",
+        "tu": "ferires",
+        "ele": "ferir",
+        "nos": "ferirmos",
+        "vos": "ferirdes",
+        "eles": "ferirem"
+      },
+      "infinitivoPessoal": {
         "eu": "ferir",
         "tu": "ferires",
         "ele": "ferir",
@@ -17749,6 +19269,14 @@
         "vos": "preferirdes",
         "eles": "preferirem"
       },
+      "infinitivoPessoal": {
+        "eu": "preferir",
+        "tu": "preferires",
+        "ele": "preferir",
+        "nos": "preferirmos",
+        "vos": "preferirdes",
+        "eles": "preferirem"
+      },
       "imperativoAfirmativo": {
         "tu": "prefere",
         "ele": "prefira",
@@ -17835,6 +19363,14 @@
         "eles": "inserissem"
       },
       "conjuntivoFuturo": {
+        "eu": "inserir",
+        "tu": "inserires",
+        "ele": "inserir",
+        "nos": "inserirmos",
+        "vos": "inserirdes",
+        "eles": "inserirem"
+      },
+      "infinitivoPessoal": {
         "eu": "inserir",
         "tu": "inserires",
         "ele": "inserir",
@@ -17935,6 +19471,14 @@
         "vos": "digerirdes",
         "eles": "digerirem"
       },
+      "infinitivoPessoal": {
+        "eu": "digerir",
+        "tu": "digerires",
+        "ele": "digerir",
+        "nos": "digerirmos",
+        "vos": "digerirdes",
+        "eles": "digerirem"
+      },
       "imperativoAfirmativo": {
         "tu": "digere",
         "ele": "digira",
@@ -18021,6 +19565,14 @@
         "eles": "conferissem"
       },
       "conjuntivoFuturo": {
+        "eu": "conferir",
+        "tu": "conferires",
+        "ele": "conferir",
+        "nos": "conferirmos",
+        "vos": "conferirdes",
+        "eles": "conferirem"
+      },
+      "infinitivoPessoal": {
         "eu": "conferir",
         "tu": "conferires",
         "ele": "conferir",
@@ -18121,6 +19673,14 @@
         "vos": "aderirdes",
         "eles": "aderirem"
       },
+      "infinitivoPessoal": {
+        "eu": "aderir",
+        "tu": "aderires",
+        "ele": "aderir",
+        "nos": "aderirmos",
+        "vos": "aderirdes",
+        "eles": "aderirem"
+      },
       "imperativoAfirmativo": {
         "tu": "adere",
         "ele": "adira",
@@ -18207,6 +19767,14 @@
         "eles": "referissem"
       },
       "conjuntivoFuturo": {
+        "eu": "referir",
+        "tu": "referires",
+        "ele": "referir",
+        "nos": "referirmos",
+        "vos": "referirdes",
+        "eles": "referirem"
+      },
+      "infinitivoPessoal": {
         "eu": "referir",
         "tu": "referires",
         "ele": "referir",
@@ -18307,6 +19875,14 @@
         "vos": "dormirdes",
         "eles": "dormirem"
       },
+      "infinitivoPessoal": {
+        "eu": "dormir",
+        "tu": "dormires",
+        "ele": "dormir",
+        "nos": "dormirmos",
+        "vos": "dormirdes",
+        "eles": "dormirem"
+      },
       "imperativoAfirmativo": {
         "tu": "dorme",
         "ele": "durma",
@@ -18393,6 +19969,14 @@
         "eles": "cobrissem"
       },
       "conjuntivoFuturo": {
+        "eu": "cobrir",
+        "tu": "cobrires",
+        "ele": "cobrir",
+        "nos": "cobrirmos",
+        "vos": "cobrirdes",
+        "eles": "cobrirem"
+      },
+      "infinitivoPessoal": {
         "eu": "cobrir",
         "tu": "cobrires",
         "ele": "cobrir",
@@ -18494,6 +20078,14 @@
         "vos": "descobrirdes",
         "eles": "descobrirem"
       },
+      "infinitivoPessoal": {
+        "eu": "descobrir",
+        "tu": "descobrires",
+        "ele": "descobrir",
+        "nos": "descobrirmos",
+        "vos": "descobrirdes",
+        "eles": "descobrirem"
+      },
       "imperativoAfirmativo": {
         "tu": "descobre",
         "ele": "descubra",
@@ -18581,6 +20173,14 @@
         "eles": "seguissem"
       },
       "conjuntivoFuturo": {
+        "eu": "seguir",
+        "tu": "seguires",
+        "ele": "seguir",
+        "nos": "seguirmos",
+        "vos": "seguirdes",
+        "eles": "seguirem"
+      },
+      "infinitivoPessoal": {
         "eu": "seguir",
         "tu": "seguires",
         "ele": "seguir",
@@ -18681,6 +20281,14 @@
         "vos": "pedirdes",
         "eles": "pedirem"
       },
+      "infinitivoPessoal": {
+        "eu": "pedir",
+        "tu": "pedires",
+        "ele": "pedir",
+        "nos": "pedirmos",
+        "vos": "pedirdes",
+        "eles": "pedirem"
+      },
       "imperativoAfirmativo": {
         "tu": "pede",
         "ele": "peça",
@@ -18767,6 +20375,14 @@
         "eles": "ouvissem"
       },
       "conjuntivoFuturo": {
+        "eu": "ouvir",
+        "tu": "ouvires",
+        "ele": "ouvir",
+        "nos": "ouvirmos",
+        "vos": "ouvirdes",
+        "eles": "ouvirem"
+      },
+      "infinitivoPessoal": {
         "eu": "ouvir",
         "tu": "ouvires",
         "ele": "ouvir",
@@ -18867,6 +20483,14 @@
         "vos": "agirdes",
         "eles": "agirem"
       },
+      "infinitivoPessoal": {
+        "eu": "agir",
+        "tu": "agires",
+        "ele": "agir",
+        "nos": "agirmos",
+        "vos": "agirdes",
+        "eles": "agirem"
+      },
       "imperativoAfirmativo": {
         "tu": "age",
         "ele": "aja",
@@ -18953,6 +20577,14 @@
         "eles": "corrigissem"
       },
       "conjuntivoFuturo": {
+        "eu": "corrigir",
+        "tu": "corrigires",
+        "ele": "corrigir",
+        "nos": "corrigirmos",
+        "vos": "corrigirdes",
+        "eles": "corrigirem"
+      },
+      "infinitivoPessoal": {
         "eu": "corrigir",
         "tu": "corrigires",
         "ele": "corrigir",
@@ -19053,6 +20685,14 @@
         "vos": "dirigirdes",
         "eles": "dirigirem"
       },
+      "infinitivoPessoal": {
+        "eu": "dirigir",
+        "tu": "dirigires",
+        "ele": "dirigir",
+        "nos": "dirigirmos",
+        "vos": "dirigirdes",
+        "eles": "dirigirem"
+      },
       "imperativoAfirmativo": {
         "tu": "dirige",
         "ele": "dirija",
@@ -19139,6 +20779,14 @@
         "eles": "exigissem"
       },
       "conjuntivoFuturo": {
+        "eu": "exigir",
+        "tu": "exigires",
+        "ele": "exigir",
+        "nos": "exigirmos",
+        "vos": "exigirdes",
+        "eles": "exigirem"
+      },
+      "infinitivoPessoal": {
         "eu": "exigir",
         "tu": "exigires",
         "ele": "exigir",
@@ -19239,6 +20887,14 @@
         "vos": "atingirdes",
         "eles": "atingirem"
       },
+      "infinitivoPessoal": {
+        "eu": "atingir",
+        "tu": "atingires",
+        "ele": "atingir",
+        "nos": "atingirmos",
+        "vos": "atingirdes",
+        "eles": "atingirem"
+      },
       "imperativoAfirmativo": {
         "tu": "atinge",
         "ele": "atinja",
@@ -19325,6 +20981,14 @@
         "eles": "fingissem"
       },
       "conjuntivoFuturo": {
+        "eu": "fingir",
+        "tu": "fingires",
+        "ele": "fingir",
+        "nos": "fingirmos",
+        "vos": "fingirdes",
+        "eles": "fingirem"
+      },
+      "infinitivoPessoal": {
         "eu": "fingir",
         "tu": "fingires",
         "ele": "fingir",
@@ -19425,6 +21089,14 @@
         "vos": "fugirdes",
         "eles": "fugirem"
       },
+      "infinitivoPessoal": {
+        "eu": "fugir",
+        "tu": "fugires",
+        "ele": "fugir",
+        "nos": "fugirmos",
+        "vos": "fugirdes",
+        "eles": "fugirem"
+      },
       "imperativoAfirmativo": {
         "tu": "fuge",
         "ele": "fuja",
@@ -19511,6 +21183,14 @@
         "eles": "surgissem"
       },
       "conjuntivoFuturo": {
+        "eu": "surgir",
+        "tu": "surgires",
+        "ele": "surgir",
+        "nos": "surgirmos",
+        "vos": "surgirdes",
+        "eles": "surgirem"
+      },
+      "infinitivoPessoal": {
         "eu": "surgir",
         "tu": "surgires",
         "ele": "surgir",
@@ -19611,6 +21291,14 @@
         "vos": "conduzirdes",
         "eles": "conduzirem"
       },
+      "infinitivoPessoal": {
+        "eu": "conduzir",
+        "tu": "conduzires",
+        "ele": "conduzir",
+        "nos": "conduzirmos",
+        "vos": "conduzirdes",
+        "eles": "conduzirem"
+      },
       "imperativoAfirmativo": {
         "tu": "condu",
         "ele": "conduza",
@@ -19697,6 +21385,14 @@
         "eles": "produzissem"
       },
       "conjuntivoFuturo": {
+        "eu": "produzir",
+        "tu": "produzires",
+        "ele": "produzir",
+        "nos": "produzirmos",
+        "vos": "produzirdes",
+        "eles": "produzirem"
+      },
+      "infinitivoPessoal": {
         "eu": "produzir",
         "tu": "produzires",
         "ele": "produzir",
@@ -19797,6 +21493,14 @@
         "vos": "traduzirdes",
         "eles": "traduzirem"
       },
+      "infinitivoPessoal": {
+        "eu": "traduzir",
+        "tu": "traduzires",
+        "ele": "traduzir",
+        "nos": "traduzirmos",
+        "vos": "traduzirdes",
+        "eles": "traduzirem"
+      },
       "imperativoAfirmativo": {
         "tu": "tradu",
         "ele": "traduza",
@@ -19883,6 +21587,14 @@
         "eles": "introduzissem"
       },
       "conjuntivoFuturo": {
+        "eu": "introduzir",
+        "tu": "introduzires",
+        "ele": "introduzir",
+        "nos": "introduzirmos",
+        "vos": "introduzirdes",
+        "eles": "introduzirem"
+      },
+      "infinitivoPessoal": {
         "eu": "introduzir",
         "tu": "introduzires",
         "ele": "introduzir",
@@ -19983,6 +21695,14 @@
         "vos": "reduzirdes",
         "eles": "reduzirem"
       },
+      "infinitivoPessoal": {
+        "eu": "reduzir",
+        "tu": "reduzires",
+        "ele": "reduzir",
+        "nos": "reduzirmos",
+        "vos": "reduzirdes",
+        "eles": "reduzirem"
+      },
       "imperativoAfirmativo": {
         "tu": "redu",
         "ele": "reduza",
@@ -20069,6 +21789,14 @@
         "eles": "rissem"
       },
       "conjuntivoFuturo": {
+        "eu": "rir",
+        "tu": "rires",
+        "ele": "rir",
+        "nos": "rirmos",
+        "vos": "rirdes",
+        "eles": "rirem"
+      },
+      "infinitivoPessoal": {
         "eu": "rir",
         "tu": "rires",
         "ele": "rir",
@@ -20169,6 +21897,14 @@
         "vos": "sorrirdes",
         "eles": "sorrirem"
       },
+      "infinitivoPessoal": {
+        "eu": "sorrir",
+        "tu": "sorrires",
+        "ele": "sorrir",
+        "nos": "sorrirmos",
+        "vos": "sorrirdes",
+        "eles": "sorrirem"
+      },
       "imperativoAfirmativo": {
         "tu": "sorri",
         "ele": "sorria",
@@ -20255,6 +21991,14 @@
         "eles": "construíssem"
       },
       "conjuntivoFuturo": {
+        "eu": "construir",
+        "tu": "construires",
+        "ele": "construir",
+        "nos": "construirmos",
+        "vos": "construirdes",
+        "eles": "construirem"
+      },
+      "infinitivoPessoal": {
         "eu": "construir",
         "tu": "construires",
         "ele": "construir",
@@ -20355,6 +22099,14 @@
         "vos": "destruirdes",
         "eles": "destruirem"
       },
+      "infinitivoPessoal": {
+        "eu": "destruir",
+        "tu": "destruires",
+        "ele": "destruir",
+        "nos": "destruirmos",
+        "vos": "destruirdes",
+        "eles": "destruirem"
+      },
       "imperativoAfirmativo": {
         "tu": "destrui",
         "ele": "destrua",
@@ -20441,6 +22193,14 @@
         "eles": "incluíssem"
       },
       "conjuntivoFuturo": {
+        "eu": "incluir",
+        "tu": "incluires",
+        "ele": "incluir",
+        "nos": "incluirmos",
+        "vos": "incluirdes",
+        "eles": "incluirem"
+      },
+      "infinitivoPessoal": {
         "eu": "incluir",
         "tu": "incluires",
         "ele": "incluir",
@@ -20541,6 +22301,14 @@
         "vos": "excluirdes",
         "eles": "excluirem"
       },
+      "infinitivoPessoal": {
+        "eu": "excluir",
+        "tu": "excluires",
+        "ele": "excluir",
+        "nos": "excluirmos",
+        "vos": "excluirdes",
+        "eles": "excluirem"
+      },
       "imperativoAfirmativo": {
         "tu": "exclui",
         "ele": "exclua",
@@ -20627,6 +22395,14 @@
         "eles": "contribuíssem"
       },
       "conjuntivoFuturo": {
+        "eu": "contribuir",
+        "tu": "contribuires",
+        "ele": "contribuir",
+        "nos": "contribuirmos",
+        "vos": "contribuirdes",
+        "eles": "contribuirem"
+      },
+      "infinitivoPessoal": {
         "eu": "contribuir",
         "tu": "contribuires",
         "ele": "contribuir",
@@ -20727,6 +22503,14 @@
         "vos": "distribuirdes",
         "eles": "distribuirem"
       },
+      "infinitivoPessoal": {
+        "eu": "distribuir",
+        "tu": "distribuires",
+        "ele": "distribuir",
+        "nos": "distribuirmos",
+        "vos": "distribuirdes",
+        "eles": "distribuirem"
+      },
       "imperativoAfirmativo": {
         "tu": "distribui",
         "ele": "distribua",
@@ -20819,6 +22603,14 @@
         "nos": "formos",
         "vos": "fordes",
         "eles": "forem"
+      },
+      "infinitivoPessoal": {
+        "eu": "ser",
+        "tu": "seres",
+        "ele": "ser",
+        "nos": "sermos",
+        "vos": "serdes",
+        "eles": "serem"
       },
       "imperativoAfirmativo": {
         "tu": "sê",
@@ -20913,6 +22705,14 @@
         "vos": "estiverdes",
         "eles": "estiverem"
       },
+      "infinitivoPessoal": {
+        "eu": "estar",
+        "tu": "estares",
+        "ele": "estar",
+        "nos": "estarmos",
+        "vos": "estardes",
+        "eles": "estarem"
+      },
       "imperativoAfirmativo": {
         "tu": "está",
         "ele": "esteja",
@@ -21005,6 +22805,14 @@
         "nos": "tivermos",
         "vos": "tiverdes",
         "eles": "tiverem"
+      },
+      "infinitivoPessoal": {
+        "eu": "ter",
+        "tu": "teres",
+        "ele": "ter",
+        "nos": "termos",
+        "vos": "terdes",
+        "eles": "terem"
       },
       "imperativoAfirmativo": {
         "tu": "tem",
@@ -21099,6 +22907,14 @@
         "vos": "houverdes",
         "eles": "houverem"
       },
+      "infinitivoPessoal": {
+        "eu": "haver",
+        "tu": "haveres",
+        "ele": "haver",
+        "nos": "havermos",
+        "vos": "haverdes",
+        "eles": "haverem"
+      },
       "imperativoAfirmativo": {
         "tu": "há",
         "ele": "haja",
@@ -21191,6 +23007,14 @@
         "nos": "formos",
         "vos": "fordes",
         "eles": "forem"
+      },
+      "infinitivoPessoal": {
+        "eu": "ir",
+        "tu": "ires",
+        "ele": "ir",
+        "nos": "irmos",
+        "vos": "irdes",
+        "eles": "irem"
       },
       "imperativoAfirmativo": {
         "tu": "vai",
@@ -21285,6 +23109,14 @@
         "vos": "vierdes",
         "eles": "vierem"
       },
+      "infinitivoPessoal": {
+        "eu": "vir",
+        "tu": "vires",
+        "ele": "vir",
+        "nos": "virmos",
+        "vos": "virdes",
+        "eles": "virem"
+      },
       "imperativoAfirmativo": {
         "tu": "vem",
         "ele": "venha",
@@ -21377,6 +23209,14 @@
         "nos": "fizermos",
         "vos": "fizerdes",
         "eles": "fizerem"
+      },
+      "infinitivoPessoal": {
+        "eu": "fazer",
+        "tu": "fazeres",
+        "ele": "fazer",
+        "nos": "fazermos",
+        "vos": "fazerdes",
+        "eles": "fazerem"
       },
       "imperativoAfirmativo": {
         "tu": "faz",
@@ -21472,6 +23312,14 @@
         "vos": "puderdes",
         "eles": "puderem"
       },
+      "infinitivoPessoal": {
+        "eu": "poder",
+        "tu": "poderes",
+        "ele": "poder",
+        "nos": "podermos",
+        "vos": "poderdes",
+        "eles": "poderem"
+      },
       "imperativoAfirmativo": {
         "tu": "pode",
         "ele": "possa",
@@ -21564,6 +23412,14 @@
         "nos": "quisermos",
         "vos": "quiserdes",
         "eles": "quiserem"
+      },
+      "infinitivoPessoal": {
+        "eu": "querer",
+        "tu": "quereres",
+        "ele": "querer",
+        "nos": "querermos",
+        "vos": "quererdes",
+        "eles": "quererem"
       },
       "imperativoAfirmativo": {
         "tu": "quer",
@@ -21658,6 +23514,14 @@
         "vos": "souberdes",
         "eles": "souberem"
       },
+      "infinitivoPessoal": {
+        "eu": "saber",
+        "tu": "saberes",
+        "ele": "saber",
+        "nos": "sabermos",
+        "vos": "saberdes",
+        "eles": "saberem"
+      },
       "imperativoAfirmativo": {
         "tu": "sabe",
         "ele": "saiba",
@@ -21750,6 +23614,14 @@
         "nos": "dermos",
         "vos": "derdes",
         "eles": "derem"
+      },
+      "infinitivoPessoal": {
+        "eu": "dar",
+        "tu": "dares",
+        "ele": "dar",
+        "nos": "darmos",
+        "vos": "dardes",
+        "eles": "darem"
       },
       "imperativoAfirmativo": {
         "tu": "dá",
@@ -21844,6 +23716,14 @@
         "vos": "trouxerdes",
         "eles": "trouxerem"
       },
+      "infinitivoPessoal": {
+        "eu": "trazer",
+        "tu": "trazeres",
+        "ele": "trazer",
+        "nos": "trazermos",
+        "vos": "trazerdes",
+        "eles": "trazerem"
+      },
       "imperativoAfirmativo": {
         "tu": "traz",
         "ele": "traga",
@@ -21936,6 +23816,14 @@
         "nos": "dissermos",
         "vos": "disserdes",
         "eles": "disserem"
+      },
+      "infinitivoPessoal": {
+        "eu": "dizer",
+        "tu": "dizeres",
+        "ele": "dizer",
+        "nos": "dizermos",
+        "vos": "dizerdes",
+        "eles": "dizerem"
       },
       "imperativoAfirmativo": {
         "tu": "diz",
@@ -22030,6 +23918,14 @@
         "nos": "pusermos",
         "vos": "puserdes",
         "eles": "puserem"
+      },
+      "infinitivoPessoal": {
+        "eu": "pôr",
+        "tu": "pôres",
+        "ele": "pôr",
+        "nos": "pôrmos",
+        "vos": "pôrdes",
+        "eles": "pôrem"
       },
       "imperativoAfirmativo": {
         "tu": "põe",
@@ -22126,6 +24022,14 @@
         "vos": "couberdes",
         "eles": "couberem"
       },
+      "infinitivoPessoal": {
+        "eu": "caber",
+        "tu": "caberes",
+        "ele": "caber",
+        "nos": "cabermos",
+        "vos": "caberdes",
+        "eles": "caberem"
+      },
       "imperativoAfirmativo": {
         "tu": "cabe",
         "ele": "caiba",
@@ -22218,6 +24122,14 @@
         "nos": "cairmos",
         "vos": "cairdes",
         "eles": "caírem"
+      },
+      "infinitivoPessoal": {
+        "eu": "cair",
+        "tu": "caires",
+        "ele": "cair",
+        "nos": "cairmos",
+        "vos": "cairdes",
+        "eles": "cairem"
       },
       "imperativoAfirmativo": {
         "tu": "cai",
@@ -22312,6 +24224,14 @@
         "vos": "sairdes",
         "eles": "saírem"
       },
+      "infinitivoPessoal": {
+        "eu": "sair",
+        "tu": "saires",
+        "ele": "sair",
+        "nos": "sairmos",
+        "vos": "sairdes",
+        "eles": "sairem"
+      },
       "imperativoAfirmativo": {
         "tu": "sai",
         "ele": "saia",
@@ -22404,6 +24324,14 @@
         "nos": "mantivermos",
         "vos": "mantiverdes",
         "eles": "mantiverem"
+      },
+      "infinitivoPessoal": {
+        "eu": "manter",
+        "tu": "manteres",
+        "ele": "manter",
+        "nos": "mantermos",
+        "vos": "manterdes",
+        "eles": "manterem"
       },
       "imperativoAfirmativo": {
         "tu": "mantém",
@@ -22498,6 +24426,14 @@
         "vos": "obtiverdes",
         "eles": "obtiverem"
       },
+      "infinitivoPessoal": {
+        "eu": "obter",
+        "tu": "obteres",
+        "ele": "obter",
+        "nos": "obtermos",
+        "vos": "obterdes",
+        "eles": "obterem"
+      },
       "imperativoAfirmativo": {
         "tu": "obtém",
         "ele": "obtenha",
@@ -22590,6 +24526,14 @@
         "nos": "contivermos",
         "vos": "contiverdes",
         "eles": "contiverem"
+      },
+      "infinitivoPessoal": {
+        "eu": "conter",
+        "tu": "conteres",
+        "ele": "conter",
+        "nos": "contermos",
+        "vos": "conterdes",
+        "eles": "conterem"
       },
       "imperativoAfirmativo": {
         "tu": "contém",
@@ -22684,6 +24628,14 @@
         "vos": "intervierdes",
         "eles": "intervierem"
       },
+      "infinitivoPessoal": {
+        "eu": "intervir",
+        "tu": "intervires",
+        "ele": "intervir",
+        "nos": "intervirmos",
+        "vos": "intervirdes",
+        "eles": "intervirem"
+      },
       "imperativoAfirmativo": {
         "tu": "intervém",
         "ele": "intervenha",
@@ -22770,6 +24722,14 @@
         "eles": "prevenissem"
       },
       "conjuntivoFuturo": {
+        "eu": "prevenir",
+        "tu": "prevenires",
+        "ele": "prevenir",
+        "nos": "prevenirmos",
+        "vos": "prevenirdes",
+        "eles": "prevenirem"
+      },
+      "infinitivoPessoal": {
         "eu": "prevenir",
         "tu": "prevenires",
         "ele": "prevenir",
@@ -22870,6 +24830,14 @@
         "vos": "previrdes",
         "eles": "previrem"
       },
+      "infinitivoPessoal": {
+        "eu": "prever",
+        "tu": "preveres",
+        "ele": "prever",
+        "nos": "prevermos",
+        "vos": "preverdes",
+        "eles": "preverem"
+      },
       "imperativoAfirmativo": {
         "tu": "prevê",
         "ele": "preveja",
@@ -22956,6 +24924,14 @@
         "eles": "conseguissem"
       },
       "conjuntivoFuturo": {
+        "eu": "conseguir",
+        "tu": "conseguires",
+        "ele": "conseguir",
+        "nos": "conseguirmos",
+        "vos": "conseguirdes",
+        "eles": "conseguirem"
+      },
+      "infinitivoPessoal": {
         "eu": "conseguir",
         "tu": "conseguires",
         "ele": "conseguir",
@@ -23056,6 +25032,14 @@
         "vos": "perseguirdes",
         "eles": "perseguirem"
       },
+      "infinitivoPessoal": {
+        "eu": "perseguir",
+        "tu": "perseguires",
+        "ele": "perseguir",
+        "nos": "perseguirmos",
+        "vos": "perseguirdes",
+        "eles": "perseguirem"
+      },
       "imperativoAfirmativo": {
         "tu": "persegue",
         "ele": "persiga",
@@ -23149,6 +25133,14 @@
         "vos": "prosseguirdes",
         "eles": "prosseguirem"
       },
+      "infinitivoPessoal": {
+        "eu": "prosseguir",
+        "tu": "prosseguires",
+        "ele": "prosseguir",
+        "nos": "prosseguirmos",
+        "vos": "prosseguirdes",
+        "eles": "prosseguirem"
+      },
       "imperativoAfirmativo": {
         "tu": "prossegue",
         "ele": "prossiga",
@@ -23235,6 +25227,14 @@
         "eles": "repetissem"
       },
       "conjuntivoFuturo": {
+        "eu": "repetir",
+        "tu": "repetires",
+        "ele": "repetir",
+        "nos": "repetirmos",
+        "vos": "repetirdes",
+        "eles": "repetirem"
+      },
+      "infinitivoPessoal": {
         "eu": "repetir",
         "tu": "repetires",
         "ele": "repetir",

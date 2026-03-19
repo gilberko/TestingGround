@@ -23,6 +23,7 @@ data class VerbConjugations(
     val conjuntivoPresente: TenseConjugation,
     val conjuntivoPreteritoImperfeito: TenseConjugation,
     val conjuntivoFuturo: TenseConjugation,
+    val infinitivoPessoal: TenseConjugation? = null,
     val imperativoAfirmativo: ImperativoConjugation,
     val imperativoNegativo: ImperativoNegativoConjugation
 )

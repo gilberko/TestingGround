@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 
 private data class TenseEntry(
     val name: String,
+    val usage: String,
     val eu: String,
     val tu: String,
     val ele: String,
@@ -44,6 +45,7 @@ private data class PrepEntry(
 private val tenseEntries = listOf(
     TenseEntry(
         name = "Presente",
+        usage = "Expresses current actions, habitual facts, and universal truths.",
         eu = "falo / como / parto",
         tu = "falas / comes / partes",
         ele = "fala / come / parte",
@@ -53,6 +55,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Pret. Perfeito",
+        usage = "Completed past actions with a defined endpoint.",
         eu = "falei / comi / parti",
         tu = "falaste / comeste / partiste",
         ele = "falou / comeu / partiu",
@@ -62,6 +65,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Pret. Imperfeito",
+        usage = "Ongoing or habitual past states; background narration.",
         eu = "falava / comia / partia",
         tu = "falavas / comias / partias",
         ele = "falava / comia / partia",
@@ -71,6 +75,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Mais-que-Perf.",
+        usage = "An action completed before another past action.",
         eu = "falara / comera / partira",
         tu = "falaras / comeras / partiras",
         ele = "falara / comera / partira",
@@ -80,6 +85,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Futuro",
+        usage = "Future actions and predictions.",
         eu = "falarei / comerei / partirei",
         tu = "falarás / comerás / partirás",
         ele = "falará / comerá / partirá",
@@ -89,6 +95,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Condicional",
+        usage = "Hypothetical or polite actions (English 'would').",
         eu = "falaria / comeria / partiria",
         tu = "falarias / comerias / partirias",
         ele = "falaria / comeria / partiria",
@@ -98,6 +105,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Conj. Presente",
+        usage = "Doubt, desire, or emotion about a present or future event.",
         eu = "fale / coma / parta",
         tu = "fales / comas / partas",
         ele = "fale / coma / parta",
@@ -107,6 +115,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Conj. Imperfeito",
+        usage = "Hypothetical or contrary-to-fact conditions.",
         eu = "falasse / comesse / partisse",
         tu = "falasses / comesses / partisses",
         ele = "falasse / comesse / partisse",
@@ -116,6 +125,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Conj. Futuro",
+        usage = "Hypothetical future conditions; common in formal/written Portuguese.",
         eu = "falar / comer / partir",
         tu = "falares / comeres / partires",
         ele = "falar / comer / partir",
@@ -125,6 +135,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Imp. Afirmativo",
+        usage = "Direct positive commands.",
         eu = "—",
         tu = "fala / come / parte",
         ele = "fale / coma / parta",
@@ -134,6 +145,7 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Imp. Negativo",
+        usage = "Prohibitions and negative commands.",
         eu = "—",
         tu = "não fales / não comas / não partas",
         ele = "não fale / não coma / não parta",
@@ -143,12 +155,23 @@ private val tenseEntries = listOf(
     ),
     TenseEntry(
         name = "Gerúndio",
+        usage = "Ongoing action; used with estar for continuous tenses (e.g. estou a falar).",
         eu = "falando",
         tu = "comendo",
         ele = "partindo",
         nos = "(no conjugation)",
         vos = "—",
         eles = "—"
+    ),
+    TenseEntry(
+        name = "Infinitivo Pessoal",
+        usage = "Used after prepositions/conjunctions when the infinitive has its own explicit subject, e.g. antes de eles chegarem.",
+        eu = "falar / comer / partir",
+        tu = "falares / comeres / partires",
+        ele = "falar / comer / partir",
+        nos = "falarmos / comermos / partirmos",
+        vos = "falardes / comerdes / partirdes",
+        eles = "falarem / comerem / partirem"
     )
 )
 
@@ -245,6 +268,13 @@ private fun TenseCard(entry: TenseEntry) {
             Text(
                 text = entry.name,
                 style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = entry.usage,
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             // Header row

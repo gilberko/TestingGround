@@ -45,7 +45,7 @@ private val ACTIVE_TENSES = listOf(
     Tense.IMPERATIVO_NEGATIVO
 )
 
-private val NON_FINITE_TENSES = listOf(Tense.GERUND)
+private val NON_FINITE_TENSES = listOf(Tense.GERUND, Tense.INFINITIVO_PESSOAL)
 
 private val PASSIVE_TENSES = listOf(
     Tense.PASSIVA_PRESENTE,
