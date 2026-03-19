@@ -16,6 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,12 +31,15 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.animation.core.Animatable
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -55,6 +59,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
@@ -72,7 +77,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING }
+enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING, PLAYING_MIDI }
 
 private const val HISTORY_SIZE  = 80
 private const val WAVEFORM_SIZE = 512
@@ -195,6 +200,9 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var currentFrameIndex by remember { mutableStateOf(-1) }
     var analysisMethod by remember { mutableStateOf(AnalysisMethod.FFT) }
     var simplifiedResults by remember { mutableStateOf<List<AggregatedFrameResult>?>(null) }
+    var editedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
+    var editingIndex by remember { mutableStateOf(-1) }
+    var midiJob by remember { mutableStateOf<Job?>(null) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -202,10 +210,11 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             audioRecord?.apply { stop(); release() }
             visualizer?.apply { enabled = false; release() }
             player?.apply { stop(); release() }
+            midiJob?.cancel()
         }
     }
 
-    // Amplitude visualizer during playback (taps MediaPlayer's audio session)
+    // Amplitude visualizer during WAV playback (taps MediaPlayer's audio session)
     LaunchedEffect(appState) {
         if (appState == AppState.PLAYING) {
             val vis = visualizer ?: return@LaunchedEffect
@@ -250,6 +259,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             recordedChunks.clear()
             aggregatedResults = emptyList()
             simplifiedResults = null
+            editedResults = emptyList()
             amplitudeHistory = FloatArray(HISTORY_SIZE)
             waveformSamples  = FloatArray(WAVEFORM_SIZE)
             appState = AppState.RECORDING
@@ -287,18 +297,20 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     }
 
     val statusText = when (appState) {
-        AppState.IDLE      -> "No recording yet."
-        AppState.RECORDING -> "Recording..."
-        AppState.ANALYZING -> "Analyzing..."
-        AppState.ANALYZED  -> "Analysis complete."
-        AppState.PLAYING   -> "Playing..."
+        AppState.IDLE         -> "No recording yet."
+        AppState.RECORDING    -> "Recording..."
+        AppState.ANALYZING    -> "Analyzing..."
+        AppState.ANALYZED     -> "Analysis complete."
+        AppState.PLAYING      -> "Playing..."
+        AppState.PLAYING_MIDI -> "Playing MIDI..."
     }
 
     val barColor = when (appState) {
-        AppState.RECORDING -> Color(0xFFE53935)  // red
-        AppState.PLAYING   -> Color(0xFF1E88E5)  // blue
-        AppState.ANALYZING -> Color(0xFFFFA726)  // amber
-        else               -> Color(0xFF757575)  // gray
+        AppState.RECORDING    -> Color(0xFFE53935)  // red
+        AppState.PLAYING      -> Color(0xFF1E88E5)  // blue
+        AppState.ANALYZING    -> Color(0xFFFFA726)  // amber
+        AppState.PLAYING_MIDI -> Color(0xFF7B1FA2)  // purple
+        else                  -> Color(0xFF757575)  // gray
     }
 
     Column(
@@ -309,7 +321,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         Text(statusText, style = MaterialTheme.typography.bodyLarge)
 
-        if (appState == AppState.ANALYZED || appState == AppState.PLAYING) {
+        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) {
             Text(
                 "File size: ${outputFile.length()} bytes",
                 style = MaterialTheme.typography.bodySmall,
@@ -331,7 +343,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 onCheckedChange = { useCqt ->
                     analysisMethod = if (useCqt) AnalysisMethod.CQT else AnalysisMethod.FFT
                 },
-                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED,
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
             Text("CQT", style = MaterialTheme.typography.bodyMedium,
@@ -382,7 +394,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Button(
-                enabled = appState != AppState.PLAYING && appState != AppState.ANALYZING,
+                enabled = appState != AppState.PLAYING && appState != AppState.ANALYZING && appState != AppState.PLAYING_MIDI,
                 onClick = {
                     if (appState == AppState.RECORDING) {
                         // Stop recording: halt AudioRecord then join the coroutine
@@ -411,6 +423,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                 AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod)
                             }
                             aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.hopSizeFor(analysisMethod).toFloat() / SAMPLE_RATE)
+                            editedResults = aggregatedResults.toList()
                             appState = AppState.ANALYZED
                         }
                     } else {
@@ -422,7 +435,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             }
 
             Button(
-                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING,
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING) && appState != AppState.PLAYING_MIDI,
                 onClick = {
                     if (appState == AppState.PLAYING) {
                         visualizer?.apply { enabled = false; release() }
@@ -459,6 +472,38 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) {
                 Text(if (appState == AppState.PLAYING) "Stop Playing" else "Play")
             }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Button(
+                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI,
+                onClick = {
+                    if (appState == AppState.PLAYING_MIDI) {
+                        midiJob?.cancel()
+                        midiJob = null
+                        currentFrameIndex = -1
+                        appState = AppState.ANALYZED
+                    } else {
+                        val segments = simplifiedResults ?: editedResults
+                        midiJob = scope.launch(Dispatchers.IO) {
+                            withContext(Dispatchers.Main) { appState = AppState.PLAYING_MIDI }
+                            MidiSynthesizer.play(
+                                segments = segments,
+                                sampleRate = SAMPLE_RATE,
+                                onFrameChanged = { idx ->
+                                    scope.launch(Dispatchers.Main) { currentFrameIndex = idx }
+                                },
+                                isActive = { isActive }
+                            )
+                            withContext(Dispatchers.Main) {
+                                currentFrameIndex = -1
+                                if (appState == AppState.PLAYING_MIDI) appState = AppState.ANALYZED
+                            }
+                        }
+                    }
+                }
+            ) { Text(if (appState == AppState.PLAYING_MIDI) "Stop MIDI" else "Play MIDI") }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -505,44 +550,50 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         }
 
         // ── Timeline ──────────────────────────────────────────────────────────
-        if (appState == AppState.ANALYZED || appState == AppState.PLAYING) {
+        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Now Playing card — visible only during playback with a valid frame
-            if (appState == AppState.PLAYING && currentFrameIndex >= 0) {
-                val currentSeg = aggregatedResults[currentFrameIndex]
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .background(Color(0xFF0D47A1), shape = RoundedCornerShape(8.dp))
-                        .padding(12.dp)
-                ) {
-                    Column {
-                        Text(
-                            "NOW PLAYING",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = Color(0xFF90CAF9)
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Row {
-                            Text("Chord:  ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
+            if ((appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) && currentFrameIndex >= 0) {
+                val currentSeg = if (appState == AppState.PLAYING_MIDI)
+                    (simplifiedResults ?: editedResults).getOrNull(currentFrameIndex)
+                        ?: aggregatedResults.getOrNull(currentFrameIndex)
+                else
+                    aggregatedResults.getOrNull(currentFrameIndex)
+                if (currentSeg != null) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .background(Color(0xFF0D47A1), shape = RoundedCornerShape(8.dp))
+                            .padding(12.dp)
+                    ) {
+                        Column {
                             Text(
-                                currentSeg.chord,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = Color(0xFF66BB6A)
-                            )
-                            Spacer(modifier = Modifier.weight(1f))
-                            Text("Notes: ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
-                            Text(
-                                currentSeg.notes.joinToString(" "),
-                                style = MaterialTheme.typography.bodyMedium,
+                                "NOW PLAYING",
+                                style = MaterialTheme.typography.labelSmall,
                                 color = Color(0xFF90CAF9)
                             )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Row {
+                                Text("Chord:  ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
+                                Text(
+                                    currentSeg.chord,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = Color(0xFF66BB6A)
+                                )
+                                Spacer(modifier = Modifier.weight(1f))
+                                Text("Notes: ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
+                                Text(
+                                    currentSeg.notes.joinToString(" "),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = Color(0xFF90CAF9)
+                                )
+                            }
                         }
                     }
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
-                Spacer(modifier = Modifier.height(8.dp))
             }
 
             // Header row
@@ -563,7 +614,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     listState.animateScrollToItem(currentFrameIndex)
             }
 
-            val displayResults = simplifiedResults ?: aggregatedResults
+            val displayResults = simplifiedResults ?: editedResults
             LazyColumn(
                 state = listState,
                 modifier = Modifier
@@ -574,6 +625,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     val seg      = displayResults[index]
                     val hasChord = seg.chord != "(no chord)"
                     val isCurrent = index == currentFrameIndex
+                    val isEdited = editedResults.getOrNull(index) != aggregatedResults.getOrNull(index)
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -584,6 +636,9 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                     else      -> Color(0xFF424242).copy(alpha = 0.10f)
                                 }
                             )
+                            .clickable(enabled = appState != AppState.PLAYING_MIDI) {
+                                editingIndex = index
+                            }
                             .padding(horizontal = 16.dp, vertical = 3.dp)
                     ) {
                         Text(
@@ -593,9 +648,14 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                         )
                         Text(
                             seg.chord,
-                            style    = MaterialTheme.typography.bodySmall,
-                            color    = if (hasChord) Color(0xFF66BB6A) else Color.Gray,
-                            modifier = Modifier.weight(2f)
+                            style     = MaterialTheme.typography.bodySmall,
+                            color     = when {
+                                isEdited && hasChord -> Color(0xFFFFB300)
+                                hasChord             -> Color(0xFF66BB6A)
+                                else                 -> Color.Gray
+                            },
+                            fontStyle = if (isEdited) FontStyle.Italic else FontStyle.Normal,
+                            modifier  = Modifier.weight(2f)
                         )
                         Text(
                             seg.notes.joinToString(" "),
@@ -606,6 +666,61 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     HorizontalDivider(thickness = 0.5.dp, color = Color(0xFF424242))
                 }
             }
+
+            if (editingIndex >= 0) {
+                ChordEditDialog(
+                    segment = editedResults.getOrNull(editingIndex),
+                    onConfirm = { newChord, newNotes ->
+                        editedResults = editedResults.toMutableList().also {
+                            it[editingIndex] = it[editingIndex].copy(
+                                chord = newChord,
+                                notes = newNotes.split(" ").filter { n -> n.isNotBlank() }
+                            )
+                        }
+                        editingIndex = -1
+                    },
+                    onDismiss = { editingIndex = -1 }
+                )
+            }
         }
     }
+}
+
+@Composable
+private fun ChordEditDialog(
+    segment: AggregatedFrameResult?,
+    onConfirm: (String, String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    if (segment == null) { onDismiss(); return }
+    var chordText by remember { mutableStateOf(segment.chord) }
+    var notesText by remember { mutableStateOf(segment.notes.joinToString(" ")) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Edit Segment @ %.2fs".format(segment.startTimeSeconds)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = chordText,
+                    onValueChange = { chordText = it },
+                    label = { Text("Chord name") },
+                    singleLine = true
+                )
+                OutlinedTextField(
+                    value = notesText,
+                    onValueChange = { notesText = it },
+                    label = { Text("Notes (space-separated)") },
+                    singleLine = true
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(chordText.trim(), notesText.trim()) }) {
+                Text("Confirm")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancel") }
+        }
+    )
 }
