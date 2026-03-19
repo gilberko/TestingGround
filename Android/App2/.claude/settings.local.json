@@ -27,7 +27,13 @@
       "Bash(ADB=\"/c/Users/gilbe/AppData/Local/Android/Sdk/platform-tools/adb.exe\")",
       "Bash(\"$ADB\" devices:*)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
-      "Bash(\"$ADB\" logcat:*)"
+      "Bash(\"$ADB\" logcat:*)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
+      "Bash(ls:*)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/**)",
+      "Read(//c/Program Files/Android/Android Studio/**)"
     ]
   }
 }

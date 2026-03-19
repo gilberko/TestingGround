@@ -36,6 +36,29 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.app2.quiz.PrepEvent
 import com.example.app2.quiz.PrepViewModel
 
+private val contractionArticles = mapOf(
+    "ao" to "o", "à" to "a", "aos" to "os", "às" to "as",
+    "do" to "o", "da" to "a", "dos" to "os", "das" to "as",
+    "no" to "o", "na" to "a", "nos" to "os", "nas" to "as",
+    "pelo" to "o", "pela" to "a", "pelos" to "os", "pelas" to "as",
+    "num" to "um", "numa" to "uma", "nuns" to "uns", "numas" to "umas",
+    "dum" to "um", "duma" to "uma", "duns" to "uns", "dumas" to "umas"
+)
+
+fun stripAbsorbedArticle(sentence: String, answer: String): String {
+    val article = contractionArticles[answer] ?: return sentence
+    val blankIdx = sentence.indexOf("___")
+    if (blankIdx == -1) return sentence
+    val afterBlank = sentence.substring(blankIdx + 3)
+    val trimmed = afterBlank.trimStart()
+    if (trimmed.startsWith("$article ")) {
+        val stripped = trimmed.removePrefix("$article ")
+        val leadingSpace = afterBlank.length - trimmed.length
+        return sentence.substring(0, blankIdx + 3) + afterBlank.substring(0, leadingSpace) + stripped
+    }
+    return sentence
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrepQuizScreen(
@@ -87,7 +110,8 @@ fun PrepQuizScreen(
                         modifier = Modifier.padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        val parts = question.sentence.split("___")
+                        val displaySentence = stripAbsorbedArticle(question.sentence, question.answer)
+                        val parts = displaySentence.split("___")
                         val annotated = buildAnnotatedString {
                             parts.forEachIndexed { index, part ->
                                 append(part)
