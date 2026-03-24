@@ -14,6 +14,20 @@ object MidiSynthesizer {
         "G#" to 415.30f, "A"  to 440.00f, "A#" to 466.16f, "B"  to 493.88f
     )
 
+    private val NOTE_PC_NAMES = arrayOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
+
+    // Parses "C#(4)" format; falls back to NOTE_FREQUENCIES for legacy plain names like "C#"
+    private fun noteNameToFreq(name: String): Float? {
+        val parenStart = name.indexOf('(')
+        if (parenStart <= 0) return NOTE_FREQUENCIES[name]
+        val pc     = name.substring(0, parenStart)
+        val octave = name.substring(parenStart + 1).trimEnd(')').toIntOrNull() ?: return null
+        val pcIdx  = NOTE_PC_NAMES.indexOf(pc)
+        if (pcIdx < 0) return null
+        val midi   = (octave + 1) * 12 + pcIdx
+        return (440.0 * Math.pow(2.0, (midi - 69) / 12.0)).toFloat()
+    }
+
     fun synthesizeChord(
         notes: List<String>,
         durationSeconds: Float,
@@ -23,7 +37,7 @@ object MidiSynthesizer {
         val numSamples = (durationSeconds * sampleRate).toInt().coerceAtLeast(1)
         val result = ShortArray(numSamples)
 
-        val freqs = notes.mapNotNull { NOTE_FREQUENCIES[it] }
+        val freqs = notes.mapNotNull { noteNameToFreq(it) }
         if (freqs.isEmpty()) return result  // silence
 
         val fadeSamples = (fadeMillis * sampleRate / 1000).coerceAtMost(numSamples / 2)

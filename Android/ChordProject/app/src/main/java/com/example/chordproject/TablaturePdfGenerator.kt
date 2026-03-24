@@ -14,7 +14,8 @@ object TablaturePdfGenerator {
 
     // Fret on high-E string (MIDI 64 = E4, open = 0): fret = (pitchClassIndex - 4 + 12) % 12
     private fun noteToFret(note: String): Int {
-        val pc = NOTE_NAMES.indexOf(note)
+        val pitchClass = note.substringBefore('(').ifEmpty { note }
+        val pc = NOTE_NAMES.indexOf(pitchClass)
         if (pc < 0) return -1
         return (pc - 4 + 12) % 12
     }

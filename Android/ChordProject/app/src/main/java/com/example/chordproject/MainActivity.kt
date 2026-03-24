@@ -589,6 +589,11 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = Color(0xFF90CAF9)
                                 )
+                                Text(
+                                    "  (n) = octave",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Color.Gray
+                                )
                             }
                         }
                     }

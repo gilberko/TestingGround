@@ -159,7 +159,7 @@ object AudioAnalyzer {
         for (i in vec.indices) vec[i] /= norm
     }
 
-    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): FloatArray? {
+    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): Pair<FloatArray, IntArray>? {
         // Silence gate
         var sumSq = 0.0
         for (i in 0 until CQT_FRAME_SIZE) {
@@ -198,9 +198,19 @@ object AudioAnalyzer {
             cqtBins[k] = weightedSum
         }
 
-        // Fold to 12 chroma bins
-        val chroma = FloatArray(12)
-        for (k in 0 until CQT_BINS_TOTAL) chroma[k % 12] += cqtBins[k]
+        // Fold to 12 chroma bins, tracking dominant octave per pitch class
+        val chroma         = FloatArray(12)
+        val dominantOctave = IntArray(12) { -1 }
+        val dominantMag    = FloatArray(12) { 0f }
+        for (k in 0 until CQT_BINS_TOTAL) {
+            val pc     = k % 12
+            val octave = k / 12 + 2  // CQT_F0=C2: bins 0–11=oct2, 12–23=oct3, …
+            chroma[pc] += cqtBins[k]
+            if (cqtBins[k] > dominantMag[pc]) {
+                dominantMag[pc]    = cqtBins[k]
+                dominantOctave[pc] = octave
+            }
+        }
 
         // L2-normalize; return null if below threshold
         var norm = 0f
@@ -209,12 +219,15 @@ object AudioAnalyzer {
         if (norm < CHROMA_THRESHOLD) return null
         for (i in chroma.indices) chroma[i] /= norm
 
-        return chroma
+        return Pair(chroma, dominantOctave)
     }
 
-    private fun notesFromChroma(chroma: FloatArray): List<String> {
+    private fun notesFromChroma(chroma: FloatArray, dominantOctave: IntArray): List<String> {
         val maxVal = chroma.maxOrNull() ?: return emptyList()
-        return (0..11).filter { chroma[it] >= maxVal * 0.4f }.map { NOTE_NAMES[it] }
+        return (0..11).filter { chroma[it] >= maxVal * 0.4f }.map { pc ->
+            val oct = dominantOctave[pc]
+            if (oct >= 0) "${NOTE_NAMES[pc]}($oct)" else NOTE_NAMES[pc]
+        }
     }
 
     private fun detectChordFromChroma(chroma: FloatArray): String {
@@ -342,24 +355,25 @@ object AudioAnalyzer {
             val threshold = maxMag * PEAK_THRESHOLD
 
             val pitchClasses = mutableSetOf<Int>()
-            val notes        = mutableSetOf<String>()
+            val noteMap      = mutableMapOf<Int, String>()  // pc -> "C#(4)"
             for (bin in minBin..maxBin) {
                 if (mag[bin] >= threshold &&
                     mag[bin] >= mag[bin - 1] &&
                     mag[bin] >= mag[bin + 1]
                 ) {
-                    val freq = bin.toDouble() * sampleRate / FRAME_SIZE
-                    val midi = (69 + 12 * log2(freq / 440.0)).roundToInt()
-                    val pc   = ((midi % 12) + 12) % 12
+                    val freq   = bin.toDouble() * sampleRate / FRAME_SIZE
+                    val midi   = (69 + 12 * log2(freq / 440.0)).roundToInt()
+                    val pc     = ((midi % 12) + 12) % 12
+                    val octave = midi / 12 - 1
                     pitchClasses.add(pc)
-                    notes.add(NOTE_NAMES[pc])
+                    noteMap.putIfAbsent(pc, "${NOTE_NAMES[pc]}($octave)")
                 }
             }
 
             results.add(
                 FrameResult(
                     timeSeconds = timeSeconds,
-                    notes       = notes.toList(),
+                    notes       = noteMap.values.toList(),
                     chord       = detectChord(pitchClasses)
                 )
             )
@@ -373,12 +387,14 @@ object AudioAnalyzer {
         var frameStart = 0
         while (frameStart + CQT_FRAME_SIZE <= pcmSamples.size) {
             val timeSeconds = frameStart.toFloat() / sampleRate
-            val chroma = computeChroma(pcmSamples, frameStart, sampleRate)
+            val chromaResult = computeChroma(pcmSamples, frameStart, sampleRate)
             results.add(
-                if (chroma == null)
+                if (chromaResult == null)
                     FrameResult(timeSeconds, emptyList(), "(silence)")
-                else
-                    FrameResult(timeSeconds, notesFromChroma(chroma), detectChordFromChroma(chroma))
+                else {
+                    val (chroma, dominantOctave) = chromaResult
+                    FrameResult(timeSeconds, notesFromChroma(chroma, dominantOctave), detectChordFromChroma(chroma))
+                }
             )
             frameStart += CQT_HOP_SIZE
         }
