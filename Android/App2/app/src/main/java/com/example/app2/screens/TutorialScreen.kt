@@ -40,11 +40,7 @@ fun TutorialScreen(
     onBack: () -> Unit,
     onConjugationBasic: () -> Unit,
     onConjugationAdvanced: () -> Unit,
-    onPrepositions: () -> Unit,
-    onPronunciation: () -> Unit,
-    onCommonVerbs: () -> Unit,
-    onTimeExpressions: () -> Unit,
-    onNumbers: () -> Unit
+    onPronunciation: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -122,48 +118,12 @@ fun TutorialScreen(
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 OutlinedButton(
-                    onClick = onPrepositions,
-                    modifier = Modifier.fillMaxWidth(),
-                    border = BorderStroke(1.dp, Color.White),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
-                ) {
-                    Text("Prepositions")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                OutlinedButton(
                     onClick = onPronunciation,
                     modifier = Modifier.fillMaxWidth(),
                     border = BorderStroke(1.dp, Color.White),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                 ) {
                     Text("Pronunciation")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                OutlinedButton(
-                    onClick = onCommonVerbs,
-                    modifier = Modifier.fillMaxWidth(),
-                    border = BorderStroke(1.dp, Color.White),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
-                ) {
-                    Text("Common Verbs")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                OutlinedButton(
-                    onClick = onTimeExpressions,
-                    modifier = Modifier.fillMaxWidth(),
-                    border = BorderStroke(1.dp, Color.White),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
-                ) {
-                    Text("Time Expressions")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                OutlinedButton(
-                    onClick = onNumbers,
-                    modifier = Modifier.fillMaxWidth(),
-                    border = BorderStroke(1.dp, Color.White),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
-                ) {
-                    Text("Numbers")
                 }
             }
         }

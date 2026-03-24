@@ -23,6 +23,11 @@ import com.example.app2.screens.PrepositionsScreen
 import com.example.app2.screens.PronunciationScreen
 import com.example.app2.screens.TimeExpressionsScreen
 import com.example.app2.screens.TutorialScreen
+import com.example.app2.screens.DictionaryScreen
+import com.example.app2.screens.ColorsScreen
+import com.example.app2.screens.AdjectivesScreen
+import com.example.app2.screens.AdverbsScreen
+import com.example.app2.screens.CommonWordsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -40,6 +45,11 @@ sealed class Screen(val route: String) {
     object TutorialCommonVerbs : Screen("tutorial_common_verbs")
     object TutorialTimeExpressions : Screen("tutorial_time_expressions")
     object TutorialNumbers : Screen("tutorial_numbers")
+    object Dictionary : Screen("dictionary")
+    object DictColors : Screen("dict_colors")
+    object DictAdjectives : Screen("dict_adjectives")
+    object DictAdverbs : Screen("dict_adverbs")
+    object DictCommonWords : Screen("dict_common_words")
 }
 
 @Composable
@@ -60,7 +70,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onStartQuiz = { navController.navigate(Screen.Quiz.route) },
                 onOpenConfig = { navController.navigate(Screen.Config.route) },
                 onStartPrepQuiz = { navController.navigate(Screen.PrepQuiz.route) },
-                onOpenTutorial = { navController.navigate(Screen.Tutorial.route) }
+                onOpenTutorial = { navController.navigate(Screen.Tutorial.route) },
+                onOpenDictionary = { navController.navigate(Screen.Dictionary.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -101,12 +112,33 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onConjugationBasic = { navController.navigate(Screen.ConjugationBasic.route) },
                 onConjugationAdvanced = { navController.navigate(Screen.ConjugationAdvanced.route) },
+                onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) }
+            )
+        }
+        composable(Screen.Dictionary.route) {
+            DictionaryScreen(
+                onBack = { navController.popBackStack() },
                 onPrepositions = { navController.navigate(Screen.TutorialPrepositions.route) },
-                onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) },
                 onCommonVerbs = { navController.navigate(Screen.TutorialCommonVerbs.route) },
                 onTimeExpressions = { navController.navigate(Screen.TutorialTimeExpressions.route) },
-                onNumbers = { navController.navigate(Screen.TutorialNumbers.route) }
+                onNumbers = { navController.navigate(Screen.TutorialNumbers.route) },
+                onColors = { navController.navigate(Screen.DictColors.route) },
+                onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
+                onAdverbs = { navController.navigate(Screen.DictAdverbs.route) },
+                onCommonWords = { navController.navigate(Screen.DictCommonWords.route) }
             )
+        }
+        composable(Screen.DictColors.route) {
+            ColorsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictAdjectives.route) {
+            AdjectivesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictAdverbs.route) {
+            AdverbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictCommonWords.route) {
+            CommonWordsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })

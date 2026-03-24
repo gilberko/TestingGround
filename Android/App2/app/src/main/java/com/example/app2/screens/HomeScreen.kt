@@ -35,9 +35,11 @@ import androidx.compose.ui.unit.dp
 private val FlagGreen = Color(0xFF046A38)
 private val FlagRed = Color(0xFFDA291C)
 
+private const val APP_VERSION = "0.1"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit, onOpenTutorial: () -> Unit) {
+fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit, onOpenTutorial: () -> Unit, onOpenDictionary: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Portugal flag background
         Row(modifier = Modifier.fillMaxSize()) {
@@ -75,59 +77,80 @@ fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQui
                 )
             }
         ) { innerPadding ->
-            Column(
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "A Stranger in a Strange Land",
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Portugal Edition",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "🕵️",
-                    style = MaterialTheme.typography.displayMedium,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(modifier = Modifier.height(48.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(horizontal = 32.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Button(
-                        onClick = onStartQuiz,
-                        modifier = Modifier.weight(1f)
+                    Text(
+                        text = "A Stranger in a Strange Land",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        text = "Portugal Edition",
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "🕵️",
+                        style = MaterialTheme.typography.displayMedium,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(48.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Text("Practice\nConjugations", textAlign = TextAlign.Center)
+                        Button(
+                            onClick = onStartQuiz,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Practice\nConjugations", textAlign = TextAlign.Center)
+                        }
+                        Button(
+                            onClick = onStartPrepQuiz,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Practice\nPrepositions", textAlign = TextAlign.Center)
+                        }
                     }
-                    Button(
-                        onClick = onStartPrepQuiz,
-                        modifier = Modifier.weight(1f)
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenTutorial,
+                        modifier = Modifier.fillMaxWidth(),
+                        border = BorderStroke(1.dp, Color.White),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                     ) {
-                        Text("Practice\nPrepositions", textAlign = TextAlign.Center)
+                        Text("Tutorial")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenDictionary,
+                        modifier = Modifier.fillMaxWidth(),
+                        border = BorderStroke(1.dp, Color.White),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                    ) {
+                        Text("Simple Dictionary")
                     }
                 }
-                Spacer(modifier = Modifier.height(12.dp))
-                OutlinedButton(
-                    onClick = onOpenTutorial,
-                    modifier = Modifier.fillMaxWidth(),
-                    border = BorderStroke(1.dp, Color.White),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
-                ) {
-                    Text("Tutorial")
-                }
+                Text(
+                    text = "v$APP_VERSION",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.White.copy(alpha = 0.7f),
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = 16.dp)
+                )
             }
         }
     }
