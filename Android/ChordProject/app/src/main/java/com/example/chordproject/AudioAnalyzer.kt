@@ -2,10 +2,13 @@ package com.example.chordproject
 
 import kotlin.math.*
 
+data class FrequencyPeak(val freqHz: Float, val magnitude: Float, val noteName: String)
+
 data class FrameResult(
     val timeSeconds: Float,
     val notes: List<String>,
-    val chord: String
+    val chord: String,
+    val peaks: List<FrequencyPeak> = emptyList()
 )
 
 data class AggregatedFrameResult(
@@ -13,7 +16,8 @@ data class AggregatedFrameResult(
     val endTimeSeconds: Float,
     val notes: List<String>,
     val chord: String,
-    val frameCount: Int
+    val frameCount: Int,
+    val peaks: List<FrequencyPeak> = emptyList()
 )
 
 fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<AggregatedFrameResult> {
@@ -26,12 +30,12 @@ fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<Aggr
         if (frame.chord == groupStart.chord && frame.notes == groupStart.notes) {
             count++
         } else {
-            result.add(AggregatedFrameResult(groupStart.timeSeconds, frame.timeSeconds, groupStart.notes, groupStart.chord, count))
+            result.add(AggregatedFrameResult(groupStart.timeSeconds, frame.timeSeconds, groupStart.notes, groupStart.chord, count, groupStart.peaks))
             groupStart = frame
             count = 1
         }
     }
-    result.add(AggregatedFrameResult(groupStart.timeSeconds, groupStart.timeSeconds + count * hopSizeSeconds, groupStart.notes, groupStart.chord, count))
+    result.add(AggregatedFrameResult(groupStart.timeSeconds, groupStart.timeSeconds + count * hopSizeSeconds, groupStart.notes, groupStart.chord, count, groupStart.peaks))
     return result
 }
 
@@ -159,7 +163,7 @@ object AudioAnalyzer {
         for (i in vec.indices) vec[i] /= norm
     }
 
-    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): Pair<FloatArray, IntArray>? {
+    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): Triple<FloatArray, IntArray, FloatArray>? {
         // Silence gate
         var sumSq = 0.0
         for (i in 0 until CQT_FRAME_SIZE) {
@@ -219,7 +223,7 @@ object AudioAnalyzer {
         if (norm < CHROMA_THRESHOLD) return null
         for (i in chroma.indices) chroma[i] /= norm
 
-        return Pair(chroma, dominantOctave)
+        return Triple(chroma, dominantOctave, dominantMag)
     }
 
     private fun notesFromChroma(chroma: FloatArray, dominantOctave: IntArray): List<String> {
@@ -356,17 +360,20 @@ object AudioAnalyzer {
 
             val pitchClasses = mutableSetOf<Int>()
             val noteMap      = mutableMapOf<Int, String>()  // pc -> "C#(4)"
+            val peaks        = mutableListOf<FrequencyPeak>()
             for (bin in minBin..maxBin) {
                 if (mag[bin] >= threshold &&
                     mag[bin] >= mag[bin - 1] &&
                     mag[bin] >= mag[bin + 1]
                 ) {
-                    val freq   = bin.toDouble() * sampleRate / FRAME_SIZE
-                    val midi   = (69 + 12 * log2(freq / 440.0)).roundToInt()
-                    val pc     = ((midi % 12) + 12) % 12
-                    val octave = midi / 12 - 1
+                    val freq     = bin.toDouble() * sampleRate / FRAME_SIZE
+                    val midi     = (69 + 12 * log2(freq / 440.0)).roundToInt()
+                    val pc       = ((midi % 12) + 12) % 12
+                    val octave   = midi / 12 - 1
+                    val noteName = "${NOTE_NAMES[pc]}($octave)"
                     pitchClasses.add(pc)
-                    noteMap.putIfAbsent(pc, "${NOTE_NAMES[pc]}($octave)")
+                    noteMap.putIfAbsent(pc, noteName)
+                    peaks.add(FrequencyPeak(freq.toFloat(), mag[bin], noteName))
                 }
             }
 
@@ -374,7 +381,8 @@ object AudioAnalyzer {
                 FrameResult(
                     timeSeconds = timeSeconds,
                     notes       = noteMap.values.toList(),
-                    chord       = detectChord(pitchClasses)
+                    chord       = detectChord(pitchClasses),
+                    peaks       = peaks.sortedByDescending { it.magnitude }
                 )
             )
             frameStart += HOP_SIZE
@@ -392,8 +400,17 @@ object AudioAnalyzer {
                 if (chromaResult == null)
                     FrameResult(timeSeconds, emptyList(), "(silence)")
                 else {
-                    val (chroma, dominantOctave) = chromaResult
-                    FrameResult(timeSeconds, notesFromChroma(chroma, dominantOctave), detectChordFromChroma(chroma))
+                    val (chroma, dominantOctave, dominantMag) = chromaResult
+                    val peaks = (0..11).mapNotNull { pc ->
+                        val oct = dominantOctave[pc]
+                        if (oct < 0 || dominantMag[pc] == 0f) null
+                        else {
+                            val noteName = "${NOTE_NAMES[pc]}($oct)"
+                            val freqHz = (440.0 * Math.pow(2.0, ((oct + 1) * 12 + pc - 69) / 12.0)).toFloat()
+                            FrequencyPeak(freqHz, dominantMag[pc], noteName)
+                        }
+                    }.sortedByDescending { it.magnitude }
+                    FrameResult(timeSeconds, notesFromChroma(chroma, dominantOctave), detectChordFromChroma(chroma), peaks)
                 }
             )
             frameStart += CQT_HOP_SIZE

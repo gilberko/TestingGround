@@ -32,6 +32,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.animation.core.Animatable
 import androidx.compose.material3.AlertDialog
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -203,6 +205,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var editedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
     var editingIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
+    var showVerboseInfo by remember { mutableStateOf(false) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -517,6 +520,12 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) { Text(if (simplifiedResults != null) "Show Full Notes" else "Simplify Melody") }
 
             Button(
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI)
+                          && aggregatedResults.isNotEmpty(),
+                onClick = { showVerboseInfo = true }
+            ) { Text("Verbose Info") }
+
+            Button(
                 enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING)
                           && aggregatedResults.isNotEmpty(),
                 onClick = {
@@ -672,6 +681,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 }
             }
 
+            if (showVerboseInfo) {
+                VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
+            }
+
             if (editingIndex >= 0) {
                 ChordEditDialog(
                     segment = editedResults.getOrNull(editingIndex),
@@ -728,4 +741,86 @@ private fun ChordEditDialog(
             TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
+}
+
+@Composable
+private fun VerboseInfoDialog(
+    segments: List<AggregatedFrameResult>,
+    onDismiss: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF121212))
+        ) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFF1F1F1F))
+                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "Verbose Frequency Info",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    TextButton(onClick = onDismiss) { Text("Close") }
+                }
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 12.dp)
+                ) {
+                    items(segments.size) { index ->
+                        val seg = segments[index]
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            "%.2f–%.2fs  |  %s  |  %d frames"
+                                .format(seg.startTimeSeconds, seg.endTimeSeconds, seg.chord, seg.frameCount),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = if (seg.chord != "(no chord)" && seg.chord != "(silence)")
+                                Color(0xFF66BB6A) else Color.Gray
+                        )
+                        if (seg.notes.isNotEmpty()) {
+                            Text(
+                                "Notes: ${seg.notes.joinToString(" ")}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color(0xFF90CAF9)
+                            )
+                        }
+                        val sorted = seg.peaks.sortedByDescending { it.magnitude }
+                        if (sorted.isEmpty()) {
+                            Text(
+                                "  (no peaks)",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color(0xFF616161)
+                            )
+                        } else {
+                            sorted.forEach { peak ->
+                                Text(
+                                    "  %-8s  %7.1f Hz   str: %.5f"
+                                        .format(peak.noteName, peak.freqHz, peak.magnitude),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
+                                    color = Color(0xFFCFD8DC)
+                                )
+                            }
+                        }
+                        HorizontalDivider(
+                            modifier = Modifier.padding(top = 6.dp),
+                            thickness = 0.5.dp,
+                            color = Color(0xFF333333)
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
