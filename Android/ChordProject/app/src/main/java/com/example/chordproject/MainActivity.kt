@@ -475,10 +475,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) {
                 Text(if (appState == AppState.PLAYING) "Stop Playing" else "Play")
             }
-        }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Button(
                 enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI,
                 onClick = {
@@ -520,12 +517,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) { Text(if (simplifiedResults != null) "Show Full Notes" else "Simplify Melody") }
 
             Button(
-                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI)
-                          && aggregatedResults.isNotEmpty(),
-                onClick = { showVerboseInfo = true }
-            ) { Text("Verbose Info") }
-
-            Button(
                 enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING)
                           && aggregatedResults.isNotEmpty(),
                 onClick = {
@@ -547,6 +538,15 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     }
                 }
             ) { Text("Export PDF") }
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Button(
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI)
+                          && aggregatedResults.isNotEmpty(),
+                onClick = { showVerboseInfo = true }
+            ) { Text("Verbose Info") }
         }
 
         if (permissionDenied) {

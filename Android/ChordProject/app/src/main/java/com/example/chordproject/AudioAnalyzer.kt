@@ -64,6 +64,10 @@ object AudioAnalyzer {
     private const val PEAK_THRESHOLD     = 0.25f
     private const val SILENCE_THRESHOLD  = 0.008f  // ~-42 dBFS; tune if needed
 
+    private const val SMOOTHING_VERIFIED_CENTS    = 30f
+    private const val SMOOTHING_MAYBE_CENTS       = 50f
+    private const val SMOOTHING_PROPAGATION_CENTS = 50f
+
     private const val CQT_FRAME_SIZE         = 8192    // larger FFT for better low-freq resolution
     private const val CQT_HOP_SIZE           = 2048    // same hop as FFT → same timeline
     private const val CQT_BINS_TOTAL         = 60      // C2–C7, 5 octaves × 12 semitones
@@ -318,6 +322,77 @@ object AudioAnalyzer {
         return result
     }
 
+    private fun noteNameToMidi(name: String): Int {
+        val match = Regex("""^([A-G]#?)\((\d+)\)$""").matchEntire(name) ?: return -1
+        val pc = NOTE_NAMES.indexOf(match.groupValues[1]).takeIf { it >= 0 } ?: return -1
+        val octave = match.groupValues[2].toIntOrNull() ?: return -1
+        return (octave + 1) * 12 + pc
+    }
+
+    private fun midiToHz(midi: Int): Float =
+        (440.0 * 2.0.pow((midi - 69) / 12.0)).toFloat()
+
+    private fun centsDev(detectedHz: Float, referenceHz: Float): Float =
+        (1200.0 * log2(detectedHz.toDouble() / referenceHz.toDouble())).toFloat()
+
+    private fun smoothNotes(frames: List<FrameResult>): List<FrameResult> {
+        if (frames.isEmpty()) return frames
+        val n = frames.size
+
+        val status        = Array(n) { i -> Array(frames[i].peaks.size) { "unclassified" } }
+        val correctedName = Array(n) { i -> Array(frames[i].peaks.size) { j -> frames[i].peaks[j].noteName } }
+        val theoreticalHz = Array(n) { i -> FloatArray(frames[i].peaks.size) }
+        val queue         = ArrayDeque<Pair<Int, Int>>()
+
+        // Step 1: classify each peak as verified, maybe, or unclassified
+        for (i in 0 until n) {
+            for (j in frames[i].peaks.indices) {
+                val peak = frames[i].peaks[j]
+                val midi = noteNameToMidi(peak.noteName)
+                if (midi < 0) continue
+                val theoHz = midiToHz(midi)
+                val dev = abs(centsDev(peak.freqHz, theoHz))
+                when {
+                    dev <= SMOOTHING_VERIFIED_CENTS -> {
+                        status[i][j] = "verified"
+                        theoreticalHz[i][j] = theoHz
+                        queue.add(Pair(i, j))
+                    }
+                    dev <= SMOOTHING_MAYBE_CENTS -> {
+                        status[i][j] = "maybe"
+                    }
+                }
+            }
+        }
+
+        // Step 2: BFS — propagate verified notes into adjacent maybe-note frames
+        while (queue.isNotEmpty()) {
+            val (i, j) = queue.removeFirst()
+            val vHz   = theoreticalHz[i][j]
+            val vName = correctedName[i][j]
+            for (ni in listOf(i - 1, i + 1)) {
+                if (ni < 0 || ni >= n) continue
+                for (k in frames[ni].peaks.indices) {
+                    if (status[ni][k] != "maybe") continue
+                    if (abs(centsDev(frames[ni].peaks[k].freqHz, vHz)) <= SMOOTHING_PROPAGATION_CENTS) {
+                        status[ni][k]        = "verified"
+                        correctedName[ni][k] = vName
+                        theoreticalHz[ni][k] = vHz
+                        queue.add(Pair(ni, k))
+                    }
+                }
+            }
+        }
+
+        // Step 3: rebuild FrameResult list with corrected note names
+        return frames.mapIndexed { i, frame ->
+            val newPeaks = frame.peaks.mapIndexed { j, peak ->
+                peak.copy(noteName = correctedName[i][j])
+            }
+            frame.copy(notes = newPeaks.map { it.noteName }.distinct(), peaks = newPeaks)
+        }
+    }
+
     private fun analyzeFFT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
         val results  = mutableListOf<FrameResult>()
         val window   = hammingWindow(FRAME_SIZE)
@@ -387,7 +462,7 @@ object AudioAnalyzer {
             )
             frameStart += HOP_SIZE
         }
-        return smoothChords(results)
+        return smoothChords(smoothNotes(results))
     }
 
     private fun analyzeCQT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
@@ -415,7 +490,7 @@ object AudioAnalyzer {
             )
             frameStart += CQT_HOP_SIZE
         }
-        return smoothChords(results)
+        return smoothChords(smoothNotes(results))
     }
 
     fun analyze(pcmSamples: ShortArray, sampleRate: Int, method: AnalysisMethod = AnalysisMethod.FFT): List<FrameResult> =
