@@ -45,7 +45,8 @@ fun DictionaryScreen(
     onColors: () -> Unit,
     onAdjectives: () -> Unit,
     onAdverbs: () -> Unit,
-    onCommonWords: () -> Unit
+    onCommonWords: () -> Unit,
+    onMovement: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -159,6 +160,13 @@ fun DictionaryScreen(
                         border = BorderStroke(1.dp, Color.White),
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                     ) { Text("Common Words") }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onMovement,
+                        modifier = Modifier.fillMaxWidth(),
+                        border = BorderStroke(1.dp, Color.White),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                    ) { Text("Movement") }
                 }
             }
         }

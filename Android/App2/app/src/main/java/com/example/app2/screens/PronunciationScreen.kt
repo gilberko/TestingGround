@@ -64,7 +64,7 @@ private val pronunciationEntries = listOf(
     PronunciationEntry(
         symbol = "r (intervocalic single)",
         rule = "Single R between vowels — soft tap.",
-        phonetic = "Like 'd' in American 'ladder'",
+        phonetic = "A light tongue tap — like the 'r' in Spanish 'pero'",
         examples = listOf(
             Triple("caro", "KA-roo", "expensive"),
             Triple("para", "PA-ra", "for / to")

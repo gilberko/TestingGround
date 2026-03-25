@@ -28,6 +28,7 @@ import com.example.app2.screens.ColorsScreen
 import com.example.app2.screens.AdjectivesScreen
 import com.example.app2.screens.AdverbsScreen
 import com.example.app2.screens.CommonWordsScreen
+import com.example.app2.screens.MovementScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -50,6 +51,7 @@ sealed class Screen(val route: String) {
     object DictAdjectives : Screen("dict_adjectives")
     object DictAdverbs : Screen("dict_adverbs")
     object DictCommonWords : Screen("dict_common_words")
+    object DictMovement : Screen("dict_movement")
 }
 
 @Composable
@@ -125,7 +127,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onColors = { navController.navigate(Screen.DictColors.route) },
                 onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
                 onAdverbs = { navController.navigate(Screen.DictAdverbs.route) },
-                onCommonWords = { navController.navigate(Screen.DictCommonWords.route) }
+                onCommonWords = { navController.navigate(Screen.DictCommonWords.route) },
+                onMovement = { navController.navigate(Screen.DictMovement.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -139,6 +142,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictCommonWords.route) {
             CommonWordsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictMovement.route) {
+            MovementScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })
