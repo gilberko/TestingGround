@@ -67,6 +67,7 @@ object AudioAnalyzer {
     private const val SMOOTHING_VERIFIED_CENTS    = 30f
     private const val SMOOTHING_MAYBE_CENTS       = 50f
     private const val SMOOTHING_PROPAGATION_CENTS = 50f
+    private const val SMOOTHING_CONFLICT_CENTS    = 100f // max gap (cents) between two maybe-peaks to treat as same physical note
 
     private const val CQT_FRAME_SIZE         = 8192    // larger FFT for better low-freq resolution
     private const val CQT_HOP_SIZE           = 2048    // same hop as FFT → same timeline
@@ -379,6 +380,68 @@ object AudioAnalyzer {
                         correctedName[ni][k] = vName
                         theoreticalHz[ni][k] = vHz
                         queue.add(Pair(ni, k))
+                    }
+                }
+            }
+        }
+
+        // Step 2b: resolve conflicting maybe-notes in adjacent frames (iterative until stable)
+        var conflictFound = true
+        while (conflictFound) {
+            conflictFound = false
+            outer@ for (i in 0 until n) {
+                for (j in frames[i].peaks.indices) {
+                    if (status[i][j] != "maybe") continue
+                    val peakHz     = frames[i].peaks[j].freqHz
+                    val peakMidi   = noteNameToMidi(correctedName[i][j])
+                    if (peakMidi < 0) continue
+                    val peakTheoHz = midiToHz(peakMidi)
+                    val peakDev    = abs(centsDev(peakHz, peakTheoHz))
+
+                    for (ni in listOf(i - 1, i + 1)) {
+                        if (ni < 0 || ni >= n) continue
+                        for (k in frames[ni].peaks.indices) {
+                            if (status[ni][k] != "maybe") continue
+                            if (correctedName[ni][k] == correctedName[i][j]) continue  // same note — skip
+
+                            val neighborHz = frames[ni].peaks[k].freqHz
+                            if (abs(centsDev(neighborHz, peakHz)) > SMOOTHING_CONFLICT_CENTS) continue
+
+                            val neighborMidi    = noteNameToMidi(correctedName[ni][k])
+                            if (neighborMidi < 0) continue
+                            val neighborTheoHz  = midiToHz(neighborMidi)
+                            val neighborDev     = abs(centsDev(neighborHz, neighborTheoHz))
+
+                            // Winner = note whose theoretical is closest to its own detected frequency
+                            val (winnerName, winnerTheoHz) = if (peakDev <= neighborDev)
+                                Pair(correctedName[i][j], peakTheoHz)
+                            else
+                                Pair(correctedName[ni][k], neighborTheoHz)
+
+                            status[i][j]        = "verified"; correctedName[i][j]  = winnerName; theoreticalHz[i][j]  = winnerTheoHz; queue.add(Pair(i, j))
+                            status[ni][k]       = "verified"; correctedName[ni][k] = winnerName; theoreticalHz[ni][k] = winnerTheoHz; queue.add(Pair(ni, k))
+                            conflictFound = true
+                            continue@outer
+                        }
+                    }
+                }
+            }
+
+            // Re-run BFS from newly verified anchors
+            while (queue.isNotEmpty()) {
+                val (i, j) = queue.removeFirst()
+                val vHz   = theoreticalHz[i][j]
+                val vName = correctedName[i][j]
+                for (ni in listOf(i - 1, i + 1)) {
+                    if (ni < 0 || ni >= n) continue
+                    for (k in frames[ni].peaks.indices) {
+                        if (status[ni][k] != "maybe") continue
+                        if (abs(centsDev(frames[ni].peaks[k].freqHz, vHz)) <= SMOOTHING_PROPAGATION_CENTS) {
+                            status[ni][k]        = "verified"
+                            correctedName[ni][k] = vName
+                            theoreticalHz[ni][k] = vHz
+                            queue.add(Pair(ni, k))
+                        }
                     }
                 }
             }

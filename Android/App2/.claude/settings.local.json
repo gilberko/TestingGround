@@ -33,7 +33,9 @@
       "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
       "Bash(ls:*)",
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
-      "Read(//c/Program Files/Android/Android Studio/**)"
+      "Read(//c/Program Files/Android/Android Studio/**)",
+      "Bash(grep -i \"\\\\.kt$\")",
+      "Bash(find C:CodeTestingGroundAndroidApp2 -name *.json -path */assets/*)"
     ]
   }
 }
