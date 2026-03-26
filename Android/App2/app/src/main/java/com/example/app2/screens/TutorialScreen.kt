@@ -40,7 +40,10 @@ fun TutorialScreen(
     onBack: () -> Unit,
     onConjugationBasic: () -> Unit,
     onConjugationAdvanced: () -> Unit,
-    onPronunciation: () -> Unit
+    onPronunciation: () -> Unit,
+    onReflexiveVerbs: () -> Unit,
+    onMorePrepositions: () -> Unit,
+    onCliticPronouns: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -124,6 +127,33 @@ fun TutorialScreen(
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                 ) {
                     Text("Pronunciation")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedButton(
+                    onClick = onReflexiveVerbs,
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, Color.White),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Reflexive Verbs")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedButton(
+                    onClick = onMorePrepositions,
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, Color.White),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("More About Prepositions")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedButton(
+                    onClick = onCliticPronouns,
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, Color.White),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Object Pronouns (Clitics)")
                 }
             }
         }

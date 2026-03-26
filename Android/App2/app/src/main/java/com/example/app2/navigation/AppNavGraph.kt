@@ -29,6 +29,9 @@ import com.example.app2.screens.AdjectivesScreen
 import com.example.app2.screens.AdverbsScreen
 import com.example.app2.screens.CommonWordsScreen
 import com.example.app2.screens.MovementScreen
+import com.example.app2.screens.ReflexiveVerbsScreen
+import com.example.app2.screens.MorePrepositionsScreen
+import com.example.app2.screens.CliticPronounsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -52,6 +55,9 @@ sealed class Screen(val route: String) {
     object DictAdverbs : Screen("dict_adverbs")
     object DictCommonWords : Screen("dict_common_words")
     object DictMovement : Screen("dict_movement")
+    object TutorialReflexiveVerbs : Screen("tutorial_reflexive_verbs")
+    object TutorialMorePrepositions : Screen("tutorial_more_prepositions")
+    object TutorialCliticPronouns : Screen("tutorial_clitic_pronouns")
 }
 
 @Composable
@@ -114,7 +120,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onConjugationBasic = { navController.navigate(Screen.ConjugationBasic.route) },
                 onConjugationAdvanced = { navController.navigate(Screen.ConjugationAdvanced.route) },
-                onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) }
+                onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) },
+                onReflexiveVerbs = { navController.navigate(Screen.TutorialReflexiveVerbs.route) },
+                onMorePrepositions = { navController.navigate(Screen.TutorialMorePrepositions.route) },
+                onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -166,6 +175,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialNumbers.route) {
             NumbersScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialReflexiveVerbs.route) {
+            ReflexiveVerbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialMorePrepositions.route) {
+            MorePrepositionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialCliticPronouns.route) {
+            CliticPronounsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.PrepResults.route) {
             PrepResultsScreen(
