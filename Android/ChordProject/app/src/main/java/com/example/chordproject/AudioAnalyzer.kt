@@ -20,6 +20,8 @@ data class AggregatedFrameResult(
     val peaks: List<FrequencyPeak> = emptyList()
 )
 
+data class TempoResult(val bpm: Float, val confidence: Float, val onsetCount: Int)
+
 fun aggregateFrames(frames: List<FrameResult>, hopSizeSeconds: Float): List<AggregatedFrameResult> {
     if (frames.isEmpty()) return emptyList()
     val result = mutableListOf<AggregatedFrameResult>()
@@ -76,6 +78,14 @@ object AudioAnalyzer {
     private const val CQT_Q                  = 17.3f   // 1 / (2^(1/12) - 1)
     private const val CHROMA_THRESHOLD       = 0.05f   // min L2-norm before treating as silence
     private const val CHROMA_MIN_SIMILARITY  = 0.5f    // minimum cosine score to name a chord
+
+    // Tempo detection
+    private const val TEMPO_FLUX_MULTIPLIER  = 1.5f
+    private const val TEMPO_FLUX_WINDOW      = 10
+    private const val TEMPO_MIN_BPM          = 60f
+    private const val TEMPO_MAX_BPM          = 200f
+    private const val TEMPO_IOI_BIN_MS       = 5
+    private const val TEMPO_MIN_ONSET_GAP_MS = 100
 
     private val NOTE_NAMES = arrayOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
 
@@ -563,4 +573,93 @@ object AudioAnalyzer {
         }
 
     fun hopSizeFor(method: AnalysisMethod) = if (method == AnalysisMethod.CQT) CQT_HOP_SIZE else HOP_SIZE
+
+    private fun addToHistogram(
+        histogram: FloatArray,
+        interval: Float,
+        minInterval: Float,
+        binSize: Float,
+        numBins: Int,
+        weight: Float
+    ) {
+        if (interval < minInterval || interval > minInterval + numBins * binSize) return
+        val bin = ((interval - minInterval) / binSize).toInt().coerceIn(0, numBins - 1)
+        histogram[bin] += weight
+    }
+
+    fun detectTempo(samples: ShortArray, sampleRate: Int): TempoResult? {
+        // Step 1: spectral flux per frame
+        val window  = hammingWindow(FRAME_SIZE)
+        val real    = FloatArray(FRAME_SIZE)
+        val imag    = FloatArray(FRAME_SIZE)
+        val prevMag = FloatArray(FRAME_SIZE / 2)
+        val fluxList = mutableListOf<Float>()
+        var frameStart = 0
+        var firstFrame = true
+        while (frameStart + FRAME_SIZE <= samples.size) {
+            for (i in 0 until FRAME_SIZE) {
+                real[i] = samples[frameStart + i].toFloat() / 32768f * window[i]
+                imag[i] = 0f
+            }
+            fft(real, imag)
+            val mag = FloatArray(FRAME_SIZE / 2) { i -> sqrt(real[i] * real[i] + imag[i] * imag[i]) }
+            val flux = if (firstFrame) {
+                firstFrame = false; 0f
+            } else {
+                var f = 0f
+                for (b in 0 until FRAME_SIZE / 2) f += maxOf(0f, mag[b] - prevMag[b])
+                f
+            }
+            fluxList.add(flux)
+            mag.copyInto(prevMag)
+            frameStart += HOP_SIZE
+        }
+        if (fluxList.size < 4) return null
+
+        // Step 2: adaptive onset peak picking
+        val hopSec = HOP_SIZE.toFloat() / sampleRate
+        val minGapFrames = (TEMPO_MIN_ONSET_GAP_MS / 1000f / hopSec).toInt().coerceAtLeast(1)
+        val onsetTimes = mutableListOf<Float>()
+        var lastOnsetFrame = -minGapFrames
+        for (i in fluxList.indices) {
+            val lo = maxOf(0, i - TEMPO_FLUX_WINDOW)
+            val hi = minOf(fluxList.size - 1, i + TEMPO_FLUX_WINDOW)
+            var sum = 0f
+            for (k in lo..hi) sum += fluxList[k]
+            val localMean = sum / (hi - lo + 1)
+            val isLocalMax = (i == 0 || fluxList[i] >= fluxList[i - 1]) &&
+                             (i == fluxList.size - 1 || fluxList[i] >= fluxList[i + 1])
+            if (isLocalMax && fluxList[i] > localMean * TEMPO_FLUX_MULTIPLIER && i - lastOnsetFrame >= minGapFrames) {
+                onsetTimes.add(i * hopSec)
+                lastOnsetFrame = i
+            }
+        }
+        if (onsetTimes.size < 4) return null
+
+        // Step 3: IOI histogram with harmonic weighting
+        val minInterval = 60f / TEMPO_MAX_BPM
+        val maxInterval = 60f / TEMPO_MIN_BPM
+        val binSizeSec  = TEMPO_IOI_BIN_MS / 1000f
+        val numBins     = ((maxInterval - minInterval) / binSizeSec).toInt() + 1
+        val histogram   = FloatArray(numBins)
+        for (i in 0 until onsetTimes.size - 1) {
+            val ioi = onsetTimes[i + 1] - onsetTimes[i]
+            addToHistogram(histogram, ioi,        minInterval, binSizeSec, numBins, 1.0f)
+            addToHistogram(histogram, ioi * 2f,   minInterval, binSizeSec, numBins, 0.5f)
+            addToHistogram(histogram, ioi * 0.5f, minInterval, binSizeSec, numBins, 0.5f)
+        }
+
+        // Step 4: best BPM from histogram peak
+        var bestBin   = -1
+        var bestCount = 0f
+        for (b in histogram.indices) {
+            if (histogram[b] > bestCount) { bestCount = histogram[b]; bestBin = b }
+        }
+        if (bestBin < 0 || bestCount < 1f) return null
+
+        val bestIntervalSec = minInterval + (bestBin + 0.5f) * binSizeSec
+        val bpm             = 60f / bestIntervalSec
+        val confidence      = (bestCount / (onsetTimes.size - 1).toFloat()).coerceIn(0f, 1f)
+        return TempoResult(bpm, confidence, onsetTimes.size)
+    }
 }

@@ -39,6 +39,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -179,6 +180,12 @@ fun SplashScreen() {
                 fontSize = 22.sp,
                 color = Color(0xFF888888)
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                "v1.0",
+                fontSize = 13.sp,
+                color = Color(0xFF888888)
+            )
         }
     }
 }
@@ -206,6 +213,8 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var editingIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
     var showVerboseInfo by remember { mutableStateOf(false) }
+    var detectTempo by remember { mutableStateOf(false) }
+    var tempoResult by remember { mutableStateOf<TempoResult?>(null) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -263,6 +272,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             aggregatedResults = emptyList()
             simplifiedResults = null
             editedResults = emptyList()
+            tempoResult = null
             amplitudeHistory = FloatArray(HISTORY_SIZE)
             waveformSamples  = FloatArray(WAVEFORM_SIZE)
             appState = AppState.RECORDING
@@ -321,6 +331,18 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 4.dp)
+        ) {
+            Text(
+                "v1.0",
+                modifier = Modifier.align(Alignment.TopEnd),
+                style = MaterialTheme.typography.labelSmall,
+                color = Color(0xFF888888)
+            )
+        }
         Spacer(modifier = Modifier.height(16.dp))
         Text(statusText, style = MaterialTheme.typography.bodyLarge)
 
@@ -330,6 +352,16 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodySmall,
                 color = if (outputFile.length() > 0) Color.Gray else Color.Red
             )
+            tempoResult?.let { tr ->
+                val highConfidence = tr.confidence >= 0.25f
+                Text(
+                    if (highConfidence) "Tempo: %.1f BPM".format(tr.bpm)
+                    else "Tempo: ~%.0f BPM (low confidence)".format(tr.bpm),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (highConfidence) Color(0xFFFFB300) else Color(0xFF888888),
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -351,6 +383,22 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             )
             Text("CQT", style = MaterialTheme.typography.bodyMedium,
                  color = if (analysisMethod == AnalysisMethod.CQT) Color.White else Color.Gray)
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                "Detect Tempo",
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.Gray
+            )
+            Checkbox(
+                checked = detectTempo,
+                onCheckedChange = { detectTempo = it },
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI
+            )
         }
         Text(
             "Analysis method: ${analysisMethod.name}",
@@ -424,6 +472,13 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                             appState = AppState.ANALYZING
                             val rawResults = withContext(Dispatchers.Default) {
                                 AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod)
+                            }
+                            if (detectTempo) {
+                                tempoResult = withContext(Dispatchers.Default) {
+                                    AudioAnalyzer.detectTempo(samples, SAMPLE_RATE)
+                                }
+                            } else {
+                                tempoResult = null
                             }
                             aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.hopSizeFor(analysisMethod).toFloat() / SAMPLE_RATE)
                             editedResults = aggregatedResults.toList()
