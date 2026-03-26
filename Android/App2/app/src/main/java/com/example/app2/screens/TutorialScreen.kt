@@ -43,7 +43,8 @@ fun TutorialScreen(
     onPronunciation: () -> Unit,
     onReflexiveVerbs: () -> Unit,
     onMorePrepositions: () -> Unit,
-    onCliticPronouns: () -> Unit
+    onCliticPronouns: () -> Unit,
+    onIrregularVerbs: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -154,6 +155,15 @@ fun TutorialScreen(
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                 ) {
                     Text("Object Pronouns (Clitics)")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedButton(
+                    onClick = onIrregularVerbs,
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, Color.White),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Irregular Verbs")
                 }
             }
         }

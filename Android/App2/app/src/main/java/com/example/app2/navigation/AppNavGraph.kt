@@ -32,6 +32,7 @@ import com.example.app2.screens.MovementScreen
 import com.example.app2.screens.ReflexiveVerbsScreen
 import com.example.app2.screens.MorePrepositionsScreen
 import com.example.app2.screens.CliticPronounsScreen
+import com.example.app2.screens.IrregularVerbsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -58,6 +59,7 @@ sealed class Screen(val route: String) {
     object TutorialReflexiveVerbs : Screen("tutorial_reflexive_verbs")
     object TutorialMorePrepositions : Screen("tutorial_more_prepositions")
     object TutorialCliticPronouns : Screen("tutorial_clitic_pronouns")
+    object TutorialIrregularVerbs : Screen("tutorial_irregular_verbs")
 }
 
 @Composable
@@ -123,7 +125,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) },
                 onReflexiveVerbs = { navController.navigate(Screen.TutorialReflexiveVerbs.route) },
                 onMorePrepositions = { navController.navigate(Screen.TutorialMorePrepositions.route) },
-                onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) }
+                onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) },
+                onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -184,6 +187,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialCliticPronouns.route) {
             CliticPronounsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialIrregularVerbs.route) {
+            IrregularVerbsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.PrepResults.route) {
             PrepResultsScreen(
