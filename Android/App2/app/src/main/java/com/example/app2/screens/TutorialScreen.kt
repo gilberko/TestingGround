@@ -44,7 +44,8 @@ fun TutorialScreen(
     onReflexiveVerbs: () -> Unit,
     onMorePrepositions: () -> Unit,
     onCliticPronouns: () -> Unit,
-    onIrregularVerbs: () -> Unit
+    onIrregularVerbs: () -> Unit,
+    onUsefulVerbs: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -164,6 +165,15 @@ fun TutorialScreen(
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
                 ) {
                     Text("Irregular Verbs")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                OutlinedButton(
+                    onClick = onUsefulVerbs,
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(1.dp, Color.White),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                ) {
+                    Text("Useful Verbs")
                 }
             }
         }

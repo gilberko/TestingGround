@@ -33,6 +33,10 @@ import com.example.app2.screens.ReflexiveVerbsScreen
 import com.example.app2.screens.MorePrepositionsScreen
 import com.example.app2.screens.CliticPronounsScreen
 import com.example.app2.screens.IrregularVerbsScreen
+import com.example.app2.screens.UsefulVerbsScreen
+import com.example.app2.screens.VocabQuizScreen
+import com.example.app2.screens.VocabResultsScreen
+import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -60,6 +64,11 @@ sealed class Screen(val route: String) {
     object TutorialMorePrepositions : Screen("tutorial_more_prepositions")
     object TutorialCliticPronouns : Screen("tutorial_clitic_pronouns")
     object TutorialIrregularVerbs : Screen("tutorial_irregular_verbs")
+    object TutorialUsefulVerbs : Screen("tutorial_useful_verbs")
+    object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
+    object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
+    object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
+    object VocabResultsPtToEn : Screen("vocab_results_pt_to_en")
 }
 
 @Composable
@@ -81,7 +90,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenConfig = { navController.navigate(Screen.Config.route) },
                 onStartPrepQuiz = { navController.navigate(Screen.PrepQuiz.route) },
                 onOpenTutorial = { navController.navigate(Screen.Tutorial.route) },
-                onOpenDictionary = { navController.navigate(Screen.Dictionary.route) }
+                onOpenDictionary = { navController.navigate(Screen.Dictionary.route) },
+                onStartVocabQuizEnToPt = { navController.navigate(Screen.VocabQuizEnToPt.route) },
+                onStartVocabQuizPtToEn = { navController.navigate(Screen.VocabQuizPtToEn.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -126,7 +137,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onReflexiveVerbs = { navController.navigate(Screen.TutorialReflexiveVerbs.route) },
                 onMorePrepositions = { navController.navigate(Screen.TutorialMorePrepositions.route) },
                 onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) },
-                onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) }
+                onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) },
+                onUsefulVerbs = { navController.navigate(Screen.TutorialUsefulVerbs.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -190,6 +202,45 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialIrregularVerbs.route) {
             IrregularVerbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialUsefulVerbs.route) {
+            UsefulVerbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.VocabQuizEnToPt.route) {
+            VocabQuizScreen(
+                direction = QuizDirection.EN_TO_PT,
+                onQuizComplete = { navController.navigate(Screen.VocabResultsEnToPt.route) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.VocabQuizPtToEn.route) {
+            VocabQuizScreen(
+                direction = QuizDirection.PT_TO_EN,
+                onQuizComplete = { navController.navigate(Screen.VocabResultsPtToEn.route) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.VocabResultsEnToPt.route) {
+            VocabResultsScreen(
+                navController = navController,
+                quizRoute = Screen.VocabQuizEnToPt.route,
+                onPlayAgain = {
+                    navController.popBackStack(Screen.VocabQuizEnToPt.route, inclusive = true)
+                    navController.navigate(Screen.VocabQuizEnToPt.route)
+                },
+                onHome = { navController.popBackStack(Screen.Home.route, inclusive = false) }
+            )
+        }
+        composable(Screen.VocabResultsPtToEn.route) {
+            VocabResultsScreen(
+                navController = navController,
+                quizRoute = Screen.VocabQuizPtToEn.route,
+                onPlayAgain = {
+                    navController.popBackStack(Screen.VocabQuizPtToEn.route, inclusive = true)
+                    navController.navigate(Screen.VocabQuizPtToEn.route)
+                },
+                onHome = { navController.popBackStack(Screen.Home.route, inclusive = false) }
+            )
         }
         composable(Screen.PrepResults.route) {
             PrepResultsScreen(

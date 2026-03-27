@@ -146,6 +146,45 @@ private val irregularVerbs = listOf(
             TenseRow("Conj. Imperfeito",  "tivesse", "tivesses", "tivesse","tivéssemos","tivésseis", "tivessem"),
             TenseRow("Conj. Futuro",      "tiver",   "tiveres",  "tiver",  "tivermos",  "tiverdes",  "tiverem")
         )
+    ),
+    IrregularVerb(
+        verb = "dar", meaning = "to give",
+        tenses = listOf(
+            TenseRow("Presente",          "dou",       "dás",       "dá",       "damos",       "dais",       "dão"),
+            TenseRow("Pret. Perfeito",    "dei",       "deste",     "deu",      "demos",       "destes",     "deram"),
+            TenseRow("Pret. Imperfeito",  "dava",      "davas",     "dava",     "dávamos",     "dáveis",     "davam"),
+            TenseRow("Futuro",            "darei",     "darás",     "dará",     "daremos",     "dareis",     "darão"),
+            TenseRow("Condicional",       "daria",     "darias",    "daria",    "daríamos",    "daríeis",    "dariam"),
+            TenseRow("Conj. Presente",    "dê",        "dês",       "dê",       "demos",       "deis",       "deem"),
+            TenseRow("Conj. Imperfeito",  "desse",     "desses",    "desse",    "déssemos",    "désseis",    "dessem"),
+            TenseRow("Conj. Futuro",      "der",       "deres",     "der",      "dermos",      "derdes",     "derem")
+        )
+    ),
+    IrregularVerb(
+        verb = "trazer", meaning = "to bring",
+        tenses = listOf(
+            TenseRow("Presente",          "trago",      "trazes",      "traz",      "trazemos",      "trazeis",      "trazem"),
+            TenseRow("Pret. Perfeito",    "trouxe",     "trouxeste",   "trouxe",    "trouxemos",     "trouxestes",   "trouxeram"),
+            TenseRow("Pret. Imperfeito",  "trazia",     "trazias",     "trazia",    "trazíamos",     "trazíeis",     "traziam"),
+            TenseRow("Futuro",            "trarei",     "trarás",      "trará",     "traremos",      "trareis",      "trarão"),
+            TenseRow("Condicional",       "traria",     "trarias",     "traria",    "traríamos",     "traríeis",     "trariam"),
+            TenseRow("Conj. Presente",    "traga",      "tragas",      "traga",     "tragamos",      "tragais",      "tragam"),
+            TenseRow("Conj. Imperfeito",  "trouxesse",  "trouxesses",  "trouxesse", "trouxéssemos",  "trouxésseis",  "trouxessem"),
+            TenseRow("Conj. Futuro",      "trouxer",    "trouxeres",   "trouxer",   "trouxermos",    "trouxerdes",   "trouxerem")
+        )
+    ),
+    IrregularVerb(
+        verb = "ver", meaning = "to see",
+        tenses = listOf(
+            TenseRow("Presente",          "vejo",   "vês",    "vê",    "vemos",    "vedes",   "veem"),
+            TenseRow("Pret. Perfeito",    "vi",     "viste",  "viu",   "vimos",    "vistes",  "viram"),
+            TenseRow("Pret. Imperfeito",  "via",    "vias",   "via",   "víamos",   "víeis",   "viam"),
+            TenseRow("Futuro",            "verei",  "verás",  "verá",  "veremos",  "vereis",  "verão"),
+            TenseRow("Condicional",       "veria",  "verias", "veria", "veríamos", "veríeis", "veriam"),
+            TenseRow("Conj. Presente",    "veja",   "vejas",  "veja",  "vejamos",  "vejais",  "vejam"),
+            TenseRow("Conj. Imperfeito",  "visse",  "visses", "visse", "víssemos", "vísseis", "vissem"),
+            TenseRow("Conj. Futuro",      "vir",    "vires",  "vir",   "virmos",   "virdes",  "virem")
+        )
     )
 )
 

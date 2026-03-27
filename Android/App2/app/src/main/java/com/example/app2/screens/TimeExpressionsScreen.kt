@@ -83,6 +83,23 @@ private val timeCategories = listOf(
             TimeEntry("este ano", "this year"),
             TimeEntry("todos os dias", "every day")
         )
+    ),
+    TimeCategory(
+        "Months of the Year",
+        listOf(
+            TimeEntry("Janeiro", "January"),
+            TimeEntry("Fevereiro", "February"),
+            TimeEntry("Março", "March"),
+            TimeEntry("Abril", "April"),
+            TimeEntry("Maio", "May"),
+            TimeEntry("Junho", "June"),
+            TimeEntry("Julho", "July"),
+            TimeEntry("Agosto", "August"),
+            TimeEntry("Setembro", "September"),
+            TimeEntry("Outubro", "October"),
+            TimeEntry("Novembro", "November"),
+            TimeEntry("Dezembro", "December")
+        )
     )
 )
 

@@ -28,6 +28,19 @@ private data class MovementCategory(val title: String, val entries: List<Movemen
 
 private val movementCategories = listOf(
     MovementCategory(
+        "Cardinal Directions",
+        listOf(
+            MovementEntry("norte", "north"),
+            MovementEntry("sul", "south"),
+            MovementEntry("este / leste", "east"),
+            MovementEntry("oeste", "west"),
+            MovementEntry("nordeste", "northeast"),
+            MovementEntry("noroeste", "northwest"),
+            MovementEntry("sudeste", "southeast"),
+            MovementEntry("sudoeste", "southwest")
+        )
+    ),
+    MovementCategory(
         "Direction",
         listOf(
             MovementEntry("em frente", "forwards / ahead"),

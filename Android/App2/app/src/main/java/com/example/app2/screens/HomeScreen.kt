@@ -39,7 +39,15 @@ private const val APP_VERSION = "0.1"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQuiz: () -> Unit, onOpenTutorial: () -> Unit, onOpenDictionary: () -> Unit) {
+fun HomeScreen(
+    onStartQuiz: () -> Unit,
+    onOpenConfig: () -> Unit,
+    onStartPrepQuiz: () -> Unit,
+    onOpenTutorial: () -> Unit,
+    onOpenDictionary: () -> Unit,
+    onStartVocabQuizEnToPt: () -> Unit,
+    onStartVocabQuizPtToEn: () -> Unit
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Portugal flag background
         Row(modifier = Modifier.fillMaxSize()) {
@@ -122,6 +130,24 @@ fun HomeScreen(onStartQuiz: () -> Unit, onOpenConfig: () -> Unit, onStartPrepQui
                             modifier = Modifier.weight(1f)
                         ) {
                             Text("Practice\nPrepositions", textAlign = TextAlign.Center)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = onStartVocabQuizEnToPt,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Vocabulary\nEN → PT", textAlign = TextAlign.Center)
+                        }
+                        Button(
+                            onClick = onStartVocabQuizPtToEn,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Vocabulary\nPT → EN", textAlign = TextAlign.Center)
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
