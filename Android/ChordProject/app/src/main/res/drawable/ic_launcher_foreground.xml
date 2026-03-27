@@ -1,97 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Guitar body (lower bout) -->
-    <path
-        android:fillColor="#E0E0E0"
-        android:pathData="M54,88 C38,88 28,80 28,70 C28,60 36,55 40,54 C38,50 37,46 37,42 C37,34 44,28 54,28 C64,28 71,34 71,42 C71,46 70,50 68,54 C72,55 80,60 80,70 C80,80 70,88 54,88 Z" />
+    <!-- Electric guitar: Les Paul single-cutaway style, tilted slightly -->
+    <group
+        android:rotation="-8"
+        android:pivotX="54"
+        android:pivotY="54">
 
-    <!-- Guitar body upper bout -->
-    <path
-        android:fillColor="#E0E0E0"
-        android:pathData="M54,28 C44,28 37,34 37,42 C37,48 40,53 44,55 C46,52 50,50 54,50 C58,50 62,52 64,55 C68,53 71,48 71,42 C71,34 64,28 54,28 Z" />
+        <!-- ── NECK (drawn before body so body overlaps heel) ── -->
+        <path
+            android:fillColor="#8D6E63"
+            android:pathData="M50,17 L58,17 L57,53 L51,53 Z"/>
+        <!-- Neck side shadow -->
+        <path
+            android:fillColor="#6D4C41"
+            android:pathData="M57,53 L58,17 L59,17 L58,53 Z"/>
+        <!-- Fret bars -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#6D4C41"
+            android:strokeWidth="1.2"
+            android:pathData="M50.5,23 L57.5,23 M50.5,29 L57.5,29 M50.5,35 L57.5,35 M50.5,41 L57.5,41 M51,47 L57,47"/>
+        <!-- Position dot markers -->
+        <path
+            android:fillColor="#D7CCC8"
+            android:pathData="M54,32 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"/>
+        <path
+            android:fillColor="#D7CCC8"
+            android:pathData="M54,44 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"/>
 
-    <!-- Sound hole -->
-    <path
-        android:fillColor="#1A1A1A"
-        android:pathData="M54,62 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0" />
+        <!-- ── BODY ── -->
+        <!-- Drop shadow -->
+        <path
+            android:fillColor="#7B0000"
+            android:pathData="M51,55 C43,55 34,58 31,66 C28,73 28,85 33,94 C37,102 45,107 55,107 C65,107 73,102 77,94 C82,85 82,73 79,66 C76,58 69,54 65,53 C63,52 61,52 59,54 L51,54 Z"/>
+        <!-- Body fill – cherry red -->
+        <path
+            android:fillColor="#E53935"
+            android:pathData="M50,53 C42,53 33,56 30,64 C27,71 27,83 32,92 C36,100 44,105 54,105 C64,105 72,100 76,92 C81,83 81,71 78,64 C75,56 68,52 64,51 C62,50 60,50 58,52 L50,52 Z"/>
+        <!-- Highlight on upper-left shoulder -->
+        <path
+            android:fillColor="#EF5350"
+            android:pathData="M50,53 C45,53 38,55 34,61 C31,65 30,69 31,74 C32,68 35,63 39,61 C43,58 47,56 51,55 Z"/>
+        <!-- Body outline -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#B71C1C"
+            android:strokeWidth="0.8"
+            android:pathData="M50,53 C42,53 33,56 30,64 C27,71 27,83 32,92 C36,100 44,105 54,105 C64,105 72,100 76,92 C81,83 81,71 78,64 C75,56 68,52 64,51 C62,50 60,50 58,52 L50,52"/>
 
-    <!-- Guitar neck -->
-    <path
-        android:fillColor="#BDBDBD"
-        android:pathData="M49,28 L49,10 L59,10 L59,28 Z" />
+        <!-- ── HEADSTOCK ── -->
+        <path
+            android:fillColor="#8D6E63"
+            android:pathData="M46,7 C46,4 49,3 54,3 C59,3 62,4 62,7 L61,17 L47,17 Z"/>
+        <!-- Headstock face (lighter) -->
+        <path
+            android:fillColor="#A1887F"
+            android:pathData="M47,7 C47,5 50,4 54,4 C58,4 61,5 61,7 L60,17 L48,17 Z"/>
+        <!-- Nut -->
+        <path
+            android:fillColor="#EEEEEE"
+            android:pathData="M50,16 L58,16 L58,17.5 L50,17.5 Z"/>
 
-    <!-- Guitar headstock -->
-    <path
-        android:fillColor="#9E9E9E"
-        android:pathData="M46,10 L46,4 C46,3 47,2 48,2 L60,2 C61,2 62,3 62,4 L62,10 Z" />
+        <!-- Tuning pegs LEFT – 3 pegs -->
+        <path android:fillColor="#FFC107"
+            android:pathData="M46,8.5 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M46,8.5 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
+        <path android:fillColor="#FFC107"
+            android:pathData="M46,12 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M46,12 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
+        <path android:fillColor="#FFC107"
+            android:pathData="M46,15.5 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M46,15.5 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
 
-    <!-- Frets -->
-    <path
-        android:fillColor="#757575"
-        android:pathData="M49,14 L59,14"
-        android:strokeWidth="1.5"
-        android:strokeColor="#757575" />
-    <path
-        android:fillColor="#757575"
-        android:pathData="M49,18 L59,18"
-        android:strokeWidth="1.5"
-        android:strokeColor="#757575" />
-    <path
-        android:fillColor="#757575"
-        android:pathData="M49,22 L59,22"
-        android:strokeWidth="1.5"
-        android:strokeColor="#757575" />
+        <!-- Tuning pegs RIGHT – 3 pegs -->
+        <path android:fillColor="#FFC107"
+            android:pathData="M62,8.5 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M62,8.5 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
+        <path android:fillColor="#FFC107"
+            android:pathData="M62,12 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M62,12 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
+        <path android:fillColor="#FFC107"
+            android:pathData="M62,15.5 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#FFD54F"
+            android:pathData="M62,15.5 m-1.8,0 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0"/>
 
-    <!-- Strings -->
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M50,10 L50,80"
-        android:strokeWidth="0.8"
-        android:strokeColor="#E53935" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M52,10 L52,80"
-        android:strokeWidth="0.8"
-        android:strokeColor="#E53935" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M54,10 L54,80"
-        android:strokeWidth="0.8"
-        android:strokeColor="#E53935" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M56,10 L56,80"
-        android:strokeWidth="0.8"
-        android:strokeColor="#E53935" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M58,10 L58,80"
-        android:strokeWidth="0.8"
-        android:strokeColor="#E53935" />
+        <!-- ── NECK PICKUP ── -->
+        <path
+            android:fillColor="#1A1A1A"
+            android:pathData="M42,61 L66,61 L66,67 L42,67 Z"/>
+        <path
+            android:fillColor="#2D2D2D"
+            android:pathData="M43,62 L65,62 L65,66 L43,66 Z"/>
+        <!-- Pole pieces (6) -->
+        <path android:fillColor="#9E9E9E" android:pathData="M46,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M49.4,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M52.8,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M56.2,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M59.6,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M63,64 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
 
-    <!-- Tuning pegs left -->
-    <path
-        android:fillColor="#9E9E9E"
-        android:pathData="M44,4 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
-    <path
-        android:fillColor="#9E9E9E"
-        android:pathData="M44,8 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        <!-- ── BRIDGE PICKUP ── -->
+        <path
+            android:fillColor="#1A1A1A"
+            android:pathData="M40,75 L68,75 L68,81 L40,81 Z"/>
+        <path
+            android:fillColor="#2D2D2D"
+            android:pathData="M41,76 L67,76 L67,80 L41,80 Z"/>
+        <!-- Pole pieces (6) -->
+        <path android:fillColor="#9E9E9E" android:pathData="M44,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M47.7,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M51.4,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M55.1,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M58.8,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#9E9E9E" android:pathData="M62.5,78 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
 
-    <!-- Tuning pegs right -->
-    <path
-        android:fillColor="#9E9E9E"
-        android:pathData="M64,4 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
-    <path
-        android:fillColor="#9E9E9E"
-        android:pathData="M64,8 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+        <!-- ── BRIDGE (gold) ── -->
+        <path
+            android:fillColor="#FFC107"
+            android:pathData="M46,86 L62,86 L62,91 L46,91 Z"/>
+        <path
+            android:fillColor="#FFD54F"
+            android:pathData="M47,87 L61,87 L61,90 L47,90 Z"/>
+        <!-- Saddle dividers -->
+        <path android:fillColor="#FFA000" android:pathData="M49.5,87 L50,87 L50,90 L49.5,90 Z"/>
+        <path android:fillColor="#FFA000" android:pathData="M52.5,87 L53,87 L53,90 L52.5,90 Z"/>
+        <path android:fillColor="#FFA000" android:pathData="M55.5,87 L56,87 L56,90 L55.5,90 Z"/>
+        <path android:fillColor="#FFA000" android:pathData="M58.5,87 L59,87 L59,90 L58.5,90 Z"/>
 
-    <!-- Bridge -->
-    <path
-        android:fillColor="#757575"
-        android:pathData="M46,76 L62,76 L62,78 L46,78 Z" />
+        <!-- ── STRINGS (6, thin to thick, nut to bridge) ── -->
+        <path android:fillColor="#00000000" android:strokeColor="#FAFAFA" android:strokeWidth="0.4"
+            android:pathData="M51.4,17.5 L51.4,86"/>
+        <path android:fillColor="#00000000" android:strokeColor="#FAFAFA" android:strokeWidth="0.5"
+            android:pathData="M52.5,17.5 L52.5,86"/>
+        <path android:fillColor="#00000000" android:strokeColor="#F5F5F5" android:strokeWidth="0.6"
+            android:pathData="M53.6,17.5 L53.6,86"/>
+        <path android:fillColor="#00000000" android:strokeColor="#EEEEEE" android:strokeWidth="0.7"
+            android:pathData="M54.7,17.5 L54.7,86"/>
+        <path android:fillColor="#00000000" android:strokeColor="#E0E0E0" android:strokeWidth="0.9"
+            android:pathData="M55.8,17.5 L55.8,86"/>
+        <path android:fillColor="#00000000" android:strokeColor="#BDBDBD" android:strokeWidth="1.1"
+            android:pathData="M56.9,17.5 L56.9,86"/>
+
+        <!-- ── CONTROL KNOBS (2) ── -->
+        <!-- Knob 1 -->
+        <path android:fillColor="#212121"
+            android:pathData="M67,83 m-4.5,0 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0"/>
+        <path android:fillColor="#3D3D3D"
+            android:pathData="M67,83 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#616161"
+            android:pathData="M67,83 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#00000000" android:strokeColor="#9E9E9E" android:strokeWidth="1"
+            android:pathData="M67,82 L67,80"/>
+        <!-- Knob 2 -->
+        <path android:fillColor="#212121"
+            android:pathData="M67,94 m-4.5,0 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0"/>
+        <path android:fillColor="#3D3D3D"
+            android:pathData="M67,94 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+        <path android:fillColor="#616161"
+            android:pathData="M67,94 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+        <path android:fillColor="#00000000" android:strokeColor="#9E9E9E" android:strokeWidth="1"
+            android:pathData="M67,93 L67,91"/>
+
+        <!-- ── PICKUP SELECTOR TOGGLE ── -->
+        <path android:fillColor="#616161"
+            android:pathData="M37,68 L40,68 L40,75 L37,75 Z"/>
+        <path android:fillColor="#EEEEEE"
+            android:pathData="M37.8,65 L39.2,65 L39.2,70 L37.8,70 Z"/>
+        <path android:fillColor="#BDBDBD"
+            android:pathData="M38.5,64.5 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0"/>
+
+    </group>
 
 </vector>

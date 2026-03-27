@@ -11,7 +11,8 @@
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease:*)",
       "Bash(./gradlew assembleRelease:*)",
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
-      "Read(//c/Program Files/Android/Android Studio/**)"
+      "Read(//c/Program Files/Android/Android Studio/**)",
+      "Read(//c/Program Files/**)"
     ]
   }
 }

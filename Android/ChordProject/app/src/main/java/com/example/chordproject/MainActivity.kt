@@ -86,6 +86,22 @@ private const val HISTORY_SIZE  = 80
 private const val WAVEFORM_SIZE = 512
 private const val SAMPLE_RATE   = 44100
 
+private fun formatNotes(notes: List<String>): String {
+    val regex = Regex("""^([A-G]#?)\((\d+)\)$""")
+    val grouped = LinkedHashMap<String, MutableList<String>>()
+    for (note in notes) {
+        val m = regex.matchEntire(note)
+        if (m != null) {
+            grouped.getOrPut(m.groupValues[1]) { mutableListOf() }.add(m.groupValues[2])
+        } else {
+            grouped.getOrPut(note) { mutableListOf() }
+        }
+    }
+    return grouped.entries.joinToString(" ") { (pc, octaves) ->
+        if (octaves.isEmpty()) pc else "$pc(${octaves.joinToString(",")})"
+    }
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -649,7 +665,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                 Spacer(modifier = Modifier.weight(1f))
                                 Text("Notes: ", style = MaterialTheme.typography.bodyMedium, color = Color.White)
                                 Text(
-                                    currentSeg.notes.joinToString(" "),
+                                    formatNotes(currentSeg.notes),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = Color(0xFF90CAF9)
                                 )
@@ -727,7 +743,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                             modifier  = Modifier.weight(2f)
                         )
                         Text(
-                            seg.notes.joinToString(" "),
+                            formatNotes(seg.notes),
                             style    = MaterialTheme.typography.bodySmall,
                             modifier = Modifier.weight(2f)
                         )
@@ -845,7 +861,7 @@ private fun VerboseInfoDialog(
                         )
                         if (seg.notes.isNotEmpty()) {
                             Text(
-                                "Notes: ${seg.notes.joinToString(" ")}",
+                                "Notes: ${formatNotes(seg.notes)}",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color(0xFF90CAF9)
                             )
