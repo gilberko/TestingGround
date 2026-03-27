@@ -35,6 +35,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -80,7 +81,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING, PLAYING_MIDI }
+enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING, PLAYING_MIDI, PLAYING_SIMPLIFIED_MIDI }
 
 private const val HISTORY_SIZE  = 80
 private const val WAVEFORM_SIZE = 512
@@ -229,6 +230,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var editingIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
     var showVerboseInfo by remember { mutableStateOf(false) }
+    val isAnyMidiPlaying = appState == AppState.PLAYING_MIDI || appState == AppState.PLAYING_SIMPLIFIED_MIDI
     var detectTempo by remember { mutableStateOf(false) }
     var tempoResult by remember { mutableStateOf<TempoResult?>(null) }
 
@@ -331,14 +333,16 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         AppState.ANALYZING    -> "Analyzing..."
         AppState.ANALYZED     -> "Analysis complete."
         AppState.PLAYING      -> "Playing..."
-        AppState.PLAYING_MIDI -> "Playing MIDI..."
+        AppState.PLAYING_MIDI             -> "Playing MIDI..."
+        AppState.PLAYING_SIMPLIFIED_MIDI  -> "Playing Simplified MIDI..."
     }
 
     val barColor = when (appState) {
         AppState.RECORDING    -> Color(0xFFE53935)  // red
         AppState.PLAYING      -> Color(0xFF1E88E5)  // blue
         AppState.ANALYZING    -> Color(0xFFFFA726)  // amber
-        AppState.PLAYING_MIDI -> Color(0xFF7B1FA2)  // purple
+        AppState.PLAYING_MIDI            -> Color(0xFF7B1FA2)  // purple
+        AppState.PLAYING_SIMPLIFIED_MIDI -> Color(0xFF00897B)  // teal
         else                  -> Color(0xFF757575)  // gray
     }
 
@@ -362,7 +366,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         Text(statusText, style = MaterialTheme.typography.bodyLarge)
 
-        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) {
+        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || isAnyMidiPlaying) {
             Text(
                 "File size: ${outputFile.length()} bytes",
                 style = MaterialTheme.typography.bodySmall,
@@ -394,7 +398,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 onCheckedChange = { useCqt ->
                     analysisMethod = if (useCqt) AnalysisMethod.CQT else AnalysisMethod.FFT
                 },
-                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI,
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
             Text("CQT", style = MaterialTheme.typography.bodyMedium,
@@ -413,7 +417,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             Checkbox(
                 checked = detectTempo,
                 onCheckedChange = { detectTempo = it },
-                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying
             )
         }
         Text(
@@ -459,9 +463,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // ── Row 1: Record | Play | Simplify Melody ──────────────────────────────
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Button(
-                enabled = appState != AppState.PLAYING && appState != AppState.ANALYZING && appState != AppState.PLAYING_MIDI,
+                enabled = appState != AppState.PLAYING && appState != AppState.ANALYZING && !isAnyMidiPlaying,
                 onClick = {
                     if (appState == AppState.RECORDING) {
                         // Stop recording: halt AudioRecord then join the coroutine
@@ -509,7 +514,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             }
 
             Button(
-                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING) && appState != AppState.PLAYING_MIDI,
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING) && !isAnyMidiPlaying,
                 onClick = {
                     if (appState == AppState.PLAYING) {
                         visualizer?.apply { enabled = false; release() }
@@ -548,6 +553,18 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             }
 
             Button(
+                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING,
+                onClick = {
+                    simplifiedResults = if (simplifiedResults != null) null
+                    else simplifyMelody(aggregatedResults)
+                }
+            ) { Text(if (simplifiedResults != null) "Show Full Notes" else "Simplify Melody") }
+        }
+
+        // ── Row 2: Play MIDI | Simplified MIDI ──────────────────────────────────
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Button(
                 enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING_MIDI,
                 onClick = {
                     if (appState == AppState.PLAYING_MIDI) {
@@ -575,18 +592,39 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     }
                 }
             ) { Text(if (appState == AppState.PLAYING_MIDI) "Stop MIDI" else "Play MIDI") }
+
+            Button(
+                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING_SIMPLIFIED_MIDI,
+                onClick = {
+                    if (appState == AppState.PLAYING_SIMPLIFIED_MIDI) {
+                        midiJob?.cancel()
+                        midiJob = null
+                        currentFrameIndex = -1
+                        appState = AppState.ANALYZED
+                    } else {
+                        midiJob = scope.launch(Dispatchers.IO) {
+                            withContext(Dispatchers.Main) { appState = AppState.PLAYING_SIMPLIFIED_MIDI }
+                            MidiSynthesizer.playSimplified(
+                                segments = editedResults,
+                                sampleRate = SAMPLE_RATE,
+                                onFrameChanged = { idx ->
+                                    scope.launch(Dispatchers.Main) { currentFrameIndex = idx }
+                                },
+                                isActive = { isActive }
+                            )
+                            withContext(Dispatchers.Main) {
+                                currentFrameIndex = -1
+                                if (appState == AppState.PLAYING_SIMPLIFIED_MIDI) appState = AppState.ANALYZED
+                            }
+                        }
+                    }
+                }
+            ) { Text(if (appState == AppState.PLAYING_SIMPLIFIED_MIDI) "Stop Simplified" else "Simplified MIDI") }
         }
 
+        // ── Row 3: Export PDF | Verbose (red) ───────────────────────────────────
         Spacer(modifier = Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Button(
-                enabled = appState == AppState.ANALYZED || appState == AppState.PLAYING,
-                onClick = {
-                    simplifiedResults = if (simplifiedResults != null) null
-                    else simplifyMelody(aggregatedResults)
-                }
-            ) { Text(if (simplifiedResults != null) "Show Full Notes" else "Simplify Melody") }
-
             Button(
                 enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING)
                           && aggregatedResults.isNotEmpty(),
@@ -609,14 +647,12 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     }
                 }
             ) { Text("Export PDF") }
-        }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Button(
-                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI)
+                enabled = (appState == AppState.ANALYZED || appState == AppState.PLAYING || isAnyMidiPlaying)
                           && aggregatedResults.isNotEmpty(),
-                onClick = { showVerboseInfo = true }
+                onClick = { showVerboseInfo = true },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFB71C1C))
             ) { Text("Verbose Info") }
         }
 
@@ -630,16 +666,17 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         }
 
         // ── Timeline ──────────────────────────────────────────────────────────
-        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) {
+        if (appState == AppState.ANALYZED || appState == AppState.PLAYING || isAnyMidiPlaying) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Now Playing card — visible only during playback with a valid frame
-            if ((appState == AppState.PLAYING || appState == AppState.PLAYING_MIDI) && currentFrameIndex >= 0) {
-                val currentSeg = if (appState == AppState.PLAYING_MIDI)
-                    (simplifiedResults ?: editedResults).getOrNull(currentFrameIndex)
-                        ?: aggregatedResults.getOrNull(currentFrameIndex)
-                else
-                    aggregatedResults.getOrNull(currentFrameIndex)
+            if ((appState == AppState.PLAYING || isAnyMidiPlaying) && currentFrameIndex >= 0) {
+                val currentSeg = when (appState) {
+                    AppState.PLAYING_MIDI            -> (simplifiedResults ?: editedResults).getOrNull(currentFrameIndex)
+                                                            ?: aggregatedResults.getOrNull(currentFrameIndex)
+                    AppState.PLAYING_SIMPLIFIED_MIDI -> editedResults.getOrNull(currentFrameIndex)
+                    else                             -> aggregatedResults.getOrNull(currentFrameIndex)
+                }
                 if (currentSeg != null) {
                     Box(
                         modifier = Modifier
@@ -721,7 +758,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                     else      -> Color(0xFF424242).copy(alpha = 0.10f)
                                 }
                             )
-                            .clickable(enabled = appState != AppState.PLAYING_MIDI) {
+                            .clickable(enabled = !isAnyMidiPlaying) {
                                 editingIndex = index
                             }
                             .padding(horizontal = 16.dp, vertical = 3.dp)
