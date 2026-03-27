@@ -57,6 +57,7 @@ fun simplifyMelody(frames: List<AggregatedFrameResult>): List<AggregatedFrameRes
 }
 
 enum class AnalysisMethod { FFT, CQT }
+enum class FrequencyRange { BASS, MELODY, BOTH }
 
 object AudioAnalyzer {
     private const val FRAME_SIZE         = 4096
@@ -76,6 +77,22 @@ object AudioAnalyzer {
     private const val CQT_BINS_TOTAL         = 60      // C2–C7, 5 octaves × 12 semitones
     private const val CQT_F0                 = 65.406f // C2 in Hz
     private const val CQT_Q                  = 17.3f   // 1 / (2^(1/12) - 1)
+
+    // FFT Hz limits per FrequencyRange
+    private const val BASS_MIN_FREQ   =  40.0
+    private const val BASS_MAX_FREQ   = 500.0
+    private const val MELODY_MIN_FREQ = 250.0
+    private const val MELODY_MAX_FREQ = 2000.0
+    // FrequencyRange.BOTH uses existing MIN_FREQ / MAX_FREQ
+
+    // CQT bin ranges (0 = C2 ≈ 65 Hz, one bin per semitone)
+    // BASS:   bins 0–35  → C2 (65 Hz) – B4 (494 Hz)
+    // MELODY: bins 12–59 → C3 (131 Hz) – B6 (1976 Hz)
+    // BOTH:   bins 0–59  → full range (current)
+    private const val CQT_BASS_LO   =  0;  private const val CQT_BASS_HI   = 35
+    private const val CQT_MELODY_LO = 12;  private const val CQT_MELODY_HI = 59
+    private const val CQT_BOTH_LO   =  0;  private const val CQT_BOTH_HI   = 59
+
     private const val CHROMA_THRESHOLD       = 0.05f   // min L2-norm before treating as silence
     private const val CHROMA_MIN_SIMILARITY  = 0.5f    // minimum cosine score to name a chord
 
@@ -178,7 +195,7 @@ object AudioAnalyzer {
         for (i in vec.indices) vec[i] /= norm
     }
 
-    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int): Triple<FloatArray, IntArray, FloatArray>? {
+    private fun computeChroma(pcmSamples: ShortArray, frameStart: Int, sampleRate: Int, cqtLo: Int, cqtHi: Int): Triple<FloatArray, IntArray, FloatArray>? {
         // Silence gate
         var sumSq = 0.0
         for (i in 0 until CQT_FRAME_SIZE) {
@@ -221,7 +238,7 @@ object AudioAnalyzer {
         val chroma         = FloatArray(12)
         val dominantOctave = IntArray(12) { -1 }
         val dominantMag    = FloatArray(12) { 0f }
-        for (k in 0 until CQT_BINS_TOTAL) {
+        for (k in cqtLo..cqtHi) {
             val pc     = k % 12
             val octave = k / 12 + 2  // CQT_F0=C2: bins 0–11=oct2, 12–23=oct3, …
             chroma[pc] += cqtBins[k]
@@ -466,13 +483,13 @@ object AudioAnalyzer {
         }
     }
 
-    private fun analyzeFFT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
+    private fun analyzeFFT(pcmSamples: ShortArray, sampleRate: Int, minFreq: Double, maxFreq: Double): List<FrameResult> {
         val results  = mutableListOf<FrameResult>()
         val window   = hammingWindow(FRAME_SIZE)
         val real     = FloatArray(FRAME_SIZE)
         val imag     = FloatArray(FRAME_SIZE)
-        val minBin   = (MIN_FREQ * FRAME_SIZE / sampleRate).toInt().coerceAtLeast(1)
-        val maxBin   = (MAX_FREQ * FRAME_SIZE / sampleRate).toInt().coerceAtMost(FRAME_SIZE / 2 - 1)
+        val minBin   = (minFreq * FRAME_SIZE / sampleRate).toInt().coerceAtLeast(1)
+        val maxBin   = (maxFreq * FRAME_SIZE / sampleRate).toInt().coerceAtMost(FRAME_SIZE / 2 - 1)
 
         var frameStart = 0
         while (frameStart + FRAME_SIZE <= pcmSamples.size) {
@@ -538,12 +555,12 @@ object AudioAnalyzer {
         return smoothChords(smoothNotes(results))
     }
 
-    private fun analyzeCQT(pcmSamples: ShortArray, sampleRate: Int): List<FrameResult> {
+    private fun analyzeCQT(pcmSamples: ShortArray, sampleRate: Int, cqtLo: Int, cqtHi: Int): List<FrameResult> {
         val results = mutableListOf<FrameResult>()
         var frameStart = 0
         while (frameStart + CQT_FRAME_SIZE <= pcmSamples.size) {
             val timeSeconds = frameStart.toFloat() / sampleRate
-            val chromaResult = computeChroma(pcmSamples, frameStart, sampleRate)
+            val chromaResult = computeChroma(pcmSamples, frameStart, sampleRate, cqtLo, cqtHi)
             results.add(
                 if (chromaResult == null)
                     FrameResult(timeSeconds, emptyList(), "(silence)")
@@ -566,11 +583,29 @@ object AudioAnalyzer {
         return smoothChords(smoothNotes(results))
     }
 
-    fun analyze(pcmSamples: ShortArray, sampleRate: Int, method: AnalysisMethod = AnalysisMethod.FFT): List<FrameResult> =
-        when (method) {
-            AnalysisMethod.FFT -> analyzeFFT(pcmSamples, sampleRate)
-            AnalysisMethod.CQT -> analyzeCQT(pcmSamples, sampleRate)
+    fun analyze(
+        pcmSamples: ShortArray,
+        sampleRate: Int,
+        method: AnalysisMethod = AnalysisMethod.FFT,
+        frequencyRange: FrequencyRange = FrequencyRange.BOTH
+    ): List<FrameResult> = when (method) {
+        AnalysisMethod.FFT -> {
+            val (minFreq, maxFreq) = when (frequencyRange) {
+                FrequencyRange.BASS   -> Pair(BASS_MIN_FREQ,   BASS_MAX_FREQ)
+                FrequencyRange.MELODY -> Pair(MELODY_MIN_FREQ, MELODY_MAX_FREQ)
+                FrequencyRange.BOTH   -> Pair(MIN_FREQ,        MAX_FREQ)
+            }
+            analyzeFFT(pcmSamples, sampleRate, minFreq, maxFreq)
         }
+        AnalysisMethod.CQT -> {
+            val (lo, hi) = when (frequencyRange) {
+                FrequencyRange.BASS   -> Pair(CQT_BASS_LO,   CQT_BASS_HI)
+                FrequencyRange.MELODY -> Pair(CQT_MELODY_LO, CQT_MELODY_HI)
+                FrequencyRange.BOTH   -> Pair(CQT_BOTH_LO,   CQT_BOTH_HI)
+            }
+            analyzeCQT(pcmSamples, sampleRate, lo, hi)
+        }
+    }
 
     fun hopSizeFor(method: AnalysisMethod) = if (method == AnalysisMethod.CQT) CQT_HOP_SIZE else HOP_SIZE
 

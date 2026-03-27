@@ -30,6 +30,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.animation.core.Animatable
 import androidx.compose.material3.AlertDialog
 import androidx.compose.ui.window.Dialog
@@ -41,7 +44,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Switch
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -225,6 +230,8 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var recordingJob      by remember { mutableStateOf<Job?>(null) }
     var currentFrameIndex by remember { mutableStateOf(-1) }
     var analysisMethod by remember { mutableStateOf(AnalysisMethod.FFT) }
+    var frequencyRange by remember { mutableStateOf(FrequencyRange.BOTH) }
+    var showSettings   by remember { mutableStateOf(false) }
     var simplifiedResults by remember { mutableStateOf<List<AggregatedFrameResult>?>(null) }
     var editedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
     var editingIndex by remember { mutableStateOf(-1) }
@@ -354,14 +361,20 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 4.dp)
+                .padding(horizontal = 8.dp, vertical = 4.dp)
         ) {
             Text(
                 "v1.0",
-                modifier = Modifier.align(Alignment.TopEnd),
+                modifier = Modifier.align(Alignment.CenterStart).padding(start = 4.dp),
                 style = MaterialTheme.typography.labelSmall,
                 color = Color(0xFF888888)
             )
+            IconButton(
+                onClick = { showSettings = true },
+                modifier = Modifier.align(Alignment.CenterEnd)
+            ) {
+                Icon(Icons.Filled.Settings, contentDescription = "Settings", tint = Color(0xFF888888))
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(statusText, style = MaterialTheme.typography.bodyLarge)
@@ -389,24 +402,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text("FFT", style = MaterialTheme.typography.bodyMedium,
-                 color = if (analysisMethod == AnalysisMethod.FFT) Color.White else Color.Gray)
-            Switch(
-                checked = analysisMethod == AnalysisMethod.CQT,
-                onCheckedChange = { useCqt ->
-                    analysisMethod = if (useCqt) AnalysisMethod.CQT else AnalysisMethod.FFT
-                },
-                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-            Text("CQT", style = MaterialTheme.typography.bodyMedium,
-                 color = if (analysisMethod == AnalysisMethod.CQT) Color.White else Color.Gray)
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End
         ) {
             Text(
@@ -420,11 +415,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 enabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying
             )
         }
-        Text(
-            "Analysis method: ${analysisMethod.name}",
-            style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFF90CAF9)
-        )
         Spacer(modifier = Modifier.height(8.dp))
 
         Canvas(
@@ -492,7 +482,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
                             appState = AppState.ANALYZING
                             val rawResults = withContext(Dispatchers.Default) {
-                                AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod)
+                                AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod, frequencyRange)
                             }
                             if (detectTempo) {
                                 tempoResult = withContext(Dispatchers.Default) {
@@ -793,6 +783,17 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
             }
 
+            if (showSettings) {
+                SettingsScreen(
+                    analysisMethod  = analysisMethod,
+                    frequencyRange  = frequencyRange,
+                    onMethodChange  = { analysisMethod = it },
+                    onRangeChange   = { frequencyRange = it },
+                    settingsEnabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
+                    onClose         = { showSettings = false }
+                )
+            }
+
             if (editingIndex >= 0) {
                 ChordEditDialog(
                     segment = editedResults.getOrNull(editingIndex),
@@ -807,6 +808,135 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     },
                     onDismiss = { editingIndex = -1 }
                 )
+            }
+        }
+    }
+}
+
+@Composable
+private fun SettingsScreen(
+    analysisMethod  : AnalysisMethod,
+    frequencyRange  : FrequencyRange,
+    onMethodChange  : (AnalysisMethod) -> Unit,
+    onRangeChange   : (FrequencyRange) -> Unit,
+    settingsEnabled : Boolean,
+    onClose         : () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onClose,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF121212))
+        ) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFF1F1F1F))
+                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "Settings",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    TextButton(onClick = onClose) { Text("Close") }
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
+                ) {
+                    Text(
+                        "Analysis Method",
+                        style      = MaterialTheme.typography.titleSmall,
+                        color      = Color(0xFF90CAF9),
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        AnalysisMethod.entries.forEach { method ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable(enabled = settingsEnabled) { onMethodChange(method) }
+                                    .padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = analysisMethod == method,
+                                    onClick  = { onMethodChange(method) },
+                                    enabled  = settingsEnabled
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Column {
+                                    Text(
+                                        method.name,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = Color.White
+                                    )
+                                    Text(
+                                        when (method) {
+                                            AnalysisMethod.FFT -> "Fast Fourier Transform – low latency, good for broad detection"
+                                            AnalysisMethod.CQT -> "Constant-Q Transform – better pitch resolution, especially for bass"
+                                        },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color(0xFF888888)
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    HorizontalDivider(color = Color(0xFF333333))
+
+                    Text(
+                        "Frequency Range",
+                        style      = MaterialTheme.typography.titleSmall,
+                        color      = Color(0xFF90CAF9),
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        FrequencyRange.entries.forEach { range ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable(enabled = settingsEnabled) { onRangeChange(range) }
+                                    .padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = frequencyRange == range,
+                                    onClick  = { onRangeChange(range) },
+                                    enabled  = settingsEnabled
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Column {
+                                    Text(
+                                        range.name.lowercase().replaceFirstChar { it.uppercase() },
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = Color.White
+                                    )
+                                    Text(
+                                        when (range) {
+                                            FrequencyRange.BASS   -> "~40–500 Hz – bass guitar, cello, upright bass"
+                                            FrequencyRange.MELODY -> "~250–2000 Hz – vocals, lead guitar, piano melody"
+                                            FrequencyRange.BOTH   -> "~80–2000 Hz – full range (default)"
+                                        },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color(0xFF888888)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
