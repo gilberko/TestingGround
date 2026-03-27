@@ -329,6 +329,111 @@ private fun ReflexiveVerbsCard() {
     }
 }
 
+@Composable
+private fun PassiveVoiceCard() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Russian has two main ways to express passive meaning:",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            // Reflexive passive
+            Text(
+                text = "1. Present passive with -ся",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Add -ся to the imperfective verb. The subject becomes the thing acted upon.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Text(
+                text = "• Письмо пишется. (The letter is being written.)",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 2.dp)
+            )
+            Text(
+                text = "• Книги продаются здесь. (Books are sold here.)",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 2.dp, bottom = 8.dp)
+            )
+
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Short participle passive
+            Text(
+                text = "2. Past / Future passive with быть + short participle",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Form the short passive participle from the perfective infinitive. Replace -ть with the suffix below. The participle agrees in gender and number with the subject.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Example: написать (to write) → написан / написана / написано / написаны",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            // Gender table header
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 2.dp)
+            ) {
+                Text("Form",      style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(2f))
+                Text("Participle", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1.5f))
+                Text("Example",   style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(3f))
+            }
+            HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
+
+            listOf(
+                Triple("Masculine (sg)",  "написан",   "Роман будет написан. (The novel will be written.)"),
+                Triple("Feminine (sg)",   "написана",  "Книга будет написана. (The book will be written.)"),
+                Triple("Neuter (sg)",     "написано",  "Письмо будет написано. (The letter will be written.)"),
+                Triple("Plural",          "написаны",  "Письма будут написаны. (The letters will be written.)")
+            ).forEach { (form, participle, example) ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 3.dp)
+                ) {
+                    Text(form,       style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f))
+                    Text(participle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1.5f))
+                    Text(example,    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(3f))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Plural note: use будут (not будет) with plural subjects and the plural participle ending in -ы/-и.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                text = "• Все задания будут выполнены. (All tasks will be completed.)",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 2.dp)
+            )
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VerbConjugationScreen(onBack: () -> Unit) {
@@ -367,6 +472,8 @@ fun VerbConjugationScreen(onBack: () -> Unit) {
             item { ImperativeCard() }
             item { SectionHeader("Reflexive Verbs (-ся / -сь)") }
             item { ReflexiveVerbsCard() }
+            item { SectionHeader("Passive Voice (Страдательный залог)") }
+            item { PassiveVoiceCard() }
         }
     }
 }

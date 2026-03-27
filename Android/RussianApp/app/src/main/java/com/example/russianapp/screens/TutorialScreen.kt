@@ -1,6 +1,8 @@
 package com.example.russianapp.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,10 +19,15 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.russianapp.ui.theme.RussianBlue
+import com.example.russianapp.ui.theme.RussianRed
+import com.example.russianapp.ui.theme.RussianWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,47 +35,57 @@ fun TutorialScreen(
     onBack: () -> Unit,
     onAlphabet: () -> Unit,
     onGrammarCases: () -> Unit,
-    onVerbConjugation: () -> Unit
+    onVerbConjugation: () -> Unit,
+    onAdjectiveConjugation: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Tutorial") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Russian flag background — three equal horizontal bands
+        Column(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianWhite))
+            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianBlue))
+            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianRed))
+        }
+
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    title = { Text("Tutorial", color = Color.Black) },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.Black)
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                )
+            }
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(horizontal = 32.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                listOf(
+                    "Alphabet"               to onAlphabet,
+                    "Grammar - Cases"        to onGrammarCases,
+                    "Verb Conjugation"       to onVerbConjugation,
+                    "Adjective Conjugation"  to onAdjectiveConjugation
+                ).forEachIndexed { index, (label, action) ->
+                    if (index > 0) Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = action,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White.copy(alpha = 0.8f),
+                            contentColor = Color.Black
+                        )
+                    ) {
+                        Text(label)
                     }
                 }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 32.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            OutlinedButton(
-                onClick = onAlphabet,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Alphabet")
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
-                onClick = onGrammarCases,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Grammar - Cases")
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
-                onClick = onVerbConjugation,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Verb Conjugation")
             }
         }
     }

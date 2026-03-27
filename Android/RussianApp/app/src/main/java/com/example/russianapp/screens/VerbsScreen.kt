@@ -63,7 +63,21 @@ private val commonVerbs = listOf(
     VerbEntry("to work",                  "работать",   "поработать"),
     VerbEntry("to eat",                   "есть",       "съесть"),
     VerbEntry("to drink",                 "пить",       "выпить"),
-    VerbEntry("to sleep",                 "спать",      "поспать"),
+    VerbEntry("to sleep",                 "спать",          "поспать"),
+    VerbEntry("to wake up",              "просыпаться",    "проснуться"),
+    VerbEntry("to get dressed",          "одеваться",      "одеться"),
+    VerbEntry("to prepare",              "готовить",       "приготовить"),
+    VerbEntry("to have breakfast",       "завтракать",     "позавтракать"),
+    VerbEntry("to have lunch",           "обедать",        "пообедать"),
+    VerbEntry("to have dinner",          "ужинать",        "поужинать"),
+    VerbEntry("to have / possess",       "иметь",          "—"),
+    VerbEntry("to change",               "менять",         "изменить"),
+    VerbEntry("to turn on",              "включать",       "включить"),
+    VerbEntry("to turn off",             "выключать",      "выключить"),
+    VerbEntry("to choose",               "выбирать",       "выбрать"),
+    VerbEntry("to try",                  "пробовать",      "попробовать"),
+    VerbEntry("to hike",                 "ходить в поход", "—"),
+    VerbEntry("to run",                  "бегать",         "пробежать"),
     VerbEntry("to open",                  "открывать",  "открыть"),
     VerbEntry("to close",                 "закрывать",  "закрыть"),
     VerbEntry("to buy",                   "покупать",   "купить"),
@@ -410,7 +424,7 @@ fun VerbsScreen(onBack: () -> Unit) {
             item { SectionHeader("Verb Aspects") }
             item { AspectExplanationCard() }
 
-            item { SectionHeader("50 Common Verbs") }
+            item { SectionHeader("Common Verbs") }
             item { VerbTableHeader() }
             items(commonVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
                 VerbRow(verb, isEven = index % 2 == 0)

@@ -5,27 +5,39 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.russianapp.screens.AdjectiveConjugationScreen
+import com.example.russianapp.screens.AdjectivesScreen
+import com.example.russianapp.screens.AdverbsScreen
 import com.example.russianapp.screens.AlphabetScreen
 import com.example.russianapp.screens.ColorsScreen
 import com.example.russianapp.screens.ConfigScreen
 import com.example.russianapp.screens.DictionaryScreen
+import com.example.russianapp.screens.FoodScreen
 import com.example.russianapp.screens.GrammarCasesScreen
 import com.example.russianapp.screens.HomeScreen
+import com.example.russianapp.screens.MovementScreen
+import com.example.russianapp.screens.NumbersScreen
 import com.example.russianapp.screens.TutorialScreen
 import com.example.russianapp.screens.VerbConjugationScreen
 import com.example.russianapp.screens.VerbsScreen
 import com.example.russianapp.viewmodel.ConfigViewModel
 
 sealed class Screen(val route: String) {
-    object Home            : Screen("home")
-    object Tutorial        : Screen("tutorial")
-    object Dictionary      : Screen("dictionary")
-    object Config          : Screen("config")
-    object Alphabet        : Screen("alphabet")
-    object GrammarCases    : Screen("grammar_cases")
-    object VerbConjugation : Screen("verb_conjugation")
-    object DictVerbs       : Screen("dict_verbs")
-    object DictColors      : Screen("dict_colors")
+    object Home                   : Screen("home")
+    object Tutorial               : Screen("tutorial")
+    object Dictionary             : Screen("dictionary")
+    object Config                 : Screen("config")
+    object Alphabet               : Screen("alphabet")
+    object GrammarCases           : Screen("grammar_cases")
+    object VerbConjugation        : Screen("verb_conjugation")
+    object AdjectiveConjugation   : Screen("adjective_conjugation")
+    object DictVerbs              : Screen("dict_verbs")
+    object DictColors             : Screen("dict_colors")
+    object DictNumbers            : Screen("dict_numbers")
+    object DictMovement           : Screen("dict_movement")
+    object DictAdjectives         : Screen("dict_adjectives")
+    object DictAdverbs            : Screen("dict_adverbs")
+    object DictFood               : Screen("dict_food")
 }
 
 @Composable
@@ -42,17 +54,23 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Tutorial.route) {
             TutorialScreen(
-                onBack            = { navController.popBackStack() },
-                onAlphabet        = { navController.navigate(Screen.Alphabet.route) },
-                onGrammarCases    = { navController.navigate(Screen.GrammarCases.route) },
-                onVerbConjugation = { navController.navigate(Screen.VerbConjugation.route) }
+                onBack                  = { navController.popBackStack() },
+                onAlphabet              = { navController.navigate(Screen.Alphabet.route) },
+                onGrammarCases          = { navController.navigate(Screen.GrammarCases.route) },
+                onVerbConjugation       = { navController.navigate(Screen.VerbConjugation.route) },
+                onAdjectiveConjugation  = { navController.navigate(Screen.AdjectiveConjugation.route) }
             )
         }
         composable(Screen.Dictionary.route) {
             DictionaryScreen(
-                onBack   = { navController.popBackStack() },
-                onVerbs  = { navController.navigate(Screen.DictVerbs.route) },
-                onColors = { navController.navigate(Screen.DictColors.route) }
+                onBack       = { navController.popBackStack() },
+                onVerbs      = { navController.navigate(Screen.DictVerbs.route) },
+                onColors     = { navController.navigate(Screen.DictColors.route) },
+                onNumbers    = { navController.navigate(Screen.DictNumbers.route) },
+                onMovement   = { navController.navigate(Screen.DictMovement.route) },
+                onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
+                onAdverbs    = { navController.navigate(Screen.DictAdverbs.route) },
+                onFood       = { navController.navigate(Screen.DictFood.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -70,11 +88,29 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.VerbConjugation.route) {
             VerbConjugationScreen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.AdjectiveConjugation.route) {
+            AdjectiveConjugationScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.DictVerbs.route) {
             VerbsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DictColors.route) {
             ColorsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictNumbers.route) {
+            NumbersScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictMovement.route) {
+            MovementScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictAdjectives.route) {
+            AdjectivesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictAdverbs.route) {
+            AdverbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictFood.route) {
+            FoodScreen(onBack = { navController.popBackStack() })
         }
     }
 }
