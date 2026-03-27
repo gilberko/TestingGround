@@ -12,7 +12,9 @@
       "Bash(./gradlew assembleRelease:*)",
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
       "Read(//c/Program Files/Android/Android Studio/**)",
-      "Read(//c/Program Files/**)"
+      "Read(//c/Program Files/**)",
+      "Bash(find /c/Code/TestingGround/Android/ChordProject -type d -name *screen* -o -type d -name *navigation*)",
+      "Bash(find /c/Code/TestingGround/Android/ChordProject/app/src/main -type f \\\\\\(-name *.kt -o -name *.xml \\\\\\))"
     ]
   }
 }

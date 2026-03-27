@@ -778,37 +778,37 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                     HorizontalDivider(thickness = 0.5.dp, color = Color(0xFF424242))
                 }
             }
+        }
 
-            if (showVerboseInfo) {
-                VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
-            }
+        if (showVerboseInfo) {
+            VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
+        }
 
-            if (showSettings) {
-                SettingsScreen(
-                    analysisMethod  = analysisMethod,
-                    frequencyRange  = frequencyRange,
-                    onMethodChange  = { analysisMethod = it },
-                    onRangeChange   = { frequencyRange = it },
-                    settingsEnabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
-                    onClose         = { showSettings = false }
-                )
-            }
+        if (showSettings) {
+            SettingsScreen(
+                analysisMethod  = analysisMethod,
+                frequencyRange  = frequencyRange,
+                onMethodChange  = { analysisMethod = it },
+                onRangeChange   = { frequencyRange = it },
+                settingsEnabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
+                onClose         = { showSettings = false }
+            )
+        }
 
-            if (editingIndex >= 0) {
-                ChordEditDialog(
-                    segment = editedResults.getOrNull(editingIndex),
-                    onConfirm = { newChord, newNotes ->
-                        editedResults = editedResults.toMutableList().also {
-                            it[editingIndex] = it[editingIndex].copy(
-                                chord = newChord,
-                                notes = newNotes.split(" ").filter { n -> n.isNotBlank() }
-                            )
-                        }
-                        editingIndex = -1
-                    },
-                    onDismiss = { editingIndex = -1 }
-                )
-            }
+        if (editingIndex >= 0) {
+            ChordEditDialog(
+                segment = editedResults.getOrNull(editingIndex),
+                onConfirm = { newChord, newNotes ->
+                    editedResults = editedResults.toMutableList().also {
+                        it[editingIndex] = it[editingIndex].copy(
+                            chord = newChord,
+                            notes = newNotes.split(" ").filter { n -> n.isNotBlank() }
+                        )
+                    }
+                    editingIndex = -1
+                },
+                onDismiss = { editingIndex = -1 }
+            )
         }
     }
 }
