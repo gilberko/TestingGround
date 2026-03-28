@@ -1,13 +1,11 @@
 package com.example.app2.screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +15,6 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,12 +26,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.app2.R
 
-private val FlagGreen = Color(0xFF046A38)
-private val FlagRed = Color(0xFFDA291C)
-
+private val ButtonGray = Color(0xFF808080)
 private const val APP_VERSION = "0.1"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,21 +47,12 @@ fun HomeScreen(
     onStartVocabQuizPtToEn: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        // Portugal flag background
-        Row(modifier = Modifier.fillMaxSize()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.38f)
-                    .background(FlagGreen)
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.62f)
-                    .background(FlagRed)
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.portugal_background),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         Scaffold(
             containerColor = Color.Transparent,
@@ -121,13 +110,21 @@ fun HomeScreen(
                     ) {
                         Button(
                             onClick = onStartQuiz,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = ButtonGray,
+                                contentColor = Color.White
+                            )
                         ) {
                             Text("Practice\nConjugations", textAlign = TextAlign.Center)
                         }
                         Button(
                             onClick = onStartPrepQuiz,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = ButtonGray,
+                                contentColor = Color.White
+                            )
                         ) {
                             Text("Practice\nPrepositions", textAlign = TextAlign.Center)
                         }
@@ -139,32 +136,44 @@ fun HomeScreen(
                     ) {
                         Button(
                             onClick = onStartVocabQuizEnToPt,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = ButtonGray,
+                                contentColor = Color.White
+                            )
                         ) {
                             Text("Vocabulary\nEN → PT", textAlign = TextAlign.Center)
                         }
                         Button(
                             onClick = onStartVocabQuizPtToEn,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = ButtonGray,
+                                contentColor = Color.White
+                            )
                         ) {
                             Text("Vocabulary\nPT → EN", textAlign = TextAlign.Center)
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
+                    Button(
                         onClick = onOpenTutorial,
                         modifier = Modifier.fillMaxWidth(),
-                        border = BorderStroke(1.dp, Color.White),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = ButtonGray,
+                            contentColor = Color.White
+                        )
                     ) {
                         Text("Tutorial")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
+                    Button(
                         onClick = onOpenDictionary,
                         modifier = Modifier.fillMaxWidth(),
-                        border = BorderStroke(1.dp, Color.White),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = ButtonGray,
+                            contentColor = Color.White
+                        )
                     ) {
                         Text("Simple Dictionary")
                     }
