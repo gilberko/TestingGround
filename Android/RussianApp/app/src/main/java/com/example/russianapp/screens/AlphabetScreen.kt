@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -117,6 +118,39 @@ private fun LetterCard(letter: RussianLetter) {
     }
 }
 
+@Composable
+private fun PronunciationExceptionCard(title: String, rule: String, examples: List<String>) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = rule,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            examples.forEach { example ->
+                Text(
+                    text = "• $example",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 1.dp)
+                )
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlphabetScreen(onBack: () -> Unit) {
@@ -148,6 +182,44 @@ fun AlphabetScreen(onBack: () -> Unit) {
             }
             items(alphabet) { letter ->
                 LetterCard(letter)
+            }
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Spelling vs. Pronunciation Exceptions",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
+                )
+                HorizontalDivider(color = MaterialTheme.colorScheme.primary)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "Some letter combinations are pronounced differently from how they are spelled. The two most common exceptions for beginners are below.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 6.dp)
+                )
+            }
+            item {
+                PronunciationExceptionCard(
+                    title = "-его / -ого endings — Г sounds like В",
+                    rule = "In genitive and adjective endings, the letter Г is pronounced like В (a v-sound), not G. This affects all -ого and -его endings.",
+                    examples = listOf(
+                        "нового → [но-во-во]  (of a new [thing])",
+                        "синего → [си-не-во]  (of the blue [thing])",
+                        "его → [е-во]  (his / him)"
+                    )
+                )
+            }
+            item {
+                PronunciationExceptionCard(
+                    title = "Г before К → Х (kh) sound",
+                    rule = "When Г appears directly before К, it is pronounced like Х — a throaty kh-sound, as in Scottish \"loch\". This is most visible in the adverb легко and related soft forms.",
+                    examples = listOf(
+                        "легко → [лех-КО]  (easily)",
+                        "мягко → [мях-КО]  (softly)"
+                    )
+                )
             }
         }
     }

@@ -45,6 +45,24 @@ private val speakType2Rows = listOf(
     ConjugationRow("они",    "говорят")
 )
 
+private val futureBytRows = listOf(
+    ConjugationRow("я",      "буду"),
+    ConjugationRow("ты",     "будешь"),
+    ConjugationRow("он/она", "будет"),
+    ConjugationRow("мы",     "будем"),
+    ConjugationRow("вы",     "будете"),
+    ConjugationRow("они",    "будут")
+)
+
+private val perfectiveFutureNapisatRows = listOf(
+    ConjugationRow("я",      "напишу"),
+    ConjugationRow("ты",     "напишешь"),
+    ConjugationRow("он/она", "напишет"),
+    ConjugationRow("мы",     "напишем"),
+    ConjugationRow("вы",     "напишете"),
+    ConjugationRow("они",    "напишут")
+)
+
 private val reflexivePresentRows = listOf(
     ConjugationRow("я",      "моюсь"),
     ConjugationRow("ты",     "моешься"),
@@ -330,6 +348,119 @@ private fun ReflexiveVerbsCard() {
 }
 
 @Composable
+private fun AspectCard() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+
+            // ── Explanation ─────────────────────────────────────────────────
+            Text(
+                text = "Russian verbs come in two aspects:",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            listOf(
+                "Imperfective — an ongoing, repeated, or habitual action. Has present, past, and future (with быть) tenses.",
+                "Perfective — a completed, one-time action. Has only past and future tenses. Has no true present tense."
+            ).forEach { line ->
+                Text(
+                    text = "• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(vertical = 2.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── Imperfective Future ─────────────────────────────────────────
+            Text(
+                text = "Imperfective Future — быть (conjugated) + imperfective infinitive",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Conjugate быть (to be) in the future tense, then add the imperfective infinitive unchanged.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // быть future table header
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                Text("Pronoun",  style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(1f))
+                Text("быть",    style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
+                Text("Example", style = MaterialTheme.typography.labelMedium, modifier = Modifier.weight(2f))
+            }
+            HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
+            listOf(
+                Triple("я",      "буду",   "я буду читать"),
+                Triple("ты",     "будешь", "ты будешь читать"),
+                Triple("он/она", "будет",  "он будет читать"),
+                Triple("мы",     "будем",  "мы будем читать"),
+                Triple("вы",     "будете", "вы будете читать"),
+                Triple("они",    "будут",  "они будут читать")
+            ).forEach { (pronoun, byt, example) ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(pronoun,  style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(byt,      style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.primary)
+                    Text(example,  style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f))
+                }
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Translation: \"I / you / he / we / you / they will be reading\"",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── Perfective Future ───────────────────────────────────────────
+            Text(
+                text = "Perfective Future — conjugate the perfective verb like a present-tense verb",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Perfective verbs have no present tense (a completed action cannot be ongoing). " +
+                        "Their present-style conjugation always means future. " +
+                        "Apply the same Type 1 / Type 2 conjugation rules to the perfective stem.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Example: написать (pf. of писать — to write)",
+                style = MaterialTheme.typography.labelMedium
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            perfectiveFutureNapisatRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(row.pronoun, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.form,    style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(2f))
+                }
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Translation: \"I / you / he / we / you / they will write (and finish writing)\"",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
 private fun PassiveVoiceCard() {
     Card(
         modifier = Modifier
@@ -472,6 +603,8 @@ fun VerbConjugationScreen(onBack: () -> Unit) {
             item { ImperativeCard() }
             item { SectionHeader("Reflexive Verbs (-ся / -сь)") }
             item { ReflexiveVerbsCard() }
+            item { SectionHeader("Aspect: Perfective vs Imperfective") }
+            item { AspectCard() }
             item { SectionHeader("Passive Voice (Страдательный залог)") }
             item { PassiveVoiceCard() }
         }

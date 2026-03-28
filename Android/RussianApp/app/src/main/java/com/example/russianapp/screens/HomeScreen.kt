@@ -31,14 +31,16 @@ import com.example.russianapp.ui.theme.RussianBlue
 import com.example.russianapp.ui.theme.RussianRed
 import com.example.russianapp.ui.theme.RussianWhite
 
-private const val APP_VERSION = "0.1"
+private const val APP_VERSION = "0.5"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onOpenTutorial: () -> Unit,
     onOpenDictionary: () -> Unit,
-    onOpenConfig: () -> Unit
+    onOpenConfig: () -> Unit,
+    onOpenAdjectiveQuiz: () -> Unit,
+    onOpenVerbQuiz: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Russian flag background — three equal horizontal bands
@@ -134,6 +136,28 @@ fun HomeScreen(
                         )
                     ) {
                         Text("Simple Dictionary")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenAdjectiveQuiz,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White.copy(alpha = 0.8f),
+                            contentColor = Color.Black
+                        )
+                    ) {
+                        Text("Adjective Quiz")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenVerbQuiz,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.White.copy(alpha = 0.8f),
+                            contentColor = Color.Black
+                        )
+                    ) {
+                        Text("Verb Quiz")
                     }
                 }
                 Text(

@@ -24,6 +24,8 @@ import com.example.russianapp.screens.MovementScreen
 import com.example.russianapp.screens.NumbersScreen
 import com.example.russianapp.screens.TutorialScreen
 import com.example.russianapp.screens.VerbConjugationScreen
+import com.example.russianapp.screens.AdjectiveQuizScreen
+import com.example.russianapp.screens.VerbQuizScreen
 import com.example.russianapp.screens.VerbsScreen
 import com.example.russianapp.viewmodel.ConfigViewModel
 
@@ -48,6 +50,8 @@ sealed class Screen(val route: String) {
     object DictPlaces             : Screen("dict_places")
     object DictPeopleAnimals      : Screen("dict_people_animals")
     object DictWork               : Screen("dict_work")
+    object QuizAdjective          : Screen("quiz_adjective")
+    object QuizVerb               : Screen("quiz_verb")
 }
 
 @Composable
@@ -57,9 +61,11 @@ fun AppNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
             HomeScreen(
-                onOpenTutorial   = { navController.navigate(Screen.Tutorial.route) },
-                onOpenDictionary = { navController.navigate(Screen.Dictionary.route) },
-                onOpenConfig     = { navController.navigate(Screen.Config.route) }
+                onOpenTutorial      = { navController.navigate(Screen.Tutorial.route) },
+                onOpenDictionary    = { navController.navigate(Screen.Dictionary.route) },
+                onOpenConfig        = { navController.navigate(Screen.Config.route) },
+                onOpenAdjectiveQuiz = { navController.navigate(Screen.QuizAdjective.route) },
+                onOpenVerbQuiz      = { navController.navigate(Screen.QuizVerb.route) }
             )
         }
         composable(Screen.Tutorial.route) {
@@ -141,6 +147,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictWork.route) {
             WorkScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.QuizAdjective.route) {
+            AdjectiveQuizScreen(
+                configViewModel = configViewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.QuizVerb.route) {
+            VerbQuizScreen(
+                configViewModel = configViewModel,
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }
