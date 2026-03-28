@@ -1,6 +1,6 @@
 package com.example.russianapp.screens
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,10 +26,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.russianapp.ui.theme.RussianBlue
-import com.example.russianapp.ui.theme.RussianRed
-import com.example.russianapp.ui.theme.RussianWhite
+import com.example.russianapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,12 +47,12 @@ fun DictionaryScreen(
     onWork: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        // Russian flag background — three equal horizontal bands
-        Column(modifier = Modifier.fillMaxSize()) {
-            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianWhite))
-            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianBlue))
-            Box(modifier = Modifier.fillMaxWidth().weight(1f).background(RussianRed))
-        }
+        Image(
+            painter = painterResource(id = R.drawable.russian_background),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
 
         Scaffold(
             containerColor = Color.Transparent,
@@ -95,7 +95,7 @@ fun DictionaryScreen(
                         onClick = action,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.White.copy(alpha = 0.8f),
+                            containerColor = Color.Gray.copy(alpha = 0.8f),
                             contentColor = Color.Black
                         )
                     ) {
