@@ -7,7 +7,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AdjectiveConjugationScreen
 import com.example.russianapp.screens.AdjectivesScreen
+import com.example.russianapp.screens.DateTimeScreen
+import com.example.russianapp.screens.NounDeclensionScreen
 import com.example.russianapp.screens.AdverbsScreen
+import com.example.russianapp.screens.PeopleAnimalsScreen
+import com.example.russianapp.screens.PlacesScreen
+import com.example.russianapp.screens.WorkScreen
 import com.example.russianapp.screens.AlphabetScreen
 import com.example.russianapp.screens.ColorsScreen
 import com.example.russianapp.screens.ConfigScreen
@@ -31,6 +36,8 @@ sealed class Screen(val route: String) {
     object GrammarCases           : Screen("grammar_cases")
     object VerbConjugation        : Screen("verb_conjugation")
     object AdjectiveConjugation   : Screen("adjective_conjugation")
+    object NounDeclension         : Screen("noun_declension")
+    object DateTime               : Screen("date_time")
     object DictVerbs              : Screen("dict_verbs")
     object DictColors             : Screen("dict_colors")
     object DictNumbers            : Screen("dict_numbers")
@@ -38,6 +45,9 @@ sealed class Screen(val route: String) {
     object DictAdjectives         : Screen("dict_adjectives")
     object DictAdverbs            : Screen("dict_adverbs")
     object DictFood               : Screen("dict_food")
+    object DictPlaces             : Screen("dict_places")
+    object DictPeopleAnimals      : Screen("dict_people_animals")
+    object DictWork               : Screen("dict_work")
 }
 
 @Composable
@@ -58,19 +68,24 @@ fun AppNavGraph(navController: NavHostController) {
                 onAlphabet              = { navController.navigate(Screen.Alphabet.route) },
                 onGrammarCases          = { navController.navigate(Screen.GrammarCases.route) },
                 onVerbConjugation       = { navController.navigate(Screen.VerbConjugation.route) },
-                onAdjectiveConjugation  = { navController.navigate(Screen.AdjectiveConjugation.route) }
+                onAdjectiveConjugation  = { navController.navigate(Screen.AdjectiveConjugation.route) },
+                onNounDeclension        = { navController.navigate(Screen.NounDeclension.route) },
+                onDateTime              = { navController.navigate(Screen.DateTime.route) }
             )
         }
         composable(Screen.Dictionary.route) {
             DictionaryScreen(
-                onBack       = { navController.popBackStack() },
-                onVerbs      = { navController.navigate(Screen.DictVerbs.route) },
-                onColors     = { navController.navigate(Screen.DictColors.route) },
-                onNumbers    = { navController.navigate(Screen.DictNumbers.route) },
-                onMovement   = { navController.navigate(Screen.DictMovement.route) },
-                onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
-                onAdverbs    = { navController.navigate(Screen.DictAdverbs.route) },
-                onFood       = { navController.navigate(Screen.DictFood.route) }
+                onBack          = { navController.popBackStack() },
+                onVerbs         = { navController.navigate(Screen.DictVerbs.route) },
+                onColors        = { navController.navigate(Screen.DictColors.route) },
+                onNumbers       = { navController.navigate(Screen.DictNumbers.route) },
+                onMovement      = { navController.navigate(Screen.DictMovement.route) },
+                onAdjectives    = { navController.navigate(Screen.DictAdjectives.route) },
+                onAdverbs       = { navController.navigate(Screen.DictAdverbs.route) },
+                onFood          = { navController.navigate(Screen.DictFood.route) },
+                onPlaces        = { navController.navigate(Screen.DictPlaces.route) },
+                onPeopleAnimals = { navController.navigate(Screen.DictPeopleAnimals.route) },
+                onWork          = { navController.navigate(Screen.DictWork.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -90,6 +105,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdjectiveConjugation.route) {
             AdjectiveConjugationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.NounDeclension.route) {
+            NounDeclensionScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DateTime.route) {
+            DateTimeScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DictVerbs.route) {
             VerbsScreen(onBack = { navController.popBackStack() })
@@ -111,6 +132,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictFood.route) {
             FoodScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictPlaces.route) {
+            PlacesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictPeopleAnimals.route) {
+            PeopleAnimalsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictWork.route) {
+            WorkScreen(onBack = { navController.popBackStack() })
         }
     }
 }

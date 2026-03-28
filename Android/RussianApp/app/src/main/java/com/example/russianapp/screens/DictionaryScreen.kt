@@ -41,7 +41,10 @@ fun DictionaryScreen(
     onMovement: () -> Unit,
     onAdjectives: () -> Unit,
     onAdverbs: () -> Unit,
-    onFood: () -> Unit
+    onFood: () -> Unit,
+    onPlaces: () -> Unit,
+    onPeopleAnimals: () -> Unit,
+    onWork: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Russian flag background — three equal horizontal bands
@@ -76,13 +79,16 @@ fun DictionaryScreen(
             ) {
                 Spacer(modifier = Modifier.height(24.dp))
                 listOf(
-                    "Verbs"       to onVerbs,
-                    "Colors"      to onColors,
-                    "Numbers"     to onNumbers,
-                    "Movement"    to onMovement,
-                    "Adjectives"  to onAdjectives,
-                    "Adverbs"     to onAdverbs,
-                    "Food"        to onFood
+                    "Verbs"            to onVerbs,
+                    "Colors"           to onColors,
+                    "Numbers"          to onNumbers,
+                    "Movement"         to onMovement,
+                    "Adjectives"       to onAdjectives,
+                    "Adverbs"          to onAdverbs,
+                    "Food"             to onFood,
+                    "Places"           to onPlaces,
+                    "People & Animals" to onPeopleAnimals,
+                    "Work & Jobs"      to onWork
                 ).forEachIndexed { index, (label, action) ->
                     if (index > 0) Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(

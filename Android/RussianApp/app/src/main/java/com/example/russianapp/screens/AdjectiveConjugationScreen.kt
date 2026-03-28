@@ -48,39 +48,43 @@ private fun SectionHeader(title: String) {
     }
 }
 
-/** A four-column gender/number row used inside declension tables. */
+/** Five-column row: Case | Masc | Fem | Neut | Plural */
 @Composable
-private fun DeclensionRow(
-    label: String,
-    ending: String,
-    form: String,
-    example: String
+private fun CaseRow(
+    caseName: String,
+    masc: String,
+    fem: String,
+    neut: String,
+    plural: String,
+    highlight: Boolean = false
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 3.dp)
+    val bg = if (highlight) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
+             else MaterialTheme.colorScheme.surface
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp),
+        colors = CardDefaults.cardColors(containerColor = bg),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
-        Text(label,   style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.5f))
-        Text(ending,  style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
-        Text(form,    style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1.5f))
-        Text(example, style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontStyle = FontStyle.Italic, modifier = Modifier.weight(2f))
+        Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 2.dp, vertical = 4.dp)) {
+            Text(caseName, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.8f))
+            Text(masc,   style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary,   fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+            Text(fem,    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+            Text(neut,   style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.tertiary,  fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+            Text(plural, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.outline,   fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+        }
     }
 }
 
 @Composable
-private fun RowHeader() {
+private fun CaseTableHeader() {
     Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
-        Text("Gender/No.", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
-        Text("Ending",     style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-        Text("Form",       style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
-        Text("Example",    style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f))
+        Text("Case",   style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.8f))
+        Text("Masc.",  style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+        Text("Fem.",   style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+        Text("Neut.",  style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+        Text("Plural", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
     }
-    HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
+    HorizontalDivider(modifier = Modifier.padding(bottom = 2.dp))
 }
 
 // ── Content cards ─────────────────────────────────────────────────────────────
@@ -94,12 +98,13 @@ private fun IntroCard() {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "Russian adjectives agree with the noun they describe in gender, number, and case. " +
-                        "This screen covers the nominative case (the basic dictionary form).",
+                        "All six cases are shown for each adjective type.",
                 style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "There are two main stem types — hard and soft — which determine the endings used.",
+                text = "There are two main stem types — hard and soft — which determine the endings used. " +
+                        "Animacy affects the Accusative: animate masculine/plural mirrors Genitive; inanimate mirrors Nominative.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -120,39 +125,43 @@ private fun HardStemCard() {
             )
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Unstressed -ый
+            // Unstressed -ый: новый
             Text(
-                text = "Unstressed ending: -ый (e.g. новый — new)",
+                text = "Unstressed ending: -ый  (e.g. новый — new)",
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(6.dp))
-            RowHeader()
-            DeclensionRow("Masculine",  "-ый",  "новый",   "новый дом (new house)")
-            DeclensionRow("Feminine",   "-ая",  "новая",   "новая книга (new book)")
-            DeclensionRow("Neuter",     "-ое",  "новое",   "новое слово (new word)")
-            DeclensionRow("Plural",     "-ые",  "новые",   "новые дома (new houses)")
+            CaseTableHeader()
+            CaseRow("Nominative",   "новый",  "новая",  "новое",  "новые",  highlight = false)
+            CaseRow("Genitive",     "нового", "новой",  "нового", "новых",  highlight = true)
+            CaseRow("Dative",       "новому", "новой",  "новому", "новым",  highlight = false)
+            CaseRow("Accusative*",  "нов./нового", "новую", "новое", "нов./новых", highlight = true)
+            CaseRow("Instrumental", "новым",  "новой",  "новым",  "новыми", highlight = false)
+            CaseRow("Prepositional","новом",  "новой",  "новом",  "новых",  highlight = true)
 
             Spacer(modifier = Modifier.height(14.dp))
             HorizontalDivider()
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Stressed -ой
+            // Stressed -ой: молодой
             Text(
-                text = "Stressed ending: -ой (e.g. молодой — young)",
+                text = "Stressed ending: -ой  (e.g. молодой — young)",
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(6.dp))
-            RowHeader()
-            DeclensionRow("Masculine",  "-ой",  "молодой",   "молодой человек (young person)")
-            DeclensionRow("Feminine",   "-ая",  "молодая",   "молодая женщина (young woman)")
-            DeclensionRow("Neuter",     "-ое",  "молодое",   "молодое вино (young wine)")
-            DeclensionRow("Plural",     "-ые",  "молодые",   "молодые люди (young people)")
+            CaseTableHeader()
+            CaseRow("Nominative",   "молодой",  "молодая",  "молодое",  "молодые",  highlight = false)
+            CaseRow("Genitive",     "молодого", "молодой",  "молодого", "молодых",  highlight = true)
+            CaseRow("Dative",       "молодому", "молодой",  "молодому", "молодым",  highlight = false)
+            CaseRow("Accusative*",  "мол./молодого", "молодую", "молодое", "мол./молодых", highlight = true)
+            CaseRow("Instrumental", "молодым",  "молодой",  "молодым",  "молодыми", highlight = false)
+            CaseRow("Prepositional","молодом",  "молодой",  "молодом",  "молодых",  highlight = true)
 
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "Note: the feminine, neuter, and plural endings are the same for -ый and -ой; only the masculine form differs in stress.",
+                text = "* Accusative: inanimate = Nominative form; animate = Genitive form.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = FontStyle.Italic
@@ -176,8 +185,7 @@ private fun VelarAndHusherCard() {
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = "Russian spelling prohibits ы after these consonants — use и instead. " +
-                        "This changes the masculine nominative ending from -ый to -ий, " +
-                        "and the plural from -ые to -ие. The feminine and neuter remain -ая / -ое.",
+                        "Masculine nominative -ый → -ий; plural -ые → -ие. Feminine and neuter remain -ая / -ое.",
                 style = MaterialTheme.typography.bodySmall
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -188,15 +196,18 @@ private fun VelarAndHusherCard() {
                 color = MaterialTheme.colorScheme.secondary
             )
             Spacer(modifier = Modifier.height(6.dp))
-            RowHeader()
-            DeclensionRow("Masculine",  "-ий",  "высокий",   "высокий мужчина (tall man)")
-            DeclensionRow("Feminine",   "-ая",  "высокая",   "высокая башня (tall tower)")
-            DeclensionRow("Neuter",     "-ое",  "высокое",   "высокое здание (tall building)")
-            DeclensionRow("Plural",     "-ие",  "высокие",   "высокие горы (tall mountains)")
+            CaseTableHeader()
+            CaseRow("Nominative",   "высокий",  "высокая",  "высокое",  "высокие",  highlight = false)
+            CaseRow("Genitive",     "высокого", "высокой",  "высокого", "высоких",  highlight = true)
+            CaseRow("Dative",       "высокому", "высокой",  "высокому", "высоким",  highlight = false)
+            CaseRow("Accusative*",  "выс./высокого", "высокую", "высокое", "выс./высоких", highlight = true)
+            CaseRow("Instrumental", "высоким",  "высокой",  "высоким",  "высокими", highlight = false)
+            CaseRow("Prepositional","высоком",  "высокой",  "высоком",  "высоких",  highlight = true)
 
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "More examples: маленький (small), тихий (quiet), хороший (good), горячий (hot), свежий (fresh).",
+                text = "* Accusative: inanimate = Nominative form; animate = Genitive form.\n" +
+                        "More examples: маленький, тихий, хороший, горячий, свежий.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = FontStyle.Italic
@@ -213,7 +224,7 @@ private fun SoftStemCard() {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "Truly soft-stem adjectives have a soft sign (ь) in the stem. These use -яя / -ее endings instead of -ая / -ое.",
+                text = "Truly soft-stem adjectives have a soft sign (ь) in the stem. They use -яя / -ее instead of -ая / -ое.",
                 style = MaterialTheme.typography.bodySmall
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -224,15 +235,18 @@ private fun SoftStemCard() {
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(6.dp))
-            RowHeader()
-            DeclensionRow("Masculine",  "-ий",  "синий",   "синий цвет (dark blue colour)")
-            DeclensionRow("Feminine",   "-яя",  "синяя",   "синяя ручка (dark blue pen)")
-            DeclensionRow("Neuter",     "-ее",  "синее",   "синее небо (dark blue sky)")
-            DeclensionRow("Plural",     "-ие",  "синие",   "синие глаза (dark blue eyes)")
+            CaseTableHeader()
+            CaseRow("Nominative",   "синий",  "синяя",  "синее",  "синие",  highlight = false)
+            CaseRow("Genitive",     "синего", "синей",  "синего", "синих",  highlight = true)
+            CaseRow("Dative",       "синему", "синей",  "синему", "синим",  highlight = false)
+            CaseRow("Accusative*",  "синий/синего", "синюю", "синее", "синие/синих", highlight = true)
+            CaseRow("Instrumental", "синим",  "синей",  "синим",  "синими", highlight = false)
+            CaseRow("Prepositional","синем",  "синей",  "синем",  "синих",  highlight = true)
 
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "Other soft-stem adjectives: осенний (autumn), зимний (winter), летний (summer), весенний (spring), утренний (morning), последний (last).",
+                text = "* Accusative: inanimate = Nominative form; animate = Genitive form.\n" +
+                        "Other soft-stem adjectives: осенний, зимний, летний, весенний, утренний, последний.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = FontStyle.Italic
@@ -250,7 +264,7 @@ private fun ShortFormCard() {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "Short-form adjectives are used only in predicate position (after быть / to be). " +
-                        "They are formed by removing the long-form ending and adding a short suffix.",
+                        "They do not decline by case — only by gender/number.",
                 style = MaterialTheme.typography.bodySmall
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -263,10 +277,10 @@ private fun ShortFormCard() {
             Spacer(modifier = Modifier.height(6.dp))
 
             Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
-                Text("Form",      style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
-                Text("Suffix",    style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Short",     style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
-                Text("Sentence",  style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2.5f))
+                Text("Form",     style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+                Text("Suffix",   style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                Text("Short",    style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+                Text("Sentence", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2.5f))
             }
             HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
 
@@ -291,10 +305,7 @@ private fun ShortFormCard() {
             Spacer(modifier = Modifier.height(10.dp))
             HorizontalDivider()
             Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "More examples:",
-                style = MaterialTheme.typography.labelMedium
-            )
+            Text(text = "More examples:", style = MaterialTheme.typography.labelMedium)
             Spacer(modifier = Modifier.height(4.dp))
             listOf(
                 "умный → умён / умна / умно / умны  (smart)",
@@ -318,27 +329,34 @@ private fun SummaryCard() {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "Quick Reference — Nominative Endings",
+                text = "Quick Reference — All Cases",
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Masculine endings by case and stem type:",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
-                Text("Type",       style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f))
-                Text("Masc.",      style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Fem.",       style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Neut.",      style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Plural",     style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                Text("Case",              style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f))
+                Text("Hard (-ый)",        style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+                Text("Velar (-ий)",       style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+                Text("Soft (-ний)",       style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
             }
             HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
 
             listOf(
-                listOf("Hard (-ый)",         "-ый",  "-ая",  "-ое",  "-ые"),
-                listOf("Hard stressed (-ой)", "-ой",  "-ая",  "-ое",  "-ые"),
-                listOf("After г/к/х/ж/ш/щ/ч", "-ий", "-ая",  "-ое",  "-ие"),
-                listOf("Soft (-ний etc.)",   "-ий",  "-яя",  "-ее",  "-ие")
-            ).forEachIndexed { i, (type, m, f, n, pl) ->
+                listOf("Nominative",    "-ый/-ой", "-ий",  "-ий"),
+                listOf("Genitive",      "-ого",    "-ого", "-его"),
+                listOf("Dative",        "-ому",    "-ому", "-ему"),
+                listOf("Accusative",    "-ый/-ого","-ий/-ого","-ий/-его"),
+                listOf("Instrumental",  "-ым",     "-им",  "-им"),
+                listOf("Prepositional", "-ом",     "-ом",  "-ем")
+            ).forEachIndexed { i, (case, hard, velar, soft) ->
                 val bg = if (i % 2 == 0) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
                          else MaterialTheme.colorScheme.surface
                 Card(
@@ -347,11 +365,10 @@ private fun SummaryCard() {
                     elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 2.dp, vertical = 4.dp)) {
-                        Text(type, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f))
-                        Text(m,    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary,   fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                        Text(f,    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                        Text(n,    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.tertiary,  fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                        Text(pl,   style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.outline,   fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        Text(case,  style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f))
+                        Text(hard,  style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary,   fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+                        Text(velar, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
+                        Text(soft,  style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.tertiary,  fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f))
                     }
                 }
             }
@@ -398,7 +415,7 @@ fun AdjectiveConjugationScreen(onBack: () -> Unit) {
             item { SectionHeader("Short Form (Predicate Use)") }
             item { ShortFormCard() }
 
-            item { SectionHeader("Summary Table") }
+            item { SectionHeader("Summary — Masculine Endings by Case") }
             item { SummaryCard() }
         }
     }
