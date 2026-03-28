@@ -38,7 +38,10 @@ fun TutorialScreen(
     onVerbConjugation: () -> Unit,
     onAdjectiveConjugation: () -> Unit,
     onNounDeclension: () -> Unit,
-    onDateTime: () -> Unit
+    onDateTime: () -> Unit,
+    onPrepositions: () -> Unit,
+    onNegation: () -> Unit,
+    onConditionals: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         // Russian flag background — three equal horizontal bands
@@ -76,7 +79,10 @@ fun TutorialScreen(
                     "Verb Conjugation"       to onVerbConjugation,
                     "Adjective Conjugation"  to onAdjectiveConjugation,
                     "Noun Declension"        to onNounDeclension,
-                    "Date & Time"            to onDateTime
+                    "Date & Time"            to onDateTime,
+                    "Prepositions"           to onPrepositions,
+                    "Negation"               to onNegation,
+                    "Conditionals"           to onConditionals
                 ).forEachIndexed { index, (label, action) ->
                     if (index > 0) Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(

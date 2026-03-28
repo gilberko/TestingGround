@@ -7,8 +7,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AdjectiveConjugationScreen
 import com.example.russianapp.screens.AdjectivesScreen
+import com.example.russianapp.screens.ConditionalsScreen
 import com.example.russianapp.screens.DateTimeScreen
+import com.example.russianapp.screens.NegationScreen
 import com.example.russianapp.screens.NounDeclensionScreen
+import com.example.russianapp.screens.PrepositionsScreen
 import com.example.russianapp.screens.AdverbsScreen
 import com.example.russianapp.screens.PeopleAnimalsScreen
 import com.example.russianapp.screens.PlacesScreen
@@ -40,6 +43,9 @@ sealed class Screen(val route: String) {
     object AdjectiveConjugation   : Screen("adjective_conjugation")
     object NounDeclension         : Screen("noun_declension")
     object DateTime               : Screen("date_time")
+    object Prepositions           : Screen("prepositions")
+    object Negation               : Screen("negation")
+    object Conditionals           : Screen("conditionals")
     object DictVerbs              : Screen("dict_verbs")
     object DictColors             : Screen("dict_colors")
     object DictNumbers            : Screen("dict_numbers")
@@ -76,7 +82,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onVerbConjugation       = { navController.navigate(Screen.VerbConjugation.route) },
                 onAdjectiveConjugation  = { navController.navigate(Screen.AdjectiveConjugation.route) },
                 onNounDeclension        = { navController.navigate(Screen.NounDeclension.route) },
-                onDateTime              = { navController.navigate(Screen.DateTime.route) }
+                onDateTime              = { navController.navigate(Screen.DateTime.route) },
+                onPrepositions          = { navController.navigate(Screen.Prepositions.route) },
+                onNegation              = { navController.navigate(Screen.Negation.route) },
+                onConditionals          = { navController.navigate(Screen.Conditionals.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -117,6 +126,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DateTime.route) {
             DateTimeScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Prepositions.route) {
+            PrepositionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Negation.route) {
+            NegationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Conditionals.route) {
+            ConditionalsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DictVerbs.route) {
             VerbsScreen(onBack = { navController.popBackStack() })

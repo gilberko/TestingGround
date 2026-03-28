@@ -219,10 +219,14 @@ private fun MinutesAfterCard() {
             ExampleRow("2:10  — ten past two",      "Десять минут третьего",     highlight = true)
             ExampleRow("3:20  — twenty past three", "Двадцать минут четвёртого", highlight = false)
             ExampleRow("4:01  — one past four",     "Одна минута пятого",        highlight = true)
+            ExampleRow("16:03 — three past four (PM)", "Три минуты семнадцатого", highlight = false)
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Note: минута uses the same number agreement rules as час. " +
-                        "1 минута, 2–4 минуты, 5+ минут.",
+                text = "Note: минута uses the same number agreement rules as час:\n" +
+                        "  1 → минута,  2–4 → минуты,  5+ → минут.\n\n" +
+                        "Compare the 16:03 / 16:05 pair:\n" +
+                        "  16:03 = Три минуты семнадцатого   (3 → 2–4 rule → минуты)\n" +
+                        "  16:05 = Пять минут семнадцатого   (5 → 5+ rule → минут)",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = FontStyle.Italic
