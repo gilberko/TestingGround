@@ -32,7 +32,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.app2.R
 
-private val ButtonGray = Color(0xFF808080)
 private const val APP_VERSION = "0.1"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -85,25 +84,6 @@ fun HomeScreen(
                         .padding(horizontal = 32.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "A Stranger in a Strange Land",
-                        style = MaterialTheme.typography.headlineLarge,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                    Text(
-                        text = "Portugal Edition",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "🕵️",
-                        style = MaterialTheme.typography.displayMedium,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(48.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -112,7 +92,7 @@ fun HomeScreen(
                             onClick = onStartQuiz,
                             modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = ButtonGray,
+                                containerColor = Color.Black,
                                 contentColor = Color.White
                             )
                         ) {
@@ -122,7 +102,7 @@ fun HomeScreen(
                             onClick = onStartPrepQuiz,
                             modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = ButtonGray,
+                                containerColor = Color.Black,
                                 contentColor = Color.White
                             )
                         ) {
@@ -138,7 +118,7 @@ fun HomeScreen(
                             onClick = onStartVocabQuizEnToPt,
                             modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = ButtonGray,
+                                containerColor = Color.Black,
                                 contentColor = Color.White
                             )
                         ) {
@@ -148,7 +128,7 @@ fun HomeScreen(
                             onClick = onStartVocabQuizPtToEn,
                             modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = ButtonGray,
+                                containerColor = Color.Black,
                                 contentColor = Color.White
                             )
                         ) {
@@ -160,18 +140,18 @@ fun HomeScreen(
                         onClick = onOpenTutorial,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = ButtonGray,
+                            containerColor = Color.Black,
                             contentColor = Color.White
                         )
                     ) {
-                        Text("Tutorial")
+                        Text("Learning The Language")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onOpenDictionary,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = ButtonGray,
+                            containerColor = Color.Black,
                             contentColor = Color.White
                         )
                     ) {

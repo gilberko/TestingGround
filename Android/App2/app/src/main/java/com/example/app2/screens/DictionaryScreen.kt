@@ -31,13 +31,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.app2.R
 
-private val ButtonGray = Color(0xFF808080)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DictionaryScreen(
     onBack: () -> Unit,
-    onPrepositions: () -> Unit,
     onCommonVerbs: () -> Unit,
     onTimeExpressions: () -> Unit,
     onNumbers: () -> Unit,
@@ -97,57 +94,51 @@ fun DictionaryScreen(
                     )
                     Spacer(modifier = Modifier.height(48.dp))
                     Button(
-                        onClick = onPrepositions,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
-                    ) { Text("Prepositions") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
                         onClick = onCommonVerbs,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Common Verbs") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onTimeExpressions,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Time Expressions") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onNumbers,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Numbers") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onColors,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Colors") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onAdjectives,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Adjectives") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onAdverbs,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Adverbs") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onCommonWords,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Common Words") }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onMovement,
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                     ) { Text("Movement") }
                 }
             }

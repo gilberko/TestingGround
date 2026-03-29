@@ -131,6 +131,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Tutorial.route) {
             TutorialScreen(
                 onBack = { navController.popBackStack() },
+                onPrepositions = { navController.navigate(Screen.TutorialPrepositions.route) },
                 onConjugationBasic = { navController.navigate(Screen.ConjugationBasic.route) },
                 onConjugationAdvanced = { navController.navigate(Screen.ConjugationAdvanced.route) },
                 onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) },
@@ -144,7 +145,6 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Dictionary.route) {
             DictionaryScreen(
                 onBack = { navController.popBackStack() },
-                onPrepositions = { navController.navigate(Screen.TutorialPrepositions.route) },
                 onCommonVerbs = { navController.navigate(Screen.TutorialCommonVerbs.route) },
                 onTimeExpressions = { navController.navigate(Screen.TutorialTimeExpressions.route) },
                 onNumbers = { navController.navigate(Screen.TutorialNumbers.route) },

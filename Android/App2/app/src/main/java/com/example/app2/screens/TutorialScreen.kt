@@ -31,12 +31,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.app2.R
 
-private val ButtonGray = Color(0xFF808080)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TutorialScreen(
     onBack: () -> Unit,
+    onPrepositions: () -> Unit,
     onConjugationBasic: () -> Unit,
     onConjugationAdvanced: () -> Unit,
     onPronunciation: () -> Unit,
@@ -83,7 +82,7 @@ fun TutorialScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Tutorial",
+                    text = "Learning The Language",
                     style = MaterialTheme.typography.headlineLarge,
                     color = Color.White,
                     textAlign = TextAlign.Center
@@ -96,9 +95,17 @@ fun TutorialScreen(
                 )
                 Spacer(modifier = Modifier.height(48.dp))
                 Button(
+                    onClick = onPrepositions,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
+                ) {
+                    Text("Prepositions")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(
                     onClick = onConjugationBasic,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Conjugation — Basic")
                 }
@@ -106,7 +113,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onConjugationAdvanced,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Conjugation — Advanced")
                 }
@@ -114,7 +121,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onPronunciation,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Pronunciation")
                 }
@@ -122,7 +129,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onReflexiveVerbs,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Reflexive Verbs")
                 }
@@ -130,7 +137,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onMorePrepositions,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("More About Prepositions")
                 }
@@ -138,7 +145,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onCliticPronouns,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Object Pronouns (Clitics)")
                 }
@@ -146,7 +153,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onIrregularVerbs,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Irregular Verbs")
                 }
@@ -154,7 +161,7 @@ fun TutorialScreen(
                 Button(
                     onClick = onUsefulVerbs,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = ButtonGray, contentColor = Color.White)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
                 ) {
                     Text("Useful Verbs")
                 }
