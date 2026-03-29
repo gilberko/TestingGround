@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.russianapp.R
 
@@ -82,67 +81,48 @@ fun HomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
-                    Text(
-                        text = "A Stranger in a Strange Land",
-                        style = MaterialTheme.typography.headlineLarge,
-                        color = Color.Black,
-                        textAlign = TextAlign.Center
-                    )
-                    Text(
-                        text = "Russian Edition",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = Color.Black,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "🕵️",
-                        style = MaterialTheme.typography.displayMedium,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(48.dp))
                     OutlinedButton(
-                        onClick = onOpenTutorial,
+                        onClick = onOpenVerbQuiz,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Gray.copy(alpha = 0.8f),
-                            contentColor = Color.Black
+                            containerColor = Color.Black,
+                            contentColor = Color.White
                         )
                     ) {
-                        Text("Tutorial")
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
-                        onClick = onOpenDictionary,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Gray.copy(alpha = 0.8f),
-                            contentColor = Color.Black
-                        )
-                    ) {
-                        Text("Simple Dictionary")
+                        Text("Verb Quiz")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
                         onClick = onOpenAdjectiveQuiz,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Gray.copy(alpha = 0.8f),
-                            contentColor = Color.Black
+                            containerColor = Color.Black,
+                            contentColor = Color.White
                         )
                     ) {
                         Text("Adjective Quiz")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
-                        onClick = onOpenVerbQuiz,
+                        onClick = onOpenTutorial,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Gray.copy(alpha = 0.8f),
-                            contentColor = Color.Black
+                            containerColor = Color.Black,
+                            contentColor = Color.White
                         )
                     ) {
-                        Text("Verb Quiz")
+                        Text("Learn The Language")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenDictionary,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Simple Dictionary")
                     }
                 }
                 Text(

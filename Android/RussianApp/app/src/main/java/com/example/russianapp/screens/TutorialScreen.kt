@@ -89,8 +89,8 @@ fun TutorialScreen(
                         onClick = action,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Gray.copy(alpha = 0.8f),
-                            contentColor = Color.Black
+                            containerColor = Color.Black,
+                            contentColor = Color.White
                         )
                     ) {
                         Text(label)
