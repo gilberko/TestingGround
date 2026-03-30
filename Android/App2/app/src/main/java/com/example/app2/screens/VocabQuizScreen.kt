@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.app2.data.model.QuizDirection
 import com.example.app2.data.model.WordType
+import com.example.app2.quiz.ConfigViewModel
+import com.example.app2.quiz.QuizLengthMode
 import com.example.app2.quiz.VocabQuizEvent
 import com.example.app2.quiz.VocabQuizViewModel
 
@@ -46,14 +48,16 @@ private fun WordType.displayLabel() = when (this) {
 @Composable
 fun VocabQuizScreen(
     direction: QuizDirection,
+    configViewModel: ConfigViewModel,
     onQuizComplete: () -> Unit,
     onBack: () -> Unit,
     viewModel: VocabQuizViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsState()
+    val quizLengthMode by configViewModel.quizLengthMode.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.startNewQuiz(direction)
+        viewModel.startNewQuiz(direction, survivalMode = quizLengthMode == QuizLengthMode.SURVIVAL)
         viewModel.events.collect { event ->
             when (event) {
                 VocabQuizEvent.QuizComplete -> onQuizComplete()
@@ -67,7 +71,12 @@ fun VocabQuizScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Question ${state.currentIndex + 1} / $total") },
+                title = {
+                    Text(
+                        if (state.survivalMode) "Question ${state.currentIndex + 1}"
+                        else "Question ${state.currentIndex + 1} / $total"
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -83,10 +92,14 @@ fun VocabQuizScreen(
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            LinearProgressIndicator(
-                progress = { if (total > 0) (state.currentIndex.toFloat() / total) else 0f },
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (state.survivalMode) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            } else {
+                LinearProgressIndicator(
+                    progress = { if (total > 0) (state.currentIndex.toFloat() / total) else 0f },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
             if (question != null) {
                 SuggestionChip(
@@ -154,12 +167,13 @@ fun VocabQuizScreen(
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
-                    val isLastQuestion = state.currentIndex >= total - 1
+                    val isLastQuestion = !state.survivalMode && state.currentIndex >= total - 1
+                    val endingSurvival = state.survivalMode && state.answers.lastOrNull()?.wasCorrect == false
                     Button(
                         onClick = { viewModel.nextQuestion() },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(if (isLastQuestion) "See Results" else "Next")
+                        Text(if (isLastQuestion || endingSurvival) "See Results" else "Next")
                     }
                 }
             }

@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -40,16 +42,16 @@ private data class UsefulVerbEntry(
 )
 
 private val usefulVerbs = listOf(
-    UsefulVerbEntry("ter", "to have", "tenho", "tens", "tem", "temos", "têm", listOf(
-        PrepNote("ter de + infinitive", "Tenho de ir. — I have to go."),
-        PrepNote("ter com (to deal with)", "Não tenho nada com isso. — I have nothing to do with that.")
+    UsefulVerbEntry("ser", "to be (identity / permanent)", "sou", "és", "é", "somos", "são", listOf(
+        PrepNote("ser de (origin / material)", "Sou de Lisboa. — I am from Lisbon.")
     )),
     UsefulVerbEntry("estar", "to be (state / location)", "estou", "estás", "está", "estamos", "estão", listOf(
         PrepNote("estar em (location)", "Estou em casa. — I am at home."),
         PrepNote("estar a + infinitive (ongoing action)", "Estou a comer. — I am eating.")
     )),
-    UsefulVerbEntry("ser", "to be (identity / permanent)", "sou", "és", "é", "somos", "são", listOf(
-        PrepNote("ser de (origin / material)", "Sou de Lisboa. — I am from Lisbon.")
+    UsefulVerbEntry("ter", "to have", "tenho", "tens", "tem", "temos", "têm", listOf(
+        PrepNote("ter de + infinitive", "Tenho de ir. — I have to go."),
+        PrepNote("ter com (to deal with)", "Não tenho nada com isso. — I have nothing to do with that.")
     )),
     UsefulVerbEntry("fazer", "to do / make", "faço", "fazes", "faz", "fazemos", "fazem", listOf(
         PrepNote("fazer + noun (no preposition needed)", "Faço o jantar. — I make dinner.")
@@ -230,6 +232,107 @@ private fun UsefulVerbCard(entry: UsefulVerbEntry) {
     }
 }
 
+@Composable
+private fun SerEstarExplanationSection() {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
+        )
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "Ser vs. Estar",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Ser — permanent / identity",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    listOf(
+                        "Nationality: Sou português.",
+                        "Occupation: É médica.",
+                        "Material: É de madeira.",
+                        "Time/date: São duas horas.",
+                        "Inherent quality: O céu é azul."
+                    ).forEach { bullet ->
+                        Text(
+                            text = "• $bullet",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                    }
+                }
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Estar — state / location",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    listOf(
+                        "Location: Estou em Lisboa.",
+                        "Temporary state: Estou cansado.",
+                        "Emotion: Estás feliz.",
+                        "Result of change: A porta está aberta."
+                    ).forEach { bullet ->
+                        Text(
+                            text = "• $bullet",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                    }
+                }
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            Text(
+                text = "Present Progressive in European Portuguese",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "Use estar + a + infinitive (not the gerund form used in Brazilian Portuguese).",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 6.dp)
+            )
+            listOf(
+                "Estou a comer." to "I am eating.",
+                "Estás a ouvir música." to "You are listening to music.",
+                "Estamos a aprender português." to "We are learning Portuguese.",
+                "Ele está a trabalhar." to "He is working."
+            ).forEach { (pt, en) ->
+                Text(
+                    text = pt,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic
+                )
+                Text(
+                    text = en,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 12.dp, bottom = 2.dp)
+                )
+            }
+            Text(
+                text = "Note: Brazilian Portuguese uses the gerund — \"Estou comendo.\" — this form is not used in European Portuguese.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UsefulVerbsScreen(onBack: () -> Unit) {
@@ -253,8 +356,11 @@ fun UsefulVerbsScreen(onBack: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item { Spacer(modifier = Modifier.height(4.dp)) }
-            usefulVerbs.forEach { entry ->
-                item { UsefulVerbCard(entry) }
+            usefulVerbs.forEachIndexed { index, entry ->
+                item(key = entry.verb) { UsefulVerbCard(entry) }
+                if (index == 1) {
+                    item(key = "ser_estar_explanation") { SerEstarExplanationSection() }
+                }
             }
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }

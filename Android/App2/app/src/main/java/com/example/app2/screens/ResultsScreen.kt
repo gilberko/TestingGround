@@ -43,11 +43,20 @@ fun ResultsScreen(
     val score = state.score
     val total = state.questions.size
 
-    val message = when {
-        score == total -> "Perfeito! Excelente trabalho!"
-        score >= total * 0.8 -> "Muito bem! Keep it up!"
-        score >= total * 0.6 -> "Bom trabalho! Keep practicing!"
-        else -> "Continue a praticar! You'll get there!"
+    val message = if (state.survivalMode) {
+        when {
+            score == 0 -> "Better luck next time! Keep practicing!"
+            score < 5 -> "You answered $score question${if (score == 1) "" else "s"} correctly before making a mistake!"
+            score < 10 -> "Muito bem! $score correct before a mistake!"
+            else -> "Impressionante! $score correct answers!"
+        }
+    } else {
+        when {
+            score == total -> "Perfeito! Excelente trabalho!"
+            score >= total * 0.8 -> "Muito bem! Keep it up!"
+            score >= total * 0.6 -> "Bom trabalho! Keep practicing!"
+            else -> "Continue a praticar! You'll get there!"
+        }
     }
 
     Column(
@@ -64,7 +73,7 @@ fun ResultsScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "$score / $total",
+                    text = if (state.survivalMode) "$score" else "$score / $total",
                     style = MaterialTheme.typography.displayLarge,
                     textAlign = TextAlign.Center
                 )

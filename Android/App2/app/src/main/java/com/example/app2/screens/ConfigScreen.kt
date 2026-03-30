@@ -29,6 +29,7 @@ import com.example.app2.data.model.RegularityFilter
 import com.example.app2.data.model.Subject
 import com.example.app2.data.model.Tense
 import com.example.app2.quiz.ConfigViewModel
+import com.example.app2.quiz.QuizLengthMode
 import com.example.app2.quiz.QuizMode
 
 private val ACTIVE_TENSES = listOf(
@@ -62,6 +63,7 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     val selectedTenses by configViewModel.selectedTenses.collectAsState()
     val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
     val regularityFilter by configViewModel.regularityFilter.collectAsState()
+    val quizLengthMode by configViewModel.quizLengthMode.collectAsState()
 
     Scaffold(
         topBar = {
@@ -227,6 +229,34 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                         onClick = { configViewModel.setRegularityFilter(filter) }
                     )
                     Text(text = filter.displayLabel, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
+
+            // Quiz Length section
+            item {
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                Text(
+                    text = "Quiz Length",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+            items(QuizLengthMode.entries) { mode ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = mode == quizLengthMode,
+                        onClick = { configViewModel.setQuizLengthMode(mode) }
+                    )
+                    Text(
+                        text = when (mode) {
+                            QuizLengthMode.FIXED -> "10 Questions"
+                            QuizLengthMode.SURVIVAL -> "Survival (until mistake)"
+                        },
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
                 }
             }
         }

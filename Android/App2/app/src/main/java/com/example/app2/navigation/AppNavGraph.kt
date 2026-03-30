@@ -33,6 +33,9 @@ import com.example.app2.screens.ReflexiveVerbsScreen
 import com.example.app2.screens.MorePrepositionsScreen
 import com.example.app2.screens.CliticPronounsScreen
 import com.example.app2.screens.IrregularVerbsScreen
+import com.example.app2.screens.TensesScreen
+import com.example.app2.screens.ComparisonsScreen
+import com.example.app2.screens.QuestionsScreen
 import com.example.app2.screens.UsefulVerbsScreen
 import com.example.app2.screens.VocabQuizScreen
 import com.example.app2.screens.VocabResultsScreen
@@ -65,6 +68,9 @@ sealed class Screen(val route: String) {
     object TutorialCliticPronouns : Screen("tutorial_clitic_pronouns")
     object TutorialIrregularVerbs : Screen("tutorial_irregular_verbs")
     object TutorialUsefulVerbs : Screen("tutorial_useful_verbs")
+    object TutorialTenses : Screen("tutorial_tenses")
+    object TutorialComparisons : Screen("tutorial_comparisons")
+    object TutorialQuestions : Screen("tutorial_questions")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -139,7 +145,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onMorePrepositions = { navController.navigate(Screen.TutorialMorePrepositions.route) },
                 onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) },
                 onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) },
-                onUsefulVerbs = { navController.navigate(Screen.TutorialUsefulVerbs.route) }
+                onUsefulVerbs = { navController.navigate(Screen.TutorialUsefulVerbs.route) },
+                onTenses = { navController.navigate(Screen.TutorialTenses.route) },
+                onComparisons = { navController.navigate(Screen.TutorialComparisons.route) },
+                onQuestions = { navController.navigate(Screen.TutorialQuestions.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -206,9 +215,19 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.TutorialUsefulVerbs.route) {
             UsefulVerbsScreen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.TutorialTenses.route) {
+            TensesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialComparisons.route) {
+            ComparisonsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialQuestions.route) {
+            QuestionsScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.VocabQuizEnToPt.route) {
             VocabQuizScreen(
                 direction = QuizDirection.EN_TO_PT,
+                configViewModel = configViewModel,
                 onQuizComplete = { navController.navigate(Screen.VocabResultsEnToPt.route) },
                 onBack = { navController.popBackStack() }
             )
@@ -216,6 +235,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.VocabQuizPtToEn.route) {
             VocabQuizScreen(
                 direction = QuizDirection.PT_TO_EN,
+                configViewModel = configViewModel,
                 onQuizComplete = { navController.navigate(Screen.VocabResultsPtToEn.route) },
                 onBack = { navController.popBackStack() }
             )

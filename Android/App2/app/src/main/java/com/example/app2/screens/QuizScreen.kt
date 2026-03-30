@@ -37,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.app2.data.model.Tense
 import com.example.app2.quiz.ConfigViewModel
 import com.example.app2.quiz.QuizEvent
+import com.example.app2.quiz.QuizLengthMode
 import com.example.app2.quiz.QuizMode
 import com.example.app2.quiz.QuizViewModel
 
@@ -53,11 +54,12 @@ fun QuizScreen(
     val selectedTenses by configViewModel.selectedTenses.collectAsState()
     val selectedSubjects by configViewModel.selectedSubjects.collectAsState()
     val regularityFilter by configViewModel.regularityFilter.collectAsState()
+    val quizLengthMode by configViewModel.quizLengthMode.collectAsState()
 
     var textFieldValue by rememberSaveable { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
-        quizViewModel.startNewQuiz(selectedTenses, selectedSubjects, regularityFilter)
+        quizViewModel.startNewQuiz(selectedTenses, selectedSubjects, regularityFilter, survivalMode = quizLengthMode == QuizLengthMode.SURVIVAL)
         quizViewModel.events.collect { event ->
             when (event) {
                 QuizEvent.QuizComplete -> onQuizComplete()
@@ -76,7 +78,12 @@ fun QuizScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Question ${state.currentIndex + 1} / $total") },
+                title = {
+                    Text(
+                        if (state.survivalMode) "Question ${state.currentIndex + 1}"
+                        else "Question ${state.currentIndex + 1} / $total"
+                    )
+                },
                 actions = {
                     IconButton(onClick = onOpenTutorial) {
                         Icon(Icons.Default.Info, contentDescription = "Tutorial")
@@ -92,10 +99,14 @@ fun QuizScreen(
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            LinearProgressIndicator(
-                progress = { if (total > 0) (state.currentIndex.toFloat() / total) else 0f },
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (state.survivalMode) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            } else {
+                LinearProgressIndicator(
+                    progress = { if (total > 0) (state.currentIndex.toFloat() / total) else 0f },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
             if (question != null) {
                 SuggestionChip(
@@ -201,12 +212,13 @@ fun QuizScreen(
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
-                    val isLastQuestion = state.currentIndex >= total - 1
+                    val isLastQuestion = !state.survivalMode && state.currentIndex >= total - 1
+                    val endingSurvival = state.survivalMode && state.answers.lastOrNull()?.wasCorrect == false
                     Button(
                         onClick = { quizViewModel.nextQuestion() },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text(if (isLastQuestion) "See Results" else "Next")
+                        Text(if (isLastQuestion || endingSurvival) "See Results" else "Next")
                     }
                 }
             }

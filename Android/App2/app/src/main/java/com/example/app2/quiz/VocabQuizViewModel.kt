@@ -23,7 +23,8 @@ data class VocabQuizState(
     val selectedAnswer: String? = null,
     val isAnswerRevealed: Boolean = false,
     val score: Int = 0,
-    val answers: List<VocabAnswerRecord> = emptyList()
+    val answers: List<VocabAnswerRecord> = emptyList(),
+    val survivalMode: Boolean = false
 )
 
 sealed class VocabQuizEvent {
@@ -40,55 +41,72 @@ class VocabQuizViewModel(application: Application) : AndroidViewModel(applicatio
     val events = _events.asSharedFlow()
 
     private var lastDirection: QuizDirection = QuizDirection.EN_TO_PT
+    private var lastSurvivalMode: Boolean = false
 
-    fun startNewQuiz(direction: QuizDirection) {
+    // Persistent dedup set for survival mode; reset on each new quiz
+    private val usedPt = mutableSetOf<String>()
+
+    fun startNewQuiz(direction: QuizDirection, survivalMode: Boolean = false) {
         lastDirection = direction
-        _state.value = VocabQuizState(questions = generateQuestions(direction))
+        lastSurvivalMode = survivalMode
+        usedPt.clear()
+
+        if (survivalMode) {
+            val first = generateSingleQuestion(direction)
+            _state.value = VocabQuizState(
+                questions = if (first != null) listOf(first) else emptyList(),
+                survivalMode = true
+            )
+        } else {
+            _state.value = VocabQuizState(questions = generateQuestions(direction))
+        }
     }
 
-    fun replayLastQuiz() = startNewQuiz(lastDirection)
+    fun replayLastQuiz() = startNewQuiz(lastDirection, lastSurvivalMode)
 
     private fun generateQuestions(direction: QuizDirection): List<VocabQuestion> {
-        val allWords = repository.allWords
         val questions = mutableListOf<VocabQuestion>()
-        val usedPt = mutableSetOf<String>()
-
         repeat(10) {
-            var attempts = 0
-            while (attempts < 100) {
-                val word = allWords.random()
-                if (word.pt in usedPt) { attempts++; continue }
-
-                val correctAnswer = if (direction == QuizDirection.EN_TO_PT) word.pt else word.en
-                val sameTypePool = repository.wordsOfType(word.type).filter { it.pt != word.pt }
-
-                val distractorWords = sameTypePool.shuffled().take(3)
-                val fallbackPool = allWords.filter { it.pt != word.pt && it !in distractorWords }
-
-                val distractorAnswers = distractorWords.map {
-                    if (direction == QuizDirection.EN_TO_PT) it.pt else it.en
-                }.toMutableList()
-
-                // Fill remaining slots from any type if needed
-                if (distractorAnswers.size < 3) {
-                    val needed = 3 - distractorAnswers.size
-                    fallbackPool.shuffled().take(needed).forEach { w ->
-                        val ans = if (direction == QuizDirection.EN_TO_PT) w.pt else w.en
-                        if (ans !in distractorAnswers && ans != correctAnswer) {
-                            distractorAnswers.add(ans)
-                        }
-                    }
-                }
-
-                if (distractorAnswers.size < 3) { attempts++; continue }
-
-                usedPt.add(word.pt)
-                val choices = (distractorAnswers.take(3) + correctAnswer).shuffled()
-                questions.add(VocabQuestion(word, direction, correctAnswer, choices))
-                return@repeat
-            }
+            val q = generateSingleQuestion(direction)
+            if (q != null) questions.add(q)
         }
         return questions
+    }
+
+    private fun generateSingleQuestion(direction: QuizDirection): VocabQuestion? {
+        val allWords = repository.allWords
+        var attempts = 0
+        while (attempts < 100) {
+            val word = allWords.random()
+            if (word.pt in usedPt) { attempts++; continue }
+
+            val correctAnswer = if (direction == QuizDirection.EN_TO_PT) word.pt else word.en
+            val sameTypePool = repository.wordsOfType(word.type).filter { it.pt != word.pt }
+
+            val distractorWords = sameTypePool.shuffled().take(3)
+            val fallbackPool = allWords.filter { it.pt != word.pt && it !in distractorWords }
+
+            val distractorAnswers = distractorWords.map {
+                if (direction == QuizDirection.EN_TO_PT) it.pt else it.en
+            }.toMutableList()
+
+            if (distractorAnswers.size < 3) {
+                val needed = 3 - distractorAnswers.size
+                fallbackPool.shuffled().take(needed).forEach { w ->
+                    val ans = if (direction == QuizDirection.EN_TO_PT) w.pt else w.en
+                    if (ans !in distractorAnswers && ans != correctAnswer) {
+                        distractorAnswers.add(ans)
+                    }
+                }
+            }
+
+            if (distractorAnswers.size < 3) { attempts++; continue }
+
+            usedPt.add(word.pt)
+            val choices = (distractorAnswers.take(3) + correctAnswer).shuffled()
+            return VocabQuestion(word, direction, correctAnswer, choices)
+        }
+        return null
     }
 
     fun selectAnswer(answer: String) {
@@ -108,11 +126,32 @@ class VocabQuizViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun nextQuestion() {
         val state = _state.value
-        val nextIndex = state.currentIndex + 1
-        if (nextIndex >= state.questions.size) {
-            viewModelScope.launch { _events.emit(VocabQuizEvent.QuizComplete) }
+        if (state.survivalMode) {
+            val lastAnswerCorrect = state.answers.lastOrNull()?.wasCorrect == true
+            if (!lastAnswerCorrect) {
+                viewModelScope.launch { _events.emit(VocabQuizEvent.QuizComplete) }
+                return
+            }
+            val newQuestion = generateSingleQuestion(lastDirection)
+            if (newQuestion == null) {
+                viewModelScope.launch { _events.emit(VocabQuizEvent.QuizComplete) }
+                return
+            }
+            _state.update {
+                it.copy(
+                    questions = it.questions + newQuestion,
+                    currentIndex = it.currentIndex + 1,
+                    selectedAnswer = null,
+                    isAnswerRevealed = false
+                )
+            }
         } else {
-            _state.update { it.copy(currentIndex = nextIndex, selectedAnswer = null, isAnswerRevealed = false) }
+            val nextIndex = state.currentIndex + 1
+            if (nextIndex >= state.questions.size) {
+                viewModelScope.launch { _events.emit(VocabQuizEvent.QuizComplete) }
+            } else {
+                _state.update { it.copy(currentIndex = nextIndex, selectedAnswer = null, isAnswerRevealed = false) }
+            }
         }
     }
 }

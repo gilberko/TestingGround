@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,8 +44,26 @@ fun TutorialScreen(
     onMorePrepositions: () -> Unit,
     onCliticPronouns: () -> Unit,
     onIrregularVerbs: () -> Unit,
-    onUsefulVerbs: () -> Unit
+    onUsefulVerbs: () -> Unit,
+    onTenses: () -> Unit,
+    onComparisons: () -> Unit,
+    onQuestions: () -> Unit
 ) {
+    val buttons = listOf(
+        "Prepositions" to onPrepositions,
+        "Conjugation — Basic" to onConjugationBasic,
+        "Conjugation — Advanced" to onConjugationAdvanced,
+        "Pronunciation" to onPronunciation,
+        "Reflexive Verbs" to onReflexiveVerbs,
+        "More About Prepositions" to onMorePrepositions,
+        "Object Pronouns (Clitics)" to onCliticPronouns,
+        "Irregular Verbs" to onIrregularVerbs,
+        "Useful Verbs" to onUsefulVerbs,
+        "Tenses" to onTenses,
+        "Comparisons" to onComparisons,
+        "Questions" to onQuestions
+    )
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.portugal_background),
@@ -77,7 +96,7 @@ fun TutorialScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(32.dp),
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -93,77 +112,42 @@ fun TutorialScreen(
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(48.dp))
-                Button(
-                    onClick = onPrepositions,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Prepositions")
+                Spacer(modifier = Modifier.height(24.dp))
+                ButtonGrid(buttons)
+            }
+        }
+    }
+}
+
+@Composable
+private fun ButtonGrid(buttons: List<Pair<String, () -> Unit>>) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        buttons.chunked(2).forEach { row ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                row.forEach { (label, onClick) ->
+                    Button(
+                        onClick = onClick,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(52.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text(
+                            text = label,
+                            textAlign = TextAlign.Center,
+                            maxLines = 2,
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                    }
                 }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onConjugationBasic,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Conjugation — Basic")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onConjugationAdvanced,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Conjugation — Advanced")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onPronunciation,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Pronunciation")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onReflexiveVerbs,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Reflexive Verbs")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onMorePrepositions,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("More About Prepositions")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onCliticPronouns,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Object Pronouns (Clitics)")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onIrregularVerbs,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Irregular Verbs")
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onUsefulVerbs,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                ) {
-                    Text("Useful Verbs")
+                if (row.size == 1) {
+                    Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }

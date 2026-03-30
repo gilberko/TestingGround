@@ -32,7 +32,8 @@ data class QuizState(
     val selectedAnswer: String? = null,
     val isAnswerRevealed: Boolean = false,
     val score: Int = 0,
-    val answers: List<AnswerRecord> = emptyList()
+    val answers: List<AnswerRecord> = emptyList(),
+    val survivalMode: Boolean = false
 )
 
 sealed class QuizEvent {
@@ -51,95 +52,125 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
     private var lastAllowedTenses: Set<Tense> = emptySet()
     private var lastAllowedSubjects: Set<Subject> = emptySet()
     private var lastRegularityFilter: RegularityFilter = RegularityFilter.ALL
+    private var lastSurvivalMode: Boolean = false
+
+    // Persistent dedup set for survival mode; reset on each new quiz
+    private val usedKeys = mutableSetOf<String>()
+
+    // Cached question-generation params for lazy survival questions
+    private var lastVerbPool: List<com.example.app2.data.model.Verb> = emptyList()
+    private var lastEffectiveTenses: List<Tense> = emptyList()
+    private var lastEffectiveSubjects: List<Subject> = emptyList()
+    private var lastImperativoSubjects: List<Subject> = emptyList()
 
     fun startNewQuiz(
         allowedTenses: Set<Tense> = lastAllowedTenses,
         allowedSubjects: Set<Subject> = lastAllowedSubjects,
-        regularityFilter: RegularityFilter = lastRegularityFilter
+        regularityFilter: RegularityFilter = lastRegularityFilter,
+        survivalMode: Boolean = lastSurvivalMode
     ) {
         lastAllowedTenses = allowedTenses
         lastAllowedSubjects = allowedSubjects
         lastRegularityFilter = regularityFilter
-        val questions = generateQuestions(allowedTenses, allowedSubjects, regularityFilter)
-        _state.value = QuizState(questions = questions)
-    }
+        lastSurvivalMode = survivalMode
 
-    private fun generateQuestions(
-        allowedTenses: Set<Tense>,
-        allowedSubjects: Set<Subject>,
-        regularityFilter: RegularityFilter
-    ): List<QuizQuestion> {
+        usedKeys.clear()
+
         val allVerbs = repository.verbs
-        val verbPool = when (regularityFilter) {
+        lastVerbPool = when (regularityFilter) {
             RegularityFilter.ALL -> allVerbs
             RegularityFilter.REGULAR_ONLY -> allVerbs.filter { !it.isIrregular }
             RegularityFilter.IRREGULAR_ONLY -> allVerbs.filter { it.isIrregular }
         }.takeIf { it.isNotEmpty() } ?: allVerbs
 
-        val effectiveTenses = if (allowedTenses.isEmpty()) Tense.entries.toList() else allowedTenses.toList()
-        val effectiveSubjects = if (allowedSubjects.isEmpty()) Subject.entries.toList() else allowedSubjects.toList()
-        val imperativoSubjects = effectiveSubjects.filter { it != Subject.EU }
+        lastEffectiveTenses = if (allowedTenses.isEmpty()) Tense.entries.toList() else allowedTenses.toList()
+        lastEffectiveSubjects = if (allowedSubjects.isEmpty()) Subject.entries.toList() else allowedSubjects.toList()
+        lastImperativoSubjects = lastEffectiveSubjects.filter { it != Subject.EU }
 
+        if (survivalMode) {
+            val first = generateSingleQuestion(lastVerbPool, lastEffectiveTenses, lastEffectiveSubjects, lastImperativoSubjects)
+            _state.value = QuizState(
+                questions = if (first != null) listOf(first) else emptyList(),
+                survivalMode = true
+            )
+        } else {
+            val questions = generateQuestions(lastVerbPool, lastEffectiveTenses, lastEffectiveSubjects, lastImperativoSubjects)
+            _state.value = QuizState(questions = questions)
+        }
+    }
+
+    private fun generateQuestions(
+        verbPool: List<com.example.app2.data.model.Verb>,
+        effectiveTenses: List<Tense>,
+        effectiveSubjects: List<Subject>,
+        imperativoSubjects: List<Subject>
+    ): List<QuizQuestion> {
         val questions = mutableListOf<QuizQuestion>()
-        val used = mutableSetOf<String>()
-
         repeat(10) {
-            var attempts = 0
-            while (attempts < 100) {
-                val tense = effectiveTenses.random()
+            val q = generateSingleQuestion(verbPool, effectiveTenses, effectiveSubjects, imperativoSubjects)
+            if (q != null) questions.add(q)
+        }
+        return questions
+    }
 
-                when {
-                    tense == Tense.GERUND -> {
-                        val verb = verbPool.random()
-                        val key = "${verb.infinitive}|${tense}|GERUND"
-                        if (key in used) { attempts++; continue }
+    private fun generateSingleQuestion(
+        verbPool: List<com.example.app2.data.model.Verb>,
+        effectiveTenses: List<Tense>,
+        effectiveSubjects: List<Subject>,
+        imperativoSubjects: List<Subject>
+    ): QuizQuestion? {
+        var attempts = 0
+        while (attempts < 100) {
+            val tense = effectiveTenses.random()
 
-                        val correctAnswer = VerbForms.gerund(verb)
-                        val distractors = DistractorGenerator.generateGerundDistractors(verb, correctAnswer, verbPool)
-                        if (distractors.size < 3) { attempts++; continue }
+            when {
+                tense == Tense.GERUND -> {
+                    val verb = verbPool.random()
+                    val key = "${verb.infinitive}|${tense}|GERUND"
+                    if (key in usedKeys) { attempts++; continue }
 
-                        used.add(key)
-                        val choices = (distractors + correctAnswer).shuffled()
-                        questions.add(QuizQuestion(verb, tense, null, correctAnswer, choices))
-                        return@repeat
-                    }
-                    tense in PASSIVE_TENSES -> {
-                        if (effectiveSubjects.isEmpty()) { attempts++; continue }
-                        val subject = effectiveSubjects.random()
-                        val verb = verbPool.random()
-                        val key = "${verb.infinitive}|${tense}|${subject}"
-                        if (key in used) { attempts++; continue }
+                    val correctAnswer = VerbForms.gerund(verb)
+                    val distractors = DistractorGenerator.generateGerundDistractors(verb, correctAnswer, verbPool)
+                    if (distractors.size < 3) { attempts++; continue }
 
-                        val correctAnswer = VerbForms.passiveForm(verb, tense, subject) ?: run { attempts++; return@run null } ?: continue
-                        val distractors = DistractorGenerator.generatePassiveDistractors(verb, tense, subject, correctAnswer, verbPool)
-                        if (distractors.size < 3) { attempts++; continue }
+                    usedKeys.add(key)
+                    val choices = (distractors + correctAnswer).shuffled()
+                    return QuizQuestion(verb, tense, null, correctAnswer, choices)
+                }
+                tense in PASSIVE_TENSES -> {
+                    if (effectiveSubjects.isEmpty()) { attempts++; continue }
+                    val subject = effectiveSubjects.random()
+                    val verb = verbPool.random()
+                    val key = "${verb.infinitive}|${tense}|${subject}"
+                    if (key in usedKeys) { attempts++; continue }
 
-                        used.add(key)
-                        val choices = (distractors + correctAnswer).shuffled()
-                        questions.add(QuizQuestion(verb, tense, subject, correctAnswer, choices))
-                        return@repeat
-                    }
-                    else -> {
-                        val isImperativo = tense == Tense.IMPERATIVO_AFIRMATIVO || tense == Tense.IMPERATIVO_NEGATIVO
-                        if (isImperativo && imperativoSubjects.isEmpty()) { attempts++; continue }
-                        val subject = if (isImperativo) imperativoSubjects.random() else effectiveSubjects.random()
-                        val verb = verbPool.random()
-                        val key = "${verb.infinitive}|${tense}|${subject}"
-                        if (key in used) { attempts++; continue }
+                    val correctAnswer = VerbForms.passiveForm(verb, tense, subject) ?: run { attempts++; return@run null } ?: continue
+                    val distractors = DistractorGenerator.generatePassiveDistractors(verb, tense, subject, correctAnswer, verbPool)
+                    if (distractors.size < 3) { attempts++; continue }
 
-                        val correctAnswer = DistractorGenerator.getForm(verb, tense, subject) ?: run { attempts++; return@run null } ?: continue
-                        val distractors = DistractorGenerator.generate(verb, tense, subject, correctAnswer, verbPool)
-                        if (distractors.size < 3) { attempts++; continue }
+                    usedKeys.add(key)
+                    val choices = (distractors + correctAnswer).shuffled()
+                    return QuizQuestion(verb, tense, subject, correctAnswer, choices)
+                }
+                else -> {
+                    val isImperativo = tense == Tense.IMPERATIVO_AFIRMATIVO || tense == Tense.IMPERATIVO_NEGATIVO
+                    if (isImperativo && imperativoSubjects.isEmpty()) { attempts++; continue }
+                    val subject = if (isImperativo) imperativoSubjects.random() else effectiveSubjects.random()
+                    val verb = verbPool.random()
+                    val key = "${verb.infinitive}|${tense}|${subject}"
+                    if (key in usedKeys) { attempts++; continue }
 
-                        used.add(key)
-                        val choices = (distractors + correctAnswer).shuffled()
-                        questions.add(QuizQuestion(verb, tense, subject, correctAnswer, choices))
-                        return@repeat
-                    }
+                    val correctAnswer = DistractorGenerator.getForm(verb, tense, subject) ?: run { attempts++; return@run null } ?: continue
+                    val distractors = DistractorGenerator.generate(verb, tense, subject, correctAnswer, verbPool)
+                    if (distractors.size < 3) { attempts++; continue }
+
+                    usedKeys.add(key)
+                    val choices = (distractors + correctAnswer).shuffled()
+                    return QuizQuestion(verb, tense, subject, correctAnswer, choices)
                 }
             }
         }
-        return questions
+        return null
     }
 
     fun selectAnswer(answer: String) {
@@ -159,11 +190,34 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
 
     fun nextQuestion() {
         val state = _state.value
-        val nextIndex = state.currentIndex + 1
-        if (nextIndex >= state.questions.size) {
-            viewModelScope.launch { _events.emit(QuizEvent.QuizComplete) }
+        if (state.survivalMode) {
+            val lastAnswerCorrect = state.answers.lastOrNull()?.wasCorrect == true
+            if (!lastAnswerCorrect) {
+                viewModelScope.launch { _events.emit(QuizEvent.QuizComplete) }
+                return
+            }
+            val newQuestion = generateSingleQuestion(
+                lastVerbPool, lastEffectiveTenses, lastEffectiveSubjects, lastImperativoSubjects
+            )
+            if (newQuestion == null) {
+                viewModelScope.launch { _events.emit(QuizEvent.QuizComplete) }
+                return
+            }
+            _state.update {
+                it.copy(
+                    questions = it.questions + newQuestion,
+                    currentIndex = it.currentIndex + 1,
+                    selectedAnswer = null,
+                    isAnswerRevealed = false
+                )
+            }
         } else {
-            _state.update { it.copy(currentIndex = nextIndex, selectedAnswer = null, isAnswerRevealed = false) }
+            val nextIndex = state.currentIndex + 1
+            if (nextIndex >= state.questions.size) {
+                viewModelScope.launch { _events.emit(QuizEvent.QuizComplete) }
+            } else {
+                _state.update { it.copy(currentIndex = nextIndex, selectedAnswer = null, isAnswerRevealed = false) }
+            }
         }
     }
 }

@@ -21,6 +21,9 @@ class ConfigViewModel : ViewModel() {
     private val _regularityFilter = MutableStateFlow(RegularityFilter.ALL)
     val regularityFilter: StateFlow<RegularityFilter> = _regularityFilter.asStateFlow()
 
+    private val _quizLengthMode = MutableStateFlow(QuizLengthMode.FIXED)
+    val quizLengthMode: StateFlow<QuizLengthMode> = _quizLengthMode.asStateFlow()
+
     fun toggleTense(tense: Tense) {
         _selectedTenses.value = if (tense in _selectedTenses.value)
             _selectedTenses.value - tense else _selectedTenses.value + tense
@@ -37,5 +40,9 @@ class ConfigViewModel : ViewModel() {
 
     fun setQuizMode(mode: QuizMode) {
         _quizMode.value = mode
+    }
+
+    fun setQuizLengthMode(mode: QuizLengthMode) {
+        _quizLengthMode.value = mode
     }
 }

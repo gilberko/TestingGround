@@ -1,14 +1,15 @@
 package com.example.app2.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -44,6 +45,17 @@ fun DictionaryScreen(
     onCommonWords: () -> Unit,
     onMovement: () -> Unit
 ) {
+    val buttons = listOf(
+        "Common Verbs" to onCommonVerbs,
+        "Time Expressions" to onTimeExpressions,
+        "Numbers" to onNumbers,
+        "Colors" to onColors,
+        "Adjectives" to onAdjectives,
+        "Adverbs" to onAdverbs,
+        "Common Words" to onCommonWords,
+        "Movement" to onMovement
+    )
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.portugal_background),
@@ -72,74 +84,62 @@ fun DictionaryScreen(
                 )
             }
         ) { innerPadding ->
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(innerPadding)
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                item {
-                    Text(
-                        text = "Simple Dictionary",
-                        style = MaterialTheme.typography.headlineLarge,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                    Text(
-                        text = "Dicionário Simples",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.height(48.dp))
+                Text(
+                    text = "Simple Dictionary",
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "Dicionário Simples",
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                ButtonGrid(buttons)
+            }
+        }
+    }
+}
+
+@Composable
+private fun ButtonGrid(buttons: List<Pair<String, () -> Unit>>) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        buttons.chunked(2).forEach { row ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                row.forEach { (label, onClick) ->
                     Button(
-                        onClick = onCommonVerbs,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Common Verbs") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onTimeExpressions,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Time Expressions") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onNumbers,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Numbers") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onColors,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Colors") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onAdjectives,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Adjectives") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onAdverbs,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Adverbs") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onCommonWords,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Common Words") }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Button(
-                        onClick = onMovement,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White)
-                    ) { Text("Movement") }
+                        onClick = onClick,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(52.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text(
+                            text = label,
+                            textAlign = TextAlign.Center,
+                            maxLines = 2,
+                            style = MaterialTheme.typography.labelMedium
+                        )
+                    }
+                }
+                if (row.size == 1) {
+                    Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }

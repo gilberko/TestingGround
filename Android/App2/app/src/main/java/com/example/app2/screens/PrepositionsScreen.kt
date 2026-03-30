@@ -2,17 +2,20 @@ package com.example.app2.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +33,14 @@ private data class PrepEntryFull(
     val usage: String,
     val contractions: String,
     val examples: List<Pair<String, String>>
+)
+
+private data class ContrastivePair(
+    val scenario: String,
+    val aSentence: String,
+    val aTranslation: String,
+    val paraSentence: String,
+    val paraTranslation: String
 )
 
 private val prepEntriesFull = listOf(
@@ -134,6 +145,44 @@ private val prepEntriesFull = listOf(
     )
 )
 
+private val paraVsAExamples = listOf(
+    ContrastivePair(
+        scenario = "Trip to a city",
+        aSentence = "Fui a Lisboa.",
+        aTranslation = "I went to Lisbon (short trip, coming back).",
+        paraSentence = "Fui para Lisboa.",
+        paraTranslation = "I went to Lisbon (to stay / I moved there)."
+    ),
+    ContrastivePair(
+        scenario = "Going to a place",
+        aSentence = "Vou ao supermercado.",
+        aTranslation = "I'm going to the supermarket (and returning).",
+        paraSentence = "Vou para o supermercado.",
+        paraTranslation = "I'm heading to the supermarket (no return implied)."
+    ),
+    ContrastivePair(
+        scenario = "Going home",
+        aSentence = "Vou a casa.",
+        aTranslation = "I'm going home briefly.",
+        paraSentence = "Vou para casa.",
+        paraTranslation = "I'm going home for the day / settling in."
+    ),
+    ContrastivePair(
+        scenario = "Giving vs. sending",
+        aSentence = "Dei o livro ao João.",
+        aTranslation = "I gave the book to João (indirect object — handed directly).",
+        paraSentence = "Mandei o livro para o João.",
+        paraTranslation = "I sent the book to João (recipient of a sent item)."
+    ),
+    ContrastivePair(
+        scenario = "Time vs. purpose",
+        aSentence = "Chego às oito.",
+        aTranslation = "I arrive at eight (time expression).",
+        paraSentence = "Saio para o trabalho às oito.",
+        paraTranslation = "I leave for work at eight (purpose / destination)."
+    )
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrepositionsScreen(onBack: () -> Unit) {
@@ -158,8 +207,15 @@ fun PrepositionsScreen(onBack: () -> Unit) {
         ) {
             item { Spacer(modifier = Modifier.height(4.dp)) }
 
-            items(prepEntriesFull) { entry ->
-                PrepCardFull(entry)
+            prepEntriesFull.forEachIndexed { index, entry ->
+                item(key = entry.preposition) {
+                    PrepCardFull(entry)
+                }
+                if (index == 3) {
+                    item(key = "comparison_para_a") {
+                        ParaVsACard()
+                    }
+                }
             }
 
             item { Spacer(modifier = Modifier.height(16.dp)) }
@@ -206,5 +262,120 @@ private fun PrepCardFull(entry: PrepEntryFull) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun ParaVsACard() {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
+        )
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "para vs. a",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "Both can express direction, but they differ in permanence, purpose, and usage.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Use a for:",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    listOf(
+                        "Short trip (returning)",
+                        "Time: às três",
+                        "Indirect object",
+                        "Nearby destination"
+                    ).forEach { bullet ->
+                        Text(
+                            text = "• $bullet",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                    }
+                }
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Use para for:",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    listOf(
+                        "Long stay / no return",
+                        "Purpose / goal",
+                        "Recipient (sent item)",
+                        "Permanent relocation"
+                    ).forEach { bullet ->
+                        Text(
+                            text = "• $bullet",
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                    }
+                }
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            Text(
+                text = "Contrastive Examples",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            paraVsAExamples.forEach { pair ->
+                ContrastivePairRow(pair)
+                Spacer(modifier = Modifier.height(6.dp))
+            }
+        }
+    }
+}
+
+@Composable
+private fun ContrastivePairRow(pair: ContrastivePair) {
+    Column {
+        Text(
+            text = pair.scenario,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Text(
+            text = "a: ${pair.aSentence}",
+            style = MaterialTheme.typography.bodySmall,
+            fontStyle = FontStyle.Italic
+        )
+        Text(
+            text = pair.aTranslation,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp, bottom = 2.dp)
+        )
+        Text(
+            text = "para: ${pair.paraSentence}",
+            style = MaterialTheme.typography.bodySmall,
+            fontStyle = FontStyle.Italic
+        )
+        Text(
+            text = pair.paraTranslation,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp)
+        )
     }
 }
