@@ -28,8 +28,11 @@ import com.example.russianapp.screens.NumbersScreen
 import com.example.russianapp.screens.TutorialScreen
 import com.example.russianapp.screens.VerbConjugationScreen
 import com.example.russianapp.screens.AdjectiveQuizScreen
+import com.example.russianapp.screens.ParticipleScreen
 import com.example.russianapp.screens.VerbQuizScreen
 import com.example.russianapp.screens.VerbsScreen
+import com.example.russianapp.screens.VocabularyEngToRusScreen
+import com.example.russianapp.screens.VocabularyRusToEngScreen
 import com.example.russianapp.viewmodel.ConfigViewModel
 
 sealed class Screen(val route: String) {
@@ -46,6 +49,7 @@ sealed class Screen(val route: String) {
     object Prepositions           : Screen("prepositions")
     object Negation               : Screen("negation")
     object Conditionals           : Screen("conditionals")
+    object Participles            : Screen("participles")
     object DictVerbs              : Screen("dict_verbs")
     object DictColors             : Screen("dict_colors")
     object DictNumbers            : Screen("dict_numbers")
@@ -58,6 +62,8 @@ sealed class Screen(val route: String) {
     object DictWork               : Screen("dict_work")
     object QuizAdjective          : Screen("quiz_adjective")
     object QuizVerb               : Screen("quiz_verb")
+    object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
+    object QuizVocabRusToEng      : Screen("quiz_vocab_rus_to_eng")
 }
 
 @Composable
@@ -71,7 +77,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenDictionary    = { navController.navigate(Screen.Dictionary.route) },
                 onOpenConfig        = { navController.navigate(Screen.Config.route) },
                 onOpenAdjectiveQuiz = { navController.navigate(Screen.QuizAdjective.route) },
-                onOpenVerbQuiz      = { navController.navigate(Screen.QuizVerb.route) }
+                onOpenVerbQuiz          = { navController.navigate(Screen.QuizVerb.route) },
+                onOpenVocabEngToRus     = { navController.navigate(Screen.QuizVocabEngToRus.route) },
+                onOpenVocabRusToEng     = { navController.navigate(Screen.QuizVocabRusToEng.route) }
             )
         }
         composable(Screen.Tutorial.route) {
@@ -85,7 +93,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDateTime              = { navController.navigate(Screen.DateTime.route) },
                 onPrepositions          = { navController.navigate(Screen.Prepositions.route) },
                 onNegation              = { navController.navigate(Screen.Negation.route) },
-                onConditionals          = { navController.navigate(Screen.Conditionals.route) }
+                onConditionals          = { navController.navigate(Screen.Conditionals.route) },
+                onParticiples           = { navController.navigate(Screen.Participles.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -136,6 +145,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Conditionals.route) {
             ConditionalsScreen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.Participles.route) {
+            ParticipleScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.DictVerbs.route) {
             VerbsScreen(onBack = { navController.popBackStack() })
         }
@@ -174,6 +186,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.QuizVerb.route) {
             VerbQuizScreen(
+                configViewModel = configViewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.QuizVocabEngToRus.route) {
+            VocabularyEngToRusScreen(
+                configViewModel = configViewModel,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.QuizVocabRusToEng.route) {
+            VocabularyRusToEngScreen(
                 configViewModel = configViewModel,
                 onBack = { navController.popBackStack() }
             )

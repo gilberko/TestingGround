@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -41,7 +41,8 @@ fun TutorialScreen(
     onDateTime: () -> Unit,
     onPrepositions: () -> Unit,
     onNegation: () -> Unit,
-    onConditionals: () -> Unit
+    onConditionals: () -> Unit,
+    onParticiples: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -69,11 +70,10 @@ fun TutorialScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(horizontal = 32.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.Center
             ) {
-                listOf(
+                val buttons = listOf(
                     "Alphabet"               to onAlphabet,
                     "Grammar - Cases"        to onGrammarCases,
                     "Verb Conjugation"       to onVerbConjugation,
@@ -82,18 +82,27 @@ fun TutorialScreen(
                     "Date & Time"            to onDateTime,
                     "Prepositions"           to onPrepositions,
                     "Negation"               to onNegation,
-                    "Conditionals"           to onConditionals
-                ).forEachIndexed { index, (label, action) ->
-                    if (index > 0) Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
-                        onClick = action,
+                    "Conditionals"           to onConditionals,
+                    "Participles"            to onParticiples
+                )
+                buttons.chunked(2).forEachIndexed { rowIndex, pair ->
+                    if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Text(label)
+                        pair.forEach { (label, action) ->
+                            OutlinedButton(
+                                onClick = action,
+                                modifier = Modifier.weight(1f),
+                                colors = ButtonDefaults.outlinedButtonColors(
+                                    containerColor = Color.Black,
+                                    contentColor = Color.White
+                                )
+                            ) {
+                                Text(label)
+                            }
+                        }
                     }
                 }
             }

@@ -133,6 +133,70 @@ private val motionVehicleRows = listOf(
     MotionVehicleEntry("они",    "едут",   "ездят")
 )
 
+private data class WaterAirRow(val pronoun: String, val plyt: String, val plavat: String, val letet: String, val letat: String)
+private val waterAirRows = listOf(
+    WaterAirRow("я",      "плыву",   "плаваю",   "лечу",   "летаю"),
+    WaterAirRow("ты",     "плывёшь", "плаваешь", "летишь", "летаешь"),
+    WaterAirRow("он/она", "плывёт",  "плавает",  "летит",  "летает"),
+    WaterAirRow("мы",     "плывём",  "плаваем",  "летим",  "летаем"),
+    WaterAirRow("вы",     "плывёте", "плаваете", "летите", "летаете"),
+    WaterAirRow("они",    "плывут",  "плавают",  "летят",  "летают")
+)
+
+private data class MotionPrefixRow(val prefix: String, val meaning: String, val foot: String, val vehicle: String, val air: String, val water: String)
+private val motionPrefixRows = listOf(
+    MotionPrefixRow("по-",    "set off / depart",    "пойти",   "поехать",   "полететь",   "поплыть"),
+    MotionPrefixRow("при-",   "arrive",               "прийти",  "приехать",  "прилететь",  "приплыть"),
+    MotionPrefixRow("у-",     "leave / depart",       "уйти",    "уехать",    "улететь",    "уплыть"),
+    MotionPrefixRow("в-/во-", "enter",                "войти",   "въехать",   "влететь",    "вплыть"),
+    MotionPrefixRow("вы-",    "exit / go out",        "выйти",   "выехать",   "вылететь",   "выплыть"),
+    MotionPrefixRow("за-",    "stop by / go beyond",  "зайти",   "заехать",   "залететь",   "заплыть"),
+    MotionPrefixRow("от-",    "move away from",       "отойти",  "отъехать",  "отлететь",   "отплыть"),
+    MotionPrefixRow("до-",    "reach destination",    "дойти",   "доехать",   "долететь",   "доплыть"),
+    MotionPrefixRow("пере-",  "cross / transfer",     "перейти", "переехать", "перелететь", "переплыть"),
+    MotionPrefixRow("про-",   "pass through / by",    "пройти",  "проехать",  "пролететь",  "проплыть"),
+    MotionPrefixRow("под-",   "approach",             "подойти", "подъехать", "подлететь",  "подплыть")
+)
+
+private data class GeneralPrefixEntry(val prefix: String, val meaning: String, val examples: List<String>)
+private val generalPrefixEntries = listOf(
+    GeneralPrefixEntry("в- / вы-", "in/out, on/off",
+        listOf(
+            "включить (turn on) / выключить (turn off)",
+            "войти (enter) / выйти (exit)",
+            "вписать (write in) / выписать (write out)"
+        )),
+    GeneralPrefixEntry("от- / за-", "open/close, completion/start",
+        listOf(
+            "открыть (to open) / закрыть (to close)",
+            "ответить (to answer) / заплатить (to pay)",
+            "отключить (to disconnect) / записать (to record)"
+        )),
+    GeneralPrefixEntry("на-", "filling, start of action",
+        listOf(
+            "написать (to write — perfective)",
+            "налить (to pour in)",
+            "набрать (to gather / dial a number)"
+        )),
+    GeneralPrefixEntry("пере-", "redo / re- / across",
+        listOf(
+            "перечитать (to reread)",
+            "переписать (to rewrite)",
+            "перевести (to translate / transfer)"
+        )),
+    GeneralPrefixEntry("про-", "through / completely",
+        listOf(
+            "прочитать (to read through — perfective)",
+            "просмотреть (to look through / review)"
+        )),
+    GeneralPrefixEntry("раз- / рас-", "apart / intensification",
+        listOf(
+            "разобрать (to take apart / analyze)",
+            "расписать (to elaborate in writing)",
+            "разговорить (to get someone talking)"
+        ))
+)
+
 // ── Composables ───────────────────────────────────────────────────────────────
 
 @Composable
@@ -397,6 +461,160 @@ private fun MotionVerbsCard() {
     }
 }
 
+@Composable
+private fun WaterAirMotionCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "By water / by air",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "The same verb pair плыть / плавать covers both swimming and sailing — context makes the meaning clear. " +
+                        "лететь / летать follows the same unidirectional vs. habitual pattern for flying.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "• Я плыву к берегу. (I am swimming/sailing to shore — right now.)",
+                style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic
+            )
+            Text(
+                text = "• Он плавает каждое утро. (He swims every morning.)",
+                style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic
+            )
+            Text(
+                text = "• Самолёт летит в Москву. (The plane is flying to Moscow — right now.)",
+                style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            // Table header
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                Text("",         modifier = Modifier.weight(0.8f), style = MaterialTheme.typography.labelSmall)
+                Text("плыть",   modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("плавать", modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("лететь",  modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("летать",  modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+            }
+            waterAirRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
+                    Text(row.pronoun, modifier = Modifier.weight(0.8f), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.plyt,   modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.bodySmall)
+                    Text(row.plavat, modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.bodySmall)
+                    Text(row.letet,  modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.bodySmall)
+                    Text(row.letat,  modifier = Modifier.weight(1.1f), style = MaterialTheme.typography.bodySmall)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MotionPrefixesCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Prefixes attach to motion verbs to create perfective verbs with a specific directional meaning. " +
+                        "The same prefix applies to all motion verb pairs (foot, vehicle, air, water).",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            // Table header
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                Text("Prefix",   modifier = Modifier.weight(0.9f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("Meaning",  modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("Foot",     modifier = Modifier.weight(1f),   style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("Vehicle",  modifier = Modifier.weight(1f),   style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("Air",      modifier = Modifier.weight(1f),   style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text("Water",    modifier = Modifier.weight(1f),   style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
+            motionPrefixRows.forEachIndexed { i, row ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)
+                ) {
+                    Text(row.prefix,  modifier = Modifier.weight(0.9f), style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary)
+                    Text(row.meaning, modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.foot,    modifier = Modifier.weight(1f),   style = MaterialTheme.typography.bodySmall)
+                    Text(row.vehicle, modifier = Modifier.weight(1f),   style = MaterialTheme.typography.bodySmall)
+                    Text(row.air,     modifier = Modifier.weight(1f),   style = MaterialTheme.typography.bodySmall)
+                    Text(row.water,   modifier = Modifier.weight(1f),   style = MaterialTheme.typography.bodySmall)
+                }
+                if (i < motionPrefixRows.lastIndex) {
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GeneralPrefixesCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Many Russian prefixes consistently change verb meaning across different roots. " +
+                        "They often create aspectual (perfective) pairs and alter the direction or scope of the action.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            generalPrefixEntries.forEachIndexed { i, entry ->
+                if (i > 0) Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = "${entry.prefix}  —  ${entry.meaning}",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                entry.examples.forEach { example ->
+                    Text(
+                        text = "• $example",
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(start = 8.dp, bottom = 1.dp)
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Note: prefix meaning depends on the root verb. For example, вы- means \"off\" with включить/выключить " +
+                        "but \"exit\" with войти/выйти.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -432,6 +650,13 @@ fun VerbsScreen(onBack: () -> Unit) {
 
             item { SectionHeader("Verbs of Motion") }
             item { MotionVerbsCard() }
+            item { WaterAirMotionCard() }
+
+            item { SectionHeader("Motion Verb Prefixes") }
+            item { MotionPrefixesCard() }
+
+            item { SectionHeader("Verb Prefixes (General)") }
+            item { GeneralPrefixesCard() }
         }
     }
 }

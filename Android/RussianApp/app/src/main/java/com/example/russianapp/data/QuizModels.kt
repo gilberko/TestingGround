@@ -103,6 +103,13 @@ data class QuizQuestion(
     val choices: List<String>
 )
 
+// ── Vocabulary data ───────────────────────────────────────────────────────────
+
+data class VocabularyEntry(val id: String, val english: String, val russian: String)
+data class VocabularyQuizFile(val vocabulary: List<VocabularyEntry>)
+
+// ── Shared quiz state ─────────────────────────────────────────────────────────
+
 data class QuizState(
     val questions: List<QuizQuestion> = emptyList(),
     val currentIndex: Int = 0,
