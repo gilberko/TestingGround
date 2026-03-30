@@ -14,7 +14,6 @@ import com.example.app2.screens.PrepQuizScreen
 import com.example.app2.screens.PrepResultsScreen
 import com.example.app2.screens.QuizScreen
 import com.example.app2.screens.ResultsScreen
-import com.example.app2.screens.SplashScreen
 import com.example.app2.screens.ConjugationAdvancedScreen
 import com.example.app2.screens.ConjugationBasicScreen
 import com.example.app2.screens.CommonVerbsScreen
@@ -42,7 +41,6 @@ import com.example.app2.screens.VocabResultsScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
-    object Splash : Screen("splash")
     object Home : Screen("home")
     object Config : Screen("config")
     object Quiz : Screen("quiz")
@@ -82,14 +80,7 @@ fun AppNavGraph(navController: NavHostController) {
     // Created outside NavHost so it is scoped to the Activity, shared across all screens
     val configViewModel: ConfigViewModel = viewModel()
 
-    NavHost(navController = navController, startDestination = Screen.Splash.route) {
-        composable(Screen.Splash.route) {
-            SplashScreen {
-                navController.navigate(Screen.Home.route) {
-                    popUpTo(Screen.Splash.route) { inclusive = true }
-                }
-            }
-        }
+    NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
             HomeScreen(
                 onStartQuiz = { navController.navigate(Screen.Quiz.route) },

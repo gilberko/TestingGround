@@ -35,7 +35,11 @@
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
       "Read(//c/Program Files/Android/Android Studio/**)",
       "Bash(grep -i \"\\\\.kt$\")",
-      "Bash(find C:CodeTestingGroundAndroidApp2 -name *.json -path */assets/*)"
+      "Bash(find C:CodeTestingGroundAndroidApp2 -name *.json -path */assets/*)",
+      "Bash(grep -E \"\\\\.\\(java|kt|xml\\)$\")",
+      "Read(//c/Code/Resources//**)",
+      "Read(//c/Code/resources//**)",
+      "Read(//c/Code/Resources/**)"
     ]
   }
 }
