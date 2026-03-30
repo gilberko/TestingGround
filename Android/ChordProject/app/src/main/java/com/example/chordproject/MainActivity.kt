@@ -243,6 +243,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var fingeringIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
     var showVerboseInfo by remember { mutableStateOf(false) }
+    var showTutorials   by remember { mutableStateOf(false) }
     val isAnyMidiPlaying = appState == AppState.PLAYING_MIDI || appState == AppState.PLAYING_SIMPLIFIED_MIDI
     var detectTempo by remember { mutableStateOf(false) }
     var tempoResult by remember { mutableStateOf<TempoResult?>(null) }
@@ -652,6 +653,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) { Text("Verbose Info") }
         }
 
+        // ── Row 4: Tutorials ─────────────────────────────────────────────────
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = { showTutorials = true }) { Text("Tutorials") }
+
         if (permissionDenied) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -793,6 +798,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
         if (showVerboseInfo) {
             VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
+        }
+
+        if (showTutorials) {
+            TutorialsScreen(onDismiss = { showTutorials = false })
         }
 
         if (showSettings) {
