@@ -17,10 +17,10 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -1004,6 +1004,7 @@ private fun ChordEditDialog(
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ChordFingeringDialog(
     chordName: String,
@@ -1052,12 +1053,12 @@ private fun ChordFingeringDialog(
                         )
                     }
                 } else {
-                    Row(
+                    FlowRow(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
-                            .horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(24.dp)
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         voicings.forEach { voicing ->
                             ChordDiagram(voicing = voicing)
@@ -1078,6 +1079,16 @@ private fun ChordFingeringDialog(
 @Composable
 private fun ChordDiagram(voicing: ChordVoicing) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        if (voicing.baseFret > 1) {
+            Text(
+                "${voicing.baseFret}fr",
+                color = Color(0xFFCCCCCC),
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+        } else {
+            Spacer(modifier = Modifier.height(16.dp))
+        }
         Canvas(
             modifier = Modifier
                 .width(140.dp)
@@ -1103,23 +1114,10 @@ private fun ChordDiagram(voicing: ChordVoicing) {
             val dotColor    = Color(0xFF66BB6A)
             val markerColor = Color(0xFFCCCCCC)
 
-            // Nut or fret number label
+            // Nut or top fret line
             if (voicing.baseFret == 1) {
                 drawLine(lineColor, Offset(gridL, gridT), Offset(gridR, gridT), strokeWidth = 5f)
             } else {
-                drawIntoCanvas { canvas ->
-                    val paint = android.graphics.Paint().apply {
-                        color = markerColor.toArgb()
-                        textSize = 28f
-                        isAntiAlias = true
-                    }
-                    canvas.nativeCanvas.drawText(
-                        "${voicing.baseFret}fr",
-                        gridR + 4f,
-                        gridT + fGap * 0.65f,
-                        paint
-                    )
-                }
                 drawLine(lineColor, Offset(gridL, gridT), Offset(gridR, gridT), strokeWidth = 1f)
             }
 
