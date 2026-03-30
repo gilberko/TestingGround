@@ -17,6 +17,8 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,6 +67,9 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -235,6 +240,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var simplifiedResults by remember { mutableStateOf<List<AggregatedFrameResult>?>(null) }
     var editedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
     var editingIndex by remember { mutableStateOf(-1) }
+    var fingeringIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
     var showVerboseInfo by remember { mutableStateOf(false) }
     val isAnyMidiPlaying = appState == AppState.PLAYING_MIDI || appState == AppState.PLAYING_SIMPLIFIED_MIDI
@@ -735,7 +741,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) {
                 items(displayResults.size) { index ->
                     val seg      = displayResults[index]
-                    val hasChord = seg.chord != "(no chord)"
+                    val hasChord = seg.chord != "(no chord)" && seg.chord != "(silence)"
                     val isCurrent = index == currentFrameIndex
                     val isEdited = editedResults.getOrNull(index) != aggregatedResults.getOrNull(index)
                     Row(
@@ -748,9 +754,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                     else      -> Color(0xFF424242).copy(alpha = 0.10f)
                                 }
                             )
-                            .clickable(enabled = !isAnyMidiPlaying) {
-                                editingIndex = index
-                            }
                             .padding(horizontal = 16.dp, vertical = 3.dp)
                     ) {
                         Text(
@@ -767,12 +770,20 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                                 else                 -> Color.Gray
                             },
                             fontStyle = if (isEdited) FontStyle.Italic else FontStyle.Normal,
-                            modifier  = Modifier.weight(2f)
+                            modifier  = Modifier
+                                .weight(2f)
+                                .clickable(enabled = !isAnyMidiPlaying && hasChord) {
+                                    fingeringIndex = index
+                                }
                         )
                         Text(
                             formatNotes(seg.notes),
                             style    = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.weight(2f)
+                            modifier = Modifier
+                                .weight(2f)
+                                .clickable(enabled = !isAnyMidiPlaying) {
+                                    editingIndex = index
+                                }
                         )
                     }
                     HorizontalDivider(thickness = 0.5.dp, color = Color(0xFF424242))
@@ -809,6 +820,18 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 },
                 onDismiss = { editingIndex = -1 }
             )
+        }
+
+        if (fingeringIndex >= 0) {
+            val fingeringSeg = (simplifiedResults ?: editedResults).getOrNull(fingeringIndex)
+            if (fingeringSeg != null) {
+                ChordFingeringDialog(
+                    chordName = fingeringSeg.chord,
+                    onDismiss = { fingeringIndex = -1 }
+                )
+            } else {
+                fingeringIndex = -1
+            }
         }
     }
 }
@@ -979,6 +1002,195 @@ private fun ChordEditDialog(
             TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
+}
+
+@Composable
+private fun ChordFingeringDialog(
+    chordName: String,
+    onDismiss: () -> Unit
+) {
+    val parts    = chordName.trim().split(" ", limit = 2)
+    val root     = parts.getOrElse(0) { "" }
+    val type     = parts.getOrElse(1) { "" }
+    val voicings = remember(chordName) { getVoicings(root, type) }
+
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF121212))
+        ) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFF1F1F1F))
+                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        "$chordName — Fingering",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    TextButton(onClick = onDismiss) { Text("Close") }
+                }
+
+                if (voicings.isEmpty()) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            "No voicings available for \"$chordName\"",
+                            color = Color.Gray,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                } else {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                            .horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(24.dp)
+                    ) {
+                        voicings.forEach { voicing ->
+                            ChordDiagram(voicing = voicing)
+                        }
+                    }
+                    Text(
+                        "Tap chord name for fingering  •  Tap notes to edit",
+                        color  = Color.Gray,
+                        style  = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ChordDiagram(voicing: ChordVoicing) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Canvas(
+            modifier = Modifier
+                .width(140.dp)
+                .height(200.dp)
+        ) {
+            val w = size.width
+            val h = size.height
+
+            val topPad   = 30f
+            val botPad   = 24f
+            val leftPad  = 24f
+            val rightPad = 32f
+
+            val gridL = leftPad
+            val gridR = w - rightPad
+            val gridT = topPad
+            val gridB = h - botPad
+
+            val sGap = (gridR - gridL) / 5f
+            val fGap = (gridB - gridT) / 5f
+
+            val lineColor   = Color(0xFFAAAAAA)
+            val dotColor    = Color(0xFF66BB6A)
+            val markerColor = Color(0xFFCCCCCC)
+
+            // Nut or fret number label
+            if (voicing.baseFret == 1) {
+                drawLine(lineColor, Offset(gridL, gridT), Offset(gridR, gridT), strokeWidth = 5f)
+            } else {
+                drawIntoCanvas { canvas ->
+                    val paint = android.graphics.Paint().apply {
+                        color = markerColor.toArgb()
+                        textSize = 28f
+                        isAntiAlias = true
+                    }
+                    canvas.nativeCanvas.drawText(
+                        "${voicing.baseFret}fr",
+                        gridR + 4f,
+                        gridT + fGap * 0.65f,
+                        paint
+                    )
+                }
+                drawLine(lineColor, Offset(gridL, gridT), Offset(gridR, gridT), strokeWidth = 1f)
+            }
+
+            // Fret lines (rows 1–5 below nut)
+            for (row in 1..5) {
+                val y = gridT + row * fGap
+                drawLine(lineColor, Offset(gridL, y), Offset(gridR, y), strokeWidth = 1f)
+            }
+
+            // String lines
+            for (s in 0..5) {
+                val x = gridL + s * sGap
+                drawLine(lineColor, Offset(x, gridT), Offset(x, gridB), strokeWidth = 1f)
+            }
+
+            // Dots, X, O markers
+            for (s in 0..5) {
+                val f  = voicing.frets[s]
+                val sx = gridL + s * sGap
+                when {
+                    f == -1 -> {
+                        drawIntoCanvas { canvas ->
+                            val p = android.graphics.Paint().apply {
+                                color = markerColor.toArgb()
+                                textSize = 26f
+                                isAntiAlias = true
+                                textAlign = android.graphics.Paint.Align.CENTER
+                            }
+                            canvas.nativeCanvas.drawText("x", sx, gridT - 8f, p)
+                        }
+                    }
+                    f == 0 -> {
+                        drawCircle(
+                            color  = markerColor,
+                            radius = sGap * 0.28f,
+                            center = Offset(sx, gridT - sGap * 0.45f),
+                            style  = Stroke(width = 2f)
+                        )
+                    }
+                    else -> {
+                        val row = f - voicing.baseFret + 1
+                        if (row in 1..5) {
+                            val dotCy = gridT + (row - 0.5f) * fGap
+                            drawCircle(dotColor, radius = sGap * 0.35f, center = Offset(sx, dotCy))
+                        }
+                    }
+                }
+            }
+
+            // String name labels below grid
+            val stringNames = listOf("E", "A", "D", "G", "B", "e")
+            drawIntoCanvas { canvas ->
+                val p = android.graphics.Paint().apply {
+                    color = markerColor.toArgb()
+                    textSize = 22f
+                    isAntiAlias = true
+                    textAlign = android.graphics.Paint.Align.CENTER
+                }
+                stringNames.forEachIndexed { s, name ->
+                    canvas.nativeCanvas.drawText(name, gridL + s * sGap, gridB + 18f, p)
+                }
+            }
+        }
+
+        Text(
+            voicing.label,
+            color = Color(0xFF90CAF9),
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+    }
 }
 
 @Composable
