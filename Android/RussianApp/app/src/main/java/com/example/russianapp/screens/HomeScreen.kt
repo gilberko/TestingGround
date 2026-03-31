@@ -78,8 +78,8 @@ fun HomeScreen(
             ) {
                 Column(
                     modifier = Modifier
-                        .align(Alignment.Center)
-                        .padding(horizontal = 32.dp),
+                        .align(Alignment.BottomCenter)
+                        .padding(start = 32.dp, end = 32.dp, bottom = 48.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
@@ -106,6 +106,28 @@ fun HomeScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
+                        onClick = onOpenVocabEngToRus,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Vocabulary Quiz: Eng → Rus")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = onOpenVocabRusToEng,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Vocabulary Quiz: Rus → Eng")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
                         onClick = onOpenTutorial,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
@@ -113,7 +135,7 @@ fun HomeScreen(
                             contentColor = Color.White
                         )
                     ) {
-                        Text("Learn The Language")
+                        Text("Learning The Language")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
@@ -125,28 +147,6 @@ fun HomeScreen(
                         )
                     ) {
                         Text("Simple Dictionary")
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
-                        onClick = onOpenVocabEngToRus,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
-                    ) {
-                        Text("Vocabulary: Eng → Rus")
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
-                        onClick = onOpenVocabRusToEng,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        )
-                    ) {
-                        Text("Vocabulary: Rus → Eng")
                     }
                 }
                 Text(

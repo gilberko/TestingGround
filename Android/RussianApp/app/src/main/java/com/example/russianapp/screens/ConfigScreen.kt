@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.russianapp.viewmodel.ConfigViewModel
+import com.example.russianapp.viewmodel.QuizMode
 
 private val QUESTION_COUNT_OPTIONS = listOf(5, 10, 15, 20)
 
@@ -31,6 +32,7 @@ private val QUESTION_COUNT_OPTIONS = listOf(5, 10, 15, 20)
 @Composable
 fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     val numQuestions by configViewModel.numQuestions.collectAsState()
+    val quizMode by configViewModel.quizMode.collectAsState()
 
     Scaffold(
         topBar = {
@@ -72,6 +74,42 @@ fun ConfigScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
+            }
+            Text(
+                text = "Answer Mode",
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
+            )
+            HorizontalDivider()
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = quizMode == QuizMode.MULTIPLE_CHOICE,
+                    onClick = { configViewModel.setQuizMode(QuizMode.MULTIPLE_CHOICE) }
+                )
+                Text(
+                    text = "Multiple Choice",
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                RadioButton(
+                    selected = quizMode == QuizMode.FREE_TEXT,
+                    onClick = { configViewModel.setQuizMode(QuizMode.FREE_TEXT) }
+                )
+                Text(
+                    text = "Free Text",
+                    modifier = Modifier.padding(start = 8.dp)
+                )
             }
         }
     }

@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -44,6 +45,7 @@ import com.example.russianapp.data.VerbQuizEntry
 import com.example.russianapp.data.VerbsQuizFile
 import com.example.russianapp.data.allForms
 import com.example.russianapp.viewmodel.ConfigViewModel
+import com.example.russianapp.viewmodel.QuizMode
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -89,6 +91,7 @@ private fun buildVerbQuestions(
 fun VerbQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     val context = LocalContext.current
     val numQuestions by configViewModel.numQuestions.collectAsState()
+    val quizMode by configViewModel.quizMode.collectAsState()
 
     val rawJson by produceState<String?>(initialValue = null) {
         value = withContext(Dispatchers.IO) {
@@ -98,6 +101,7 @@ fun VerbQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     }
 
     var quizState by remember { mutableStateOf(QuizState()) }
+    var textInput by remember(quizState.currentIndex) { mutableStateOf("") }
 
     if (rawJson != null && quizState.questions.isEmpty()) {
         val file = Gson().fromJson(rawJson, VerbsQuizFile::class.java)
@@ -184,38 +188,80 @@ fun VerbQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                                     modifier = Modifier.fillMaxWidth()
                                 )
                             }
-                            items(question.choices.size) { i ->
-                                val choice = question.choices[i]
-                                val answered = quizState.isAnswered
-                                val isCorrect = choice == question.correctAnswer
-                                val isSelected = choice == quizState.selectedAnswer
-                                val containerColor = when {
-                                    !answered -> MaterialTheme.colorScheme.surface
-                                    isCorrect -> Color(0xFF4CAF50)
-                                    isSelected -> Color(0xFFF44336)
-                                    else -> MaterialTheme.colorScheme.surface
-                                }
-                                val contentColor = when {
-                                    answered && (isCorrect || isSelected) -> Color.White
-                                    else -> MaterialTheme.colorScheme.onSurface
-                                }
-                                OutlinedButton(
-                                    onClick = {
-                                        if (!answered) {
-                                            val newScore = if (isCorrect) quizState.score + 1 else quizState.score
-                                            quizState = quizState.copy(
-                                                selectedAnswer = choice,
-                                                score = newScore
-                                            )
-                                        }
-                                    },
-                                    modifier = Modifier.fillMaxWidth(),
-                                    colors = ButtonDefaults.outlinedButtonColors(
-                                        containerColor = containerColor,
-                                        contentColor = contentColor
+                            if (quizMode == QuizMode.FREE_TEXT) {
+                                item {
+                                    val answered = quizState.isAnswered
+                                    OutlinedTextField(
+                                        value = textInput,
+                                        onValueChange = { if (!answered) textInput = it },
+                                        label = { Text("Your answer") },
+                                        modifier = Modifier.fillMaxWidth(),
+                                        enabled = !answered
                                     )
-                                ) {
-                                    Text(choice, style = MaterialTheme.typography.bodyLarge)
+                                }
+                                item {
+                                    val answered = quizState.isAnswered
+                                    Button(
+                                        onClick = {
+                                            if (!answered && textInput.isNotBlank()) {
+                                                val isCorrect = textInput.trim().equals(question.correctAnswer, ignoreCase = true)
+                                                val newScore = if (isCorrect) quizState.score + 1 else quizState.score
+                                                quizState = quizState.copy(selectedAnswer = textInput.trim(), score = newScore)
+                                            }
+                                        },
+                                        enabled = !answered && textInput.isNotBlank(),
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text("Submit")
+                                    }
+                                }
+                                if (quizState.isAnswered) {
+                                    item {
+                                        val isCorrect = quizState.selectedAnswer?.trim()?.equals(question.correctAnswer, ignoreCase = true) == true
+                                        Text(
+                                            text = if (isCorrect) "Correct!" else "Wrong! Answer: ${question.correctAnswer}",
+                                            color = if (isCorrect) Color(0xFF4CAF50) else Color(0xFFF44336),
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.Bold,
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier.fillMaxWidth()
+                                        )
+                                    }
+                                }
+                            } else {
+                                items(question.choices.size) { i ->
+                                    val choice = question.choices[i]
+                                    val answered = quizState.isAnswered
+                                    val isCorrect = choice == question.correctAnswer
+                                    val isSelected = choice == quizState.selectedAnswer
+                                    val containerColor = when {
+                                        !answered -> MaterialTheme.colorScheme.surface
+                                        isCorrect -> Color(0xFF4CAF50)
+                                        isSelected -> Color(0xFFF44336)
+                                        else -> MaterialTheme.colorScheme.surface
+                                    }
+                                    val contentColor = when {
+                                        answered && (isCorrect || isSelected) -> Color.White
+                                        else -> MaterialTheme.colorScheme.onSurface
+                                    }
+                                    OutlinedButton(
+                                        onClick = {
+                                            if (!answered) {
+                                                val newScore = if (isCorrect) quizState.score + 1 else quizState.score
+                                                quizState = quizState.copy(
+                                                    selectedAnswer = choice,
+                                                    score = newScore
+                                                )
+                                            }
+                                        },
+                                        modifier = Modifier.fillMaxWidth(),
+                                        colors = ButtonDefaults.outlinedButtonColors(
+                                            containerColor = containerColor,
+                                            contentColor = contentColor
+                                        )
+                                    ) {
+                                        Text(choice, style = MaterialTheme.typography.bodyLarge)
+                                    }
                                 }
                             }
                             if (quizState.isAnswered) {
