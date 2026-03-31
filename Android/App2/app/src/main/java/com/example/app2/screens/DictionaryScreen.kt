@@ -92,18 +92,6 @@ fun DictionaryScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Simple Dictionary",
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Dicionário Simples",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
                 Spacer(modifier = Modifier.height(24.dp))
                 ButtonGrid(buttons)
             }

@@ -100,18 +100,6 @@ fun TutorialScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Learning The Language",
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Guia de Português Europeu",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
                 Spacer(modifier = Modifier.height(24.dp))
                 ButtonGrid(buttons)
             }
