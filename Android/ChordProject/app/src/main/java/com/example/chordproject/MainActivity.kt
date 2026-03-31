@@ -34,7 +34,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.ui.layout.ContentScale
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.material3.AlertDialog
 import androidx.compose.ui.window.Dialog
@@ -92,6 +95,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING, PLAYING_MIDI, PLAYING_SIMPLIFIED_MIDI }
+enum class Screen { HOME, RECORDING, LEARNING }
 
 private const val HISTORY_SIZE  = 80
 private const val WAVEFORM_SIZE = 512
@@ -120,6 +124,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ChordProjectTheme {
                 var showSplash by remember { mutableStateOf(true) }
+                var currentScreen by remember { mutableStateOf(Screen.HOME) }
                 LaunchedEffect(Unit) {
                     kotlinx.coroutines.delay(2000)
                     showSplash = false
@@ -127,8 +132,18 @@ class MainActivity : ComponentActivity() {
                 if (showSplash) {
                     SplashScreen()
                 } else {
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        AudioRecorderScreen(modifier = Modifier.padding(innerPadding))
+                    when (currentScreen) {
+                        Screen.HOME -> HomeScreen(
+                            onNavigateToRecording = { currentScreen = Screen.RECORDING },
+                            onNavigateToLearning  = { currentScreen = Screen.LEARNING }
+                        )
+                        Screen.RECORDING -> Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                            AudioRecorderScreen(
+                                modifier = Modifier.padding(innerPadding),
+                                onBack   = { currentScreen = Screen.HOME }
+                            )
+                        }
+                        Screen.LEARNING -> TutorialsScreen(onDismiss = { currentScreen = Screen.HOME })
                     }
                 }
             }
@@ -188,17 +203,17 @@ fun SplashScreen() {
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                "CHORD",
-                fontSize = 52.sp,
+                "ROCKIN'",
+                fontSize = 44.sp,
                 fontWeight = FontWeight.ExtraBold,
-                letterSpacing = 8.sp,
+                letterSpacing = 6.sp,
                 color = Color(0xFFE53935)
             )
             Text(
-                "ANALYZER",
-                fontSize = 36.sp,
+                "GUITAR TOOLS",
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 12.sp,
+                letterSpacing = 8.sp,
                 color = Color(0xFFFFFFFF)
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -218,7 +233,43 @@ fun SplashScreen() {
 }
 
 @Composable
-fun AudioRecorderScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    onNavigateToRecording: () -> Unit,
+    onNavigateToLearning:  () -> Unit
+) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter            = painterResource(R.drawable.guitar_background),
+            contentDescription = null,
+            modifier           = Modifier.fillMaxSize(),
+            contentScale       = ContentScale.Crop
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 24.dp, vertical = 48.dp),
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(
+                onClick  = onNavigateToRecording,
+                modifier = Modifier.fillMaxWidth().height(56.dp),
+                colors   = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White),
+                shape    = RoundedCornerShape(8.dp)
+            ) { Text("Record And Analyze", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick  = onNavigateToLearning,
+                modifier = Modifier.fillMaxWidth().height(56.dp),
+                colors   = ButtonDefaults.buttonColors(containerColor = Color.Black, contentColor = Color.White),
+                shape    = RoundedCornerShape(8.dp)
+            ) { Text("Learning", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
+        }
+    }
+}
+
+@Composable
+fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) {
     val context    = LocalContext.current
     val outputFile = remember { File(context.cacheDir, "recording.wav") }
     val scope      = rememberCoroutineScope()
@@ -243,7 +294,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
     var fingeringIndex by remember { mutableStateOf(-1) }
     var midiJob by remember { mutableStateOf<Job?>(null) }
     var showVerboseInfo by remember { mutableStateOf(false) }
-    var showTutorials   by remember { mutableStateOf(false) }
     val isAnyMidiPlaying = appState == AppState.PLAYING_MIDI || appState == AppState.PLAYING_SIMPLIFIED_MIDI
     var detectTempo by remember { mutableStateOf(false) }
     var tempoResult by remember { mutableStateOf<TempoResult?>(null) }
@@ -370,9 +420,15 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp, vertical = 4.dp)
         ) {
+            IconButton(
+                onClick = onBack,
+                modifier = Modifier.align(Alignment.CenterStart)
+            ) {
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color(0xFF888888))
+            }
             Text(
                 "v1.0",
-                modifier = Modifier.align(Alignment.CenterStart).padding(start = 4.dp),
+                modifier = Modifier.align(Alignment.Center),
                 style = MaterialTheme.typography.labelSmall,
                 color = Color(0xFF888888)
             )
@@ -653,10 +709,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
             ) { Text("Verbose Info") }
         }
 
-        // ── Row 4: Tutorials ─────────────────────────────────────────────────
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = { showTutorials = true }) { Text("Tutorials") }
-
         if (permissionDenied) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -798,10 +850,6 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier) {
 
         if (showVerboseInfo) {
             VerboseInfoDialog(aggregatedResults) { showVerboseInfo = false }
-        }
-
-        if (showTutorials) {
-            TutorialsScreen(onDismiss = { showTutorials = false })
         }
 
         if (showSettings) {

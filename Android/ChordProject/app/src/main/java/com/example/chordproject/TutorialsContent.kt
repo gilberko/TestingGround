@@ -39,8 +39,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
+import androidx.activity.compose.BackHandler
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
@@ -773,47 +772,44 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
         "cycle"     -> "Cycle of Fifths"
         "improv"    -> "Improvisation"
         "arpeggios" -> "Arpeggios"
-        else        -> "Tutorials"
+        else        -> "Learning"
     }
 
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(usePlatformDefaultWidth = false)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFF121212))
-        ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                // Header
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color(0xFF1F1F1F))
-                        .padding(horizontal = 16.dp, vertical = 10.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    if (selectedTopic != null) {
-                        TextButton(onClick = { selectedTopic = null }) { Text("← Back") }
-                    }
-                    Text(
-                        title,
-                        style  = MaterialTheme.typography.titleMedium,
-                        color  = Color.White,
-                        modifier = Modifier.weight(1f).padding(start = if (selectedTopic != null) 4.dp else 0.dp)
-                    )
-                    TextButton(onClick = onDismiss) { Text("Close") }
-                }
+    BackHandler { onDismiss() }
 
-                // Body
-                when (selectedTopic) {
-                    "scales"    -> ScalesContent()
-                    "cycle"     -> CycleContent()
-                    "improv"    -> ImprovisationContent()
-                    "arpeggios" -> ArpeggiosContent()
-                    else        -> TutorialsHub(onSelect = { selectedTopic = it })
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF121212))
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            // Header
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFF1F1F1F))
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (selectedTopic != null) {
+                    TextButton(onClick = { selectedTopic = null }) { Text("← Back") }
                 }
+                Text(
+                    title,
+                    style  = MaterialTheme.typography.titleMedium,
+                    color  = Color.White,
+                    modifier = Modifier.weight(1f).padding(start = if (selectedTopic != null) 4.dp else 0.dp)
+                )
+                TextButton(onClick = onDismiss) { Text("Back") }
+            }
+
+            // Body
+            when (selectedTopic) {
+                "scales"    -> ScalesContent()
+                "cycle"     -> CycleContent()
+                "improv"    -> ImprovisationContent()
+                "arpeggios" -> ArpeggiosContent()
+                else        -> TutorialsHub(onSelect = { selectedTopic = it })
             }
         }
     }
