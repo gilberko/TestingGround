@@ -1,0 +1,183 @@
+package com.example.app2.screens
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+
+private data class TechEntry(val pt: String, val en: String, val note: String = "")
+
+private val generalTechWords = listOf(
+    TechEntry("o código", "code", "standard Portuguese word"),
+    TechEntry("o software", "software", "English word used as-is"),
+    TechEntry("o hardware", "hardware", "English word used as-is"),
+    TechEntry("compilar", "to compile"),
+    TechEntry("a compilação", "compilation"),
+    TechEntry("programar", "to program / to code"),
+    TechEntry("o/a programador/a", "programmer / developer"),
+    TechEntry("depurar / fazer debug", "to debug", "\"fazer debug\" is more common"),
+    TechEntry("corrigir / arranjar", "to fix", "\"arranjar\" more colloquial"),
+    TechEntry("um erro", "an error"),
+    TechEntry("um bug", "a bug", "English word used universally"),
+    TechEntry("testar", "to test"),
+    TechEntry("implementar", "to implement"),
+    TechEntry("o servidor", "the server"),
+    TechEntry("a base de dados", "the database"),
+    TechEntry("a aplicação / a app", "the application / app", "\"app\" universally used"),
+    TechEntry("o sistema", "the system"),
+    TechEntry("a rede", "the network"),
+    TechEntry("fazer deploy", "to deploy", "English term used as-is in tech"),
+    TechEntry("a funcionalidade", "the feature"),
+    TechEntry("o utilizador", "the user"),
+    TechEntry("a interface", "the interface")
+)
+
+private val workWords = listOf(
+    TechEntry("a reunião", "the meeting"),
+    TechEntry("a estimativa", "the estimate"),
+    TechEntry("o prazo", "the deadline"),
+    TechEntry("o atraso", "the delay"),
+    TechEntry("o projeto", "the project"),
+    TechEntry("a tarefa", "the task"),
+    TechEntry("o requisito", "the requirement"),
+    TechEntry("a sprint", "the sprint", "English word used in Agile"),
+    TechEntry("o backlog", "the backlog", "English word used as-is"),
+    TechEntry("o relatório", "the report"),
+    TechEntry("a entrega", "the delivery / release"),
+    TechEntry("a revisão", "the review / revision")
+)
+
+private val englishBorrowings = listOf(
+    "software", "hardware", "bug", "debug", "deploy", "sprint", "backlog",
+    "commit", "pull request", "merge", "branch", "pipeline", "framework",
+    "API", "cloud", "DevOps", "agile", "scrum", "release", "feature"
+)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TechWordsScreen(onBack: () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Tech Vocabulary") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            item { TechWordCard("General Tech Words", generalTechWords) }
+            item { TechWordCard("Work & Meetings", workWords) }
+            item { EnglishBorrowingsCard() }
+        }
+    }
+}
+
+@Composable
+private fun TechWordCard(title: String, entries: List<TechEntry>) {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
+
+            // Header row
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    "Portuguese",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(1.1f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    "English",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(0.9f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            entries.forEach { entry ->
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.weight(1.1f)) {
+                        Text(entry.pt, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.SemiBold)
+                        if (entry.note.isNotEmpty()) {
+                            Text(
+                                entry.note,
+                                style = MaterialTheme.typography.labelSmall,
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
+                    }
+                    Text(
+                        entry.en,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.weight(0.9f),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EnglishBorrowingsCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                "When English is Used Directly",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                "In Portuguese tech environments, many English terms are used directly without translation — even in formal speech and writing. When in doubt, the English term is usually understood and accepted.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
+            Text(
+                englishBorrowings.joinToString(" \u2022 "),
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}

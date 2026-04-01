@@ -38,6 +38,9 @@ import com.example.app2.screens.QuestionsScreen
 import com.example.app2.screens.UsefulVerbsScreen
 import com.example.app2.screens.VocabQuizScreen
 import com.example.app2.screens.VocabResultsScreen
+import com.example.app2.screens.SomeNoneAllScreen
+import com.example.app2.screens.ConfusingVerbsScreen
+import com.example.app2.screens.TechWordsScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -69,6 +72,9 @@ sealed class Screen(val route: String) {
     object TutorialTenses : Screen("tutorial_tenses")
     object TutorialComparisons : Screen("tutorial_comparisons")
     object TutorialQuestions : Screen("tutorial_questions")
+    object DictSomeNoneAll : Screen("dict_some_none_all")
+    object DictConfusingVerbs : Screen("dict_confusing_verbs")
+    object DictTechWords : Screen("dict_tech_words")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -152,7 +158,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
                 onAdverbs = { navController.navigate(Screen.DictAdverbs.route) },
                 onCommonWords = { navController.navigate(Screen.DictCommonWords.route) },
-                onMovement = { navController.navigate(Screen.DictMovement.route) }
+                onMovement = { navController.navigate(Screen.DictMovement.route) },
+                onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
+                onConfusingVerbs = { navController.navigate(Screen.DictConfusingVerbs.route) },
+                onTechWords = { navController.navigate(Screen.DictTechWords.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -169,6 +178,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictMovement.route) {
             MovementScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictSomeNoneAll.route) {
+            SomeNoneAllScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictConfusingVerbs.route) {
+            ConfusingVerbsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictTechWords.route) {
+            TechWordsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })

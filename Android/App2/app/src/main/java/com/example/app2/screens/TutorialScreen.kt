@@ -98,9 +98,9 @@ fun TutorialScreen(
                     .padding(innerPadding)
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(80.dp))
                 ButtonGrid(buttons)
             }
         }
