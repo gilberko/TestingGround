@@ -29,6 +29,7 @@ import com.example.russianapp.screens.TutorialScreen
 import com.example.russianapp.screens.VerbConjugationScreen
 import com.example.russianapp.screens.AdjectiveQuizScreen
 import com.example.russianapp.screens.ParticipleScreen
+import com.example.russianapp.screens.TypesOfAnyScreen
 import com.example.russianapp.screens.VerbQuizScreen
 import com.example.russianapp.screens.VerbsScreen
 import com.example.russianapp.screens.VocabularyEngToRusScreen
@@ -50,6 +51,7 @@ sealed class Screen(val route: String) {
     object Negation               : Screen("negation")
     object Conditionals           : Screen("conditionals")
     object Participles            : Screen("participles")
+    object TypesOfAny             : Screen("types_of_any")
     object DictVerbs              : Screen("dict_verbs")
     object DictColors             : Screen("dict_colors")
     object DictNumbers            : Screen("dict_numbers")
@@ -94,7 +96,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPrepositions          = { navController.navigate(Screen.Prepositions.route) },
                 onNegation              = { navController.navigate(Screen.Negation.route) },
                 onConditionals          = { navController.navigate(Screen.Conditionals.route) },
-                onParticiples           = { navController.navigate(Screen.Participles.route) }
+                onParticiples           = { navController.navigate(Screen.Participles.route) },
+                onTypesOfAny            = { navController.navigate(Screen.TypesOfAny.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -147,6 +150,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Participles.route) {
             ParticipleScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TypesOfAny.route) {
+            TypesOfAnyScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DictVerbs.route) {
             VerbsScreen(onBack = { navController.popBackStack() })

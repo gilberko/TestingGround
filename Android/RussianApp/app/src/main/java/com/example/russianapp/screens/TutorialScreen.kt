@@ -42,7 +42,8 @@ fun TutorialScreen(
     onPrepositions: () -> Unit,
     onNegation: () -> Unit,
     onConditionals: () -> Unit,
-    onParticiples: () -> Unit
+    onParticiples: () -> Unit,
+    onTypesOfAny: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -83,7 +84,8 @@ fun TutorialScreen(
                     "Prepositions"           to onPrepositions,
                     "Negation"               to onNegation,
                     "Conditionals"           to onConditionals,
-                    "Participles"            to onParticiples
+                    "Participles"            to onParticiples,
+                    "Types Of Any"           to onTypesOfAny
                 )
                 buttons.chunked(2).forEachIndexed { rowIndex, pair ->
                     if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))
