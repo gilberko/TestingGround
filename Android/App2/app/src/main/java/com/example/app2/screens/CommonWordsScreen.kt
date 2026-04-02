@@ -58,7 +58,29 @@ private val wordCategories = listOf(
             WordEntry("tapete", "carpet / rug", "(m)"),
             WordEntry("espelho", "mirror", "(m)"),
             WordEntry("toalha", "towel", "(f)"),
-            WordEntry("almofada", "pillow / cushion", "(f)")
+            WordEntry("almofada", "pillow / cushion", "(f)"),
+            WordEntry("sanita", "toilet", "(f)"),
+            WordEntry("elevador", "elevator / lift", "(m)"),
+            WordEntry("congelador", "freezer", "(m)"),
+            WordEntry("forno", "oven", "(m)"),
+            WordEntry("micro-ondas", "microwave", "(m)"),
+            WordEntry("lençóis", "sheets", "(m pl)"),
+            WordEntry("máquina de lavar (roupa)", "washing machine", "(f)"),
+            WordEntry("máquina de secar (roupa)", "tumble dryer", "(f)"),
+            WordEntry("ar condicionado", "air conditioner", "(m)")
+        )
+    ),
+    WordCategory(
+        "Home — Actions & Phrases",
+        listOf(
+            WordEntry("Abrir a janela", "Open the window"),
+            WordEntry("Fechar a janela", "Close the window"),
+            WordEntry("Abrir a porta", "Open the door"),
+            WordEntry("Trancar a porta", "Lock the door"),
+            WordEntry("Lavar a louça", "Do the dishes"),
+            WordEntry("Limpar o quarto", "Clean the room"),
+            WordEntry("Mudar / trocar os lençóis", "Change the sheets"),
+            WordEntry("O apartamento fica no segundo andar.", "The apartment is on the second floor.")
         )
     ),
     WordCategory(

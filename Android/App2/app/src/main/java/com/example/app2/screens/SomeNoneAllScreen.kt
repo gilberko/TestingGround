@@ -217,6 +217,49 @@ private fun SnaCard() {
                     "Há turistas em todo o lado." to "There are tourists everywhere."
                 )
             )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            // ── Any / Whichever (qualquer) ────────────────────────────────
+            Text("Any / Whichever (qualquer)", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            SnaEntry(
+                term = "qualquer",
+                description = "Any, whichever — used before a singular noun to mean \"any one of\"; stresses free choice, not a specific item",
+                examples = listOf(
+                    "Podes comprar qualquer livro." to "You can buy any book.",
+                    "Qualquer dia destes vou lá." to "One of these days I'll go there.",
+                    "Em qualquer caso, obrigado." to "In any case, thank you."
+                ),
+                note = "Unlike algum (some, a certain one), qualquer emphasises that it doesn't matter which one. In negative sentences use nenhum instead."
+            )
+            SnaEntry(
+                term = "qualquer coisa",
+                description = "Anything, whatever — invariable; also used colloquially to mean \"something\" or \"a thing\"",
+                examples = listOf(
+                    "Diz-me qualquer coisa." to "Tell me anything.",
+                    "Qualquer coisa que aconteça, estou aqui." to "Whatever happens, I'm here.",
+                    "Posso comer qualquer coisa." to "I can eat anything."
+                )
+            )
+            SnaEntry(
+                term = "qualquer um / qualquer uma",
+                description = "Any one (of them), anyone — refers to any individual from a group",
+                examples = listOf(
+                    "Qualquer um pode fazê-lo." to "Anyone can do it.",
+                    "Qualquer uma das opções serve." to "Any one of the options will do.",
+                    "Pergunta a qualquer um." to "Ask anyone."
+                )
+            )
+            SnaEntry(
+                term = "de qualquer maneira / de qualquer forma",
+                description = "Anyway, in any case — used to dismiss alternatives or move past an obstacle",
+                examples = listOf(
+                    "De qualquer maneira, vou tentar." to "Anyway, I'll try.",
+                    "De qualquer forma, já acabou." to "In any case, it's already over.",
+                    "De qualquer maneira obrigado pela ajuda." to "Anyway, thanks for the help."
+                )
+            )
         }
     }
 }

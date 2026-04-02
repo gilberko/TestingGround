@@ -23,8 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
-private data class TimeEntry(val pt: String, val en: String)
-private data class TimeCategory(val title: String, val entries: List<TimeEntry>)
+private data class TimeEntry(val pt: String, val en: String, val note: String = "")
+private data class TimeCategory(val title: String, val entries: List<TimeEntry>, val headerNote: String = "")
 
 private val timeCategories = listOf(
     TimeCategory(
@@ -81,8 +81,23 @@ private val timeCategories = listOf(
             TimeEntry("esta semana", "this week"),
             TimeEntry("este mês", "this month"),
             TimeEntry("este ano", "this year"),
-            TimeEntry("todos os dias", "every day")
+            TimeEntry("todos os dias", "every day"),
+            TimeEntry("semana passada", "last week"),
+            TimeEntry("próxima semana / semana que vem", "next week")
         )
+    ),
+    TimeCategory(
+        "Days of the Week",
+        listOf(
+            TimeEntry("domingo", "Sunday", "From Latin Dominica — Lord's day"),
+            TimeEntry("segunda-feira", "Monday", "From Latin feria secunda — second feast/fair day"),
+            TimeEntry("terça-feira", "Tuesday", "From Latin feria tertia — third fair day"),
+            TimeEntry("quarta-feira", "Wednesday", "From Latin feria quarta — fourth fair day"),
+            TimeEntry("quinta-feira", "Thursday", "From Latin feria quinta — fifth fair day"),
+            TimeEntry("sexta-feira", "Friday", "From Latin feria sexta — sixth fair day"),
+            TimeEntry("sábado", "Saturday", "From Hebrew Shabbat (Sabbath)")
+        ),
+        headerNote = "Portuguese (and Galician) is unique among Romance languages: instead of planet names (French lundi = Moon, mardi = Mars\u2026), weekdays are numbered as feiras (feast/market days). Sunday is domingo (Lord\u2019s day) and the remaining days count up from there."
     ),
     TimeCategory(
         "Months of the Year",
@@ -130,22 +145,39 @@ fun TimeExpressionsScreen(onBack: () -> Unit) {
                             text = category.title,
                             style = MaterialTheme.typography.titleMedium
                         )
+                        if (category.headerNote.isNotEmpty()) {
+                            Text(
+                                text = category.headerNote,
+                                style = MaterialTheme.typography.bodySmall,
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
                         category.entries.forEach { entry ->
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Text(
-                                    text = entry.pt,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontStyle = FontStyle.Italic,
-                                    modifier = Modifier.weight(1f)
-                                )
-                                Text(
-                                    text = entry.en,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
+                            Column(modifier = Modifier.fillMaxWidth()) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Text(
+                                        text = entry.pt,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontStyle = FontStyle.Italic,
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                    Text(
+                                        text = entry.en,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                                if (entry.note.isNotEmpty()) {
+                                    Text(
+                                        text = entry.note,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
                             }
                         }
                     }

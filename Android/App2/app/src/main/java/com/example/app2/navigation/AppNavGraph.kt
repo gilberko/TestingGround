@@ -41,6 +41,8 @@ import com.example.app2.screens.VocabResultsScreen
 import com.example.app2.screens.SomeNoneAllScreen
 import com.example.app2.screens.ConfusingVerbsScreen
 import com.example.app2.screens.TechWordsScreen
+import com.example.app2.screens.GreetingsScreen
+import com.example.app2.screens.MathScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -75,6 +77,8 @@ sealed class Screen(val route: String) {
     object DictSomeNoneAll : Screen("dict_some_none_all")
     object DictConfusingVerbs : Screen("dict_confusing_verbs")
     object DictTechWords : Screen("dict_tech_words")
+    object DictGreetings : Screen("dict_greetings")
+    object DictMath : Screen("dict_math")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -161,7 +165,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onMovement = { navController.navigate(Screen.DictMovement.route) },
                 onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConfusingVerbs = { navController.navigate(Screen.DictConfusingVerbs.route) },
-                onTechWords = { navController.navigate(Screen.DictTechWords.route) }
+                onTechWords = { navController.navigate(Screen.DictTechWords.route) },
+                onGreetings = { navController.navigate(Screen.DictGreetings.route) },
+                onMath = { navController.navigate(Screen.DictMath.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -187,6 +193,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictTechWords.route) {
             TechWordsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictGreetings.route) {
+            GreetingsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictMath.route) {
+            MathScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })
