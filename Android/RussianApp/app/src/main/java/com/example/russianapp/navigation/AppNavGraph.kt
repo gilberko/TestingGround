@@ -28,6 +28,9 @@ import com.example.russianapp.screens.NumbersScreen
 import com.example.russianapp.screens.TutorialScreen
 import com.example.russianapp.screens.VerbConjugationScreen
 import com.example.russianapp.screens.AdjectiveQuizScreen
+import com.example.russianapp.screens.HouseScreen
+import com.example.russianapp.screens.MyselfScreen
+import com.example.russianapp.screens.QuantifiersScreen
 import com.example.russianapp.screens.ParticipleScreen
 import com.example.russianapp.screens.TypesOfAnyScreen
 import com.example.russianapp.screens.VerbQuizScreen
@@ -62,6 +65,9 @@ sealed class Screen(val route: String) {
     object DictPlaces             : Screen("dict_places")
     object DictPeopleAnimals      : Screen("dict_people_animals")
     object DictWork               : Screen("dict_work")
+    object DictHouse              : Screen("dict_house")
+    object DictQuantifiers        : Screen("dict_quantifiers")
+    object Myself                 : Screen("myself")
     object QuizAdjective          : Screen("quiz_adjective")
     object QuizVerb               : Screen("quiz_verb")
     object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
@@ -97,7 +103,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onNegation              = { navController.navigate(Screen.Negation.route) },
                 onConditionals          = { navController.navigate(Screen.Conditionals.route) },
                 onParticiples           = { navController.navigate(Screen.Participles.route) },
-                onTypesOfAny            = { navController.navigate(Screen.TypesOfAny.route) }
+                onTypesOfAny            = { navController.navigate(Screen.TypesOfAny.route) },
+                onMyself                = { navController.navigate(Screen.Myself.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -112,7 +119,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onFood          = { navController.navigate(Screen.DictFood.route) },
                 onPlaces        = { navController.navigate(Screen.DictPlaces.route) },
                 onPeopleAnimals = { navController.navigate(Screen.DictPeopleAnimals.route) },
-                onWork          = { navController.navigate(Screen.DictWork.route) }
+                onWork          = { navController.navigate(Screen.DictWork.route) },
+                onHouse         = { navController.navigate(Screen.DictHouse.route) },
+                onQuantifiers   = { navController.navigate(Screen.DictQuantifiers.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -183,6 +192,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictWork.route) {
             WorkScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictHouse.route) {
+            HouseScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictQuantifiers.route) {
+            QuantifiersScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Myself.route) {
+            MyselfScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.QuizAdjective.route) {
             AdjectiveQuizScreen(

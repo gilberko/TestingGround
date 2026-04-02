@@ -241,6 +241,89 @@ fun TypesOfAnyScreen(onBack: () -> Unit) {
                 }
             }
 
+            // ── кое- prefix ──────────────────────────────────────────────────
+            item { AnySectionHeader("кое- prefix — something specific, withheld") }
+            item {
+                AnyCard(title = "кое- prefix — known to the speaker, hidden from the listener") {
+                    Text(
+                        text = "кое- is a prefix (prepended to the question word, unlike the -то/-нибудь suffixes). " +
+                                "It signals that the speaker has a specific referent in mind but is deliberately not revealing it — " +
+                                "implying suspense, teasing, or secrecy. The speaker knows; the listener doesn't.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Я знаю кое-что интересное.", "I know something interesting. (I know exactly what — just not telling you yet)")
+                    AnyExampleRow("Мне нужно сказать тебе кое-что важное.", "I need to tell you something important. (building anticipation)")
+                    AnyExampleRow("Я купил кое-что для тебя в подарок.", "I bought something for you as a gift. (a surprise I'm keeping secret)")
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Key signal: the speaker knows exactly what it is. The vagueness is intentional — aimed at the listener.",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            item {
+                AnyCard(title = "кое-кто — a certain someone (I know who, but I'm not saying)") {
+                    Text(
+                        text = "The same кое- mechanic applied to кто (who). The speaker has a specific person in mind " +
+                                "but won't name them.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Кое-кто уже знает об этом.", "A certain someone already knows about this.")
+                    AnyExampleRow("Я видел кое-кого вчера.", "I saw a certain someone yesterday.")
+                    AnyExampleRow("Кое-кто обещал помочь.", "A certain someone promised to help.")
+                }
+            }
+
+            item {
+                AnyCard(title = "что-то vs кое-что — a critical distinction") {
+                    // Highlight card
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+                    ) {
+                        Column(modifier = Modifier.padding(12.dp)) {
+                            Text(
+                                text = "что-то vs кое-что:",
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(
+                                text = "Я нашёл что-то на полу.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Text(
+                                text = "I found something on the floor. (I don't know what it is)",
+                                style = MaterialTheme.typography.bodySmall,
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Я знаю кое-что об этом.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Text(
+                                text = "I know something about this. (I know exactly what — I'm just not telling you)",
+                                style = MaterialTheme.typography.bodySmall,
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                    }
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }

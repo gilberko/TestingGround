@@ -3,13 +3,13 @@ package com.example.russianapp.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ButtonDefaults
@@ -43,7 +43,8 @@ fun TutorialScreen(
     onNegation: () -> Unit,
     onConditionals: () -> Unit,
     onParticiples: () -> Unit,
-    onTypesOfAny: () -> Unit
+    onTypesOfAny: () -> Unit,
+    onMyself: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -67,43 +68,50 @@ fun TutorialScreen(
                 )
             }
         ) { innerPadding ->
-            Column(
+            val buttons = listOf(
+                "Alphabet"                  to onAlphabet,
+                "Grammar - Cases"           to onGrammarCases,
+                "Verb Conjugation"          to onVerbConjugation,
+                "Adjective Conjugation"     to onAdjectiveConjugation,
+                "Noun Declension"           to onNounDeclension,
+                "Date & Time"               to onDateTime,
+                "Prepositions"              to onPrepositions,
+                "Negation"                  to onNegation,
+                "Conditionals"              to onConditionals,
+                "Participles"               to onParticiples,
+                "Types Of Any"              to onTypesOfAny,
+                "My, Myself, You, Yourself" to onMyself
+            )
+            val buttonPairs = buttons.chunked(2)
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
                     .padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.Center
             ) {
-                val buttons = listOf(
-                    "Alphabet"               to onAlphabet,
-                    "Grammar - Cases"        to onGrammarCases,
-                    "Verb Conjugation"       to onVerbConjugation,
-                    "Adjective Conjugation"  to onAdjectiveConjugation,
-                    "Noun Declension"        to onNounDeclension,
-                    "Date & Time"            to onDateTime,
-                    "Prepositions"           to onPrepositions,
-                    "Negation"               to onNegation,
-                    "Conditionals"           to onConditionals,
-                    "Participles"            to onParticiples,
-                    "Types Of Any"           to onTypesOfAny
-                )
-                buttons.chunked(2).forEachIndexed { rowIndex, pair ->
-                    if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        pair.forEach { (label, action) ->
-                            OutlinedButton(
-                                onClick = action,
-                                modifier = Modifier.weight(1f),
-                                colors = ButtonDefaults.outlinedButtonColors(
-                                    containerColor = Color.Black,
-                                    contentColor = Color.White
-                                )
-                            ) {
-                                Text(label)
+                buttonPairs.forEachIndexed { rowIndex, pair ->
+                    if (rowIndex > 0) {
+                        item { Spacer(modifier = Modifier.height(12.dp)) }
+                    }
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            pair.forEach { (label, action) ->
+                                OutlinedButton(
+                                    onClick = action,
+                                    modifier = Modifier.weight(1f),
+                                    colors = ButtonDefaults.outlinedButtonColors(
+                                        containerColor = Color.Black,
+                                        contentColor = Color.White
+                                    )
+                                ) {
+                                    Text(label)
+                                }
                             }
+                            if (pair.size < 2) Spacer(modifier = Modifier.weight(1f))
                         }
                     }
                 }
