@@ -28,6 +28,7 @@ import com.example.linuxapp.screens.KernelHubScreen
 import com.example.linuxapp.screens.LinuxUsageScreen
 import com.example.linuxapp.screens.UserModeHubScreen
 import com.example.linuxapp.screens.kernel.CharDeviceScreen
+import com.example.linuxapp.screens.kernel.DeferredWorkScreen
 import com.example.linuxapp.screens.kernel.KernelDebuggingScreen
 import com.example.linuxapp.screens.kernel.LoadableKernelModuleScreen
 import com.example.linuxapp.screens.kernel.LowLevelPrinciplesScreen
@@ -38,6 +39,9 @@ import com.example.linuxapp.screens.usermode.UserModeNetworkingScreen
 import com.example.linuxapp.screens.usermode.UserModeProcessesScreen
 import com.example.linuxapp.screens.usermode.UserModeSyncScreen
 import com.example.linuxapp.screens.usermode.UserModeThreadsScreen
+import com.example.linuxapp.screens.usermode.UserModeIpcScreen
+import com.example.linuxapp.screens.usermode.UserModeSignalsScreen
+import com.example.linuxapp.screens.usermode.UserModeTunScreen
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -58,6 +62,10 @@ sealed class Screen(val route: String) {
     object UserModeNetworking: Screen("user_mode_networking")
     object UserModeThreads   : Screen("user_mode_threads")
     object UserModeFiles     : Screen("user_mode_files")
+    object UserModeTun       : Screen("user_mode_tun")
+    object KernelDeferredWork: Screen("kernel_deferred_work")
+    object UserModeSignals   : Screen("user_mode_signals")
+    object UserModeIpc       : Screen("user_mode_ipc")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,7 +78,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
                 onShellScripting = { navController.navigate(Screen.Placeholder.withTitle("Linux Shell Scripting")) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
-                onKernelMode = { navController.navigate(Screen.KernelHub.route) }
+                onKernelMode = { navController.navigate(Screen.KernelHub.route) },
+                onEbpf = { navController.navigate(Screen.Placeholder.withTitle("eBPF")) }
             )
         }
 
@@ -114,7 +123,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onLowLevel = { navController.navigate(Screen.KernelLowLevel.route) },
                 onOsStructs = { navController.navigate(Screen.KernelOsStructs.route) },
                 onLowLevel2 = { navController.navigate(Screen.KernelLowLevel2.route) },
-                onDebugging = { navController.navigate(Screen.KernelDebugging.route) }
+                onDebugging = { navController.navigate(Screen.KernelDebugging.route) },
+                onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) }
             )
         }
 
@@ -148,7 +158,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onSync = { navController.navigate(Screen.UserModeSync.route) },
                 onNetworking = { navController.navigate(Screen.UserModeNetworking.route) },
                 onThreads = { navController.navigate(Screen.UserModeThreads.route) },
-                onFiles = { navController.navigate(Screen.UserModeFiles.route) }
+                onFiles = { navController.navigate(Screen.UserModeFiles.route) },
+                onTun = { navController.navigate(Screen.UserModeTun.route) },
+                onSignals = { navController.navigate(Screen.UserModeSignals.route) },
+                onIpc = { navController.navigate(Screen.UserModeIpc.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -165,6 +178,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeProcesses.route) {
             UserModeProcessesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeTun.route) {
+            UserModeTunScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelDeferredWork.route) {
+            DeferredWorkScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeSignals.route) {
+            UserModeSignalsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeIpc.route) {
+            UserModeIpcScreen(onBack = { navController.popBackStack() })
         }
     }
 }

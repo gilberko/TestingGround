@@ -41,7 +41,8 @@ fun KernelHubScreen(
     onLowLevel: () -> Unit,
     onOsStructs: () -> Unit,
     onLowLevel2: () -> Unit,
-    onDebugging: () -> Unit
+    onDebugging: () -> Unit,
+    onDeferredWork: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -91,6 +92,8 @@ fun KernelHubScreen(
             KernelButton(label = "Low Level Programming Principles Pt. 2", onClick = onLowLevel2)
             Spacer(modifier = Modifier.height(12.dp))
             KernelButton(label = "Kernel Debugging And Tracing", onClick = onDebugging)
+            Spacer(modifier = Modifier.height(12.dp))
+            KernelButton(label = "Deferred Work", onClick = onDeferredWork)
             Spacer(modifier = Modifier.height(16.dp))
         }
     }

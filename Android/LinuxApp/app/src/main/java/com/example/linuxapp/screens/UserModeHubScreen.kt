@@ -38,7 +38,10 @@ fun UserModeHubScreen(
     onSync: () -> Unit,
     onNetworking: () -> Unit,
     onThreads: () -> Unit,
-    onFiles: () -> Unit
+    onFiles: () -> Unit,
+    onTun: () -> Unit,
+    onSignals: () -> Unit,
+    onIpc: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -82,6 +85,12 @@ fun UserModeHubScreen(
             UserModeButton(label = "Synchronization", onClick = onSync)
             Spacer(modifier = Modifier.height(12.dp))
             UserModeButton(label = "Networking", onClick = onNetworking)
+            Spacer(modifier = Modifier.height(12.dp))
+            UserModeButton(label = "TUN Device", onClick = onTun)
+            Spacer(modifier = Modifier.height(12.dp))
+            UserModeButton(label = "Signal Handlers", onClick = onSignals)
+            Spacer(modifier = Modifier.height(12.dp))
+            UserModeButton(label = "IPC", onClick = onIpc)
             Spacer(modifier = Modifier.height(16.dp))
         }
     }

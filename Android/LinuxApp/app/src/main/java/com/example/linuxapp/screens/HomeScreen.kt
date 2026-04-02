@@ -27,7 +27,8 @@ fun HomeScreen(
     onLinuxUsage: () -> Unit,
     onShellScripting: () -> Unit,
     onUserMode: () -> Unit,
-    onKernelMode: () -> Unit
+    onKernelMode: () -> Unit,
+    onEbpf: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -64,6 +65,8 @@ fun HomeScreen(
             HomeButton(label = "Linux User Mode Programming", onClick = onUserMode)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode)
+            Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "eBPF", onClick = onEbpf)
         }
         Text(
             text = "v0.1",
