@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.linuxapp.screens.HomeScreen
 import com.example.linuxapp.screens.KernelHubScreen
+import com.example.linuxapp.screens.LinuxUsageScreen
 import com.example.linuxapp.screens.UserModeHubScreen
 import com.example.linuxapp.screens.kernel.CharDeviceScreen
 import com.example.linuxapp.screens.kernel.KernelDebuggingScreen
@@ -34,6 +35,7 @@ import com.example.linuxapp.screens.kernel.LowLevelPrinciplesPart2Screen
 import com.example.linuxapp.screens.kernel.OsStructsScreen
 import com.example.linuxapp.screens.usermode.UserModeFilesScreen
 import com.example.linuxapp.screens.usermode.UserModeNetworkingScreen
+import com.example.linuxapp.screens.usermode.UserModeProcessesScreen
 import com.example.linuxapp.screens.usermode.UserModeSyncScreen
 import com.example.linuxapp.screens.usermode.UserModeThreadsScreen
 
@@ -49,7 +51,9 @@ sealed class Screen(val route: String) {
     object KernelLowLevel2   : Screen("kernel_low_level_2")
     object KernelOsStructs   : Screen("kernel_os_structs")
     object KernelDebugging   : Screen("kernel_debugging")
+    object LinuxUsage        : Screen("linux_usage")
     object UserModeHub       : Screen("user_mode_hub")
+    object UserModeProcesses : Screen("user_mode_processes")
     object UserModeSync      : Screen("user_mode_sync")
     object UserModeNetworking: Screen("user_mode_networking")
     object UserModeThreads   : Screen("user_mode_threads")
@@ -63,7 +67,7 @@ fun AppNavGraph(navController: NavHostController) {
 
         composable(Screen.Home.route) {
             HomeScreen(
-                onLinuxUsage = { navController.navigate(Screen.Placeholder.withTitle("Linux Usage")) },
+                onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
                 onShellScripting = { navController.navigate(Screen.Placeholder.withTitle("Linux Shell Scripting")) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) }
@@ -133,9 +137,14 @@ fun AppNavGraph(navController: NavHostController) {
             KernelDebuggingScreen(onBack = { navController.popBackStack() })
         }
 
+        composable(Screen.LinuxUsage.route) {
+            LinuxUsageScreen(onBack = { navController.popBackStack() })
+        }
+
         composable(Screen.UserModeHub.route) {
             UserModeHubScreen(
                 onBack = { navController.popBackStack() },
+                onProcesses = { navController.navigate(Screen.UserModeProcesses.route) },
                 onSync = { navController.navigate(Screen.UserModeSync.route) },
                 onNetworking = { navController.navigate(Screen.UserModeNetworking.route) },
                 onThreads = { navController.navigate(Screen.UserModeThreads.route) },
@@ -153,6 +162,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeFiles.route) {
             UserModeFilesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeProcesses.route) {
+            UserModeProcessesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

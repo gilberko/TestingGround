@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun UserModeHubScreen(
     onBack: () -> Unit,
+    onProcesses: () -> Unit,
     onSync: () -> Unit,
     onNetworking: () -> Unit,
     onThreads: () -> Unit,
@@ -72,6 +73,8 @@ fun UserModeHubScreen(
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(32.dp))
+            UserModeButton(label = "Processes", onClick = onProcesses)
+            Spacer(modifier = Modifier.height(12.dp))
             UserModeButton(label = "Threads", onClick = onThreads)
             Spacer(modifier = Modifier.height(12.dp))
             UserModeButton(label = "Files", onClick = onFiles)
