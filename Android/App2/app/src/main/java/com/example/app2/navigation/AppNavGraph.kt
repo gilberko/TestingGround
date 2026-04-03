@@ -43,6 +43,7 @@ import com.example.app2.screens.ConfusingVerbsScreen
 import com.example.app2.screens.TechWordsScreen
 import com.example.app2.screens.GreetingsScreen
 import com.example.app2.screens.MathScreen
+import com.example.app2.screens.ConnectorsScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -79,6 +80,7 @@ sealed class Screen(val route: String) {
     object DictTechWords : Screen("dict_tech_words")
     object DictGreetings : Screen("dict_greetings")
     object DictMath : Screen("dict_math")
+    object DictConnectors : Screen("dict_connectors")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -167,7 +169,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onConfusingVerbs = { navController.navigate(Screen.DictConfusingVerbs.route) },
                 onTechWords = { navController.navigate(Screen.DictTechWords.route) },
                 onGreetings = { navController.navigate(Screen.DictGreetings.route) },
-                onMath = { navController.navigate(Screen.DictMath.route) }
+                onMath = { navController.navigate(Screen.DictMath.route) },
+                onConnectors = { navController.navigate(Screen.DictConnectors.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -199,6 +202,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictMath.route) {
             MathScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictConnectors.route) {
+            ConnectorsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })

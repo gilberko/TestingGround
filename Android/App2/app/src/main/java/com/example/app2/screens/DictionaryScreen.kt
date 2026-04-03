@@ -48,7 +48,8 @@ fun DictionaryScreen(
     onConfusingVerbs: () -> Unit,
     onTechWords: () -> Unit,
     onGreetings: () -> Unit,
-    onMath: () -> Unit
+    onMath: () -> Unit,
+    onConnectors: () -> Unit
 ) {
     val buttons = listOf(
         "Common Verbs" to onCommonVerbs,
@@ -63,7 +64,8 @@ fun DictionaryScreen(
         "Slightly Confusing Verbs" to onConfusingVerbs,
         "Tech Vocabulary" to onTechWords,
         "Greetings" to onGreetings,
-        "Math" to onMath
+        "Math" to onMath,
+        "Yet, Already & Others" to onConnectors
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
