@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.russianapp.screens.AboutAPersonScreen
 import com.example.russianapp.screens.AdjectiveConjugationScreen
 import com.example.russianapp.screens.AdjectivesScreen
 import com.example.russianapp.screens.ConditionalsScreen
@@ -68,6 +69,7 @@ sealed class Screen(val route: String) {
     object DictHouse              : Screen("dict_house")
     object DictQuantifiers        : Screen("dict_quantifiers")
     object Myself                 : Screen("myself")
+    object AboutAPerson           : Screen("about_a_person")
     object QuizAdjective          : Screen("quiz_adjective")
     object QuizVerb               : Screen("quiz_verb")
     object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
@@ -104,7 +106,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onConditionals          = { navController.navigate(Screen.Conditionals.route) },
                 onParticiples           = { navController.navigate(Screen.Participles.route) },
                 onTypesOfAny            = { navController.navigate(Screen.TypesOfAny.route) },
-                onMyself                = { navController.navigate(Screen.Myself.route) }
+                onMyself                = { navController.navigate(Screen.Myself.route) },
+                onAboutAPerson          = { navController.navigate(Screen.AboutAPerson.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -201,6 +204,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Myself.route) {
             MyselfScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AboutAPerson.route) {
+            AboutAPersonScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.QuizAdjective.route) {
             AdjectiveQuizScreen(
