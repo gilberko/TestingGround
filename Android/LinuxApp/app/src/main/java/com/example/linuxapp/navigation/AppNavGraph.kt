@@ -26,6 +26,7 @@ import androidx.navigation.navArgument
 import com.example.linuxapp.screens.HomeScreen
 import com.example.linuxapp.screens.KernelHubScreen
 import com.example.linuxapp.screens.LinuxUsageScreen
+import com.example.linuxapp.screens.ShellScriptingScreen
 import com.example.linuxapp.screens.UserModeHubScreen
 import com.example.linuxapp.screens.kernel.CharDeviceScreen
 import com.example.linuxapp.screens.kernel.DeferredWorkScreen
@@ -66,6 +67,7 @@ sealed class Screen(val route: String) {
     object KernelDeferredWork: Screen("kernel_deferred_work")
     object UserModeSignals   : Screen("user_mode_signals")
     object UserModeIpc       : Screen("user_mode_ipc")
+    object ShellScripting    : Screen("shell_scripting")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,7 +78,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Home.route) {
             HomeScreen(
                 onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
-                onShellScripting = { navController.navigate(Screen.Placeholder.withTitle("Linux Shell Scripting")) },
+                onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
                 onEbpf = { navController.navigate(Screen.Placeholder.withTitle("eBPF")) }
@@ -190,6 +192,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeIpc.route) {
             UserModeIpcScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ShellScripting.route) {
+            ShellScriptingScreen(onBack = { navController.popBackStack() })
         }
     }
 }
