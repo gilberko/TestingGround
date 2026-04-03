@@ -267,6 +267,97 @@ mmap_read_unlock(task->mm);"""
                     )
                 }
             }
+            item {
+                SectionCard(title = "sk_buff — Socket Buffer") {
+                    BodyText("sk_buff (socket buffer) is the fundamental data structure for network packets in the Linux kernel. Every packet flowing through the network stack — from a NIC driver up to a socket, and back down — is represented as an sk_buff.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("The buffer is a contiguous memory region managed by four pointers:")
+                    CodeBlock(
+                        """  head                              end
+   |                                |
+   +----+----------+----------+-----+
+   |headroom| data (payload)  |tailroom|
+   +----+----------+----------+-----+
+        |                     |
+       data                  tail
+
+head  — start of the allocated buffer
+data  — start of the current payload
+tail  — end of the current payload
+end   — end of the allocated buffer
+
+skb->len = tail - data  (current payload length)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Key metadata fields:")
+                    CodeBlock(
+                        """struct sk_buff {
+    /* Pointers */
+    unsigned char   *head, *data;
+    sk_buff_data_t   tail, end;   /* offsets on 64-bit */
+
+    /* Length */
+    unsigned int     len;         /* payload length     */
+    unsigned int     data_len;    /* paged data length  */
+
+    /* Metadata */
+    __be16           protocol;    /* ETH_P_IP, ETH_P_IPV6 ... */
+    struct net_device *dev;       /* receiving/sending device */
+    struct sock      *sk;         /* owning socket, or NULL   */
+
+    /* Checksums, priority, timestamps, ... */
+};"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Allocation and payload helpers:")
+                    CodeBlock(
+                        """/* Allocate a new skb */
+struct sk_buff *skb = alloc_skb(size, GFP_KERNEL);
+dev_alloc_skb(size);  /* same but with NET_SKB_PAD headroom */
+
+/* Reserve headroom before filling payload
+   (call before any put/push) */
+skb_reserve(skb, NET_IP_ALIGN);
+
+/* Extend the tail — returns pointer to the new area */
+void *p = skb_put(skb, payload_len);
+memcpy(p, data, payload_len);
+
+/* Prepend a header — extends toward head */
+struct iphdr *iph = skb_push(skb, sizeof(*iph));
+
+/* Consume a header — move data pointer forward */
+skb_pull(skb, sizeof(struct ethhdr));
+
+/* Access current payload */
+struct iphdr *iph = (struct iphdr *)skb->data;"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Where you encounter sk_buff:")
+                    CodeBlock(
+                        """/* Net driver TX — called by the stack to send a packet */
+netdev_tx_t my_ndo_start_xmit(struct sk_buff *skb,
+                               struct net_device *dev)
+{
+    pr_info("TX: len=%u proto=0x%04x\n",
+            skb->len, ntohs(skb->protocol));
+    /* hand skb->data / skb->len to hardware DMA ... */
+    dev_kfree_skb(skb);
+    return NETDEV_TX_OK;
+}
+
+/* Netfilter hook — inspect/drop/modify packets */
+static unsigned int my_hook(void *priv,
+    struct sk_buff *skb,
+    const struct nf_hook_state *state)
+{
+    struct iphdr *iph = ip_hdr(skb); /* skb->data helper */
+    pr_info("src=%pI4 len=%u\n", &iph->saddr, skb->len);
+    return NF_ACCEPT;
+}"""
+                    )
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

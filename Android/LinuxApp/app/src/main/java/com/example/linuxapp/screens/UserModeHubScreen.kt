@@ -2,10 +2,12 @@ package com.example.linuxapp.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -41,7 +43,9 @@ fun UserModeHubScreen(
     onFiles: () -> Unit,
     onTun: () -> Unit,
     onSignals: () -> Unit,
-    onIpc: () -> Unit
+    onIpc: () -> Unit,
+    onDebugging: () -> Unit,
+    onSharedObjects: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -61,7 +65,7 @@ fun UserModeHubScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -76,38 +80,65 @@ fun UserModeHubScreen(
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(32.dp))
-            UserModeButton(label = "Processes", onClick = onProcesses)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Processes", modifier = Modifier.weight(1f), onClick = onProcesses)
+                UserModeButton(label = "Threads", modifier = Modifier.weight(1f), onClick = onThreads)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "Threads", onClick = onThreads)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Files", modifier = Modifier.weight(1f), onClick = onFiles)
+                UserModeButton(label = "Synchronization", modifier = Modifier.weight(1f), onClick = onSync)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "Files", onClick = onFiles)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Networking", modifier = Modifier.weight(1f), onClick = onNetworking)
+                UserModeButton(label = "TUN Device", modifier = Modifier.weight(1f), onClick = onTun)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "Synchronization", onClick = onSync)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Signal Handlers", modifier = Modifier.weight(1f), onClick = onSignals)
+                UserModeButton(label = "IPC", modifier = Modifier.weight(1f), onClick = onIpc)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "Networking", onClick = onNetworking)
-            Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "TUN Device", onClick = onTun)
-            Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "Signal Handlers", onClick = onSignals)
-            Spacer(modifier = Modifier.height(12.dp))
-            UserModeButton(label = "IPC", onClick = onIpc)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
+                UserModeButton(label = "Shared Objects", modifier = Modifier.weight(1f), onClick = onSharedObjects)
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
 
 @Composable
-private fun UserModeButton(label: String, onClick: () -> Unit) {
+private fun UserModeButton(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
+        modifier = modifier.heightIn(min = 52.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
             contentColor = Color.White
         )
     ) {
-        Text(text = label, fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Medium)
+        Text(
+            text = label,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
     }
 }

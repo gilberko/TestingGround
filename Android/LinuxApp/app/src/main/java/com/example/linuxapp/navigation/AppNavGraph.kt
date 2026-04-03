@@ -43,6 +43,12 @@ import com.example.linuxapp.screens.usermode.UserModeThreadsScreen
 import com.example.linuxapp.screens.usermode.UserModeIpcScreen
 import com.example.linuxapp.screens.usermode.UserModeSignalsScreen
 import com.example.linuxapp.screens.usermode.UserModeTunScreen
+import com.example.linuxapp.screens.kernel.KernelDataStructuresScreen
+import com.example.linuxapp.screens.kernel.KernelVfsScreen
+import com.example.linuxapp.screens.kernel.BlockDeviceScreen
+import com.example.linuxapp.screens.kernel.NetDeviceScreen
+import com.example.linuxapp.screens.usermode.UserModeDebuggingScreen
+import com.example.linuxapp.screens.usermode.UserModeSharedObjectsScreen
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -67,7 +73,13 @@ sealed class Screen(val route: String) {
     object KernelDeferredWork: Screen("kernel_deferred_work")
     object UserModeSignals   : Screen("user_mode_signals")
     object UserModeIpc       : Screen("user_mode_ipc")
-    object ShellScripting    : Screen("shell_scripting")
+    object ShellScripting         : Screen("shell_scripting")
+    object KernelDataStructures   : Screen("kernel_data_structures")
+    object KernelVfs              : Screen("kernel_vfs")
+    object KernelBlockDevice      : Screen("kernel_block_device")
+    object KernelNetDevice        : Screen("kernel_net_device")
+    object UserModeDebugging      : Screen("user_mode_debugging")
+    object UserModeSharedObjects  : Screen("user_mode_shared_objects")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -120,13 +132,15 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onLkm = { navController.navigate(Screen.KernelLkm.route) },
                 onCharDevice = { navController.navigate(Screen.KernelCharDevice.route) },
-                onBlockDevice = { navController.navigate(Screen.Placeholder.withTitle("Block Device")) },
-                onNetDevice = { navController.navigate(Screen.Placeholder.withTitle("Net Device")) },
+                onBlockDevice = { navController.navigate(Screen.KernelBlockDevice.route) },
+                onNetDevice = { navController.navigate(Screen.KernelNetDevice.route) },
                 onLowLevel = { navController.navigate(Screen.KernelLowLevel.route) },
                 onOsStructs = { navController.navigate(Screen.KernelOsStructs.route) },
                 onLowLevel2 = { navController.navigate(Screen.KernelLowLevel2.route) },
                 onDebugging = { navController.navigate(Screen.KernelDebugging.route) },
-                onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) }
+                onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) },
+                onDataStructures = { navController.navigate(Screen.KernelDataStructures.route) },
+                onVfs = { navController.navigate(Screen.KernelVfs.route) }
             )
         }
 
@@ -163,7 +177,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onFiles = { navController.navigate(Screen.UserModeFiles.route) },
                 onTun = { navController.navigate(Screen.UserModeTun.route) },
                 onSignals = { navController.navigate(Screen.UserModeSignals.route) },
-                onIpc = { navController.navigate(Screen.UserModeIpc.route) }
+                onIpc = { navController.navigate(Screen.UserModeIpc.route) },
+                onDebugging = { navController.navigate(Screen.UserModeDebugging.route) },
+                onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -195,6 +211,24 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ShellScripting.route) {
             ShellScriptingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelDataStructures.route) {
+            KernelDataStructuresScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelVfs.route) {
+            KernelVfsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelBlockDevice.route) {
+            BlockDeviceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelNetDevice.route) {
+            NetDeviceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeDebugging.route) {
+            UserModeDebuggingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeSharedObjects.route) {
+            UserModeSharedObjectsScreen(onBack = { navController.popBackStack() })
         }
     }
 }

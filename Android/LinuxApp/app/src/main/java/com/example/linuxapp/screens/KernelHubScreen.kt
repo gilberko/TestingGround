@@ -2,10 +2,12 @@ package com.example.linuxapp.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -42,7 +44,9 @@ fun KernelHubScreen(
     onOsStructs: () -> Unit,
     onLowLevel2: () -> Unit,
     onDebugging: () -> Unit,
-    onDeferredWork: () -> Unit
+    onDeferredWork: () -> Unit,
+    onDataStructures: () -> Unit,
+    onVfs: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -62,7 +66,7 @@ fun KernelHubScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -77,35 +81,63 @@ fun KernelHubScreen(
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(32.dp))
-            KernelButton(label = "Loadable Kernel Module", onClick = onLkm)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Loadable Kernel Module", modifier = Modifier.weight(1f), onClick = onLkm)
+                KernelButton(label = "Char Device", modifier = Modifier.weight(1f), onClick = onCharDevice)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Char Device", onClick = onCharDevice)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Block Device", modifier = Modifier.weight(1f), onClick = onBlockDevice)
+                KernelButton(label = "Net Device", modifier = Modifier.weight(1f), onClick = onNetDevice)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Block Device", onClick = onBlockDevice)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "OS Structs", modifier = Modifier.weight(1f), onClick = onOsStructs)
+                KernelButton(label = "Low Level Principles", modifier = Modifier.weight(1f), onClick = onLowLevel)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Net Device", onClick = onNetDevice)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Low Level Principles Pt. 2", modifier = Modifier.weight(1f), onClick = onLowLevel2)
+                KernelButton(label = "Kernel Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "OS Structs", onClick = onOsStructs)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Deferred Work", modifier = Modifier.weight(1f), onClick = onDeferredWork)
+                KernelButton(label = "Kernel Data Structures", modifier = Modifier.weight(1f), onClick = onDataStructures)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Low Level Programming Principles", onClick = onLowLevel)
-            Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Low Level Programming Principles Pt. 2", onClick = onLowLevel2)
-            Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Kernel Debugging And Tracing", onClick = onDebugging)
-            Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(label = "Deferred Work", onClick = onDeferredWork)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
+                Spacer(modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
 
 @Composable
-private fun KernelButton(label: String, onClick: () -> Unit) {
+private fun KernelButton(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
+        modifier = modifier.heightIn(min = 52.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
             contentColor = Color.White
@@ -114,7 +146,8 @@ private fun KernelButton(label: String, onClick: () -> Unit) {
         Text(
             text = label,
             fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
         )
     }
 }
