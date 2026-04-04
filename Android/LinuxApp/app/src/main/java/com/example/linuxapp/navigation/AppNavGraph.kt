@@ -23,11 +23,16 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.linuxapp.screens.EbpfHubScreen
 import com.example.linuxapp.screens.HomeScreen
 import com.example.linuxapp.screens.KernelHubScreen
+import com.example.linuxapp.screens.LinuxHistoryScreen
 import com.example.linuxapp.screens.LinuxUsageScreen
 import com.example.linuxapp.screens.ShellScriptingScreen
 import com.example.linuxapp.screens.UserModeHubScreen
+import com.example.linuxapp.screens.ebpf.EbpfHistoryScreen
+import com.example.linuxapp.screens.ebpf.EbpfProgramTypesScreen
+import com.example.linuxapp.screens.ebpf.WhatIsEbpfScreen
 import com.example.linuxapp.screens.kernel.CharDeviceScreen
 import com.example.linuxapp.screens.kernel.DeferredWorkScreen
 import com.example.linuxapp.screens.kernel.KernelDebuggingScreen
@@ -80,6 +85,11 @@ sealed class Screen(val route: String) {
     object KernelNetDevice        : Screen("kernel_net_device")
     object UserModeDebugging      : Screen("user_mode_debugging")
     object UserModeSharedObjects  : Screen("user_mode_shared_objects")
+    object LinuxHistory           : Screen("linux_history")
+    object EbpfHub                : Screen("ebpf_hub")
+    object EbpfHistory            : Screen("ebpf_history")
+    object EbpfWhatIs             : Screen("ebpf_what_is")
+    object EbpfProgramTypes       : Screen("ebpf_program_types")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -91,9 +101,10 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
                 onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
+                onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
-                onEbpf = { navController.navigate(Screen.Placeholder.withTitle("eBPF")) }
+                onEbpf = { navController.navigate(Screen.EbpfHub.route) }
             )
         }
 
@@ -229,6 +240,26 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeSharedObjects.route) {
             UserModeSharedObjectsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxHistory.route) {
+            LinuxHistoryScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfHub.route) {
+            EbpfHubScreen(
+                onBack = { navController.popBackStack() },
+                onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
+                onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) },
+                onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) }
+            )
+        }
+        composable(Screen.EbpfHistory.route) {
+            EbpfHistoryScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfWhatIs.route) {
+            WhatIsEbpfScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfProgramTypes.route) {
+            EbpfProgramTypesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

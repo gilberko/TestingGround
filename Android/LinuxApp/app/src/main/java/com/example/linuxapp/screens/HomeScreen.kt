@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 fun HomeScreen(
     onLinuxUsage: () -> Unit,
     onShellScripting: () -> Unit,
+    onLinuxHistory: () -> Unit,
     onUserMode: () -> Unit,
     onKernelMode: () -> Unit,
     onEbpf: () -> Unit
@@ -62,6 +63,8 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Shell Scripting", onClick = onShellScripting)
             Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Linux History", onClick = onLinuxHistory)
+            Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux User Mode Programming", onClick = onUserMode)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode)
@@ -69,7 +72,7 @@ fun HomeScreen(
             HomeButton(label = "eBPF", onClick = onEbpf)
         }
         Text(
-            text = "v0.1",
+            text = "v0.6",
             color = Color.White.copy(alpha = 0.4f),
             fontSize = 12.sp,
             fontFamily = FontFamily.Monospace,
