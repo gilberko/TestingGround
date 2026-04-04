@@ -49,7 +49,21 @@ private val generalTechWords = listOf(
     TechEntry("fazer deploy", "to deploy", "English term used as-is in tech"),
     TechEntry("a funcionalidade", "the feature"),
     TechEntry("o utilizador", "the user"),
-    TechEntry("a interface", "the interface")
+    TechEntry("a interface", "the interface"),
+    TechEntry("a internet", "the internet"),
+    TechEntry("o cabo", "the cable"),
+    TechEntry("o adaptador", "the adapter"),
+    TechEntry("o cabo de alimentação", "the power cable", "also: cabo de corrente"),
+    TechEntry("o adaptador USB", "the USB adapter"),
+    TechEntry("a inteligência artificial (IA)", "artificial intelligence (AI)"),
+    TechEntry("o algoritmo", "the algorithm"),
+    TechEntry("a heurística", "heuristics"),
+    TechEntry("a versão", "the version"),
+    TechEntry("o sistema operativo", "the operating system", "European Portuguese"),
+    TechEntry("a máquina virtual", "the virtual machine"),
+    TechEntry("o malware", "malware", "used directly in PT"),
+    TechEntry("a proteção", "protection"),
+    TechEntry("a linha cronológica / a timeline", "the timeline", "both forms used")
 )
 
 private val workWords = listOf(
@@ -65,6 +79,34 @@ private val workWords = listOf(
     TechEntry("o relatório", "the report"),
     TechEntry("a entrega", "the delivery / release"),
     TechEntry("a revisão", "the review / revision")
+)
+
+private val deviceWords = listOf(
+    TechEntry("o telemóvel", "mobile phone", "European Portuguese"),
+    TechEntry("o computador", "computer"),
+    TechEntry("o portátil", "laptop", "European Portuguese"),
+    TechEntry("o tablet", "tablet", "borrowed term"),
+    TechEntry("o dispositivo", "device"),
+    TechEntry("o dispositivo virtual", "virtual device"),
+    TechEntry("o dispositivo físico", "physical device")
+)
+
+private val techVerbWords = listOf(
+    TechEntry("ligar / conectar", "to connect", "ligar more common in EP"),
+    TechEntry("desligar / desconectar", "to disconnect", "desligar more common in EP"),
+    TechEntry("desenvolver", "to develop"),
+    TechEntry("encontrar um bug", "to find a bug"),
+    TechEntry("pesquisar / investigar", "to research"),
+    TechEntry("instalar", "to install"),
+    TechEntry("remover / desinstalar", "to remove / uninstall"),
+    TechEntry("infecionar", "to infect", "EP spelling")
+)
+
+private val techAdjectiveWords = listOf(
+    TechEntry("simples", "simple", "invariable — same for m/f/pl"),
+    TechEntry("complicado/a", "complicated"),
+    TechEntry("difícil", "difficult"),
+    TechEntry("fácil", "easy")
 )
 
 private val englishBorrowings = listOf(
@@ -96,7 +138,10 @@ fun TechWordsScreen(onBack: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item { TechWordCard("General Tech Words", generalTechWords) }
+            item { TechWordCard("Devices", deviceWords) }
             item { TechWordCard("Work & Meetings", workWords) }
+            item { TechWordCard("Useful Verbs", techVerbWords) }
+            item { TechWordCard("Useful Adjectives", techAdjectiveWords) }
             item { EnglishBorrowingsCard() }
         }
     }

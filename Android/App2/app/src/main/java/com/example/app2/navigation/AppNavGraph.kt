@@ -44,6 +44,9 @@ import com.example.app2.screens.TechWordsScreen
 import com.example.app2.screens.GreetingsScreen
 import com.example.app2.screens.MathScreen
 import com.example.app2.screens.ConnectorsScreen
+import com.example.app2.screens.VacationScreen
+import com.example.app2.screens.WorkplacesScreen
+import com.example.app2.screens.EPvsBPScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -81,6 +84,9 @@ sealed class Screen(val route: String) {
     object DictGreetings : Screen("dict_greetings")
     object DictMath : Screen("dict_math")
     object DictConnectors : Screen("dict_connectors")
+    object DictVacation : Screen("dict_vacation")
+    object DictWorkplaces : Screen("dict_workplaces")
+    object EPvsBP : Screen("ep_vs_bp")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -101,7 +107,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenTutorial = { navController.navigate(Screen.Tutorial.route) },
                 onOpenDictionary = { navController.navigate(Screen.Dictionary.route) },
                 onStartVocabQuizEnToPt = { navController.navigate(Screen.VocabQuizEnToPt.route) },
-                onStartVocabQuizPtToEn = { navController.navigate(Screen.VocabQuizPtToEn.route) }
+                onStartVocabQuizPtToEn = { navController.navigate(Screen.VocabQuizPtToEn.route) },
+                onOpenEPvsBP = { navController.navigate(Screen.EPvsBP.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -170,7 +177,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onTechWords = { navController.navigate(Screen.DictTechWords.route) },
                 onGreetings = { navController.navigate(Screen.DictGreetings.route) },
                 onMath = { navController.navigate(Screen.DictMath.route) },
-                onConnectors = { navController.navigate(Screen.DictConnectors.route) }
+                onConnectors = { navController.navigate(Screen.DictConnectors.route) },
+                onVacation = { navController.navigate(Screen.DictVacation.route) },
+                onWorkplaces = { navController.navigate(Screen.DictWorkplaces.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -205,6 +214,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictConnectors.route) {
             ConnectorsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictVacation.route) {
+            VacationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictWorkplaces.route) {
+            WorkplacesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EPvsBP.route) {
+            EPvsBPScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ConjugationBasic.route) {
             ConjugationBasicScreen(onBack = { navController.popBackStack() })

@@ -263,6 +263,86 @@ fun QuestionsScreen(onBack: () -> Unit) {
                 }
             }
 
+            // Emphatic question forms
+            item {
+                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text(
+                            text = "Emphatic Question Forms",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 6.dp)
+                        )
+                        Text(
+                            text = "Portuguese has two emphatic forms of \"what\" questions that add extra focus. Both are very natural in spoken EP and more common than the plain form.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.padding(bottom = 10.dp)
+                        )
+
+                        Text(
+                            text = "O que é que — emphatic \"what\"",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = "Adds é que after the question word to add focus. Much more natural in everyday speech than the plain form.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(bottom = 6.dp)
+                        )
+                        for (pair in listOf(
+                            "O que é que queres?" to "What do you want? (lit. What is it that you want?)",
+                            "O que é que aconteceu?" to "What happened?",
+                            "O que é que estás a fazer?" to "What are you doing?"
+                        )) {
+                            Text(
+                                text = pair.first,
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontStyle = FontStyle.Italic
+                            )
+                            Text(
+                                text = pair.second,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(start = 12.dp, bottom = 4.dp)
+                            )
+                        }
+
+                        HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+                        Text(
+                            text = "O que é o que é — riddle / dramatic form",
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = "A reduplication of o que é que, used in riddles, dramatic speech, and to add strong rhetorical emphasis.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(bottom = 6.dp)
+                        )
+                        for (pair in listOf(
+                            "O que é o que é que tem dentes mas não morde?" to "What is it that has teeth but doesn't bite? (riddle — answer: a comb)",
+                            "O que é o que é que nunca para de correr?" to "What is it that never stops running? (riddle — answer: water / time)"
+                        )) {
+                            Text(
+                                text = pair.first,
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontStyle = FontStyle.Italic
+                            )
+                            Text(
+                                text = pair.second,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(start = 12.dp, bottom = 4.dp)
+                            )
+                        }
+                    }
+                }
+            }
+
             // What is that / What are those
             item {
                 Card(

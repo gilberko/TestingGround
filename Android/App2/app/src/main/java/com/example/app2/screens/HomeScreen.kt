@@ -43,7 +43,8 @@ fun HomeScreen(
     onOpenTutorial: () -> Unit,
     onOpenDictionary: () -> Unit,
     onStartVocabQuizEnToPt: () -> Unit,
-    onStartVocabQuizPtToEn: () -> Unit
+    onStartVocabQuizPtToEn: () -> Unit,
+    onOpenEPvsBP: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -156,6 +157,17 @@ fun HomeScreen(
                         )
                     ) {
                         Text("Simple Dictionary")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(
+                        onClick = onOpenEPvsBP,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("EP vs. Brazilian PT")
                     }
                 }
                 Text(
