@@ -1,7 +1,9 @@
 package com.example.linuxapp.screens
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +25,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import com.example.linuxapp.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -38,7 +43,7 @@ fun EbpfHubScreen(
     onEbpfProgramTypes: () -> Unit
 ) {
     Scaffold(
-        containerColor = Color.Black,
+        containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
                 title = {},
@@ -51,10 +56,16 @@ fun EbpfHubScreen(
             )
         }
     ) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.linux_background),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black)
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
@@ -85,6 +96,7 @@ fun EbpfHubScreen(
                 Spacer(Modifier.weight(1f))
             }
         }
+        }
     }
 }
 
@@ -93,6 +105,7 @@ private fun EbpfButton(label: String, onClick: () -> Unit, modifier: Modifier = 
     OutlinedButton(
         onClick = onClick,
         modifier = modifier.height(64.dp),
+        border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
             contentColor = Color.White

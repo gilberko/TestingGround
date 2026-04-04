@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.linuxapp.screens.EbpfHubScreen
 import com.example.linuxapp.screens.HomeScreen
+import com.example.linuxapp.screens.SplashScreen
 import com.example.linuxapp.screens.KernelHubScreen
 import com.example.linuxapp.screens.LinuxHistoryScreen
 import com.example.linuxapp.screens.LinuxUsageScreen
@@ -56,6 +57,7 @@ import com.example.linuxapp.screens.usermode.UserModeDebuggingScreen
 import com.example.linuxapp.screens.usermode.UserModeSharedObjectsScreen
 
 sealed class Screen(val route: String) {
+    object Splash : Screen("splash")
     object Home : Screen("home")
     object Placeholder : Screen("placeholder/{title}") {
         fun withTitle(t: String) = "placeholder/$t"
@@ -95,7 +97,15 @@ sealed class Screen(val route: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+
+        composable(Screen.Splash.route) {
+            SplashScreen(onFinished = {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Splash.route) { inclusive = true }
+                }
+            })
+        }
 
         composable(Screen.Home.route) {
             HomeScreen(
