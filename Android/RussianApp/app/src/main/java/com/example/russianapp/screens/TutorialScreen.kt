@@ -45,7 +45,8 @@ fun TutorialScreen(
     onParticiples: () -> Unit,
     onTypesOfAny: () -> Unit,
     onMyself: () -> Unit,
-    onAboutAPerson: () -> Unit
+    onAboutAPerson: () -> Unit,
+    onComparisons: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -82,7 +83,8 @@ fun TutorialScreen(
                 "Participles"               to onParticiples,
                 "Types Of Any"              to onTypesOfAny,
                 "My, Myself, You, Yourself" to onMyself,
-                "About A Person and About Actions" to onAboutAPerson
+                "About A Person and About Actions" to onAboutAPerson,
+                "Comparisons"                      to onComparisons
             )
             val buttonPairs = buttons.chunked(2)
             LazyColumn(
