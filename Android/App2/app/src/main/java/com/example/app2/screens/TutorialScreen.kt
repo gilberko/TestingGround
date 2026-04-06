@@ -47,7 +47,8 @@ fun TutorialScreen(
     onUsefulVerbs: () -> Unit,
     onTenses: () -> Unit,
     onComparisons: () -> Unit,
-    onQuestions: () -> Unit
+    onQuestions: () -> Unit,
+    onDemonstratives: () -> Unit
 ) {
     val buttons = listOf(
         "Prepositions" to onPrepositions,
@@ -61,7 +62,8 @@ fun TutorialScreen(
         "Useful Verbs" to onUsefulVerbs,
         "Tenses" to onTenses,
         "Comparisons" to onComparisons,
-        "Questions" to onQuestions
+        "Questions" to onQuestions,
+        "This, That, Here & There" to onDemonstratives
     )
 
     Box(modifier = Modifier.fillMaxSize()) {

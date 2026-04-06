@@ -53,6 +53,7 @@ fun ConnectorsScreen(onBack: () -> Unit) {
             item { AddingContrastingCard() }
             item { TimeConditionCard() }
             item { MannerEmphasisCard() }
+            item { TalCard() }
         }
     }
 }
@@ -420,6 +421,56 @@ private fun MannerEmphasisCard() {
                     "Fiz isso eu mesma." to "I did that myself. (female speaker)"
                 ),
                 note = "mesmo que always takes the subjunctive. As a determiner: o mesmo livro = the same book (m.), a mesma ideia = the same idea (f.)."
+            )
+        }
+    }
+}
+
+// ── Section 6: Tal ────────────────────────────────────────────────────────────
+
+@Composable
+private fun TalCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text("Such & How About — Tal", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            ConnectorEntry(
+                term = "tal",
+                meaning = "such / so",
+                description = "Used as an adjective or pronoun to refer to something of that kind, or to something already mentioned. Also appears in fixed expressions like como tal (as such).",
+                examples = listOf(
+                    "Nunca vi tal coisa." to "I never saw such a thing.",
+                    "Como tal, não posso ajudar." to "As such, I cannot help."
+                )
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            ConnectorEntry(
+                term = "que tal?",
+                meaning = "how about? / what do you think?",
+                description = "Used to make suggestions or ask for someone's opinion. Can be followed by a noun, an infinitive, or the personal infinitive construction (e.g. irmos = us going).",
+                examples = listOf(
+                    "Que tal um café?" to "How about a coffee?",
+                    "Que tal irmos ao cinema?" to "How about we go to the cinema?",
+                    "Que tal o jantar?" to "How was the dinner?"
+                ),
+                note = "\"Que tal irmos\" uses the EP personal infinitive — irmos (we go). Very natural in everyday speech."
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            ConnectorEntry(
+                term = "tal como",
+                meaning = "just as / such as / like",
+                description = "Introduces a comparison or example — meaning \"in the same way as\" or \"such as\". Goes at the start of a clause or in the middle of a sentence.",
+                examples = listOf(
+                    "Fiz tal como me pediste." to "I did it just as you asked me.",
+                    "Tal como eu disse, precisamos de ajuda." to "Just as I said, we need help."
+                )
             )
         }
     }

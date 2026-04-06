@@ -91,6 +91,17 @@ private val adjectiveCategories = listOf(
             AdjectiveEntry("cheio / cheia", "full"),
             AdjectiveEntry("vazio / vazia", "empty")
         )
+    ),
+    AdjectiveCategory(
+        "Togetherness & State",
+        listOf(
+            AdjectiveEntry("sozinho / sozinha", "alone, lonely"),
+            AdjectiveEntry("acompanhado / acompanhada", "accompanied, not alone"),
+            AdjectiveEntry("isolado / isolada", "isolated"),
+            AdjectiveEntry("solitário / solitária", "solitary, lonely"),
+            AdjectiveEntry("junto / junta", "together, next to"),
+            AdjectiveEntry("separado / separada", "separated, apart")
+        )
     )
 )
 
