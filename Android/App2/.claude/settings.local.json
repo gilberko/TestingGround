@@ -39,7 +39,9 @@
       "Bash(grep -E \"\\\\.\\(java|kt|xml\\)$\")",
       "Read(//c/Code/Resources//**)",
       "Read(//c/Code/resources//**)",
-      "Read(//c/Code/Resources/**)"
+      "Read(//c/Code/Resources/**)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/gilbe/AppData/Local/Programs/Android Studio/jbr/**)"
     ]
   }
 }

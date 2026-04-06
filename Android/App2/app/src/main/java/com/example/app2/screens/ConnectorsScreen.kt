@@ -117,6 +117,21 @@ private fun JaAindaCard() {
                     "Ela já não trabalha aqui." to "She no longer works here."
                 )
             )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            ConnectorEntry(
+                term = "tão",
+                meaning = "so / such (before adjectives & adverbs)",
+                description = "Tão intensifies an adjective or adverb — equivalent to English \"so\" or \"such\". It always comes directly before the word it modifies.",
+                examples = listOf(
+                    "Está tão frio hoje!" to "It's so cold today!",
+                    "Ela é tão simpática." to "She is so kind.",
+                    "Ficas tão bem assim." to "You look so good like that.",
+                    "Não fales tão depressa." to "Don't speak so fast."
+                ),
+                note = "Don't confuse with tanto/tanta (so much / so many), which modifies nouns or verbs. E.g. \"Tenho tanto trabalho.\" = I have so much work."
+            )
         }
     }
 }
