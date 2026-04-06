@@ -71,7 +71,7 @@ fun UserModeHubScreen(
         Image(
             painter = painterResource(id = R.drawable.linux_background),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxSize()
         )
         Column(
@@ -83,16 +83,6 @@ fun UserModeHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Linux User Mode\nProgramming",
-                color = Color(0xFF00FF41),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(32.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)

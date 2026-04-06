@@ -60,7 +60,7 @@ fun EbpfHubScreen(
         Image(
             painter = painterResource(id = R.drawable.linux_background),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxSize()
         )
         Column(
@@ -69,17 +69,6 @@ fun EbpfHubScreen(
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            Text(
-                text = "eBPF",
-                color = Color(0xFF00FF41),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()

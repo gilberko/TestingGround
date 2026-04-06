@@ -6,7 +6,17 @@
       "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" \\\\\n\"C:/Program Files/Android/Android Studio/jbr/bin/keytool\" \\\\\n  -genkeypair \\\\\n  -v \\\\\n  -keystore /c/Code/TestingGround/Android/LinuxApp/app/linuxapp_keystore.jks \\\\\n  -alias linuxapp_key \\\\\n  -keyalg RSA \\\\\n  -keysize 2048 \\\\\n  -validity 10000 \\\\\n  -storepass 12345678 \\\\\n  -keypass 12345678 \\\\\n  -dname \"CN=LinuxApp, OU=Dev, O=TestingGround, L=Unknown, ST=Unknown, C=US\" 2>&1)",
       "Bash(git add:*)",
       "Bash(git -C /c/Code/TestingGround add Android/LinuxApp)",
-      "Bash(git -C /c/Code/TestingGround status --short Android/LinuxApp)"
+      "Bash(git -C /c/Code/TestingGround status --short Android/LinuxApp)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)",
+      "Bash(grep -n '\\\\$' \"C:/Code/TestingGround/Android/LinuxApp/app/src/main/java/com/example/linuxapp/screens/usermode/UserModeSignalsScreen.kt\")",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(cmd /c \"gradlew.bat assembleDebug 2>&1\")",
+      "Bash(cmd /c \"gradlew.bat assembleDebug\")",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
+      "Read(//c/Users/gilbe/AppData/Local/Android/Sdk/build-tools//**)",
+      "Read(//c/Program Files/Android/Android Studio/jbr//**)"
     ]
   }
 }

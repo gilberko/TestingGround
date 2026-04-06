@@ -39,7 +39,7 @@ fun HomeScreen(
         Image(
             painter = painterResource(id = R.drawable.linux_background),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxSize()
         )
         Column(
@@ -49,22 +49,6 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Stranger In A Strange Land",
-                color = Color(0xFF00FF41),
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace,
-                textAlign = TextAlign.Center
-            )
-            Text(
-                text = "Linux Edition",
-                color = Color(0xFF00FF41),
-                fontSize = 18.sp,
-                fontFamily = FontFamily.Monospace,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(48.dp))
             HomeButton(label = "Linux Usage", onClick = onLinuxUsage)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Shell Scripting", onClick = onShellScripting)
