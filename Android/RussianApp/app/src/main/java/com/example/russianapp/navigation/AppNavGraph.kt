@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
+import com.example.russianapp.screens.ClothesScreen
+import com.example.russianapp.screens.VacationScreen
 import com.example.russianapp.screens.ComparisonsScreen
 import com.example.russianapp.screens.AdjectiveConjugationScreen
 import com.example.russianapp.screens.AdjectivesScreen
@@ -69,6 +71,8 @@ sealed class Screen(val route: String) {
     object DictWork               : Screen("dict_work")
     object DictHouse              : Screen("dict_house")
     object DictQuantifiers        : Screen("dict_quantifiers")
+    object DictClothes            : Screen("dict_clothes")
+    object DictVacation           : Screen("dict_vacation")
     object Myself                 : Screen("myself")
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
@@ -127,7 +131,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onPeopleAnimals = { navController.navigate(Screen.DictPeopleAnimals.route) },
                 onWork          = { navController.navigate(Screen.DictWork.route) },
                 onHouse         = { navController.navigate(Screen.DictHouse.route) },
-                onQuantifiers   = { navController.navigate(Screen.DictQuantifiers.route) }
+                onQuantifiers   = { navController.navigate(Screen.DictQuantifiers.route) },
+                onClothes       = { navController.navigate(Screen.DictClothes.route) },
+                onVacation      = { navController.navigate(Screen.DictVacation.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -204,6 +210,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictQuantifiers.route) {
             QuantifiersScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictClothes.route) {
+            ClothesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictVacation.route) {
+            VacationScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Myself.route) {
             MyselfScreen(onBack = { navController.popBackStack() })
