@@ -55,6 +55,10 @@ import com.example.linuxapp.screens.kernel.BlockDeviceScreen
 import com.example.linuxapp.screens.kernel.NetDeviceScreen
 import com.example.linuxapp.screens.usermode.UserModeDebuggingScreen
 import com.example.linuxapp.screens.usermode.UserModeSharedObjectsScreen
+import com.example.linuxapp.screens.usermode.UserModeAsyncScreen
+import com.example.linuxapp.screens.kernel.FileAccessWholeScreen
+import com.example.linuxapp.screens.kernel.MemoryAccessWholeScreen
+import com.example.linuxapp.screens.kernel.LsmScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -92,6 +96,10 @@ sealed class Screen(val route: String) {
     object EbpfHistory            : Screen("ebpf_history")
     object EbpfWhatIs             : Screen("ebpf_what_is")
     object EbpfProgramTypes       : Screen("ebpf_program_types")
+    object UserModeAsync          : Screen("user_mode_async")
+    object KernelFileAccessWhole  : Screen("kernel_file_access_whole")
+    object KernelMemoryAccessWhole: Screen("kernel_memory_access_whole")
+    object KernelLsm              : Screen("kernel_lsm")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -161,7 +169,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onDebugging = { navController.navigate(Screen.KernelDebugging.route) },
                 onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) },
                 onDataStructures = { navController.navigate(Screen.KernelDataStructures.route) },
-                onVfs = { navController.navigate(Screen.KernelVfs.route) }
+                onVfs = { navController.navigate(Screen.KernelVfs.route) },
+                onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
+                onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) },
+                onLsm = { navController.navigate(Screen.KernelLsm.route) }
             )
         }
 
@@ -200,7 +211,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSignals = { navController.navigate(Screen.UserModeSignals.route) },
                 onIpc = { navController.navigate(Screen.UserModeIpc.route) },
                 onDebugging = { navController.navigate(Screen.UserModeDebugging.route) },
-                onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) }
+                onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) },
+                onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -270,6 +282,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfProgramTypes.route) {
             EbpfProgramTypesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeAsync.route) {
+            UserModeAsyncScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelFileAccessWhole.route) {
+            FileAccessWholeScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelMemoryAccessWhole.route) {
+            MemoryAccessWholeScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelLsm.route) {
+            LsmScreen(onBack = { navController.popBackStack() })
         }
     }
 }

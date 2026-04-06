@@ -51,7 +51,8 @@ fun UserModeHubScreen(
     onSignals: () -> Unit,
     onIpc: () -> Unit,
     onDebugging: () -> Unit,
-    onSharedObjects: () -> Unit
+    onSharedObjects: () -> Unit,
+    onAsyncOperations: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -121,6 +122,14 @@ fun UserModeHubScreen(
             ) {
                 UserModeButton(label = "Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
                 UserModeButton(label = "Shared Objects", modifier = Modifier.weight(1f), onClick = onSharedObjects)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Async Operations", modifier = Modifier.weight(1f), onClick = onAsyncOperations)
+                Spacer(modifier = Modifier.weight(1f))
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

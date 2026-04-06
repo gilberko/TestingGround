@@ -52,7 +52,10 @@ fun KernelHubScreen(
     onDebugging: () -> Unit,
     onDeferredWork: () -> Unit,
     onDataStructures: () -> Unit,
-    onVfs: () -> Unit
+    onVfs: () -> Unit,
+    onFileAccessWhole: () -> Unit,
+    onMemoryAccessWhole: () -> Unit,
+    onLsm: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -129,7 +132,15 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
-                Spacer(modifier = Modifier.weight(1f))
+                KernelButton(label = "LSM", modifier = Modifier.weight(1f), onClick = onLsm)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "File Access:\nWhole Picture", modifier = Modifier.weight(1f), onClick = onFileAccessWhole)
+                KernelButton(label = "Memory Access:\nWhole Picture", modifier = Modifier.weight(1f), onClick = onMemoryAccessWhole)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
