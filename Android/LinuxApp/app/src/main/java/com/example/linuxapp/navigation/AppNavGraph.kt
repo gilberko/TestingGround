@@ -59,6 +59,10 @@ import com.example.linuxapp.screens.usermode.UserModeAsyncScreen
 import com.example.linuxapp.screens.kernel.FileAccessWholeScreen
 import com.example.linuxapp.screens.kernel.MemoryAccessWholeScreen
 import com.example.linuxapp.screens.kernel.LsmScreen
+import com.example.linuxapp.screens.PermissionsHubScreen
+import com.example.linuxapp.screens.permissions.FilePermissionsScreen
+import com.example.linuxapp.screens.permissions.CgroupsScreen
+import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -100,6 +104,10 @@ sealed class Screen(val route: String) {
     object KernelFileAccessWhole  : Screen("kernel_file_access_whole")
     object KernelMemoryAccessWhole: Screen("kernel_memory_access_whole")
     object KernelLsm              : Screen("kernel_lsm")
+    object PermissionsHub         : Screen("permissions_hub")
+    object FilePermissions        : Screen("file_permissions")
+    object Cgroups                : Screen("cgroups")
+    object EbpfSimpleExample      : Screen("ebpf_simple_example")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -122,7 +130,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
-                onEbpf = { navController.navigate(Screen.EbpfHub.route) }
+                onEbpf = { navController.navigate(Screen.EbpfHub.route) },
+                onPermissions = { navController.navigate(Screen.PermissionsHub.route) }
             )
         }
 
@@ -271,7 +280,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
                 onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) },
-                onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) }
+                onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) },
+                onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -294,6 +304,22 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelLsm.route) {
             LsmScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.PermissionsHub.route) {
+            PermissionsHubScreen(
+                onBack = { navController.popBackStack() },
+                onFilePermissions = { navController.navigate(Screen.FilePermissions.route) },
+                onCgroups = { navController.navigate(Screen.Cgroups.route) }
+            )
+        }
+        composable(Screen.FilePermissions.route) {
+            FilePermissionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Cgroups.route) {
+            CgroupsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfSimpleExample.route) {
+            EbpfSimpleExampleScreen(onBack = { navController.popBackStack() })
         }
     }
 }

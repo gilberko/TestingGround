@@ -28,20 +28,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import com.example.linuxapp.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.linuxapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EbpfHubScreen(
+fun PermissionsHubScreen(
     onBack: () -> Unit,
-    onEbpfHistory: () -> Unit,
-    onWhatIsEbpf: () -> Unit,
-    onEbpfProgramTypes: () -> Unit,
-    onEbpfSimpleExample: () -> Unit
+    onFilePermissions: () -> Unit,
+    onCgroups: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -58,40 +56,41 @@ fun EbpfHubScreen(
         }
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            painter = painterResource(id = R.drawable.linux_background),
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxSize()
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
+            Image(
+                painter = painterResource(id = R.drawable.linux_background),
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxSize()
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
-                EbpfButton(label = "eBPF History", onClick = onEbpfHistory, modifier = Modifier.weight(1f))
-                EbpfButton(label = "What is eBPF", onClick = onWhatIsEbpf, modifier = Modifier.weight(1f))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "File Permissions\n& chmod",
+                        onClick = onFilePermissions,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "cgroups",
+                        onClick = onCgroups,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
             }
-            Spacer(Modifier.height(8.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                EbpfButton(label = "Types of eBPF\nPrograms", onClick = onEbpfProgramTypes, modifier = Modifier.weight(1f))
-                EbpfButton(label = "A Simple\nExample", onClick = onEbpfSimpleExample, modifier = Modifier.weight(1f))
-            }
-        }
         }
     }
 }
 
 @Composable
-private fun EbpfButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun PermissionsHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick = onClick,
         modifier = modifier.height(64.dp),

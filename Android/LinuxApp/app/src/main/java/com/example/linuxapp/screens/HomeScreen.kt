@@ -33,7 +33,8 @@ fun HomeScreen(
     onLinuxHistory: () -> Unit,
     onUserMode: () -> Unit,
     onKernelMode: () -> Unit,
-    onEbpf: () -> Unit
+    onEbpf: () -> Unit,
+    onPermissions: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -60,6 +61,8 @@ fun HomeScreen(
             HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "eBPF", onClick = onEbpf)
+            Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Permissions & cgroups", onClick = onPermissions)
         }
         Text(
             text = "v0.6",
