@@ -53,7 +53,8 @@ fun DictionaryScreen(
     onVacation: () -> Unit,
     onWorkplaces: () -> Unit,
     onWeather: () -> Unit,
-    onClothes: () -> Unit
+    onClothes: () -> Unit,
+    onPortuguesePhrases: () -> Unit
 ) {
     val buttons = listOf(
         "Common Verbs" to onCommonVerbs,
@@ -73,7 +74,8 @@ fun DictionaryScreen(
         "Vacation" to onVacation,
         "Workplaces & Jobs" to onWorkplaces,
         "Weather" to onWeather,
-        "Clothes" to onClothes
+        "Clothes" to onClothes,
+        "Portuguese Phrases" to onPortuguesePhrases
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
