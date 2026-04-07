@@ -49,6 +49,7 @@ import com.example.app2.screens.WorkplacesScreen
 import com.example.app2.screens.WeatherScreen
 import com.example.app2.screens.ClothesScreen
 import com.example.app2.screens.DemonstrativesScreen
+import com.example.app2.screens.ClarificationsScreen
 import com.example.app2.screens.EPvsBPScreen
 import com.example.app2.data.model.QuizDirection
 
@@ -92,6 +93,7 @@ sealed class Screen(val route: String) {
     object DictWeather : Screen("dict_weather")
     object DictClothes : Screen("dict_clothes")
     object TutorialDemonstratives : Screen("tutorial_demonstratives")
+    object TutorialClarifications : Screen("tutorial_clarifications")
     object EPvsBP : Screen("ep_vs_bp")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
@@ -165,7 +167,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTenses = { navController.navigate(Screen.TutorialTenses.route) },
                 onComparisons = { navController.navigate(Screen.TutorialComparisons.route) },
                 onQuestions = { navController.navigate(Screen.TutorialQuestions.route) },
-                onDemonstratives = { navController.navigate(Screen.TutorialDemonstratives.route) }
+                onDemonstratives = { navController.navigate(Screen.TutorialDemonstratives.route) },
+                onClarifications = { navController.navigate(Screen.TutorialClarifications.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -286,6 +289,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialDemonstratives.route) {
             DemonstrativesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialClarifications.route) {
+            ClarificationsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.VocabQuizEnToPt.route) {
             VocabQuizScreen(
