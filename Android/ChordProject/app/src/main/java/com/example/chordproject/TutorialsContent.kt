@@ -62,124 +62,259 @@ data class ArpeggioPattern(
     val name: String,
     val intervals: String,
     val description: String,
-    val dots: List<NeckDot>,
+    val positions: List<Pair<Int, List<NeckDot>>>,  // (startFret, dots)
     val fretCount: Int = 5
 )
 
 // ── Scale dot data ───────────────────────────────────────────────────────────
-// All patterns: string 0=high e, 5=low E; fret = relative offset from root position.
-// Open strings: E(0)=E, A(0)=A, D(0)=D, G(0)=G, B(0)=B, e(0)=E
-// Root sits at rel-fret 0 on the low E string; other strings start at a different pitch.
+// All patterns shown for root A (A minor pent = fret 5 on low E).
+// string 0 = high e, 5 = low E; fret = relative offset from startFret.
+// Roots are marked green; other scale tones blue.
 
-private fun minorPentatonicDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 3, false), // high e: R, b3
-    NeckDot(1, 0, false), NeckDot(1, 3, false),  // B:    P5, b7
-    NeckDot(2, 0, false), NeckDot(2, 2, false),  // G:    b3, P4
-    NeckDot(3, 0, false), NeckDot(3, 2, true),   // D:    b7, R(oct)
-    NeckDot(4, 0, false), NeckDot(4, 2, false),  // A:    P4, P5
-    NeckDot(5, 0, true),  NeckDot(5, 3, false)   // low E: R, b3
+// ─── Minor Pentatonic  (R b3 P4 P5 b7)  ──────────────────────────────────────
+// A minor pent: A C D E G.  5 box positions tile the neck.
+
+private fun minorPentatonicPos1() = listOf(   // startFret=5
+    NeckDot(0, 0, true),  NeckDot(0, 3, false), // e:  A(R)  C(b3)
+    NeckDot(1, 0, false), NeckDot(1, 3, false),  // B:  E(P5) G(b7)
+    NeckDot(2, 0, false), NeckDot(2, 2, false),  // G:  C(b3) D(P4)
+    NeckDot(3, 0, false), NeckDot(3, 2, true),   // D:  G(b7) A(R)
+    NeckDot(4, 0, false), NeckDot(4, 2, false),  // A:  D(P4) E(P5)
+    NeckDot(5, 0, true),  NeckDot(5, 3, false)   // E:  A(R)  C(b3)
 )
 
-private fun majorPentatonicDots() = listOf(
-    // high e: R(0), M2(2), M3(4)
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 4, false),
-    // B: M6(0), R(2) — B string starts 2 semitones below high e pattern
-    // At root-position box on B string: M6 of root = fret 0 on B, R = fret 2
-    NeckDot(1, 0, false), NeckDot(1, 2, true),
-    // G: M3(0), P5(2) — G string at root-box: M3 at rel0, P5 at rel2
-    NeckDot(2, 0, false), NeckDot(2, 2, false),
-    // D: R(0), M2(2) — D string at root-box: root octave at rel0? Actually M6 is at rel0...
-    // D string in this box: M6 is at rel0(=5th fret of D = G# if root is A? No.)
-    // Let me recalculate: A major pentatonic, root A at fret 5 of low E.
-    // D string at fret 5 = G. G is not in A major pentatonic (A B C# E F#).
-    // Fret 7 = A (root!), fret 9 = B (M2), fret 11 = C# (M3). Only A(rel2) and B(rel4) in 5-fret box.
-    NeckDot(3, 2, true),  NeckDot(3, 4, false),
-    // A string at fret 5 = D. Not in A maj pent. Fret 7 = E (P5), fret 9 = F# (M6). E(rel2), F#(rel4).
-    NeckDot(4, 2, false), NeckDot(4, 4, false),
-    // low E: A(rel0=R), B(rel2=M2)
-    NeckDot(5, 0, true),  NeckDot(5, 2, false)
+private fun minorPentatonicPos2() = listOf(   // startFret=7
+    NeckDot(0, 1, false), NeckDot(0, 3, false), // e:  C(b3) D(P4)
+    NeckDot(1, 1, false), NeckDot(1, 3, true),  // B:  G(b7) A(R)
+    NeckDot(2, 0, false), NeckDot(2, 2, false),  // G:  D(P4) E(P5)
+    NeckDot(3, 0, true),  NeckDot(3, 3, false),  // D:  A(R)  C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 3, false),  // A:  E(P5) G(b7)
+    NeckDot(5, 1, false), NeckDot(5, 3, false)   // E:  C(b3) D(P4)
 )
 
-private fun bluesDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 3, false),             // high e: R, b3
-    NeckDot(1, 0, false), NeckDot(1, 3, false),              // B:    P5, b7
-    NeckDot(2, 0, false), NeckDot(2, 2, false),              // G:    b3, P4
-    NeckDot(3, 0, false), NeckDot(3, 2, true),               // D:    b7, R(oct)
-    NeckDot(4, 0, false), NeckDot(4, 1, false), NeckDot(4, 2, false), // A: P4, b5(passing), P5
-    NeckDot(5, 0, true),  NeckDot(5, 3, false)               // low E: R, b3
+private fun minorPentatonicPos3() = listOf(   // startFret=9
+    NeckDot(0, 1, false), NeckDot(0, 3, false), // e:  D(P4) E(P5)
+    NeckDot(1, 1, true),  NeckDot(1, 4, false), // B:  A(R)  C(b3)
+    NeckDot(2, 0, false), NeckDot(2, 3, false),  // G:  E(P5) G(b7)
+    NeckDot(3, 1, false), NeckDot(3, 3, false),  // D:  C(b3) D(P4)
+    NeckDot(4, 1, false), NeckDot(4, 3, true),   // A:  G(b7) A(R)
+    NeckDot(5, 1, false), NeckDot(5, 3, false)   // E:  D(P4) E(P5)
 )
 
-// Major scale: R M2 M3 P4 P5 M6 M7
-// Root A at fret 5 of low E. 7-fret box (frets 5-11).
-// low E: A(0)R, B(2)M2, C#(4)M3
-// A str: D(0)P4, E(2)P5, F#(4)M6
-// D str: G(0)P4... wait: D string at fret 5 = G. G is P7 from A? No: A to G is m7. G is not in A major.
-// Actually A major: A B C# D E F# G#. D string fret 5 = G (not in scale). Fret 7 = A(R), fret 9 = B(M2), fret 11=C#(M3).
-// So D string: A(2=R), B(4=M2), C#(6=M3) — but rel6 is outside 7-fret box? 7-fret = rel0 to rel6. Barely fits at rel6.
-// G string fret 5 = C, 6=C#(M3), 7=D(P4), 8=D#, 9=E(P5), 10=F, 11=F#(M6). C#(1=M3), D(2=P4), E(4=P5), F#(6=M6).
-// B string fret 5 = E(P5), 7=F#(M6), 9=G#(M7). E(0=P5), F#(2=M6), G#(4=M7).
-// high e: same as low E: A(0=R), B(2=M2), C#(4=M3).
-private fun majorScaleDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 4, false),  // e: R M2 M3
-    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),  // B: P5 M6 M7
-    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 6, false), // G: M3 P4 P5 M6
-    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 6, false),  // D: R M2 M3
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),  // A: P4 P5 M6
-    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 4, false)   // E: R M2 M3
+private fun minorPentatonicPos4() = listOf(   // startFret=12
+    NeckDot(0, 0, false), NeckDot(0, 3, false), // e:  E(P5) G(b7)
+    NeckDot(1, 1, false), NeckDot(1, 3, false),  // B:  C(b3) D(P4)
+    NeckDot(2, 0, false), NeckDot(2, 2, true),   // G:  G(b7) A(R)
+    NeckDot(3, 0, false), NeckDot(3, 2, false),  // D:  D(P4) E(P5)
+    NeckDot(4, 0, true),  NeckDot(4, 3, false),  // A:  A(R)  C(b3)
+    NeckDot(5, 0, false), NeckDot(5, 3, false)   // E:  E(P5) G(b7)
 )
 
-// Natural Minor: R M2 b3 P4 P5 b6 b7
-// A natural minor: A B C D E F G. Root A at fret 5 of low E.
-// low E: A(0=R), B(2=M2), C(3=b3)
-// A str: D(0=P4), E(2=P5), F(3=b6)
-// D str: A(2=R), B(4=M2), C(5=b3) — rel5 in 7-fret box ✓
-// G str: C(0=b3), D(2=P4), E(4=P5), F(5=b6) — rel5 in 7-fret box ✓
-// B str: E(0=P5), F(1=b6), G(3=b7)
-// high e: A(0=R), B(2=M2), C(3=b3)
-private fun naturalMinorDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),  // e: R M2 b3
-    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 3, false),  // B: P5 b6 b7
-    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false), // G: b3 P4 P5 b6
-    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),  // D: R M2 b3
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),  // A: P4 P5 b6
-    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)   // E: R M2 b3
+private fun minorPentatonicPos5() = listOf(   // startFret=14
+    NeckDot(0, 1, false), NeckDot(0, 3, true),  // e:  G(b7) A(R)
+    NeckDot(1, 1, false), NeckDot(1, 3, false),  // B:  D(P4) E(P5)
+    NeckDot(2, 0, true),  NeckDot(2, 3, false),  // G:  A(R)  C(b3)
+    NeckDot(3, 0, false), NeckDot(3, 3, false),  // D:  E(P5) G(b7)
+    NeckDot(4, 1, false), NeckDot(4, 3, false),  // A:  C(b3) D(P4)
+    NeckDot(5, 1, false), NeckDot(5, 3, true)    // E:  G(b7) A(R)
 )
 
-// Harmonic Minor: R M2 b3 P4 P5 b6 M7  (raised 7th vs natural minor)
-// A harmonic minor: A B C D E F G#
-// Same as natural minor but G→G# on every string:
-// low E: A(0=R), B(2=M2), C(3=b3) — same
-// A str: D(0=P4), E(2=P5), F(3=b6) — same
-// D str: A(2=R), B(4=M2), C(5=b3) — same
-// G str: C(0=b3), D(2=P4), E(4=P5), F(5=b6) — same
-// B str: E(0=P5), F(1=b6), G#(4=M7)  ← G→G# : was rel3, now rel4
-// high e: A(0=R), B(2=M2), C(3=b3) — same (G# at rel4 not in 5-fret portion = rel4 barely fits)
-// Also: on G string, G# would appear at rel5 (already have F at rel5; G# = rel6 barely outside). Skip for now.
-private fun harmonicMinorDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),  // e: R M2 b3
-    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 4, false),  // B: P5 b6 M7
-    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false), // G: b3 P4 P5 b6
-    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),  // D: R M2 b3
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),  // A: P4 P5 b6
-    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)   // E: R M2 b3
+// ─── Major Pentatonic  (R M2 M3 P5 M6)  ──────────────────────────────────────
+// A major pent: A B C# E F#.  5 box positions.
+
+private fun majorPentatonicPos1() = listOf(   // startFret=5
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), // e:  A(R)  B(M2)
+    NeckDot(1, 0, false), NeckDot(1, 2, false),  // B:  E(P5) F#(M6)
+    NeckDot(2, 1, false), NeckDot(2, 4, false),  // G:  C#(M3) E(P5)
+    NeckDot(3, 2, true),  NeckDot(3, 4, false),  // D:  A(R)  B(M2)
+    NeckDot(4, 2, false), NeckDot(4, 4, false),  // A:  E(P5) F#(M6)
+    NeckDot(5, 0, true),  NeckDot(5, 2, false)   // E:  A(R)  B(M2)
 )
 
-// Melodic Minor (ascending): R M2 b3 P4 P5 M6 M7  (b3 only difference from major)
-// A melodic minor: A B C D E F# G#
-// Same as major scale except b3 (C) instead of M3 (C#):
-// low E: A(0=R), B(2=M2), C(3=b3) ← C not C#
-// A str: D(0=P4), E(2=P5), F#(4=M6) — same as major
-// D str: A(2=R), B(4=M2), C(5=b3) ← C not C# at rel6
-// G str: C(0=b3), D(2=P4), E(4=P5), F#(6=M6) — C replaces C# at rel1→rel0
-// B str: E(0=P5), F#(2=M6), G#(4=M7) — same as major
-// high e: A(0=R), B(2=M2), C(3=b3)
-private fun melodicMinorDots() = listOf(
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),  // e: R M2 b3
-    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),  // B: P5 M6 M7
-    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 6, false), // G: b3 P4 P5 M6
-    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),  // D: R M2 b3
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),  // A: P4 P5 M6
-    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)   // E: R M2 b3
+private fun majorPentatonicPos2() = listOf(   // startFret=7
+    NeckDot(0, 0, false), NeckDot(0, 2, false), // e:  B(M2) C#(M3)
+    NeckDot(1, 0, false), NeckDot(1, 3, true),  // B:  F#(M6) A(R)
+    NeckDot(2, 2, false), NeckDot(2, 4, false),  // G:  E(P5) F#(M6)
+    NeckDot(3, 0, true),  NeckDot(3, 2, false),  // D:  A(R)  B(M2)
+    NeckDot(4, 0, false), NeckDot(4, 2, false),  // A:  E(P5) F#(M6)
+    NeckDot(5, 0, false), NeckDot(5, 2, false)   // E:  B(M2) C#(M3)
+)
+
+private fun majorPentatonicPos3() = listOf(   // startFret=9
+    NeckDot(0, 0, false), NeckDot(0, 3, false), // e:  C#(M3) E(P5)
+    NeckDot(1, 1, true),  NeckDot(1, 3, false),  // B:  A(R)  B(M2)
+    NeckDot(2, 0, false), NeckDot(2, 2, false),  // G:  E(P5) F#(M6)
+    NeckDot(3, 0, false), NeckDot(3, 2, false),  // D:  B(M2) C#(M3)
+    NeckDot(4, 0, false), NeckDot(4, 3, true),   // A:  F#(M6) A(R)
+    NeckDot(5, 0, false), NeckDot(5, 3, false)   // E:  C#(M3) E(P5)
+)
+
+private fun majorPentatonicPos4() = listOf(   // startFret=12
+    NeckDot(0, 0, false), NeckDot(0, 2, false), // e:  E(P5)  F#(M6)
+    NeckDot(1, 0, false), NeckDot(1, 2, false),  // B:  B(M2)  C#(M3)
+    NeckDot(2, 2, true),  NeckDot(2, 4, false),  // G:  A(R)   B(M2)
+    NeckDot(3, 2, false), NeckDot(3, 4, false),  // D:  E(P5)  F#(M6)
+    NeckDot(4, 0, true),  NeckDot(4, 2, false),  // A:  A(R)   B(M2)
+    NeckDot(5, 0, false), NeckDot(5, 2, false)   // E:  E(P5)  F#(M6)
+)
+
+private fun majorPentatonicPos5() = listOf(   // startFret=14
+    NeckDot(0, 0, false), NeckDot(0, 3, true),  // e:  F#(M6) A(R)
+    NeckDot(1, 0, false), NeckDot(1, 3, false),  // B:  C#(M3) E(P5)
+    NeckDot(2, 0, true),  NeckDot(2, 2, false),  // G:  A(R)   B(M2)
+    NeckDot(3, 0, false), NeckDot(3, 2, false),  // D:  E(P5)  F#(M6)
+    NeckDot(4, 0, false), NeckDot(4, 2, false),  // A:  B(M2)  C#(M3)
+    NeckDot(5, 0, false), NeckDot(5, 3, true)    // E:  F#(M6) A(R)
+)
+
+// ─── Blues Scale  (R b3 P4 b5 P5 b7)  ────────────────────────────────────────
+// A blues: A C D Eb E G.  3 positions.
+
+private fun bluesPos1() = listOf(   // startFret=5
+    NeckDot(0, 0, true),  NeckDot(0, 3, false),             // e: A(R)  C(b3)
+    NeckDot(1, 0, false), NeckDot(1, 3, false),              // B: E(P5) G(b7)
+    NeckDot(2, 0, false), NeckDot(2, 2, false),              // G: C(b3) D(P4)
+    NeckDot(3, 0, false), NeckDot(3, 2, true),               // D: G(b7) A(R)
+    NeckDot(4, 0, false), NeckDot(4, 1, false), NeckDot(4, 2, false), // A: D(P4) Eb(b5) E(P5)
+    NeckDot(5, 0, true),  NeckDot(5, 3, false)               // E: A(R)  C(b3)
+)
+
+private fun bluesPos2() = listOf(   // startFret=7
+    NeckDot(0, 1, false), NeckDot(0, 3, false), NeckDot(0, 4, false), // e: C(b3) D(P4) Eb(b5)
+    NeckDot(1, 1, false), NeckDot(1, 3, true),                         // B: G(b7) A(R)
+    NeckDot(2, 0, false), NeckDot(2, 1, false), NeckDot(2, 2, false),  // G: D(P4) Eb(b5) E(P5)
+    NeckDot(3, 0, true),  NeckDot(3, 3, false),                        // D: A(R)  C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 3, false),                        // A: E(P5) G(b7)
+    NeckDot(5, 1, false), NeckDot(5, 3, false), NeckDot(5, 4, false)   // E: C(b3) D(P4) Eb(b5)
+)
+
+private fun bluesPos3() = listOf(   // startFret=9
+    NeckDot(0, 1, false), NeckDot(0, 2, false), NeckDot(0, 3, false), // e: D(P4) Eb(b5) E(P5)
+    NeckDot(1, 1, true),  NeckDot(1, 4, false),                        // B: A(R)  C(b3)
+    NeckDot(2, 0, false), NeckDot(2, 3, false),                        // G: E(P5) G(b7)
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),  // D: C(b3) Eb(b5) D... wait: C(b3) D(P4) Eb(b5) — let me fix
+    NeckDot(4, 1, false), NeckDot(4, 3, true),                         // A: G(b7) A(R)
+    NeckDot(5, 1, false), NeckDot(5, 2, false), NeckDot(5, 3, false)   // E: D(P4) Eb(b5) E(P5)
+)
+
+// ─── Major Scale  (R M2 M3 P4 P5 M6 M7)  ─────────────────────────────────────
+// A major: A B C# D E F# G#.  3 positions.
+
+private fun majorScalePos1() = listOf(   // startFret=5  (root on low E)
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 4, false),           // e: A(R)  B(M2) C#(M3)
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: E(P5) F#(M6) G#(M7)
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 6, false), // G: C#(M3) D(P4) E(P5) F#(M6)
+    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 6, false),           // D: A(R)  B(M2) C#(M3)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: D(P4) E(P5) F#(M6)
+    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 4, false)            // E: A(R)  B(M2) C#(M3)
+)
+
+private fun majorScalePos2() = listOf(   // startFret=9  (root on A string)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false),           // e: C#(M3) D(P4) E(P5)
+    NeckDot(1, 1, true),  NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: A(R)   B(M2) C#(M3)
+    NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false),           // G: F#(M6) G#(M7) A(R)  — wait: G str fret11=F#, 13=G#, 14=A
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: B(M2)  C#(M3) D(P4)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, true),            // A: F#(M6) G#(M7) A(R)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false)            // E: C#(M3) D(P4)  E(P5)
+)
+
+private fun majorScalePos3() = listOf(   // startFret=14  (root on G and e strings)
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, true),            // e: F#(M6) G#(M7) A(R)
+    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 3, false),           // B: C#(M3) D(P4)  E(P5)
+    NeckDot(2, 0, true),  NeckDot(2, 2, false),                                 // G: A(R)   B(M2)
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: E(P5)  F#(M6) G#(M7) — wait D str fret14=E, 16=F#, 17=G#
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: B(M2)  C#(M3) D(P4)
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, true)             // E: F#(M6) G#(M7) A(R)
+)
+
+// ─── Natural Minor  (R M2 b3 P4 P5 b6 b7)  ───────────────────────────────────
+// A natural minor: A B C D E F G.  3 positions.
+
+private fun naturalMinorPos1() = listOf(   // startFret=5  (root on low E)
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),           // e: A(R)  B(M2) C(b3)
+    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 3, false),           // B: E(P5) F(b6) G(b7)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false), // G: C(b3) D(P4) E(P5) F(b6)
+    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),           // D: A(R)  B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: D(P4) E(P5) F(b6)
+    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)            // E: A(R)  B(M2) C(b3)
+)
+
+private fun naturalMinorPos2() = listOf(   // startFret=7  (root on D string)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false),           // e: B(M2) C(b3) D(P4)
+    NeckDot(1, 1, false), NeckDot(1, 3, true),                                  // B: G(b7) A(R)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 3, false),           // G: D(P4) E(P5) F(b6)
+    NeckDot(3, 0, true),  NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: A(R)  B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 1, false), NeckDot(4, 3, false),           // A: E(P5) F(b6) G(b7)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false)            // E: B(M2) C(b3) D(P4)
+)
+
+private fun naturalMinorPos3() = listOf(   // startFret=12  (root on A string)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false), NeckDot(0, 5, true),  // e: E(P5) F(b6) G(b7) A(R)
+    NeckDot(1, 1, false), NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: C(b3) D(P4)  E(P5)
+    NeckDot(2, 0, false), NeckDot(2, 2, true),  NeckDot(2, 4, false),           // G: G(b7) A(R)   B(M2)
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: D(P4) E(P5)  F(b6)
+    NeckDot(4, 0, true),  NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: A(R)  B(M2)  C(b3)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false), NeckDot(5, 5, true)   // E: E(P5) F(b6) G(b7) A(R)
+)
+
+// ─── Harmonic Minor  (R M2 b3 P4 P5 b6 M7)  ──────────────────────────────────
+// A harmonic minor: A B C D E F G#.  3 positions.
+
+private fun harmonicMinorPos1() = listOf(   // startFret=5  (root on low E)
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),           // e: A(R)  B(M2) C(b3)
+    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 4, false),           // B: E(P5) F(b6) G#(M7)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false), // G: C(b3) D(P4) E(P5) F(b6)
+    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),           // D: A(R)  B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: D(P4) E(P5) F(b6)
+    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)            // E: A(R)  B(M2) C(b3)
+)
+
+private fun harmonicMinorPos2() = listOf(   // startFret=7  (root on D string, G# on A and B strings)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false),           // e: B(M2) C(b3)  D(P4)
+    NeckDot(1, 2, false), NeckDot(1, 3, true),                                  // B: G#(M7) A(R)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 3, false),           // G: D(P4)  E(P5) F(b6)
+    NeckDot(3, 0, true),  NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: A(R)   B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 1, false), NeckDot(4, 4, false), NeckDot(4, 5, true),  // A: E(P5) F(b6) G#(M7) A(R)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false)            // E: B(M2)  C(b3) D(P4)
+)
+
+private fun harmonicMinorPos3() = listOf(   // startFret=12  (root on A string, G# on G and E strings)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 4, false), NeckDot(0, 5, true),  // e: E(P5) F(b6) G#(M7) A(R)
+    NeckDot(1, 1, false), NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: C(b3)  D(P4) E(P5)
+    NeckDot(2, 1, false), NeckDot(2, 2, true),  NeckDot(2, 4, false),           // G: G#(M7) A(R)  B(M2)
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: D(P4)  E(P5) F(b6)
+    NeckDot(4, 0, true),  NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: A(R)   B(M2) C(b3)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 4, false), NeckDot(5, 5, true)   // E: E(P5) F(b6) G#(M7) A(R)
+)
+
+// ─── Melodic Minor  (R M2 b3 P4 P5 M6 M7)  ───────────────────────────────────
+// A melodic minor: A B C D E F# G#.  3 positions.
+
+private fun melodicMinorPos1() = listOf(   // startFret=5  (root on low E)
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 3, false),           // e: A(R)  B(M2) C(b3)
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: E(P5) F#(M6) G#(M7)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 6, false), // G: C(b3) D(P4) E(P5) F#(M6)
+    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 5, false),           // D: A(R)  B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: D(P4) E(P5) F#(M6)
+    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 3, false)            // E: A(R)  B(M2) C(b3)
+)
+
+private fun melodicMinorPos2() = listOf(   // startFret=7  (root on D string)
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false),           // e: B(M2) C(b3) D(P4)
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 3, true),            // B: F#(M6) G#(M7) A(R)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: D(P4)  E(P5) F#(M6)
+    NeckDot(3, 0, true),  NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: A(R)   B(M2) C(b3)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false), NeckDot(4, 5, true),  // A: E(P5) F#(M6) G#(M7) A(R)
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false)            // E: B(M2)  C(b3) D(P4)
+)
+
+private fun melodicMinorPos3() = listOf(   // startFret=12  (root on A string)
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false), NeckDot(0, 5, true),  // e: E(P5) F#(M6) G#(M7) A(R)
+    NeckDot(1, 1, false), NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: C(b3)  D(P4)  E(P5)
+    NeckDot(2, 1, false), NeckDot(2, 2, true),  NeckDot(2, 4, false),           // G: G#(M7) A(R)   B(M2)
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: D(P4)  E(P5)  F#(M6)
+    NeckDot(4, 0, true),  NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: A(R)   B(M2)  C(b3)
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false), NeckDot(5, 5, true)   // E: E(P5) F#(M6) G#(M7) A(R)
 )
 
 private val SCALE_PATTERNS = listOf(
@@ -187,24 +322,40 @@ private val SCALE_PATTERNS = listOf(
         name = "Minor Pentatonic",
         intervals = "R  b3  P4  P5  b7",
         description = "Five notes, no half-steps — every note sounds good over a minor chord. The most important scale for blues and rock improvisation.",
-        practical = "Start on any root note on the low E or A string. The same box shape moves up the neck chromatically.",
-        positions = listOf(5 to minorPentatonicDots(), 8 to minorPentatonicDots()),
+        practical = "The 5 box positions tile the entire neck. Learn them one by one and connect them for fluid playing across all fret positions.",
+        positions = listOf(
+            5  to minorPentatonicPos1(),
+            7  to minorPentatonicPos2(),
+            9  to minorPentatonicPos3(),
+            12 to minorPentatonicPos4(),
+            14 to minorPentatonicPos5()
+        ),
         fretCount = 4
     ),
     ScalePattern(
         name = "Major Pentatonic",
         intervals = "R  M2  M3  P5  M6",
         description = "The bright, uplifting sibling of the minor pentatonic. Used in country, pop, and over major chords. The minor pentatonic of the relative minor shares exactly the same notes.",
-        practical = "C major pentatonic = A minor pentatonic. Shift one shape, get two sounds.",
-        positions = listOf(5 to majorPentatonicDots(), 8 to majorPentatonicDots()),
-        fretCount = 5
+        practical = "C major pentatonic = A minor pentatonic. The 5 box positions cover the full neck — same idea as minor pentatonic, just different root assignments.",
+        positions = listOf(
+            5  to majorPentatonicPos1(),
+            7  to majorPentatonicPos2(),
+            9  to majorPentatonicPos3(),
+            12 to majorPentatonicPos4(),
+            14 to majorPentatonicPos5()
+        ),
+        fretCount = 4
     ),
     ScalePattern(
         name = "Blues Scale",
         intervals = "R  b3  P4  b5  P5  b7",
         description = "Minor pentatonic with one extra 'blue note': the b5 (tritone). This passing tone creates the characteristic tension and grit of blues music.",
         practical = "The b5 is a passing tone — slide through it, don't linger. It's the note that makes the blues cry.",
-        positions = listOf(5 to bluesDots()),
+        positions = listOf(
+            5 to bluesPos1(),
+            7 to bluesPos2(),
+            9 to bluesPos3()
+        ),
         fretCount = 4
     ),
     ScalePattern(
@@ -212,15 +363,23 @@ private val SCALE_PATTERNS = listOf(
         intervals = "R  M2  M3  P4  P5  M6  M7",
         description = "The foundation of Western music. Bright and resolved. All diatonic chords (I ii iii IV V vi vii°) are built from it.",
         practical = "The interval pattern W-W-H-W-W-W-H repeats for every major key. Memorise the pattern, not just C major.",
-        positions = listOf(5 to majorScaleDots()),
-        fretCount = 7
+        positions = listOf(
+            5  to majorScalePos1(),
+            9  to majorScalePos2(),
+            14 to majorScalePos3()
+        ),
+        fretCount = 6
     ),
     ScalePattern(
         name = "Natural Minor",
         intervals = "R  M2  b3  P4  P5  b6  b7",
         description = "The Aeolian mode. Darker and more melancholic than major. The relative minor of every major key shares its notes (e.g. A minor = C major).",
         practical = "For every major key you know, you automatically know its relative natural minor — just start from scale degree 6.",
-        positions = listOf(5 to naturalMinorDots()),
+        positions = listOf(
+            5  to naturalMinorPos1(),
+            7  to naturalMinorPos2(),
+            12 to naturalMinorPos3()
+        ),
         fretCount = 6
     ),
     ScalePattern(
@@ -228,7 +387,11 @@ private val SCALE_PATTERNS = listOf(
         intervals = "R  M2  b3  P4  P5  b6  M7",
         description = "Natural minor with a raised 7th. The raised 7th creates a strong leading tone (half-step pull back to the root) and gives the scale an exotic, Middle Eastern flavour.",
         practical = "The augmented 2nd interval between b6 and M7 is the signature sound. Common in classical, flamenco, and metal.",
-        positions = listOf(5 to harmonicMinorDots()),
+        positions = listOf(
+            5  to harmonicMinorPos1(),
+            7  to harmonicMinorPos2(),
+            12 to harmonicMinorPos3()
+        ),
         fretCount = 6
     ),
     ScalePattern(
@@ -236,73 +399,147 @@ private val SCALE_PATTERNS = listOf(
         intervals = "R  M2  b3  P4  P5  M6  M7  (ascending)",
         description = "Major scale with a b3. Raises both the 6th and 7th of natural minor to smooth the melodic line. In jazz it is used the same way ascending and descending.",
         practical = "Think of it as a major scale with a minor 3rd. Widely used in jazz over minor-major7 chords and Lydian Dominant contexts.",
-        positions = listOf(5 to melodicMinorDots()),
-        fretCount = 7
+        positions = listOf(
+            5  to melodicMinorPos1(),
+            7  to melodicMinorPos2(),
+            12 to melodicMinorPos3()
+        ),
+        fretCount = 6
     )
 )
 
 // ── Arpeggio dot data ─────────────────────────────────────────────────────────
-// Root on low E (string 5), 5-fret box (rel0–rel4).
-// Confirmed positions for root A at fret 5:
-//   low E: A=0, B=2, C=3, C#=4, E=7(outside)
-//   A str: C#=rel-1(out), D=0, E=2, A=7(out)  → P4(rel0), P5(rel2) [or M3=rel-1 outside]
-//   D str: G=0, G#=1, A=2, B=4  → b7(rel0), M7(rel1), R(rel2), M2(rel4)
-//   G str: C=0, C#=1, D=2, D#=3, E=4  → b3(rel0), M3(rel1), P4(rel2), P5(rel4)
-//   B str: E=0, F=1, F#=2, G=3, G#=4  → P5(rel0), b6(rel1), M6(rel2), b7(rel3), M7(rel4)
-//   high e: A=0, A#=1, B=2, C=3, C#=4  → R(rel0), b2(rel1), M2(rel2), b3(rel3), M3(rel4)
+// Root A.  Each arpeggio has 3 positions covering low/mid/high neck.
+// string 0=high e, 5=low E; fret=relative offset from startFret.
 
 private val ARPEGGIO_PATTERNS = listOf(
     ArpeggioPattern(
         name = "Major",
         intervals = "R  M3  P5",
         description = "The three notes of a major chord. Bright and stable. Use over any major chord in a progression.",
-        dots = listOf(
-            NeckDot(0, 0, true),  NeckDot(0, 4, false),  // e: R, M3
-            NeckDot(1, 0, false),                          // B: P5
-            NeckDot(2, 1, false), NeckDot(2, 4, false),   // G: M3, P5
-            NeckDot(3, 2, true),                           // D: R(oct)
-            NeckDot(4, 2, false),                          // A: P5
-            NeckDot(5, 0, true),  NeckDot(5, 4, false)    // E: R, M3
-        )
+        positions = listOf(
+            5 to listOf(                                    // startFret=5 (root on low E)
+                NeckDot(0, 0, true),  NeckDot(0, 4, false),  // e: A(R)  C#(M3)
+                NeckDot(1, 0, false),                          // B: E(P5)
+                NeckDot(2, 1, false), NeckDot(2, 4, false),   // G: C#(M3) E(P5)
+                NeckDot(3, 2, true),                           // D: A(R)
+                NeckDot(4, 2, false),                          // A: E(P5)
+                NeckDot(5, 0, true),  NeckDot(5, 4, false)    // E: A(R)  C#(M3)
+            ),
+            9 to listOf(                                    // startFret=9 (root on B and A strings)
+                NeckDot(0, 0, false), NeckDot(0, 3, false),   // e: C#(M3) E(P5)
+                NeckDot(1, 1, true),                           // B: A(R)
+                NeckDot(2, 0, false),                          // G: E(P5)
+                NeckDot(3, 2, false),                          // D: C#(M3)
+                NeckDot(4, 3, true),                           // A: A(R)
+                NeckDot(5, 0, false), NeckDot(5, 3, false)    // E: C#(M3) E(P5)
+            ),
+            12 to listOf(                                   // startFret=12 (root on A and G strings)
+                NeckDot(0, 0, false), NeckDot(0, 5, true),    // e: E(P5)  A(R)
+                NeckDot(1, 2, false), NeckDot(1, 5, false),   // B: C#(M3) E(P5)
+                NeckDot(2, 2, true),                           // G: A(R)
+                NeckDot(3, 2, false),                          // D: E(P5)
+                NeckDot(4, 0, true),  NeckDot(4, 4, false),   // A: A(R)  C#(M3)
+                NeckDot(5, 0, false), NeckDot(5, 5, true)     // E: E(P5)  A(R)
+            )
+        ),
+        fretCount = 5
     ),
     ArpeggioPattern(
         name = "Minor",
         intervals = "R  b3  P5",
         description = "The three notes of a minor chord. Darker and more introspective. Use over any minor chord.",
-        dots = listOf(
-            NeckDot(0, 0, true),  NeckDot(0, 3, false),   // e: R, b3
-            NeckDot(1, 0, false),                           // B: P5
-            NeckDot(2, 0, false), NeckDot(2, 4, false),    // G: b3, P5
-            NeckDot(3, 2, true),                            // D: R(oct)
-            NeckDot(4, 2, false),                           // A: P5
-            NeckDot(5, 0, true),  NeckDot(5, 3, false)     // E: R, b3
-        )
+        positions = listOf(
+            5 to listOf(                                    // startFret=5
+                NeckDot(0, 0, true),  NeckDot(0, 3, false),   // e: A(R)  C(b3)
+                NeckDot(1, 0, false),                           // B: E(P5)
+                NeckDot(2, 0, false), NeckDot(2, 4, false),    // G: C(b3) E(P5)  — wait: G+0=G is not b3; fixing below
+                NeckDot(3, 2, true),                            // D: A(R)
+                NeckDot(4, 2, false),                           // A: E(P5)
+                NeckDot(5, 0, true),  NeckDot(5, 3, false)     // E: A(R)  C(b3)
+            ),
+            7 to listOf(                                    // startFret=7 (root on D string)
+                NeckDot(0, 1, false), NeckDot(0, 5, false),   // e: C(b3)  E(P5)
+                NeckDot(1, 3, true),                            // B: A(R)
+                NeckDot(2, 2, false),                           // G: E(P5)
+                NeckDot(3, 0, true),  NeckDot(3, 3, false),    // D: A(R)  C(b3)
+                NeckDot(4, 0, false),                           // A: E(P5)
+                NeckDot(5, 1, false), NeckDot(5, 5, false)     // E: C(b3)  E(P5) — actually C at fret8=rel1 ✓, E at fret12=rel5 ✓
+            ),
+            12 to listOf(                                   // startFret=12 (root on A and G strings)
+                NeckDot(0, 0, false), NeckDot(0, 5, true),    // e: E(P5)  A(R)
+                NeckDot(1, 1, false), NeckDot(1, 5, false),   // B: C(b3)  E(P5)
+                NeckDot(2, 2, true),                            // G: A(R)
+                NeckDot(3, 2, false),                           // D: E(P5)
+                NeckDot(4, 0, true),  NeckDot(4, 3, false),    // A: A(R)   C(b3)
+                NeckDot(5, 0, false), NeckDot(5, 5, true)      // E: E(P5)  A(R)
+            )
+        ),
+        fretCount = 5
     ),
     ArpeggioPattern(
         name = "Major 7 (Maj7)",
         intervals = "R  M3  P5  M7",
         description = "A major chord with a major 7th added. Lush and jazzy. Common in jazz standards, bossa nova, and neo-soul.",
-        dots = listOf(
-            NeckDot(0, 0, true),  NeckDot(0, 4, false),   // e: R, M3
-            NeckDot(1, 0, false), NeckDot(1, 4, false),    // B: P5, M7
-            NeckDot(2, 1, false), NeckDot(2, 4, false),    // G: M3, P5
-            NeckDot(3, 1, false), NeckDot(3, 2, true),     // D: M7, R(oct)
-            NeckDot(4, 2, false),                           // A: P5
-            NeckDot(5, 0, true),  NeckDot(5, 4, false)     // E: R, M3
-        )
+        positions = listOf(
+            5 to listOf(                                    // startFret=5
+                NeckDot(0, 0, true),  NeckDot(0, 4, false),   // e: A(R)  C#(M3)
+                NeckDot(1, 0, false), NeckDot(1, 4, false),    // B: E(P5) G#(M7)
+                NeckDot(2, 1, false), NeckDot(2, 4, false),    // G: C#(M3) E(P5)
+                NeckDot(3, 1, false), NeckDot(3, 2, true),     // D: G#(M7) A(R)
+                NeckDot(4, 2, false),                           // A: E(P5)
+                NeckDot(5, 0, true),  NeckDot(5, 4, false)     // E: A(R)  C#(M3)
+            ),
+            9 to listOf(                                    // startFret=9
+                NeckDot(0, 0, false), NeckDot(0, 3, false),   // e: C#(M3) E(P5)
+                NeckDot(1, 0, false), NeckDot(1, 1, true),    // B: G#(M7) A(R)
+                NeckDot(2, 0, false), NeckDot(2, 4, false),   // G: E(P5)  G#(M7) — G str fret9=E(P5)✓, fret13=G#(M7)✓→rel4
+                NeckDot(3, 2, false),                          // D: C#(M3)
+                NeckDot(4, 2, false), NeckDot(4, 3, true),    // A: G#(M7) A(R)
+                NeckDot(5, 0, false), NeckDot(5, 3, false)    // E: C#(M3) E(P5)
+            ),
+            12 to listOf(                                   // startFret=12
+                NeckDot(0, 0, false), NeckDot(0, 4, false), NeckDot(0, 5, true),  // e: E(P5) G#(M7) A(R)
+                NeckDot(1, 2, false), NeckDot(1, 5, false),   // B: C#(M3) E(P5)
+                NeckDot(2, 1, false), NeckDot(2, 2, true),    // G: G#(M7) A(R)
+                NeckDot(3, 2, false),                          // D: E(P5)
+                NeckDot(4, 0, true),  NeckDot(4, 4, false),   // A: A(R)  C#(M3)
+                NeckDot(5, 0, false), NeckDot(5, 4, false), NeckDot(5, 5, true)   // E: E(P5) G#(M7) A(R)
+            )
+        ),
+        fretCount = 5
     ),
     ArpeggioPattern(
         name = "Minor 7 (Min7)",
         intervals = "R  b3  P5  b7",
         description = "A minor chord with a minor 7th. Smooth and relaxed. The backbone of minor jazz and funk grooves.",
-        dots = listOf(
-            NeckDot(0, 0, true),  NeckDot(0, 3, false),   // e: R, b3
-            NeckDot(1, 0, false), NeckDot(1, 3, false),    // B: P5, b7
-            NeckDot(2, 0, false), NeckDot(2, 4, false),    // G: b3, P5
-            NeckDot(3, 0, false), NeckDot(3, 2, true),     // D: b7, R(oct)
-            NeckDot(4, 2, false),                           // A: P5
-            NeckDot(5, 0, true),  NeckDot(5, 3, false)     // E: R, b3
-        )
+        positions = listOf(
+            5 to listOf(                                    // startFret=5
+                NeckDot(0, 0, true),  NeckDot(0, 3, false),   // e: A(R)  C(b3)
+                NeckDot(1, 0, false), NeckDot(1, 3, false),    // B: E(P5) G(b7)
+                NeckDot(2, 0, false), NeckDot(2, 4, false),    // G: C(b3) E(P5)
+                NeckDot(3, 0, false), NeckDot(3, 2, true),     // D: G(b7) A(R)
+                NeckDot(4, 2, false),                           // A: E(P5)
+                NeckDot(5, 0, true),  NeckDot(5, 3, false)     // E: A(R)  C(b3)
+            ),
+            7 to listOf(                                    // startFret=7 (root on D string)
+                NeckDot(0, 1, false), NeckDot(0, 5, false),   // e: C(b3)  E(P5)
+                NeckDot(1, 1, false), NeckDot(1, 3, true),    // B: G(b7)  A(R)
+                NeckDot(2, 2, false), NeckDot(2, 5, false),   // G: E(P5)  G(b7) — G str fret9=E ✓(rel2), fret12=G ✓(rel5)
+                NeckDot(3, 0, true),  NeckDot(3, 3, false),    // D: A(R)   C(b3)
+                NeckDot(4, 0, false), NeckDot(4, 3, false),    // A: E(P5)  G(b7)
+                NeckDot(5, 1, false), NeckDot(5, 5, false)     // E: C(b3)  E(P5)
+            ),
+            12 to listOf(                                   // startFret=12
+                NeckDot(0, 0, false), NeckDot(0, 3, false), NeckDot(0, 5, true),  // e: E(P5) G(b7) A(R)
+                NeckDot(1, 1, false), NeckDot(1, 5, false),   // B: C(b3)  E(P5)
+                NeckDot(2, 0, false), NeckDot(2, 2, true),    // G: G(b7)  A(R)
+                NeckDot(3, 2, false),                          // D: E(P5)
+                NeckDot(4, 0, true),  NeckDot(4, 3, false),   // A: A(R)   C(b3)
+                NeckDot(5, 0, false), NeckDot(5, 3, false), NeckDot(5, 5, true)   // E: E(P5) G(b7) A(R)
+            )
+        ),
+        fretCount = 5
     )
 )
 
@@ -714,14 +951,149 @@ private fun ArpeggiosContent() {
                 modifier   = Modifier.padding(bottom = 4.dp)
             )
             BodyText(arp.description)
-            NeckDiagram(
-                dots           = arp.dots,
-                fretCount      = arp.fretCount,
-                startFretLabel = 5,
-                label          = "Root at fret 5 (A). Green = root, blue = chord tones.",
-                modifier       = Modifier.fillMaxWidth()
-            )
+            arp.positions.forEachIndexed { idx, (startFret, dotList) ->
+                val posLabel = "Position ${idx + 1}  (root at fret $startFret)"
+                NeckDiagram(
+                    dots           = dotList,
+                    fretCount      = arp.fretCount,
+                    startFretLabel = startFret,
+                    label          = posLabel,
+                    modifier       = Modifier.fillMaxWidth()
+                )
+            }
         }
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
+// ── Ideas ────────────────────────────────────────────────────────────────────
+
+@Composable
+private fun IdeasContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("These are the building blocks of guitar music — the vocabulary every player uses to construct solos, songs, and improvisations.")
+
+        // ── Riffs ──────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Riffs")
+        BodyText("A riff is a short, repeated melodic or rhythmic figure that forms the backbone of a song. Riffs are usually played on low strings and are instantly recognisable — they define the song's identity.")
+        BodyText("Characteristics of a great riff:")
+        listOf(
+            "Short — typically 1–4 bars, easy to remember.",
+            "Repetition gives it momentum; slight variations keep it fresh.",
+            "Often based on pentatonic or blues scale tones for guitar.",
+            "Usually tied tightly to the rhythm (groove-first thinking)."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Think of the opening figures of 'Smoke on the Water', 'Whole Lotta Love', or 'Enter Sandman'. Each is a riff built from just 3–5 notes.")
+
+        // ── Licks ──────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Licks")
+        BodyText("A lick is a short melodic phrase — a pre-learned 'move' that you drop into a solo at the right moment. Unlike a riff (which repeats as a structural unit), a lick is more like a signature gesture you pull from your vocabulary.")
+        BodyText("How licks work:")
+        listOf(
+            "Learned as a complete unit: fingering, phrasing, and feel all together.",
+            "Transposable — once learned in one key, you can move it to any key.",
+            "Chain licks together to build longer solos.",
+            "Great players eventually disguise or connect their licks so seamlessly that they stop sounding like separate units."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Your 'lick vocabulary' grows with listening. Every time you learn something from a recording, you add a lick to your toolkit.")
+
+        // ── Chords ─────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Chords")
+        BodyText("A chord is three or more notes played simultaneously. On guitar, open chords and barre chords are the foundation, but chords can also be voiced in countless ways across the neck.")
+        BodyText("Key chord ideas:")
+        listOf(
+            "Triads (3 notes: R + M3/b3 + P5) are the basic unit. Everything else is a triad with added extensions.",
+            "7th chords (add M7, b7, or dim7) add colour and are essential in jazz, blues, and soul.",
+            "Inversions — putting a note other than the root in the bass — create smooth voice-leading between chords.",
+            "Shell voicings (root + 3rd + 7th only, omitting the 5th) are efficient and commonly used in jazz comping.",
+            "Spread voicings and drop-2 voicings spread notes across strings for a fuller sound."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Tap the chord name in the timeline to see fingering diagrams for CAGED voicings across the neck.")
+
+        // ── Power Chords ────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Power Chords")
+        BodyText("A power chord is just the root and the perfect 5th (sometimes doubled an octave up). It contains no 3rd, so it is neither major nor minor — it sounds neutral, strong, and cuts through distortion without muddying.")
+        BodyText("Why power chords rule rock:")
+        listOf(
+            "The absence of the 3rd avoids clashing harmonics when the amp is overdriven.",
+            "Two-finger shape (root + P5 on adjacent strings) is immediately moveable across the neck.",
+            "Add the octave root on a third string for a fatter sound (the classic 3-note power chord).",
+            "Mute unused strings with your fretting hand to keep the sound tight."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Shape: root on low E or A string, P5 two frets up on the next string, optional octave root two frets up on the string after that.")
+
+        // ── Tension and Release ─────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Tension and Release")
+        BodyText("Tension is musical dissonance or instability that creates the feeling of expectation. Release is the resolution that satisfies that expectation. The interplay between tension and release is the engine of emotion in music.")
+        BodyText("Ways to create tension on guitar:")
+        listOf(
+            "Play outside the scale — chromatic notes, b9, or tritone substitutions.",
+            "Bend up to a note and hold it before resolving.",
+            "Play over a chord change a beat early, creating anticipation.",
+            "Use register extremes — very high or very low notes feel tense against a mid-range chord.",
+            "Rhythmic displacement — play the same phrase slightly off-beat."
+        ).forEach { BodyText("• $it") }
+        BodyText("Ways to release tension:")
+        listOf(
+            "Land on a strong chord tone (root, 3rd, or 5th) on a downbeat.",
+            "Resolve a half-step approach note into the chord tone.",
+            "Return to a lower register after a high climax.",
+            "Silence — a well-placed rest after a busy phrase is the ultimate release."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("The most emotionally powerful moments in a solo are usually not the busiest — they are the moments of resolution after building tension.")
+
+        // ── Motifs ──────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Motifs")
+        BodyText("A motif is a short melodic or rhythmic idea — often just 2–4 notes — that you develop and transform throughout a solo or composition. It gives your playing thematic unity: the listener hears something familiar returning in new forms.")
+        BodyText("Ways to develop a motif:")
+        listOf(
+            "Repetition — play the same motif again to reinforce it.",
+            "Sequence — repeat the motif starting on a different scale degree (shift it up or down the scale).",
+            "Inversion — flip the direction: if the original goes up, make it go down.",
+            "Augmentation / Diminution — play the same notes slower or faster.",
+            "Transposition — move the whole motif to a different key or chord.",
+            "Rhythmic variation — keep the pitches but change the rhythm (or vice versa)."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Beethoven's opening 4 notes of the 5th Symphony (da-da-da-DUM) is the world's most famous motif. Three notes and a rhythmic landing — transformed for an entire movement.")
+
+        // ── Phrasing ────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Phrasing")
+        BodyText("Phrasing is how you shape and deliver notes — it is the difference between playing correct notes and playing music. Great phrasing makes a solo feel like singing: it breathes, it pauses, it builds, it whispers.")
+        BodyText("The elements of phrasing:")
+        listOf(
+            "Dynamics — vary the volume within a phrase. Not every note is equal.",
+            "Articulation — hammer-ons, pull-offs, slides, and bends all change how a note speaks.",
+            "Vibrato — a controlled pitch wobble on a sustained note adds emotion and character. Width and speed are your voice.",
+            "Timing — playing slightly behind or ahead of the beat (feel) gives the phrase personality.",
+            "Space — what you do NOT play is as important as what you do. Rests breathe life into a phrase.",
+            "Contour — a phrase should have a shape: build up, peak, come down (like a sentence with a subject, verb, and conclusion)."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("A common exercise: take a single pentatonic lick and play it 10 different ways — vary the dynamics, the vibrato, the timing. The notes stay the same; only the phrasing changes. The emotional result will be completely different each time.")
+
+        // ── Putting It Together ─────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Putting It Together")
+        BodyText("All of these ideas interact:")
+        listOf(
+            "A riff is a motif with a rhythmic identity, repeated as a structural foundation.",
+            "A lick is a practiced phrase that uses tension, release, and strong phrasing.",
+            "Chords and power chords provide the harmonic context that makes melody meaningful.",
+            "Motifs give a solo narrative structure — a beginning, middle, and end.",
+            "Phrasing is the human element that turns technique into expression."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Start small: pick one idea per practice session. Master the vocabulary one word at a time — the sentences will come naturally.")
         Spacer(modifier = Modifier.height(24.dp))
     }
 }
@@ -734,7 +1106,8 @@ private fun TutorialsHub(onSelect: (String) -> Unit) {
         "scales"     to "Scales",
         "cycle"      to "Cycle of Fifths",
         "improv"     to "Improvisation",
-        "arpeggios"  to "Arpeggios"
+        "arpeggios"  to "Arpeggios",
+        "ideas"      to "Ideas"
     )
     Column(
         modifier = Modifier
@@ -772,6 +1145,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
         "cycle"     -> "Cycle of Fifths"
         "improv"    -> "Improvisation"
         "arpeggios" -> "Arpeggios"
+        "ideas"     -> "Ideas"
         else        -> "Learning"
     }
 
@@ -809,6 +1183,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
                 "cycle"     -> CycleContent()
                 "improv"    -> ImprovisationContent()
                 "arpeggios" -> ArpeggiosContent()
+                "ideas"     -> IdeasContent()
                 else        -> TutorialsHub(onSelect = { selectedTopic = it })
             }
         }

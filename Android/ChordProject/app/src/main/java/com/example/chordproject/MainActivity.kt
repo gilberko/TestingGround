@@ -2,6 +2,10 @@ package com.example.chordproject
 
 import android.Manifest
 import android.content.Intent
+import android.media.MediaCodec
+import android.media.MediaExtractor
+import android.media.MediaFormat
+import android.net.Uri
 import androidx.core.content.FileProvider
 import android.media.AudioFormat
 import android.media.AudioRecord
@@ -13,6 +17,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -150,6 +155,123 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+/** Read PCM samples from a WAV file URI. Returns null if the file is not valid 16-bit PCM WAV. */
+private fun readWavPcm(context: android.content.Context, uri: Uri): ShortArray? {
+    val stream = context.contentResolver.openInputStream(uri) ?: return null
+    return stream.use { input ->
+        // Read enough for the RIFF header; WAV "fmt " chunk can start at offset 12.
+        // We scan for the "data" sub-chunk to handle files with extra chunks (e.g. JUNK, LIST).
+        val headerBuf = ByteArray(512)
+        val headerRead = input.read(headerBuf)
+        if (headerRead < 44) return@use null
+        val bb = ByteBuffer.wrap(headerBuf, 0, headerRead).order(ByteOrder.LITTLE_ENDIAN)
+        val riff = String(headerBuf, 0, 4)
+        val wave = String(headerBuf, 8, 4)
+        if (riff != "RIFF" || wave != "WAVE") return@use null
+
+        // Walk sub-chunks to find fmt  and data
+        var pos = 12
+        var numChannels = 1
+        var sampleRate = SAMPLE_RATE
+        var bitsPerSample = 16
+        var dataOffset = -1
+        var dataSize = 0
+        while (pos + 8 <= headerRead) {
+            val chunkId = String(headerBuf, pos, 4)
+            val chunkSize = bb.getInt(pos + 4)
+            if (chunkId == "fmt ") {
+                numChannels  = bb.getShort(pos + 10).toInt().and(0xFFFF)
+                sampleRate   = bb.getInt(pos + 12)
+                bitsPerSample = bb.getShort(pos + 22).toInt().and(0xFFFF)
+            } else if (chunkId == "data") {
+                dataOffset = pos + 8
+                dataSize   = chunkSize
+                break
+            }
+            pos += 8 + chunkSize + (chunkSize and 1)  // pad to even
+        }
+        if (dataOffset < 0 || bitsPerSample != 16) return@use null
+
+        // Read data chunk (first headerRead-dataOffset bytes are already buffered)
+        val already = (headerRead - dataOffset).coerceAtLeast(0)
+        val pcmBytes = ByteArray(dataSize)
+        if (already > 0) System.arraycopy(headerBuf, dataOffset, pcmBytes, 0, already.coerceAtMost(dataSize))
+        var off = already
+        while (off < dataSize) {
+            val n = input.read(pcmBytes, off, dataSize - off)
+            if (n < 0) break
+            off += n
+        }
+        val shortBuf = ByteBuffer.wrap(pcmBytes, 0, off).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+        val all = ShortArray(shortBuf.remaining()) { shortBuf.get() }
+        if (numChannels == 1) all
+        else ShortArray(all.size / numChannels) { i -> all[i * numChannels] }  // mix down to mono
+    }
+}
+
+/** Decode an audio file (MP3, AAC, OGG, etc.) to 16-bit mono PCM via MediaExtractor + MediaCodec. */
+private suspend fun decodeAudioFile(context: android.content.Context, uri: Uri): ShortArray? =
+    withContext(Dispatchers.IO) {
+        val extractor = MediaExtractor()
+        try {
+            extractor.setDataSource(context, uri, null)
+            var audioTrack = -1
+            var format: MediaFormat? = null
+            for (i in 0 until extractor.trackCount) {
+                val fmt = extractor.getTrackFormat(i)
+                val mime = fmt.getString(MediaFormat.KEY_MIME) ?: continue
+                if (mime.startsWith("audio/")) { audioTrack = i; format = fmt; break }
+            }
+            if (audioTrack < 0 || format == null) return@withContext null
+            extractor.selectTrack(audioTrack)
+            val mime = format.getString(MediaFormat.KEY_MIME)!!
+            val channels = if (format.containsKey(MediaFormat.KEY_CHANNEL_COUNT))
+                format.getInteger(MediaFormat.KEY_CHANNEL_COUNT) else 1
+
+            val codec = MediaCodec.createDecoderByType(mime)
+            codec.configure(format, null, null, 0)
+            codec.start()
+            val outputSamples = ArrayList<Short>(1_000_000)
+            val info = MediaCodec.BufferInfo()
+            var inputDone = false
+            var outputDone = false
+            while (!outputDone) {
+                if (!inputDone) {
+                    val idx = codec.dequeueInputBuffer(10_000)
+                    if (idx >= 0) {
+                        val buf = codec.getInputBuffer(idx)!!
+                        val size = extractor.readSampleData(buf, 0)
+                        if (size < 0) {
+                            codec.queueInputBuffer(idx, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
+                            inputDone = true
+                        } else {
+                            codec.queueInputBuffer(idx, 0, size, extractor.sampleTime, 0)
+                            extractor.advance()
+                        }
+                    }
+                }
+                val outIdx = codec.dequeueOutputBuffer(info, 10_000)
+                if (outIdx >= 0) {
+                    val outBuf = codec.getOutputBuffer(outIdx)!!
+                    val chunk = ByteArray(info.size)
+                    outBuf.get(chunk); outBuf.clear()
+                    val sb = ByteBuffer.wrap(chunk).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+                    while (sb.hasRemaining()) outputSamples.add(sb.get())
+                    codec.releaseOutputBuffer(outIdx, false)
+                    if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) outputDone = true
+                }
+            }
+            codec.stop(); codec.release()
+            val all = ShortArray(outputSamples.size) { outputSamples[it] }
+            if (channels == 1) all
+            else ShortArray(all.size / channels) { i -> all[i * channels] }
+        } catch (e: Exception) {
+            null
+        } finally {
+            extractor.release()
+        }
+    }
 
 private fun writeWavFile(file: File, samples: ShortArray, sampleRate: Int) {
     val numChannels    = 1
@@ -297,6 +419,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
     val isAnyMidiPlaying = appState == AppState.PLAYING_MIDI || appState == AppState.PLAYING_SIMPLIFIED_MIDI
     var detectTempo by remember { mutableStateOf(false) }
     var tempoResult by remember { mutableStateOf<TempoResult?>(null) }
+    var loadingFile by remember { mutableStateOf(false) }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -391,14 +514,56 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
         }
     }
 
-    val statusText = when (appState) {
-        AppState.IDLE         -> "No recording yet."
-        AppState.RECORDING    -> "Recording..."
-        AppState.ANALYZING    -> "Analyzing..."
-        AppState.ANALYZED     -> "Analysis complete."
-        AppState.PLAYING      -> "Playing..."
-        AppState.PLAYING_MIDI             -> "Playing MIDI..."
-        AppState.PLAYING_SIMPLIFIED_MIDI  -> "Playing Simplified MIDI..."
+    val fileLauncher = rememberLauncherForActivityResult(GetContent()) { uri: Uri? ->
+        if (uri == null) return@rememberLauncherForActivityResult
+        scope.launch {
+            loadingFile = true
+            aggregatedResults = emptyList()
+            simplifiedResults = null
+            editedResults = emptyList()
+            tempoResult = null
+            amplitudeHistory = FloatArray(HISTORY_SIZE)
+            waveformSamples  = FloatArray(WAVEFORM_SIZE)
+            appState = AppState.ANALYZING
+
+            val mimeType = context.contentResolver.getType(uri) ?: ""
+            val samples: ShortArray? = if (mimeType == "audio/wav" || mimeType == "audio/x-wav" ||
+                uri.lastPathSegment?.endsWith(".wav", ignoreCase = true) == true) {
+                withContext(Dispatchers.IO) { readWavPcm(context, uri) }
+            } else {
+                decodeAudioFile(context, uri)
+            }
+
+            if (samples != null && samples.isNotEmpty()) {
+                writeWavFile(outputFile, samples, SAMPLE_RATE)
+                val rawResults = withContext(Dispatchers.Default) {
+                    AudioAnalyzer.analyze(samples, SAMPLE_RATE, analysisMethod, frequencyRange)
+                }
+                if (detectTempo) {
+                    tempoResult = withContext(Dispatchers.Default) {
+                        AudioAnalyzer.detectTempo(samples, SAMPLE_RATE)
+                    }
+                }
+                aggregatedResults = aggregateFrames(rawResults, AudioAnalyzer.hopSizeFor(analysisMethod).toFloat() / SAMPLE_RATE)
+                editedResults = aggregatedResults.toList()
+                appState = AppState.ANALYZED
+            } else {
+                appState = AppState.IDLE
+            }
+            loadingFile = false
+        }
+    }
+
+    val statusText = when {
+        loadingFile           -> "Loading file..."
+        appState == AppState.IDLE         -> "No recording yet."
+        appState == AppState.RECORDING    -> "Recording..."
+        appState == AppState.ANALYZING    -> "Analyzing..."
+        appState == AppState.ANALYZED     -> "Analysis complete."
+        appState == AppState.PLAYING      -> "Playing..."
+        appState == AppState.PLAYING_MIDI            -> "Playing MIDI..."
+        appState == AppState.PLAYING_SIMPLIFIED_MIDI -> "Playing Simplified MIDI..."
+        else                  -> ""
     }
 
     val barColor = when (appState) {
@@ -515,6 +680,20 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        // ── Load File ────────────────────────────────────────────────────────────
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                enabled = appState == AppState.IDLE || appState == AppState.ANALYZED,
+                onClick = { fileLauncher.launch("audio/*") },
+                modifier = Modifier.fillMaxWidth(),
+                colors   = ButtonDefaults.buttonColors(containerColor = Color(0xFF1A237E))
+            ) { Text("Load Audio File  (WAV / MP3)", fontSize = 15.sp) }
+        }
+        Spacer(modifier = Modifier.height(4.dp))
 
         // ── Row 1: Record | Play | Simplify Melody ──────────────────────────────
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
