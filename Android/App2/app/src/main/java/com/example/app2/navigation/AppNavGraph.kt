@@ -52,6 +52,7 @@ import com.example.app2.screens.DemonstrativesScreen
 import com.example.app2.screens.ClarificationsScreen
 import com.example.app2.screens.EPvsBPScreen
 import com.example.app2.screens.PortuguesePhrasesScreen
+import com.example.app2.screens.CookingScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -97,6 +98,7 @@ sealed class Screen(val route: String) {
     object TutorialClarifications : Screen("tutorial_clarifications")
     object EPvsBP : Screen("ep_vs_bp")
     object DictPortuguesePhrases : Screen("dict_portuguese_phrases")
+    object DictCooking : Screen("dict_cooking")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -194,7 +196,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onWorkplaces = { navController.navigate(Screen.DictWorkplaces.route) },
                 onWeather = { navController.navigate(Screen.DictWeather.route) },
                 onClothes = { navController.navigate(Screen.DictClothes.route) },
-                onPortuguesePhrases = { navController.navigate(Screen.DictPortuguesePhrases.route) }
+                onPortuguesePhrases = { navController.navigate(Screen.DictPortuguesePhrases.route) },
+                onCooking = { navController.navigate(Screen.DictCooking.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -244,6 +247,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictPortuguesePhrases.route) {
             PortuguesePhrasesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictCooking.route) {
+            CookingScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EPvsBP.route) {
             EPvsBPScreen(onBack = { navController.popBackStack() })

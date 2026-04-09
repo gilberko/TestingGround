@@ -41,7 +41,10 @@
       "Read(//c/Code/resources//**)",
       "Read(//c/Code/Resources/**)",
       "Read(//c/Program Files/**)",
-      "Read(//c/Users/gilbe/AppData/Local/Programs/Android Studio/jbr/**)"
+      "Read(//c/Users/gilbe/AppData/Local/Programs/Android Studio/jbr/**)",
+      "Bash(find:*)",
+      "Bash(grep -E \"\\\\.kt$\")",
+      "Bash(grep \"\\\\.kt$\")"
     ]
   }
 }
