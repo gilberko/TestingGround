@@ -1313,7 +1313,7 @@ private fun ChordFingeringDialog(
 }
 
 @Composable
-private fun ChordDiagram(voicing: ChordVoicing) {
+fun ChordDiagram(voicing: ChordVoicing) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         if (voicing.baseFret > 1) {
             Text(

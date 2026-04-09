@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -55,7 +57,8 @@ data class ScalePattern(
     val description: String,
     val practical: String,
     val positions: List<Pair<Int, List<NeckDot>>>,   // Pair(startFretLabel, dots)
-    val fretCount: Int = 5
+    val fretCount: Int = 5,
+    val positionLabels: List<String>? = null          // if set, overrides auto "Position N" labels
 )
 
 data class ArpeggioPattern(
@@ -198,33 +201,70 @@ private fun bluesPos3() = listOf(   // startFret=9
 )
 
 // ─── Major Scale  (R M2 M3 P4 P5 M6 M7)  ─────────────────────────────────────
-// A major: A B C# D E F# G#.  3 positions.
+// C major: C D E F G A B.  7 positions, each starting a different scale degree on the bass E string.
+// Root = C (isRoot=true).  string 5=low E, 0=high e.  fret = relative offset from startFret.
 
-private fun majorScalePos1() = listOf(   // startFret=5  (root on low E)
-    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 4, false),           // e: A(R)  B(M2) C#(M3)
-    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: E(P5) F#(M6) G#(M7)
-    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 6, false), // G: C#(M3) D(P4) E(P5) F#(M6)
-    NeckDot(3, 2, true),  NeckDot(3, 4, false), NeckDot(3, 6, false),           // D: A(R)  B(M2) C#(M3)
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: D(P4) E(P5) F#(M6)
-    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 4, false)            // E: A(R)  B(M2) C#(M3)
+private fun cMajorPosC() = listOf(   // startFret=8  — C on bass E
+    NeckDot(5, 0, true),  NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: C(R)  D     E
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: F     G     A
+    NeckDot(3, 1, false), NeckDot(3, 2, true),  NeckDot(3, 4, false),           // D: B     C(R)  D
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: E     F     G
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false), NeckDot(1, 5, true),  // B: G A B C(R)
+    NeckDot(0, 0, true),  NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: C(R)  D     E
 )
 
-private fun majorScalePos2() = listOf(   // startFret=9  (root on A string)
-    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false),           // e: C#(M3) D(P4) E(P5)
-    NeckDot(1, 1, true),  NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: A(R)   B(M2) C#(M3)
-    NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false),           // G: F#(M6) G#(M7) A(R)  — wait: G str fret11=F#, 13=G#, 14=A
-    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: B(M2)  C#(M3) D(P4)
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, true),            // A: F#(M6) G#(M7) A(R)
-    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false)            // E: C#(M3) D(P4)  E(P5)
+private fun cMajorPosD() = listOf(   // startFret=10 — D on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, false),           // E: D  E  F
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false), NeckDot(4, 5, true),  // A: G A B C(R)
+    NeckDot(3, 0, true),  NeckDot(3, 2, false), NeckDot(3, 4, false), NeckDot(3, 5, false), // D: C(R) D E F
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: F  G  A
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 3, true),            // B: A  B  C(R)
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, false)            // e: D  E  F
 )
 
-private fun majorScalePos3() = listOf(   // startFret=14  (root on G and e strings)
-    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, true),            // e: F#(M6) G#(M7) A(R)
-    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 3, false),           // B: C#(M3) D(P4)  E(P5)
-    NeckDot(2, 0, true),  NeckDot(2, 2, false),                                 // G: A(R)   B(M2)
-    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false),           // D: E(P5)  F#(M6) G#(M7) — wait D str fret14=E, 16=F#, 17=G#
-    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: B(M2)  C#(M3) D(P4)
-    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, true)             // E: F#(M6) G#(M7) A(R)
+private fun cMajorPosE() = listOf(   // startFret=12 — E on bass E
+    NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false),           // E: E  F  G
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, true),            // A: A  B  C(R)
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, false), NeckDot(3, 5, false), // D: D E F G
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, true),  // G: G A B C(R)
+    NeckDot(1, 0, false), NeckDot(1, 1, true),  NeckDot(1, 3, false), NeckDot(1, 5, false), // B: B C(R) D E
+    NeckDot(0, 0, false), NeckDot(0, 1, false), NeckDot(0, 3, false)            // e: E  F  G
+)
+
+private fun cMajorPosF() = listOf(   // startFret=13 — F on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: F  G  A
+    NeckDot(4, 1, false), NeckDot(4, 2, true),  NeckDot(4, 4, false),           // A: B  C(R) D
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: E  F  G
+    NeckDot(2, 1, false), NeckDot(2, 3, false), NeckDot(2, 4, true),            // G: A  B  C(R)
+    NeckDot(1, 0, true),  NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: C(R) D E
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: F  G  A
+)
+
+private fun cMajorPosG() = listOf(   // startFret=15 — G on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false), NeckDot(5, 5, true),  // E: G A B C(R)
+    NeckDot(4, 0, true),  NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: C(R) D  E
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: F  G  A
+    NeckDot(2, 1, false), NeckDot(2, 2, true),  NeckDot(2, 4, false),           // G: B  C(R) D
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: D  E  F
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false), NeckDot(0, 5, true)   // e: G A B C(R)
+)
+
+private fun cMajorPosA() = listOf(   // startFret=5  — A on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, true),            // E: A  B  C(R)
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 3, false), NeckDot(4, 5, false), // A: D E F G
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false), NeckDot(3, 5, true),  // D: G A B C(R)
+    NeckDot(2, 0, true),  NeckDot(2, 2, false), NeckDot(2, 4, false), NeckDot(2, 5, false), // G: C(R) D E F
+    NeckDot(1, 0, false), NeckDot(1, 1, false), NeckDot(1, 3, false), NeckDot(1, 5, false), // B: E F G A
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, true)             // e: A  B  C(R)
+)
+
+private fun cMajorPosB() = listOf(   // startFret=7  — B on bass E
+    NeckDot(5, 0, false), NeckDot(5, 1, true),  NeckDot(5, 3, false),           // E: B  C(R) D
+    NeckDot(4, 0, false), NeckDot(4, 1, false), NeckDot(4, 3, false),           // A: E  F  G
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 3, true),            // D: A  B  C(R)
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 3, false),           // G: D  E  F
+    NeckDot(1, 1, false), NeckDot(1, 3, false), NeckDot(1, 5, false),           // B: G  A  B
+    NeckDot(0, 0, false), NeckDot(0, 1, true),  NeckDot(0, 3, false)            // e: B  C(R) D
 )
 
 // ─── Natural Minor  (R M2 b3 P4 P5 b6 b7)  ───────────────────────────────────
@@ -257,6 +297,43 @@ private fun naturalMinorPos3() = listOf(   // startFret=12  (root on A string)
     NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 3, false), NeckDot(5, 5, true)   // E: E(P5) F(b6) G(b7) A(R)
 )
 
+// 4 extra positions to complete 7-position coverage (C, D, F, G on bass E)
+private fun aMinPosC() = listOf(   // startFret=8  — C on bass E, root=A
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: C  D  E
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, true),            // A: F  G  A(R)
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: B  C  D
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: E  F  G
+    NeckDot(1, 0, false), NeckDot(1, 2, true),  NeckDot(1, 4, false), NeckDot(1, 5, false), // B: G A(R) B C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: C  D  E
+)
+
+private fun aMinPosD() = listOf(   // startFret=10 — D on bass E, root=A
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, false),           // E: D  E  F
+    NeckDot(4, 0, false), NeckDot(4, 2, true),  NeckDot(4, 4, false), NeckDot(4, 5, false), // A: G A(R) B C
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false), NeckDot(3, 5, false), // D: C  D  E  F
+    NeckDot(2, 0, false), NeckDot(2, 2, false), NeckDot(2, 4, true),            // G: F  G  A(R)
+    NeckDot(1, 0, true),  NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: A(R) B  C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, false)            // e: D  E  F
+)
+
+private fun aMinPosF() = listOf(   // startFret=13 — F on bass E, root=A
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, true),            // E: F  G  A(R)
+    NeckDot(4, 1, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: B  C  D
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: E  F  G
+    NeckDot(2, 1, true),  NeckDot(2, 3, false), NeckDot(2, 4, false),           // G: A(R) B  C
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: C  D  E
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, true)             // e: F  G  A(R)
+)
+
+private fun aMinPosG() = listOf(   // startFret=15 — G on bass E, root=A
+    NeckDot(5, 0, false), NeckDot(5, 2, true),  NeckDot(5, 4, false), NeckDot(5, 5, false), // E: G A(R) B C
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: C  D  E
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, true),            // D: F  G  A(R)
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: B  C  D
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: D  E  F
+    NeckDot(0, 0, false), NeckDot(0, 2, true),  NeckDot(0, 4, false), NeckDot(0, 5, false)  // e: G A(R) B C
+)
+
 // ─── Harmonic Minor  (R M2 b3 P4 P5 b6 M7)  ──────────────────────────────────
 // A harmonic minor: A B C D E F G#.  3 positions.
 
@@ -287,6 +364,43 @@ private fun harmonicMinorPos3() = listOf(   // startFret=12  (root on A string, 
     NeckDot(5, 0, false), NeckDot(5, 1, false), NeckDot(5, 4, false), NeckDot(5, 5, true)   // E: E(P5) F(b6) G#(M7) A(R)
 )
 
+// 4 extra harmonic minor positions (G→G# vs natural minor)
+private fun aHarMinPosC() = listOf(   // startFret=8  — C on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: C  D  E
+    NeckDot(4, 0, false), NeckDot(4, 3, false), NeckDot(4, 4, true),            // A: F  G#  A(R)
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: B  C  D
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 5, false),           // G: E  F  G#
+    NeckDot(1, 1, false), NeckDot(1, 2, true),  NeckDot(1, 4, false), NeckDot(1, 5, false), // B: G# A(R) B C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: C  D  E
+)
+
+private fun aHarMinPosD() = listOf(   // startFret=10 — D on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 3, false),           // E: D  E  F
+    NeckDot(4, 1, false), NeckDot(4, 2, true),  NeckDot(4, 4, false), NeckDot(4, 5, false), // A: G# A(R) B C
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false), NeckDot(3, 5, false), // D: C  D  E  F
+    NeckDot(2, 0, false), NeckDot(2, 3, false), NeckDot(2, 4, true),            // G: F  G#  A(R)
+    NeckDot(1, 0, true),  NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: A(R) B  C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 3, false)            // e: D  E  F
+)
+
+private fun aHarMinPosF() = listOf(   // startFret=13 — F on bass E
+    NeckDot(5, 0, false), NeckDot(5, 3, false), NeckDot(5, 4, true),            // E: F  G#  A(R)
+    NeckDot(4, 1, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: B  C  D
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 5, false),           // D: E  F  G#
+    NeckDot(2, 1, true),  NeckDot(2, 3, false), NeckDot(2, 4, false),           // G: A(R) B  C
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: C  D  E
+    NeckDot(0, 0, false), NeckDot(0, 3, false), NeckDot(0, 4, true)             // e: F  G#  A(R)
+)
+
+private fun aHarMinPosG() = listOf(   // startFret=15 — G on bass E
+    NeckDot(5, 1, false), NeckDot(5, 2, true),  NeckDot(5, 4, false), NeckDot(5, 5, false), // E: G# A(R) B C
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: C  D  E
+    NeckDot(3, 0, false), NeckDot(3, 3, false), NeckDot(3, 4, true),            // D: F  G#  A(R)
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: B  C  D
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: D  E  F
+    NeckDot(0, 1, false), NeckDot(0, 2, true),  NeckDot(0, 4, false), NeckDot(0, 5, false)  // e: G# A(R) B C
+)
+
 // ─── Melodic Minor  (R M2 b3 P4 P5 M6 M7)  ───────────────────────────────────
 // A melodic minor: A B C D E F# G#.  3 positions.
 
@@ -315,6 +429,43 @@ private fun melodicMinorPos3() = listOf(   // startFret=12  (root on A string)
     NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: D(P4)  E(P5)  F#(M6)
     NeckDot(4, 0, true),  NeckDot(4, 2, false), NeckDot(4, 3, false),           // A: A(R)   B(M2)  C(b3)
     NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false), NeckDot(5, 5, true)   // E: E(P5) F#(M6) G#(M7) A(R)
+)
+
+// 4 extra melodic minor positions (F→F# and G→G# vs natural minor)
+private fun aMelMinPosC() = listOf(   // startFret=8  — C on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: C  D  E
+    NeckDot(4, 1, false), NeckDot(4, 3, false), NeckDot(4, 4, true),            // A: F#  G#  A(R)
+    NeckDot(3, 1, false), NeckDot(3, 2, false), NeckDot(3, 4, false),           // D: B  C  D
+    NeckDot(2, 1, false), NeckDot(2, 3, false), NeckDot(2, 5, false),           // G: E  F#  G#
+    NeckDot(1, 1, false), NeckDot(1, 2, true),  NeckDot(1, 4, false), NeckDot(1, 5, false), // B: G# A(R) B C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: C  D  E
+)
+
+private fun aMelMinPosD() = listOf(   // startFret=10 — D on bass E
+    NeckDot(5, 0, false), NeckDot(5, 2, false), NeckDot(5, 4, false),           // E: D  E  F#(fret14=rel4)
+    NeckDot(4, 1, false), NeckDot(4, 2, true),  NeckDot(4, 4, false), NeckDot(4, 5, false), // A: G# A(R) B C
+    NeckDot(3, 0, false), NeckDot(3, 2, false), NeckDot(3, 4, false), NeckDot(3, 6, false), // D: C  D  E  F#(rel6)
+    NeckDot(2, 1, false), NeckDot(2, 3, false), NeckDot(2, 4, true),            // G: F#  G#  A(R)
+    NeckDot(1, 0, true),  NeckDot(1, 2, false), NeckDot(1, 3, false),           // B: A(R) B  C
+    NeckDot(0, 0, false), NeckDot(0, 2, false), NeckDot(0, 4, false)            // e: D  E  F#(rel4)
+)
+
+private fun aMelMinPosF() = listOf(   // startFret=13 — F on bass E
+    NeckDot(5, 1, false), NeckDot(5, 3, false), NeckDot(5, 4, true),            // E: F#  G#  A(R)
+    NeckDot(4, 1, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: B  C  D
+    NeckDot(3, 1, false), NeckDot(3, 3, false), NeckDot(3, 5, false),           // D: E  F#  G#
+    NeckDot(2, 1, true),  NeckDot(2, 3, false), NeckDot(2, 4, false),           // G: A(R) B  C
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: C  D  E
+    NeckDot(0, 1, false), NeckDot(0, 3, false), NeckDot(0, 4, true)             // e: F#  G#  A(R)
+)
+
+private fun aMelMinPosG() = listOf(   // startFret=15 — G on bass E
+    NeckDot(5, 1, false), NeckDot(5, 2, true),  NeckDot(5, 4, false), NeckDot(5, 5, false), // E: G# A(R) B C
+    NeckDot(4, 0, false), NeckDot(4, 2, false), NeckDot(4, 4, false),           // A: C  D  E
+    NeckDot(3, 1, false), NeckDot(3, 3, false), NeckDot(3, 4, true),            // D: F#  G#  A(R)
+    NeckDot(2, 1, false), NeckDot(2, 2, false), NeckDot(2, 4, false),           // G: B  C  D
+    NeckDot(1, 0, false), NeckDot(1, 2, false), NeckDot(1, 4, false),           // B: D  E  F#(fret19=rel4)
+    NeckDot(0, 1, false), NeckDot(0, 2, true),  NeckDot(0, 4, false), NeckDot(0, 5, false)  // e: G# A(R) B C
 )
 
 private val SCALE_PATTERNS = listOf(
@@ -361,50 +512,86 @@ private val SCALE_PATTERNS = listOf(
     ScalePattern(
         name = "Major Scale",
         intervals = "R  M2  M3  P4  P5  M6  M7",
-        description = "The foundation of Western music. Bright and resolved. All diatonic chords (I ii iii IV V vi vii°) are built from it.",
+        description = "The foundation of Western music. Example key: C major (C D E F G A B). All 7 positions cover the full neck, each starting on a different scale degree on the bass E string.",
         practical = "The interval pattern W-W-H-W-W-W-H repeats for every major key. Memorise the pattern, not just C major.",
         positions = listOf(
-            5  to majorScalePos1(),
-            9  to majorScalePos2(),
-            14 to majorScalePos3()
+            8  to cMajorPosC(),
+            10 to cMajorPosD(),
+            12 to cMajorPosE(),
+            13 to cMajorPosF(),
+            15 to cMajorPosG(),
+            5  to cMajorPosA(),
+            7  to cMajorPosB()
         ),
-        fretCount = 6
+        fretCount = 6,
+        positionLabels = listOf(
+            "C on bass E (fret 8)",  "D on bass E (fret 10)", "E on bass E (fret 12)",
+            "F on bass E (fret 13)", "G on bass E (fret 15)", "A on bass E (fret 5)",
+            "B on bass E (fret 7)"
+        )
     ),
     ScalePattern(
         name = "Natural Minor",
         intervals = "R  M2  b3  P4  P5  b6  b7",
-        description = "The Aeolian mode. Darker and more melancholic than major. The relative minor of every major key shares its notes (e.g. A minor = C major).",
-        practical = "For every major key you know, you automatically know its relative natural minor — just start from scale degree 6.",
+        description = "The Aeolian mode. Example key: A natural minor (A B C D E F G). All 7 positions cover the full neck, each starting on a different scale degree on the bass E string.",
+        practical = "A natural minor uses the same notes as C major — just start from scale degree 6. For every major key you know, you automatically know its relative natural minor.",
         positions = listOf(
             5  to naturalMinorPos1(),
             7  to naturalMinorPos2(),
-            12 to naturalMinorPos3()
+            8  to aMinPosC(),
+            10 to aMinPosD(),
+            12 to naturalMinorPos3(),
+            13 to aMinPosF(),
+            15 to aMinPosG()
         ),
-        fretCount = 6
+        fretCount = 6,
+        positionLabels = listOf(
+            "A on bass E (fret 5)",  "B on bass E (fret 7)",  "C on bass E (fret 8)",
+            "D on bass E (fret 10)", "E on bass E (fret 12)", "F on bass E (fret 13)",
+            "G on bass E (fret 15)"
+        )
     ),
     ScalePattern(
         name = "Harmonic Minor",
         intervals = "R  M2  b3  P4  P5  b6  M7",
-        description = "Natural minor with a raised 7th. The raised 7th creates a strong leading tone (half-step pull back to the root) and gives the scale an exotic, Middle Eastern flavour.",
+        description = "Natural minor with a raised 7th. Example key: A harmonic minor (A B C D E F G#). The raised G# creates a strong leading tone and gives the scale its exotic, Middle Eastern flavour.",
         practical = "The augmented 2nd interval between b6 and M7 is the signature sound. Common in classical, flamenco, and metal.",
         positions = listOf(
             5  to harmonicMinorPos1(),
             7  to harmonicMinorPos2(),
-            12 to harmonicMinorPos3()
+            8  to aHarMinPosC(),
+            10 to aHarMinPosD(),
+            12 to harmonicMinorPos3(),
+            13 to aHarMinPosF(),
+            15 to aHarMinPosG()
         ),
-        fretCount = 6
+        fretCount = 6,
+        positionLabels = listOf(
+            "A on bass E (fret 5)",  "B on bass E (fret 7)",  "C on bass E (fret 8)",
+            "D on bass E (fret 10)", "E on bass E (fret 12)", "F on bass E (fret 13)",
+            "G on bass E (fret 15)"
+        )
     ),
     ScalePattern(
         name = "Melodic Minor",
         intervals = "R  M2  b3  P4  P5  M6  M7  (ascending)",
-        description = "Major scale with a b3. Raises both the 6th and 7th of natural minor to smooth the melodic line. In jazz it is used the same way ascending and descending.",
+        description = "Major scale with a b3. Example key: A melodic minor (A B C D E F# G#). Raises both the 6th and 7th of natural minor to smooth the melodic line.",
         practical = "Think of it as a major scale with a minor 3rd. Widely used in jazz over minor-major7 chords and Lydian Dominant contexts.",
         positions = listOf(
             5  to melodicMinorPos1(),
             7  to melodicMinorPos2(),
-            12 to melodicMinorPos3()
+            8  to aMelMinPosC(),
+            10 to aMelMinPosD(),
+            12 to melodicMinorPos3(),
+            13 to aMelMinPosF(),
+            15 to aMelMinPosG()
         ),
-        fretCount = 6
+        fretCount = 6,
+        positionLabels = listOf(
+            "A on bass E (fret 5)",  "B on bass E (fret 7)",  "C on bass E (fret 8)",
+            "D on bass E (fret 10)", "E on bass E (fret 12)", "F on bass E (fret 13)",
+            "G on bass E (fret 15)"
+        )
     )
 )
 
@@ -790,7 +977,11 @@ private fun ScalesContent() {
             BodyText(scale.description)
             ItalicNote(scale.practical)
             scale.positions.forEachIndexed { idx, (startFret, dotList) ->
-                val posLabel = if (scale.positions.size > 1) "Position ${idx + 1}  (root at fret $startFret)" else "Root at fret $startFret"
+                val posLabel = when {
+                    scale.positionLabels != null -> scale.positionLabels[idx]
+                    scale.positions.size > 1    -> "Position ${idx + 1}  (root at fret $startFret)"
+                    else                        -> "Root at fret $startFret"
+                }
                 NeckDiagram(
                     dots           = dotList,
                     fretCount      = scale.fretCount,
@@ -966,6 +1157,132 @@ private fun ArpeggiosContent() {
     }
 }
 
+// ── CAGED Chord Shapes ───────────────────────────────────────────────────────
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun CagedChordsContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("The CAGED system describes 5 moveable chord shapes named after their open-string forms: C, A, G, E, and D. Every chord on the guitar is one of these shapes transposed up the neck. Together they tile the entire fretboard.")
+
+        // ── Section 1: CAGED Major Open Shapes ──────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("CAGED Major Open Shapes")
+        BodyText("These are the 5 foundational shapes in open position. Each has open strings (○) and should be memorised as a unit.")
+        ItalicNote("Slide any shape up the neck with a barre to play that shape in any key.")
+
+        val cagedMajorChords = listOf("C", "A", "G", "E", "D")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            cagedMajorChords.forEach { root ->
+                val voicing = getVoicings(root, "Major").firstOrNull()
+                if (voicing != null) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "$root major (${voicing.label})",
+                            color = Color(0xFFFFCC80),
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                        ChordDiagram(voicing)
+                    }
+                }
+            }
+        }
+
+        // ── Section 2: Minor Chords ──────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Minor Chords")
+        BodyText("Common minor chord voicings. Dm is fully open; Cm and Fm use a barre.")
+
+        val minorChords = listOf("C", "F", "D")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            minorChords.forEach { root ->
+                val voicing = getVoicings(root, "Minor").firstOrNull()
+                if (voicing != null) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "${root}m (${voicing.label})",
+                            color = Color(0xFFFFCC80),
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                        ChordDiagram(voicing)
+                    }
+                }
+            }
+        }
+
+        // ── Section 3: Dominant 7 CAGED Shapes ──────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Dominant 7 CAGED Shapes")
+        BodyText("Dominant 7th chords (R M3 P5 b7). Each shape is the CAGED dominant-7 form at its home root, essential for blues and jazz.")
+
+        val dom7Chords = listOf("C", "A", "G", "E", "D")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            dom7Chords.forEach { root ->
+                val voicing = getVoicings(root, "Dom7").firstOrNull()
+                if (voicing != null) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "${root}7 (${voicing.label})",
+                            color = Color(0xFFFFCC80),
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                        ChordDiagram(voicing)
+                    }
+                }
+            }
+        }
+
+        // ── Section 4: Minor 7 Chords ────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Minor 7 Chords")
+        BodyText("Minor 7th chords (R b3 P5 b7). Am7 and Dm7 are open; Cm7 and Gm7 use CAGED shapes.")
+
+        val min7Chords = listOf("C", "A", "G", "D")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            min7Chords.forEach { root ->
+                val voicing = getVoicings(root, "Min7").firstOrNull()
+                if (voicing != null) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "${root}m7 (${voicing.label})",
+                            color = Color(0xFFFFCC80),
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier.padding(bottom = 2.dp)
+                        )
+                        ChordDiagram(voicing)
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
 // ── Ideas ────────────────────────────────────────────────────────────────────
 
 @Composable
@@ -1107,6 +1424,7 @@ private fun TutorialsHub(onSelect: (String) -> Unit) {
         "cycle"      to "Cycle of Fifths",
         "improv"     to "Improvisation",
         "arpeggios"  to "Arpeggios",
+        "caged"      to "CAGED Chord Shapes",
         "ideas"      to "Ideas"
     )
     Column(
@@ -1145,6 +1463,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
         "cycle"     -> "Cycle of Fifths"
         "improv"    -> "Improvisation"
         "arpeggios" -> "Arpeggios"
+        "caged"     -> "CAGED Chord Shapes"
         "ideas"     -> "Ideas"
         else        -> "Learning"
     }
@@ -1183,6 +1502,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
                 "cycle"     -> CycleContent()
                 "improv"    -> ImprovisationContent()
                 "arpeggios" -> ArpeggiosContent()
+                "caged"     -> CagedChordsContent()
                 "ideas"     -> IdeasContent()
                 else        -> TutorialsHub(onSelect = { selectedTopic = it })
             }
