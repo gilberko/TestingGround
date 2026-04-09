@@ -46,7 +46,9 @@ fun DictionaryScreen(
     onHouse: () -> Unit,
     onQuantifiers: () -> Unit,
     onClothes: () -> Unit,
-    onVacation: () -> Unit
+    onVacation: () -> Unit,
+    onCooking: () -> Unit,
+    onOfficeSchool: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -91,7 +93,9 @@ fun DictionaryScreen(
                     "House"            to onHouse,
                     "Many, Few, A Lot, All, Whole" to onQuantifiers,
                     "Clothes"          to onClothes,
-                    "Vacation"         to onVacation
+                    "Vacation"         to onVacation,
+                    "Cooking"          to onCooking,
+                    "Office & School"  to onOfficeSchool
                 )
                 buttons.chunked(2).forEachIndexed { rowIndex, pair ->
                     if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))

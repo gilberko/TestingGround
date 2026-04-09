@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
 import com.example.russianapp.screens.ClothesScreen
+import com.example.russianapp.screens.CookingScreen
+import com.example.russianapp.screens.OfficeSchoolScreen
 import com.example.russianapp.screens.VacationScreen
 import com.example.russianapp.screens.ComparisonsScreen
 import com.example.russianapp.screens.AdjectiveConjugationScreen
@@ -74,6 +76,8 @@ sealed class Screen(val route: String) {
     object DictQuantifiers        : Screen("dict_quantifiers")
     object DictClothes            : Screen("dict_clothes")
     object DictVacation           : Screen("dict_vacation")
+    object DictCooking            : Screen("dict_cooking")
+    object DictOfficeSchool       : Screen("dict_office_school")
     object Myself                 : Screen("myself")
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
@@ -136,7 +140,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onHouse         = { navController.navigate(Screen.DictHouse.route) },
                 onQuantifiers   = { navController.navigate(Screen.DictQuantifiers.route) },
                 onClothes       = { navController.navigate(Screen.DictClothes.route) },
-                onVacation      = { navController.navigate(Screen.DictVacation.route) }
+                onVacation      = { navController.navigate(Screen.DictVacation.route) },
+                onCooking       = { navController.navigate(Screen.DictCooking.route) },
+                onOfficeSchool  = { navController.navigate(Screen.DictOfficeSchool.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -219,6 +225,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictVacation.route) {
             VacationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictCooking.route) {
+            CookingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictOfficeSchool.route) {
+            OfficeSchoolScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Myself.route) {
             MyselfScreen(onBack = { navController.popBackStack() })
