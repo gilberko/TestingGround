@@ -41,7 +41,10 @@ fun EbpfHubScreen(
     onEbpfHistory: () -> Unit,
     onWhatIsEbpf: () -> Unit,
     onEbpfProgramTypes: () -> Unit,
-    onEbpfSimpleExample: () -> Unit
+    onEbpfSimpleExample: () -> Unit,
+    onBtf: () -> Unit,
+    onEbpfAdvanced: () -> Unit,
+    onEbpfSecurity: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -84,6 +87,22 @@ fun EbpfHubScreen(
             ) {
                 EbpfButton(label = "Types of eBPF\nPrograms", onClick = onEbpfProgramTypes, modifier = Modifier.weight(1f))
                 EbpfButton(label = "A Simple\nExample", onClick = onEbpfSimpleExample, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "BTF &\nCO-RE", onClick = onBtf, modifier = Modifier.weight(1f))
+                EbpfButton(label = "A Bit More\nAdvanced", onClick = onEbpfAdvanced, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "Security\nPossibilities", onClick = onEbpfSecurity, modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
         }

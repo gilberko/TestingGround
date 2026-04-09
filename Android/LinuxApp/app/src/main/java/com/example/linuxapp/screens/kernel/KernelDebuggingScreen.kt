@@ -336,6 +336,167 @@ journalctl -k -b -1
                     )
                 }
             }
+            item {
+                SectionCard(title = "kprobes — Dynamic Kernel Instrumentation") {
+                    BodyText("kprobes let you place a breakpoint-like probe at virtually any kernel instruction at runtime — no reboot, no kernel recompile, no source modification. Introduced in Linux 2.6.9.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Three probe types:")
+                    CodeBlock(
+                        """kprobe     — fires before the probed instruction executes
+                            |             (function entry or any address)
+                            |
+                            |kretprobe  — fires when the probed function returns
+                            |             (has access to the return value)
+                            |
+                            |jprobe     — deprecated since Linux 5.3, removed in 5.15""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("How kprobes work (x86-64):")
+                    CodeBlock(
+                        """1. At registration, kprobes replaces the first byte of
+                            |   the target instruction with int3 (0xCC).
+                            |
+                            |2. When the CPU hits 0xCC it raises a #BP exception.
+                            |   The kprobes exception handler runs your pre_handler.
+                            |
+                            |3. The original instruction is single-stepped in a
+                            |   scratch area (or emulated in software).
+                            |
+                            |4. Your post_handler runs (optional), then execution
+                            |   resumes normally.
+                            |
+                            |Overhead: ~100-300ns per probe hit.""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Use cases: debugging production kernels without recompiling, performance analysis, security auditing, tracing specific code paths. Today, eBPF programs use kprobes as their backend — SEC(\"kprobe/...\") is built on the same mechanism.")
+                }
+            }
+            item {
+                SectionCard(title = "struct pt_regs — Register State at Probe Point") {
+                    BodyText("When your kprobe handler is called, it receives a struct pt_regs pointer containing the CPU register state at the moment the probe fired. The struct layout is architecture-specific.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("On x86-64, the calling convention maps function arguments to registers as follows:")
+                    CodeBlock(
+                        """// x86-64 — relevant fields in struct pt_regs
+                            |struct pt_regs {
+                            |    unsigned long di;  // arg 1 (RDI)
+                            |    unsigned long si;  // arg 2 (RSI)
+                            |    unsigned long dx;  // arg 3 (RDX)
+                            |    unsigned long cx;  // arg 4 (RCX)
+                            |    unsigned long r8;  // arg 5
+                            |    unsigned long r9;  // arg 6
+                            |    unsigned long ax;  // return value (RAX)
+                            |                       // also syscall number on entry
+                            |    unsigned long ip;  // instruction pointer (RIP)
+                            |    unsigned long sp;  // stack pointer (RSP)
+                            |    // ... flags, cs, ss, orig_ax, r10-r15 ...
+                            |};""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("For portable code (works across architectures), use the PT_REGS macros instead of accessing fields directly:")
+                    CodeBlock(
+                        """PT_REGS_PARM1(regs)   // arg 1
+                            |PT_REGS_PARM2(regs)   // arg 2
+                            |PT_REGS_PARM3(regs)   // arg 3
+                            |PT_REGS_PARM4(regs)   // arg 4
+                            |PT_REGS_PARM5(regs)   // arg 5
+                            |PT_REGS_RC(regs)      // return value (use in kretprobe)
+                            |PT_REGS_IP(regs)      // instruction pointer""".trimMargin()
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "Small kprobe Module Example") {
+                    BodyText("This LKM probes do_sys_openat2 (the kernel function backing openat()) and logs the file descriptor argument via pr_info:")
+                    CodeBlock(
+                        """#include <linux/kernel.h>
+                            |#include <linux/module.h>
+                            |#include <linux/kprobes.h>
+                            |
+                            |// Fires just before do_sys_openat2 executes
+                            |static int handler_pre(struct kprobe *p,
+                            |                       struct pt_regs *regs)
+                            |{
+                            |    // On x86-64, arg1 (dfd) is in regs->di
+                            |    pr_info("kprobe: openat called, dfd=%ld\n",
+                            |            (long)regs->di);
+                            |    return 0;
+                            |}
+                            |
+                            |static struct kprobe kp = {
+                            |    .symbol_name = "do_sys_openat2",
+                            |    .pre_handler = handler_pre,
+                            |};
+                            |
+                            |static int __init kprobe_init(void)
+                            |{
+                            |    int ret = register_kprobe(&kp);
+                            |    if (ret < 0) {
+                            |        pr_err("register_kprobe failed: %d\n", ret);
+                            |        return ret;
+                            |    }
+                            |    pr_info("kprobe registered at %p\n", kp.addr);
+                            |    return 0;
+                            |}
+                            |
+                            |static void __exit kprobe_exit(void)
+                            |{
+                            |    unregister_kprobe(&kp);
+                            |    pr_info("kprobe unregistered\n");
+                            |}
+                            |
+                            |module_init(kprobe_init);
+                            |module_exit(kprobe_exit);
+                            |MODULE_LICENSE("GPL");""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Build and test:")
+                    CodeBlock(
+                        """make          # standard LKM Makefile
+                            |sudo insmod my_kprobe.ko
+                            |dmesg | tail  # see "kprobe registered at 0x..."
+                            |
+                            |# Trigger: open any file
+                            |cat /etc/hostname
+                            |
+                            |dmesg | tail  # see "kprobe: openat called, dfd=-100"
+                            |             # (-100 = AT_FDCWD, current directory)
+                            |
+                            |sudo rmmod my_kprobe""".trimMargin()
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "kprobes — Limits and Blacklist") {
+                    BodyText("Not all kernel functions can be probed:")
+                    CodeBlock(
+                        """# View the kprobes blacklist (functions that cannot be probed)
+                            |cat /sys/kernel/debug/kprobes/blacklist
+                            |
+                            |# Functions on the blacklist include:
+                            |# - kprobes infrastructure itself (would cause recursion)
+                            |# - Functions marked __kprobes or nokprobe_inline
+                            |# - Some interrupt/exception handlers""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Other constraints:")
+                    CodeBlock(
+                        """- Cannot probe notrace functions (marked with notrace attribute)
+                            |
+                            |- Overhead matters: avoid probing very hot paths such as
+                            |  schedule() or __do_fault in production — thousands of
+                            |  calls per second will add measurable latency.
+                            |
+                            |- kprobes handlers run with interrupts disabled (on x86)
+                            |  — no sleeping, no blocking calls.
+                            |
+                            |- View all currently registered kprobes:
+                            |  cat /sys/kernel/debug/kprobes/list""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("In practice, you rarely write raw kprobe LKMs today. eBPF with SEC(\"kprobe/...\") provides the same mechanism with safety guarantees, no reboot, dynamic load/unload, and access to BPF maps and helpers. Use raw kprobes only when you need capabilities eBPF cannot provide.")
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

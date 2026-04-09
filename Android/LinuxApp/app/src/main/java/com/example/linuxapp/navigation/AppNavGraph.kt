@@ -63,6 +63,9 @@ import com.example.linuxapp.screens.PermissionsHubScreen
 import com.example.linuxapp.screens.permissions.FilePermissionsScreen
 import com.example.linuxapp.screens.permissions.CgroupsScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
+import com.example.linuxapp.screens.ebpf.BtfScreen
+import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
+import com.example.linuxapp.screens.ebpf.EbpfSecurityScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -108,6 +111,9 @@ sealed class Screen(val route: String) {
     object FilePermissions        : Screen("file_permissions")
     object Cgroups                : Screen("cgroups")
     object EbpfSimpleExample      : Screen("ebpf_simple_example")
+    object EbpfBtf                : Screen("ebpf_btf")
+    object EbpfAdvanced           : Screen("ebpf_advanced")
+    object EbpfSecurity           : Screen("ebpf_security")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -281,7 +287,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
                 onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) },
                 onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) },
-                onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) }
+                onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) },
+                onBtf = { navController.navigate(Screen.EbpfBtf.route) },
+                onEbpfAdvanced = { navController.navigate(Screen.EbpfAdvanced.route) },
+                onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -320,6 +329,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfSimpleExample.route) {
             EbpfSimpleExampleScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfBtf.route) {
+            BtfScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfAdvanced.route) {
+            EbpfAdvancedScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfSecurity.route) {
+            EbpfSecurityScreen(onBack = { navController.popBackStack() })
         }
     }
 }
