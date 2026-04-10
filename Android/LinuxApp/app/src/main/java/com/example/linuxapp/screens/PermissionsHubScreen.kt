@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -39,7 +40,9 @@ import com.example.linuxapp.R
 fun PermissionsHubScreen(
     onBack: () -> Unit,
     onFilePermissions: () -> Unit,
-    onCgroups: () -> Unit
+    onCgroups: () -> Unit,
+    onTun: () -> Unit,
+    onBootProcess: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -84,6 +87,22 @@ fun PermissionsHubScreen(
                     )
                 }
                 Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "TUN Device",
+                        onClick = onTun,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "Boot Process",
+                        onClick = onBootProcess,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
             }
         }
     }
@@ -93,7 +112,7 @@ fun PermissionsHubScreen(
 private fun PermissionsHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick = onClick,
-        modifier = modifier.height(64.dp),
+        modifier = modifier.heightIn(min = 64.dp),
         border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,

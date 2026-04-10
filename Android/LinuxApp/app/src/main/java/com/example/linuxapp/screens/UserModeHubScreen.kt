@@ -47,12 +47,12 @@ fun UserModeHubScreen(
     onNetworking: () -> Unit,
     onThreads: () -> Unit,
     onFiles: () -> Unit,
-    onTun: () -> Unit,
     onSignals: () -> Unit,
     onIpc: () -> Unit,
     onDebugging: () -> Unit,
     onSharedObjects: () -> Unit,
-    onAsyncOperations: () -> Unit
+    onAsyncOperations: () -> Unit,
+    onGraphicalInterface: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -105,30 +105,30 @@ fun UserModeHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 UserModeButton(label = "Networking", modifier = Modifier.weight(1f), onClick = onNetworking)
-                UserModeButton(label = "TUN Device", modifier = Modifier.weight(1f), onClick = onTun)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 UserModeButton(label = "Signal Handlers", modifier = Modifier.weight(1f), onClick = onSignals)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 UserModeButton(label = "IPC", modifier = Modifier.weight(1f), onClick = onIpc)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 UserModeButton(label = "Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
-                UserModeButton(label = "Shared Objects", modifier = Modifier.weight(1f), onClick = onSharedObjects)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                UserModeButton(label = "Shared Objects", modifier = Modifier.weight(1f), onClick = onSharedObjects)
                 UserModeButton(label = "Async Operations", modifier = Modifier.weight(1f), onClick = onAsyncOperations)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Graphical\nInterface", modifier = Modifier.weight(1f), onClick = onGraphicalInterface)
                 Spacer(modifier = Modifier.weight(1f))
             }
             Spacer(modifier = Modifier.height(16.dp))

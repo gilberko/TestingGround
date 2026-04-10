@@ -62,7 +62,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "eBPF", onClick = onEbpf)
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Permissions & cgroups", onClick = onPermissions)
+            HomeButton(label = "Advanced Topics", onClick = onPermissions)
         }
         Text(
             text = "v0.6",

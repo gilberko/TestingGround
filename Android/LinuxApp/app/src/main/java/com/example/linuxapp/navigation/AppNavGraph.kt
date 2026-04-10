@@ -62,6 +62,8 @@ import com.example.linuxapp.screens.kernel.LsmScreen
 import com.example.linuxapp.screens.PermissionsHubScreen
 import com.example.linuxapp.screens.permissions.FilePermissionsScreen
 import com.example.linuxapp.screens.permissions.CgroupsScreen
+import com.example.linuxapp.screens.permissions.BootProcessScreen
+import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
 import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
@@ -114,6 +116,8 @@ sealed class Screen(val route: String) {
     object EbpfBtf                : Screen("ebpf_btf")
     object EbpfAdvanced           : Screen("ebpf_advanced")
     object EbpfSecurity           : Screen("ebpf_security")
+    object AdvancedBootProcess    : Screen("advanced_boot_process")
+    object UserModeGraphical      : Screen("user_mode_graphical")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -222,12 +226,12 @@ fun AppNavGraph(navController: NavHostController) {
                 onNetworking = { navController.navigate(Screen.UserModeNetworking.route) },
                 onThreads = { navController.navigate(Screen.UserModeThreads.route) },
                 onFiles = { navController.navigate(Screen.UserModeFiles.route) },
-                onTun = { navController.navigate(Screen.UserModeTun.route) },
                 onSignals = { navController.navigate(Screen.UserModeSignals.route) },
                 onIpc = { navController.navigate(Screen.UserModeIpc.route) },
                 onDebugging = { navController.navigate(Screen.UserModeDebugging.route) },
                 onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) },
-                onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) }
+                onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) },
+                onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -318,7 +322,9 @@ fun AppNavGraph(navController: NavHostController) {
             PermissionsHubScreen(
                 onBack = { navController.popBackStack() },
                 onFilePermissions = { navController.navigate(Screen.FilePermissions.route) },
-                onCgroups = { navController.navigate(Screen.Cgroups.route) }
+                onCgroups = { navController.navigate(Screen.Cgroups.route) },
+                onTun = { navController.navigate(Screen.UserModeTun.route) },
+                onBootProcess = { navController.navigate(Screen.AdvancedBootProcess.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -338,6 +344,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfSecurity.route) {
             EbpfSecurityScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedBootProcess.route) {
+            BootProcessScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeGraphical.route) {
+            UserModeGraphicalScreen(onBack = { navController.popBackStack() })
         }
     }
 }
