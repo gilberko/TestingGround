@@ -11,9 +11,12 @@ import com.example.frenchproject.screens.dictionary.AdjectivesScreen
 import com.example.frenchproject.screens.dictionary.AnimalsScreen
 import com.example.frenchproject.screens.dictionary.ColorsScreen
 import com.example.frenchproject.screens.dictionary.CommonVerbsScreen
+import com.example.frenchproject.screens.dictionary.FoodScreen
+import com.example.frenchproject.screens.dictionary.GreetingsScreen
 import com.example.frenchproject.screens.dictionary.SchoolWorkScreen
 import com.example.frenchproject.screens.learning.ArticlesScreen
 import com.example.frenchproject.screens.learning.AskingQuestionsScreen
+import com.example.frenchproject.screens.learning.DemonstrativesScreen
 import com.example.frenchproject.screens.learning.EtreAvoirScreen
 import com.example.frenchproject.screens.learning.ReflexiveVerbsScreen
 import com.example.frenchproject.screens.learning.SubjectPronounsScreen
@@ -29,11 +32,14 @@ sealed class Screen(val route: String) {
     object Tenses            : Screen("tenses")
     object ReflexiveVerbs    : Screen("reflexive_verbs")
     object AskingQuestions   : Screen("asking_questions")
+    object Demonstratives    : Screen("demonstratives")
     object Colors            : Screen("colors")
     object Animals           : Screen("animals")
     object CommonVerbs       : Screen("common_verbs")
     object Adjectives        : Screen("adjectives")
     object SchoolWork        : Screen("school_work")
+    object Greetings         : Screen("greetings")
+    object Food              : Screen("food")
 }
 
 @Composable
@@ -53,7 +59,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onEtreAvoir        = { navController.navigate(Screen.EtreAvoir.route) },
                 onTenses           = { navController.navigate(Screen.Tenses.route) },
                 onReflexiveVerbs   = { navController.navigate(Screen.ReflexiveVerbs.route) },
-                onAskingQuestions  = { navController.navigate(Screen.AskingQuestions.route) }
+                onAskingQuestions  = { navController.navigate(Screen.AskingQuestions.route) },
+                onDemonstratives   = { navController.navigate(Screen.Demonstratives.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -63,7 +70,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onAnimals      = { navController.navigate(Screen.Animals.route) },
                 onCommonVerbs  = { navController.navigate(Screen.CommonVerbs.route) },
                 onAdjectives   = { navController.navigate(Screen.Adjectives.route) },
-                onSchoolWork   = { navController.navigate(Screen.SchoolWork.route) }
+                onSchoolWork   = { navController.navigate(Screen.SchoolWork.route) },
+                onGreetings    = { navController.navigate(Screen.Greetings.route) },
+                onFood         = { navController.navigate(Screen.Food.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -84,6 +93,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AskingQuestions.route) {
             AskingQuestionsScreen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.Demonstratives.route) {
+            DemonstrativesScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.Colors.route) {
             ColorsScreen(onBack = { navController.popBackStack() })
         }
@@ -98,6 +110,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.SchoolWork.route) {
             SchoolWorkScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Greetings.route) {
+            GreetingsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Food.route) {
+            FoodScreen(onBack = { navController.popBackStack() })
         }
     }
 }

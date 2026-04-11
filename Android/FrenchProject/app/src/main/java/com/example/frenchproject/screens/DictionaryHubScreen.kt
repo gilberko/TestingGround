@@ -1,6 +1,8 @@
 package com.example.frenchproject.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,8 +27,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.frenchproject.R
 import com.example.frenchproject.ui.theme.FrenchBlue
 import com.example.frenchproject.ui.theme.FrenchNavy
 
@@ -38,59 +43,72 @@ fun DictionaryHubScreen(
     onAnimals: () -> Unit,
     onCommonVerbs: () -> Unit,
     onAdjectives: () -> Unit,
-    onSchoolWork: () -> Unit
+    onSchoolWork: () -> Unit,
+    onGreetings: () -> Unit,
+    onFood: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Simple Dictionary", color = Color.White) },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = FrenchBlue)
-            )
-        }
-    ) { innerPadding ->
-        val buttons = listOf(
-            "Colors" to onColors,
-            "Animals" to onAnimals,
-            "Common Verbs" to onCommonVerbs,
-            "Adjectives" to onAdjectives,
-            "School & Work" to onSchoolWork
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(R.drawable.background),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
         )
-        val pairs = buttons.chunked(2)
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            pairs.forEachIndexed { index, pair ->
-                if (index > 0) Spacer(modifier = Modifier.height(12.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    pair.forEach { (label, action) ->
-                        OutlinedButton(
-                            onClick = action,
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(64.dp),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                containerColor = FrenchNavy,
-                                contentColor = Color.White
-                            )
-                        ) {
-                            Text(label, textAlign = TextAlign.Center)
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    title = { Text("Simple Dictionary", color = Color.White) },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
                         }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = FrenchBlue)
+                )
+            }
+        ) { innerPadding ->
+            val buttons = listOf(
+                "Colors" to onColors,
+                "Animals" to onAnimals,
+                "Common Verbs" to onCommonVerbs,
+                "Adjectives" to onAdjectives,
+                "School & Work" to onSchoolWork,
+                "Greetings" to onGreetings,
+                "Food" to onFood
+            )
+            val pairs = buttons.chunked(2)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(horizontal = 16.dp)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                pairs.forEachIndexed { index, pair ->
+                    if (index > 0) Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        pair.forEach { (label, action) ->
+                            OutlinedButton(
+                                onClick = action,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .height(64.dp),
+                                colors = ButtonDefaults.outlinedButtonColors(
+                                    containerColor = FrenchNavy,
+                                    contentColor = Color.White
+                                )
+                            ) {
+                                Text(label, textAlign = TextAlign.Center)
+                            }
+                        }
+                        if (pair.size < 2) Spacer(modifier = Modifier.weight(1f))
                     }
-                    if (pair.size < 2) Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }
