@@ -52,7 +52,8 @@ fun UserModeHubScreen(
     onDebugging: () -> Unit,
     onSharedObjects: () -> Unit,
     onAsyncOperations: () -> Unit,
-    onGraphicalInterface: () -> Unit
+    onGraphicalInterface: () -> Unit,
+    onInlineAssembly: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -129,7 +130,7 @@ fun UserModeHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 UserModeButton(label = "Graphical\nInterface", modifier = Modifier.weight(1f), onClick = onGraphicalInterface)
-                Spacer(modifier = Modifier.weight(1f))
+                UserModeButton(label = "Inline\nAssembly", modifier = Modifier.weight(1f), onClick = onInlineAssembly)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

@@ -44,7 +44,8 @@ fun PermissionsHubScreen(
     onTun: () -> Unit,
     onBootProcess: () -> Unit,
     onAffinity: () -> Unit,
-    onProcessScheduling: () -> Unit
+    onProcessScheduling: () -> Unit,
+    onCallingConventions: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -119,6 +120,18 @@ fun PermissionsHubScreen(
                         onClick = onProcessScheduling,
                         modifier = Modifier.weight(1f)
                     )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "Calling\nConventions",
+                        onClick = onCallingConventions,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(Modifier.weight(1f))
                 }
                 Spacer(Modifier.height(8.dp))
             }

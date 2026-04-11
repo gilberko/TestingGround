@@ -66,6 +66,8 @@ import com.example.linuxapp.screens.permissions.BootProcessScreen
 import com.example.linuxapp.screens.permissions.AffinityScreen
 import com.example.linuxapp.screens.permissions.ProcessSchedulingScreen
 import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
+import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
+import com.example.linuxapp.screens.permissions.CallingConventionsScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
 import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
@@ -122,6 +124,8 @@ sealed class Screen(val route: String) {
     object UserModeGraphical         : Screen("user_mode_graphical")
     object AdvancedAffinity          : Screen("advanced_affinity")
     object AdvancedProcessScheduling : Screen("advanced_process_scheduling")
+    object UserModeInlineAssembly    : Screen("user_mode_inline_assembly")
+    object CallingConventions        : Screen("calling_conventions")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -235,7 +239,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDebugging = { navController.navigate(Screen.UserModeDebugging.route) },
                 onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) },
                 onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) },
-                onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) }
+                onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) },
+                onInlineAssembly = { navController.navigate(Screen.UserModeInlineAssembly.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -330,7 +335,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTun = { navController.navigate(Screen.UserModeTun.route) },
                 onBootProcess = { navController.navigate(Screen.AdvancedBootProcess.route) },
                 onAffinity = { navController.navigate(Screen.AdvancedAffinity.route) },
-                onProcessScheduling = { navController.navigate(Screen.AdvancedProcessScheduling.route) }
+                onProcessScheduling = { navController.navigate(Screen.AdvancedProcessScheduling.route) },
+                onCallingConventions = { navController.navigate(Screen.CallingConventions.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -362,6 +368,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedProcessScheduling.route) {
             ProcessSchedulingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeInlineAssembly.route) {
+            UserModeInlineAssemblyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.CallingConventions.route) {
+            CallingConventionsScreen(onBack = { navController.popBackStack() })
         }
     }
 }
