@@ -1,0 +1,95 @@
+package com.example.frenchproject.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.frenchproject.ui.theme.FrenchBlue
+import com.example.frenchproject.ui.theme.FrenchNavy
+
+@Composable
+fun HomeScreen(
+    onLearning: () -> Unit,
+    onDictionary: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(FrenchBlue, FrenchNavy)
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .padding(horizontal = 40.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "A Stranger In A\nStrange Land",
+                color = Color.White,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                lineHeight = 36.sp
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "French Edition",
+                color = Color(0xFFF5C518),
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium,
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(48.dp))
+            OutlinedButton(
+                onClick = onLearning,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Black.copy(alpha = 0.35f),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Learning The Language",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(vertical = 6.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedButton(
+                onClick = onDictionary,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Black.copy(alpha = 0.35f),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Simple Dictionary",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(vertical = 6.dp)
+                )
+            }
+        }
+    }
+}
