@@ -17,6 +17,7 @@ import com.example.frenchproject.screens.dictionary.SchoolWorkScreen
 import com.example.frenchproject.screens.learning.ArticlesScreen
 import com.example.frenchproject.screens.learning.AskingQuestionsScreen
 import com.example.frenchproject.screens.learning.DemonstrativesScreen
+import com.example.frenchproject.screens.learning.NegationScreen
 import com.example.frenchproject.screens.learning.EtreAvoirScreen
 import com.example.frenchproject.screens.learning.ReflexiveVerbsScreen
 import com.example.frenchproject.screens.learning.SubjectPronounsScreen
@@ -33,6 +34,7 @@ sealed class Screen(val route: String) {
     object ReflexiveVerbs    : Screen("reflexive_verbs")
     object AskingQuestions   : Screen("asking_questions")
     object Demonstratives    : Screen("demonstratives")
+    object Negation          : Screen("negation")
     object Colors            : Screen("colors")
     object Animals           : Screen("animals")
     object CommonVerbs       : Screen("common_verbs")
@@ -60,7 +62,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTenses           = { navController.navigate(Screen.Tenses.route) },
                 onReflexiveVerbs   = { navController.navigate(Screen.ReflexiveVerbs.route) },
                 onAskingQuestions  = { navController.navigate(Screen.AskingQuestions.route) },
-                onDemonstratives   = { navController.navigate(Screen.Demonstratives.route) }
+                onDemonstratives   = { navController.navigate(Screen.Demonstratives.route) },
+                onNegation         = { navController.navigate(Screen.Negation.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -95,6 +98,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Demonstratives.route) {
             DemonstrativesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Negation.route) {
+            NegationScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Colors.route) {
             ColorsScreen(onBack = { navController.popBackStack() })
