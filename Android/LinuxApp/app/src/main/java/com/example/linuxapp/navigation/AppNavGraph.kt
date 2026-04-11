@@ -68,6 +68,7 @@ import com.example.linuxapp.screens.permissions.ProcessSchedulingScreen
 import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
 import com.example.linuxapp.screens.permissions.CallingConventionsScreen
+import com.example.linuxapp.screens.kernel.KernelPendOperationsScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
 import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
@@ -126,6 +127,7 @@ sealed class Screen(val route: String) {
     object AdvancedProcessScheduling : Screen("advanced_process_scheduling")
     object UserModeInlineAssembly    : Screen("user_mode_inline_assembly")
     object CallingConventions        : Screen("calling_conventions")
+    object KernelPendOperations      : Screen("kernel_pend_operations")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -199,7 +201,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onVfs = { navController.navigate(Screen.KernelVfs.route) },
                 onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
                 onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) },
-                onLsm = { navController.navigate(Screen.KernelLsm.route) }
+                onPendOperations = { navController.navigate(Screen.KernelPendOperations.route) }
             )
         }
 
@@ -336,7 +338,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onBootProcess = { navController.navigate(Screen.AdvancedBootProcess.route) },
                 onAffinity = { navController.navigate(Screen.AdvancedAffinity.route) },
                 onProcessScheduling = { navController.navigate(Screen.AdvancedProcessScheduling.route) },
-                onCallingConventions = { navController.navigate(Screen.CallingConventions.route) }
+                onCallingConventions = { navController.navigate(Screen.CallingConventions.route) },
+                onLsm = { navController.navigate(Screen.KernelLsm.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -374,6 +377,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.CallingConventions.route) {
             CallingConventionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelPendOperations.route) {
+            KernelPendOperationsScreen(onBack = { navController.popBackStack() })
         }
     }
 }

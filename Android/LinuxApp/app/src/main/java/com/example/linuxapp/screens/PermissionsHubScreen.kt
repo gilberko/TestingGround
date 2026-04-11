@@ -45,7 +45,8 @@ fun PermissionsHubScreen(
     onBootProcess: () -> Unit,
     onAffinity: () -> Unit,
     onProcessScheduling: () -> Unit,
-    onCallingConventions: () -> Unit
+    onCallingConventions: () -> Unit,
+    onLsm: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -131,7 +132,11 @@ fun PermissionsHubScreen(
                         onClick = onCallingConventions,
                         modifier = Modifier.weight(1f)
                     )
-                    Spacer(Modifier.weight(1f))
+                    PermissionsHubButton(
+                        label = "LSM",
+                        onClick = onLsm,
+                        modifier = Modifier.weight(1f)
+                    )
                 }
                 Spacer(Modifier.height(8.dp))
             }

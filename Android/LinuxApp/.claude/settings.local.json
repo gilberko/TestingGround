@@ -16,7 +16,15 @@
       "Bash(cmd /c \"gradlew.bat assembleDebug\")",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
       "Read(//c/Users/gilbe/AppData/Local/Android/Sdk/build-tools//**)",
-      "Read(//c/Program Files/Android/Android Studio/jbr//**)"
+      "Read(//c/Program Files/Android/Android Studio/jbr//**)",
+      "Bash(grep -E \"\\\\.\\(kt|xml\\)$\")",
+      "Bash(xargs grep:*)",
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleDebug)",
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)",
+      "Bash(find C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\build\\\\outputs\\\\apk\\\\release:*)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/**)",
+      "Read(//c/Program Files/Android/Android Studio/**)",
+      "Bash(grep -E \"\\\\.kt$\")"
     ]
   }
 }

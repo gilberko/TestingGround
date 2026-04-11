@@ -55,7 +55,7 @@ fun KernelHubScreen(
     onVfs: () -> Unit,
     onFileAccessWhole: () -> Unit,
     onMemoryAccessWhole: () -> Unit,
-    onLsm: () -> Unit
+    onPendOperations: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -132,7 +132,7 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
-                KernelButton(label = "LSM", modifier = Modifier.weight(1f), onClick = onLsm)
+                KernelButton(label = "How To Pend\nOperations", modifier = Modifier.weight(1f), onClick = onPendOperations)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
