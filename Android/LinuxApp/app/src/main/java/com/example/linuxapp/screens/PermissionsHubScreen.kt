@@ -42,7 +42,9 @@ fun PermissionsHubScreen(
     onFilePermissions: () -> Unit,
     onCgroups: () -> Unit,
     onTun: () -> Unit,
-    onBootProcess: () -> Unit
+    onBootProcess: () -> Unit,
+    onAffinity: () -> Unit,
+    onProcessScheduling: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -99,6 +101,22 @@ fun PermissionsHubScreen(
                     PermissionsHubButton(
                         label = "Boot Process",
                         onClick = onBootProcess,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "CPU\nAffinity",
+                        onClick = onAffinity,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "Process\nScheduling",
+                        onClick = onProcessScheduling,
                         modifier = Modifier.weight(1f)
                     )
                 }

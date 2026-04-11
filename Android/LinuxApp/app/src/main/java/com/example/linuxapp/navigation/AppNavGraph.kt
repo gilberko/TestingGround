@@ -63,6 +63,8 @@ import com.example.linuxapp.screens.PermissionsHubScreen
 import com.example.linuxapp.screens.permissions.FilePermissionsScreen
 import com.example.linuxapp.screens.permissions.CgroupsScreen
 import com.example.linuxapp.screens.permissions.BootProcessScreen
+import com.example.linuxapp.screens.permissions.AffinityScreen
+import com.example.linuxapp.screens.permissions.ProcessSchedulingScreen
 import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
@@ -116,8 +118,10 @@ sealed class Screen(val route: String) {
     object EbpfBtf                : Screen("ebpf_btf")
     object EbpfAdvanced           : Screen("ebpf_advanced")
     object EbpfSecurity           : Screen("ebpf_security")
-    object AdvancedBootProcess    : Screen("advanced_boot_process")
-    object UserModeGraphical      : Screen("user_mode_graphical")
+    object AdvancedBootProcess       : Screen("advanced_boot_process")
+    object UserModeGraphical         : Screen("user_mode_graphical")
+    object AdvancedAffinity          : Screen("advanced_affinity")
+    object AdvancedProcessScheduling : Screen("advanced_process_scheduling")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -324,7 +328,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onFilePermissions = { navController.navigate(Screen.FilePermissions.route) },
                 onCgroups = { navController.navigate(Screen.Cgroups.route) },
                 onTun = { navController.navigate(Screen.UserModeTun.route) },
-                onBootProcess = { navController.navigate(Screen.AdvancedBootProcess.route) }
+                onBootProcess = { navController.navigate(Screen.AdvancedBootProcess.route) },
+                onAffinity = { navController.navigate(Screen.AdvancedAffinity.route) },
+                onProcessScheduling = { navController.navigate(Screen.AdvancedProcessScheduling.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -350,6 +356,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeGraphical.route) {
             UserModeGraphicalScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedAffinity.route) {
+            AffinityScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedProcessScheduling.route) {
+            ProcessSchedulingScreen(onBack = { navController.popBackStack() })
         }
     }
 }
