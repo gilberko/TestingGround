@@ -13,11 +13,16 @@ import com.example.frenchproject.screens.dictionary.ColorsScreen
 import com.example.frenchproject.screens.dictionary.CommonVerbsScreen
 import com.example.frenchproject.screens.dictionary.FoodScreen
 import com.example.frenchproject.screens.dictionary.GreetingsScreen
+import com.example.frenchproject.screens.dictionary.JobsScreen
+import com.example.frenchproject.screens.dictionary.NumbersScreen
 import com.example.frenchproject.screens.dictionary.SchoolWorkScreen
+import com.example.frenchproject.screens.dictionary.TimesScreen
 import com.example.frenchproject.screens.learning.ArticlesScreen
 import com.example.frenchproject.screens.learning.AskingQuestionsScreen
 import com.example.frenchproject.screens.learning.DemonstrativesScreen
 import com.example.frenchproject.screens.learning.NegationScreen
+import com.example.frenchproject.screens.learning.PassiveScreen
+import com.example.frenchproject.screens.learning.PrepositionsScreen
 import com.example.frenchproject.screens.learning.EtreAvoirScreen
 import com.example.frenchproject.screens.learning.ReflexiveVerbsScreen
 import com.example.frenchproject.screens.learning.SubjectPronounsScreen
@@ -42,6 +47,11 @@ sealed class Screen(val route: String) {
     object SchoolWork        : Screen("school_work")
     object Greetings         : Screen("greetings")
     object Food              : Screen("food")
+    object Numbers           : Screen("numbers")
+    object Times             : Screen("times")
+    object Jobs              : Screen("jobs")
+    object Prepositions      : Screen("prepositions")
+    object Passive           : Screen("passive")
 }
 
 @Composable
@@ -63,7 +73,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onReflexiveVerbs   = { navController.navigate(Screen.ReflexiveVerbs.route) },
                 onAskingQuestions  = { navController.navigate(Screen.AskingQuestions.route) },
                 onDemonstratives   = { navController.navigate(Screen.Demonstratives.route) },
-                onNegation         = { navController.navigate(Screen.Negation.route) }
+                onNegation         = { navController.navigate(Screen.Negation.route) },
+                onPrepositions     = { navController.navigate(Screen.Prepositions.route) },
+                onPassive          = { navController.navigate(Screen.Passive.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -75,7 +87,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onAdjectives   = { navController.navigate(Screen.Adjectives.route) },
                 onSchoolWork   = { navController.navigate(Screen.SchoolWork.route) },
                 onGreetings    = { navController.navigate(Screen.Greetings.route) },
-                onFood         = { navController.navigate(Screen.Food.route) }
+                onFood         = { navController.navigate(Screen.Food.route) },
+                onNumbers      = { navController.navigate(Screen.Numbers.route) },
+                onTimes        = { navController.navigate(Screen.Times.route) },
+                onJobs         = { navController.navigate(Screen.Jobs.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -122,6 +137,21 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Food.route) {
             FoodScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Numbers.route) {
+            NumbersScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Times.route) {
+            TimesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Jobs.route) {
+            JobsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Prepositions.route) {
+            PrepositionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Passive.route) {
+            PassiveScreen(onBack = { navController.popBackStack() })
         }
     }
 }
