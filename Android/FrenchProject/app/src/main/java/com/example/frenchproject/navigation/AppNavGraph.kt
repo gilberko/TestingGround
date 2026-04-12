@@ -7,6 +7,10 @@ import androidx.navigation.compose.composable
 import com.example.frenchproject.screens.DictionaryHubScreen
 import com.example.frenchproject.screens.HomeScreen
 import com.example.frenchproject.screens.LearningHubScreen
+import com.example.frenchproject.screens.SplashScreen
+import com.example.frenchproject.screens.dictionary.HomeImprovementScreen
+import com.example.frenchproject.screens.dictionary.SportsScreen
+import com.example.frenchproject.screens.learning.ConditionalsScreen
 import com.example.frenchproject.screens.dictionary.AdjectivesScreen
 import com.example.frenchproject.screens.dictionary.AnimalsScreen
 import com.example.frenchproject.screens.dictionary.ColorsScreen
@@ -29,6 +33,7 @@ import com.example.frenchproject.screens.learning.SubjectPronounsScreen
 import com.example.frenchproject.screens.learning.TensesScreen
 
 sealed class Screen(val route: String) {
+    object Splash            : Screen("splash")
     object Home              : Screen("home")
     object LearningHub       : Screen("learning_hub")
     object DictionaryHub     : Screen("dictionary_hub")
@@ -52,11 +57,23 @@ sealed class Screen(val route: String) {
     object Jobs              : Screen("jobs")
     object Prepositions      : Screen("prepositions")
     object Passive           : Screen("passive")
+    object Conditionals      : Screen("conditionals")
+    object HomeImprovement   : Screen("home_improvement")
+    object Sports            : Screen("sports")
 }
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+        composable(Screen.Splash.route) {
+            SplashScreen(
+                onFinished = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(Screen.Home.route) {
             HomeScreen(
                 onLearning   = { navController.navigate(Screen.LearningHub.route) },
@@ -75,7 +92,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDemonstratives   = { navController.navigate(Screen.Demonstratives.route) },
                 onNegation         = { navController.navigate(Screen.Negation.route) },
                 onPrepositions     = { navController.navigate(Screen.Prepositions.route) },
-                onPassive          = { navController.navigate(Screen.Passive.route) }
+                onPassive          = { navController.navigate(Screen.Passive.route) },
+                onConditionals     = { navController.navigate(Screen.Conditionals.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -89,8 +107,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onGreetings    = { navController.navigate(Screen.Greetings.route) },
                 onFood         = { navController.navigate(Screen.Food.route) },
                 onNumbers      = { navController.navigate(Screen.Numbers.route) },
-                onTimes        = { navController.navigate(Screen.Times.route) },
-                onJobs         = { navController.navigate(Screen.Jobs.route) }
+                onTimes            = { navController.navigate(Screen.Times.route) },
+                onJobs             = { navController.navigate(Screen.Jobs.route) },
+                onHomeImprovement  = { navController.navigate(Screen.HomeImprovement.route) },
+                onSports           = { navController.navigate(Screen.Sports.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -152,6 +172,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Passive.route) {
             PassiveScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Conditionals.route) {
+            ConditionalsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.HomeImprovement.route) {
+            HomeImprovementScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Sports.route) {
+            SportsScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -48,7 +48,8 @@ fun LearningHubScreen(
     onDemonstratives: () -> Unit,
     onNegation: () -> Unit,
     onPrepositions: () -> Unit,
-    onPassive: () -> Unit
+    onPassive: () -> Unit,
+    onConditionals: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -81,7 +82,8 @@ fun LearningHubScreen(
                 "This and That,\nHere and There" to onDemonstratives,
                 "Negation" to onNegation,
                 "Prepositions" to onPrepositions,
-                "Passive Voice" to onPassive
+                "Passive Voice" to onPassive,
+                "Conditionals" to onConditionals
             )
             val pairs = buttons.chunked(2)
             Column(

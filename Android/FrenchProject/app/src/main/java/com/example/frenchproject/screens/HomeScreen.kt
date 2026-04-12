@@ -17,8 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
@@ -42,23 +40,6 @@ fun HomeScreen(
                 .padding(horizontal = 40.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "A Stranger In A\nStrange Land",
-                color = Color.White,
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                lineHeight = 36.sp
-            )
-            Spacer(modifier = Modifier.height(6.dp))
-            Text(
-                text = "French Edition",
-                color = Color(0xFFF5C518),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Medium,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(48.dp))
             OutlinedButton(
                 onClick = onLearning,
                 modifier = Modifier.fillMaxWidth(),
