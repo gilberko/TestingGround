@@ -53,6 +53,7 @@ import com.example.app2.screens.ClarificationsScreen
 import com.example.app2.screens.EPvsBPScreen
 import com.example.app2.screens.PortuguesePhrasesScreen
 import com.example.app2.screens.CookingScreen
+import com.example.app2.screens.NegationScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -99,6 +100,7 @@ sealed class Screen(val route: String) {
     object EPvsBP : Screen("ep_vs_bp")
     object DictPortuguesePhrases : Screen("dict_portuguese_phrases")
     object DictCooking : Screen("dict_cooking")
+    object TutorialNegation : Screen("tutorial_negation")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -172,8 +174,12 @@ fun AppNavGraph(navController: NavHostController) {
                 onComparisons = { navController.navigate(Screen.TutorialComparisons.route) },
                 onQuestions = { navController.navigate(Screen.TutorialQuestions.route) },
                 onDemonstratives = { navController.navigate(Screen.TutorialDemonstratives.route) },
-                onClarifications = { navController.navigate(Screen.TutorialClarifications.route) }
+                onClarifications = { navController.navigate(Screen.TutorialClarifications.route) },
+                onNegation = { navController.navigate(Screen.TutorialNegation.route) }
             )
+        }
+        composable(Screen.TutorialNegation.route) {
+            NegationScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Dictionary.route) {
             DictionaryScreen(
