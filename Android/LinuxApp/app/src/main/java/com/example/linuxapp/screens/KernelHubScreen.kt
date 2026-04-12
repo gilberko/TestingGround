@@ -53,8 +53,8 @@ fun KernelHubScreen(
     onDeferredWork: () -> Unit,
     onDataStructures: () -> Unit,
     onVfs: () -> Unit,
-    onFileAccessWhole: () -> Unit,
-    onMemoryAccessWhole: () -> Unit,
+    onTheWholePicture: () -> Unit,
+    onMemoryManagement: () -> Unit,
     onPendOperations: () -> Unit
 ) {
     Scaffold(
@@ -139,8 +139,8 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "File Access:\nWhole Picture", modifier = Modifier.weight(1f), onClick = onFileAccessWhole)
-                KernelButton(label = "Memory Access:\nWhole Picture", modifier = Modifier.weight(1f), onClick = onMemoryAccessWhole)
+                KernelButton(label = "The Whole\nPicture", modifier = Modifier.weight(1f), onClick = onTheWholePicture)
+                KernelButton(label = "Memory\nManagement", modifier = Modifier.weight(1f), onClick = onMemoryManagement)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

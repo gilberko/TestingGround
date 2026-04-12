@@ -69,6 +69,8 @@ import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
 import com.example.linuxapp.screens.permissions.CallingConventionsScreen
 import com.example.linuxapp.screens.kernel.KernelPendOperationsScreen
+import com.example.linuxapp.screens.kernel.KernelMemoryScreen
+import com.example.linuxapp.screens.TheWholePictureHubScreen
 import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
 import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
@@ -128,6 +130,8 @@ sealed class Screen(val route: String) {
     object UserModeInlineAssembly    : Screen("user_mode_inline_assembly")
     object CallingConventions        : Screen("calling_conventions")
     object KernelPendOperations      : Screen("kernel_pend_operations")
+    object TheWholePictureHub        : Screen("the_whole_picture_hub")
+    object KernelMemoryManagement    : Screen("kernel_memory_management")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -199,8 +203,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) },
                 onDataStructures = { navController.navigate(Screen.KernelDataStructures.route) },
                 onVfs = { navController.navigate(Screen.KernelVfs.route) },
-                onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
-                onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) },
+                onTheWholePicture = { navController.navigate(Screen.TheWholePictureHub.route) },
+                onMemoryManagement = { navController.navigate(Screen.KernelMemoryManagement.route) },
                 onPendOperations = { navController.navigate(Screen.KernelPendOperations.route) }
             )
         }
@@ -380,6 +384,16 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelPendOperations.route) {
             KernelPendOperationsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TheWholePictureHub.route) {
+            TheWholePictureHubScreen(
+                onBack = { navController.popBackStack() },
+                onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
+                onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) }
+            )
+        }
+        composable(Screen.KernelMemoryManagement.route) {
+            KernelMemoryScreen(onBack = { navController.popBackStack() })
         }
     }
 }

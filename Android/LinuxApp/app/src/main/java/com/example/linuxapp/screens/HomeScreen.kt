@@ -2,6 +2,8 @@ package com.example.linuxapp.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -63,16 +66,21 @@ fun HomeScreen(
             HomeButton(label = "eBPF", onClick = onEbpf)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Advanced Topics", onClick = onPermissions)
+            Spacer(modifier = Modifier.height(20.dp))
+            Box(
+                modifier = Modifier
+                    .border(1.dp, Color(0xFF00FF41), RoundedCornerShape(4.dp))
+                    .background(Color.Black, RoundedCornerShape(4.dp))
+                    .padding(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Text(
+                    text = "v1.6",
+                    color = Color.White,
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily.Monospace
+                )
+            }
         }
-        Text(
-            text = "v0.6",
-            color = Color.White.copy(alpha = 0.4f),
-            fontSize = 12.sp,
-            fontFamily = FontFamily.Monospace,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-        )
     }
 }
 
