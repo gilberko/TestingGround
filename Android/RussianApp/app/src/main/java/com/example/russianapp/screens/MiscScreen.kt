@@ -253,6 +253,60 @@ fun MiscScreen(onBack: () -> Unit) {
                 }
             }
 
+            // ── чтобы ────────────────────────────────────────────────────────
+            item { MiscSectionHeader("чтобы — In Order To / So That") }
+            item {
+                MiscCard(title = "Purpose Clauses with чтобы") {
+                    Text(
+                        "чтобы introduces a purpose clause (\"in order to\" / \"so that\"). " +
+                        "The verb form after чтобы depends on whether both clauses share the same subject.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
+            item {
+                MiscCard(title = "Same Subject → чтобы + Infinitive") {
+                    Text(
+                        "When the subject performing the main action and the purpose action is the same person, use чтобы + infinitive.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(
+                        listOf(
+                            Pair("Я учусь, чтобы говорить по-русски.", "I study in order to speak Russian."),
+                            Pair("Он учится, чтобы говорить.", "He studies so he can speak."),
+                            Pair("Она читает, чтобы узнать новое.", "She reads in order to learn something new."),
+                            Pair("Мы работаем, чтобы жить.", "We work in order to live.")
+                        )
+                    )
+                }
+            }
+            item {
+                MiscCard(title = "Different Subjects → чтобы + Past Tense") {
+                    Text(
+                        "When the subjects differ — I do A so that someone else does B — use чтобы + past tense. " +
+                        "This is Russian's subjunctive mood. The past tense form agrees in gender and number with the subject of the purpose clause.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(
+                        listOf(
+                            Pair("Я говорю медленно, чтобы ты понял.", "I speak slowly so that you understand."),
+                            Pair("Я написал это, чтобы она поняла.", "I wrote this so that she would understand."),
+                            Pair("Учитель объясняет, чтобы студенты поняли.", "The teacher explains so that the students understand."),
+                            Pair("Он повторил, чтобы я не забыл.", "He repeated it so that I wouldn't forget.")
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        "Note: понял (m.) / поняла (f.) / поняли (pl.) — the past form agrees with the subject of the чтобы clause.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontStyle = FontStyle.Italic
+                    )
+                }
+            }
+
             // ── Quick Reference ──────────────────────────────────────────────
             item { MiscSectionHeader("Quick Reference") }
             item {
@@ -272,7 +326,9 @@ fun MiscScreen(onBack: () -> Unit) {
                             Triple("до тех пор, пока",    "as long as / until",    "emphatic time boundary"),
                             Triple("пока (+ imperfective)","while",                 "two simultaneous actions"),
                             Triple("пока не",             "until",                 "action waits for event"),
-                            Triple("когда",               "when",                  "specific moment / point in time")
+                            Triple("когда",               "when",                  "specific moment / point in time"),
+                            Triple("чтобы + infinitive",  "in order to",           "same subject in both clauses"),
+                            Triple("чтобы + past tense",  "so that",               "different subjects; subjunctive")
                         ).forEachIndexed { i, (expr, meaning, idea) ->
                             Row(
                                 modifier = Modifier
