@@ -46,7 +46,9 @@ fun PermissionsHubScreen(
     onAffinity: () -> Unit,
     onProcessScheduling: () -> Unit,
     onCallingConventions: () -> Unit,
-    onLsm: () -> Unit
+    onLsm: () -> Unit,
+    onMakefile: () -> Unit,
+    onCmake: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -135,6 +137,22 @@ fun PermissionsHubScreen(
                     PermissionsHubButton(
                         label = "LSM",
                         onClick = onLsm,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "Makefile",
+                        onClick = onMakefile,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "CMake",
+                        onClick = onCmake,
                         modifier = Modifier.weight(1f)
                     )
                 }
