@@ -9,8 +9,13 @@ import com.example.frenchproject.screens.HomeScreen
 import com.example.frenchproject.screens.LearningHubScreen
 import com.example.frenchproject.screens.SplashScreen
 import com.example.frenchproject.screens.dictionary.HomeImprovementScreen
+import com.example.frenchproject.screens.dictionary.NatureScreen
 import com.example.frenchproject.screens.dictionary.SportsScreen
+import com.example.frenchproject.screens.dictionary.TechScreen
+import com.example.frenchproject.screens.learning.ComparisonsScreen
 import com.example.frenchproject.screens.learning.ConditionalsScreen
+import com.example.frenchproject.screens.learning.ObjectPronounsScreen
+import com.example.frenchproject.screens.learning.PossessiveScreen
 import com.example.frenchproject.screens.dictionary.AdjectivesScreen
 import com.example.frenchproject.screens.dictionary.AnimalsScreen
 import com.example.frenchproject.screens.dictionary.ColorsScreen
@@ -60,6 +65,11 @@ sealed class Screen(val route: String) {
     object Conditionals      : Screen("conditionals")
     object HomeImprovement   : Screen("home_improvement")
     object Sports            : Screen("sports")
+    object ObjectPronouns    : Screen("object_pronouns")
+    object Possessive        : Screen("possessive")
+    object Comparisons       : Screen("comparisons")
+    object Nature            : Screen("nature")
+    object Tech              : Screen("tech")
 }
 
 @Composable
@@ -93,7 +103,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onNegation         = { navController.navigate(Screen.Negation.route) },
                 onPrepositions     = { navController.navigate(Screen.Prepositions.route) },
                 onPassive          = { navController.navigate(Screen.Passive.route) },
-                onConditionals     = { navController.navigate(Screen.Conditionals.route) }
+                onConditionals     = { navController.navigate(Screen.Conditionals.route) },
+                onObjectPronouns   = { navController.navigate(Screen.ObjectPronouns.route) },
+                onPossessive       = { navController.navigate(Screen.Possessive.route) },
+                onComparisons      = { navController.navigate(Screen.Comparisons.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -110,7 +123,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onTimes            = { navController.navigate(Screen.Times.route) },
                 onJobs             = { navController.navigate(Screen.Jobs.route) },
                 onHomeImprovement  = { navController.navigate(Screen.HomeImprovement.route) },
-                onSports           = { navController.navigate(Screen.Sports.route) }
+                onSports           = { navController.navigate(Screen.Sports.route) },
+                onNature           = { navController.navigate(Screen.Nature.route) },
+                onTech             = { navController.navigate(Screen.Tech.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -181,6 +196,21 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Sports.route) {
             SportsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ObjectPronouns.route) {
+            ObjectPronounsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Possessive.route) {
+            PossessiveScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Comparisons.route) {
+            ComparisonsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Nature.route) {
+            NatureScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Tech.route) {
+            TechScreen(onBack = { navController.popBackStack() })
         }
     }
 }

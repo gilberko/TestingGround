@@ -50,7 +50,9 @@ fun DictionaryHubScreen(
     onTimes: () -> Unit,
     onJobs: () -> Unit,
     onHomeImprovement: () -> Unit,
-    onSports: () -> Unit
+    onSports: () -> Unit,
+    onNature: () -> Unit,
+    onTech: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -85,7 +87,9 @@ fun DictionaryHubScreen(
                 "Time & Dates" to onTimes,
                 "Jobs" to onJobs,
                 "Home Improvement" to onHomeImprovement,
-                "Sports" to onSports
+                "Sports" to onSports,
+                "Nature" to onNature,
+                "Tech" to onTech
             )
             val pairs = buttons.chunked(2)
             Column(
