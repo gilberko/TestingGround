@@ -50,7 +50,10 @@ fun TutorialScreen(
     onQuestions: () -> Unit,
     onDemonstratives: () -> Unit,
     onClarifications: () -> Unit,
-    onNegation: () -> Unit
+    onNegation: () -> Unit,
+    onSomeNoneAll: () -> Unit,
+    onConnectors: () -> Unit,
+    onAuthorsThoughts: () -> Unit
 ) {
     val buttons = listOf(
         "Prepositions" to onPrepositions,
@@ -67,7 +70,10 @@ fun TutorialScreen(
         "Questions" to onQuestions,
         "This, That, Here & There" to onDemonstratives,
         "Clarifications & Misc" to onClarifications,
-        "Negation" to onNegation
+        "Negation" to onNegation,
+        "Some, None, All" to onSomeNoneAll,
+        "Yet, Already & Others" to onConnectors,
+        "Author's Personal Thoughts" to onAuthorsThoughts
     )
 
     Box(modifier = Modifier.fillMaxSize()) {

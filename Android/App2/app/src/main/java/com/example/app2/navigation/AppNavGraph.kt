@@ -54,6 +54,9 @@ import com.example.app2.screens.EPvsBPScreen
 import com.example.app2.screens.PortuguesePhrasesScreen
 import com.example.app2.screens.CookingScreen
 import com.example.app2.screens.NegationScreen
+import com.example.app2.screens.AuthorsThoughtsScreen
+import com.example.app2.screens.HomeImprovementScreen
+import com.example.app2.screens.SportsScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -101,6 +104,9 @@ sealed class Screen(val route: String) {
     object DictPortuguesePhrases : Screen("dict_portuguese_phrases")
     object DictCooking : Screen("dict_cooking")
     object TutorialNegation : Screen("tutorial_negation")
+    object TutorialAuthorsThoughts : Screen("tutorial_authors_thoughts")
+    object DictHomeImprovement : Screen("dict_home_improvement")
+    object DictSports : Screen("dict_sports")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -175,11 +181,17 @@ fun AppNavGraph(navController: NavHostController) {
                 onQuestions = { navController.navigate(Screen.TutorialQuestions.route) },
                 onDemonstratives = { navController.navigate(Screen.TutorialDemonstratives.route) },
                 onClarifications = { navController.navigate(Screen.TutorialClarifications.route) },
-                onNegation = { navController.navigate(Screen.TutorialNegation.route) }
+                onNegation = { navController.navigate(Screen.TutorialNegation.route) },
+                onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
+                onConnectors = { navController.navigate(Screen.DictConnectors.route) },
+                onAuthorsThoughts = { navController.navigate(Screen.TutorialAuthorsThoughts.route) }
             )
         }
         composable(Screen.TutorialNegation.route) {
             NegationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialAuthorsThoughts.route) {
+            AuthorsThoughtsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Dictionary.route) {
             DictionaryScreen(
@@ -192,18 +204,18 @@ fun AppNavGraph(navController: NavHostController) {
                 onAdverbs = { navController.navigate(Screen.DictAdverbs.route) },
                 onCommonWords = { navController.navigate(Screen.DictCommonWords.route) },
                 onMovement = { navController.navigate(Screen.DictMovement.route) },
-                onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConfusingVerbs = { navController.navigate(Screen.DictConfusingVerbs.route) },
                 onTechWords = { navController.navigate(Screen.DictTechWords.route) },
                 onGreetings = { navController.navigate(Screen.DictGreetings.route) },
                 onMath = { navController.navigate(Screen.DictMath.route) },
-                onConnectors = { navController.navigate(Screen.DictConnectors.route) },
                 onVacation = { navController.navigate(Screen.DictVacation.route) },
                 onWorkplaces = { navController.navigate(Screen.DictWorkplaces.route) },
                 onWeather = { navController.navigate(Screen.DictWeather.route) },
                 onClothes = { navController.navigate(Screen.DictClothes.route) },
                 onPortuguesePhrases = { navController.navigate(Screen.DictPortuguesePhrases.route) },
-                onCooking = { navController.navigate(Screen.DictCooking.route) }
+                onCooking = { navController.navigate(Screen.DictCooking.route) },
+                onHomeImprovement = { navController.navigate(Screen.DictHomeImprovement.route) },
+                onSports = { navController.navigate(Screen.DictSports.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -256,6 +268,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictCooking.route) {
             CookingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictHomeImprovement.route) {
+            HomeImprovementScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictSports.route) {
+            SportsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EPvsBP.route) {
             EPvsBPScreen(onBack = { navController.popBackStack() })
