@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.frenchproject.R
-import com.example.frenchproject.ui.theme.FrenchNavy
 import kotlinx.coroutines.delay
 
 @Composable
@@ -24,7 +24,7 @@ fun SplashScreen(onFinished: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(FrenchNavy),
+            .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
         Image(
