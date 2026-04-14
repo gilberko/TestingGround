@@ -70,6 +70,8 @@ import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
 import com.example.linuxapp.screens.permissions.CallingConventionsScreen
 import com.example.linuxapp.screens.permissions.MakefileScreen
 import com.example.linuxapp.screens.permissions.CMakeScreen
+import com.example.linuxapp.screens.permissions.DeviceTreesScreen
+import com.example.linuxapp.screens.permissions.PlugAndPlayScreen
 import com.example.linuxapp.screens.kernel.KernelPendOperationsScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryScreen
 import com.example.linuxapp.screens.TheWholePictureHubScreen
@@ -136,6 +138,8 @@ sealed class Screen(val route: String) {
     object KernelMemoryManagement    : Screen("kernel_memory_management")
     object AdvancedMakefile          : Screen("advanced_makefile")
     object AdvancedCmake             : Screen("advanced_cmake")
+    object AdvancedDeviceTrees       : Screen("advanced_device_trees")
+    object AdvancedPlugAndPlay       : Screen("advanced_plug_and_play")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -349,7 +353,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onCallingConventions = { navController.navigate(Screen.CallingConventions.route) },
                 onLsm = { navController.navigate(Screen.KernelLsm.route) },
                 onMakefile = { navController.navigate(Screen.AdvancedMakefile.route) },
-                onCmake = { navController.navigate(Screen.AdvancedCmake.route) }
+                onCmake = { navController.navigate(Screen.AdvancedCmake.route) },
+                onDeviceTrees = { navController.navigate(Screen.AdvancedDeviceTrees.route) },
+                onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -406,6 +412,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedCmake.route) {
             CMakeScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedDeviceTrees.route) {
+            DeviceTreesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedPlugAndPlay.route) {
+            PlugAndPlayScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -48,7 +48,9 @@ fun PermissionsHubScreen(
     onCallingConventions: () -> Unit,
     onLsm: () -> Unit,
     onMakefile: () -> Unit,
-    onCmake: () -> Unit
+    onCmake: () -> Unit,
+    onDeviceTrees: () -> Unit,
+    onPlugAndPlay: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -153,6 +155,22 @@ fun PermissionsHubScreen(
                     PermissionsHubButton(
                         label = "CMake",
                         onClick = onCmake,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "Device Trees\n& ACPI",
+                        onClick = onDeviceTrees,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "Plug And\nPlay",
+                        onClick = onPlugAndPlay,
                         modifier = Modifier.weight(1f)
                     )
                 }

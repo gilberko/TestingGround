@@ -242,6 +242,45 @@ class_destroy(my_class);"""
                 }
             }
             item {
+                SectionCard(title = "mknod vs udev — How /dev Entries Are Created") {
+                    BodyText("There are two ways to create a /dev node for your driver: manually with mknod, or automatically through the udev daemon.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("mknod — manual approach:")
+                    CodeBlock(
+                        """# Syntax: mknod <path> <type> <major> <minor>
+# c = character device, b = block device
+sudo mknod /dev/mydevice c 240 0
+
+# Remove it
+sudo rm /dev/mydevice"""
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("mknod creates a special file directly in the filesystem. No daemon is involved — you must know the major/minor numbers yourself. Useful in recovery environments, minimal init systems, or when you want to pre-create the node before the module loads.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("class_create + device_create — automatic via udev:")
+                    BodyText("When you call device_create(), the kernel internally calls kobject_uevent(KOBJ_ADD), which broadcasts a netlink message over NETLINK_KOBJECT_UEVENT. This wakes up the udevd daemon running in userspace.")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("How udevd communicates with the kernel:")
+                    CodeBlock(
+                        """/* udevd listens on a netlink socket: */
+socket(AF_NETLINK, SOCK_RAW, NETLINK_KOBJECT_UEVENT)
+
+/* The uevent message carries: */
+ACTION=add
+DEVPATH=/devices/virtual/myclass/mydevice
+SUBSYSTEM=myclass
+DEVNAME=mydevice
+MAJOR=240
+MINOR=0"""
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("After receiving the uevent, udevd queries sysfs (/sys/DEVPATH/) to read the full device attributes. It then applies your rules from /etc/udev/rules.d/ to decide the final node name, permissions, ownership, and any symlinks to create. Finally it creates the /dev/mydevice node.")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("Tip — watch uevents in real time:")
+                    CodeBlock("udevadm monitor --kernel")
+                }
+            }
+            item {
                 SectionCard(title = "Seeing It in the Filesystem") {
                     CodeBlock(
                         """# c = character device; shows major, minor
