@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
+import com.example.russianapp.screens.ConversationsScreen
+import com.example.russianapp.screens.DirectionsConversationScreen
+import com.example.russianapp.screens.RestaurantConversationScreen
 import com.example.russianapp.screens.ClothesScreen
 import com.example.russianapp.screens.CookingScreen
 import com.example.russianapp.screens.OfficeSchoolScreen
@@ -86,6 +89,9 @@ sealed class Screen(val route: String) {
     object QuizVerb               : Screen("quiz_verb")
     object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
     object QuizVocabRusToEng      : Screen("quiz_vocab_rus_to_eng")
+    object Conversations          : Screen("conversations")
+    object ConversationDirections : Screen("conversation_directions")
+    object ConversationRestaurant : Screen("conversation_restaurant")
 }
 
 @Composable
@@ -101,7 +107,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenAdjectiveQuiz = { navController.navigate(Screen.QuizAdjective.route) },
                 onOpenVerbQuiz          = { navController.navigate(Screen.QuizVerb.route) },
                 onOpenVocabEngToRus     = { navController.navigate(Screen.QuizVocabEngToRus.route) },
-                onOpenVocabRusToEng     = { navController.navigate(Screen.QuizVocabRusToEng.route) }
+                onOpenVocabRusToEng     = { navController.navigate(Screen.QuizVocabRusToEng.route) },
+                onOpenConversations     = { navController.navigate(Screen.Conversations.route) }
             )
         }
         composable(Screen.Tutorial.route) {
@@ -267,6 +274,19 @@ fun AppNavGraph(navController: NavHostController) {
                 configViewModel = configViewModel,
                 onBack = { navController.popBackStack() }
             )
+        }
+        composable(Screen.Conversations.route) {
+            ConversationsScreen(
+                onBack = { navController.popBackStack() },
+                onDirections = { navController.navigate(Screen.ConversationDirections.route) },
+                onRestaurant = { navController.navigate(Screen.ConversationRestaurant.route) }
+            )
+        }
+        composable(Screen.ConversationDirections.route) {
+            DirectionsConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationRestaurant.route) {
+            RestaurantConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }
