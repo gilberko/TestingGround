@@ -1,7 +1,6 @@
 package com.example.app2.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +25,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ConversationsScreen(
     onBack: () -> Unit,
-    onDirections: () -> Unit
+    onDirections: () -> Unit,
+    onRestaurant: () -> Unit,
+    onJobApplication: () -> Unit,
+    onAirport: () -> Unit,
+    onSchool: () -> Unit,
+    onWorkMeeting: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -57,6 +61,66 @@ fun ConversationsScreen(
                     )
                 ) {
                     Text("Directions")
+                }
+            }
+            item {
+                Button(
+                    onClick = onRestaurant,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Restaurant")
+                }
+            }
+            item {
+                Button(
+                    onClick = onJobApplication,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Applying For A Job")
+                }
+            }
+            item {
+                Button(
+                    onClick = onAirport,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Airport")
+                }
+            }
+            item {
+                Button(
+                    onClick = onSchool,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("School — Show And Tell")
+                }
+            }
+            item {
+                Button(
+                    onClick = onWorkMeeting,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Work Meeting")
                 }
             }
         }

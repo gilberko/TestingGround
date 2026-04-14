@@ -60,6 +60,11 @@ import com.example.app2.screens.SportsScreen
 import com.example.app2.screens.MemorizeVocabScreen
 import com.example.app2.screens.ConversationsScreen
 import com.example.app2.screens.DirectionsConversationScreen
+import com.example.app2.screens.RestaurantConversationScreen
+import com.example.app2.screens.JobApplicationConversationScreen
+import com.example.app2.screens.AirportConversationScreen
+import com.example.app2.screens.SchoolConversationScreen
+import com.example.app2.screens.WorkMeetingConversationScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -118,6 +123,11 @@ sealed class Screen(val route: String) {
     object MemorizeVocabPtToEn : Screen("memorize_vocab_pt_to_en")
     object Conversations : Screen("conversations")
     object ConversationDirections : Screen("conversation_directions")
+    object ConversationRestaurant : Screen("conversation_restaurant")
+    object ConversationJobApplication : Screen("conversation_job_application")
+    object ConversationAirport : Screen("conversation_airport")
+    object ConversationSchool : Screen("conversation_school")
+    object ConversationWorkMeeting : Screen("conversation_work_meeting")
 }
 
 @Composable
@@ -404,11 +414,31 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Conversations.route) {
             ConversationsScreen(
                 onBack = { navController.popBackStack() },
-                onDirections = { navController.navigate(Screen.ConversationDirections.route) }
+                onDirections = { navController.navigate(Screen.ConversationDirections.route) },
+                onRestaurant = { navController.navigate(Screen.ConversationRestaurant.route) },
+                onJobApplication = { navController.navigate(Screen.ConversationJobApplication.route) },
+                onAirport = { navController.navigate(Screen.ConversationAirport.route) },
+                onSchool = { navController.navigate(Screen.ConversationSchool.route) },
+                onWorkMeeting = { navController.navigate(Screen.ConversationWorkMeeting.route) }
             )
         }
         composable(Screen.ConversationDirections.route) {
             DirectionsConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationRestaurant.route) {
+            RestaurantConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationJobApplication.route) {
+            JobApplicationConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationAirport.route) {
+            AirportConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationSchool.route) {
+            SchoolConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationWorkMeeting.route) {
+            WorkMeetingConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.app2.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -24,22 +20,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-
-private data class DialogueLine(
-    val speaker: String,
-    val pt: String,
-    val en: String
-)
-
-private data class ConversationSection(
-    val heading: String?,
-    val lines: List<DialogueLine>
-)
 
 private val conversationSections = listOf(
     ConversationSection(
@@ -146,7 +130,7 @@ fun DirectionsConversationScreen(onBack: () -> Unit) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                            verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             HorizontalDivider(modifier = Modifier.weight(1f))
@@ -164,51 +148,12 @@ fun DirectionsConversationScreen(onBack: () -> Unit) {
 
                 section.lines.forEach { line ->
                     item {
-                        DialogueCard(line = line)
+                        DialogueCard(line = line, isFirst = line.speaker == "A")
                     }
                 }
             }
 
             item { Spacer(modifier = Modifier.height(16.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun DialogueCard(line: DialogueLine) {
-    val isSpeakerA = line.speaker == "A"
-    val containerColor = if (isSpeakerA)
-        MaterialTheme.colorScheme.secondaryContainer
-    else
-        MaterialTheme.colorScheme.surfaceVariant
-
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = containerColor)
-    ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = line.speaker,
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.Bold,
-                color = if (isSpeakerA)
-                    MaterialTheme.colorScheme.onSecondaryContainer
-                else
-                    MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = line.pt,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = line.en,
-                style = MaterialTheme.typography.bodyMedium,
-                fontStyle = FontStyle.Italic,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
     }
 }
