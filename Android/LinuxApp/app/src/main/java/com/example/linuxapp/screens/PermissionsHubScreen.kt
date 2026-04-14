@@ -50,7 +50,9 @@ fun PermissionsHubScreen(
     onMakefile: () -> Unit,
     onCmake: () -> Unit,
     onDeviceTrees: () -> Unit,
-    onPlugAndPlay: () -> Unit
+    onPlugAndPlay: () -> Unit,
+    onStackFrames: () -> Unit,
+    onKernelVmDebugging: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -171,6 +173,22 @@ fun PermissionsHubScreen(
                     PermissionsHubButton(
                         label = "Plug And\nPlay",
                         onClick = onPlugAndPlay,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "Stacks &\nStack Frames",
+                        onClick = onStackFrames,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "Kernel VM\nDebugging",
+                        onClick = onKernelVmDebugging,
                         modifier = Modifier.weight(1f)
                     )
                 }

@@ -72,6 +72,9 @@ import com.example.linuxapp.screens.permissions.MakefileScreen
 import com.example.linuxapp.screens.permissions.CMakeScreen
 import com.example.linuxapp.screens.permissions.DeviceTreesScreen
 import com.example.linuxapp.screens.permissions.PlugAndPlayScreen
+import com.example.linuxapp.screens.permissions.StackFramesScreen
+import com.example.linuxapp.screens.permissions.KernelVmDebuggingScreen
+import com.example.linuxapp.screens.ebpf.EbpfSharingDataScreen
 import com.example.linuxapp.screens.kernel.KernelPendOperationsScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryScreen
 import com.example.linuxapp.screens.TheWholePictureHubScreen
@@ -140,6 +143,9 @@ sealed class Screen(val route: String) {
     object AdvancedCmake             : Screen("advanced_cmake")
     object AdvancedDeviceTrees       : Screen("advanced_device_trees")
     object AdvancedPlugAndPlay       : Screen("advanced_plug_and_play")
+    object AdvancedStackFrames       : Screen("advanced_stack_frames")
+    object AdvancedKernelVmDebugging : Screen("advanced_kernel_vm_debugging")
+    object EbpfSharingData           : Screen("ebpf_sharing_data")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -317,7 +323,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) },
                 onBtf = { navController.navigate(Screen.EbpfBtf.route) },
                 onEbpfAdvanced = { navController.navigate(Screen.EbpfAdvanced.route) },
-                onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) }
+                onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) },
+                onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -355,7 +362,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onMakefile = { navController.navigate(Screen.AdvancedMakefile.route) },
                 onCmake = { navController.navigate(Screen.AdvancedCmake.route) },
                 onDeviceTrees = { navController.navigate(Screen.AdvancedDeviceTrees.route) },
-                onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) }
+                onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) },
+                onStackFrames = { navController.navigate(Screen.AdvancedStackFrames.route) },
+                onKernelVmDebugging = { navController.navigate(Screen.AdvancedKernelVmDebugging.route) }
             )
         }
         composable(Screen.FilePermissions.route) {
@@ -418,6 +427,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedPlugAndPlay.route) {
             PlugAndPlayScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedStackFrames.route) {
+            StackFramesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedKernelVmDebugging.route) {
+            KernelVmDebuggingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfSharingData.route) {
+            EbpfSharingDataScreen(onBack = { navController.popBackStack() })
         }
     }
 }
