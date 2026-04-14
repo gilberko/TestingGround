@@ -57,6 +57,9 @@ import com.example.app2.screens.NegationScreen
 import com.example.app2.screens.AuthorsThoughtsScreen
 import com.example.app2.screens.HomeImprovementScreen
 import com.example.app2.screens.SportsScreen
+import com.example.app2.screens.MemorizeVocabScreen
+import com.example.app2.screens.ConversationsScreen
+import com.example.app2.screens.DirectionsConversationScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -111,6 +114,10 @@ sealed class Screen(val route: String) {
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
     object VocabResultsPtToEn : Screen("vocab_results_pt_to_en")
+    object MemorizeVocabEnToPt : Screen("memorize_vocab_en_to_pt")
+    object MemorizeVocabPtToEn : Screen("memorize_vocab_pt_to_en")
+    object Conversations : Screen("conversations")
+    object ConversationDirections : Screen("conversation_directions")
 }
 
 @Composable
@@ -128,7 +135,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenDictionary = { navController.navigate(Screen.Dictionary.route) },
                 onStartVocabQuizEnToPt = { navController.navigate(Screen.VocabQuizEnToPt.route) },
                 onStartVocabQuizPtToEn = { navController.navigate(Screen.VocabQuizPtToEn.route) },
-                onOpenEPvsBP = { navController.navigate(Screen.EPvsBP.route) }
+                onStartMemorizeEnToPt = { navController.navigate(Screen.MemorizeVocabEnToPt.route) },
+                onStartMemorizePtToEn = { navController.navigate(Screen.MemorizeVocabPtToEn.route) },
+                onOpenEPvsBP = { navController.navigate(Screen.EPvsBP.route) },
+                onOpenConversations = { navController.navigate(Screen.Conversations.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -378,6 +388,27 @@ fun AppNavGraph(navController: NavHostController) {
                     navController.popBackStack(Screen.Home.route, inclusive = false)
                 }
             )
+        }
+        composable(Screen.MemorizeVocabEnToPt.route) {
+            MemorizeVocabScreen(
+                direction = QuizDirection.EN_TO_PT,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.MemorizeVocabPtToEn.route) {
+            MemorizeVocabScreen(
+                direction = QuizDirection.PT_TO_EN,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.Conversations.route) {
+            ConversationsScreen(
+                onBack = { navController.popBackStack() },
+                onDirections = { navController.navigate(Screen.ConversationDirections.route) }
+            )
+        }
+        composable(Screen.ConversationDirections.route) {
+            DirectionsConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -44,7 +44,10 @@ fun HomeScreen(
     onOpenDictionary: () -> Unit,
     onStartVocabQuizEnToPt: () -> Unit,
     onStartVocabQuizPtToEn: () -> Unit,
-    onOpenEPvsBP: () -> Unit
+    onStartMemorizeEnToPt: () -> Unit,
+    onStartMemorizePtToEn: () -> Unit,
+    onOpenEPvsBP: () -> Unit,
+    onOpenConversations: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -136,6 +139,32 @@ fun HomeScreen(
                             Text("Vocabulary\nPT → EN", textAlign = TextAlign.Center)
                         }
                     }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = onStartMemorizeEnToPt,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Black,
+                                contentColor = Color.White
+                            )
+                        ) {
+                            Text("Memorize Vocab\nEN → PT", textAlign = TextAlign.Center)
+                        }
+                        Button(
+                            onClick = onStartMemorizePtToEn,
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Black,
+                                contentColor = Color.White
+                            )
+                        ) {
+                            Text("Memorize Vocab\nPT → EN", textAlign = TextAlign.Center)
+                        }
+                    }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
                         onClick = onOpenTutorial,
@@ -157,6 +186,17 @@ fun HomeScreen(
                         )
                     ) {
                         Text("Simple Dictionary")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(
+                        onClick = onOpenConversations,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Conversation Examples")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(
