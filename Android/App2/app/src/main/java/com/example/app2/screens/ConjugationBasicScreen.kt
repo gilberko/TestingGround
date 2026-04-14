@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +35,11 @@ private data class TenseEntry(
     val usage: String,
     val example: String,
     val exampleTranslation: String,
+    val formationRule: String,
+    val suffixBase: String,
+    val arSuf: List<String>,
+    val erSuf: List<String>,
+    val irSuf: List<String>,
     val eu: String,
     val tu: String,
     val ele: String,
@@ -48,6 +54,11 @@ private val basicTenses = listOf(
         usage = "Expresses current actions, habitual facts, universal truths.",
         example = "Eu falo português todos os dias.",
         exampleTranslation = "I speak Portuguese every day.",
+        formationRule = "Remove -ar / -er / -ir from the infinitive to get the stem. Then add the suffix for the subject. Note: -er and -ir differ for nós and vós.",
+        suffixBase = "Stem (infinitive − -ar / -er / -ir)",
+        arSuf = listOf("-o", "-as", "-a", "-amos", "-ais", "-am"),
+        erSuf = listOf("-o", "-es", "-e", "-emos", "-eis", "-em"),
+        irSuf = listOf("-o", "-es", "-e", "-imos", "-is", "-em"),
         eu = "falo / como / parto",
         tu = "falas / comes / partes",
         ele = "fala / come / parte",
@@ -60,6 +71,11 @@ private val basicTenses = listOf(
         usage = "Completed past action with a defined endpoint.",
         example = "Ela comeu o jantar às oito.",
         exampleTranslation = "She ate dinner at eight.",
+        formationRule = "Remove -ar / -er / -ir from the infinitive to get the stem. Then add the suffix for the subject.",
+        suffixBase = "Stem (infinitive − -ar / -er / -ir)",
+        arSuf = listOf("-ei", "-aste", "-ou", "-ámos", "-astes", "-aram"),
+        erSuf = listOf("-i", "-este", "-eu", "-emos", "-estes", "-eram"),
+        irSuf = listOf("-i", "-iste", "-iu", "-imos", "-istes", "-iram"),
         eu = "falei / comi / parti",
         tu = "falaste / comeste / partiste",
         ele = "falou / comeu / partiu",
@@ -72,6 +88,11 @@ private val basicTenses = listOf(
         usage = "Ongoing/habitual past state or 'used to' actions.",
         example = "Quando era criança, eu falava muito.",
         exampleTranslation = "When I was a child, I used to talk a lot.",
+        formationRule = "Remove -ar / -er / -ir from the infinitive to get the stem. Then add the suffix. -er and -ir verbs share the same endings.",
+        suffixBase = "Stem (infinitive − -ar / -er / -ir)",
+        arSuf = listOf("-ava", "-avas", "-ava", "-ávamos", "-áveis", "-avam"),
+        erSuf = listOf("-ia", "-ias", "-ia", "-íamos", "-íeis", "-iam"),
+        irSuf = listOf("-ia", "-ias", "-ia", "-íamos", "-íeis", "-iam"),
         eu = "falava / comia / partia",
         tu = "falavas / comias / partias",
         ele = "falava / comia / partia",
@@ -84,6 +105,11 @@ private val basicTenses = listOf(
         usage = "Future actions and predictions.",
         example = "Amanhã eles partirão cedo.",
         exampleTranslation = "Tomorrow they will leave early.",
+        formationRule = "Keep the full infinitive intact (falar, comer, partir) and append the ending directly to it. All three verb types use exactly the same endings.",
+        suffixBase = "Full infinitive (falar / comer / partir) +",
+        arSuf = listOf("-ei", "-ás", "-á", "-emos", "-eis", "-ão"),
+        erSuf = listOf("-ei", "-ás", "-á", "-emos", "-eis", "-ão"),
+        irSuf = listOf("-ei", "-ás", "-á", "-emos", "-eis", "-ão"),
         eu = "falarei / comerei / partirei",
         tu = "falarás / comerás / partirás",
         ele = "falará / comerá / partirá",
@@ -204,13 +230,16 @@ private fun NoteCard(title: String, lines: List<NoteContent>) {
 
 @Composable
 private fun BasicTenseCard(entry: TenseEntry) {
+    val allSame = entry.arSuf == entry.erSuf && entry.erSuf == entry.irSuf
     ElevatedCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(12.dp)) {
+            // Tense name
             Text(
                 text = entry.name,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
+            // Usage
             Text(
                 text = entry.usage,
                 style = MaterialTheme.typography.bodySmall,
@@ -218,6 +247,7 @@ private fun BasicTenseCard(entry: TenseEntry) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
+            // Example
             Text(
                 text = buildAnnotatedString {
                     withStyle(SpanStyle(fontStyle = FontStyle.Italic)) { append(entry.example) }
@@ -226,6 +256,37 @@ private fun BasicTenseCard(entry: TenseEntry) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            // Formation explanation
+            HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
+            Text(
+                text = "How to form:",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = entry.formationRule,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "Base: ${entry.suffixBase}",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 6.dp)
+            )
+            BasicSuffixTable(entry.arSuf, entry.erSuf, entry.irSuf, allSame)
+
+            // Example conjugation table
+            HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
+            Text(
+                text = "Example — falar / comer / partir:",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
             )
             BasicConjugationRow("Subject", "-ar (falar)", "-er (comer)", "-ir (partir)", isHeader = true)
             listOf(
@@ -245,6 +306,47 @@ private fun BasicTenseCard(entry: TenseEntry) {
                     isHeader = false
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun BasicSuffixTable(
+    arSuf: List<String>,
+    erSuf: List<String>,
+    irSuf: List<String>,
+    allSame: Boolean
+) {
+    val subjects = listOf("eu", "tu", "ele/ela", "nós", "vós", "eles/elas")
+    if (allSame) {
+        // 2-column: Subject | Suffix
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text("Subject", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(0.8f))
+            Text("Suffix", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        }
+        subjects.forEachIndexed { i, subj ->
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(subj, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(0.8f))
+                Text(arSuf.getOrElse(i) { "—" }, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
+            }
+        }
+    } else {
+        // 4-column: Subject | -ar | -er | -ir
+        BasicConjugationRow("Subject", "-ar", "-er", "-ir", isHeader = true)
+        subjects.forEachIndexed { i, subj ->
+            BasicConjugationRow(
+                subject = subj,
+                ar = arSuf.getOrElse(i) { "—" },
+                er = erSuf.getOrElse(i) { "—" },
+                ir = irSuf.getOrElse(i) { "—" },
+                isHeader = false
+            )
         }
     }
 }

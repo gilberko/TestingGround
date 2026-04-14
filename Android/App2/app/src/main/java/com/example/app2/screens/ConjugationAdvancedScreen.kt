@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +36,11 @@ private data class AdvTenseEntry(
     val example: String,
     val exampleTranslation: String,
     val extraNote: String = "",
+    val formationRule: String,
+    val suffixBase: String,
+    val arSuf: List<String>,
+    val erSuf: List<String>,
+    val irSuf: List<String>,
     val eu: String,
     val tu: String,
     val ele: String,
@@ -49,6 +55,11 @@ private val advancedTenses = listOf(
         usage = "Pluperfect — completed before another past action; formal/literary.",
         example = "Quando cheguei, ela já partira.",
         exampleTranslation = "When I arrived, she had already left.",
+        formationRule = "Take the eles form of the Pretérito Perfeito (falaram, comeram, partiram). Remove the final -m to get the base (falara, comera, partira). All verb types then share the same endings. Note: nós and vós carry a written accent.",
+        suffixBase = "3rd pl. preterite − m (falara / comera / partira), then add:",
+        arSuf = listOf("—", "+s", "—", "+mos*", "+reis*", "+m"),
+        erSuf = listOf("—", "+s", "—", "+mos*", "+reis*", "+m"),
+        irSuf = listOf("—", "+s", "—", "+mos*", "+reis*", "+m"),
         eu = "falara / comera / partira",
         tu = "falaras / comeras / partiras",
         ele = "falara / comera / partira",
@@ -61,6 +72,11 @@ private val advancedTenses = listOf(
         usage = "Hypothetical or polite 'would'.",
         example = "Eu comeria mais, mas estou cheio.",
         exampleTranslation = "I would eat more, but I am full.",
+        formationRule = "Keep the full infinitive intact (falar, comer, partir) and append the ending directly to it. All three verb types use exactly the same endings.",
+        suffixBase = "Full infinitive (falar / comer / partir) +",
+        arSuf = listOf("-ia", "-ias", "-ia", "-íamos", "-íeis", "-iam"),
+        erSuf = listOf("-ia", "-ias", "-ia", "-íamos", "-íeis", "-iam"),
+        irSuf = listOf("-ia", "-ias", "-ia", "-íamos", "-íeis", "-iam"),
         eu = "falaria / comeria / partiria",
         tu = "falarias / comerias / partirias",
         ele = "falaria / comeria / partiria",
@@ -73,6 +89,11 @@ private val advancedTenses = listOf(
         usage = "Doubt, desire, emotion, uncertainty. Triggered by 'que', 'embora', etc.",
         example = "Espero que tu fales com ela.",
         exampleTranslation = "I hope you speak with her.",
+        formationRule = "Take the present indicative eu form (falo, como, parto) and drop the -o to get the subjunctive stem (fal-, com-, part-). Then add the suffix. Key rule: -ar verbs take -e endings, while -er/-ir verbs take -a endings — the opposite of their infinitive class.",
+        suffixBase = "Present indicative eu − o  (fal- / com- / part-)",
+        arSuf = listOf("-e", "-es", "-e", "-emos", "-eis", "-em"),
+        erSuf = listOf("-a", "-as", "-a", "-amos", "-ais", "-am"),
+        irSuf = listOf("-a", "-as", "-a", "-amos", "-ais", "-am"),
         eu = "fale / coma / parta",
         tu = "fales / comas / partas",
         ele = "fale / coma / parta",
@@ -85,6 +106,11 @@ private val advancedTenses = listOf(
         usage = "Hypothetical/contrary-to-fact 'se' clauses.",
         example = "Se eu falasse melhor, conseguia o emprego.",
         exampleTranslation = "If I spoke better, I'd get the job.",
+        formationRule = "Take the eles form of the Pretérito Perfeito (falaram, comeram, partiram). Remove -ram to get the base (fala-, come-, parti-). All verb types share the same endings. Note: nós and vós carry a written accent.",
+        suffixBase = "3rd pl. preterite − ram  (fala- / come- / parti-)",
+        arSuf = listOf("-sse", "-sses", "-sse", "-ssemos*", "-sseis*", "-ssem"),
+        erSuf = listOf("-sse", "-sses", "-sse", "-ssemos*", "-sseis*", "-ssem"),
+        irSuf = listOf("-sse", "-sses", "-sse", "-ssemos*", "-sseis*", "-ssem"),
         eu = "falasse / comesse / partisse",
         tu = "falasses / comesses / partisses",
         ele = "falasse / comesse / partisse",
@@ -97,6 +123,11 @@ private val advancedTenses = listOf(
         usage = "Hypothetical future conditions; common in formal/legal writing.",
         example = "Quando fores a Lisboa, visita o castelo.",
         exampleTranslation = "When you go to Lisbon, visit the castle.",
+        formationRule = "Take the eles form of the Pretérito Perfeito (falaram, comeram, partiram). Remove -ram to get the base (fala-, come-, parti-). All verb types share the same endings. The eu and ele/ela forms are identical to the regular infinitive.",
+        suffixBase = "3rd pl. preterite − ram  (fala- / come- / parti-)",
+        arSuf = listOf("-r", "-res", "-r", "-rmos", "-rdes", "-rem"),
+        erSuf = listOf("-r", "-res", "-r", "-rmos", "-rdes", "-rem"),
+        irSuf = listOf("-r", "-res", "-r", "-rmos", "-rdes", "-rem"),
         eu = "falar / comer / partir",
         tu = "falares / comeres / partires",
         ele = "falar / comer / partir",
@@ -109,6 +140,11 @@ private val advancedTenses = listOf(
         usage = "Direct positive commands (no 'eu' form).",
         example = "Fala mais devagar, por favor!",
         exampleTranslation = "Speak more slowly, please!",
+        formationRule = "The imperative borrows from other tenses. tu = present indicative ele/ela form. ele/você, nós, eles/vocês = conjuntivo presente forms. vós = stem + special ending (-ai for -ar / -ei for -er / -i for -ir).",
+        suffixBase = "Derived from other tenses (see rule above)",
+        arSuf = listOf("—", "pres. ind. ele", "conj. pres.", "conj. pres.", "stem + -ai", "conj. pres."),
+        erSuf = listOf("—", "pres. ind. ele", "conj. pres.", "conj. pres.", "stem + -ei", "conj. pres."),
+        irSuf = listOf("—", "pres. ind. ele", "conj. pres.", "conj. pres.", "stem + -i", "conj. pres."),
         eu = "—",
         tu = "fala / come / parte",
         ele = "fale / coma / parta",
@@ -121,6 +157,11 @@ private val advancedTenses = listOf(
         usage = "Prohibitions; uses Conjuntivo Presente forms.",
         example = "Não fales tão alto!",
         exampleTranslation = "Don't speak so loudly!",
+        formationRule = "There is no eu form. Use não + the conjuntivo presente form for every person. The negative imperative is entirely built on the present subjunctive.",
+        suffixBase = "não + Conjuntivo Presente form (all verb types)",
+        arSuf = listOf("—", "não + conj.", "não + conj.", "não + conj.", "não + conj.", "não + conj."),
+        erSuf = listOf("—", "não + conj.", "não + conj.", "não + conj.", "não + conj.", "não + conj."),
+        irSuf = listOf("—", "não + conj.", "não + conj.", "não + conj.", "não + conj.", "não + conj."),
         eu = "—",
         tu = "não fales / não comas / não partas",
         ele = "não fale / não coma / não parta",
@@ -133,6 +174,11 @@ private val advancedTenses = listOf(
         usage = "NOT used for continuous tenses in EP (use estar+a+inf). Used for simultaneous narrative actions.",
         example = "Fui embora, chorando de alegria.",
         exampleTranslation = "(literary only)",
+        formationRule = "Remove -ar / -er / -ir from the infinitive to get the stem. Add the gerund ending. The gerund has only one form — it does not change by subject. In European Portuguese, use estar + a + infinitive for continuous actions instead.",
+        suffixBase = "Stem (infinitive − -ar / -er / -ir) +",
+        arSuf = listOf("-ando", "-ando", "-ando", "-ando", "-ando", "-ando"),
+        erSuf = listOf("-endo", "-endo", "-endo", "-endo", "-endo", "-endo"),
+        irSuf = listOf("-indo", "-indo", "-indo", "-indo", "-indo", "-indo"),
         eu = "falando",
         tu = "comendo",
         ele = "partindo",
@@ -146,6 +192,11 @@ private val advancedTenses = listOf(
         example = "Antes de eles chegarem, preparei o jantar.",
         exampleTranslation = "Before they arrived, I prepared dinner.",
         extraNote = "'É importante estudar.' (impersonal) vs. 'É importante estudarmos.' (we specifically).",
+        formationRule = "Start with the regular infinitive. The eu and ele/ela forms are the unchanged infinitive. For all other subjects, append the ending to the full infinitive. All verb types share the same endings.",
+        suffixBase = "Full infinitive (falar / comer / partir) +",
+        arSuf = listOf("(unchanged)", "+es", "(unchanged)", "+mos", "+des", "+em"),
+        erSuf = listOf("(unchanged)", "+es", "(unchanged)", "+mos", "+des", "+em"),
+        irSuf = listOf("(unchanged)", "+es", "(unchanged)", "+mos", "+des", "+em"),
         eu = "falar / comer / partir",
         tu = "falares / comeres / partires",
         ele = "falar / comer / partir",
@@ -198,13 +249,16 @@ fun ConjugationAdvancedScreen(onBack: () -> Unit) {
 
 @Composable
 private fun AdvTenseCard(entry: AdvTenseEntry) {
+    val allSame = entry.arSuf == entry.erSuf && entry.erSuf == entry.irSuf
     ElevatedCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(12.dp)) {
+            // Tense name
             Text(
                 text = entry.name,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
+            // Usage
             Text(
                 text = entry.usage,
                 style = MaterialTheme.typography.bodySmall,
@@ -212,6 +266,7 @@ private fun AdvTenseCard(entry: AdvTenseEntry) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
+            // Example
             Text(
                 text = buildAnnotatedString {
                     withStyle(SpanStyle(fontStyle = FontStyle.Italic)) { append(entry.example) }
@@ -229,6 +284,37 @@ private fun AdvTenseCard(entry: AdvTenseEntry) {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
+
+            // Formation explanation
+            HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
+            Text(
+                text = "How to form:",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = entry.formationRule,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "Base: ${entry.suffixBase}",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 6.dp)
+            )
+            AdvSuffixTable(entry.arSuf, entry.erSuf, entry.irSuf, allSame)
+
+            // Example conjugation table
+            HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
+            Text(
+                text = "Example — falar / comer / partir:",
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
             AdvConjugationRow("Subject", "-ar (falar)", "-er (comer)", "-ir (partir)", isHeader = true)
             listOf(
                 Triple("eu", entry.eu, Unit),
@@ -247,6 +333,47 @@ private fun AdvTenseCard(entry: AdvTenseEntry) {
                     isHeader = false
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun AdvSuffixTable(
+    arSuf: List<String>,
+    erSuf: List<String>,
+    irSuf: List<String>,
+    allSame: Boolean
+) {
+    val subjects = listOf("eu", "tu", "ele/ela", "nós", "vós", "eles/elas")
+    if (allSame) {
+        // 2-column: Subject | Suffix
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text("Subject", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(0.8f))
+            Text("Suffix", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        }
+        subjects.forEachIndexed { i, subj ->
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(subj, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(0.8f))
+                Text(arSuf.getOrElse(i) { "—" }, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
+            }
+        }
+    } else {
+        // 4-column: Subject | -ar | -er | -ir
+        AdvConjugationRow("Subject", "-ar", "-er", "-ir", isHeader = true)
+        subjects.forEachIndexed { i, subj ->
+            AdvConjugationRow(
+                subject = subj,
+                ar = arSuf.getOrElse(i) { "—" },
+                er = erSuf.getOrElse(i) { "—" },
+                ir = irSuf.getOrElse(i) { "—" },
+                isHeader = false
+            )
         }
     }
 }
