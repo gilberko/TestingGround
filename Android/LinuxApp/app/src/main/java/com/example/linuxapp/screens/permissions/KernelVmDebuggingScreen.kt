@@ -316,6 +316,274 @@ fun KernelVmDebuggingScreen(onBack: () -> Unit) {
                 }
             }
 
+            item {
+                SectionCard(title = "KGDB — Kernel GDB Stub") {
+                    BodyText(
+                        "KGDB is a source-level debugger built into the Linux kernel. It implements " +
+                        "the GDB remote serial protocol (RSP) inside the kernel itself, so a GDB " +
+                        "running on a *different* machine (or on the host for a VM) can attach and " +
+                        "debug the running kernel over a serial line or network connection."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Kernel config requirements:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "CONFIG_KGDB=y                  # enable the KGDB subsystem\n" +
+                        "CONFIG_KGDB_KDB=y              # also enable the KDB front-end\n" +
+                        "CONFIG_KGDB_SERIAL_CONSOLE=y   # serial transport (kgdboc)\n" +
+                        "CONFIG_KGDBOE=y                # network transport (kgdboe, optional)\n" +
+                        "CONFIG_DEBUG_INFO=y            # DWARF symbols for GDB\n" +
+                        "CONFIG_RANDOMIZE_BASE=n        # disable KASLR"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "Two transport backends are available:\n" +
+                        "• kgdboc (KGDB Over Console) — serial port or console tty\n" +
+                        "• kgdboe (KGDB Over Ethernet) — UDP, no serial cable required"
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "KGDB via Serial — Remote Machine or VM") {
+                    BodyText("Hardware setup:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "Bare-metal remote machine:\n" +
+                        "  Connect a null-modem (crossover) serial cable between the\n" +
+                        "  debug host and the target. Or use two USB-to-serial adapters\n" +
+                        "  connected with a null-modem cable.\n" +
+                        "\n" +
+                        "QEMU VM — expose serial port over TCP:\n" +
+                        "  qemu-system-x86_64 \\\n" +
+                        "    -kernel bzImage \\\n" +
+                        "    -initrd initramfs.cpio.gz \\\n" +
+                        "    -serial tcp::4321,server,nowait \\\n" +
+                        "    -append \"console=ttyS0 nokaslr kgdboc=ttyS0,115200\""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Boot parameter to activate kgdboc:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# Add to kernel command line:\n" +
+                        "kgdboc=ttyS0,115200\n" +
+                        "\n" +
+                        "# Or for a USB serial adapter on the target:\n" +
+                        "kgdboc=ttyUSB0,115200\n" +
+                        "\n" +
+                        "# Trigger kernel to wait for debugger:\n" +
+                        "echo g > /proc/sysrq-trigger\n" +
+                        "# Or: Alt + SysRq + G on keyboard"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Connecting GDB from the debug host:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# Bare-metal — connect over physical serial port:\n" +
+                        "gdb vmlinux\n" +
+                        "(gdb) set remotebaud 115200\n" +
+                        "(gdb) target remote /dev/ttyUSB0\n" +
+                        "\n" +
+                        "# QEMU VM — connect over TCP:\n" +
+                        "gdb vmlinux\n" +
+                        "(gdb) target remote :4321\n" +
+                        "\n" +
+                        "# Load module symbols after connecting:\n" +
+                        "(gdb) lx-symbols"
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "KGDB via Ethernet (kgdboe)") {
+                    BodyText(
+                        "kgdboe (KGDB Over Ethernet) sends GDB remote serial protocol packets " +
+                        "over UDP. The kernel handles these packets directly in the network " +
+                        "driver interrupt — no serial cable required. Ideal for VMs where " +
+                        "adding a virtual serial port is inconvenient."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Kernel config:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "CONFIG_KGDB=y\n" +
+                        "CONFIG_KGDBOE=y    # can also be loaded as a module: modprobe kgdboe"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Activating kgdboe at runtime (after boot):")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# Load the module if built as a module:\n" +
+                        "modprobe kgdboe\n" +
+                        "\n" +
+                        "# Tell kgdboe which NIC to use:\n" +
+                        "echo \"eth0\" > /sys/module/kgdboe/parameters/kgdboe_use_module_eth\n" +
+                        "\n" +
+                        "# Or pass as a boot parameter:\n" +
+                        "# kgdboe=@192.168.1.10/eth0,@192.168.1.1/\n" +
+                        "# format: @<target-ip>/<iface>,@<host-ip>/\n" +
+                        "\n" +
+                        "# Trigger entry into the debugger:\n" +
+                        "echo g > /proc/sysrq-trigger"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Connecting GDB from the host:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "gdb vmlinux\n" +
+                        "(gdb) target remote udp:192.168.1.10:6443\n" +
+                        "(gdb) lx-symbols"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "Caution: kgdboe can be unreliable under heavy network load. " +
+                        "For production debugging or reliable single-stepping, prefer " +
+                        "serial (kgdboc). kgdboe is most useful in clean lab VM environments."
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "Setting Breakpoints and Inspecting Variables") {
+                    BodyText(
+                        "Once GDB is connected (via QEMU -s/-S or via KGDB), all standard " +
+                        "GDB commands work. KASLR must be disabled for symbol addresses to match."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Breakpoints:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "(gdb) break sys_openat           # break on a function by name\n" +
+                        "(gdb) break kernel/sched/core.c:1234  # break at source line\n" +
+                        "(gdb) watch current->state       # hardware watchpoint on variable\n" +
+                        "(gdb) info breakpoints           # list all breakpoints\n" +
+                        "(gdb) delete 2                   # delete breakpoint #2\n" +
+                        "(gdb) disable 1                  # disable without deleting\n" +
+                        "(gdb) continue                   # resume execution"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Inspecting variables and memory:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "(gdb) print task->comm           # print a struct field (string)\n" +
+                        "(gdb) print task->pid            # print an integer field\n" +
+                        "(gdb) p/x task->flags            # print in hex\n" +
+                        "(gdb) print *(struct task_struct *)0xffff888001234000\n" +
+                        "                                 # cast address and dereference\n" +
+                        "(gdb) info locals                # local variables in current frame\n" +
+                        "(gdb) info registers             # CPU registers\n" +
+                        "(gdb) x/16xb 0xffff888000000000  # raw hex dump: 16 bytes\n" +
+                        "(gdb) x/4gx &init_task           # 4 quad-words at init_task\n" +
+                        "(gdb) bt                         # backtrace\n" +
+                        "(gdb) frame 3                    # switch to stack frame #3\n" +
+                        "(gdb) list                       # show source around current PC"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "The kernel GDB helper scripts add higher-level commands " +
+                        "(lx-ps, lx-dmesg, lx-lsmod) that understand kernel data structures."
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "Breakpoints in Kernel Modules") {
+                    BodyText(
+                        "Kernel modules are loaded at runtime; their symbols and load addresses " +
+                        "are not present in vmlinux. You must tell GDB where the module was loaded."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Step-by-step:")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# 1. In the guest VM, load your module:\n" +
+                        "insmod mymodule.ko\n" +
+                        "\n" +
+                        "# 2. In GDB on the host, reload module symbols:\n" +
+                        "(gdb) lx-symbols\n" +
+                        "# lx-symbols reads /proc/modules in the guest,\n" +
+                        "# finds each .ko file, and calls add-symbol-file\n" +
+                        "# with the correct load address automatically.\n" +
+                        "\n" +
+                        "# 3. Now set breakpoints in the module as normal:\n" +
+                        "(gdb) break mymodule.c:42\n" +
+                        "(gdb) break my_driver_read\n" +
+                        "(gdb) break my_static_helper   # even static functions work\n" +
+                        "(gdb) continue"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "You can set breakpoints on any function in the module — exported, " +
+                        "static, or inline-prevented. The only requirement is that the .ko " +
+                        "was built with CONFIG_DEBUG_INFO=y against the same kernel tree."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "If you load multiple modules, run lx-symbols again after each insmod. " +
+                        "Each call refreshes the full module symbol table."
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "Breaking on Module init() and exit()") {
+                    BodyText(
+                        "Yes — the init and exit functions are ordinary C functions and fully " +
+                        "debuggable. The challenge is that lx-symbols must be called *after* " +
+                        "the module is loaded, but init() runs *during* loading. Two solutions:"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Approach 1 — Pending breakpoint (simplest):")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "(gdb) set breakpoint pending on\n" +
+                        "(gdb) break my_module_init\n" +
+                        "# GDB stores a pending breakpoint.\n" +
+                        "# When lx-symbols resolves the symbol at insmod time,\n" +
+                        "# GDB arms the breakpoint automatically.\n" +
+                        "\n" +
+                        "# In the guest:\n" +
+                        "insmod mymodule.ko\n" +
+                        "# Execution stops at my_module_init on the host GDB."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Approach 2 — Break on do_init_module (manual):")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# do_init_module() is the kernel function that calls\n" +
+                        "# every module's init function.\n" +
+                        "(gdb) break do_init_module\n" +
+                        "(gdb) continue\n" +
+                        "\n" +
+                        "# In the guest: insmod mymodule.ko\n" +
+                        "# GDB stops inside do_init_module.\n" +
+                        "(gdb) lx-symbols          # load module symbols now\n" +
+                        "(gdb) step                # step into your module's init\n" +
+                        "(gdb) break my_module_init\n" +
+                        "(gdb) continue"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Breaking on exit():")
+                    Spacer(Modifier.height(4.dp))
+                    CodeBlock(
+                        "# After the module is loaded and lx-symbols has run:\n" +
+                        "(gdb) break my_module_exit\n" +
+                        "(gdb) continue\n" +
+                        "\n" +
+                        "# In the guest, unload the module:\n" +
+                        "rmmod mymodule\n" +
+                        "# GDB stops at my_module_exit.\n" +
+                        "# Inspect state, then:\n" +
+                        "(gdb) continue   # module finishes unloading"
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "Note: once rmmod completes, the module's memory is freed. Do not " +
+                        "continue stepping after exit() returns — the code pages are gone."
+                    )
+                }
+            }
+
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

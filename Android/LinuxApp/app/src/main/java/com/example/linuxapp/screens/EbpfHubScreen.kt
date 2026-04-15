@@ -45,7 +45,9 @@ fun EbpfHubScreen(
     onBtf: () -> Unit,
     onEbpfAdvanced: () -> Unit,
     onEbpfSecurity: () -> Unit,
-    onEbpfSharingData: () -> Unit
+    onEbpfSharingData: () -> Unit,
+    onEbpfKptrs: () -> Unit,
+    onEbpfHelpersKfuncs: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -104,6 +106,14 @@ fun EbpfHubScreen(
             ) {
                 EbpfButton(label = "Security\nPossibilities", onClick = onEbpfSecurity, modifier = Modifier.weight(1f))
                 EbpfButton(label = "Sharing\nData", onClick = onEbpfSharingData, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "kptrs", onClick = onEbpfKptrs, modifier = Modifier.weight(1f))
+                EbpfButton(label = "BPF Helpers\n& kfuncs", onClick = onEbpfHelpersKfuncs, modifier = Modifier.weight(1f))
             }
         }
         }

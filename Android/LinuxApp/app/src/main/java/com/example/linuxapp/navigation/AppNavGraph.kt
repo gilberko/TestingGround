@@ -82,6 +82,8 @@ import com.example.linuxapp.screens.ebpf.EbpfSimpleExampleScreen
 import com.example.linuxapp.screens.ebpf.BtfScreen
 import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
 import com.example.linuxapp.screens.ebpf.EbpfSecurityScreen
+import com.example.linuxapp.screens.ebpf.EbpfKptrsScreen
+import com.example.linuxapp.screens.ebpf.EbpfHelpersKfuncsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -146,6 +148,8 @@ sealed class Screen(val route: String) {
     object AdvancedStackFrames       : Screen("advanced_stack_frames")
     object AdvancedKernelVmDebugging : Screen("advanced_kernel_vm_debugging")
     object EbpfSharingData           : Screen("ebpf_sharing_data")
+    object EbpfKptrs                 : Screen("ebpf_kptrs")
+    object EbpfHelpersKfuncs         : Screen("ebpf_helpers_kfuncs")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -324,7 +328,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onBtf = { navController.navigate(Screen.EbpfBtf.route) },
                 onEbpfAdvanced = { navController.navigate(Screen.EbpfAdvanced.route) },
                 onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) },
-                onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) }
+                onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) },
+                onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
+                onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -436,6 +442,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfSharingData.route) {
             EbpfSharingDataScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfKptrs.route) {
+            EbpfKptrsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfHelpersKfuncs.route) {
+            EbpfHelpersKfuncsScreen(onBack = { navController.popBackStack() })
         }
     }
 }
