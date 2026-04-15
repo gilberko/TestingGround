@@ -11,6 +11,7 @@ import com.example.developmentapp.screens.ComingSoonScreen
 import com.example.developmentapp.screens.DataStructuresScreen
 import com.example.developmentapp.screens.HomeScreen
 import com.example.developmentapp.screens.PythonHubScreen
+import com.example.developmentapp.screens.TcpIpHubScreen
 import com.example.developmentapp.screens.assembly.BasicArithmeticScreen
 import com.example.developmentapp.screens.assembly.ComparisonsLoopsScreen
 import com.example.developmentapp.screens.assembly.FunctionCallsScreen
@@ -30,7 +31,16 @@ import com.example.developmentapp.screens.python.PythonLibrariesScreen
 import com.example.developmentapp.screens.python.PythonLoopsScreen
 import com.example.developmentapp.screens.python.PythonStringsScreen
 import com.example.developmentapp.screens.python.PythonSyntaxScreen
+import com.example.developmentapp.screens.python.PythonThreadsScreen
 import com.example.developmentapp.screens.python.PythonVariablesScreen
+import com.example.developmentapp.screens.tcpip.DnsScreen
+import com.example.developmentapp.screens.tcpip.EthernetScreen
+import com.example.developmentapp.screens.tcpip.IcmpScreen
+import com.example.developmentapp.screens.tcpip.IpScreen
+import com.example.developmentapp.screens.tcpip.IpsecScreen
+import com.example.developmentapp.screens.tcpip.SslTlsScreen
+import com.example.developmentapp.screens.tcpip.TcpScreen
+import com.example.developmentapp.screens.tcpip.UdpScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -63,6 +73,17 @@ sealed class Screen(val route: String) {
     object PythonStrings       : Screen("python_strings")
     object PythonLibraries     : Screen("python_libraries")
     object PythonInputOutput   : Screen("python_input_output")
+    object PythonThreads       : Screen("python_threads")
+    // TCP/IP
+    object TcpIpHub            : Screen("tcpip_hub")
+    object Ethernet            : Screen("ethernet")
+    object Ip                  : Screen("ip")
+    object Icmp                : Screen("icmp")
+    object Udp                 : Screen("udp")
+    object Tcp                 : Screen("tcp")
+    object Dns                 : Screen("dns")
+    object Ipsec               : Screen("ipsec")
+    object SslTls              : Screen("ssl_tls")
 }
 
 @Composable
@@ -77,7 +98,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
                 onAssembly       = { navController.navigate(Screen.AssemblyHub.route) },
                 onDataStructures = { navController.navigate(Screen.DataStructures.route) },
-                onAlgorithms     = { navController.navigate(Screen.ComingSoon.withLabel("Algorithms")) }
+                onAlgorithms     = { navController.navigate(Screen.ComingSoon.withLabel("Algorithms")) },
+                onTcpIp          = { navController.navigate(Screen.TcpIpHub.route) }
             )
         }
 
@@ -133,7 +155,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onArithmetic     = { navController.navigate(Screen.PythonArithmetic.route) },
                 onStrings        = { navController.navigate(Screen.PythonStrings.route) },
                 onLibraries      = { navController.navigate(Screen.PythonLibraries.route) },
-                onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) }
+                onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) },
+                onThreads        = { navController.navigate(Screen.PythonThreads.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -146,5 +169,29 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonStrings.route)       { PythonStringsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonLibraries.route)     { PythonLibrariesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonInputOutput.route)   { PythonInputOutputScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonThreads.route)       { PythonThreadsScreen(onBack = { navController.popBackStack() }) }
+
+        // ── TCP/IP ────────────────────────────────────────────────────
+        composable(Screen.TcpIpHub.route) {
+            TcpIpHubScreen(
+                onBack      = { navController.popBackStack() },
+                onEthernet  = { navController.navigate(Screen.Ethernet.route) },
+                onIp        = { navController.navigate(Screen.Ip.route) },
+                onIcmp      = { navController.navigate(Screen.Icmp.route) },
+                onUdp       = { navController.navigate(Screen.Udp.route) },
+                onTcp       = { navController.navigate(Screen.Tcp.route) },
+                onDns       = { navController.navigate(Screen.Dns.route) },
+                onIpsec     = { navController.navigate(Screen.Ipsec.route) },
+                onSslTls    = { navController.navigate(Screen.SslTls.route) }
+            )
+        }
+        composable(Screen.Ethernet.route) { EthernetScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Ip.route)       { IpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Icmp.route)     { IcmpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Udp.route)      { UdpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Tcp.route)      { TcpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Dns.route)      { DnsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Ipsec.route)    { IpsecScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.SslTls.route)   { SslTlsScreen(onBack = { navController.popBackStack() }) }
     }
 }

@@ -29,7 +29,8 @@ fun HomeScreen(
     onPython: () -> Unit,
     onAssembly: () -> Unit,
     onDataStructures: () -> Unit,
-    onAlgorithms: () -> Unit
+    onAlgorithms: () -> Unit,
+    onTcpIp: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -57,6 +58,8 @@ fun HomeScreen(
             HomeButton("Data Structures", onDataStructures)
             Spacer(Modifier.height(12.dp))
             HomeButton("Algorithms",      onAlgorithms)
+            Spacer(Modifier.height(12.dp))
+            HomeButton("TCP/IP",          onTcpIp)
         }
     }
 }

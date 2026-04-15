@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -34,26 +33,23 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PythonHubScreen(
-    onBack: () -> Unit,
-    onSyntax: () -> Unit,
-    onFunctions: () -> Unit,
-    onVariables: () -> Unit,
-    onClassesObjects: () -> Unit,
-    onConditions: () -> Unit,
-    onLoops: () -> Unit,
-    onArithmetic: () -> Unit,
-    onStrings: () -> Unit,
-    onLibraries: () -> Unit,
-    onInputOutput: () -> Unit,
-    onThreads: () -> Unit
+fun TcpIpHubScreen(
+    onBack:     () -> Unit,
+    onEthernet: () -> Unit,
+    onIp:       () -> Unit,
+    onIcmp:     () -> Unit,
+    onUdp:      () -> Unit,
+    onTcp:      () -> Unit,
+    onDns:      () -> Unit,
+    onIpsec:    () -> Unit,
+    onSslTls:   () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Python",
+                        text       = "TCP/IP",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -82,40 +78,35 @@ fun PythonHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            ButtonRow("Syntax",              onSyntax,
-                      "Variables",           onVariables)
+            TcpIpButtonRow("Ethernet",  onEthernet,
+                           "IP",        onIp)
             Spacer(Modifier.height(12.dp))
-            ButtonRow("Functions",           onFunctions,
-                      "Classes & Objects",   onClassesObjects)
+            TcpIpButtonRow("ICMP",      onIcmp,
+                           "UDP",       onUdp)
             Spacer(Modifier.height(12.dp))
-            ButtonRow("Conditions & If-Else", onConditions,
-                      "Loops",              onLoops)
+            TcpIpButtonRow("TCP",       onTcp,
+                           "DNS",       onDns)
             Spacer(Modifier.height(12.dp))
-            ButtonRow("Arithmetic",          onArithmetic,
-                      "Strings",            onStrings)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Libraries & Imports", onLibraries,
-                      "Input & Output",     onInputOutput)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Threads", onThreads, Modifier.fillMaxWidth())
+            TcpIpButtonRow("IPSec",     onIpsec,
+                           "SSL/TLS",   onSslTls)
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun ButtonRow(
+private fun TcpIpButtonRow(
     label1: String, onClick1: () -> Unit,
     label2: String, onClick2: () -> Unit
 ) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        HubButton(label1, onClick1, Modifier.weight(1f))
-        HubButton(label2, onClick2, Modifier.weight(1f))
+        TcpIpHubButton(label1, onClick1, Modifier.weight(1f))
+        TcpIpHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun HubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun TcpIpHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
         modifier = modifier.height(52.dp),
