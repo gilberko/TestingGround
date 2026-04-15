@@ -32,25 +32,19 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AssemblyHubScreen(
+fun PythonHubScreen(
     onBack: () -> Unit,
-    onX86Environment: () -> Unit,
-    onBasicArithmetic: () -> Unit,
-    onJumps: () -> Unit,
-    onFunctionCalls: () -> Unit,
-    onSyscallInt: () -> Unit,
-    onMoveData: () -> Unit,
-    onStack: () -> Unit,
-    onComparisonsLoops: () -> Unit,
-    onMoreArithmetic: () -> Unit,
-    onNumberRepresentation: () -> Unit
+    onSyntax: () -> Unit,
+    onFunctions: () -> Unit,
+    onVariables: () -> Unit,
+    onClassesObjects: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Assembly",
+                        text       = "Python",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -79,25 +73,13 @@ fun AssemblyHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            HubButton("x86 & x86-64 Environment",  onX86Environment)
+            HubButton("Syntax",             onSyntax)
             Spacer(Modifier.height(12.dp))
-            HubButton("Basic Arithmetic",           onBasicArithmetic)
+            HubButton("Variables",          onVariables)
             Spacer(Modifier.height(12.dp))
-            HubButton("More Arithmetic",            onMoreArithmetic)
+            HubButton("Functions",          onFunctions)
             Spacer(Modifier.height(12.dp))
-            HubButton("Move Data",                  onMoveData)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Stack",                      onStack)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Jumps",                      onJumps)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Comparisons & Loops",        onComparisonsLoops)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Function Calls",             onFunctionCalls)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Syscall & Int",              onSyscallInt)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Number Representation",      onNumberRepresentation)
+            HubButton("Classes & Objects",  onClassesObjects)
             Spacer(Modifier.height(24.dp))
         }
     }
