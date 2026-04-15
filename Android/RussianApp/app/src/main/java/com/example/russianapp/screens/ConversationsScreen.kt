@@ -24,7 +24,11 @@ import androidx.compose.ui.unit.dp
 fun ConversationsScreen(
     onBack: () -> Unit,
     onDirections: () -> Unit,
-    onRestaurant: () -> Unit
+    onRestaurant: () -> Unit,
+    onBeach: () -> Unit,
+    onTechMeeting: () -> Unit,
+    onCafeJob: () -> Unit,
+    onAirport: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -70,6 +74,54 @@ fun ConversationsScreen(
                     )
                 ) {
                     Text("At The Restaurant")
+                }
+            }
+            item {
+                OutlinedButton(
+                    onClick = onBeach,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("At The Beach")
+                }
+            }
+            item {
+                OutlinedButton(
+                    onClick = onTechMeeting,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Tech Meeting")
+                }
+            }
+            item {
+                OutlinedButton(
+                    onClick = onCafeJob,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Applying For A Job")
+                }
+            }
+            item {
+                OutlinedButton(
+                    onClick = onAirport,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("At The Airport")
                 }
             }
         }

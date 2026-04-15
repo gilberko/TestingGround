@@ -6,9 +6,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
+import com.example.russianapp.screens.AirportConversationScreen
+import com.example.russianapp.screens.BeachConversationScreen
+import com.example.russianapp.screens.CafeJobConversationScreen
 import com.example.russianapp.screens.ConversationsScreen
 import com.example.russianapp.screens.DirectionsConversationScreen
 import com.example.russianapp.screens.RestaurantConversationScreen
+import com.example.russianapp.screens.TechMeetingConversationScreen
 import com.example.russianapp.screens.ClothesScreen
 import com.example.russianapp.screens.CookingScreen
 import com.example.russianapp.screens.OfficeSchoolScreen
@@ -89,9 +93,13 @@ sealed class Screen(val route: String) {
     object QuizVerb               : Screen("quiz_verb")
     object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
     object QuizVocabRusToEng      : Screen("quiz_vocab_rus_to_eng")
-    object Conversations          : Screen("conversations")
-    object ConversationDirections : Screen("conversation_directions")
-    object ConversationRestaurant : Screen("conversation_restaurant")
+    object Conversations              : Screen("conversations")
+    object ConversationDirections     : Screen("conversation_directions")
+    object ConversationRestaurant     : Screen("conversation_restaurant")
+    object ConversationBeach          : Screen("conversation_beach")
+    object ConversationTechMeeting    : Screen("conversation_tech_meeting")
+    object ConversationCafeJob        : Screen("conversation_cafe_job")
+    object ConversationAirport        : Screen("conversation_airport")
 }
 
 @Composable
@@ -279,7 +287,11 @@ fun AppNavGraph(navController: NavHostController) {
             ConversationsScreen(
                 onBack = { navController.popBackStack() },
                 onDirections = { navController.navigate(Screen.ConversationDirections.route) },
-                onRestaurant = { navController.navigate(Screen.ConversationRestaurant.route) }
+                onRestaurant = { navController.navigate(Screen.ConversationRestaurant.route) },
+                onBeach = { navController.navigate(Screen.ConversationBeach.route) },
+                onTechMeeting = { navController.navigate(Screen.ConversationTechMeeting.route) },
+                onCafeJob = { navController.navigate(Screen.ConversationCafeJob.route) },
+                onAirport = { navController.navigate(Screen.ConversationAirport.route) }
             )
         }
         composable(Screen.ConversationDirections.route) {
@@ -287,6 +299,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ConversationRestaurant.route) {
             RestaurantConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationBeach.route) {
+            BeachConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationTechMeeting.route) {
+            TechMeetingConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationCafeJob.route) {
+            CafeJobConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationAirport.route) {
+            AirportConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }
