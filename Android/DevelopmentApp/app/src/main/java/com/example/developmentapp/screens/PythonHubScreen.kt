@@ -1,10 +1,11 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -37,7 +38,13 @@ fun PythonHubScreen(
     onSyntax: () -> Unit,
     onFunctions: () -> Unit,
     onVariables: () -> Unit,
-    onClassesObjects: () -> Unit
+    onClassesObjects: () -> Unit,
+    onConditions: () -> Unit,
+    onLoops: () -> Unit,
+    onArithmetic: () -> Unit,
+    onStrings: () -> Unit,
+    onLibraries: () -> Unit,
+    onInputOutput: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -68,30 +75,46 @@ fun PythonHubScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            HubButton("Syntax",             onSyntax)
+            ButtonRow("Syntax",              onSyntax,
+                      "Variables",           onVariables)
             Spacer(Modifier.height(12.dp))
-            HubButton("Variables",          onVariables)
+            ButtonRow("Functions",           onFunctions,
+                      "Classes & Objects",   onClassesObjects)
             Spacer(Modifier.height(12.dp))
-            HubButton("Functions",          onFunctions)
+            ButtonRow("Conditions & If-Else", onConditions,
+                      "Loops",              onLoops)
             Spacer(Modifier.height(12.dp))
-            HubButton("Classes & Objects",  onClassesObjects)
+            ButtonRow("Arithmetic",          onArithmetic,
+                      "Strings",            onStrings)
+            Spacer(Modifier.height(12.dp))
+            ButtonRow("Libraries & Imports", onLibraries,
+                      "Input & Output",     onInputOutput)
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun HubButton(label: String, onClick: () -> Unit) {
+private fun ButtonRow(
+    label1: String, onClick1: () -> Unit,
+    label2: String, onClick2: () -> Unit
+) {
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        HubButton(label1, onClick1, Modifier.weight(1f))
+        HubButton(label2, onClick2, Modifier.weight(1f))
+    }
+}
+
+@Composable
+private fun HubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
+        modifier = modifier.height(52.dp),
         border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
@@ -103,7 +126,8 @@ private fun HubButton(label: String, onClick: () -> Unit) {
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Medium,
             color      = Color(0xFF00FF41),
-            textAlign  = TextAlign.Center
+            textAlign  = TextAlign.Center,
+            fontSize   = 11.sp
         )
     }
 }

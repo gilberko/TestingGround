@@ -22,7 +22,13 @@ import com.example.developmentapp.screens.assembly.StackScreen
 import com.example.developmentapp.screens.assembly.SyscallIntScreen
 import com.example.developmentapp.screens.assembly.X86EnvironmentScreen
 import com.example.developmentapp.screens.python.ClassesObjectsScreen
+import com.example.developmentapp.screens.python.PythonArithmeticScreen
+import com.example.developmentapp.screens.python.PythonConditionsScreen
 import com.example.developmentapp.screens.python.PythonFunctionsScreen
+import com.example.developmentapp.screens.python.PythonInputOutputScreen
+import com.example.developmentapp.screens.python.PythonLibrariesScreen
+import com.example.developmentapp.screens.python.PythonLoopsScreen
+import com.example.developmentapp.screens.python.PythonStringsScreen
 import com.example.developmentapp.screens.python.PythonSyntaxScreen
 import com.example.developmentapp.screens.python.PythonVariablesScreen
 
@@ -51,6 +57,12 @@ sealed class Screen(val route: String) {
     object PythonFunctions     : Screen("python_functions")
     object PythonVariables     : Screen("python_variables")
     object PythonClassesObjects: Screen("python_classes_objects")
+    object PythonConditions    : Screen("python_conditions")
+    object PythonLoops         : Screen("python_loops")
+    object PythonArithmetic    : Screen("python_arithmetic")
+    object PythonStrings       : Screen("python_strings")
+    object PythonLibraries     : Screen("python_libraries")
+    object PythonInputOutput   : Screen("python_input_output")
 }
 
 @Composable
@@ -115,12 +127,24 @@ fun AppNavGraph(navController: NavHostController) {
                 onSyntax         = { navController.navigate(Screen.PythonSyntax.route) },
                 onFunctions      = { navController.navigate(Screen.PythonFunctions.route) },
                 onVariables      = { navController.navigate(Screen.PythonVariables.route) },
-                onClassesObjects = { navController.navigate(Screen.PythonClassesObjects.route) }
+                onClassesObjects = { navController.navigate(Screen.PythonClassesObjects.route) },
+                onConditions     = { navController.navigate(Screen.PythonConditions.route) },
+                onLoops          = { navController.navigate(Screen.PythonLoops.route) },
+                onArithmetic     = { navController.navigate(Screen.PythonArithmetic.route) },
+                onStrings        = { navController.navigate(Screen.PythonStrings.route) },
+                onLibraries      = { navController.navigate(Screen.PythonLibraries.route) },
+                onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonFunctions.route)      { PythonFunctionsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonVariables.route)      { PythonVariablesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonClassesObjects.route) { ClassesObjectsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonConditions.route)    { PythonConditionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonLoops.route)         { PythonLoopsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonArithmetic.route)    { PythonArithmeticScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonStrings.route)       { PythonStringsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonLibraries.route)     { PythonLibrariesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonInputOutput.route)   { PythonInputOutputScreen(onBack = { navController.popBackStack() }) }
     }
 }
