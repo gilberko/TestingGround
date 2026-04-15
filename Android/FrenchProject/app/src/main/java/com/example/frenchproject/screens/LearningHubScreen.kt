@@ -52,7 +52,9 @@ fun LearningHubScreen(
     onConditionals: () -> Unit,
     onObjectPronouns: () -> Unit,
     onPossessive: () -> Unit,
-    onComparisons: () -> Unit
+    onComparisons: () -> Unit,
+    onEveryoneNoone: () -> Unit,
+    onALotOrALittle: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -89,7 +91,9 @@ fun LearningHubScreen(
                 "Conditionals" to onConditionals,
                 "Object Pronouns" to onObjectPronouns,
                 "Possessive" to onPossessive,
-                "Comparisons" to onComparisons
+                "Comparisons" to onComparisons,
+                "Everybody and\nNo One" to onEveryoneNoone,
+                "A Lot Or\nA Little" to onALotOrALittle
             )
             val pairs = buttons.chunked(2)
             Column(

@@ -12,8 +12,10 @@ import com.example.frenchproject.screens.dictionary.HomeImprovementScreen
 import com.example.frenchproject.screens.dictionary.NatureScreen
 import com.example.frenchproject.screens.dictionary.SportsScreen
 import com.example.frenchproject.screens.dictionary.TechScreen
+import com.example.frenchproject.screens.learning.ALotOrALittleScreen
 import com.example.frenchproject.screens.learning.ComparisonsScreen
 import com.example.frenchproject.screens.learning.ConditionalsScreen
+import com.example.frenchproject.screens.learning.EveryoneNooneScreen
 import com.example.frenchproject.screens.learning.ObjectPronounsScreen
 import com.example.frenchproject.screens.learning.PossessiveScreen
 import com.example.frenchproject.screens.dictionary.AdjectivesScreen
@@ -70,6 +72,8 @@ sealed class Screen(val route: String) {
     object Comparisons       : Screen("comparisons")
     object Nature            : Screen("nature")
     object Tech              : Screen("tech")
+    object EveryoneNoone     : Screen("everyone_noone")
+    object ALotOrALittle     : Screen("a_lot_or_a_little")
 }
 
 @Composable
@@ -106,7 +110,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onConditionals     = { navController.navigate(Screen.Conditionals.route) },
                 onObjectPronouns   = { navController.navigate(Screen.ObjectPronouns.route) },
                 onPossessive       = { navController.navigate(Screen.Possessive.route) },
-                onComparisons      = { navController.navigate(Screen.Comparisons.route) }
+                onComparisons      = { navController.navigate(Screen.Comparisons.route) },
+                onEveryoneNoone    = { navController.navigate(Screen.EveryoneNoone.route) },
+                onALotOrALittle    = { navController.navigate(Screen.ALotOrALittle.route) }
             )
         }
         composable(Screen.DictionaryHub.route) {
@@ -211,6 +217,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Tech.route) {
             TechScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EveryoneNoone.route) {
+            EveryoneNooneScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ALotOrALittle.route) {
+            ALotOrALittleScreen(onBack = { navController.popBackStack() })
         }
     }
 }
