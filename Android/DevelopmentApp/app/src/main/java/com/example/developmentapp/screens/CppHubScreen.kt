@@ -1,7 +1,9 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,7 +44,9 @@ fun CppHubScreen(
     onPlusPlus101: () -> Unit,
     onQuirks: () -> Unit,
     onStdio: () -> Unit,
-    onKeywords: () -> Unit
+    onKeywords: () -> Unit,
+    onRuntimeMemory: () -> Unit,
+    onOperatorOverloading: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -78,25 +82,33 @@ fun CppHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            CppHubButton("Syntax", onSyntax, Modifier.fillMaxWidth())
+            CppButtonRow("Syntax", onSyntax, "More Variable Types", onMoreVariableTypes)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("More Variable Types", onMoreVariableTypes, Modifier.fillMaxWidth())
+            CppButtonRow("C Pre-Processor", onCPreProcessor, "C Memory Allocations", onMemoryAllocations)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("C Pre-Processor", onCPreProcessor, Modifier.fillMaxWidth())
+            CppButtonRow("Compilation, Linking And Loading", onCompilation, "C++ 101", onPlusPlus101)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("C Memory Allocations", onMemoryAllocations, Modifier.fillMaxWidth())
+            CppButtonRow("Quirks", onQuirks, "Standard I/O & Files", onStdio)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("Compilation, Linking And Loading", onCompilation, Modifier.fillMaxWidth())
+            CppButtonRow("Keywords", onKeywords, "C Runtime And Memory", onRuntimeMemory)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("C++ 101", onPlusPlus101, Modifier.fillMaxWidth())
-            Spacer(Modifier.height(12.dp))
-            CppHubButton("Quirks", onQuirks, Modifier.fillMaxWidth())
-            Spacer(Modifier.height(12.dp))
-            CppHubButton("Standard I/O & Files", onStdio, Modifier.fillMaxWidth())
-            Spacer(Modifier.height(12.dp))
-            CppHubButton("Keywords", onKeywords, Modifier.fillMaxWidth())
+            CppHubButton("Operator Overloading", onOperatorOverloading, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
+}
+
+@Composable
+private fun CppButtonRow(
+    label1: String, onClick1: () -> Unit,
+    label2: String, onClick2: () -> Unit
+) {
+    Row(
+        modifier            = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        CppHubButton(label1, onClick1, Modifier.weight(1f))
+        CppHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 

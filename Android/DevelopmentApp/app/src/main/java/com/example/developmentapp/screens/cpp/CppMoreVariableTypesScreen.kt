@@ -308,6 +308,127 @@ fun CppMoreVariableTypesScreen(onBack: () -> Unit) {
                     )
                 }
             }
+            // ── Enum ──────────────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Enum") {
+                    BodyText(
+                        "An enum (enumeration) defines a named integer type with a fixed set of " +
+                        "named constants. Internally the constants are just integers — the enum tag " +
+                        "is not a strong type in C."
+                    )
+                    BodyText(
+                        "Default numbering starts at 0 and increments by 1. You can set any value " +
+                        "explicitly; subsequent constants continue from that value."
+                    )
+                    CodeBlock(
+                        "enum Direction { NORTH, SOUTH, EAST, WEST };  // 0,1,2,3\n\n" +
+                        "enum Status {\n" +
+                        "    OK        = 200,\n" +
+                        "    MOVED     = 301,\n" +
+                        "    NOT_FOUND = 404,\n" +
+                        "    ERROR     = 500\n" +
+                        "};\n\n" +
+                        "Direction d = NORTH;\n" +
+                        "int val = d;               // implicit conversion to int\n\n" +
+                        "// sizeof(enum) == sizeof(underlying type) — int by default (4 bytes)\n" +
+                        "printf(\"%zu\\n\", sizeof(Direction));  // typically 4"
+                    )
+                    BodyText(
+                        "C-style enums are not type-safe: you can assign any integer to an enum " +
+                        "variable, and two different enum types can be compared directly because " +
+                        "both decay to int."
+                    )
+                    BodyText(
+                        "C++ enum class (scoped enum, C++11):\n\n" +
+                        "enum class is a strongly-typed enum. Constants must be qualified with the " +
+                        "class name (Color::Red), there is no implicit conversion to int, and two " +
+                        "different enum classes cannot be compared. You can also specify the " +
+                        "underlying integer type explicitly."
+                    )
+                    CodeBlock(
+                        "enum class Color { Red, Green, Blue };           // underlying: int\n" +
+                        "enum class Color2 : uint8_t { Red, Green, Blue }; // underlying: uint8_t\n\n" +
+                        "Color c = Color::Red;             // must qualify\n" +
+                        "// int x = c;                    // compile error — no implicit conversion\n" +
+                        "int x = static_cast<int>(c);     // explicit cast required\n\n" +
+                        "enum class Dir { N, S, E, W };\n" +
+                        "// if (c == Dir::N) {}           // compile error — different types\n\n" +
+                        "printf(\"%zu\\n\", sizeof(Color2)); // 1 — sizeof(uint8_t)"
+                    )
+                    BodyText(
+                        "Prefer enum class in new C++ code — it prevents accidental integer " +
+                        "arithmetic on enum values and avoids polluting the enclosing namespace " +
+                        "with constant names."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Union ─────────────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Union") {
+                    BodyText(
+                        "A union is like a struct, except all members share the same block of " +
+                        "storage. Every member starts at offset 0. Only one member holds a valid " +
+                        "value at any given time — writing to one member and then reading another " +
+                        "is type-punning and technically undefined behaviour in C++ (though it is " +
+                        "defined in C and widely used in practice)."
+                    )
+                    BodyText(
+                        "Size of a union:\n\n" +
+                        "sizeof(union) equals the size of the largest member, rounded up to " +
+                        "satisfy the alignment requirement of the most-aligned member. You can " +
+                        "absolutely add members of different sizes — that is the entire point. " +
+                        "The union reserves enough storage for whichever member is the biggest."
+                    )
+                    CodeBlock(
+                        "union Data {\n" +
+                        "    int   i;        // 4 bytes\n" +
+                        "    float f;        // 4 bytes\n" +
+                        "    char  bytes[4]; // 4 bytes\n" +
+                        "};  // sizeof = 4  (all members same size)\n\n" +
+                        "union Mixed {\n" +
+                        "    char   c;   // 1 byte\n" +
+                        "    int    i;   // 4 bytes\n" +
+                        "    double d;   // 8 bytes\n" +
+                        "};  // sizeof = 8  (largest member wins)\n\n" +
+                        "union Mixed m;\n" +
+                        "m.d = 3.14;           // write double\n" +
+                        "printf(\"%f\\n\", m.d); // read double — valid\n" +
+                        "// printf(\"%d\\n\", m.i); // reading m.i here is type-punning"
+                    )
+                    BodyText(
+                        "Common use cases:\n\n" +
+                        "  • Type punning — inspect the raw bytes of a float as a uint32_t to " +
+                        "examine its IEEE 754 bit pattern. Use memcpy in C++ to be strictly " +
+                        "conforming; many compilers support union punning as an extension.\n\n" +
+                        "  • Tagged union (discriminated union) — a struct containing a union and " +
+                        "an enum tag. The tag records which member is currently active."
+                    )
+                    CodeBlock(
+                        "// Tagged union — common C pattern\n" +
+                        "struct Value {\n" +
+                        "    enum { INT, FLOAT, STRING } tag;\n" +
+                        "    union {\n" +
+                        "        int         i;\n" +
+                        "        float       f;\n" +
+                        "        const char *s;\n" +
+                        "    };\n" +
+                        "};\n\n" +
+                        "struct Value v;\n" +
+                        "v.tag = Value::FLOAT;\n" +
+                        "v.f   = 3.14f;\n\n" +
+                        "if (v.tag == Value::FLOAT) printf(\"%f\\n\", v.f);"
+                    )
+                    BodyText(
+                        "C++ restrictions: if any member has a non-trivial constructor, copy " +
+                        "constructor, or destructor, the union's corresponding special member " +
+                        "function is deleted. You must manually use placement-new to construct " +
+                        "and explicit destructor calls to destroy members. For a type-safe " +
+                        "alternative, use std::variant (C++17)."
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

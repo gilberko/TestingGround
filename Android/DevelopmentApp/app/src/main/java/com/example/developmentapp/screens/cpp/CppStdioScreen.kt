@@ -245,9 +245,7 @@ fun CppStdioScreen(onBack: () -> Unit) {
                         "int age = 30;\n" +
                         "std::string name = \"Alice\";\n" +
                         "std::cout << \"Name: \" << name << \", Age: \" << age << \"\\n\";\n\n" +
-                        "// std::endl writes '\\n' AND flushes the buffer.\n" +
-                        "// Prefer \"\\n\" for performance; use std::endl only when\n" +
-                        "// you need an immediate flush (e.g. before a long delay).\n" +
+                        "// std::endl writes '\\n' AND flushes the buffer\n" +
                         "std::cout << \"Flushing now\" << std::endl;\n\n" +
                         "// Error output — unbuffered, appears immediately\n" +
                         "std::cerr << \"Error: file not found\\n\";\n\n" +
@@ -258,6 +256,28 @@ fun CppStdioScreen(onBack: () -> Unit) {
                         "// Reading a full line (including spaces):\n" +
                         "std::string line;\n" +
                         "std::getline(std::cin, line);"
+                    )
+                    BodyText(
+                        "std::endl is a stream manipulator, not just a newline. It does two things: " +
+                        "writes '\\n' to the stream, then calls flush() — which drains the internal " +
+                        "buffer and forces all pending bytes to the OS immediately.\n\n" +
+                        "Flushing is expensive: it forces a system call even when the buffer is " +
+                        "mostly empty, and in a tight loop it can slow output by orders of magnitude " +
+                        "compared to buffered writes. Prefer '\\n' for normal output. Reserve " +
+                        "std::endl for situations where an immediate flush is genuinely needed — " +
+                        "printing a prompt before blocking on input, or writing a log line before " +
+                        "a section of code that might crash. std::flush is a manipulator that " +
+                        "flushes without writing a newline."
+                    )
+                    CodeBlock(
+                        "// Slow — flushes on every line\n" +
+                        "for (int i = 0; i < 100000; i++)\n" +
+                        "    std::cout << i << std::endl;\n\n" +
+                        "// Fast — buffered, one flush when buffer fills or program exits\n" +
+                        "for (int i = 0; i < 100000; i++)\n" +
+                        "    std::cout << i << \"\\n\";\n\n" +
+                        "// Flush without newline:\n" +
+                        "std::cout << \"Enter password: \" << std::flush;"
                     )
                 }
             }
@@ -294,6 +314,55 @@ fun CppStdioScreen(onBack: () -> Unit) {
                         "in.fail()   // format/logic error\n" +
                         "in.eof()    // reached end of file\n" +
                         "in.bad()    // I/O hardware error"
+                    )
+                }
+            }
+            // ── Wide-Character Streams ────────────────────────────────────────
+            item {
+                SectionCard(title = "Wide-Character Streams — std::wcout, std::wcin") {
+                    BodyText(
+                        "<iostream> also provides wide-character variants of the standard streams " +
+                        "for working with wchar_t text. These are std::wcout, std::wcin, std::wcerr, " +
+                        "and std::wclog — direct counterparts of the narrow streams."
+                    )
+                    BodyText(
+                        "Wide character literals use the L prefix: L'A' is a wchar_t, L\"hello\" " +
+                        "is a const wchar_t*. The corresponding string type is std::wstring.\n\n" +
+                        "wchar_t size is platform-specific:\n" +
+                        "  • Windows: 2 bytes (stores UTF-16 code units)\n" +
+                        "  • Linux/macOS: 4 bytes (stores UTF-32 code points)\n\n" +
+                        "This difference matters for portability — code that assumes wchar_t is 2 " +
+                        "bytes will mishandle supplementary Unicode characters on Linux."
+                    )
+                    CodeBlock(
+                        "#include <iostream>\n" +
+                        "#include <string>\n\n" +
+                        "std::wstring name = L\"\\u00c5ngstr\\u00f6m\";  // L\"Ångström\"\n" +
+                        "std::wcout << L\"Name: \" << name << L\"\\n\";\n\n" +
+                        "// Wide character input\n" +
+                        "std::wstring line;\n" +
+                        "std::getline(std::wcin, line);\n\n" +
+                        "// Wide file streams — from <fstream>\n" +
+                        "std::wofstream wout(\"wide_output.txt\");\n" +
+                        "wout << L\"Hello wide world\\n\";\n\n" +
+                        "std::wifstream win(\"wide_input.txt\");\n" +
+                        "std::wstring wline;\n" +
+                        "while (std::getline(win, wline)) {\n" +
+                        "    std::wcout << wline << L\"\\n\";\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "Important limitation: you cannot mix narrow and wide streams on the same " +
+                        "underlying file descriptor. Each stream has an orientation — narrow or wide " +
+                        "— set on the first I/O operation. After that, using the stream with the " +
+                        "wrong orientation is undefined behaviour. In practice, do not mix " +
+                        "std::cout and std::wcout in the same program."
+                    )
+                    BodyText(
+                        "Modern C++ (C++11 and later) recommends using char with UTF-8 encoding " +
+                        "(std::string) together with a Unicode-aware library for most cross-platform " +
+                        "text handling. Wide streams are primarily useful on Windows, where the " +
+                        "native API uses UTF-16 (wchar_t)."
                     )
                 }
             }
