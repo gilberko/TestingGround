@@ -34,7 +34,13 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CppHubScreen(
     onBack: () -> Unit,
-    onCPreProcessor: () -> Unit
+    onSyntax: () -> Unit,
+    onMoreVariableTypes: () -> Unit,
+    onCPreProcessor: () -> Unit,
+    onMemoryAllocations: () -> Unit,
+    onCompilation: () -> Unit,
+    onPlusPlus101: () -> Unit,
+    onQuirks: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -70,7 +76,19 @@ fun CppHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
+            CppHubButton("Syntax", onSyntax, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("More Variable Types", onMoreVariableTypes, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
             CppHubButton("C Pre-Processor", onCPreProcessor, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("C Memory Allocations", onMemoryAllocations, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("Compilation, Linking And Loading", onCompilation, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("C++ 101", onPlusPlus101, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("Quirks", onQuirks, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }

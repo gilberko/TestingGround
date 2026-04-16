@@ -18,7 +18,14 @@ import com.example.developmentapp.screens.algorithms.BasicGraphAlgorithmsScreen
 import com.example.developmentapp.screens.algorithms.FourierTransformScreen
 import com.example.developmentapp.screens.algorithms.MoreGraphAlgorithmsScreen
 import com.example.developmentapp.screens.algorithms.SortingAndLookupScreen
+import com.example.developmentapp.screens.cpp.CompilationLinkingLoadingScreen
+import com.example.developmentapp.screens.cpp.CppMemoryAllocationsScreen
+import com.example.developmentapp.screens.cpp.CppMoreVariableTypesScreen
+import com.example.developmentapp.screens.cpp.CppPlusPlus101Screen
 import com.example.developmentapp.screens.cpp.CppPreProcessorScreen
+import com.example.developmentapp.screens.cpp.CppQuirksScreen
+import com.example.developmentapp.screens.cpp.CppSyntaxScreen
+import com.example.developmentapp.screens.python.PythonCoroutinesScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
 import com.example.developmentapp.screens.tcpip.ProxyScreen
 import com.example.developmentapp.screens.tcpip.VpnScreen
@@ -85,9 +92,16 @@ sealed class Screen(val route: String) {
     object PythonInputOutput   : Screen("python_input_output")
     object PythonThreads       : Screen("python_threads")
     object PythonNetworking    : Screen("python_networking")
+    object PythonCoroutines    : Screen("python_coroutines")
     // C/C++
-    object CppHub          : Screen("cpp_hub")
-    object CppPreProcessor : Screen("cpp_preprocessor")
+    object CppHub                    : Screen("cpp_hub")
+    object CppSyntax                 : Screen("cpp_syntax")
+    object CppMoreVariableTypes      : Screen("cpp_more_variable_types")
+    object CppPreProcessor           : Screen("cpp_preprocessor")
+    object CppMemoryAllocations      : Screen("cpp_memory_allocations")
+    object CppCompilation            : Screen("cpp_compilation")
+    object CppPlusPlus101            : Screen("cpp_plus_plus_101")
+    object CppQuirks                 : Screen("cpp_quirks")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -135,11 +149,23 @@ fun AppNavGraph(navController: NavHostController) {
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
             CppHubScreen(
-                onBack           = { navController.popBackStack() },
-                onCPreProcessor  = { navController.navigate(Screen.CppPreProcessor.route) }
+                onBack               = { navController.popBackStack() },
+                onSyntax             = { navController.navigate(Screen.CppSyntax.route) },
+                onMoreVariableTypes  = { navController.navigate(Screen.CppMoreVariableTypes.route) },
+                onCPreProcessor      = { navController.navigate(Screen.CppPreProcessor.route) },
+                onMemoryAllocations  = { navController.navigate(Screen.CppMemoryAllocations.route) },
+                onCompilation        = { navController.navigate(Screen.CppCompilation.route) },
+                onPlusPlus101        = { navController.navigate(Screen.CppPlusPlus101.route) },
+                onQuirks             = { navController.navigate(Screen.CppQuirks.route) }
             )
         }
-        composable(Screen.CppPreProcessor.route) { CppPreProcessorScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppMoreVariableTypes.route) { CppMoreVariableTypesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppPreProcessor.route)     { CppPreProcessorScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppMemoryAllocations.route) { CppMemoryAllocationsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppCompilation.route)      { CompilationLinkingLoadingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppPlusPlus101.route)      { CppPlusPlus101Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppQuirks.route)           { CppQuirksScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
@@ -188,7 +214,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onLibraries      = { navController.navigate(Screen.PythonLibraries.route) },
                 onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) },
                 onThreads        = { navController.navigate(Screen.PythonThreads.route) },
-                onNetworking     = { navController.navigate(Screen.PythonNetworking.route) }
+                onNetworking     = { navController.navigate(Screen.PythonNetworking.route) },
+                onCoroutines     = { navController.navigate(Screen.PythonCoroutines.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -203,6 +230,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonInputOutput.route)   { PythonInputOutputScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonThreads.route)       { PythonThreadsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonNetworking.route)    { PythonNetworkingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonCoroutines.route)    { PythonCoroutinesScreen(onBack = { navController.popBackStack() }) }
 
         // ── Algorithms ────────────────────────────────────────────────
         composable(Screen.AlgorithmsHub.route) {

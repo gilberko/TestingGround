@@ -254,6 +254,51 @@ fun SortingAndLookupScreen(onBack: () -> Unit) {
             }
             item { Spacer(Modifier.height(8.dp)) }
 
+            // ── Merge Sort ─────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Merge Sort") {
+                    BodyText(
+                        "Imagine sorting a deck of cards. Split the deck into two halves, sort each half " +
+                        "separately (recursively, down to single cards which are trivially sorted), then " +
+                        "merge the two sorted halves back into one. To merge: look at the top card of each " +
+                        "pile — the smaller one goes next onto the result pile. Repeat until one pile is " +
+                        "empty, then append whatever remains in the other pile."
+                    )
+                    CodeBlock(
+                        "MergeSort(arr, left, right):\n" +
+                        "  if left >= right: return          // zero or one element — already sorted\n" +
+                        "  mid = (left + right) / 2\n" +
+                        "  MergeSort(arr, left, mid)         // sort left half\n" +
+                        "  MergeSort(arr, mid+1, right)      // sort right half\n" +
+                        "  Merge(arr, left, mid, right)      // merge the two sorted halves\n\n" +
+                        "Merge(arr, left, mid, right):\n" +
+                        "  i = left, j = mid+1, buf = []\n" +
+                        "  while i <= mid and j <= right:\n" +
+                        "    if arr[i] <= arr[j]: buf.append(arr[i++])\n" +
+                        "    else:                buf.append(arr[j++])\n" +
+                        "  append remaining elements from whichever half is not exhausted\n" +
+                        "  copy buf back into arr[left..right]"
+                    )
+                    BodyText(
+                        "The merge step takes O(n) time and O(n) extra space (for the temporary buffer). " +
+                        "The recursion has depth log n. Total time: O(n log n) in all cases — best, " +
+                        "average, and worst. Unlike Quick Sort, there is no bad pivot that degrades " +
+                        "performance to O(n²)."
+                    )
+                    BodyText(
+                        "Trade-offs vs Quick Sort:\n" +
+                        "  • Merge Sort requires O(n) extra memory; Quick Sort sorts in-place (O(log n) " +
+                        "stack space only).\n" +
+                        "  • Merge Sort is stable (equal elements preserve their original order); Quick " +
+                        "Sort with the standard Lomuto partition is not.\n" +
+                        "  • Merge Sort is preferred for linked lists (merging is natural; no random " +
+                        "access needed) and for external sorting (data larger than RAM, sorted in chunks " +
+                        "on disk and merged)."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
             // ── Binary Search ──────────────────────────────────────────────
             item {
                 SectionCard(title = "Binary Search") {
@@ -324,6 +369,22 @@ fun SortingAndLookupScreen(onBack: () -> Unit) {
                         "discard half the remaining possibilities is amenable to a binary-search-style " +
                         "approach. Examples: finding a broken commit with git bisect, locating a fault " +
                         "in a sorted error log, or finding a threshold in monotonic data."
+                    )
+                    BodyText(
+                        "This analogy traces back to the humorous paper \"A Contribution to the Mathematical " +
+                        "Theory of Big Game Hunting\" (1938), published in the American Mathematical Monthly " +
+                        "under the pseudonym H. Petard. One of its methods proposes catching a lion by " +
+                        "erecting a fence across the Sahara desert, waiting for the lion to cross, noting " +
+                        "which half it is in, and repeating — halving the search region each step."
+                    )
+                    BodyText(
+                        "In numerical analysis this is the bisection method: given a continuous function " +
+                        "with opposite signs at the two endpoints of an interval, Bolzano's theorem (a " +
+                        "consequence of the Intermediate Value Theorem) guarantees a root exists somewhere " +
+                        "inside. Halving the interval each step converges to it. The Bolzano-Weierstrass " +
+                        "theorem more broadly guarantees that any bounded sequence has a convergent " +
+                        "subsequence — the lion's successive positions form exactly such a sequence. " +
+                        "Binary search on a sorted array is the discrete, finite version of the same idea."
                     )
                 }
             }
