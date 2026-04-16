@@ -35,7 +35,9 @@ import androidx.compose.ui.unit.sp
 fun AlgorithmsHubScreen(
     onBack: () -> Unit,
     onBasicGraphAlgorithms: () -> Unit,
-    onMoreGraphAlgorithms: () -> Unit
+    onMoreGraphAlgorithms: () -> Unit,
+    onSortingAndLookup: () -> Unit,
+    onFourierTransform: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -71,9 +73,13 @@ fun AlgorithmsHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            AlgoHubButton("Basic Graph Algorithms", onBasicGraphAlgorithms, Modifier.fillMaxWidth())
+            AlgoHubButton("Basic Graph Algorithms",    onBasicGraphAlgorithms, Modifier.fillMaxWidth())
             Spacer(Modifier.height(8.dp))
-            AlgoHubButton("More Graph Algorithms", onMoreGraphAlgorithms, Modifier.fillMaxWidth())
+            AlgoHubButton("More Graph Algorithms",     onMoreGraphAlgorithms,  Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("Sorting And Lookup",        onSortingAndLookup,     Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("Fourier Transform — Signals", onFourierTransform,   Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }

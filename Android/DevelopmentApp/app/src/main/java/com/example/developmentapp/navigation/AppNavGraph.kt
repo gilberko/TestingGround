@@ -15,7 +15,9 @@ import com.example.developmentapp.screens.PythonHubScreen
 import com.example.developmentapp.screens.TcpIpHubScreen
 import com.example.developmentapp.screens.CppHubScreen
 import com.example.developmentapp.screens.algorithms.BasicGraphAlgorithmsScreen
+import com.example.developmentapp.screens.algorithms.FourierTransformScreen
 import com.example.developmentapp.screens.algorithms.MoreGraphAlgorithmsScreen
+import com.example.developmentapp.screens.algorithms.SortingAndLookupScreen
 import com.example.developmentapp.screens.cpp.CppPreProcessorScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
 import com.example.developmentapp.screens.tcpip.ProxyScreen
@@ -90,6 +92,8 @@ sealed class Screen(val route: String) {
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
     object MoreGraphAlgorithms  : Screen("more_graph_algorithms")
+    object SortingAndLookup     : Screen("sorting_and_lookup")
+    object FourierTransform     : Screen("fourier_transform")
     // TCP/IP
     object TcpIpHub            : Screen("tcpip_hub")
     object Ethernet            : Screen("ethernet")
@@ -205,11 +209,15 @@ fun AppNavGraph(navController: NavHostController) {
             AlgorithmsHubScreen(
                 onBack                  = { navController.popBackStack() },
                 onBasicGraphAlgorithms  = { navController.navigate(Screen.BasicGraphAlgorithms.route) },
-                onMoreGraphAlgorithms   = { navController.navigate(Screen.MoreGraphAlgorithms.route) }
+                onMoreGraphAlgorithms   = { navController.navigate(Screen.MoreGraphAlgorithms.route) },
+                onSortingAndLookup      = { navController.navigate(Screen.SortingAndLookup.route) },
+                onFourierTransform      = { navController.navigate(Screen.FourierTransform.route) }
             )
         }
         composable(Screen.BasicGraphAlgorithms.route) { BasicGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.MoreGraphAlgorithms.route)  { MoreGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.SortingAndLookup.route)     { SortingAndLookupScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.FourierTransform.route)     { FourierTransformScreen(onBack = { navController.popBackStack() }) }
 
         // ── TCP/IP ────────────────────────────────────────────────────
         composable(Screen.TcpIpHub.route) {
