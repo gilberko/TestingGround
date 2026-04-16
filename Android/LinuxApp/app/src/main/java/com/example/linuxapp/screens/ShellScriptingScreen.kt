@@ -346,6 +346,135 @@ echo "Backup created"         # only runs if cp succeeded"""
                 Spacer(Modifier.height(8.dp))
             }
 
+            // 9. Loops
+            item {
+                SectionCard(title = "Loops (for and while)") {
+                    BodyText("for loop over a list — iterates over space-separated words or array elements:")
+                    CodeBlock(
+                        """for fruit in apple banana cherry; do
+    echo "${'$'}fruit"
+done
+
+# Using an array
+files=("a.txt" "b.txt" "c.txt")
+for f in "${'$'}{files[@]}"; do
+    echo "Processing ${'$'}f"
+done"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("C-style for loop — arithmetic counter with (( )):")
+                    CodeBlock(
+                        """for (( i=0; i<5; i++ )); do
+    echo "i = ${'$'}i"
+done
+
+# Count down
+for (( n=10; n>0; n-- )); do
+    echo "${'$'}n"
+done"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("while loop — runs as long as the condition is true:")
+                    CodeBlock(
+                        """count=1
+while [[ ${'$'}count -le 5 ]]; do
+    echo "count = ${'$'}count"
+    (( count++ ))
+done"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("until loop — opposite of while; runs while the condition is false:")
+                    CodeBlock(
+                        """n=0
+until [[ ${'$'}n -ge 3 ]]; do
+    echo "n = ${'$'}n"
+    (( n++ ))
+done"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("break exits the loop early; continue skips to the next iteration:")
+                    CodeBlock(
+                        """for i in 1 2 3 4 5; do
+    [[ ${'$'}i -eq 3 ]] && continue   # skip 3
+    [[ ${'$'}i -eq 5 ]] && break      # stop at 5
+    echo "${'$'}i"
+done
+# Output: 1  2  4"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Read a file line by line with while read:")
+                    CodeBlock(
+                        """while IFS= read -r line; do
+    echo "Line: ${'$'}line"
+done < /etc/passwd
+
+# IFS=  preserves leading/trailing whitespace
+# -r    prevents backslash interpretation"""
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+            }
+
+            // 10. case Statement
+            item {
+                SectionCard(title = "case Statement") {
+                    BodyText("case matches a value against patterns and runs the first matching branch. Each branch ends with ;; and the block closes with esac (case backwards).")
+                    CodeBlock(
+                        """case ${'$'}variable in
+    pattern1)
+        # commands
+        ;;
+    pattern2)
+        # commands
+        ;;
+    *)
+        # default (wildcard)
+        ;;
+esac"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Practical example — act on a script argument:")
+                    CodeBlock(
+                        """#!/bin/bash
+action="${'$'}1"
+
+case ${'$'}action in
+    start)
+        echo "Starting service..."
+        ;;
+    stop)
+        echo "Stopping service..."
+        ;;
+    restart|reload)         # pipe = OR: match either word
+        echo "Restarting..."
+        ;;
+    --help|-h)
+        echo "Usage: ${'$'}0 {start|stop|restart}"
+        ;;
+    *)
+        echo "Unknown action: ${'$'}action"
+        exit 1
+        ;;
+esac"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Glob patterns work too — useful for matching file extensions or prefixes:")
+                    CodeBlock(
+                        """file="report.pdf"
+
+case ${'$'}file in
+    *.txt)   echo "Text file" ;;
+    *.pdf)   echo "PDF file" ;;
+    *.sh)    echo "Shell script" ;;
+    *)       echo "Unknown type" ;;
+esac"""
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("case vs if/elif — use case when dispatching on a single variable against multiple fixed string values. It's cleaner and faster to read than a long if/elif chain.")
+                }
+                Spacer(Modifier.height(8.dp))
+            }
+
         }
     }
 }

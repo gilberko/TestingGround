@@ -201,6 +201,68 @@ gdb ./myapp core"""
                     BodyText("Hardware watchpoints (on x86: up to 4) are fast. Software watchpoints work anywhere but slow the program significantly.")
                 }
             }
+            item {
+                SectionCard(title = "Finding Memory Leaks with Valgrind") {
+                    BodyText("Valgrind's Memcheck tool instruments every memory operation at runtime, detecting leaks, use-after-free, and reads of uninitialised memory. It runs your program as-is — no recompile needed — but compile with -g and -O0 for readable output.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """gcc -g -O0 -o myapp main.c
+
+# Basic run — prints a leak summary at exit
+valgrind ./myapp
+
+# Full leak details — shows where each block was allocated
+valgrind --leak-check=full ./myapp
+
+# Also track where uninitialised memory came from
+valgrind --leak-check=full --track-origins=yes ./myapp"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Example program with a deliberate leak:")
+                    CodeBlock(
+                        """// leak.c
+#include <stdlib.h>
+int main() {
+    int *p = malloc(40);   // allocated but never freed
+    p[0] = 1;
+    return 0;              // leak happens here
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Valgrind output for the above:")
+                    CodeBlock(
+                        """==12345== HEAP SUMMARY:
+==12345==   in use at exit: 40 bytes in 1 blocks
+==12345==   total heap usage: 1 allocs, 0 frees, 40 bytes allocated
+==12345==
+==12345== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==12345==    at 0x4C2FB0F: malloc (in .../vgpreload_memcheck.so)
+==12345==    by 0x10865B: main (leak.c:4)
+==12345==
+==12345== LEAK SUMMARY:
+==12345==    definitely lost: 40 bytes in 1 blocks
+==12345==    indirectly lost: 0 bytes in 0 blocks
+==12345==      possibly lost: 0 bytes in 0 blocks
+==12345==    still reachable: 0 bytes in 0 blocks"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Leak categories:")
+                    CodeBlock(
+                        """definitely lost   — no pointer to this block exists; it's a real leak
+indirectly lost   — pointed to only by a definitely-lost block
+possibly lost     — pointer exists but not to the block's start
+still reachable   — pointer exists at exit (often global state, not a bug)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Use a suppressions file to silence known false positives from system libraries:")
+                    CodeBlock(
+                        """valgrind --suppressions=my.supp --leak-check=full ./myapp
+
+# Generate a suppressions template from current output:
+valgrind --gen-suppressions=all ./myapp"""
+                    )
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

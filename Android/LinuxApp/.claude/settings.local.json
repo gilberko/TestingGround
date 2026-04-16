@@ -24,7 +24,10 @@
       "Bash(find C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\build\\\\outputs\\\\apk\\\\release:*)",
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
       "Read(//c/Program Files/Android/Android Studio/**)",
-      "Bash(grep -E \"\\\\.kt$\")"
+      "Bash(grep -E \"\\\\.kt$\")",
+      "WebSearch",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)"
     ]
   }
 }
