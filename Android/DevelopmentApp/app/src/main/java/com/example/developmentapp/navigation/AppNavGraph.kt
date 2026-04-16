@@ -13,7 +13,10 @@ import com.example.developmentapp.screens.DataStructuresScreen
 import com.example.developmentapp.screens.HomeScreen
 import com.example.developmentapp.screens.PythonHubScreen
 import com.example.developmentapp.screens.TcpIpHubScreen
+import com.example.developmentapp.screens.CppHubScreen
 import com.example.developmentapp.screens.algorithms.BasicGraphAlgorithmsScreen
+import com.example.developmentapp.screens.algorithms.MoreGraphAlgorithmsScreen
+import com.example.developmentapp.screens.cpp.CppPreProcessorScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
 import com.example.developmentapp.screens.tcpip.ProxyScreen
 import com.example.developmentapp.screens.tcpip.VpnScreen
@@ -80,9 +83,13 @@ sealed class Screen(val route: String) {
     object PythonInputOutput   : Screen("python_input_output")
     object PythonThreads       : Screen("python_threads")
     object PythonNetworking    : Screen("python_networking")
+    // C/C++
+    object CppHub          : Screen("cpp_hub")
+    object CppPreProcessor : Screen("cpp_preprocessor")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
+    object MoreGraphAlgorithms  : Screen("more_graph_algorithms")
     // TCP/IP
     object TcpIpHub            : Screen("tcpip_hub")
     object Ethernet            : Screen("ethernet")
@@ -103,7 +110,7 @@ fun AppNavGraph(navController: NavHostController) {
 
         composable(Screen.Home.route) {
             HomeScreen(
-                onCpp            = { navController.navigate(Screen.ComingSoon.withLabel("CPP")) },
+                onCpp            = { navController.navigate(Screen.CppHub.route) },
                 onRust           = { navController.navigate(Screen.ComingSoon.withLabel("Rust")) },
                 onGo             = { navController.navigate(Screen.ComingSoon.withLabel("Go")) },
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
@@ -120,6 +127,15 @@ fun AppNavGraph(navController: NavHostController) {
         ) {
             ComingSoonScreen(onBack = { navController.popBackStack() })
         }
+
+        // ── C/C++ ─────────────────────────────────────────────────────────
+        composable(Screen.CppHub.route) {
+            CppHubScreen(
+                onBack           = { navController.popBackStack() },
+                onCPreProcessor  = { navController.navigate(Screen.CppPreProcessor.route) }
+            )
+        }
+        composable(Screen.CppPreProcessor.route) { CppPreProcessorScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
@@ -188,10 +204,12 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AlgorithmsHub.route) {
             AlgorithmsHubScreen(
                 onBack                  = { navController.popBackStack() },
-                onBasicGraphAlgorithms  = { navController.navigate(Screen.BasicGraphAlgorithms.route) }
+                onBasicGraphAlgorithms  = { navController.navigate(Screen.BasicGraphAlgorithms.route) },
+                onMoreGraphAlgorithms   = { navController.navigate(Screen.MoreGraphAlgorithms.route) }
             )
         }
         composable(Screen.BasicGraphAlgorithms.route) { BasicGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.MoreGraphAlgorithms.route)  { MoreGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
 
         // ── TCP/IP ────────────────────────────────────────────────────
         composable(Screen.TcpIpHub.route) {

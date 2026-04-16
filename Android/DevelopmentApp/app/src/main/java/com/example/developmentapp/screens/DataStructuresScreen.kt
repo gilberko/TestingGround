@@ -345,6 +345,79 @@ fun DataStructuresScreen(onBack: () -> Unit) {
                 }
             }
 
+            // 11 — Balanced Binary Trees
+            item { Spacer(Modifier.height(8.dp)) }
+            item {
+                SectionCard("Balanced Binary Trees") {
+                    BodyText(
+                        "A Binary Search Tree (BST) keeps all values in sorted order: for any node, every value in its " +
+                        "left subtree is smaller and every value in its right subtree is larger. This gives O(log N) " +
+                        "insert and lookup — but only if the tree remains balanced. A degenerate BST (e.g. inserting " +
+                        "already-sorted data) degrades into a linked list with O(N) operations. Balanced BSTs enforce " +
+                        "a height invariant so the tree height stays O(log N) regardless of insertion order."
+                    )
+                    BodyText("2-3 Trees")
+                    BodyText(
+                        "A 2-3 tree is a balanced search tree where each internal node has either 2 children (and 1 key) " +
+                        "or 3 children (and 2 keys). All leaves are at the same depth. Insertions may temporarily create " +
+                        "a 4-node, which is split upward, propagating the balance toward the root. This guarantees height " +
+                        "O(log N)."
+                    )
+                    CodeBlock(
+                        "2-node:  [20]         3-node:  [10 | 30]\n" +
+                        "        /    \\                /    |    \\\n" +
+                        "      <20   >20            <10  10-30  >30\n\n" +
+                        "Insert 25 into [20]:\n" +
+                        "  → [20 | 25]  (becomes 3-node)\n" +
+                        "Insert 30:\n" +
+                        "  → [20 | 25 | 30]  (temporary 4-node, split)\n" +
+                        "  → parent gets 25 pushed up; children become [20] and [30]"
+                    )
+                    BodyText("AVL Trees")
+                    BodyText(
+                        "An AVL tree is a self-balancing BST where each node stores a balance factor = " +
+                        "height(left subtree) − height(right subtree). This must remain in {−1, 0, 1}. " +
+                        "Whenever an insertion or deletion violates this, one or two rotations restore balance. " +
+                        "AVL trees are very strictly balanced — heights of left and right subtrees never differ " +
+                        "by more than 1 — making them faster for lookups than Red-Black trees, but requiring more " +
+                        "rotations during updates."
+                    )
+                    CodeBlock(
+                        "// Single right rotation (LL case):\n" +
+                        "//   Before:      C (bf=+2)     After:    B\n" +
+                        "//               /                       / \\\n" +
+                        "//              B (bf=+1)               A   C\n" +
+                        "//             /\n" +
+                        "//            A\n" +
+                        "\n" +
+                        "// Double rotation (LR case): rotate B left, then C right"
+                    )
+                    BodyText("Red-Black Trees")
+                    BodyText(
+                        "A Red-Black tree is a BST where every node is colored red or black, with five invariants: " +
+                        "(1) every node is red or black; (2) the root is black; (3) leaves (nil sentinels) are black; " +
+                        "(4) a red node's children are both black (no two consecutive reds); " +
+                        "(5) all simple paths from any node down to a leaf contain the same number of black nodes. " +
+                        "These rules guarantee the tree height is at most 2·log₂(N+1). Red-Black trees are less strictly " +
+                        "balanced than AVL but require fewer rotations on insert/delete — making them faster for " +
+                        "write-heavy workloads. They are used in C++ std::map, Java TreeMap, and Linux's scheduler."
+                    )
+                    CodeBlock(
+                        "// Complexity summary (all three are O(log N)):\n" +
+                        "//\n" +
+                        "//   Structure       Lookup     Insert     Delete\n" +
+                        "//   ─────────────────────────────────────────────\n" +
+                        "//   2-3 Tree        O(log N)   O(log N)   O(log N)\n" +
+                        "//   AVL Tree        O(log N)   O(log N)   O(log N)\n" +
+                        "//   Red-Black Tree  O(log N)   O(log N)   O(log N)\n" +
+                        "//\n" +
+                        "//   AVL:        stricter balance, faster lookups\n" +
+                        "//   Red-Black:  looser balance, faster inserts/deletes\n" +
+                        "//   2-3 Tree:   conceptually simple; B-trees generalise it"
+                    )
+                }
+            }
+
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

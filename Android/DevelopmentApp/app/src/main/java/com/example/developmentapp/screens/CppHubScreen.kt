@@ -32,17 +32,16 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlgorithmsHubScreen(
+fun CppHubScreen(
     onBack: () -> Unit,
-    onBasicGraphAlgorithms: () -> Unit,
-    onMoreGraphAlgorithms: () -> Unit
+    onCPreProcessor: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Algorithms",
+                        text       = "C / C++",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -71,16 +70,14 @@ fun AlgorithmsHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            AlgoHubButton("Basic Graph Algorithms", onBasicGraphAlgorithms, Modifier.fillMaxWidth())
-            Spacer(Modifier.height(8.dp))
-            AlgoHubButton("More Graph Algorithms", onMoreGraphAlgorithms, Modifier.fillMaxWidth())
+            CppHubButton("C Pre-Processor", onCPreProcessor, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun AlgoHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun CppHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
         modifier = modifier.height(52.dp),
