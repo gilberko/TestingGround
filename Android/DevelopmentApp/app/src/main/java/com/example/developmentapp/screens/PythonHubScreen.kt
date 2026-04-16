@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -46,7 +45,8 @@ fun PythonHubScreen(
     onStrings: () -> Unit,
     onLibraries: () -> Unit,
     onInputOutput: () -> Unit,
-    onThreads: () -> Unit
+    onThreads: () -> Unit,
+    onNetworking: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -97,7 +97,8 @@ fun PythonHubScreen(
             ButtonRow("Libraries & Imports", onLibraries,
                       "Input & Output",     onInputOutput)
             Spacer(Modifier.height(12.dp))
-            HubButton("Threads", onThreads, Modifier.fillMaxWidth())
+            ButtonRow("Threads",    onThreads,
+                      "Networking", onNetworking)
             Spacer(Modifier.height(24.dp))
         }
     }

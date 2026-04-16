@@ -6,12 +6,17 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.developmentapp.screens.AlgorithmsHubScreen
 import com.example.developmentapp.screens.AssemblyHubScreen
 import com.example.developmentapp.screens.ComingSoonScreen
 import com.example.developmentapp.screens.DataStructuresScreen
 import com.example.developmentapp.screens.HomeScreen
 import com.example.developmentapp.screens.PythonHubScreen
 import com.example.developmentapp.screens.TcpIpHubScreen
+import com.example.developmentapp.screens.algorithms.BasicGraphAlgorithmsScreen
+import com.example.developmentapp.screens.python.PythonNetworkingScreen
+import com.example.developmentapp.screens.tcpip.ProxyScreen
+import com.example.developmentapp.screens.tcpip.VpnScreen
 import com.example.developmentapp.screens.assembly.BasicArithmeticScreen
 import com.example.developmentapp.screens.assembly.ComparisonsLoopsScreen
 import com.example.developmentapp.screens.assembly.FunctionCallsScreen
@@ -74,6 +79,10 @@ sealed class Screen(val route: String) {
     object PythonLibraries     : Screen("python_libraries")
     object PythonInputOutput   : Screen("python_input_output")
     object PythonThreads       : Screen("python_threads")
+    object PythonNetworking    : Screen("python_networking")
+    // Algorithms
+    object AlgorithmsHub        : Screen("algorithms_hub")
+    object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
     // TCP/IP
     object TcpIpHub            : Screen("tcpip_hub")
     object Ethernet            : Screen("ethernet")
@@ -84,6 +93,8 @@ sealed class Screen(val route: String) {
     object Dns                 : Screen("dns")
     object Ipsec               : Screen("ipsec")
     object SslTls              : Screen("ssl_tls")
+    object Vpn                 : Screen("vpn")
+    object Proxy               : Screen("proxy")
 }
 
 @Composable
@@ -92,13 +103,13 @@ fun AppNavGraph(navController: NavHostController) {
 
         composable(Screen.Home.route) {
             HomeScreen(
-                onCpp            = { navController.navigate(Screen.ComingSoon.withLabel("C/C++")) },
+                onCpp            = { navController.navigate(Screen.ComingSoon.withLabel("CPP")) },
                 onRust           = { navController.navigate(Screen.ComingSoon.withLabel("Rust")) },
                 onGo             = { navController.navigate(Screen.ComingSoon.withLabel("Go")) },
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
                 onAssembly       = { navController.navigate(Screen.AssemblyHub.route) },
                 onDataStructures = { navController.navigate(Screen.DataStructures.route) },
-                onAlgorithms     = { navController.navigate(Screen.ComingSoon.withLabel("Algorithms")) },
+                onAlgorithms     = { navController.navigate(Screen.AlgorithmsHub.route) },
                 onTcpIp          = { navController.navigate(Screen.TcpIpHub.route) }
             )
         }
@@ -156,7 +167,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onStrings        = { navController.navigate(Screen.PythonStrings.route) },
                 onLibraries      = { navController.navigate(Screen.PythonLibraries.route) },
                 onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) },
-                onThreads        = { navController.navigate(Screen.PythonThreads.route) }
+                onThreads        = { navController.navigate(Screen.PythonThreads.route) },
+                onNetworking     = { navController.navigate(Screen.PythonNetworking.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -170,6 +182,16 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonLibraries.route)     { PythonLibrariesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonInputOutput.route)   { PythonInputOutputScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonThreads.route)       { PythonThreadsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonNetworking.route)    { PythonNetworkingScreen(onBack = { navController.popBackStack() }) }
+
+        // ── Algorithms ────────────────────────────────────────────────
+        composable(Screen.AlgorithmsHub.route) {
+            AlgorithmsHubScreen(
+                onBack                  = { navController.popBackStack() },
+                onBasicGraphAlgorithms  = { navController.navigate(Screen.BasicGraphAlgorithms.route) }
+            )
+        }
+        composable(Screen.BasicGraphAlgorithms.route) { BasicGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
 
         // ── TCP/IP ────────────────────────────────────────────────────
         composable(Screen.TcpIpHub.route) {
@@ -182,7 +204,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onTcp       = { navController.navigate(Screen.Tcp.route) },
                 onDns       = { navController.navigate(Screen.Dns.route) },
                 onIpsec     = { navController.navigate(Screen.Ipsec.route) },
-                onSslTls    = { navController.navigate(Screen.SslTls.route) }
+                onSslTls    = { navController.navigate(Screen.SslTls.route) },
+                onVpn       = { navController.navigate(Screen.Vpn.route) },
+                onProxy     = { navController.navigate(Screen.Proxy.route) }
             )
         }
         composable(Screen.Ethernet.route) { EthernetScreen(onBack = { navController.popBackStack() }) }
@@ -193,5 +217,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Dns.route)      { DnsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Ipsec.route)    { IpsecScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.SslTls.route)   { SslTlsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Vpn.route)      { VpnScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Proxy.route)    { ProxyScreen(onBack = { navController.popBackStack() }) }
     }
 }

@@ -1,11 +1,10 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -33,25 +32,16 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TcpIpHubScreen(
-    onBack:     () -> Unit,
-    onEthernet: () -> Unit,
-    onIp:       () -> Unit,
-    onIcmp:     () -> Unit,
-    onUdp:      () -> Unit,
-    onTcp:      () -> Unit,
-    onDns:      () -> Unit,
-    onIpsec:    () -> Unit,
-    onSslTls:   () -> Unit,
-    onVpn:      () -> Unit,
-    onProxy:    () -> Unit
+fun AlgorithmsHubScreen(
+    onBack: () -> Unit,
+    onBasicGraphAlgorithms: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "TCP/IP",
+                        text       = "Algorithms",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -80,38 +70,14 @@ fun TcpIpHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            TcpIpButtonRow("Ethernet",  onEthernet,
-                           "IP",        onIp)
-            Spacer(Modifier.height(12.dp))
-            TcpIpButtonRow("ICMP",      onIcmp,
-                           "UDP",       onUdp)
-            Spacer(Modifier.height(12.dp))
-            TcpIpButtonRow("TCP",       onTcp,
-                           "DNS",       onDns)
-            Spacer(Modifier.height(12.dp))
-            TcpIpButtonRow("IPSec",     onIpsec,
-                           "SSL/TLS",   onSslTls)
-            Spacer(Modifier.height(12.dp))
-            TcpIpButtonRow("VPN",       onVpn,
-                           "Proxy",     onProxy)
+            AlgoHubButton("Basic Graph Algorithms", onBasicGraphAlgorithms, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun TcpIpButtonRow(
-    label1: String, onClick1: () -> Unit,
-    label2: String, onClick2: () -> Unit
-) {
-    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        TcpIpHubButton(label1, onClick1, Modifier.weight(1f))
-        TcpIpHubButton(label2, onClick2, Modifier.weight(1f))
-    }
-}
-
-@Composable
-private fun TcpIpHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun AlgoHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
         modifier = modifier.height(52.dp),
