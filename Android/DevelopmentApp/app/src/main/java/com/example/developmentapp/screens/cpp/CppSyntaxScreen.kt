@@ -110,8 +110,65 @@ fun CppSyntaxScreen(onBack: () -> Unit) {
                     )
                     BodyText(
                         "Variables have a type, a name, a storage duration (automatic/static/dynamic), " +
-                        "and a scope (block, file, function). Local variables inside a function have " +
-                        "automatic storage — they live on the stack and are destroyed when the block exits."
+                        "and a scope (block, file, function). Local variables inside a function and " +
+                        "function parameters both live on the stack. When execution leaves their " +
+                        "enclosing {} block, the stack unwinds and those variables cease to exist. " +
+                        "For parameters, this happens when the function returns — they are gone the " +
+                        "moment the callee's frame is popped. Never return a pointer to a local " +
+                        "variable: by the time the caller dereferences it, the stack frame has been " +
+                        "reused and the memory contains garbage."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Variable Sizes ────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Variable Sizes") {
+                    BodyText(
+                        "sizeof is a compile-time operator (not a function call) that returns the size " +
+                        "of a type or variable in bytes. Its result type is size_t. Exception: in C99, " +
+                        "sizeof on a Variable-Length Array (VLA) is evaluated at runtime because the " +
+                        "size is not known until then."
+                    )
+                    CodeBlock(
+                        "// sizeof on types and variables\n" +
+                        "printf(\"%zu\\n\", sizeof(int));       // 4 on both 32-bit and 64-bit\n" +
+                        "printf(\"%zu\\n\", sizeof(void *));    // 4 on 32-bit, 8 on 64-bit\n" +
+                        "int x = 0;\n" +
+                        "printf(\"%zu\\n\", sizeof(x));         // also works on a variable\n" +
+                        "printf(\"%zu\\n\", sizeof x);          // parentheses optional for variables\n\n" +
+                        "// Typical sizes on modern platforms (bytes):\n" +
+                        "//                  32-bit   64-bit\n" +
+                        "// char               1        1\n" +
+                        "// short              2        2\n" +
+                        "// int                4        4   <- stays 4 on 64-bit!\n" +
+                        "// unsigned int       4        4\n" +
+                        "// long  (Windows)    4        4   <- LLP64 model\n" +
+                        "// long  (Linux)      4        8   <- LP64 model\n" +
+                        "// long long          8        8\n" +
+                        "// float              4        4\n" +
+                        "// double             8        8\n" +
+                        "// void *             4        8   <- pointer size changes\n" +
+                        "// size_t             4        8   <- same as void* on modern ABIs"
+                    )
+                    BodyText(
+                        "A common misconception: int does NOT become 8 bytes on 64-bit systems. It " +
+                        "stays 4 bytes on all modern platforms. What changes is the pointer size " +
+                        "(void *, int *, function pointers) and, on Linux, long.\n\n" +
+                        "size_t: the result type of sizeof. On every modern ABI it equals the pointer " +
+                        "size (4 or 8 bytes), because it must be able to represent the size of the " +
+                        "largest possible object. The C standard does not formally equate them, but " +
+                        "in practice they are always the same.\n\n" +
+                        "Use <stdint.h> types when exact widths matter:"
+                    )
+                    CodeBlock(
+                        "#include <stdint.h>\n\n" +
+                        "int32_t  a;   // exactly 32-bit signed\n" +
+                        "uint64_t b;   // exactly 64-bit unsigned\n" +
+                        "intptr_t c;   // signed integer wide enough to hold a pointer\n" +
+                        "uintptr_t d;  // unsigned version — safe pointer-to-integer cast\n" +
+                        "size_t   n;   // unsigned, same width as void* on modern platforms"
                     )
                 }
             }
@@ -180,6 +237,47 @@ fun CppSyntaxScreen(onBack: () -> Unit) {
                         "Pointer arithmetic: adding 1 to an int * advances by sizeof(int) bytes (e.g. 4), " +
                         "not by 1 byte. Adding 1 to a char * advances by 1 byte. void * arithmetic is " +
                         "illegal in standard C (no element size known)."
+                    )
+                    BodyText("NULL and nullptr:")
+                    BodyText(
+                        "NULL is a macro representing a null pointer — one that points to nothing. In C " +
+                        "it expands to (void*)0; in C++ it is typically just 0 (an integer constant). " +
+                        "Dereferencing a null pointer is undefined behaviour and crashes on all modern " +
+                        "operating systems because address 0 is deliberately unmapped (the zero page).\n\n" +
+                        "In modern C++ (C++11+), prefer nullptr. It is a keyword of type std::nullptr_t, " +
+                        "not an integer. This matters for overload resolution: if you have both f(int*) " +
+                        "and f(int), calling f(nullptr) picks f(int*) as expected. Calling f(NULL) picks " +
+                        "f(int) because NULL is just 0 — a silent, hard-to-spot bug."
+                    )
+                    CodeBlock(
+                        "int *p = NULL;      // C style — points to nothing\n" +
+                        "int *q = nullptr;   // C++11 style — preferred\n\n" +
+                        "if (p == nullptr)   // always check before dereferencing\n" +
+                        "    return;\n" +
+                        "*p = 42;            // safe now (if p is not null)"
+                    )
+                    BodyText("Function pointers:")
+                    BodyText(
+                        "A pointer can point to a function, not just data. The pointer type encodes the " +
+                        "full function signature: return type and parameter types. Function pointers are " +
+                        "used for callbacks, dispatch tables, and plugin-style architectures."
+                    )
+                    CodeBlock(
+                        "int add(int a, int b) { return a + b; }\n" +
+                        "int sub(int a, int b) { return a - b; }\n\n" +
+                        "// Declaration: return_type (*name)(param_types)\n" +
+                        "int (*fp)(int, int) = add;   // assign — no & needed for functions\n" +
+                        "int result = fp(3, 4);        // call — same as add(3, 4)\n\n" +
+                        "// typedef / using make the type readable\n" +
+                        "typedef int (*BinaryOp)(int, int);       // C style\n" +
+                        "using  BinaryOp = int (*)(int, int);     // C++11 style\n\n" +
+                        "BinaryOp ops[] = { add, sub };           // dispatch table\n" +
+                        "ops[0](10, 3);  // 13\n" +
+                        "ops[1](10, 3);  // 7\n\n" +
+                        "// Passing a function pointer as a callback\n" +
+                        "void apply(int *arr, int n, int (*fn)(int)) {\n" +
+                        "    for (int i = 0; i < n; i++) arr[i] = fn(arr[i]);\n" +
+                        "}"
                     )
                 }
             }

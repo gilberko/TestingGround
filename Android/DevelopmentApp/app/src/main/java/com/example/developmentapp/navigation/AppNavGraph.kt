@@ -23,7 +23,9 @@ import com.example.developmentapp.screens.cpp.CppMemoryAllocationsScreen
 import com.example.developmentapp.screens.cpp.CppMoreVariableTypesScreen
 import com.example.developmentapp.screens.cpp.CppPlusPlus101Screen
 import com.example.developmentapp.screens.cpp.CppPreProcessorScreen
+import com.example.developmentapp.screens.cpp.CppKeywordsScreen
 import com.example.developmentapp.screens.cpp.CppQuirksScreen
+import com.example.developmentapp.screens.cpp.CppStdioScreen
 import com.example.developmentapp.screens.cpp.CppSyntaxScreen
 import com.example.developmentapp.screens.python.PythonCoroutinesScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
@@ -102,6 +104,8 @@ sealed class Screen(val route: String) {
     object CppCompilation            : Screen("cpp_compilation")
     object CppPlusPlus101            : Screen("cpp_plus_plus_101")
     object CppQuirks                 : Screen("cpp_quirks")
+    object CppStdio                  : Screen("cpp_stdio")
+    object CppKeywords               : Screen("cpp_keywords")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -156,7 +160,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onMemoryAllocations  = { navController.navigate(Screen.CppMemoryAllocations.route) },
                 onCompilation        = { navController.navigate(Screen.CppCompilation.route) },
                 onPlusPlus101        = { navController.navigate(Screen.CppPlusPlus101.route) },
-                onQuirks             = { navController.navigate(Screen.CppQuirks.route) }
+                onQuirks             = { navController.navigate(Screen.CppQuirks.route) },
+                onStdio              = { navController.navigate(Screen.CppStdio.route) },
+                onKeywords           = { navController.navigate(Screen.CppKeywords.route) }
             )
         }
         composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -166,6 +172,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppCompilation.route)      { CompilationLinkingLoadingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppPlusPlus101.route)      { CppPlusPlus101Screen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppQuirks.route)           { CppQuirksScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppStdio.route)            { CppStdioScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppKeywords.route)         { CppKeywordsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {

@@ -40,7 +40,9 @@ fun CppHubScreen(
     onMemoryAllocations: () -> Unit,
     onCompilation: () -> Unit,
     onPlusPlus101: () -> Unit,
-    onQuirks: () -> Unit
+    onQuirks: () -> Unit,
+    onStdio: () -> Unit,
+    onKeywords: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -89,6 +91,10 @@ fun CppHubScreen(
             CppHubButton("C++ 101", onPlusPlus101, Modifier.fillMaxWidth())
             Spacer(Modifier.height(12.dp))
             CppHubButton("Quirks", onQuirks, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("Standard I/O & Files", onStdio, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            CppHubButton("Keywords", onKeywords, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
