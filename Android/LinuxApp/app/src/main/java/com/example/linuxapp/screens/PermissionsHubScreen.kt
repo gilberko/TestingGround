@@ -47,8 +47,8 @@ fun PermissionsHubScreen(
     onProcessScheduling: () -> Unit,
     onCallingConventions: () -> Unit,
     onLsm: () -> Unit,
-    onMakefile: () -> Unit,
-    onCmake: () -> Unit,
+    onMakefileCmake: () -> Unit,
+    onIptablesNetfilter: () -> Unit,
     onDeviceTrees: () -> Unit,
     onPlugAndPlay: () -> Unit,
     onStackFrames: () -> Unit,
@@ -150,13 +150,13 @@ fun PermissionsHubScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     PermissionsHubButton(
-                        label = "Makefile",
-                        onClick = onMakefile,
+                        label = "Makefile and\nCMake",
+                        onClick = onMakefileCmake,
                         modifier = Modifier.weight(1f)
                     )
                     PermissionsHubButton(
-                        label = "CMake",
-                        onClick = onCmake,
+                        label = "iptables &\nnetfilter",
+                        onClick = onIptablesNetfilter,
                         modifier = Modifier.weight(1f)
                     )
                 }

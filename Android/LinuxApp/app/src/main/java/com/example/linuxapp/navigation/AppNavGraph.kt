@@ -68,8 +68,8 @@ import com.example.linuxapp.screens.permissions.ProcessSchedulingScreen
 import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
 import com.example.linuxapp.screens.permissions.CallingConventionsScreen
-import com.example.linuxapp.screens.permissions.MakefileScreen
-import com.example.linuxapp.screens.permissions.CMakeScreen
+import com.example.linuxapp.screens.permissions.MakefileCMakeScreen
+import com.example.linuxapp.screens.permissions.IptablesNetfilterScreen
 import com.example.linuxapp.screens.permissions.DeviceTreesScreen
 import com.example.linuxapp.screens.permissions.PlugAndPlayScreen
 import com.example.linuxapp.screens.permissions.StackFramesScreen
@@ -141,8 +141,8 @@ sealed class Screen(val route: String) {
     object KernelPendOperations      : Screen("kernel_pend_operations")
     object TheWholePictureHub        : Screen("the_whole_picture_hub")
     object KernelMemoryManagement    : Screen("kernel_memory_management")
-    object AdvancedMakefile          : Screen("advanced_makefile")
-    object AdvancedCmake             : Screen("advanced_cmake")
+    object AdvancedMakefileCmake      : Screen("advanced_makefile_cmake")
+    object AdvancedIptablesNetfilter  : Screen("advanced_iptables_netfilter")
     object AdvancedDeviceTrees       : Screen("advanced_device_trees")
     object AdvancedPlugAndPlay       : Screen("advanced_plug_and_play")
     object AdvancedStackFrames       : Screen("advanced_stack_frames")
@@ -365,8 +365,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onProcessScheduling = { navController.navigate(Screen.AdvancedProcessScheduling.route) },
                 onCallingConventions = { navController.navigate(Screen.CallingConventions.route) },
                 onLsm = { navController.navigate(Screen.KernelLsm.route) },
-                onMakefile = { navController.navigate(Screen.AdvancedMakefile.route) },
-                onCmake = { navController.navigate(Screen.AdvancedCmake.route) },
+                onMakefileCmake = { navController.navigate(Screen.AdvancedMakefileCmake.route) },
+                onIptablesNetfilter = { navController.navigate(Screen.AdvancedIptablesNetfilter.route) },
                 onDeviceTrees = { navController.navigate(Screen.AdvancedDeviceTrees.route) },
                 onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) },
                 onStackFrames = { navController.navigate(Screen.AdvancedStackFrames.route) },
@@ -422,11 +422,11 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.KernelMemoryManagement.route) {
             KernelMemoryScreen(onBack = { navController.popBackStack() })
         }
-        composable(Screen.AdvancedMakefile.route) {
-            MakefileScreen(onBack = { navController.popBackStack() })
+        composable(Screen.AdvancedMakefileCmake.route) {
+            MakefileCMakeScreen(onBack = { navController.popBackStack() })
         }
-        composable(Screen.AdvancedCmake.route) {
-            CMakeScreen(onBack = { navController.popBackStack() })
+        composable(Screen.AdvancedIptablesNetfilter.route) {
+            IptablesNetfilterScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.AdvancedDeviceTrees.route) {
             DeviceTreesScreen(onBack = { navController.popBackStack() })
