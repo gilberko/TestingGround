@@ -48,7 +48,8 @@ fun PythonHubScreen(
     onInputOutput: () -> Unit,
     onThreads: () -> Unit,
     onNetworking: () -> Unit,
-    onCoroutines: () -> Unit
+    onCoroutines: () -> Unit,
+    onSwitchCase: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -102,7 +103,8 @@ fun PythonHubScreen(
             ButtonRow("Threads",    onThreads,
                       "Networking", onNetworking)
             Spacer(Modifier.height(12.dp))
-            HubButton("Coroutines", onCoroutines, Modifier.fillMaxWidth())
+            ButtonRow("Coroutines",   onCoroutines,
+                      "Switch / Match", onSwitchCase)
             Spacer(Modifier.height(24.dp))
         }
     }

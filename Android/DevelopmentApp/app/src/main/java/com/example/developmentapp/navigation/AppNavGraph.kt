@@ -29,10 +29,15 @@ import com.example.developmentapp.screens.cpp.CppQuirksScreen
 import com.example.developmentapp.screens.cpp.CppRuntimeMemoryScreen
 import com.example.developmentapp.screens.cpp.CppStdioScreen
 import com.example.developmentapp.screens.cpp.CppSyntaxScreen
+import com.example.developmentapp.screens.cpp.CppClassInheritanceScreen
 import com.example.developmentapp.screens.python.PythonCoroutinesScreen
+import com.example.developmentapp.screens.python.PythonSwitchCaseScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
 import com.example.developmentapp.screens.tcpip.ProxyScreen
 import com.example.developmentapp.screens.tcpip.VpnScreen
+import com.example.developmentapp.screens.assembly.AsmLabelsScreen
+import com.example.developmentapp.screens.assembly.AsmMemorySectionsScreen
+import com.example.developmentapp.screens.assembly.AsmSpecialCommandsScreen
 import com.example.developmentapp.screens.assembly.BasicArithmeticScreen
 import com.example.developmentapp.screens.assembly.ComparisonsLoopsScreen
 import com.example.developmentapp.screens.assembly.FunctionCallsScreen
@@ -80,6 +85,9 @@ sealed class Screen(val route: String) {
     object ComparisonsLoops    : Screen("comparisons_loops")
     object MoreArithmetic      : Screen("more_arithmetic")
     object NumberRepresentation: Screen("number_representation")
+    object AsmMemorySections   : Screen("asm_memory_sections")
+    object AsmLabels           : Screen("asm_labels")
+    object AsmSpecialCommands  : Screen("asm_special_commands")
     // Data Structures
     object DataStructures      : Screen("data_structures")
     // Python
@@ -97,6 +105,7 @@ sealed class Screen(val route: String) {
     object PythonThreads       : Screen("python_threads")
     object PythonNetworking    : Screen("python_networking")
     object PythonCoroutines    : Screen("python_coroutines")
+    object PythonSwitchCase    : Screen("python_switch_case")
     // C/C++
     object CppHub                    : Screen("cpp_hub")
     object CppSyntax                 : Screen("cpp_syntax")
@@ -110,6 +119,7 @@ sealed class Screen(val route: String) {
     object CppKeywords               : Screen("cpp_keywords")
     object CppRuntimeMemory          : Screen("cpp_runtime_memory")
     object CppOperatorOverloading    : Screen("cpp_operator_overloading")
+    object CppClassInheritance       : Screen("cpp_class_inheritance")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -168,7 +178,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onStdio               = { navController.navigate(Screen.CppStdio.route) },
                 onKeywords            = { navController.navigate(Screen.CppKeywords.route) },
                 onRuntimeMemory       = { navController.navigate(Screen.CppRuntimeMemory.route) },
-                onOperatorOverloading = { navController.navigate(Screen.CppOperatorOverloading.route) }
+                onOperatorOverloading = { navController.navigate(Screen.CppOperatorOverloading.route) },
+                onClassInheritance    = { navController.navigate(Screen.CppClassInheritance.route) }
             )
         }
         composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -182,6 +193,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppKeywords.route)          { CppKeywordsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppRuntimeMemory.route)     { CppRuntimeMemoryScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppOperatorOverloading.route) { CppOperatorOverloadingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppClassInheritance.route)    { CppClassInheritanceScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
@@ -196,7 +208,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onStack              = { navController.navigate(Screen.AsmStack.route) },
                 onComparisonsLoops   = { navController.navigate(Screen.ComparisonsLoops.route) },
                 onMoreArithmetic     = { navController.navigate(Screen.MoreArithmetic.route) },
-                onNumberRepresentation = { navController.navigate(Screen.NumberRepresentation.route) }
+                onNumberRepresentation = { navController.navigate(Screen.NumberRepresentation.route) },
+                onMemorySections       = { navController.navigate(Screen.AsmMemorySections.route) },
+                onLabels               = { navController.navigate(Screen.AsmLabels.route) },
+                onSpecialCommands      = { navController.navigate(Screen.AsmSpecialCommands.route) }
             )
         }
         composable(Screen.X86Environment.route)       { X86EnvironmentScreen(onBack = { navController.popBackStack() }) }
@@ -209,6 +224,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.ComparisonsLoops.route)     { ComparisonsLoopsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.MoreArithmetic.route)       { MoreArithmeticScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.NumberRepresentation.route) { NumberRepresentationScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AsmMemorySections.route)   { AsmMemorySectionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AsmLabels.route)           { AsmLabelsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AsmSpecialCommands.route)  { AsmSpecialCommandsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Data Structures ───────────────────────────────────────────────
         composable(Screen.DataStructures.route) {
@@ -231,7 +249,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) },
                 onThreads        = { navController.navigate(Screen.PythonThreads.route) },
                 onNetworking     = { navController.navigate(Screen.PythonNetworking.route) },
-                onCoroutines     = { navController.navigate(Screen.PythonCoroutines.route) }
+                onCoroutines     = { navController.navigate(Screen.PythonCoroutines.route) },
+                onSwitchCase     = { navController.navigate(Screen.PythonSwitchCase.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -247,6 +266,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonThreads.route)       { PythonThreadsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonNetworking.route)    { PythonNetworkingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonCoroutines.route)    { PythonCoroutinesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonSwitchCase.route)    { PythonSwitchCaseScreen(onBack = { navController.popBackStack() }) }
 
         // ── Algorithms ────────────────────────────────────────────────
         composable(Screen.AlgorithmsHub.route) {

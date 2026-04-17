@@ -43,7 +43,10 @@ fun AssemblyHubScreen(
     onStack: () -> Unit,
     onComparisonsLoops: () -> Unit,
     onMoreArithmetic: () -> Unit,
-    onNumberRepresentation: () -> Unit
+    onNumberRepresentation: () -> Unit,
+    onMemorySections: () -> Unit,
+    onLabels: () -> Unit,
+    onSpecialCommands: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -98,6 +101,12 @@ fun AssemblyHubScreen(
             HubButton("Syscall & Int",              onSyscallInt)
             Spacer(Modifier.height(12.dp))
             HubButton("Number Representation",      onNumberRepresentation)
+            Spacer(Modifier.height(12.dp))
+            HubButton("Memory Sections",            onMemorySections)
+            Spacer(Modifier.height(12.dp))
+            HubButton("Labels",                     onLabels)
+            Spacer(Modifier.height(12.dp))
+            HubButton("Special Commands",           onSpecialCommands)
             Spacer(Modifier.height(24.dp))
         }
     }

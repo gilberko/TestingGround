@@ -46,7 +46,8 @@ fun CppHubScreen(
     onStdio: () -> Unit,
     onKeywords: () -> Unit,
     onRuntimeMemory: () -> Unit,
-    onOperatorOverloading: () -> Unit
+    onOperatorOverloading: () -> Unit,
+    onClassInheritance: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -92,7 +93,7 @@ fun CppHubScreen(
             Spacer(Modifier.height(12.dp))
             CppButtonRow("Keywords", onKeywords, "C Runtime And Memory", onRuntimeMemory)
             Spacer(Modifier.height(12.dp))
-            CppHubButton("Operator Overloading", onOperatorOverloading, Modifier.fillMaxWidth())
+            CppButtonRow("Operator Overloading", onOperatorOverloading, "Class Inheritance", onClassInheritance)
             Spacer(Modifier.height(24.dp))
         }
     }
