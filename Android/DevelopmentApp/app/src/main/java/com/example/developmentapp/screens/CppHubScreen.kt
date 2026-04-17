@@ -47,7 +47,13 @@ fun CppHubScreen(
     onKeywords: () -> Unit,
     onRuntimeMemory: () -> Unit,
     onOperatorOverloading: () -> Unit,
-    onClassInheritance: () -> Unit
+    onClassInheritance: () -> Unit,
+    onLoopsConditions: () -> Unit,
+    onReferences: () -> Unit,
+    onRaiiSmartPtrs: () -> Unit,
+    onTemplates: () -> Unit,
+    onConstAutoMutable: () -> Unit,
+    onErrorHandling: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -94,6 +100,12 @@ fun CppHubScreen(
             CppButtonRow("Keywords", onKeywords, "C Runtime And Memory", onRuntimeMemory)
             Spacer(Modifier.height(12.dp))
             CppButtonRow("Operator Overloading", onOperatorOverloading, "Class Inheritance", onClassInheritance)
+            Spacer(Modifier.height(12.dp))
+            CppButtonRow("Loops and Conditions", onLoopsConditions, "References & rvalue Refs", onReferences)
+            Spacer(Modifier.height(12.dp))
+            CppButtonRow("RAII and Smart Pointers", onRaiiSmartPtrs, "Templates", onTemplates)
+            Spacer(Modifier.height(12.dp))
+            CppButtonRow("const, auto, mutable", onConstAutoMutable, "Error Handling", onErrorHandling)
             Spacer(Modifier.height(24.dp))
         }
     }

@@ -30,6 +30,15 @@ import com.example.developmentapp.screens.cpp.CppRuntimeMemoryScreen
 import com.example.developmentapp.screens.cpp.CppStdioScreen
 import com.example.developmentapp.screens.cpp.CppSyntaxScreen
 import com.example.developmentapp.screens.cpp.CppClassInheritanceScreen
+import com.example.developmentapp.screens.cpp.CppLoopsConditionsScreen
+import com.example.developmentapp.screens.cpp.CppReferencesScreen
+import com.example.developmentapp.screens.cpp.CppRaiiSmartPtrsScreen
+import com.example.developmentapp.screens.cpp.CppTemplatesScreen
+import com.example.developmentapp.screens.cpp.CppConstAutoMutableScreen
+import com.example.developmentapp.screens.cpp.CppErrorHandlingScreen
+import com.example.developmentapp.screens.algorithms.AlphaBetaPruningScreen
+import com.example.developmentapp.screens.algorithms.HeapScreen
+import com.example.developmentapp.screens.algorithms.TwoThreeTreesScreen
 import com.example.developmentapp.screens.python.PythonCoroutinesScreen
 import com.example.developmentapp.screens.python.PythonSwitchCaseScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
@@ -120,12 +129,21 @@ sealed class Screen(val route: String) {
     object CppRuntimeMemory          : Screen("cpp_runtime_memory")
     object CppOperatorOverloading    : Screen("cpp_operator_overloading")
     object CppClassInheritance       : Screen("cpp_class_inheritance")
+    object CppLoopsConditions        : Screen("cpp_loops_conditions")
+    object CppReferences             : Screen("cpp_references")
+    object CppRaiiSmartPtrs          : Screen("cpp_raii_smart_ptrs")
+    object CppTemplates              : Screen("cpp_templates")
+    object CppConstAutoMutable       : Screen("cpp_const_auto_mutable")
+    object CppErrorHandling          : Screen("cpp_error_handling")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
     object MoreGraphAlgorithms  : Screen("more_graph_algorithms")
     object SortingAndLookup     : Screen("sorting_and_lookup")
     object FourierTransform     : Screen("fourier_transform")
+    object AlphaBetaPruning     : Screen("alpha_beta_pruning")
+    object Heap                 : Screen("heap")
+    object TwoThreeTrees        : Screen("two_three_trees")
     // TCP/IP
     object TcpIpHub            : Screen("tcpip_hub")
     object Ethernet            : Screen("ethernet")
@@ -179,7 +197,13 @@ fun AppNavGraph(navController: NavHostController) {
                 onKeywords            = { navController.navigate(Screen.CppKeywords.route) },
                 onRuntimeMemory       = { navController.navigate(Screen.CppRuntimeMemory.route) },
                 onOperatorOverloading = { navController.navigate(Screen.CppOperatorOverloading.route) },
-                onClassInheritance    = { navController.navigate(Screen.CppClassInheritance.route) }
+                onClassInheritance    = { navController.navigate(Screen.CppClassInheritance.route) },
+                onLoopsConditions     = { navController.navigate(Screen.CppLoopsConditions.route) },
+                onReferences          = { navController.navigate(Screen.CppReferences.route) },
+                onRaiiSmartPtrs       = { navController.navigate(Screen.CppRaiiSmartPtrs.route) },
+                onTemplates           = { navController.navigate(Screen.CppTemplates.route) },
+                onConstAutoMutable    = { navController.navigate(Screen.CppConstAutoMutable.route) },
+                onErrorHandling       = { navController.navigate(Screen.CppErrorHandling.route) }
             )
         }
         composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -194,6 +218,12 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppRuntimeMemory.route)     { CppRuntimeMemoryScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppOperatorOverloading.route) { CppOperatorOverloadingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppClassInheritance.route)    { CppClassInheritanceScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppLoopsConditions.route)    { CppLoopsConditionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppReferences.route)         { CppReferencesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppRaiiSmartPtrs.route)      { CppRaiiSmartPtrsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppTemplates.route)          { CppTemplatesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppConstAutoMutable.route)   { CppConstAutoMutableScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppErrorHandling.route)      { CppErrorHandlingScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
@@ -275,13 +305,19 @@ fun AppNavGraph(navController: NavHostController) {
                 onBasicGraphAlgorithms  = { navController.navigate(Screen.BasicGraphAlgorithms.route) },
                 onMoreGraphAlgorithms   = { navController.navigate(Screen.MoreGraphAlgorithms.route) },
                 onSortingAndLookup      = { navController.navigate(Screen.SortingAndLookup.route) },
-                onFourierTransform      = { navController.navigate(Screen.FourierTransform.route) }
+                onFourierTransform      = { navController.navigate(Screen.FourierTransform.route) },
+                onAlphaBetaPruning      = { navController.navigate(Screen.AlphaBetaPruning.route) },
+                onHeap                  = { navController.navigate(Screen.Heap.route) },
+                onTwoThreeTrees         = { navController.navigate(Screen.TwoThreeTrees.route) }
             )
         }
         composable(Screen.BasicGraphAlgorithms.route) { BasicGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.MoreGraphAlgorithms.route)  { MoreGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.SortingAndLookup.route)     { SortingAndLookupScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.FourierTransform.route)     { FourierTransformScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AlphaBetaPruning.route)     { AlphaBetaPruningScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Heap.route)                 { HeapScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.TwoThreeTrees.route)        { TwoThreeTreesScreen(onBack = { navController.popBackStack() }) }
 
         // ── TCP/IP ────────────────────────────────────────────────────
         composable(Screen.TcpIpHub.route) {

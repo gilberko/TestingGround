@@ -1,7 +1,9 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -77,48 +79,48 @@ fun AssemblyHubScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            HubButton("x86 & x86-64 Environment",  onX86Environment)
+            AsmButtonRow("x86 & x86-64 Environment", onX86Environment, "Basic Arithmetic", onBasicArithmetic)
             Spacer(Modifier.height(12.dp))
-            HubButton("Basic Arithmetic",           onBasicArithmetic)
+            AsmButtonRow("More Arithmetic", onMoreArithmetic, "Move Data", onMoveData)
             Spacer(Modifier.height(12.dp))
-            HubButton("More Arithmetic",            onMoreArithmetic)
+            AsmButtonRow("Stack", onStack, "Jumps", onJumps)
             Spacer(Modifier.height(12.dp))
-            HubButton("Move Data",                  onMoveData)
+            AsmButtonRow("Comparisons & Loops", onComparisonsLoops, "Function Calls", onFunctionCalls)
             Spacer(Modifier.height(12.dp))
-            HubButton("Stack",                      onStack)
+            AsmButtonRow("Syscall & Int", onSyscallInt, "Number Representation", onNumberRepresentation)
             Spacer(Modifier.height(12.dp))
-            HubButton("Jumps",                      onJumps)
+            AsmButtonRow("Memory Sections", onMemorySections, "Labels", onLabels)
             Spacer(Modifier.height(12.dp))
-            HubButton("Comparisons & Loops",        onComparisonsLoops)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Function Calls",             onFunctionCalls)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Syscall & Int",              onSyscallInt)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Number Representation",      onNumberRepresentation)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Memory Sections",            onMemorySections)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Labels",                     onLabels)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Special Commands",           onSpecialCommands)
+            AsmHubButton("Special Commands", onSpecialCommands, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun HubButton(label: String, onClick: () -> Unit) {
+private fun AsmButtonRow(
+    label1: String, onClick1: () -> Unit,
+    label2: String, onClick2: () -> Unit
+) {
+    Row(
+        modifier              = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        AsmHubButton(label1, onClick1, Modifier.weight(1f))
+        AsmHubButton(label2, onClick2, Modifier.weight(1f))
+    }
+}
+
+@Composable
+private fun AsmHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
+        modifier = modifier.height(52.dp),
         border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
@@ -130,7 +132,8 @@ private fun HubButton(label: String, onClick: () -> Unit) {
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Medium,
             color      = Color(0xFF00FF41),
-            textAlign  = TextAlign.Center
+            textAlign  = TextAlign.Center,
+            fontSize   = 11.sp
         )
     }
 }

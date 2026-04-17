@@ -37,7 +37,10 @@ fun AlgorithmsHubScreen(
     onBasicGraphAlgorithms: () -> Unit,
     onMoreGraphAlgorithms: () -> Unit,
     onSortingAndLookup: () -> Unit,
-    onFourierTransform: () -> Unit
+    onFourierTransform: () -> Unit,
+    onAlphaBetaPruning: () -> Unit,
+    onHeap: () -> Unit,
+    onTwoThreeTrees: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -80,6 +83,12 @@ fun AlgorithmsHubScreen(
             AlgoHubButton("Sorting And Lookup",        onSortingAndLookup,     Modifier.fillMaxWidth())
             Spacer(Modifier.height(8.dp))
             AlgoHubButton("Fourier Transform — Signals", onFourierTransform,   Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("Alpha Beta Pruning",          onAlphaBetaPruning,   Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("Heap",                        onHeap,               Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("2-3 Trees",                   onTwoThreeTrees,      Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
