@@ -86,7 +86,7 @@ fun PermissionsHubScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     PermissionsHubButton(
-                        label = "File Permissions\n& chmod",
+                        label = "Capabilities, File\nPermissions & chmod",
                         onClick = onFilePermissions,
                         modifier = Modifier.weight(1f)
                     )

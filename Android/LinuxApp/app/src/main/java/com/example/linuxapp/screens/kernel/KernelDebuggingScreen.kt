@@ -497,6 +497,117 @@ journalctl -k -b -1
                     BodyText("In practice, you rarely write raw kprobe LKMs today. eBPF with SEC(\"kprobe/...\") provides the same mechanism with safety guarantees, no reboot, dynamic load/unload, and access to BPF maps and helpers. Use raw kprobes only when you need capabilities eBPF cannot provide.")
                 }
             }
+            item {
+                SectionCard(title = "kmemleak — Kernel Memory Leak Detector") {
+                    BodyText("kmemleak is a kernel built-in memory leak detector. It tracks all kernel allocations (kmalloc, vmalloc, etc.) and periodically scans kernel memory for pointers to each one. Allocations with no surviving pointer are reported as suspected leaks through a debugfs file.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Enable in the kernel config:")
+                    CodeBlock(
+                        """CONFIG_DEBUG_KMEMLEAK=y
+CONFIG_DEBUG_KMEMLEAK_DEFAULT_OFF=n   # start scanning automatically on boot"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Interact with kmemleak at runtime:")
+                    CodeBlock(
+                        """# Mount debugfs if not already present
+mount -t debugfs nodev /sys/kernel/debug
+
+cat /sys/kernel/debug/kmemleak           # print all suspected leaks
+echo scan  > /sys/kernel/debug/kmemleak  # trigger an immediate scan
+echo clear > /sys/kernel/debug/kmemleak  # clear reported leaks"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Example kernel module with a deliberate leak:")
+                    CodeBlock(
+                        """#include <linux/module.h>
+#include <linux/slab.h>
+
+static int __init leak_init(void)
+{
+    void *p = kmalloc(64, GFP_KERNEL);  // allocated — never freed
+    if (!p)
+        return -ENOMEM;
+    pr_info("leak_module: allocated %p\n", p);
+    return 0;                            // p leaks here
+}
+
+static void __exit leak_exit(void) { }
+
+module_init(leak_init);
+module_exit(leak_exit);
+MODULE_LICENSE("GPL");"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("After loading the module and running a scan, kmemleak reports:")
+                    CodeBlock(
+                        """unreferenced object 0xffff888003a0d400 (size 64):
+  comm "insmod", pid 1234, jiffies 4294967295
+  backtrace:
+    kmalloc (mm/slub.c:...)
+    leak_init (leak_module.c:8)
+    do_one_initcall (init/main.c:...)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("kmemleak uses a mark-and-sweep approach. False positives can occur for objects stored in unusual ways (XOR-linked lists, encoded pointers). Suppress known false positives with kmemleak_not_leak(ptr) or kmemleak_ignore(ptr) in the kernel source.")
+                }
+            }
+            item {
+                SectionCard(title = "KASAN — Kernel Address Sanitizer") {
+                    BodyText("KASAN detects illegal memory accesses in the kernel: use-after-free, heap/stack/global out-of-bounds. Unlike kmemleak (which finds leaks after the fact), KASAN fires at the exact instruction that performs the bad access and prints a full call stack for both the access site and the original alloc/free.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Enable in the kernel config:")
+                    CodeBlock(
+                        """CONFIG_KASAN=y
+CONFIG_KASAN_GENERIC=y       # software — works on any arch, ~2x slowdown
+# or
+CONFIG_KASAN_HW_TAGS=y       # hardware-assisted (ARM MTE), minimal overhead
+
+CONFIG_KASAN_INLINE=y        # inline shadow checks — faster, larger image
+# or
+CONFIG_KASAN_OUTLINE=y       # call into runtime — smaller image, slightly slower"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("KASAN uses shadow memory: for every 8 bytes of kernel memory, 1 shadow byte records accessibility. Freed regions and allocation redzones are marked poisoned. Any load or store to a poisoned address triggers an immediate report before the bad access completes.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Example: use-after-free in a kernel module:")
+                    CodeBlock(
+                        """static int __init uaf_init(void)
+{
+    char *buf = kmalloc(32, GFP_KERNEL);
+    if (!buf) return -ENOMEM;
+
+    strcpy(buf, "hello");
+    kfree(buf);        // buf is now freed — KASAN poisons this region
+
+    buf[0] = 'X';      // write to freed memory — KASAN fires here
+    return 0;
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("KASAN report in dmesg:")
+                    CodeBlock(
+                        """==================================================================
+BUG: KASAN: slab-use-after-free in uaf_init+0x4a/0x60 [uaf_module]
+Write of size 1 at addr ffff888003b1c000 by task insmod/1357
+
+CPU: 0  PID: 1357  Comm: insmod
+Call Trace:
+  kasan_report+0xb2/0xf0
+  uaf_init+0x4a/0x60 [uaf_module]
+  do_one_initcall+0x8d/0x2d0
+
+Allocated by task 1357:
+  kmalloc (mm/slub.c:...)
+  uaf_init+0x1f/0x60 [uaf_module]
+
+Freed by task 1357:
+  kfree (mm/slub.c:...)
+  uaf_init+0x3e/0x60 [uaf_module]
+==================================================================""")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("KASAN vs kmemleak: KASAN catches illegal accesses (use-after-free, out-of-bounds) at the moment they happen. kmemleak catches allocations that are never freed. They complement each other — enable both when developing or testing kernel code.")
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

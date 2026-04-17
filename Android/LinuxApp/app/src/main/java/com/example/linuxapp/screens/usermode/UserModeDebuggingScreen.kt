@@ -263,6 +263,83 @@ valgrind --gen-suppressions=all ./myapp"""
                     )
                 }
             }
+            item {
+                SectionCard(title = "ASAN — Address Sanitizer") {
+                    BodyText("AddressSanitizer (ASAN) is a fast memory error detector built into GCC and Clang. It catches heap, stack, and global buffer overflows, use-after-free, use-after-return, and use-after-scope bugs. Unlike Valgrind it requires recompilation, but runs at roughly 2x slowdown instead of 10–20x.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Compile with ASAN enabled:")
+                    CodeBlock(
+                        """gcc -fsanitize=address -fno-omit-frame-pointer -g -o myprogram myprogram.c
+# -fno-omit-frame-pointer gives cleaner stack traces
+# -g includes debug symbols for file/line info"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Example: heap buffer overflow:")
+                    CodeBlock(
+                        """#include <stdlib.h>
+#include <string.h>
+
+int main(void)
+{
+    char *buf = malloc(16);
+    memset(buf, 0, 20);   // writes 4 bytes past the end of buf
+    free(buf);
+    return 0;
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("ASAN report for the above:")
+                    CodeBlock(
+                        """=================================================================
+==12345==ERROR: AddressSanitizer: heap-buffer-overflow
+WRITE of size 20 at 0x602000000010 thread T0
+    #0 memset (libc)
+    #1 main overflow.c:7
+
+0x602000000010 is located 0 bytes inside of 16-byte region
+  allocated by main at overflow.c:6
+
+Shadow bytes around the buggy address:
+  0x602000000000: fa fa 00 00 fa fa ...
+  0x602000000010: 00 00 fa fa ...
+  ^^^ fa = heap redzone (poisoned — access here is illegal)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Example: use-after-free detection:")
+                    CodeBlock(
+                        """#include <stdlib.h>
+
+int main(void)
+{
+    int *p = malloc(sizeof(int));
+    *p = 42;
+    free(p);
+    return *p;   // use-after-free — ASAN reports here
+}"""
+                    )
+                    CodeBlock(
+                        """==12346==ERROR: AddressSanitizer: heap-use-after-free
+READ of size 4 at 0x602000000010 thread T0
+    #0 main uaf.c:8
+
+freed by thread T0 here:
+    #0 free (libc)
+    #1 main uaf.c:7"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Useful ASAN_OPTIONS environment variables:")
+                    CodeBlock(
+                        """ASAN_OPTIONS=detect_leaks=1          # also run LeakSanitizer
+ASAN_OPTIONS=halt_on_error=0         # continue after first error
+ASAN_OPTIONS=log_path=/tmp/asan.log  # write report to file
+
+# Combine options with colons:
+ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./myprogram"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("ASAN vs Valgrind: ASAN is ~10x faster and catches stack and global errors that Valgrind misses, but requires recompilation. Valgrind works on unmodified binaries and also detects uninitialised-memory reads (use --tool=memcheck for that). Use ASAN during development for fast iteration; use Valgrind when you cannot recompile or need uninitialized-read detection.")
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

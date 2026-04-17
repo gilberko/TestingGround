@@ -167,6 +167,104 @@ for_each_thread(task, thread) {
                 }
             }
             item {
+                SectionCard(title = "struct cred — Process Credentials") {
+                    BodyText("Every task_struct holds a pointer to a struct cred that records all identity and privilege information for that process. struct cred is copy-on-write and immutable once installed — any privilege change allocates a new cred and atomically swaps the pointer.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Key fields:")
+                    CodeBlock(
+                        """struct cred {
+    kuid_t   uid,  euid, suid, fsuid;  // real, effective, saved-set, filesystem
+    kgid_t   gid,  egid, sgid, fsgid;
+    kernel_cap_t cap_inheritable;      // capabilities that can cross exec
+    kernel_cap_t cap_permitted;        // maximum set the process may assume
+    kernel_cap_t cap_effective;        // currently active capability set
+    kernel_cap_t cap_bset;             // capability bounding set (hard ceiling)
+    void    *security;                 // LSM label (SELinux, AppArmor, …)
+    /* … */
+};"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Permission checks use euid/egid and cap_effective. The real uid/gid records who originally started the process. fsuid/fsgid are used specifically for filesystem access checks and normally mirror euid/egid.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Accessing credentials in a kernel module:")
+                    CodeBlock(
+                        """#include <linux/cred.h>
+#include <linux/sched.h>
+
+// Read the current task's effective uid
+kuid_t euid = current_euid();
+pr_info("euid = %u\n", euid.val);
+
+// Get the full cred struct (RCU-protected read)
+const struct cred *cred = current_cred();
+pr_info("cap_effective = %llx\n",
+        (unsigned long long)cred->cap_effective.cap[0]);
+
+// Check whether the current task holds a capability
+if (capable(CAP_NET_ADMIN))
+    pr_info("has CAP_NET_ADMIN\n");"""
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "Linux Capabilities") {
+                    BodyText("The classic Unix privilege model is binary: root (uid 0) can do anything, everyone else is restricted. This is too coarse for real systems. Linux capabilities split root's privilege into ~40 discrete units so a process can hold exactly what it needs and nothing more.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Capabilities are grouped logically (the kernel lists them flat in <linux/capability.h>):")
+                    CodeBlock(
+                        """Filesystem:      CAP_CHOWN, CAP_DAC_OVERRIDE, CAP_DAC_READ_SEARCH,
+                        |                 CAP_FOWNER, CAP_FSETID
+                        |
+                        |Process control: CAP_KILL, CAP_SETUID, CAP_SETGID, CAP_SETPCAP
+                        |
+                        |Network:         CAP_NET_ADMIN, CAP_NET_BIND_SERVICE (ports < 1024),
+                        |                 CAP_NET_RAW, CAP_NET_BROADCAST
+                        |
+                        |System admin:    CAP_SYS_ADMIN, CAP_SYS_BOOT, CAP_SYS_MODULE,
+                        |                 CAP_SYS_CHROOT, CAP_SYS_PTRACE, CAP_SYS_TIME,
+                        |                 CAP_SYS_RAWIO, CAP_SYS_NICE
+                        |
+                        |Security/Audit:  CAP_AUDIT_WRITE, CAP_AUDIT_CONTROL,
+                        |                 CAP_MAC_ADMIN, CAP_SETFCAP
+                        |
+                        |eBPF/Perf:       CAP_BPF, CAP_PERFMON""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("The four capability sets in struct cred:")
+                    CodeBlock(
+                        """cap_effective    — capabilities currently in use for permission checks
+cap_permitted    — ceiling: a process cannot raise effective above this
+cap_inheritable  — capabilities that survive across execve()
+cap_bset         — bounding set: hard ceiling; caps outside it can never
+                   be added to permitted even by root"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Checking and using capabilities in a kernel module:")
+                    CodeBlock(
+                        """#include <linux/capability.h>
+#include <linux/cred.h>
+
+static int my_privileged_op(void)
+{
+    // capable() checks cap_effective of current task
+    if (!capable(CAP_SYS_ADMIN))
+        return -EPERM;
+
+    // … perform the privileged operation …
+    return 0;
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("From user space, inspect and set capabilities with capsh and getcap/setcap:")
+                    CodeBlock(
+                        """capsh --print                        # show current session's caps
+getcap /usr/bin/ping                 # → cap_net_raw=ep
+setcap cap_net_bind_service+ep ./myserver   # grant one cap to a binary
+setcap -r ./myserver                 # strip all file capabilities"""
+                    )
+                }
+            }
+            item {
                 SectionCard(title = "mm_struct — Process Address Space") {
                     BodyText("mm_struct describes the full virtual address space of a process. Each process has its own mm_struct; all threads in a process share the same one.")
                     Spacer(modifier = Modifier.height(8.dp))

@@ -33,7 +33,7 @@ fun FilePermissionsScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "File Permissions & chmod",
+                        "Capabilities, File Permissions and chmod",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp
@@ -255,6 +255,73 @@ setfacl -b myfile
 -rw-r--r--+  1 alice devs  0 Mar 10  myfile""")
                     Spacer(modifier = Modifier.height(4.dp))
                     BodyText("When an ACL is present the kernel checks the ACL entries before falling back to the standard permission bits. The mask entry in the ACL limits the maximum effective permissions for named users and groups.")
+                }
+            }
+            item {
+                SectionCard(title = "Process Capabilities") {
+                    BodyText("The classic Unix privilege model is binary: root (uid 0) can do anything, everyone else is restricted. This is too coarse — a web server only needs to bind port 80, not reboot the machine. Linux capabilities break root's power into ~40 discrete privileges so a process can hold exactly what it needs and nothing more.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Capabilities are grouped into logical areas (the kernel lists them flat, but they fall into these categories):")
+                    CodeBlock(
+                        """Filesystem:      CAP_CHOWN, CAP_DAC_OVERRIDE, CAP_DAC_READ_SEARCH,
+                        |                 CAP_FOWNER, CAP_FSETID
+                        |
+                        |Process control: CAP_KILL, CAP_SETUID, CAP_SETGID, CAP_SETPCAP
+                        |
+                        |Network:         CAP_NET_ADMIN, CAP_NET_BIND_SERVICE (ports < 1024),
+                        |                 CAP_NET_RAW, CAP_NET_BROADCAST
+                        |
+                        |System admin:    CAP_SYS_ADMIN, CAP_SYS_BOOT, CAP_SYS_MODULE,
+                        |                 CAP_SYS_CHROOT, CAP_SYS_PTRACE, CAP_SYS_TIME,
+                        |                 CAP_SYS_RAWIO, CAP_SYS_NICE
+                        |
+                        |Security/Audit:  CAP_AUDIT_WRITE, CAP_AUDIT_CONTROL,
+                        |                 CAP_MAC_ADMIN, CAP_SETFCAP
+                        |
+                        |eBPF/Perf:       CAP_BPF, CAP_PERFMON""".trimMargin()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Inspecting capabilities from the shell:")
+                    CodeBlock(
+                        """# Show capabilities of the current shell session
+capsh --print
+
+# Show file capabilities on a binary
+getcap /usr/bin/ping
+# → /usr/bin/ping cap_net_raw=ep
+
+# Read capabilities of a running process from /proc
+grep Cap /proc/${'$'}${'$'}/status
+# CapPrm: 0000000000000000   (permitted set)
+# CapEff: 0000000000000000   (effective set)
+# CapInh: 0000000000000000   (inheritable set)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Granting a binary a specific capability so it can run without root:")
+                    CodeBlock(
+                        """# Give myserver the ability to bind port 80 — no setuid needed
+setcap cap_net_bind_service+ep ./myserver
+
+# Verify
+getcap ./myserver
+# → ./myserver cap_net_bind_service=ep
+
+# Remove all capabilities from a binary
+setcap -r ./myserver"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Ambient capabilities (Linux 4.3+) allow a capability to be inherited across exec without file capabilities on the target binary:")
+                    CodeBlock(
+                        """#include <sys/prctl.h>
+#include <linux/capability.h>
+
+// Raise CAP_NET_BIND_SERVICE into the ambient set so child
+// processes spawned by exec() also hold it
+prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_RAISE,
+      CAP_NET_BIND_SERVICE, 0, 0);"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Security note: prefer assigning a narrow capability (e.g. CAP_NET_BIND_SERVICE) over making a binary setuid-root. setuid-root grants all 40+ capabilities; a targeted setcap grants only what is needed, limiting the blast radius if the binary is exploited.")
                 }
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
