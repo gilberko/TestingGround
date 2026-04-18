@@ -136,6 +136,8 @@ Unlock path (waiters exist):
                     Spacer(modifier = Modifier.height(4.dp))
                     BodyText("The futex word is a plain int shared between threads. Its value encodes lock state — e.g., 0 = unlocked, 1 = locked (no waiters), 2 = locked (waiters sleeping in kernel).")
                     Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("When there is no contention, the fast path avoids the syscall entirely. A syscall is expensive: the CPU must switch from user mode to kernel mode and back — saving/restoring registers, switching stacks, and going through the kernel entry point. Eliminating that overhead in the common case is exactly what makes futex-based locking fast.")
+                    Spacer(modifier = Modifier.height(8.dp))
                     BodyText("Does pthread_mutex use futex? Yes — always. glibc's NPTL implementation uses futex as the foundation for every pthread_mutex type:")
                     Spacer(modifier = Modifier.height(4.dp))
                     CodeBlock(
