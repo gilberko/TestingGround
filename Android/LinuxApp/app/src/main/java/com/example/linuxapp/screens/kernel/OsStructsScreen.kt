@@ -86,6 +86,20 @@ TGID (Thread Group ID) — PID of the main thread; same for
 PGID (Process Group ID) — for job control (kill a group)
 SID  (Session ID)       — for terminal sessions"""
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Thread group lifecycle:")
+                    CodeBlock(
+                        """Each thread has its own unique PID.
+All threads in the group share the same TGID.
+TGID == the group leader's PID (the first thread created).
+
+When the group leader exits, its task_struct is kept
+alive (zombie-like) until ALL other threads have exited.
+Only then is it fully reaped by the parent.
+
+exit_group() called from any thread (or SIGKILL sent to
+the process) terminates the entire thread group at once."""
+                    )
                 }
             }
             item {

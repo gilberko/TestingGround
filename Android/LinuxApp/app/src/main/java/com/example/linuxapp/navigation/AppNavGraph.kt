@@ -85,6 +85,10 @@ import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
 import com.example.linuxapp.screens.ebpf.EbpfSecurityScreen
 import com.example.linuxapp.screens.ebpf.EbpfKptrsScreen
 import com.example.linuxapp.screens.ebpf.EbpfHelpersKfuncsScreen
+import com.example.linuxapp.screens.LinuxUsage2Screen
+import com.example.linuxapp.screens.kernel.DeviceTypesHubScreen
+import com.example.linuxapp.screens.kernel.KernelMemoryAccessScreen
+import com.example.linuxapp.screens.kernel.KernelThreadingScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -152,6 +156,10 @@ sealed class Screen(val route: String) {
     object EbpfSharingData           : Screen("ebpf_sharing_data")
     object EbpfKptrs                 : Screen("ebpf_kptrs")
     object EbpfHelpersKfuncs         : Screen("ebpf_helpers_kfuncs")
+    object DeviceTypesHub            : Screen("device_types_hub")
+    object KernelMemoryAccess        : Screen("kernel_memory_access")
+    object KernelThreading           : Screen("kernel_threading")
+    object LinuxUsage2               : Screen("linux_usage_2")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -170,6 +178,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Home.route) {
             HomeScreen(
                 onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
+                onLinuxUsage2 = { navController.navigate(Screen.LinuxUsage2.route) },
                 onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
                 onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
@@ -213,9 +222,9 @@ fun AppNavGraph(navController: NavHostController) {
             KernelHubScreen(
                 onBack = { navController.popBackStack() },
                 onLkm = { navController.navigate(Screen.KernelLkm.route) },
-                onCharDevice = { navController.navigate(Screen.KernelCharDevice.route) },
-                onBlockDevice = { navController.navigate(Screen.KernelBlockDevice.route) },
-                onNetDevice = { navController.navigate(Screen.KernelNetDevice.route) },
+                onDeviceTypes = { navController.navigate(Screen.DeviceTypesHub.route) },
+                onKernelMemoryAccess = { navController.navigate(Screen.KernelMemoryAccess.route) },
+                onKernelThreading = { navController.navigate(Screen.KernelThreading.route) },
                 onLowLevel = { navController.navigate(Screen.KernelLowLevel.route) },
                 onOsStructs = { navController.navigate(Screen.KernelOsStructs.route) },
                 onLowLevel2 = { navController.navigate(Screen.KernelLowLevel2.route) },
@@ -454,6 +463,23 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfHelpersKfuncs.route) {
             EbpfHelpersKfuncsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DeviceTypesHub.route) {
+            DeviceTypesHubScreen(
+                onBack = { navController.popBackStack() },
+                onCharDevice = { navController.navigate(Screen.KernelCharDevice.route) },
+                onBlockDevice = { navController.navigate(Screen.KernelBlockDevice.route) },
+                onNetDevice = { navController.navigate(Screen.KernelNetDevice.route) }
+            )
+        }
+        composable(Screen.KernelMemoryAccess.route) {
+            KernelMemoryAccessScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelThreading.route) {
+            KernelThreadingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxUsage2.route) {
+            LinuxUsage2Screen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -32,6 +32,7 @@ import com.example.linuxapp.R
 @Composable
 fun HomeScreen(
     onLinuxUsage: () -> Unit,
+    onLinuxUsage2: () -> Unit,
     onShellScripting: () -> Unit,
     onLinuxHistory: () -> Unit,
     onUserMode: () -> Unit,
@@ -55,6 +56,8 @@ fun HomeScreen(
         ) {
             HomeButton(label = "Linux Usage", onClick = onLinuxUsage)
             Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Linux Usage 2", onClick = onLinuxUsage2)
+            Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Shell Scripting", onClick = onShellScripting)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux History", onClick = onLinuxHistory)
@@ -74,7 +77,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v1.6",
+                    text = "v2.8",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace

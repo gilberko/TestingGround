@@ -28,7 +28,7 @@ fun DeferredWorkScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "Deferred Work",
+                        "Interrupt Handling & Deferred Work",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp
@@ -52,6 +52,104 @@ fun DeferredWorkScreen(onBack: () -> Unit) {
                 bottom = 8.dp
             )
         ) {
+
+            item {
+                SectionCard(title = "Registering an Interrupt Handler") {
+                    BodyText(
+                        "A driver registers an interrupt handler with request_irq(). This tells the kernel " +
+                        "which function to call when the hardware raises the specified IRQ line."
+                    )
+                    CodeBlock(
+                        "#include <linux/interrupt.h>\n" +
+                        "\n" +
+                        "/* Signature of the handler callback: */\n" +
+                        "irqreturn_t my_handler(int irq, void *dev_id);\n" +
+                        "\n" +
+                        "/* Register (e.g., in probe()): */\n" +
+                        "int err = request_irq(\n" +
+                        "    irq,           /* IRQ line number (from platform data,\n" +
+                        "                      device tree, or pci_irq_vector()) */\n" +
+                        "    my_handler,    /* callback */\n" +
+                        "    IRQF_SHARED,   /* flags — see below */\n" +
+                        "    \"my_device\",   /* name shown in /proc/interrupts */\n" +
+                        "    &mydev         /* dev_id — identifies this device;\n" +
+                        "                      for shared IRQs, must be unique */\n" +
+                        ");\n" +
+                        "if (err)\n" +
+                        "    return err;\n" +
+                        "\n" +
+                        "/* Unregister (e.g., in remove()): */\n" +
+                        "free_irq(irq, &mydev);  /* dev_id must match request_irq */"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Common flags:")
+                    CodeBlock(
+                        "IRQF_SHARED          — share the IRQ line with other devices\n" +
+                        "IRQF_TRIGGER_RISING  — trigger on rising edge\n" +
+                        "IRQF_TRIGGER_FALLING — trigger on falling edge\n" +
+                        "IRQF_TRIGGER_HIGH    — trigger while line is high (level)\n" +
+                        "IRQF_TRIGGER_LOW     — trigger while line is low (level)"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "free_irq() must always be called before the driver unloads or the device is " +
+                        "removed, to prevent stale handler pointers from being called after the driver " +
+                        "memory is freed."
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "What To Do In The IRQ Handler") {
+                    BodyText(
+                        "The handler runs in interrupt context. This means: no sleeping, no blocking, " +
+                        "no mutexes, no memory allocation with GFP_KERNEL. It must finish in microseconds. " +
+                        "The handler must return IRQ_HANDLED if it serviced the interrupt, or IRQ_NONE if " +
+                        "the interrupt was not from this device (important for shared IRQ lines)."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Do in the handler:")
+                    CodeBlock(
+                        "• Acknowledge the interrupt to the hardware — write to a status register\n" +
+                        "  to clear the IRQ line, otherwise the interrupt fires again immediately\n" +
+                        "• Read the minimum necessary data from hardware registers (a status byte,\n" +
+                        "  a single value from a FIFO)\n" +
+                        "• Save that data to a shared buffer or flag\n" +
+                        "• Schedule deferred work to process the data\n" +
+                        "• Return IRQ_HANDLED"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Defer to a workqueue or tasklet:")
+                    CodeBlock(
+                        "• Anything taking more than a few microseconds\n" +
+                        "• I2C / SPI register reads (they can sleep)\n" +
+                        "• Memory allocation with GFP_KERNEL\n" +
+                        "• Copying data to user space (copy_to_user)\n" +
+                        "• Processing a full packet or data buffer"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Pattern — split IRQ handler and deferred processing:")
+                    CodeBlock(
+                        "struct work_struct process_work;\n" +
+                        "u8 saved_status;\n" +
+                        "\n" +
+                        "irqreturn_t my_handler(int irq, void *dev_id) {\n" +
+                        "    /* 1. Acknowledge + read minimal data */\n" +
+                        "    saved_status = readb(dev->base + STATUS_REG);\n" +
+                        "    writeb(ACK, dev->base + STATUS_REG);\n" +
+                        "\n" +
+                        "    /* 2. Schedule slow processing */\n" +
+                        "    schedule_work(&process_work);\n" +
+                        "    return IRQ_HANDLED;\n" +
+                        "}\n" +
+                        "\n" +
+                        "void process_work_fn(struct work_struct *w) {\n" +
+                        "    /* process context: can sleep, allocate, etc. */\n" +
+                        "    handle_status(saved_status);\n" +
+                        "}"
+                    )
+                }
+            }
 
             item {
                 SectionCard(title = "Why Defer Work?") {

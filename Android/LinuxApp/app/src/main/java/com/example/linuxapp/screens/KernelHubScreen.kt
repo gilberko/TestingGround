@@ -43,9 +43,9 @@ import androidx.compose.ui.unit.sp
 fun KernelHubScreen(
     onBack: () -> Unit,
     onLkm: () -> Unit,
-    onCharDevice: () -> Unit,
-    onBlockDevice: () -> Unit,
-    onNetDevice: () -> Unit,
+    onDeviceTypes: () -> Unit,
+    onKernelMemoryAccess: () -> Unit,
+    onKernelThreading: () -> Unit,
     onLowLevel: () -> Unit,
     onOsStructs: () -> Unit,
     onLowLevel2: () -> Unit,
@@ -92,15 +92,15 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "Loadable Kernel Module", modifier = Modifier.weight(1f), onClick = onLkm)
-                KernelButton(label = "Char Device", modifier = Modifier.weight(1f), onClick = onCharDevice)
+                KernelButton(label = "Device Types", modifier = Modifier.weight(1f), onClick = onDeviceTypes)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Block Device", modifier = Modifier.weight(1f), onClick = onBlockDevice)
-                KernelButton(label = "Net Device", modifier = Modifier.weight(1f), onClick = onNetDevice)
+                KernelButton(label = "Kernel Memory\nAccess", modifier = Modifier.weight(1f), onClick = onKernelMemoryAccess)
+                KernelButton(label = "Threading", modifier = Modifier.weight(1f), onClick = onKernelThreading)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
@@ -123,7 +123,7 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Deferred Work", modifier = Modifier.weight(1f), onClick = onDeferredWork)
+                KernelButton(label = "Interrupt Handling\n& Deferred Work", modifier = Modifier.weight(1f), onClick = onDeferredWork)
                 KernelButton(label = "Kernel Data Structures", modifier = Modifier.weight(1f), onClick = onDataStructures)
             }
             Spacer(modifier = Modifier.height(12.dp))
