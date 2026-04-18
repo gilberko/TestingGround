@@ -125,6 +125,44 @@ fun CppLambdasThreadingScreen(onBack: () -> Unit) {
                         "counter();  // 2\n" +
                         "// count in the outer scope is still 0"
                     )
+                    BodyText(
+                        "Init-captures (C++14) let you create a new named variable inside the closure, " +
+                        "initialized from any expression — not just copying or referencing an existing " +
+                        "variable under its original name. The syntax is [newName = expr] in the capture list."
+                    )
+                    CodeBlock(
+                        "// [y = x] — capture x but call it y inside the lambda\n" +
+                        "int x = 10;\n" +
+                        "auto f = [y = x]() { return y * 2; };  // y is a copy of x, named y\n" +
+                        "x = 99;\n" +
+                        "f();  // still 20 — y was initialized at lambda creation\n\n" +
+                        "// [my_obj = this] — capture 'this' under a friendlier name\n" +
+                        "struct Timer {\n" +
+                        "    int ms;\n" +
+                        "    auto makeCallback() {\n" +
+                        "        return [my_obj = this]() { my_obj->ms = 0; };\n" +
+                        "    }\n" +
+                        "};\n\n" +
+                        "// [copy = *this] — capture a VALUE COPY of the whole object\n" +
+                        "// Avoids dangling 'this' when the lambda outlives the object\n" +
+                        "struct Widget {\n" +
+                        "    int value = 42;\n" +
+                        "    auto safeCallback() {\n" +
+                        "        return [copy = *this]() { return copy.value; };\n" +
+                        "    }\n" +
+                        "};\n\n" +
+                        "// [ptr = std::move(up)] — move a unique_ptr into the lambda\n" +
+                        "// Only works with init-capture; [=] would try to copy (deleted)\n" +
+                        "auto up = std::make_unique<int>(7);\n" +
+                        "auto g = [ptr = std::move(up)]() { return *ptr; };\n" +
+                        "// up is now null; ptr lives inside the lambda's closure"
+                    )
+                    BodyText(
+                        "Init-captures are the only way to move a move-only type (unique_ptr, " +
+                        "packaged_task, etc.) into a lambda, since [=] would try to copy it, which " +
+                        "is a deleted operation. The captured name (left of =) is a brand-new variable " +
+                        "scoped to the closure — it can have a completely different name from the source expression."
+                    )
                 }
             }
             item { Spacer(Modifier.height(8.dp)) }
