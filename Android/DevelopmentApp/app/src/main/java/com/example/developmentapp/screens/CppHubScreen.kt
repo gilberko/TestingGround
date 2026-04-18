@@ -53,7 +53,9 @@ fun CppHubScreen(
     onRaiiSmartPtrs: () -> Unit,
     onTemplates: () -> Unit,
     onConstAutoMutable: () -> Unit,
-    onErrorHandling: () -> Unit
+    onErrorHandling: () -> Unit,
+    onStlContainers: () -> Unit,
+    onLambdasThreading: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -106,6 +108,8 @@ fun CppHubScreen(
             CppButtonRow("RAII and Smart Pointers", onRaiiSmartPtrs, "Templates", onTemplates)
             Spacer(Modifier.height(12.dp))
             CppButtonRow("const, auto, mutable", onConstAutoMutable, "Error Handling", onErrorHandling)
+            Spacer(Modifier.height(12.dp))
+            CppButtonRow("STL Containers", onStlContainers, "Lambdas & STL Threading", onLambdasThreading)
             Spacer(Modifier.height(24.dp))
         }
     }

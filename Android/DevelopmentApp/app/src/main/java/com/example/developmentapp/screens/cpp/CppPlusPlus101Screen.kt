@@ -466,6 +466,129 @@ fun CppPlusPlus101Screen(onBack: () -> Unit) {
                     )
                 }
             }
+            // ── Namespaces ────────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Namespaces") {
+                    BodyText(
+                        "Namespaces group related names to avoid collisions. Anything placed inside " +
+                        "namespace MyNS { } is accessed from outside as MyNS::name."
+                    )
+                    CodeBlock(
+                        "namespace Math {\n" +
+                        "    double pi = 3.14159;\n" +
+                        "    double sqrt(double x);  // Math::sqrt — won't clash with std::sqrt\n" +
+                        "}\n\n" +
+                        "double r = Math::pi * 2;"
+                    )
+                    BodyText(
+                        "Nested namespaces: C++11 style uses nested blocks. C++17 added a shorthand " +
+                        "that avoids deep indentation."
+                    )
+                    CodeBlock(
+                        "// C++11 — nested blocks\n" +
+                        "namespace Outer {\n" +
+                        "    namespace Inner {\n" +
+                        "        void foo();\n" +
+                        "    }\n" +
+                        "}\n\n" +
+                        "// C++17 shorthand — identical result\n" +
+                        "namespace Outer::Inner {\n" +
+                        "    void foo();\n" +
+                        "}\n\n" +
+                        "// From outside: fully qualified\n" +
+                        "Outer::Inner::foo();\n\n" +
+                        "// Inside Outer: skip the outer prefix\n" +
+                        "namespace Outer {\n" +
+                        "    void bar() { Inner::foo(); }\n" +
+                        "}\n\n" +
+                        "// Inside Inner: just the bare name\n" +
+                        "namespace Outer::Inner {\n" +
+                        "    void baz() { foo(); }  // unqualified lookup finds it\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "using namespace — brings every name from a namespace into the current scope " +
+                        "so you can use them unqualified."
+                    )
+                    CodeBlock(
+                        "// In a .cpp file — fine, limited to this translation unit\n" +
+                        "using namespace std;\n" +
+                        "vector<int> v;   // instead of std::vector<int>\n\n" +
+                        "// Safer: import only what you need\n" +
+                        "using std::vector;\n" +
+                        "using std::string;\n" +
+                        "vector<string> words;  // other names still need std::"
+                    )
+                    BodyText(
+                        "Why 'using namespace' is dangerous in header files: a header is copy-pasted " +
+                        "verbatim into every translation unit that includes it. Putting 'using namespace std;' " +
+                        "at file scope in a header silently dumps all of std into every includer — " +
+                        "including transitive ones the library author never sees. This can cause " +
+                        "ambiguous-call errors in completely unrelated code, and the problem is very " +
+                        "hard to diagnose. Rule: never put 'using namespace' at file scope in a header."
+                    )
+                    BodyText(
+                        "Three uses of 'using' inside a class:"
+                    )
+                    BodyText(
+                        "1. Type aliases — publish a nested type as part of the class's public " +
+                        "interface. This is the standard pattern STL containers use to expose " +
+                        "iterator, value_type, etc."
+                    )
+                    CodeBlock(
+                        "template<typename T>\n" +
+                        "class MyContainer {\n" +
+                        "    std::vector<T> data;\n" +
+                        "public:\n" +
+                        "    using value_type = T;\n" +
+                        "    using iterator   = typename std::vector<T>::iterator;\n\n" +
+                        "    iterator begin() { return data.begin(); }\n" +
+                        "    iterator end()   { return data.end(); }\n" +
+                        "};\n\n" +
+                        "MyContainer<int>::iterator it;  // usable by callers"
+                    )
+                    BodyText(
+                        "2. Inheriting constructors (C++11) — expose all base-class constructors in " +
+                        "a derived class without re-declaring each one."
+                    )
+                    CodeBlock(
+                        "class Base {\n" +
+                        "public:\n" +
+                        "    Base(int x)        { /* ... */ }\n" +
+                        "    Base(int x, double y) { /* ... */ }\n" +
+                        "};\n\n" +
+                        "class Derived : public Base {\n" +
+                        "public:\n" +
+                        "    using Base::Base;   // inherit all Base constructors\n" +
+                        "};\n\n" +
+                        "Derived d1(42);       // calls Base(int)\n" +
+                        "Derived d2(1, 3.14);  // calls Base(int, double)"
+                    )
+                    BodyText(
+                        "3. Un-hiding base methods — if a derived class defines any overload of a " +
+                        "function with the same name as a base function, the base versions are hidden " +
+                        "(not overloaded — hidden entirely). 'using Base::name' brings the base " +
+                        "overloads back into scope alongside the derived ones."
+                    )
+                    CodeBlock(
+                        "class Base {\n" +
+                        "public:\n" +
+                        "    void print(int x)    { /* prints int */ }\n" +
+                        "    void print(double x) { /* prints double */ }\n" +
+                        "};\n\n" +
+                        "class Derived : public Base {\n" +
+                        "public:\n" +
+                        "    void print(const std::string &s) { /* prints string */ }\n" +
+                        "    // Without the next line, Base::print(int/double) are HIDDEN.\n" +
+                        "    using Base::print;   // bring Base overloads back into scope\n" +
+                        "};\n\n" +
+                        "Derived d;\n" +
+                        "d.print(42);       // Base::print(int)    — visible again\n" +
+                        "d.print(3.14);     // Base::print(double) — visible again\n" +
+                        "d.print(\"hello\");  // Derived::print(string)"
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

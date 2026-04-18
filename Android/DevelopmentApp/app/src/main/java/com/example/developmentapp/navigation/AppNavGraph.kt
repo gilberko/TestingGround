@@ -36,6 +36,8 @@ import com.example.developmentapp.screens.cpp.CppRaiiSmartPtrsScreen
 import com.example.developmentapp.screens.cpp.CppTemplatesScreen
 import com.example.developmentapp.screens.cpp.CppConstAutoMutableScreen
 import com.example.developmentapp.screens.cpp.CppErrorHandlingScreen
+import com.example.developmentapp.screens.cpp.CppStlContainersScreen
+import com.example.developmentapp.screens.cpp.CppLambdasThreadingScreen
 import com.example.developmentapp.screens.algorithms.AlphaBetaPruningScreen
 import com.example.developmentapp.screens.algorithms.HeapScreen
 import com.example.developmentapp.screens.algorithms.TwoThreeTreesScreen
@@ -135,6 +137,8 @@ sealed class Screen(val route: String) {
     object CppTemplates              : Screen("cpp_templates")
     object CppConstAutoMutable       : Screen("cpp_const_auto_mutable")
     object CppErrorHandling          : Screen("cpp_error_handling")
+    object CppStlContainers          : Screen("cpp_stl_containers")
+    object CppLambdasThreading       : Screen("cpp_lambdas_threading")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -203,7 +207,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onRaiiSmartPtrs       = { navController.navigate(Screen.CppRaiiSmartPtrs.route) },
                 onTemplates           = { navController.navigate(Screen.CppTemplates.route) },
                 onConstAutoMutable    = { navController.navigate(Screen.CppConstAutoMutable.route) },
-                onErrorHandling       = { navController.navigate(Screen.CppErrorHandling.route) }
+                onErrorHandling       = { navController.navigate(Screen.CppErrorHandling.route) },
+                onStlContainers       = { navController.navigate(Screen.CppStlContainers.route) },
+                onLambdasThreading    = { navController.navigate(Screen.CppLambdasThreading.route) }
             )
         }
         composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -224,6 +230,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppTemplates.route)          { CppTemplatesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppConstAutoMutable.route)   { CppConstAutoMutableScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppErrorHandling.route)      { CppErrorHandlingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppStlContainers.route)      { CppStlContainersScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppLambdasThreading.route)   { CppLambdasThreadingScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
