@@ -114,6 +114,46 @@ pthread_mutex_destroy(&mtx);"""
                 }
             }
             item {
+                SectionCard(title = "Futex — How pthread_mutex Works Internally") {
+                    BodyText("futex stands for Fast Userspace muTEX. It is a Linux syscall that enables user-space locking primitives to avoid the kernel in the common (uncontended) case.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("The key insight: most of the time a lock is NOT contended. futex exploits this by splitting locking into a fast path and a slow path:")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    CodeBlock(
+                        """Fast path (no contention):
+  Thread does atomic CAS on an integer in userspace.
+  If it succeeds → lock acquired. No syscall at all.
+
+Slow path (lock is already taken):
+  Atomic CAS fails → thread calls futex(FUTEX_WAIT).
+  Kernel checks the value again (atomically) and
+  puts the thread to sleep if still contended.
+
+Unlock path (waiters exist):
+  Owner calls futex(FUTEX_WAKE) → kernel wakes one
+  (or all) sleeping threads."""
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("The futex word is a plain int shared between threads. Its value encodes lock state — e.g., 0 = unlocked, 1 = locked (no waiters), 2 = locked (waiters sleeping in kernel).")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Does pthread_mutex use futex? Yes — always. glibc's NPTL implementation uses futex as the foundation for every pthread_mutex type:")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    CodeBlock(
+                        """PTHREAD_MUTEX_DEFAULT/NORMAL  — futex, fast path
+PTHREAD_MUTEX_ERRORCHECK      — futex + ownership check
+PTHREAD_MUTEX_RECURSIVE       — futex + lock count
+Robust mutex variants         — futex + robust-list
+Priority-inheritance (PI)     — futex with kernel PI
+
+PTHREAD_MUTEX_ADAPTIVE_NP     — GNU extension:
+  spins ~100x first, then falls back to futex.
+  (glibc.pthread.mutex_spin_count tunable)"""
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("There is no pthread_mutex type in modern Linux/glibc that issues a syscall on every lock — the futex fast path is universal. The old \"syscall every time\" approach no longer exists.")
+                }
+            }
+            item {
                 SectionCard(title = "Semaphore (sem_t)") {
                     BodyText("A semaphore is a generalized counter. Multiple threads can \"hold\" the semaphore simultaneously up to the initial count. Unlike a mutex, it can be posted (released) from a different thread — or even a different process.")
                     CodeBlock(

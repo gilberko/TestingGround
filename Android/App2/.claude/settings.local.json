@@ -44,7 +44,8 @@
       "Read(//c/Users/gilbe/AppData/Local/Programs/Android Studio/jbr/**)",
       "Bash(find:*)",
       "Bash(grep -E \"\\\\.kt$\")",
-      "Bash(grep \"\\\\.kt$\")"
+      "Bash(grep \"\\\\.kt$\")",
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")"
     ]
   }
 }
