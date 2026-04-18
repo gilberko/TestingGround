@@ -53,7 +53,8 @@ fun UserModeHubScreen(
     onSharedObjects: () -> Unit,
     onAsyncOperations: () -> Unit,
     onGraphicalInterface: () -> Unit,
-    onInlineAssembly: () -> Unit
+    onInlineAssembly: () -> Unit,
+    onFanotify: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -131,6 +132,13 @@ fun UserModeHubScreen(
             ) {
                 UserModeButton(label = "Graphical\nInterface", modifier = Modifier.weight(1f), onClick = onGraphicalInterface)
                 UserModeButton(label = "Inline\nAssembly", modifier = Modifier.weight(1f), onClick = onInlineAssembly)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "fanotify /\ninotify", modifier = Modifier.weight(1f), onClick = onFanotify)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

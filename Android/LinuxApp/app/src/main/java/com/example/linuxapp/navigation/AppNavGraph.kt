@@ -67,6 +67,7 @@ import com.example.linuxapp.screens.permissions.AffinityScreen
 import com.example.linuxapp.screens.permissions.ProcessSchedulingScreen
 import com.example.linuxapp.screens.usermode.UserModeGraphicalScreen
 import com.example.linuxapp.screens.usermode.UserModeInlineAssemblyScreen
+import com.example.linuxapp.screens.usermode.UserModeFanotifyScreen
 import com.example.linuxapp.screens.permissions.CallingConventionsScreen
 import com.example.linuxapp.screens.permissions.MakefileCMakeScreen
 import com.example.linuxapp.screens.permissions.IptablesNetfilterScreen
@@ -137,6 +138,7 @@ sealed class Screen(val route: String) {
     object AdvancedAffinity          : Screen("advanced_affinity")
     object AdvancedProcessScheduling : Screen("advanced_process_scheduling")
     object UserModeInlineAssembly    : Screen("user_mode_inline_assembly")
+    object UserModeFanotify          : Screen("user_mode_fanotify")
     object CallingConventions        : Screen("calling_conventions")
     object KernelPendOperations      : Screen("kernel_pend_operations")
     object TheWholePictureHub        : Screen("the_whole_picture_hub")
@@ -264,7 +266,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSharedObjects = { navController.navigate(Screen.UserModeSharedObjects.route) },
                 onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) },
                 onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) },
-                onInlineAssembly = { navController.navigate(Screen.UserModeInlineAssembly.route) }
+                onInlineAssembly = { navController.navigate(Screen.UserModeInlineAssembly.route) },
+                onFanotify = { navController.navigate(Screen.UserModeFanotify.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -405,6 +408,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeInlineAssembly.route) {
             UserModeInlineAssemblyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeFanotify.route) {
+            UserModeFanotifyScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.CallingConventions.route) {
             CallingConventionsScreen(onBack = { navController.popBackStack() })
