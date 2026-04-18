@@ -159,6 +159,168 @@ mmap(NULL, 4096, PROT_READ|PROT_WRITE,
                 }
             }
             item {
+                SectionCard(title = "ftrace — Kernel Function Tracer") {
+                    BodyText("ftrace is the Linux kernel's built-in tracing framework. It can record every kernel function call, draw call graphs with entry/exit timestamps, trace IRQ handlers, scheduler events, and more — all from a running system with no kernel recompile. When disabled, overhead is zero: the kernel patches NOP instructions over the tracing hooks at boot.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("ftrace lives in debugfs. Mount it if needed, then look at the key control files:")
+                    CodeBlock(
+                        """mount -t debugfs nodev /sys/kernel/debug
+cd /sys/kernel/debug/tracing
+
+cat available_tracers      # tracers built into this kernel
+# e.g.: function function_graph blk mmiotrace nop
+
+cat current_tracer         # active tracer (default: nop)
+cat trace                  # the ring-buffer output
+cat trace_pipe             # stream output in real time (like tail -f)
+
+echo 1 > tracing_on        # start recording
+echo 0 > tracing_on        # stop recording
+echo > trace               # clear the ring buffer"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("function tracer — logs every kernel function call with CPU, PID, and timestamp:")
+                    CodeBlock(
+                        """echo function > current_tracer
+echo 1 > tracing_on
+# ... do some work ...
+echo 0 > tracing_on
+cat trace
+
+# Sample output:
+#          TASK-PID   CPU#  TIMESTAMP  FUNCTION
+#             bash-1234  [001] 12.345678: vfs_read <-ksys_read
+#             bash-1234  [001] 12.345679: rw_verify_area <-vfs_read
+#             bash-1234  [001] 12.345680: security_file_permission <-rw_verify_area"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("function_graph tracer — shows call graph with entry/exit and time spent in each function:")
+                    CodeBlock(
+                        """echo function_graph > current_tracer
+echo 1 > tracing_on
+cat /etc/hostname          # trigger some syscalls
+echo 0 > tracing_on
+cat trace
+
+# Sample output:
+# CPU DURATION             FUNCTION CALLS
+#  0) + 15.432 us   |  vfs_read() {
+#  0)   2.100 us    |    rw_verify_area();
+#  0)   8.300 us    |    ext4_file_read_iter();
+#  0)              |  }
+# '+' = over 10µs, '!' = over 100µs, '$' = over 1ms"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Filtering — trace only specific functions to reduce noise:")
+                    CodeBlock(
+                        """# Trace only vfs_read and everything it calls:
+echo vfs_read > set_ftrace_filter
+echo function_graph > current_tracer
+echo 1 > tracing_on
+
+# Trace a whole subsystem (wildcard):
+echo 'ext4_*' > set_ftrace_filter
+
+# Clear the filter (trace everything again):
+echo > set_ftrace_filter
+
+# For function_graph, use set_graph_function instead:
+echo vfs_read > set_graph_function"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Trace a specific process only — filter by PID:")
+                    CodeBlock(
+                        """echo ${'$'}${'$'} > set_ftrace_pid       # $$ = current shell PID
+echo function > current_tracer
+echo 1 > tracing_on
+./myprogram                       # only this PID is traced
+echo 0 > tracing_on
+cat trace"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Event tracing — trace kernel events (scheduler, IRQ, syscalls) without a function tracer. Each subsystem exposes enable/disable toggles under events/:")
+                    CodeBlock(
+                        """ls events/                     # subsystems: sched, irq, syscalls, net, …
+
+# Enable scheduler context-switch events:
+echo 1 > events/sched/sched_switch/enable
+
+# Enable IRQ handler entry events:
+echo 1 > events/irq/irq_handler_entry/enable
+
+# Enable openat syscall entry:
+echo 1 > events/syscalls/sys_enter_openat/enable
+
+# Enable ALL events in a subsystem at once:
+echo 1 > events/sched/enable
+
+echo 1 > tracing_on
+# ... trigger activity ...
+echo 0 > tracing_on
+cat trace
+
+# Sample sched_switch output:
+# bash-1234 [000] 45.678901: sched_switch:
+#   prev_comm=bash prev_pid=1234 prev_prio=120
+#   next_comm=kworker next_pid=42 next_prio=120
+
+# Disable all events when done:
+echo 0 > events/enable"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("trace_printk in a kernel module — write directly into the ftrace ring buffer instead of dmesg. Output appears in cat trace alongside other ftrace events, with microsecond timestamps:")
+                    CodeBlock(
+                        """#include <linux/module.h>
+#include <linux/fs.h>
+
+static ssize_t my_read(struct file *f, char __user *buf,
+                        size_t len, loff_t *off)
+{
+    // trace_printk goes to the ftrace ring buffer, not dmesg.
+    // Use it for high-frequency paths where pr_info would flood the log.
+    trace_printk("my_read called: len=%zu off=%lld\n", len, *off);
+    return 0;
+}
+
+// Build normally; no extra Makefile flags needed.
+// While the module runs:
+//   cat /sys/kernel/debug/tracing/trace
+// Output line:
+//   mymodule-1357 [002] 123.456789: my_read: len=4096 off=0"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Stack tracer option — print a full kernel stack trace every time a traced function is hit. Useful for finding all callers of a function:")
+                    CodeBlock(
+                        """echo function          > current_tracer
+echo vfs_read          > set_ftrace_filter
+echo stacktrace        > trace_options      # enable stack capture
+echo 1 > tracing_on
+cat /etc/hostname
+echo 0 > tracing_on
+cat trace
+
+# Each vfs_read hit now shows a full call stack:
+#   bash-1234 [001] 12.34: vfs_read <-ksys_read
+#   bash-1234 [001] 12.34: <stack trace>
+#    => ksys_read
+#    => do_syscall_64
+#    => entry_SYSCALL_64_after_hwframe
+
+# Disable stack capture when done:
+echo nostacktrace > trace_options"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Restore defaults when done:")
+                    CodeBlock(
+                        """echo nop   > current_tracer   # disable tracer
+echo       > set_ftrace_filter  # clear function filter
+echo       > set_ftrace_pid     # clear PID filter
+echo 0     > events/enable      # disable all events
+echo       > trace              # clear ring buffer"""
+                    )
+                }
+            }
+            item {
                 SectionCard(title = "Kernel Oops") {
                     BodyText("A kernel oops is the kernel detecting an internal error from which it may be able to recover — for example, a NULL pointer dereference in a kernel module. The faulty process (or module) is typically killed, but the system continues running.")
                     Spacer(modifier = Modifier.height(8.dp))
