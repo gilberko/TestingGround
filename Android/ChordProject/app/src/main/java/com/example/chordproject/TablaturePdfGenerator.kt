@@ -4,6 +4,7 @@ package com.example.chordproject
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
@@ -28,11 +29,13 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import java.io.File
 import kotlin.coroutines.resume
+import kotlin.math.abs
 
 object TablaturePdfGenerator {
 
-    // Standard guitar tuning: string 1 (high E) to string 6 (low E), MIDI numbers
-    private val STRING_MIDI = intArrayOf(64, 59, 55, 50, 45, 40)
+    // AlphaTab string numbering: string 1 = low E (bottom of TAB), string 6 = high E (top).
+    // We index from low E so idx=0→string 1 (E2), idx=5→string 6 (E4).
+    private val STRING_MIDI = intArrayOf(40, 45, 50, 55, 59, 64) // E2 A2 D3 G3 B3 E4
     private val NOTE_NAMES = arrayOf("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
 
     private fun noteNameToMidi(note: String): Int? {
@@ -43,24 +46,42 @@ object TablaturePdfGenerator {
         return (octave + 1) * 12 + pc
     }
 
-    // Prefer the lowest fret in 0-12; fall back to 0-22 on any string
-    private fun noteNameToStringFret(note: String): Pair<Int, Int>? {
-        val midi = noteNameToMidi(note) ?: return null
-        var bestString = -1
-        var bestFret = Int.MAX_VALUE
+    // Returns all playable (string, fret) options for a note, sorted by fret number.
+    // String 1=low E … string 6=high E, matching AlphaTab's convention.
+    private fun noteNameToCandidates(note: String): List<Pair<Int, Int>> {
+        val midi = noteNameToMidi(note) ?: return emptyList()
+        val primary = mutableListOf<Pair<Int, Int>>()
+        val fallback = mutableListOf<Pair<Int, Int>>()
         for ((idx, openMidi) in STRING_MIDI.withIndex()) {
             val fret = midi - openMidi
-            if (fret in 0..12 && fret < bestFret) {
-                bestFret = fret
-                bestString = idx + 1
+            val string = idx + 1
+            if (fret in 0..12) primary += Pair(string, fret)
+            else if (fret in 13..22) fallback += Pair(string, fret)
+        }
+        primary.sortBy { it.second }
+        fallback.sortBy { it.second }
+        return primary + fallback
+    }
+
+    // Pick the best (string, fret) for a note given the current hand position.
+    // Rules:
+    //   1. Always prefer primary (frets 0-12) over fallback (frets 13-22).
+    //   2. Among fallbacks, prefer treble strings (5=B, 6=e) over bass strings —
+    //      high-fret playing naturally lives on the thinner strings.
+    //   3. Within each pool, pick the candidate closest to targetFret.
+    private fun bestCandidate(note: String, targetFret: Float): Pair<Int, Int>? {
+        val candidates = noteNameToCandidates(note)
+        val primary  = candidates.filter { it.second <= 12 }
+        val fallback = candidates.filter { it.second >  12 }
+        return when {
+            primary.isNotEmpty() -> primary.minByOrNull { abs(it.second - targetFret) }
+            fallback.isNotEmpty() -> {
+                val treble = fallback.filter { it.first >= 5 } // strings 5 (B) and 6 (e)
+                val pool   = if (treble.isNotEmpty()) treble else fallback
+                pool.minByOrNull { abs(it.second - targetFret) }
             }
+            else -> null
         }
-        if (bestString != -1) return Pair(bestString, bestFret)
-        for ((idx, openMidi) in STRING_MIDI.withIndex()) {
-            val fret = midi - openMidi
-            if (fret in 0..22) return Pair(idx + 1, fret)
-        }
-        return null
     }
 
     private fun buildScore(segments: List<AggregatedFrameResult>): Score {
@@ -75,20 +96,22 @@ object TablaturePdfGenerator {
         val staff = Staff()
         staff.index = 0.0
         staff.track = track
-        // Standard guitar tuning: E4(64), B3(59), G3(55), D3(50), A2(45), E2(40)
+        // AlphaTab expects tuning from string 1 (low E) to string N (high E)
         val tuningList = DoubleList()
-        tuningList.push(64.0)
-        tuningList.push(59.0)
-        tuningList.push(55.0)
-        tuningList.push(50.0)
-        tuningList.push(45.0)
-        tuningList.push(40.0)
+        tuningList.push(40.0) // E2 low E  — string 1
+        tuningList.push(45.0) // A2
+        tuningList.push(50.0) // D3
+        tuningList.push(55.0) // G3
+        tuningList.push(59.0) // B3
+        tuningList.push(64.0) // E4 high E — string 6
         staff.stringTuning = Tuning("Standard", tuningList, true)
         track.staves.push(staff)
         score.addTrack(track)
 
         var barIndex = 0
         var segIdx = 0
+        var centerFret = 5f // tracks current hand position to minimise jumps
+
         while (segIdx < segments.size) {
             val masterBar = MasterBar()
             masterBar.index = barIndex.toDouble()
@@ -112,15 +135,17 @@ object TablaturePdfGenerator {
                 beat.duration = Duration.Quarter
 
                 if (seg.chord != "(silence)" && seg.notes.isNotEmpty()) {
+                    val assignedFrets = mutableListOf<Int>()
                     for (noteName in seg.notes) {
-                        val (str, fret) = noteNameToStringFret(noteName) ?: continue
+                        val (str, fret) = bestCandidate(noteName, centerFret) ?: continue
                         val note = Note()
                         note.string = str.toDouble()
                         note.fret = fret.toDouble()
                         beat.addNote(note)
+                        assignedFrets += fret
                     }
+                    if (assignedFrets.isNotEmpty()) centerFret = assignedFrets.average().toFloat()
                 }
-                // Empty beat (no notes) acts as a rest
 
                 voice.addBeat(beat)
                 beatCount++
@@ -138,8 +163,8 @@ object TablaturePdfGenerator {
         return score
     }
 
-    suspend fun generate(context: Context, segments: List<AggregatedFrameResult>): File {
-        val renderWidthPx = 794 // A4 width at 96 DPI
+    suspend fun generate(context: Context, segments: List<AggregatedFrameResult>, physicalScale: Double = 2.0): File {
+        val renderWidthPx = 794   // A4 width in logical pixels (determines layout)
 
         val settings = Settings()
         settings.display.staveProfile = StaveProfile.Tab
@@ -149,8 +174,26 @@ object TablaturePdfGenerator {
 
         data class Chunk(val x: Float, val y: Float, val bitmap: Bitmap)
 
-        // ScoreRenderer creates an Android Handler internally, so it must run on a Looper thread
+        // ScoreRenderer requires AlphaTab's native Skia + Bravura font to be initialized first.
+        // AndroidEnvironment.initializeAndroid is internal so we call it via reflection.
+        // It has an _isInitialized guard so repeated calls are free.
         val (chunks, totalHeight) = withContext(Dispatchers.Main) {
+            Class.forName("alphaTab.platform.android.AndroidEnvironment")
+                .getDeclaredField("Companion")
+                .also { it.isAccessible = true }
+                .get(null)
+                .let { companion ->
+                    companion.javaClass
+                        .getDeclaredMethod("initializeAndroid", Context::class.java)
+                        .also { it.isAccessible = true }
+                        .invoke(companion, context)
+                }
+            // physicalScale controls output DPI. Chunk bitmaps come back at physicalScale× their
+            // logical size; chunk (x,y) coordinates remain in logical units, so we multiply when
+            // compositing. Setting HighDpiFactor here affects the global but initializeAndroid's
+            // guard prevents it from being reset on subsequent Export taps.
+            alphaTab.Environment.HighDpiFactor = physicalScale
+
             suspendCancellableCoroutine { cont ->
                 val renderer = ScoreRenderer(settings)
                 renderer.width = renderWidthPx.toDouble()
@@ -163,14 +206,21 @@ object TablaturePdfGenerator {
                 }
 
                 renderer.partialRenderFinished.on { e ->
-                    (e.renderResult as? Bitmap)?.let { bmp ->
-                        chunks.add(Chunk(e.x.toFloat(), e.y.toFloat(), bmp))
+                    val image = e.renderResult as? alphaTab.platform.skia.AlphaSkiaImage
+                    val pngBytes = image?.toPng()?.toByteArray()
+                    if (pngBytes != null) {
+                        val bmp = BitmapFactory.decodeByteArray(pngBytes, 0, pngBytes.size)
+                        if (bmp != null) chunks.add(Chunk(e.x.toFloat(), e.y.toFloat(), bmp))
                     }
                 }
 
                 renderer.renderFinished.on { e ->
                     totalHeight = e.totalHeight
                     cont.resume(Pair(chunks, totalHeight))
+                }
+
+                renderer.error.on { e ->
+                    cont.resumeWith(Result.failure(e))
                 }
 
                 val trackIndexes = DoubleList()
@@ -181,33 +231,37 @@ object TablaturePdfGenerator {
 
         // Composite all rendered chunks onto a single white bitmap (IO-safe)
         return withContext(Dispatchers.IO) {
-            val fullBitmap = Bitmap.createBitmap(
-                renderWidthPx,
-                totalHeight.toInt().coerceAtLeast(100),
-                Bitmap.Config.ARGB_8888
-            )
+            val renderWidthPhys = (renderWidthPx * physicalScale).toInt()
+            val totalHeightPhys = (totalHeight * physicalScale).toInt().coerceAtLeast(100)
+
+            val fullBitmap = Bitmap.createBitmap(renderWidthPhys, totalHeightPhys, Bitmap.Config.ARGB_8888)
             val canvas = Canvas(fullBitmap)
             canvas.drawColor(Color.WHITE)
             for (chunk in chunks) {
-                canvas.drawBitmap(chunk.bitmap, chunk.x, chunk.y, null)
+                // chunk (x,y) are logical units; bitmaps are physicalScale× larger
+                canvas.drawBitmap(chunk.bitmap, chunk.x * physicalScale.toFloat(), chunk.y * physicalScale.toFloat(), null)
             }
 
-            // Slice into A4 pages
+            // Slice into A4 pages. pdfPageWidth/Height are in PDF user units (pts).
+            // bitmapPageH = how many physical pixels correspond to one A4 page height.
             val pdfPageWidth = 595
             val pdfPageHeight = 842
+            val bitmapPageH = (pdfPageHeight.toDouble() * renderWidthPhys / pdfPageWidth).toInt()
             val doc = PdfDocument()
             var pageIndex = 0
             var sliceY = 0
 
             while (sliceY < fullBitmap.height) {
-                val sliceH = minOf(pdfPageHeight, fullBitmap.height - sliceY)
-                val info = PdfDocument.PageInfo.Builder(pdfPageWidth, sliceH, ++pageIndex).create()
+                val sliceH = minOf(bitmapPageH, fullBitmap.height - sliceY)
+                // Convert physical slice height back to PDF pts to keep correct aspect ratio
+                val pdfSliceH = (sliceH.toDouble() * pdfPageWidth / renderWidthPhys).toInt()
+                val info = PdfDocument.PageInfo.Builder(pdfPageWidth, pdfSliceH, ++pageIndex).create()
                 val page = doc.startPage(info)
-                val srcRect = Rect(0, sliceY, renderWidthPx, sliceY + sliceH)
-                val dstRect = RectF(0f, 0f, pdfPageWidth.toFloat(), sliceH.toFloat())
+                val srcRect = Rect(0, sliceY, renderWidthPhys, sliceY + sliceH)
+                val dstRect = RectF(0f, 0f, pdfPageWidth.toFloat(), pdfSliceH.toFloat())
                 page.canvas.drawBitmap(fullBitmap, srcRect, dstRect, null)
                 doc.finishPage(page)
-                sliceY += pdfPageHeight
+                sliceY += bitmapPageH
             }
 
             fullBitmap.recycle()

@@ -481,7 +481,7 @@ private val SCALE_PATTERNS = listOf(
             12 to minorPentatonicPos4(),
             14 to minorPentatonicPos5()
         ),
-        fretCount = 4
+        fretCount = 5
     ),
     ScalePattern(
         name = "Major Pentatonic",
@@ -495,7 +495,7 @@ private val SCALE_PATTERNS = listOf(
             12 to majorPentatonicPos4(),
             14 to majorPentatonicPos5()
         ),
-        fretCount = 4
+        fretCount = 5
     ),
     ScalePattern(
         name = "Blues Scale",
@@ -507,7 +507,7 @@ private val SCALE_PATTERNS = listOf(
             7 to bluesPos2(),
             9 to bluesPos3()
         ),
-        fretCount = 4
+        fretCount = 5
     ),
     ScalePattern(
         name = "Major Scale",

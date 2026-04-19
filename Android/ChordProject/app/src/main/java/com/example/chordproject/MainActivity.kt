@@ -33,6 +33,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -98,9 +100,17 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.widget.Toast
 
 enum class AppState { IDLE, RECORDING, ANALYZING, ANALYZED, PLAYING, PLAYING_MIDI, PLAYING_SIMPLIFIED_MIDI }
 enum class Screen { HOME, RECORDING, LEARNING }
+enum class PdfDpi(val scale: Double, val label: String, val description: String) {
+    DPI_96 (1.0, "96 DPI",  "Draft – small file, lower quality"),
+    DPI_144(1.5, "144 DPI", "Standard – balanced quality"),
+    DPI_192(2.0, "192 DPI", "High – sharp on screen (default)"),
+    DPI_240(2.5, "240 DPI", "Very High – near-print quality"),
+    DPI_288(3.0, "288 DPI", "Print – large file, best quality"),
+}
 
 private const val HISTORY_SIZE  = 80
 private const val WAVEFORM_SIZE = 512
@@ -409,6 +419,7 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
     var currentFrameIndex by remember { mutableStateOf(-1) }
     var analysisMethod by remember { mutableStateOf(AnalysisMethod.FFT) }
     var frequencyRange by remember { mutableStateOf(FrequencyRange.BOTH) }
+    var pdfDpi         by remember { mutableStateOf(PdfDpi.DPI_192) }
     var showSettings   by remember { mutableStateOf(false) }
     var simplifiedResults by remember { mutableStateOf<List<AggregatedFrameResult>?>(null) }
     var editedResults by remember { mutableStateOf<List<AggregatedFrameResult>>(emptyList()) }
@@ -862,19 +873,25 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
                           && aggregatedResults.isNotEmpty(),
                 onClick = {
                     scope.launch(Dispatchers.IO) {
-                        val file = TablaturePdfGenerator.generate(
-                            context, simplifiedResults ?: aggregatedResults
-                        )
-                        withContext(Dispatchers.Main) {
-                            val uri = FileProvider.getUriForFile(
-                                context, "${context.packageName}.fileprovider", file
+                        try {
+                            val file = TablaturePdfGenerator.generate(
+                                context, simplifiedResults ?: aggregatedResults, pdfDpi.scale
                             )
-                            val intent = Intent(Intent.ACTION_SEND).apply {
-                                type = "application/pdf"
-                                putExtra(Intent.EXTRA_STREAM, uri)
-                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            withContext(Dispatchers.Main) {
+                                val uri = FileProvider.getUriForFile(
+                                    context, "${context.packageName}.fileprovider", file
+                                )
+                                val intent = Intent(Intent.ACTION_SEND).apply {
+                                    type = "application/pdf"
+                                    putExtra(Intent.EXTRA_STREAM, uri)
+                                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                }
+                                context.startActivity(Intent.createChooser(intent, "Share Tablature PDF"))
                             }
-                            context.startActivity(Intent.createChooser(intent, "Share Tablature PDF"))
+                        } catch (e: Throwable) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "PDF export failed: ${e.message}", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }
@@ -1035,8 +1052,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
             SettingsScreen(
                 analysisMethod  = analysisMethod,
                 frequencyRange  = frequencyRange,
+                pdfDpi          = pdfDpi,
                 onMethodChange  = { analysisMethod = it },
                 onRangeChange   = { frequencyRange = it },
+                onDpiChange     = { pdfDpi = it },
                 settingsEnabled = appState == AppState.IDLE || appState == AppState.ANALYZED || isAnyMidiPlaying,
                 onClose         = { showSettings = false }
             )
@@ -1076,8 +1095,10 @@ fun AudioRecorderScreen(modifier: Modifier = Modifier, onBack: () -> Unit = {}) 
 private fun SettingsScreen(
     analysisMethod  : AnalysisMethod,
     frequencyRange  : FrequencyRange,
+    pdfDpi          : PdfDpi,
     onMethodChange  : (AnalysisMethod) -> Unit,
     onRangeChange   : (FrequencyRange) -> Unit,
+    onDpiChange     : (PdfDpi) -> Unit,
     settingsEnabled : Boolean,
     onClose         : () -> Unit
 ) {
@@ -1110,6 +1131,7 @@ private fun SettingsScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
                         .padding(horizontal = 24.dp, vertical = 16.dp),
                     verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
@@ -1188,6 +1210,44 @@ private fun SettingsScreen(
                                             FrequencyRange.MELODY -> "~250–2000 Hz – vocals, lead guitar, piano melody"
                                             FrequencyRange.BOTH   -> "~80–2000 Hz – full range (default)"
                                         },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = Color(0xFF888888)
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    HorizontalDivider(color = Color(0xFF333333))
+
+                    Text(
+                        "PDF Export DPI",
+                        style      = MaterialTheme.typography.titleSmall,
+                        color      = Color(0xFF90CAF9),
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        PdfDpi.entries.forEach { dpi ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable { onDpiChange(dpi) }
+                                    .padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = pdfDpi == dpi,
+                                    onClick  = { onDpiChange(dpi) }
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Column {
+                                    Text(
+                                        dpi.label,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = Color.White
+                                    )
+                                    Text(
+                                        dpi.description,
                                         style = MaterialTheme.typography.bodySmall,
                                         color = Color(0xFF888888)
                                     )
