@@ -470,6 +470,75 @@ static unsigned int my_hook(void *priv,
                     )
                 }
             }
+            item {
+                SectionCard(title = "Files and Inodes") {
+                    BodyText("The VFS layer uses two central structs to represent files: struct inode (the file object itself) and struct file (an open instance of a file).")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("struct inode — one inode per file regardless of how many times it is opened. Stores metadata and operations pointers, not file content:")
+                    CodeBlock(
+                        """struct inode {
+    unsigned long       i_ino;       /* inode number (unique within fs) */
+    umode_t             i_mode;      /* file type + permission bits */
+    kuid_t              i_uid;
+    kgid_t              i_gid;
+    loff_t              i_size;
+    struct timespec64   i_atime, i_mtime, i_ctime;
+    unsigned int        i_nlink;     /* hard link count */
+
+    const struct inode_operations *i_op;  /* mkdir/lookup/unlink ... */
+    const struct file_operations  *i_fop; /* default ops for open() */
+
+    struct super_block  *i_sb;       /* owning filesystem */
+    struct address_space *i_mapping; /* page cache */
+};
+
+/* Regular files, directories, char/block devices, pipes,
+   and sockets all have inodes. */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("struct file — represents an open file description (not the integer fd). Created by open(). Multiple fds (via dup() or fork()) can reference the same struct file, sharing position and flags:")
+                    CodeBlock(
+                        """struct file {
+    struct inode        *f_inode;      /* pointer back to the inode */
+    const struct file_operations *f_op; /* active ops for this instance */
+    loff_t               f_pos;        /* current file offset */
+    unsigned int         f_flags;      /* O_RDONLY, O_NONBLOCK ... */
+    fmode_t              f_mode;       /* FMODE_READ, FMODE_WRITE */
+    void                *private_data; /* driver-specific per-open state */
+    struct path          f_path;       /* dentry + mount point */
+};"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("File descriptor table — the chain from a task to an open file:")
+                    CodeBlock(
+                        """task_struct->files          (struct files_struct *)
+    └─ files_struct->fdt       (struct fdtable *)
+           └─ fdtable->fd[]    (array of struct file *)
+
+/* Integer fd is just an index into fdt->fd[].
+   fd 0/1/2 = stdin/stdout/stderr. */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Why does struct file have its own f_op if the inode already has i_fop? During open(), the kernel's do_dentry_open() copies the pointer: file->f_op = fops_get(inode->i_fop). It then calls the open() callback. That callback can replace file->f_op entirely for this specific instance. All subsequent syscalls (read, write, ioctl, mmap, poll) dispatch through file->f_op, never through inode->i_fop again.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("VFS open() flow and per-instance f_op replacement:")
+                    CodeBlock(
+                        """/* do_dentry_open() — simplified */
+file->f_op = fops_get(inode->i_fop);   // pointer copy from inode
+if (file->f_op->open)
+    ret = file->f_op->open(inode, file);
+    // ↑ The driver's open() may do:
+    //   file->f_op = &my_instance_fops;
+    // to install different operations for this open file.
+// All future read/write/ioctl use file->f_op.
+
+/* Classic example: a char device driver checks the minor
+   number in open() and installs device-specific f_op.
+   /dev/ttyS0 and /dev/ttyUSB0 share the same inode ops
+   but end up with different f_op after open(). */"""
+                    )
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }
