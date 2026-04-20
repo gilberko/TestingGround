@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -55,7 +57,8 @@ fun DictionaryScreen(
     onPortuguesePhrases: () -> Unit,
     onCooking: () -> Unit,
     onHomeImprovement: () -> Unit,
-    onSports: () -> Unit
+    onSports: () -> Unit,
+    onCountries: () -> Unit
 ) {
     val buttons = listOf(
         "Common Verbs" to onCommonVerbs,
@@ -77,7 +80,8 @@ fun DictionaryScreen(
         "Portuguese Phrases" to onPortuguesePhrases,
         "Cooking" to onCooking,
         "Home Improvement" to onHomeImprovement,
-        "Sports" to onSports
+        "Sports" to onSports,
+        "Countries, Nationalities & Languages" to onCountries
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -110,11 +114,12 @@ fun DictionaryScreen(
         ) { innerPadding ->
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(innerPadding)
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
                 Spacer(modifier = Modifier.height(24.dp))
                 ButtonGrid(buttons)

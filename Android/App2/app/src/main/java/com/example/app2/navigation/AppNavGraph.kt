@@ -57,6 +57,7 @@ import com.example.app2.screens.NegationScreen
 import com.example.app2.screens.AuthorsThoughtsScreen
 import com.example.app2.screens.HomeImprovementScreen
 import com.example.app2.screens.SportsScreen
+import com.example.app2.screens.CountriesScreen
 import com.example.app2.screens.MemorizeVocabScreen
 import com.example.app2.screens.ConversationsScreen
 import com.example.app2.screens.DirectionsConversationScreen
@@ -115,6 +116,7 @@ sealed class Screen(val route: String) {
     object TutorialAuthorsThoughts : Screen("tutorial_authors_thoughts")
     object DictHomeImprovement : Screen("dict_home_improvement")
     object DictSports : Screen("dict_sports")
+    object DictCountries : Screen("dict_countries")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -235,7 +237,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPortuguesePhrases = { navController.navigate(Screen.DictPortuguesePhrases.route) },
                 onCooking = { navController.navigate(Screen.DictCooking.route) },
                 onHomeImprovement = { navController.navigate(Screen.DictHomeImprovement.route) },
-                onSports = { navController.navigate(Screen.DictSports.route) }
+                onSports = { navController.navigate(Screen.DictSports.route) },
+                onCountries = { navController.navigate(Screen.DictCountries.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -294,6 +297,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictSports.route) {
             SportsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictCountries.route) {
+            CountriesScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EPvsBP.route) {
             EPvsBPScreen(onBack = { navController.popBackStack() })
