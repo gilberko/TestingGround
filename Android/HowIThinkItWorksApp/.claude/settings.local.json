@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(keytool *)",
+      "Bash(/c/Program Files/Android/Android Studio/jbr/bin/keytool *)",
+      "Bash(./gradlew assembleRelease *)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease *)",
+      "Bash(git -C /c/Code/TestingGround status)",
+      "Bash(git -C /c/Code/TestingGround log --oneline -5)"
+    ]
+  }
+}
