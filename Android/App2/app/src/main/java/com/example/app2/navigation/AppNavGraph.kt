@@ -24,6 +24,7 @@ import com.example.app2.screens.TimeExpressionsScreen
 import com.example.app2.screens.TutorialScreen
 import com.example.app2.screens.DictionaryScreen
 import com.example.app2.screens.ColorsScreen
+import com.example.app2.screens.NumbersAndColorsScreen
 import com.example.app2.screens.AdjectivesScreen
 import com.example.app2.screens.AdverbsScreen
 import com.example.app2.screens.CommonWordsScreen
@@ -85,6 +86,7 @@ sealed class Screen(val route: String) {
     object TutorialNumbers : Screen("tutorial_numbers")
     object Dictionary : Screen("dictionary")
     object DictColors : Screen("dict_colors")
+    object DictNumbersAndColors : Screen("dict_numbers_and_colors")
     object DictAdjectives : Screen("dict_adjectives")
     object DictAdverbs : Screen("dict_adverbs")
     object DictCommonWords : Screen("dict_common_words")
@@ -220,8 +222,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onCommonVerbs = { navController.navigate(Screen.TutorialCommonVerbs.route) },
                 onTimeExpressions = { navController.navigate(Screen.TutorialTimeExpressions.route) },
-                onNumbers = { navController.navigate(Screen.TutorialNumbers.route) },
-                onColors = { navController.navigate(Screen.DictColors.route) },
+                onNumbersAndColors = { navController.navigate(Screen.DictNumbersAndColors.route) },
                 onAdjectives = { navController.navigate(Screen.DictAdjectives.route) },
                 onAdverbs = { navController.navigate(Screen.DictAdverbs.route) },
                 onCommonWords = { navController.navigate(Screen.DictCommonWords.route) },
@@ -243,6 +244,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictColors.route) {
             ColorsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictNumbersAndColors.route) {
+            NumbersAndColorsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DictAdjectives.route) {
             AdjectivesScreen(onBack = { navController.popBackStack() })
