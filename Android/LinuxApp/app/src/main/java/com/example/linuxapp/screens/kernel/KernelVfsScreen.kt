@@ -162,6 +162,110 @@ mount(src, target, fstype, flags, data)
                 }
             }
             item {
+                SectionCard(title = "Permission Checking — open() to read()/write()") {
+                    BodyText(
+                        "When open() is called, the kernel performs a full DAC (Discretionary Access Control) " +
+                        "check against the inode's owner, group, and permission bits. The result is baked into " +
+                        "the struct file — subsequent read()/write() calls skip the inode entirely and only " +
+                        "check the flags stored in the open file object."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Call chain for open() — permission decision point:")
+                    CodeBlock(
+                        """open(path, O_RDWR)
+  → do_sys_open() / do_sys_openat2()
+    → do_filp_open()
+      → path_openat()       /* resolve path, walk dentries */
+        → vfs_open()
+          → do_dentry_open() /* sets f_mode, calls f_op->open */
+
+/* Permission check happens inside path_openat():
+   may_open() → inode_permission(inode, MAY_READ|MAY_WRITE|MAY_OPEN) */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Inside inode_permission() — the DAC check:")
+                    CodeBlock(
+                        """inode_permission(inode, mask)
+  → security_inode_permission()   /* LSM hooks: SELinux, AppArmor */
+  → do_inode_permission()
+      → inode->i_op->permission()  /* filesystem-specific, if set */
+         else → generic_permission()
+
+/* mask values passed to inode_permission(): */
+MAY_READ   (0x04)  — check read permission
+MAY_WRITE  (0x02)  — check write permission
+MAY_EXEC   (0x01)  — check execute permission
+MAY_OPEN   (0x20)  — set when the caller is open(), not just a test"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("generic_permission() — what it actually checks:")
+                    CodeBlock(
+                        """generic_permission(idmap, inode, mask)
+{
+    /* 1. Capabilities: CAP_DAC_OVERRIDE bypasses mode checks.
+          CAP_DAC_READ_SEARCH bypasses read + exec checks.
+          → root (uid 0) usually holds these, bypassing DAC */
+
+    /* 2. Owner check: if current_uid() == inode->i_uid
+          test the owner bits of inode->i_mode (rwx------) */
+
+    /* 3. Group check: if in_group_p(inode->i_gid)
+          test the group bits of inode->i_mode (---rwx---) */
+
+    /* 4. Other: test the world bits  (------rwx) */
+
+    /* 5. ACL check: posix_acl_permission() if ACLs are set */
+
+    return 0 (allow) or -EACCES (deny)
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Where the permission decision is stored — struct file:")
+                    CodeBlock(
+                        """/* In do_dentry_open(), after permission passes: */
+struct file {
+    fmode_t  f_mode;    /* bitmask set at open time */
+    ...
+};
+
+/* Flags stamped into f_mode: */
+FMODE_READ   — file was opened for reading
+FMODE_WRITE  — file was opened for writing
+FMODE_EXEC   — file is being executed (mmap with PROT_EXEC)
+
+/* If open() is denied (e.g. O_RDWR on a read-only file),
+   open() returns -EACCES and no struct file is created. */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Subsequent read() and write() — no inode check repeated:")
+                    CodeBlock(
+                        """read(fd, buf, n)
+  → vfs_read(file, buf, n, &pos)
+      if (!(file->f_mode & FMODE_READ)) return -EBADF
+      → file->f_op->read_iter()   /* go directly to filesystem */
+
+write(fd, buf, n)
+  → vfs_write(file, buf, n, &pos)
+      if (!(file->f_mode & FMODE_WRITE)) return -EBADF
+      → file->f_op->write_iter()
+
+/* inode_permission() is NOT called again on each read/write.
+   The kernel trusts the flag stamped at open time.
+   Exception: LSMs (SELinux/AppArmor) may run a separate
+   security_file_permission() hook per read/write for MAC policy. */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Summary:")
+                    CodeBlock(
+                        """open()  → full check: inode uid/gid/mode + capabilities + LSM
+           result stored in file->f_mode (FMODE_READ / FMODE_WRITE)
+
+read()  → checks only file->f_mode & FMODE_READ
+write() → checks only file->f_mode & FMODE_WRITE"""
+                    )
+                }
+            }
+            item {
                 SectionCard(title = "Registering a Simple Filesystem") {
                     BodyText("A minimal read-only in-memory filesystem. The key callback is fill_super — it populates the superblock and creates the root inode.")
                     CodeBlock(

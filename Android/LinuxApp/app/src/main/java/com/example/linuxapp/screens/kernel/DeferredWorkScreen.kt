@@ -184,6 +184,81 @@ fun DeferredWorkScreen(onBack: () -> Unit) {
                         "open_softirq(MY_SOFTIRQ, my_softirq_handler); /* register */\n" +
                         "raise_softirq(MY_SOFTIRQ);                    /* schedule */"
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("__do_softirq() — budget and limits:")
+                    BodyText(
+                        "When an IRQ handler returns, the kernel calls __do_softirq() inline on the same CPU " +
+                        "to drain pending softirqs. To prevent softirq processing from starving user-space " +
+                        "processes, __do_softirq() enforces two hard limits:"
+                    )
+                    CodeBlock(
+                        "#define MAX_SOFTIRQ_RESTART  10               /* max loop iterations   */\n" +
+                        "#define MAX_SOFTIRQ_TIME     msecs_to_jiffies(2)  /* ~2 ms time budget */\n" +
+                        "\n" +
+                        "/* __do_softirq() loop (simplified): */\n" +
+                        "restart = 0;\n" +
+                        "end = jiffies + MAX_SOFTIRQ_TIME;\n" +
+                        "do {\n" +
+                        "    pending = local_softirq_pending();\n" +
+                        "    handle_softirqs(pending);\n" +
+                        "    restart++;\n" +
+                        "} while (local_softirq_pending() &&\n" +
+                        "         restart < MAX_SOFTIRQ_RESTART &&\n" +
+                        "         !need_resched() &&\n" +
+                        "         time_before(jiffies, end));\n" +
+                        "\n" +
+                        "if (local_softirq_pending())\n" +
+                        "    wakeup_softirqd();  /* hand off remaining work to ksoftirqd */"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "When the restart count hits 10, the 2 ms budget expires, or the scheduler flags a " +
+                        "higher-priority task (need_resched()), __do_softirq() stops inline and wakes ksoftirqd " +
+                        "to handle the remaining pending softirqs. This prevents softirq storms (e.g. a network " +
+                        "flood) from monopolizing the CPU indefinitely."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("ksoftirqd — the softirq kernel thread:")
+                    BodyText(
+                        "ksoftirqd/N is a per-CPU kernel thread — one dedicated thread per CPU, not a shared " +
+                        "pool. Each thread is pinned to its own CPU and named ksoftirqd/0, ksoftirqd/1, etc."
+                    )
+                    CodeBlock(
+                        "/* ksoftirqd thread function (simplified): */\n" +
+                        "static int ksoftirqd_fn(void *data)\n" +
+                        "{\n" +
+                        "    while (!kthread_should_stop()) {\n" +
+                        "        if (!local_softirq_pending()) {\n" +
+                        "            schedule();   /* nothing pending — sleep */\n" +
+                        "            continue;\n" +
+                        "        }\n" +
+                        "        /* Call the same function used in the inline path: */\n" +
+                        "        __do_softirq();\n" +
+                        "    }\n" +
+                        "    return 0;\n" +
+                        "}"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        "Scheduling class:  SCHED_NORMAL (competes with normal user processes)\n" +
+                        "Context:           process context — the thread itself can be preempted\n" +
+                        "                   and scheduled out between runs\n" +
+                        "Handlers:          still run in softirq context inside __do_softirq();\n" +
+                        "                   cannot sleep during handler execution\n" +
+                        "CPU binding:       pinned — ksoftirqd/0 only runs on CPU 0\n" +
+                        "\n" +
+                        "Wake-up triggers:\n" +
+                        "  • __do_softirq() hits restart/time limit → wakeup_softirqd()\n" +
+                        "  • raise_softirq() called from process context (not in interrupt)\n" +
+                        "  • Softirq pending when returning from IRQ with need_resched set"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "The design goal: softirqs do high-throughput low-latency work inline after IRQs. " +
+                        "ksoftirqd is a safety valve — it ensures that a burst of softirq activity cannot " +
+                        "monopolize the CPU indefinitely, since ksoftirqd can be preempted by user-space " +
+                        "processes running at the same or higher scheduling priority."
+                    )
                 }
             }
 
