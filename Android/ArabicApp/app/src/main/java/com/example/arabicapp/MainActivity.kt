@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.arabicapp.screens.CommonVerbsScreen
 import com.example.arabicapp.screens.CommonWordsScreen
 import com.example.arabicapp.screens.DictionaryScreen
 import com.example.arabicapp.screens.LearningScreen
@@ -99,6 +100,11 @@ fun AppNavigation() {
         composable("common_words") {
             ScreenWithBackButton(title = "Common Words", onBack = { navController.popBackStack() }) {
                 CommonWordsScreen()
+            }
+        }
+        composable("common_verbs") {
+            ScreenWithBackButton(title = "Common Verbs", onBack = { navController.popBackStack() }) {
+                CommonVerbsScreen()
             }
         }
     }

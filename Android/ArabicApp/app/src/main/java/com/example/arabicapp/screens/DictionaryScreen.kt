@@ -30,9 +30,15 @@ fun DictionaryScreen(navController: NavController) {
         }
         Button(
             onClick = { navController.navigate("common_words") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
             Text("Common Words")
+        }
+        Button(
+            onClick = { navController.navigate("common_verbs") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Common Verbs")
         }
     }
 }
