@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,7 +33,10 @@ class MainActivity : ComponentActivity() {
                 composable("home") { HomeScreen(navController) }
                 composable("learning") { LearningHubScreen(navController) }
                 composable("letters_pronunciation") { LettersPronunciationScreen(navController) }
-                composable("dictionary") { ComingSoonScreen(navController) }
+                composable("nouns_demonstratives") { NounsAndDemonstrativesScreen(navController) }
+                composable("cases") { CasesScreen(navController) }
+                composable("dictionary") { DictionaryHubScreen(navController) }
+                composable("basic_words") { BasicWordsScreen(navController) }
             }
         }
     }
@@ -73,11 +77,11 @@ fun NavButton(label: String, onClick: () -> Unit) {
         onClick = onClick,
         modifier = Modifier
             .width(280.dp)
-            .height(64.dp),
+            .heightIn(min = 64.dp),
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue)
     ) {
-        Text(text = label, fontSize = 18.sp, color = Color.White)
+        Text(text = label, fontSize = 18.sp, color = Color.White, textAlign = TextAlign.Center)
     }
 }
 
@@ -110,6 +114,48 @@ fun LearningHubScreen(navController: NavController) {
         ) {
             NavButton(label = "Letters & Pronunciation") {
                 navController.navigate("letters_pronunciation")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "About Nouns And Basic Demonstratives") {
+                navController.navigate("nouns_demonstratives")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Cases") {
+                navController.navigate("cases")
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DictionaryHubScreen(navController: NavController) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Simple Dictionary", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            NavButton(label = "Basic Words, Expressions & Greetings") {
+                navController.navigate("basic_words")
             }
         }
     }
