@@ -112,9 +112,10 @@ fun DictionaryHubScreen(
                         pair.forEach { (label, action) ->
                             OutlinedButton(
                                 onClick = action,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(64.dp),
+                                modifier = if (pair.size == 1)
+                                    Modifier.fillMaxWidth().height(64.dp)
+                                else
+                                    Modifier.weight(1f).height(64.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(
                                     containerColor = FrenchNavy,
                                     contentColor = Color.White
@@ -123,7 +124,6 @@ fun DictionaryHubScreen(
                                 Text(label, textAlign = TextAlign.Center)
                             }
                         }
-                        if (pair.size < 2) Spacer(modifier = Modifier.weight(1f))
                     }
                 }
             }
