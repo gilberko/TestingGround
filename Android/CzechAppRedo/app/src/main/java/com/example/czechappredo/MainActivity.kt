@@ -30,14 +30,15 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
-                composable("learning") { ComingSoonScreen(navController) }
+                composable("learning") { LearningHubScreen(navController) }
+                composable("letters_pronunciation") { LettersPronunciationScreen(navController) }
                 composable("dictionary") { ComingSoonScreen(navController) }
             }
         }
     }
 }
 
-private val ButtonBlue = Color(0xFF1565C0)
+internal val ButtonBlue = Color(0xFF1565C0)
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -77,6 +78,40 @@ fun NavButton(label: String, onClick: () -> Unit) {
         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue)
     ) {
         Text(text = label, fontSize = 18.sp, color = Color.White)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LearningHubScreen(navController: NavController) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Learning The Language", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            NavButton(label = "Letters & Pronunciation") {
+                navController.navigate("letters_pronunciation")
+            }
+        }
     }
 }
 
