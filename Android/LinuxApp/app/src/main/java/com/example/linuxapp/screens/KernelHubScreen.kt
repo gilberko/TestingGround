@@ -56,7 +56,8 @@ fun KernelHubScreen(
     onTheWholePicture: () -> Unit,
     onMemoryManagement: () -> Unit,
     onPendOperations: () -> Unit,
-    onForkClone: () -> Unit
+    onForkClone: () -> Unit,
+    onDkms: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -149,6 +150,13 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "fork() and\nclone()", modifier = Modifier.fillMaxWidth(), onClick = onForkClone)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "DKMS", modifier = Modifier.fillMaxWidth(), onClick = onDkms)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

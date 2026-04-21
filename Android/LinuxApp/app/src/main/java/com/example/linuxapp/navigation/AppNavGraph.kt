@@ -90,6 +90,7 @@ import com.example.linuxapp.screens.kernel.DeviceTypesHubScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryAccessScreen
 import com.example.linuxapp.screens.kernel.KernelThreadingScreen
 import com.example.linuxapp.screens.kernel.ForkCloneScreen
+import com.example.linuxapp.screens.kernel.DkmsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -162,6 +163,7 @@ sealed class Screen(val route: String) {
     object KernelThreading           : Screen("kernel_threading")
     object LinuxUsage2               : Screen("linux_usage_2")
     object KernelForkClone           : Screen("kernel_fork_clone")
+    object KernelDkms                : Screen("kernel_dkms")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -237,7 +239,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTheWholePicture = { navController.navigate(Screen.TheWholePictureHub.route) },
                 onMemoryManagement = { navController.navigate(Screen.KernelMemoryManagement.route) },
                 onPendOperations = { navController.navigate(Screen.KernelPendOperations.route) },
-                onForkClone = { navController.navigate(Screen.KernelForkClone.route) }
+                onForkClone = { navController.navigate(Screen.KernelForkClone.route) },
+                onDkms = { navController.navigate(Screen.KernelDkms.route) }
             )
         }
 
@@ -486,6 +489,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelForkClone.route) {
             ForkCloneScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelDkms.route) {
+            DkmsScreen(onBack = { navController.popBackStack() })
         }
     }
 }
