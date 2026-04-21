@@ -34,7 +34,8 @@
       "Read(//c/Program Files//**)",
       "Read(//c/Users/gilbe/AppData/Local/Programs//**)",
       "Read(//c/Android/**)",
-      "Bash(find /c -maxdepth 5 -name \"java.exe\")"
+      "Bash(find /c -maxdepth 5 -name \"java.exe\")",
+      "PowerShell(Test-Path *)"
     ]
   }
 }

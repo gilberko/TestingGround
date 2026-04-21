@@ -6,7 +6,9 @@
       "Bash(/c/Program Files/Android/Android Studio/jbr/bin/keytool.exe *)",
       "Bash(./gradlew assembleRelease)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" cd \"C:/Code/TestingGround/Android/CzechAppRedo\")",
-      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)"
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)"
     ]
   }
 }

@@ -149,14 +149,8 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "fork() and\nclone()", modifier = Modifier.fillMaxWidth(), onClick = onForkClone)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                KernelButton(label = "DKMS", modifier = Modifier.fillMaxWidth(), onClick = onDkms)
+                KernelButton(label = "fork() and\nclone()", modifier = Modifier.weight(1f), onClick = onForkClone)
+                KernelButton(label = "DKMS", modifier = Modifier.weight(1f), onClick = onDkms)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
