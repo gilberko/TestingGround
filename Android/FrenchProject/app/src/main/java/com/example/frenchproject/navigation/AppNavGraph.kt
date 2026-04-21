@@ -8,6 +8,7 @@ import com.example.frenchproject.screens.DictionaryHubScreen
 import com.example.frenchproject.screens.HomeScreen
 import com.example.frenchproject.screens.LearningHubScreen
 import com.example.frenchproject.screens.SplashScreen
+import com.example.frenchproject.screens.dictionary.CountriesScreen
 import com.example.frenchproject.screens.dictionary.HomeImprovementScreen
 import com.example.frenchproject.screens.dictionary.NatureScreen
 import com.example.frenchproject.screens.dictionary.SportsScreen
@@ -74,6 +75,7 @@ sealed class Screen(val route: String) {
     object Tech              : Screen("tech")
     object EveryoneNoone     : Screen("everyone_noone")
     object ALotOrALittle     : Screen("a_lot_or_a_little")
+    object Countries         : Screen("countries")
 }
 
 @Composable
@@ -131,7 +133,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onHomeImprovement  = { navController.navigate(Screen.HomeImprovement.route) },
                 onSports           = { navController.navigate(Screen.Sports.route) },
                 onNature           = { navController.navigate(Screen.Nature.route) },
-                onTech             = { navController.navigate(Screen.Tech.route) }
+                onTech             = { navController.navigate(Screen.Tech.route) },
+                onCountries        = { navController.navigate(Screen.Countries.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -223,6 +226,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ALotOrALittle.route) {
             ALotOrALittleScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Countries.route) {
+            CountriesScreen(onBack = { navController.popBackStack() })
         }
     }
 }
