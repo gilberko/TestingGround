@@ -34,35 +34,17 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CppHubScreen(
+fun StlHubScreen(
     onBack: () -> Unit,
-    onSyntax: () -> Unit,
-    onMoreVariableTypes: () -> Unit,
-    onCPreProcessor: () -> Unit,
-    onMemoryAllocations: () -> Unit,
-    onCompilation: () -> Unit,
-    onPlusPlus101: () -> Unit,
-    onQuirks: () -> Unit,
-    onStdio: () -> Unit,
-    onKeywords: () -> Unit,
-    onRuntimeMemory: () -> Unit,
-    onOperatorOverloading: () -> Unit,
-    onClassInheritance: () -> Unit,
-    onLoopsConditions: () -> Unit,
-    onReferences: () -> Unit,
-    onRaiiSmartPtrs: () -> Unit,
-    onTemplates: () -> Unit,
-    onConstAutoMutable: () -> Unit,
-    onErrorHandling: () -> Unit,
-    onStl: () -> Unit,
-    onLambdasThreading: () -> Unit
+    onStlContainers: () -> Unit,
+    onAsyncPromiseFuture: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "C / C++",
+                        text       = "STL",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -91,46 +73,28 @@ fun CppHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            CppButtonRow("Syntax", onSyntax, "More Variable Types", onMoreVariableTypes)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("C Pre-Processor", onCPreProcessor, "C Memory Allocations", onMemoryAllocations)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("Compilation, Linking And Loading", onCompilation, "C++ 101", onPlusPlus101)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("Quirks", onQuirks, "Standard I/O & Files", onStdio)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("Keywords", onKeywords, "C Runtime And Memory", onRuntimeMemory)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("Operator Overloading", onOperatorOverloading, "Class Inheritance", onClassInheritance)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("Loops and Conditions", onLoopsConditions, "References & rvalue Refs", onReferences)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("RAII and Smart Pointers", onRaiiSmartPtrs, "Templates", onTemplates)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("const, auto, mutable", onConstAutoMutable, "Error Handling", onErrorHandling)
-            Spacer(Modifier.height(12.dp))
-            CppButtonRow("STL", onStl, "Lambdas & STL Threading", onLambdasThreading)
+            StlButtonRow("STL Containers", onStlContainers, "Async, Promise and Future", onAsyncPromiseFuture)
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun CppButtonRow(
+private fun StlButtonRow(
     label1: String, onClick1: () -> Unit,
     label2: String, onClick2: () -> Unit
 ) {
     Row(
-        modifier            = Modifier.fillMaxWidth(),
+        modifier              = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        CppHubButton(label1, onClick1, Modifier.weight(1f))
-        CppHubButton(label2, onClick2, Modifier.weight(1f))
+        StlHubButton(label1, onClick1, Modifier.weight(1f))
+        StlHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun CppHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun StlHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
         modifier = modifier.height(52.dp),

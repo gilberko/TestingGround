@@ -44,7 +44,9 @@ fun TcpIpHubScreen(
     onIpsec:    () -> Unit,
     onSslTls:   () -> Unit,
     onVpn:      () -> Unit,
-    onProxy:    () -> Unit
+    onProxy:    () -> Unit,
+    onArp:      () -> Unit,
+    onDhcp:     () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -94,6 +96,9 @@ fun TcpIpHubScreen(
             Spacer(Modifier.height(12.dp))
             TcpIpButtonRow("VPN",       onVpn,
                            "Proxy",     onProxy)
+            Spacer(Modifier.height(12.dp))
+            TcpIpButtonRow("ARP",       onArp,
+                           "DHCP",      onDhcp)
             Spacer(Modifier.height(24.dp))
         }
     }

@@ -14,6 +14,10 @@ import com.example.developmentapp.screens.HomeScreen
 import com.example.developmentapp.screens.PythonHubScreen
 import com.example.developmentapp.screens.TcpIpHubScreen
 import com.example.developmentapp.screens.CppHubScreen
+import com.example.developmentapp.screens.StlHubScreen
+import com.example.developmentapp.screens.stl.StlAsyncPromiseFutureScreen
+import com.example.developmentapp.screens.tcpip.ArpScreen
+import com.example.developmentapp.screens.tcpip.DhcpScreen
 import com.example.developmentapp.screens.algorithms.BasicGraphAlgorithmsScreen
 import com.example.developmentapp.screens.algorithms.FourierTransformScreen
 import com.example.developmentapp.screens.algorithms.MoreGraphAlgorithmsScreen
@@ -139,6 +143,8 @@ sealed class Screen(val route: String) {
     object CppErrorHandling          : Screen("cpp_error_handling")
     object CppStlContainers          : Screen("cpp_stl_containers")
     object CppLambdasThreading       : Screen("cpp_lambdas_threading")
+    object StlHub                    : Screen("stl_hub")
+    object StlAsyncPromiseFuture     : Screen("stl_async_promise_future")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -160,6 +166,8 @@ sealed class Screen(val route: String) {
     object SslTls              : Screen("ssl_tls")
     object Vpn                 : Screen("vpn")
     object Proxy               : Screen("proxy")
+    object Arp                 : Screen("arp")
+    object Dhcp                : Screen("dhcp")
 }
 
 @Composable
@@ -208,7 +216,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onTemplates           = { navController.navigate(Screen.CppTemplates.route) },
                 onConstAutoMutable    = { navController.navigate(Screen.CppConstAutoMutable.route) },
                 onErrorHandling       = { navController.navigate(Screen.CppErrorHandling.route) },
-                onStlContainers       = { navController.navigate(Screen.CppStlContainers.route) },
+                onStl                 = { navController.navigate(Screen.StlHub.route) },
                 onLambdasThreading    = { navController.navigate(Screen.CppLambdasThreading.route) }
             )
         }
@@ -232,6 +240,14 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppErrorHandling.route)      { CppErrorHandlingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppStlContainers.route)      { CppStlContainersScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppLambdasThreading.route)   { CppLambdasThreadingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlHub.route) {
+            StlHubScreen(
+                onBack               = { navController.popBackStack() },
+                onStlContainers      = { navController.navigate(Screen.CppStlContainers.route) },
+                onAsyncPromiseFuture = { navController.navigate(Screen.StlAsyncPromiseFuture.route) }
+            )
+        }
+        composable(Screen.StlAsyncPromiseFuture.route) { StlAsyncPromiseFutureScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {
@@ -340,7 +356,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onIpsec     = { navController.navigate(Screen.Ipsec.route) },
                 onSslTls    = { navController.navigate(Screen.SslTls.route) },
                 onVpn       = { navController.navigate(Screen.Vpn.route) },
-                onProxy     = { navController.navigate(Screen.Proxy.route) }
+                onProxy     = { navController.navigate(Screen.Proxy.route) },
+                onArp       = { navController.navigate(Screen.Arp.route) },
+                onDhcp      = { navController.navigate(Screen.Dhcp.route) }
             )
         }
         composable(Screen.Ethernet.route) { EthernetScreen(onBack = { navController.popBackStack() }) }
@@ -353,5 +371,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.SslTls.route)   { SslTlsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Vpn.route)      { VpnScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Proxy.route)    { ProxyScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Arp.route)      { ArpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Dhcp.route)     { DhcpScreen(onBack = { navController.popBackStack() }) }
     }
 }
