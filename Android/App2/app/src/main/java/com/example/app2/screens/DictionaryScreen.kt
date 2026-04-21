@@ -69,7 +69,7 @@ fun DictionaryScreen(
         "Movement" to onMovement,
         "Slightly Confusing Verbs" to onConfusingVerbs,
         "Tech Vocabulary" to onTechWords,
-        "Greetings" to onGreetings,
+        "Basics and Greetings" to onGreetings,
         "Math" to onMath,
         "Vacation" to onVacation,
         "Workplaces & Jobs" to onWorkplaces,
