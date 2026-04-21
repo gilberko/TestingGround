@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 composable("letters_pronunciation") { LettersPronunciationScreen(navController) }
                 composable("nouns_demonstratives") { NounsAndDemonstrativesScreen(navController) }
                 composable("cases") { CasesScreen(navController) }
+                composable("present_tense") { PresentTenseVerbConjugationScreen(navController) }
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
             }
@@ -122,6 +123,10 @@ fun LearningHubScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Cases") {
                 navController.navigate("cases")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Present Tense Verb Conjugation") {
+                navController.navigate("present_tense")
             }
         }
     }
