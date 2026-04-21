@@ -6,7 +6,9 @@
       "Bash(./gradlew assembleRelease *)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease *)",
       "Bash(git -C /c/Code/TestingGround status)",
-      "Bash(git -C /c/Code/TestingGround log --oneline -5)"
+      "Bash(git -C /c/Code/TestingGround log --oneline -5)",
+      "Bash(./gradlew.bat assembleRelease *)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew.bat assembleRelease *)"
     ]
   }
 }

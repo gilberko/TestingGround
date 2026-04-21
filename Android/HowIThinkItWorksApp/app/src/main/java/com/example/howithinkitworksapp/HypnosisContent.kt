@@ -105,6 +105,10 @@ val hypnosisTopics = listOf(
                 body = "One powerful category of induction works by creating confusion in the client's mind. When something unexpected or incoherent happens, the mind immediately goes to work trying to make sense of it — searching for a pattern, a meaning, a way to resolve the ambiguity.\n\nThis search process is called Transderivational Search: the mind rapidly scans its memories, associations, and interpretive frameworks, trying to derive meaning from what it has received."
             ),
             TextSection(
+                heading = "Pattern Interrupt (NLP)",
+                body = "In NLP, the deliberate act of disrupting one of these automatic behavioral sequences is formally called a Pattern Interrupt.\n\nA pattern, in this sense, is any habituated sequence the mind runs on autopilot — a handshake, a standard greeting exchange, a familiar social flow. The mind does not evaluate these consciously; it simply executes them. Interrupting the sequence mid-execution halts the automatic program and creates a brief window of open, unscripted processing: the mind is running but has no pre-loaded script for what comes next.\n\nNLP practitioners use pattern interrupts deliberately for a range of purposes — to break an unwanted emotional loop, to insert a new response in place of an old one, or, as here, to create the window of receptivity that makes a rapid induction possible."
+            ),
+            TextSection(
                 heading = "The Handshake Induction",
                 body = "A well-known example is the handshake induction. A handshake is one of the most automatic social behaviors we have — we all know exactly how it feels and flows. When someone interrupts that pattern in an unexpected way — pausing mid-motion, repositioning the hand, holding it at an unusual angle — the brain's automatic program stutters.\n\nFor a brief moment, normal processing is suspended as the mind scrambles to re-categorize the situation. In that window of confusion, the client is highly open to direction."
             ),
@@ -123,12 +127,66 @@ val hypnosisTopics = listOf(
         )
     ),
     HypnosisTopic(
+        key = "pacing_leading",
+        title = "Pacing And Leading",
+        sections = listOf(
+            TextSection(
+                heading = "What Is Pacing?",
+                body = "Pacing means reflecting back to the client things the hypnotist knows to be true — either directly observed in the moment, or so natural and inevitable that they are certainly happening.\n\nAfter asking the client to focus on a point, for example, the hypnotist might weave into the narration: \"and as you sit there, concentrated, keeping your focus...\" — this is simply describing what is already happening. There is no suggestion here yet, only an accurate mirror.\n\nLike the car in the fog metaphor that matches your speed and adapts to you before you begin to follow it, pacing meets the client exactly where they are. It creates a felt sense of being understood and accurately perceived, which deepens trust and rapport — and makes the client more willing to follow wherever the hypnotist leads next."
+            ),
+            TextSection(
+                heading = "What Is Leading?",
+                body = "Leading means adding something slightly new — a gentle suggestion appended to the pacing.\n\nFor example: \"you may already start to feel a special feeling in the palm of your right hand.\"\n\nOn its own, this sentence is technically true for everyone — anyone may or may not feel something at any moment. It makes no falsifiable claim. But the specific wording carries hidden weight, as we will see."
+            ),
+            TextSection(
+                heading = "The Language of Inevitability",
+                body = "The phrase \"you may already start\" is carefully chosen. The word already does not describe what is happening — it presupposes that something is about to happen. It frames the experience as imminent, inevitable, just a matter of when rather than whether. This kind of language plants an expectation without making a claim that the conscious mind can directly refuse.\n\nThe focus on a specific, concrete location — the palm of your right hand — then directs attention precisely there. Attention has arrived. Now the leading can do its work."
+            ),
+            TextSection(
+                heading = "Attention Creates Experience",
+                body = "When someone holds sustained attention on any part of their body, ordinary random sensations acquire meaning.\n\nConsider someone convinced they have a cavity in a specific tooth. They keep their attention there. Every twinge, every temperature sensitivity, every vague or random sensation in that tooth is noticed and interpreted as confirmation of what they believe is happening. The attention has made the tooth a significance-generating zone.\n\nThe same mechanism operates here. By guiding the client's attention to their right palm and hinting that a feeling is forming, the hypnotist creates the conditions in which a perfectly ordinary sensation — a slight warmth, a tingle, a mild pressure, a momentary throb — becomes a meaningful, noticed event. The client may say: \"I feel something cold\" or \"there's a kind of pressure.\"\n\nThey are not making it up. They felt something real. Attention simply gave it a story."
+            ),
+            TextSection(
+                heading = "Feeding Back What Emerges",
+                body = "When the client reports what they are experiencing, the hypnotist immediately incorporates it: \"And as you sit there now, focused, wondering what is happening with that coldness in your right hand...\"\n\nNotice what has happened. A hint — a mild, non-committal leading suggestion — has become a real experience. And that experience is now being paced back into the narration as an established fact of the session. The client's own report has been absorbed into the unfolding story.\n\nThis is a reinforcing loop. The hint created the experience. The experience confirmed the story. The story, fed back, deepens both the experience and the client's sense that something significant is happening. Each exchange makes the next step more credible."
+            ),
+            TextSection(
+                heading = "Live Observation",
+                body = "Pacing does not have to be limited to the obvious or the inevitable. A skilled hypnotist watches closely and weaves in what they actually observe in real time.\n\nIf the client's blink rate is visibly slowing, the hypnotist might say: \"and as your eyes blink a little more slowly now...\" This is accurate pacing — it reflects what is visibly true. Incorporated into the narration as part of the unfolding process, it creates the striking impression that the hypnotist is perceiving the client's inner state directly.\n\nThis is not a trick; it is skilled attention. But to the client, it feels like something more — and that feeling deepens cooperation."
+            ),
+            TextSection(
+                heading = "The Reinforcing Loop",
+                body = "Pacing and Leading together form a self-reinforcing cycle.\n\nPacing establishes credibility and rapport. Leading introduces a suggestion. The suggestion, attended to, becomes an experience. That experience is paced back, validating it. The validated experience makes the next leading suggestion more believable. Each cycle deepens the state.\n\nThe hypnotist is not commanding. They are narrating — staying close to what is true, nudging it gently forward, and feeding back what emerges. The client, experiencing their own sensations reflected and named in real time, follows naturally."
+            )
+        )
+    ),
+    HypnosisTopic(
         key = "induction_concentration",
         title = "Induction by Concentration",
         sections = listOf(
             TextSection(
-                heading = "Come Back Soon",
-                body = "More on this topic coming soon."
+                heading = "A Different Context",
+                body = "Induction by concentration is most at home in a hypnotherapy setting rather than a stage show.\n\nThe client has come with a purpose — to work through something — and already holds a degree of trust in the process and the therapist. They are there voluntarily. They expect to be guided. They are prepared to follow. The cooperative state is not something that needs to be seized in a window of confusion; it can be built carefully and deliberately, at whatever pace suits the client."
+            ),
+            TextSection(
+                heading = "Two Goals: Relaxation and Focused Attention",
+                body = "The hypnotherapist is trying to produce a specific combination of states.\n\nRelaxation is one: when the body and mind are at ease, the client is less guarded, less likely to resist or raise objections. Focused attention is the other: when attention is held on one thing, the mind is less free to wander into skepticism or distraction.\n\nTogether, these two states reproduce exactly what was described in the fog metaphor — the client, absorbed in following the car ahead, is too focused on keeping up to ask questions or argue about the route. Relaxation removes the edge; focused attention occupies the mind. The result is a client who cooperates with suggestions naturally and readily."
+            ),
+            TextSection(
+                heading = "A Fixed Point",
+                body = "A simple and classical technique is to ask the client to focus on a specific point — a spot on the wall, the tip of a finger, a candle flame, or a fixed object held slightly above eye level.\n\nThe slight physical effort of maintaining upward gaze begins to tire the eyes. The act of holding attention on one thing naturally quiets the mind's tendency to roam. After a time, the suggestion that the eyes are becoming heavy is not an imposition — it is simply an accurate description of what is already happening. The client accepts it easily, because it is true.\n\nThis is pacing before leading: meet the client where they are, then guide them a little further."
+            ),
+            TextSection(
+                heading = "Guided Imagination",
+                body = "Another powerful approach is guided imagination: the hypnotherapist narrates a slow, immersive story, and the client follows it.\n\nPeople are naturally drawn into stories. A well-constructed narrative captures attention, occupies the thinking mind with imagery, and simultaneously relaxes through its pacing and content. A guided walk through a calm forest, a slow descent in a warm elevator, a journey down a quiet river at dusk — these scripts do double duty. They focus attention through engagement and induce relaxation through content and tone.\n\nThe client is not being pushed into a state. They are being led into one, willingly, by following a story. The story does the work."
+            ),
+            TextSection(
+                heading = "Hypnotic Scripts",
+                body = "There are established hypnosis scripts designed specifically to achieve this transition from ordinary awareness into a relaxed yet attentive state.\n\nA script is a prepared narration, calibrated in pace, language, and imagery to sustain focus without jarring the client. Good scripts use language that invites rather than commands — they suggest what the client might notice, or what they may already begin to feel, rather than telling them what they must experience. The door is always open; the client chooses to walk through it.\n\nOver time and with practice, a skilled hypnotherapist adapts and personalises these scripts rather than reading them verbatim. The specific words matter less than the tone, the rhythm, and the felt sense that the therapist is present and attentive."
+            ),
+            TextSection(
+                heading = "Pacing And Leading As Reinforcement",
+                body = "As the induction proceeds, Pacing and Leading (see the dedicated section) can deepen the state further.\n\nThe hypnotherapist feeds back what is visibly true — the client's slowing breath, their stillness, their softening expression — and gently introduces the next step. The client, already partly in the state, follows more readily with each exchange. The real is paced; the next step is led; the client's response is paced back; and the cycle continues, each iteration bringing them a little deeper.\n\nBy the time the formal induction is complete, the client has not been pushed anywhere. They have been walked there, step by step, through a process that felt natural at every moment."
             )
         )
     )

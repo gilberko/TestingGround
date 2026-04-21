@@ -35,7 +35,27 @@
       "Bash('C:/Program Files/Android/Android Studio/jbr/bin/javap.exe' -classpath C:/Users/gilbe/.gradle/caches/9.2.1/transforms/b5ff747df4b88961883bffbedaae3157/workspace/transformed/alphaTab-release-api.jar -p alphaTab.model.MasterBar alphaTab.model.Tuning alphaTab.EventEmitterOfT alphaTab.collections.DoubleList)",
       "Bash('C:/Program Files/Android/Android Studio/jbr/bin/javap.exe' -classpath C:/Users/gilbe/.gradle/caches/9.2.1/transforms/b5ff747df4b88961883bffbedaae3157/workspace/transformed/alphaTab-release-api.jar -p alphaTab.EventEmitterOfT alphaTab.collections.DoubleList)",
       "Bash('C:/Program Files/Android/Android Studio/jbr/bin/javap.exe' -classpath C:/Users/gilbe/.gradle/caches/9.2.1/transforms/4079897e47f925c3a52df07eb9ab0504/workspace/transformed/alphaTab-release-runtime.jar -p alphaTab.platform.android.AndroidCanvas)",
-      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/javap.exe' -classpath C:/Users/gilbe/.gradle/caches/9.2.1/transforms/b5ff747df4b88961883bffbedaae3157/workspace/transformed/alphaTab-release-api.jar -p alphaTab.collections.List)"
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/javap.exe' -classpath C:/Users/gilbe/.gradle/caches/9.2.1/transforms/b5ff747df4b88961883bffbedaae3157/workspace/transformed/alphaTab-release-api.jar -p alphaTab.collections.List)",
+      "Bash(export JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\")",
+      "Bash(mkdir -p /tmp/at2)",
+      "Read(//tmp/**)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' tf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/alphaTab/core/ecmaScript/Error.kt)",
+      "Bash(mkdir -p /tmp/at3)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar androidMain/alphaTab/platform/android/AndroidThreadScoreRenderer.kt)",
+      "Bash(mkdir -p /tmp/at4)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar androidMain/alphaTab/Environment.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar androidMain/alphaTab/platform/android/AndroidEnvironment.kt androidMain/alphaTab/platform/android/AndroidCanvas.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar androidMain/alphaTab/EnvironmentPartials.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar androidMain/alphaTab/AlphaTabView.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' tf C:/Users/gilbe/.gradle/caches/9.2.1/transforms/4ab3f11ecad5f58b46ab0665973a93b6/workspace/transformed/alphaTab-release/jars/classes.jar)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/alphaTab/platform/skia/AlphaSkiaCanvas.kt androidMain/alphaTab/platform/android/AndroidCanvas.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/alphaTab/platform/skia/SkiaCanvas.kt commonMain/alphaTab/platform/skia/SkiaCanvasPartials.kt commonMain/alphaTab/platform/skia/AlphaSkiaImage.kt)",
+      "Bash(cat commonMain/alphaTab/platform/skia/SkiaCanvasPartials.kt)",
+      "Bash(cat commonMain/alphaTab/platform/skia/AlphaSkiaImage.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/alphaTab/platform/skia/SkiaCanvas.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/platform/skia/SkiaCanvas.kt)",
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/rendering/layout/ScoreLayout.kt)"
     ]
   }
 }

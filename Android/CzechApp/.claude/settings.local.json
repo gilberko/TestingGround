@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p C:/Code/TestingGround/Android/CzechApp/app/src/main/java/com/example/czechapp/navigation)",
+      "Bash(mkdir -p C:/Code/TestingGround/Android/CzechApp/app/src/main/java/com/example/czechapp/screens)",
+      "Bash(mkdir -p C:/Code/TestingGround/Android/CzechApp/app/src/main/java/com/example/czechapp/viewmodel)",
+      "Bash(mkdir -p C:/Code/TestingGround/Android/CzechApp/app/src/main/java/com/example/czechapp/data)",
+      "Bash(mkdir -p C:/Code/TestingGround/Android/CzechApp/app/src/main/res/raw)",
+      "Bash(keytool *)",
+      "Bash(/c/Program Files/Android/Android Studio/jbr/bin/keytool.exe *)",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" cd \"C:/Code/TestingGround/Android/CzechApp\")",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)"
+    ]
+  }
+}

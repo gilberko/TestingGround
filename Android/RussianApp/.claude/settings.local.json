@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
+      "Bash(ls \"C:\\\\Code\\\\TestingGround\\\\Android\\\\RussianApp\\\\app\"/*.jks)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug --info)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew compileDebugKotlin)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew compileDebugKotlin --stacktrace)",
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
+      "Bash(find /c/Code/TestingGround/Android/RussianApp/app/src/main/res/mipmap* -type f)",
+      "Bash(for dir:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Code/TestingGround/Android/App2/app/src/main/res/**)",
+      "Bash(done)",
+      "Bash(find /c/Code/TestingGround/Android/App2/app/src/main/res/mipmap* -type f)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(cmd.exe /c \"gradlew.bat assembleDebug\")",
+      "Bash(cmd.exe /c \"gradlew.bat assembleDebug 2>&1\")",
+      "Bash(cmd //c \"gradlew.bat assembleDebug\")",
+      "Bash(cmd //c \"cd \"\"C:\\\\Code\\\\TestingGround\\\\Android\\\\RussianApp\"\" && gradlew.bat assembleDebug\")",
+      "Bash(powershell -Command \"cd 'C:\\\\\\\\Code\\\\\\\\TestingGround\\\\\\\\Android\\\\\\\\RussianApp'; .\\\\\\\\gradlew.bat assembleDebug 2>&1 | Select-Object -Last 40\")",
+      "Bash(powershell -Command \"Get-Command java -ErrorAction SilentlyContinue; \\\\$env:JAVA_HOME; [System.Environment]::GetEnvironmentVariable\\('JAVA_HOME','Machine'\\); Get-ChildItem 'C:\\\\\\\\Program Files\\\\\\\\Android\\\\\\\\Android Studio\\\\\\\\jbr\\\\\\\\bin\\\\\\\\java.exe' -ErrorAction SilentlyContinue\")",
+      "Bash(powershell -Command \"\\\\$env:JAVA_HOME='C:\\\\\\\\Program Files\\\\\\\\Android\\\\\\\\Android Studio\\\\\\\\jbr'; cd 'C:\\\\\\\\Code\\\\\\\\TestingGround\\\\\\\\Android\\\\\\\\RussianApp'; .\\\\\\\\gradlew.bat assembleDebug 2>&1 | Select-Object -Last 40\")",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
+      "Bash(grep -i \"\\\\.kt$\")",
+      "Bash(where java:*)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/**)",
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\RussianApp\")",
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)"
+    ]
+  }
+}
