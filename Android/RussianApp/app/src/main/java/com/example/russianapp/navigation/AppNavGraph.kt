@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
+import com.example.russianapp.screens.BasicWordsScreen
+import com.example.russianapp.screens.ThisAndThatScreen
 import com.example.russianapp.screens.AirportConversationScreen
 import com.example.russianapp.screens.BeachConversationScreen
 import com.example.russianapp.screens.CafeJobConversationScreen
@@ -87,6 +89,8 @@ sealed class Screen(val route: String) {
     object DictCooking            : Screen("dict_cooking")
     object DictOfficeSchool       : Screen("dict_office_school")
     object DictCountries          : Screen("dict_countries")
+    object DictBasicWords         : Screen("dict_basic_words")
+    object ThisAndThat            : Screen("this_and_that")
     object Myself                 : Screen("myself")
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
@@ -138,7 +142,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onMyself                = { navController.navigate(Screen.Myself.route) },
                 onAboutAPerson          = { navController.navigate(Screen.AboutAPerson.route) },
                 onComparisons           = { navController.navigate(Screen.Comparisons.route) },
-                onMisc                  = { navController.navigate(Screen.Misc.route) }
+                onMisc                  = { navController.navigate(Screen.Misc.route) },
+                onThisAndThat           = { navController.navigate(Screen.ThisAndThat.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -160,7 +165,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onVacation      = { navController.navigate(Screen.DictVacation.route) },
                 onCooking       = { navController.navigate(Screen.DictCooking.route) },
                 onOfficeSchool  = { navController.navigate(Screen.DictOfficeSchool.route) },
-                onCountries     = { navController.navigate(Screen.DictCountries.route) }
+                onCountries     = { navController.navigate(Screen.DictCountries.route) },
+                onBasicWords    = { navController.navigate(Screen.DictBasicWords.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -252,6 +258,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictCountries.route) {
             CountriesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictBasicWords.route) {
+            BasicWordsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ThisAndThat.route) {
+            ThisAndThatScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Myself.route) {
             MyselfScreen(onBack = { navController.popBackStack() })
