@@ -38,6 +38,7 @@ class MainActivity : ComponentActivity() {
                 composable("present_tense") { PresentTenseVerbConjugationScreen(navController) }
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
+                composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
             }
         }
     }
@@ -161,6 +162,10 @@ fun DictionaryHubScreen(navController: NavController) {
         ) {
             NavButton(label = "Basic Words, Expressions & Greetings") {
                 navController.navigate("basic_words")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Jobs & Professions") {
+                navController.navigate("jobs_professions")
             }
         }
     }
