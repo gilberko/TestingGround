@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
                 composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
+                composable("places") { PlacesScreen(navController) }
             }
         }
     }
@@ -166,6 +167,10 @@ fun DictionaryHubScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Jobs & Professions") {
                 navController.navigate("jobs_professions")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Places") {
+                navController.navigate("places")
             }
         }
     }
