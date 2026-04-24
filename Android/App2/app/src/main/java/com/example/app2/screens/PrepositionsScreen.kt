@@ -43,6 +43,13 @@ private data class ContrastivePair(
     val paraTranslation: String
 )
 
+private data class DiscourseEntry(
+    val term: String,
+    val meaning: String,
+    val note: String,
+    val examples: List<Pair<String, String>>
+)
+
 private val prepEntriesFull = listOf(
     PrepEntryFull(
         preposition = "a",
@@ -183,6 +190,130 @@ private val paraVsAExamples = listOf(
     )
 )
 
+private val evenThoughEntries = listOf(
+    DiscourseEntry(
+        term = "embora",
+        meaning = "even though / although",
+        note = "Requires subjunctive. The most common EP choice for concessive clauses.",
+        examples = listOf(
+            "Fui à escola embora estivesse doente." to "I went to school even though I was sick.",
+            "Embora chova, vamos sair." to "Even though it's raining, we're going out."
+        )
+    ),
+    DiscourseEntry(
+        term = "apesar de",
+        meaning = "despite / in spite of",
+        note = "Followed by an infinitive or noun — no subjunctive needed.",
+        examples = listOf(
+            "Apesar de estar cansado, continuou a trabalhar." to "Despite being tired, he kept working.",
+            "Apesar da chuva, fomos ao parque." to "Despite the rain, we went to the park."
+        )
+    ),
+    DiscourseEntry(
+        term = "ainda que",
+        meaning = "even if / even though",
+        note = "Requires subjunctive. More formal or literary than embora.",
+        examples = listOf(
+            "Ainda que não queiras, tens de tentar." to "Even if you don't want to, you have to try."
+        )
+    ),
+    DiscourseEntry(
+        term = "mesmo que",
+        meaning = "even if",
+        note = "Requires subjunctive. Emphasises hypothetical or contrary-to-fact conditions.",
+        examples = listOf(
+            "Mesmo que ganhe, não vou festejar." to "Even if I win, I won't celebrate."
+        )
+    ),
+    DiscourseEntry(
+        term = "por mais que",
+        meaning = "no matter how much / no matter how hard",
+        note = "Requires subjunctive. Expresses futility or persistence against an obstacle.",
+        examples = listOf(
+            "Por mais que tente, não consigo." to "No matter how hard I try, I can't."
+        )
+    )
+)
+
+private val moreoverEntries = listOf(
+    DiscourseEntry(
+        term = "além disso / para além disso",
+        meaning = "moreover / in addition / furthermore",
+        note = "Adds a new point that reinforces or extends what was just said. Para além disso is slightly more formal.",
+        examples = listOf(
+            "É caro. Além disso, fica longe." to "It's expensive. Moreover, it's far away.",
+            "Para além disso, há outros problemas." to "Furthermore, there are other problems."
+        )
+    ),
+    DiscourseEntry(
+        term = "não só... mas também",
+        meaning = "not only... but also",
+        note = "Reinforces a point by adding a second, often stronger, element.",
+        examples = listOf(
+            "Não só é inteligente, mas também é trabalhador." to "He's not only intelligent but also hardworking."
+        )
+    ),
+    DiscourseEntry(
+        term = "acresce que",
+        meaning = "on top of that / what's more",
+        note = "Formal register. Introduces an additional factor that strengthens the argument.",
+        examples = listOf(
+            "Acresce que o prazo já passou." to "On top of that, the deadline has already passed."
+        )
+    ),
+    DiscourseEntry(
+        term = "a isso acresce",
+        meaning = "add to that",
+        note = "More literary/written variant of acresce que. Often followed by a noun phrase.",
+        examples = listOf(
+            "A isso acresce o facto de não haver tempo." to "Add to that the fact that there's no time."
+        )
+    )
+)
+
+private val thereforeEntries = listOf(
+    DiscourseEntry(
+        term = "portanto",
+        meaning = "therefore / so",
+        note = "Most common and natural in both speech and writing.",
+        examples = listOf(
+            "Estava cansado, portanto fui dormir." to "I was tired, so I went to sleep."
+        )
+    ),
+    DiscourseEntry(
+        term = "por isso",
+        meaning = "that's why / so / because of that",
+        note = "Emphasises that what follows is a direct consequence of what was just mentioned.",
+        examples = listOf(
+            "Chovia muito, por isso ficámos em casa." to "It was raining a lot, so we stayed home."
+        )
+    ),
+    DiscourseEntry(
+        term = "logo",
+        meaning = "therefore / thus",
+        note = "Used in logical or philosophical reasoning. Cognate of Latin ergo.",
+        examples = listOf(
+            "Penso, logo existo." to "I think, therefore I am."
+        )
+    ),
+    DiscourseEntry(
+        term = "por conseguinte",
+        meaning = "consequently / as a result",
+        note = "Formal register; common in written and academic language.",
+        examples = listOf(
+            "Houve um erro; por conseguinte, o contrato foi anulado." to "There was an error; consequently, the contract was cancelled."
+        )
+    ),
+    DiscourseEntry(
+        term = "deste modo / desta forma",
+        meaning = "in this way / thus",
+        note = "Describes how a result follows from the method or approach just described.",
+        examples = listOf(
+            "Treinou todos os dias; deste modo, melhorou muito." to "He trained every day; in this way, he improved a lot."
+        )
+    )
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrepositionsScreen(onBack: () -> Unit) {
@@ -217,6 +348,8 @@ fun PrepositionsScreen(onBack: () -> Unit) {
                     }
                 }
             }
+
+            item(key = "discourse_expressions") { DiscourseExpressionsCard() }
 
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
@@ -377,5 +510,92 @@ private fun ContrastivePairRow(pair: ContrastivePair) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(start = 16.dp)
         )
+    }
+}
+
+@Composable
+private fun DiscourseExpressionsCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "Discourse Expressions",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            Text(
+                text = "Even Though / Although",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            evenThoughEntries.forEachIndexed { i, entry ->
+                DiscourseEntryRow(entry)
+                if (i < evenThoughEntries.lastIndex) HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Moreover / In Addition",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            moreoverEntries.forEachIndexed { i, entry ->
+                DiscourseEntryRow(entry)
+                if (i < moreoverEntries.lastIndex) HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Therefore / So",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            thereforeEntries.forEachIndexed { i, entry ->
+                DiscourseEntryRow(entry)
+                if (i < thereforeEntries.lastIndex) HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            }
+        }
+    }
+}
+
+@Composable
+private fun DiscourseEntryRow(entry: DiscourseEntry) {
+    Column(modifier = Modifier.padding(vertical = 4.dp)) {
+        Text(
+            text = entry.term,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold
+        )
+        Text(
+            text = entry.meaning,
+            style = MaterialTheme.typography.bodyMedium,
+            fontStyle = FontStyle.Italic,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Text(
+            text = entry.note,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 4.dp)
+        )
+        entry.examples.forEach { (pt, en) ->
+            Text(
+                text = pt,
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic
+            )
+            Text(
+                text = en,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 12.dp, bottom = 2.dp)
+            )
+        }
     }
 }
