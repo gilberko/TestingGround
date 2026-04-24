@@ -140,6 +140,23 @@ fun PrepositionsScreen(onBack: () -> Unit) {
                 )
             }
 
+            item { PrepSectionHeader("Cause, Contrast & Result") }
+            item {
+                PrepTableCard(
+                    entries = listOf(
+                        PrepEntry("потому что", "(conjunction)", "because", "Я остался дома, потому что был болен — I stayed home because I was sick"),
+                        PrepEntry("поэтому", "(adverb)", "therefore / that's why", "Я был болен, поэтому остался дома — I was sick, so I stayed home"),
+                        PrepEntry("и поэтому", "(adverb)", "and therefore / and so", "Шёл дождь, и поэтому мы остались дома — It was raining, and so we stayed home"),
+                        PrepEntry("хотя", "(conjunction)", "although / even though", "Хотя было холодно, он вышел — Although it was cold, he went out"),
+                        PrepEntry("без", "Genitive", "without", "Он пришёл без денег — He came without money"),
+                        PrepEntry("из-за", "Genitive", "because of / due to\n(also: from behind)", "Из-за дождя мы остались дома — Because of the rain we stayed home\nОн вышел из-за угла — He came out from behind the corner")
+                    ),
+                    note = "«Потому что» gives the reason; «поэтому» states the consequence — they are mirror images. " +
+                            "Хотя introduces a concessive clause (the result is surprising given the condition). " +
+                            "Без and из-за always take Genitive."
+                )
+            }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }

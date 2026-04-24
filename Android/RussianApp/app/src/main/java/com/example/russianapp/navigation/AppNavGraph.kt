@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.russianapp.screens.AboutAPersonScreen
+import com.example.russianapp.screens.QuestionsScreen
 import com.example.russianapp.screens.BasicWordsScreen
 import com.example.russianapp.screens.ThisAndThatScreen
 import com.example.russianapp.screens.AirportConversationScreen
@@ -91,6 +92,7 @@ sealed class Screen(val route: String) {
     object DictCountries          : Screen("dict_countries")
     object DictBasicWords         : Screen("dict_basic_words")
     object ThisAndThat            : Screen("this_and_that")
+    object Questions              : Screen("questions")
     object Myself                 : Screen("myself")
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
@@ -143,7 +145,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAboutAPerson          = { navController.navigate(Screen.AboutAPerson.route) },
                 onComparisons           = { navController.navigate(Screen.Comparisons.route) },
                 onMisc                  = { navController.navigate(Screen.Misc.route) },
-                onThisAndThat           = { navController.navigate(Screen.ThisAndThat.route) }
+                onThisAndThat           = { navController.navigate(Screen.ThisAndThat.route) },
+                onQuestions             = { navController.navigate(Screen.Questions.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -276,6 +279,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Misc.route) {
             MiscScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Questions.route) {
+            QuestionsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.QuizAdjective.route) {
             AdjectiveQuizScreen(
