@@ -516,6 +516,84 @@ fun CppSyntaxScreen(onBack: () -> Unit) {
                     )
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Declaration and Definition ────────────────────────────────
+            item {
+                SectionCard(title = "Declaration and Definition") {
+                    BodyText(
+                        "A declaration tells the compiler that a name exists and describes its type " +
+                        "or signature, without providing a body or storage. A definition provides " +
+                        "the actual implementation or memory allocation. A name can be declared many " +
+                        "times but defined only once."
+                    )
+                    CodeBlock(
+                        "// Function declaration (prototype) — no body\nvoid processData(int count, float* buffer);\n\n" +
+                        "// Function definition — body provided\nvoid processData(int count, float* buffer) {\n" +
+                        "    // implementation\n}"
+                    )
+                    BodyText(
+                        "Why declarations matter: in C/C++, a name must be declared before it is used. " +
+                        "Placing a function prototype at the top of a file (or in a header) lets code " +
+                        "below call it even when the definition is in a different .cpp file. The linker " +
+                        "connects the call to the definition at link time."
+                    )
+                    BodyText(
+                        "When a declaration appears above the code that uses it — so the lines below " +
+                        "can see the name — it is commonly called a forward declaration. It declares " +
+                        "the name \"forward\" for everything that follows. Examples for functions, " +
+                        "structs, and classes:"
+                    )
+                    CodeBlock(
+                        "// Forward declaration of a function\nvoid render(int frame);\n\n" +
+                        "int main() {\n    render(0);   // OK — prototype seen above\n}\n\n" +
+                        "void render(int frame) { /* ... */ }  // definition can appear below"
+                    )
+                    CodeBlock(
+                        "// Forward declaration of a struct\nstruct Node;\n\n" +
+                        "struct Node* ptr;    // OK: pointer — pointer size is always known\n" +
+                        "// struct Node obj;  // ERROR: size unknown, cannot allocate\n\n" +
+                        "struct Node {        // definition — now size is known\n    int value;\n    struct Node* next;\n};"
+                    )
+                    CodeBlock(
+                        "// Forward declaration of a class\nclass Engine;\n\n" +
+                        "Engine* e;           // OK: pointer to incomplete type\n" +
+                        "// Engine obj;       // ERROR: full definition needed\n" +
+                        "// e->start();       // ERROR: members not visible without definition\n\n" +
+                        "class Engine {       // definition\npublic:\n    void start();\n};"
+                    )
+                    BodyText(
+                        "Forward declarations are especially useful for breaking circular header " +
+                        "dependencies: if A.h and B.h each need to reference the other's type, " +
+                        "a forward declaration lets one header mention the type without including " +
+                        "the other header."
+                    )
+                    BodyText(
+                        "The \"must appear above the use\" rule: at file scope, declarations or " +
+                        "definitions must appear textually before the first use. If a function " +
+                        "definition appears below the call site in the same file, the compiler will " +
+                        "not find it unless a prototype appears first."
+                    )
+                    BodyText(
+                        "Exception — class member functions: this rule is relaxed inside a class body. " +
+                        "The C++ standard specifies that member function bodies are late-parsed: the " +
+                        "compiler processes the entire class definition first, then goes back to parse " +
+                        "the function bodies. This means a member function can freely call other " +
+                        "member functions or reference member variables declared anywhere in the same " +
+                        "class, even if they appear textually after the function:"
+                    )
+                    CodeBlock(
+                        "class Foo {\n    void a() {\n        b();       // OK — b() is declared below\n" +
+                        "        x = 10;    // OK — x is declared below\n    }\n    void b() {}\n    int x;\n};"
+                    )
+                    BodyText(
+                        "Out-of-line definitions (void Foo::a() { ... } written outside the class) " +
+                        "also see all members, because they appear after the complete class definition. " +
+                        "This late-parsing rule applies only to member function bodies — default " +
+                        "argument values and base-class specifiers are evaluated at the point they appear."
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

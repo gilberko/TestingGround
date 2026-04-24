@@ -82,6 +82,10 @@ import com.example.developmentapp.screens.tcpip.IpsecScreen
 import com.example.developmentapp.screens.tcpip.SslTlsScreen
 import com.example.developmentapp.screens.tcpip.TcpScreen
 import com.example.developmentapp.screens.tcpip.UdpScreen
+import com.example.developmentapp.screens.GoHubScreen
+import com.example.developmentapp.screens.go.GoAboutScreen
+import com.example.developmentapp.screens.go.GoGettingStartedScreen
+import com.example.developmentapp.screens.go.GoDataTypesScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -168,6 +172,11 @@ sealed class Screen(val route: String) {
     object Proxy               : Screen("proxy")
     object Arp                 : Screen("arp")
     object Dhcp                : Screen("dhcp")
+    // Go
+    object GoHub              : Screen("go_hub")
+    object GoAbout            : Screen("go_about")
+    object GoGettingStarted   : Screen("go_getting_started")
+    object GoDataTypes        : Screen("go_data_types")
 }
 
 @Composable
@@ -178,7 +187,7 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onCpp            = { navController.navigate(Screen.CppHub.route) },
                 onRust           = { navController.navigate(Screen.ComingSoon.withLabel("Rust")) },
-                onGo             = { navController.navigate(Screen.ComingSoon.withLabel("Go")) },
+                onGo             = { navController.navigate(Screen.GoHub.route) },
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
                 onAssembly       = { navController.navigate(Screen.AssemblyHub.route) },
                 onDataStructures = { navController.navigate(Screen.DataStructures.route) },
@@ -193,6 +202,19 @@ fun AppNavGraph(navController: NavHostController) {
         ) {
             ComingSoonScreen(onBack = { navController.popBackStack() })
         }
+
+        // ── Go ────────────────────────────────────────────────────────────
+        composable(Screen.GoHub.route) {
+            GoHubScreen(
+                onBack           = { navController.popBackStack() },
+                onAboutGo        = { navController.navigate(Screen.GoAbout.route) },
+                onGettingStarted = { navController.navigate(Screen.GoGettingStarted.route) },
+                onDataTypes      = { navController.navigate(Screen.GoDataTypes.route) }
+            )
+        }
+        composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoGettingStarted.route) { GoGettingStartedScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoDataTypes.route)      { GoDataTypesScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
