@@ -86,6 +86,9 @@ import com.example.developmentapp.screens.GoHubScreen
 import com.example.developmentapp.screens.go.GoAboutScreen
 import com.example.developmentapp.screens.go.GoGettingStartedScreen
 import com.example.developmentapp.screens.go.GoDataTypesScreen
+import com.example.developmentapp.screens.go.GoLoopingScreen
+import com.example.developmentapp.screens.go.GoConditionsScreen
+import com.example.developmentapp.screens.go.GoFunctionsGotoScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -177,6 +180,9 @@ sealed class Screen(val route: String) {
     object GoAbout            : Screen("go_about")
     object GoGettingStarted   : Screen("go_getting_started")
     object GoDataTypes        : Screen("go_data_types")
+    object GoLooping          : Screen("go_looping")
+    object GoConditions       : Screen("go_conditions")
+    object GoFunctionsGoto    : Screen("go_functions_goto")
 }
 
 @Composable
@@ -209,12 +215,18 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack           = { navController.popBackStack() },
                 onAboutGo        = { navController.navigate(Screen.GoAbout.route) },
                 onGettingStarted = { navController.navigate(Screen.GoGettingStarted.route) },
-                onDataTypes      = { navController.navigate(Screen.GoDataTypes.route) }
+                onDataTypes      = { navController.navigate(Screen.GoDataTypes.route) },
+                onLooping        = { navController.navigate(Screen.GoLooping.route) },
+                onConditions     = { navController.navigate(Screen.GoConditions.route) },
+                onFunctionsGoto  = { navController.navigate(Screen.GoFunctionsGoto.route) }
             )
         }
         composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoGettingStarted.route) { GoGettingStartedScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoDataTypes.route)      { GoDataTypesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoLooping.route)        { GoLoopingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoConditions.route)     { GoConditionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoFunctionsGoto.route)  { GoFunctionsGotoScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {

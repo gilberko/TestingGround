@@ -246,6 +246,45 @@ fun GoDataTypesScreen(onBack: () -> Unit) {
                     )
                 }
             }
+            item {
+                SectionCard(title = "Assignment vs Declaration") {
+                    BodyText(
+                        "The = operator reassigns an existing variable. The := operator declares " +
+                        "a brand new variable in the current scope and assigns to it in one step."
+                    )
+                    CodeBlock(
+                        "x := 10    // declares x in this scope (must not already exist here)\n" +
+                        "x = 20     // reassigns x (x must already be declared)"
+                    )
+                    BodyText(
+                        "Every pair of curly braces {} creates a new scope. When you write " +
+                        "i := something inside a block, Go always creates a brand new variable " +
+                        "local to that block — even if a variable with the same name already " +
+                        "exists in an outer scope. The inner variable shadows the outer one " +
+                        "while the block runs; once the block exits, the inner variable is gone " +
+                        "and the outer one is completely unchanged."
+                    )
+                    CodeBlock(
+                        "i := 1\n" +
+                        "if true {\n" +
+                        "    i := 99         // new 'i' — shadows the outer i\n" +
+                        "    fmt.Println(i)  // prints 99\n" +
+                        "}\n" +
+                        "fmt.Println(i)      // prints 1 — outer i was never touched"
+                    )
+                    BodyText(
+                        "This is a common Go pitfall. If you intended to assign to the outer i, " +
+                        "use = inside the block instead of :=."
+                    )
+                    BodyText(
+                        "In Go, assignments are statements — they do not return a value. Unlike " +
+                        "C, you cannot chain assignments or use an assignment as an expression. " +
+                        "Writing z := t := 10 is a compile error. You also cannot write " +
+                        "if i = someFunc() — use Go's init-statement syntax instead: " +
+                        "if x := someFunc(); x > 0 { ... }."
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

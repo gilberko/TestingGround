@@ -36,7 +36,10 @@ fun GoHubScreen(
     onBack: () -> Unit,
     onAboutGo: () -> Unit,
     onGettingStarted: () -> Unit,
-    onDataTypes: () -> Unit
+    onDataTypes: () -> Unit,
+    onLooping: () -> Unit,
+    onConditions: () -> Unit,
+    onFunctionsGoto: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -77,6 +80,12 @@ fun GoHubScreen(
             GoHubButton("Getting Started",               onGettingStarted, Modifier.fillMaxWidth())
             Spacer(Modifier.height(8.dp))
             GoHubButton("Data Types and Basic Variables",onDataTypes,      Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            GoHubButton("Looping",                       onLooping,        Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            GoHubButton("Conditions",                    onConditions,     Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            GoHubButton("Functions and Goto 101",        onFunctionsGoto,  Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
