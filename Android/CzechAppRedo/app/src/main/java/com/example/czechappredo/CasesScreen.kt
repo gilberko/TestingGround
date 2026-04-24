@@ -1,7 +1,9 @@
 package com.example.czechappredo
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -58,6 +60,19 @@ fun CasesScreen(navController: NavController) {
                 example = "Ten muž jde.",
                 translation = "The man is going."
             )
+            CaseNote("The Nominative is the base/dictionary form — no ending change occurs.")
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate" to "hrad",
+                    "Masc. animate" to "muž",
+                    "Feminine -a" to "žena",
+                    "Feminine -e (soft)" to "růže",
+                    "Neuter -o" to "město",
+                    "Neuter -e (soft)" to "moře",
+                    "Fem. consonant stem" to "místnost"
+                )
+            )
+
             CaseBlock(
                 number = "2",
                 caseName = "Genitiv  (Genitive)",
@@ -66,6 +81,20 @@ fun CasesScreen(navController: NavController) {
                 example = "Jsem bez vody.",
                 translation = "I am without water."
             )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate (hard)" to "hrad → hradu",
+                    "Masc. inanimate (soft)" to "nůž → nože",
+                    "Masc. animate (hard)" to "pán → pána",
+                    "Masc. animate (soft)" to "muž → muže",
+                    "Feminine -a" to "žena → ženy",
+                    "Feminine -e (soft)" to "růže → růže  (no change)",
+                    "Neuter -o" to "město → města",
+                    "Neuter -e (soft)" to "moře → moře  (no change)",
+                    "Fem. consonant stem" to "místnost → místnosti"
+                )
+            )
+
             CaseBlock(
                 number = "3",
                 caseName = "Dativ  (Dative)",
@@ -74,6 +103,19 @@ fun CasesScreen(navController: NavController) {
                 example = "Dám to Janovi.",
                 translation = "I'll give it to Jan."
             )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate (hard)" to "hrad → hradu",
+                    "Masc. inanimate (soft)" to "nůž → noži",
+                    "Masc. animate" to "muž → muži; pán → pánovi",
+                    "Feminine -a" to "žena → ženě; matka → matce",
+                    "Feminine -e (soft)" to "růže → růži",
+                    "Neuter -o" to "město → městu",
+                    "Neuter -e (soft)" to "moře → moři",
+                    "Fem. consonant stem" to "místnost → místnosti"
+                )
+            )
+
             CaseBlock(
                 number = "4",
                 caseName = "Akuzativ  (Accusative)",
@@ -82,6 +124,18 @@ fun CasesScreen(navController: NavController) {
                 example = "Vidím Jana.",
                 translation = "I see Jan."
             )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate" to "hrad → hrad  (= Nominative)",
+                    "Masc. animate" to "muž → muže; pán → pána  (= Genitive)",
+                    "Feminine -a" to "žena → ženu; matka → matku",
+                    "Feminine -e (soft)" to "růže → růži",
+                    "Neuter -o" to "město → město  (= Nominative)",
+                    "Neuter -e (soft)" to "moře → moře  (= Nominative)",
+                    "Fem. consonant stem" to "místnost → místnost  (= Nominative)"
+                )
+            )
+
             CaseBlock(
                 number = "5",
                 caseName = "Vokativ  (Vocative)",
@@ -89,6 +143,17 @@ fun CasesScreen(navController: NavController) {
                 example = "Jene!  /  Pane!",
                 translation = "Hey Jan!  /  Sir!"
             )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. animate (hard)" to "pán → pane; Jan → Jane",
+                    "Masc. animate (soft)" to "muž → muži",
+                    "Masc. inanimate" to "(rarely used in direct address)",
+                    "Feminine -a" to "žena → ženo; matka → matko",
+                    "Feminine -e (soft)" to "růže → růže  (no change)",
+                    "Neuter" to "(rarely used in direct address)"
+                )
+            )
+
             CaseBlock(
                 number = "6",
                 caseName = "Lokál  (Locative)",
@@ -97,6 +162,20 @@ fun CasesScreen(navController: NavController) {
                 example = "Jsem v Praze.",
                 translation = "I am in Prague."
             )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate (hard)" to "hrad → hradě",
+                    "Masc. inanimate (soft)" to "nůž → noži",
+                    "Masc. animate (hard)" to "pán → pánovi",
+                    "Masc. animate (soft)" to "muž → muži",
+                    "Feminine -a" to "žena → ženě; matka → matce",
+                    "Feminine -e (soft)" to "růže → růži",
+                    "Neuter -o" to "město → městě",
+                    "Neuter -e (soft)" to "moře → moři",
+                    "Fem. consonant stem" to "místnost → místnosti"
+                )
+            )
+
             CaseBlock(
                 number = "7",
                 caseName = "Instrumentál  (Instrumental)",
@@ -104,6 +183,18 @@ fun CasesScreen(navController: NavController) {
                 prepositions = "s / se, pod, nad, před, za, mezi",
                 example = "Jdu autobusem.",
                 translation = "I go by bus."
+            )
+            CaseMiniTable(
+                rows = listOf(
+                    "Masc. inanimate (hard)" to "hrad → hradem",
+                    "Masc. inanimate (soft)" to "nůž → nožem",
+                    "Masc. animate" to "muž → mužem; pán → pánem",
+                    "Feminine -a" to "žena → ženou; matka → matkou",
+                    "Feminine -e (soft)" to "růže → růží  (long -í)",
+                    "Neuter -o" to "město → městem",
+                    "Neuter -e (soft)" to "moře → mořem",
+                    "Fem. consonant stem" to "místnost → místností  (long -í)"
+                )
             )
 
             // ── Declension Tables ────────────────────────────────────────
@@ -329,6 +420,45 @@ private fun CaseBlock(
         modifier = Modifier.padding(top = 5.dp)
     )
     Text(text = translation, fontSize = 14.sp, fontStyle = FontStyle.Italic, color = Color.Gray)
+}
+
+@Composable
+private fun CaseMiniTable(rows: List<Pair<String, String>>) {
+    Spacer(modifier = Modifier.height(6.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(6.dp))
+            .padding(horizontal = 10.dp, vertical = 6.dp)
+    ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = "Type",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = ButtonBlue,
+                modifier = Modifier.weight(1f)
+            )
+            Text(
+                text = "Form",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = ButtonBlue,
+                modifier = Modifier.weight(1.2f)
+            )
+        }
+        rows.forEach { (type, form) ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 2.dp)
+            ) {
+                Text(text = type, fontSize = 12.sp, color = Color.DarkGray, modifier = Modifier.weight(1f))
+                Text(text = form, fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.weight(1.2f))
+            }
+        }
+    }
+    Spacer(modifier = Modifier.height(4.dp))
 }
 
 @Composable

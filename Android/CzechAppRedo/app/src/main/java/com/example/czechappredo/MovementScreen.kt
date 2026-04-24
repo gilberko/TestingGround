@@ -20,11 +20,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PlacesScreen(navController: NavController) {
+fun MovementScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Places", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Movement", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -40,57 +40,33 @@ fun PlacesScreen(navController: NavController) {
     ) { innerPadding ->
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            PlSection("Getting Around & Transport")
-            PlRow("čerpací stanice", "gas station", note = "Colloquial: benzinka")
-            PlRow("benzinka", "gas station (colloquial)")
-            PlRow("autobusová zastávka", "bus stop")
-            PlRow("nádraží", "train station")
-            PlRow("autobusové nádraží", "bus station")
-            PlRow("vlaková zastávka", "train stop")
-            PlRow("nástupiště", "platform", note = "In a train or metro station.")
-            PlRow("letiště", "airport")
-            PlRow("terminál", "terminal")
-            PlRow("most", "bridge")
 
-            PlSection("Accommodation & Food")
-            PlRow("hotel", "hotel")
-            PlRow("restaurace", "restaurant")
-            PlRow("kavárna", "café")
-            PlRow("supermarket", "supermarket")
+            MVSection("Distance")
+            MVRow("daleko", "far")
+            MVRow("blízko", "near / close")
+            MVRow("vedle", "next to / beside", note = "Takes Genitive: vedle obchodu = next to the store.")
+            MVRow("není to příliš daleko", "not too far")
+            MVRow("je to trochu daleko", "it's a bit far")
+            MVRow("asi pět minut", "about five minutes (away)")
 
-            PlSection("Shopping")
-            PlRow("obchod", "store / shop")
-            PlRow("obchodní centrum", "shopping center / mall")
+            MVSection("Cardinal Directions")
+            MVRow("sever", "north")
+            MVRow("jih", "south")
+            MVRow("východ", "east")
+            MVRow("západ", "west")
 
-            PlSection("Services & Government")
-            PlRow("policejní stanice", "police station")
-            PlRow("pošta", "post office")
-            PlRow("radnice", "city hall")
-            PlRow("nemocnice", "hospital")
-
-            PlSection("Education, Culture & Religion")
-            PlRow("škola", "school")
-            PlRow("školka", "kindergarten")
-            PlRow("univerzita", "university")
-            PlRow("kino", "cinema")
-            PlRow("divadlo", "theatre")
-            PlRow("kostel", "church")
-            PlRow("synagoga", "synagogue")
-
-            PlSection("Nature & Outdoors")
-            PlRow("les", "forest")
-            PlRow("pláž", "beach")
-
-            PlSection("Urban & Home")
-            PlRow("náměstí", "square")
-            PlRow("vesnice", "village")
-            PlRow("město", "city")
-            PlRow("dům", "house / home")
-            PlRow("socha", "statue")
+            MVSection("Relative Directions")
+            MVNote("doleva / doprava = motion toward (turning or moving). vlevo / vpravo = being in a position.")
+            MVRow("dopředu", "forward / straight ahead")
+            MVRow("doleva", "to the left")
+            MVRow("doprava", "to the right")
+            MVRow("vlevo", "on the left")
+            MVRow("vpravo", "on the right")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -98,14 +74,25 @@ fun PlacesScreen(navController: NavController) {
 }
 
 @Composable
-private fun PlSection(text: String) {
+private fun MVSection(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(text = text, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
     Spacer(modifier = Modifier.height(6.dp))
 }
 
 @Composable
-private fun PlRow(czech: String, english: String, note: String = "") {
+private fun MVNote(text: String) {
+    Text(
+        text = text,
+        fontSize = 13.sp,
+        fontStyle = FontStyle.Italic,
+        color = Color.Gray,
+        modifier = Modifier.padding(vertical = 3.dp)
+    )
+}
+
+@Composable
+private fun MVRow(czech: String, english: String, note: String = "") {
     Column(modifier = Modifier.padding(vertical = 3.dp)) {
         Text(
             text = buildAnnotatedString {

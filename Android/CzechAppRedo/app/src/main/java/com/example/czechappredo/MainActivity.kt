@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
@@ -40,6 +42,10 @@ class MainActivity : ComponentActivity() {
                 composable("basic_words") { BasicWordsScreen(navController) }
                 composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
                 composable("places") { PlacesScreen(navController) }
+                composable("verbs_of_movement") { VerbsOfMovementScreen(navController) }
+                composable("useful_verbs") { UsefulVerbsScreen(navController) }
+                composable("numbers") { NumbersScreen(navController) }
+                composable("movement") { MovementScreen(navController) }
             }
         }
     }
@@ -130,6 +136,10 @@ fun LearningHubScreen(navController: NavController) {
             NavButton(label = "Present Tense Verb Conjugation") {
                 navController.navigate("present_tense")
             }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Verbs Of Movement") {
+                navController.navigate("verbs_of_movement")
+            }
         }
     }
 }
@@ -157,9 +167,10 @@ fun DictionaryHubScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NavButton(label = "Basic Words, Expressions & Greetings") {
                 navController.navigate("basic_words")
@@ -171,6 +182,18 @@ fun DictionaryHubScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Places") {
                 navController.navigate("places")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Very Useful Verbs") {
+                navController.navigate("useful_verbs")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Numbers") {
+                navController.navigate("numbers")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Movement") {
+                navController.navigate("movement")
             }
         }
     }
