@@ -54,12 +54,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jdu do školy.",
                 translation = "I'm going to school."
             )
+            UVTable(
+                verb = "jít", label = "irregular",
+                rows = listOf("já" to "jdu", "ty" to "jdeš", "on / ona / ono" to "jde",
+                    "my" to "jdeme", "vy" to "jdete", "oni" to "jdou")
+            )
             UVVerbEntry(
                 czech = "jet",
                 english = "to go (by vehicle)",
                 rule = "Same preposition patterns as jít — use jet whenever riding.",
                 example = "Jedu do Prahy.",
                 translation = "I'm going to Prague (by vehicle)."
+            )
+            UVTable(
+                verb = "jet", label = "irregular",
+                rows = listOf("já" to "jedu", "ty" to "jedeš", "on / ona / ono" to "jede",
+                    "my" to "jedeme", "vy" to "jedete", "oni" to "jedou")
             )
 
             UVSection("Modal Verbs")
@@ -70,12 +80,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Musím jít.",
                 translation = "I have to go."
             )
+            UVTable(
+                verb = "muset", label = "Type 2 (-et)",
+                rows = listOf("já" to "musím", "ty" to "musíš", "on / ona / ono" to "musí",
+                    "my" to "musíme", "vy" to "musíte", "oni" to "musí")
+            )
             UVVerbEntry(
                 czech = "moct",
                 english = "can / to be able to",
                 rule = "Followed directly by an infinitive.",
                 example = "Můžeš mi pomoci?",
                 translation = "Can you help me?"
+            )
+            UVTable(
+                verb = "moct", label = "irregular",
+                rows = listOf("já" to "můžu / mohu", "ty" to "můžeš", "on / ona / ono" to "může",
+                    "my" to "můžeme", "vy" to "můžete", "oni" to "můžou / mohou")
             )
 
             UVSection("Giving, Taking & Transfer")
@@ -86,12 +106,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dám ti knihu.",
                 translation = "I'll give you a book."
             )
+            UVTable(
+                verb = "dát", label = "irregular",
+                rows = listOf("já" to "dám", "ty" to "dáš", "on / ona / ono" to "dá",
+                    "my" to "dáme", "vy" to "dáte", "oni" to "dají")
+            )
             UVVerbEntry(
                 czech = "vzít",
                 english = "to take",
                 rule = "Takes Accusative (what you take). Reflexive vzít si = to take for oneself.",
                 example = "Vezmu si kabelku.",
                 translation = "I'll take the bag."
+            )
+            UVTable(
+                verb = "vzít", label = "irregular",
+                rows = listOf("já" to "vezmu", "ty" to "vezmeš", "on / ona / ono" to "vezme",
+                    "my" to "vezmeme", "vy" to "vezmete", "oni" to "vezmou")
             )
             UVVerbEntry(
                 czech = "poslat",
@@ -100,6 +130,11 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Pošlu ti zprávu.",
                 translation = "I'll send you a message."
             )
+            UVTable(
+                verb = "poslat", label = "irregular",
+                rows = listOf("já" to "pošlu", "ty" to "pošleš", "on / ona / ono" to "pošle",
+                    "my" to "pošleme", "vy" to "pošlete", "oni" to "pošlou")
+            )
             UVVerbEntry(
                 czech = "dostat",
                 english = "to receive / to get",
@@ -107,12 +142,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dostal jsem dopis.",
                 translation = "I received a letter."
             )
+            UVTable(
+                verb = "dostat", label = "irregular",
+                rows = listOf("já" to "dostanu", "ty" to "dostaneš", "on / ona / ono" to "dostane",
+                    "my" to "dostaneme", "vy" to "dostanete", "oni" to "dostanou")
+            )
             UVVerbEntry(
                 czech = "přinést",
                 english = "to bring",
                 rule = "Takes Dative (for whom) + Accusative (what).",
                 example = "Přinesu ti vodu.",
                 translation = "I'll bring you water."
+            )
+            UVTable(
+                verb = "přinést", label = "irregular",
+                rows = listOf("já" to "přinesu", "ty" to "přineseš", "on / ona / ono" to "přinese",
+                    "my" to "přineseme", "vy" to "přinesete", "oni" to "přinesou")
             )
 
             UVSection("Common Everyday Verbs")
@@ -123,12 +168,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Mám knihu.",
                 translation = "I have a book."
             )
+            UVTable(
+                verb = "mít", label = "irregular",
+                rows = listOf("já" to "mám", "ty" to "máš", "on / ona / ono" to "má",
+                    "my" to "máme", "vy" to "máte", "oni" to "mají")
+            )
             UVVerbEntry(
                 czech = "dělat",
                 english = "to do / to make",
                 rule = "Takes Accusative (what you do or make).",
                 example = "Co děláš?",
                 translation = "What are you doing?"
+            )
+            UVTable(
+                verb = "dělat", label = "Type 1 (-at)",
+                rows = listOf("já" to "dělám", "ty" to "děláš", "on / ona / ono" to "dělá",
+                    "my" to "děláme", "vy" to "děláte", "oni" to "dělají")
             )
             UVVerbEntry(
                 czech = "pracovat",
@@ -137,12 +192,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Pracuji v kanceláři.",
                 translation = "I work in an office."
             )
+            UVTable(
+                verb = "pracovat", label = "Type 3 (-ovat)",
+                rows = listOf("já" to "pracuji / pracuju", "ty" to "pracuješ", "on / ona / ono" to "pracuje",
+                    "my" to "pracujeme", "vy" to "pracujete", "oni" to "pracují / pracujou")
+            )
             UVVerbEntry(
                 czech = "studovat",
                 english = "to study",
                 rule = "Takes Accusative (subject being studied).",
                 example = "Studuji češtinu.",
                 translation = "I'm studying Czech."
+            )
+            UVTable(
+                verb = "studovat", label = "Type 3 (-ovat)",
+                rows = listOf("já" to "studuji / studuju", "ty" to "studuješ", "on / ona / ono" to "studuje",
+                    "my" to "studujeme", "vy" to "studujete", "oni" to "studují / studujou")
             )
             UVVerbEntry(
                 czech = "myslet",
@@ -151,12 +216,22 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Myslím na tebe.",
                 translation = "I'm thinking about you."
             )
+            UVTable(
+                verb = "myslet", label = "Type 2 (-et)",
+                rows = listOf("já" to "myslím", "ty" to "myslíš", "on / ona / ono" to "myslí",
+                    "my" to "myslíme", "vy" to "myslíte", "oni" to "myslí")
+            )
             UVVerbEntry(
                 czech = "přestat",
                 english = "to stop (doing something)",
                 rule = "Followed directly by an infinitive — no preposition.",
                 example = "Přestaň mluvit!",
                 translation = "Stop talking!"
+            )
+            UVTable(
+                verb = "přestat", label = "irregular",
+                rows = listOf("já" to "přestanu", "ty" to "přestaneš", "on / ona / ono" to "přestane",
+                    "my" to "přestaneme", "vy" to "přestanete", "oni" to "přestanou")
             )
             UVVerbEntry(
                 czech = "běžet",
@@ -165,12 +240,148 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Běžím do parku.",
                 translation = "I'm running to the park."
             )
+            UVTable(
+                verb = "běžet", label = "Type 2 (-et)",
+                rows = listOf("já" to "běžím", "ty" to "běžíš", "on / ona / ono" to "běží",
+                    "my" to "běžíme", "vy" to "běžíte", "oni" to "běží")
+            )
             UVVerbEntry(
-                czech = "vrátit se",
+                czech = "vracet se",
                 english = "to return / to come back",
-                rule = "Back home: vrátit se domů. Back to a place: do + Genitive.",
-                example = "Vrátím se domů.",
-                translation = "I'll return home."
+                rule = "Imperfective form used here for present tense. Perfective vrátit se expresses a single completed return. Back home: vracet se domů.",
+                example = "Vracím se domů.",
+                translation = "I'm returning home."
+            )
+            UVTable(
+                verb = "vracet se", label = "Type 1 (-at), reflexive",
+                rows = listOf("já" to "vracím se", "ty" to "vracíš se", "on / ona / ono" to "vrací se",
+                    "my" to "vracíme se", "vy" to "vracíte se", "oni" to "vracejí se")
+            )
+
+            UVSection("Shopping")
+            UVVerbEntry(
+                czech = "kupovat",
+                english = "to buy",
+                rule = "Takes Accusative (what you buy). Imperfective; perfective is koupit.",
+                example = "Kupuji si nové boty.",
+                translation = "I'm buying new shoes."
+            )
+            UVTable(
+                verb = "kupovat", label = "Type 3 (-ovat)",
+                rows = listOf("já" to "kupuji / kupuju", "ty" to "kupuješ", "on / ona / ono" to "kupuje",
+                    "my" to "kupujeme", "vy" to "kupujete", "oni" to "kupují / kupujou")
+            )
+            UVVerbEntry(
+                czech = "prodávat",
+                english = "to sell",
+                rule = "Takes Accusative (what you sell). Imperfective; perfective is prodat.",
+                example = "Prodávám auto.",
+                translation = "I'm selling a car."
+            )
+            UVTable(
+                verb = "prodávat", label = "Type 1 (-at)",
+                rows = listOf("já" to "prodávám", "ty" to "prodáváš", "on / ona / ono" to "prodává",
+                    "my" to "prodáváme", "vy" to "prodáváte", "oni" to "prodávají")
+            )
+
+            UVSection("Actions")
+            UVVerbEntry(
+                czech = "otevírat",
+                english = "to open",
+                rule = "Takes Accusative (what you open). Imperfective; perfective is otevřít.",
+                example = "Otevírám okno.",
+                translation = "I'm opening the window."
+            )
+            UVTable(
+                verb = "otevírat", label = "Type 1 (-at)",
+                rows = listOf("já" to "otevírám", "ty" to "otevíráš", "on / ona / ono" to "otevírá",
+                    "my" to "otevíráme", "vy" to "otevíráte", "oni" to "otevírají")
+            )
+            UVVerbEntry(
+                czech = "zavírat",
+                english = "to close",
+                rule = "Takes Accusative (what you close). Imperfective; perfective is zavřít.",
+                example = "Zavírám dveře.",
+                translation = "I'm closing the door."
+            )
+            UVTable(
+                verb = "zavírat", label = "Type 1 (-at)",
+                rows = listOf("já" to "zavírám", "ty" to "zavíráš", "on / ona / ono" to "zavírá",
+                    "my" to "zavíráme", "vy" to "zavíráte", "oni" to "zavírají")
+            )
+            UVVerbEntry(
+                czech = "hrát",
+                english = "to play",
+                rule = "Sport: hrát + Accusative (hrát fotbal). Instrument: hrát na + Accusative (hrát na kytaru).",
+                example = "Hrajeme fotbal.",
+                translation = "We're playing football."
+            )
+            UVTable(
+                verb = "hrát", label = "irregular (-át)",
+                rows = listOf("já" to "hraji / hraju", "ty" to "hraješ", "on / ona / ono" to "hraje",
+                    "my" to "hrajeme", "vy" to "hrajete", "oni" to "hrají")
+            )
+            UVVerbEntry(
+                czech = "čekat",
+                english = "to wait",
+                rule = "čekat na + Accusative = to wait for someone/something.",
+                example = "Čekám na autobus.",
+                translation = "I'm waiting for the bus."
+            )
+            UVTable(
+                verb = "čekat", label = "Type 1 (-at)",
+                rows = listOf("já" to "čekám", "ty" to "čekáš", "on / ona / ono" to "čeká",
+                    "my" to "čekáme", "vy" to "čekáte", "oni" to "čekají")
+            )
+
+            UVSection("States")
+            UVVerbEntry(
+                czech = "sedět",
+                english = "to sit / to be seated",
+                rule = "Location: na + Locative (na židli = on a chair) or v / ve + Locative.",
+                example = "Sedím na lavičce.",
+                translation = "I'm sitting on a bench."
+            )
+            UVTable(
+                verb = "sedět", label = "Type 2 (-et)",
+                rows = listOf("já" to "sedím", "ty" to "sedíš", "on / ona / ono" to "sedí",
+                    "my" to "sedíme", "vy" to "sedíte", "oni" to "sedí")
+            )
+            UVVerbEntry(
+                czech = "spát",
+                english = "to sleep",
+                rule = "No special case requirement. spát dobře = to sleep well.",
+                example = "Spím osm hodin.",
+                translation = "I sleep eight hours."
+            )
+            UVTable(
+                verb = "spát", label = "irregular",
+                rows = listOf("já" to "spím", "ty" to "spíš", "on / ona / ono" to "spí",
+                    "my" to "spíme", "vy" to "spíte", "oni" to "spí")
+            )
+            UVVerbEntry(
+                czech = "jíst",
+                english = "to eat",
+                rule = "Takes Accusative (what you eat).",
+                example = "Jím polévku.",
+                translation = "I'm eating soup."
+            )
+            UVTable(
+                verb = "jíst", label = "irregular",
+                rows = listOf("já" to "jím", "ty" to "jíš", "on / ona / ono" to "jí",
+                    "my" to "jíme", "vy" to "jíte", "oni" to "jedí")
+            )
+            UVVerbEntry(
+                czech = "pít",
+                english = "to drink",
+                rule = "Takes Accusative (what you drink).",
+                example = "Piji kávu.",
+                translation = "I'm drinking coffee."
+            )
+            UVTable(
+                verb = "pít", label = "irregular",
+                rows = listOf("já" to "piji / piju", "ty" to "piješ", "on / ona / ono" to "pije",
+                    "my" to "pijeme", "vy" to "pijete", "oni" to "pijí / pijou")
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -222,4 +433,30 @@ private fun UVVerbEntry(
         },
         modifier = Modifier.padding(top = 3.dp, start = 2.dp)
     )
+}
+
+@Composable
+private fun UVTable(verb: String, label: String, rows: List<Pair<String, String>>) {
+    Spacer(modifier = Modifier.height(8.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 2.dp, end = 2.dp, bottom = 4.dp)
+    ) {
+        Text(text = verb, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+        Text(text = label, fontSize = 13.sp, fontStyle = FontStyle.Italic, color = Color.Gray)
+        Spacer(modifier = Modifier.height(4.dp))
+        Row {
+            Text("Pronoun", modifier = Modifier.weight(1f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Form", modifier = Modifier.weight(0.8f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+        }
+        HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
+        rows.forEach { (pronoun, form) ->
+            Row(modifier = Modifier.padding(vertical = 3.dp)) {
+                Text(pronoun, modifier = Modifier.weight(1f), fontSize = 14.sp, color = Color.DarkGray)
+                Text(form, modifier = Modifier.weight(0.8f), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+            }
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+    }
 }

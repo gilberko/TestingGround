@@ -43,6 +43,8 @@ class MainActivity : ComponentActivity() {
                 composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
                 composable("places") { PlacesScreen(navController) }
                 composable("verbs_of_movement") { VerbsOfMovementScreen(navController) }
+                composable("prepositions") { PrepositionsScreen(navController) }
+                composable("questions") { QuestionsScreen(navController) }
                 composable("useful_verbs") { UsefulVerbsScreen(navController) }
                 composable("numbers") { NumbersScreen(navController) }
                 composable("movement") { MovementScreen(navController) }
@@ -117,9 +119,10 @@ fun LearningHubScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NavButton(label = "Letters & Pronunciation") {
                 navController.navigate("letters_pronunciation")
@@ -139,6 +142,14 @@ fun LearningHubScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Verbs Of Movement") {
                 navController.navigate("verbs_of_movement")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Prepositions") {
+                navController.navigate("prepositions")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Questions") {
+                navController.navigate("questions")
             }
         }
     }
