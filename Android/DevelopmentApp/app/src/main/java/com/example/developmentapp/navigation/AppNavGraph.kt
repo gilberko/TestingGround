@@ -89,6 +89,8 @@ import com.example.developmentapp.screens.go.GoDataTypesScreen
 import com.example.developmentapp.screens.go.GoLoopingScreen
 import com.example.developmentapp.screens.go.GoConditionsScreen
 import com.example.developmentapp.screens.go.GoFunctionsGotoScreen
+import com.example.developmentapp.screens.go.GoAnonFuncsScreen
+import com.example.developmentapp.screens.go.GoStructsArraysSlicesScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -181,8 +183,10 @@ sealed class Screen(val route: String) {
     object GoGettingStarted   : Screen("go_getting_started")
     object GoDataTypes        : Screen("go_data_types")
     object GoLooping          : Screen("go_looping")
-    object GoConditions       : Screen("go_conditions")
-    object GoFunctionsGoto    : Screen("go_functions_goto")
+    object GoConditions          : Screen("go_conditions")
+    object GoFunctionsGoto       : Screen("go_functions_goto")
+    object GoAnonFuncs           : Screen("go_anon_funcs")
+    object GoStructsArraysSlices : Screen("go_structs_arrays_slices")
 }
 
 @Composable
@@ -217,8 +221,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onGettingStarted = { navController.navigate(Screen.GoGettingStarted.route) },
                 onDataTypes      = { navController.navigate(Screen.GoDataTypes.route) },
                 onLooping        = { navController.navigate(Screen.GoLooping.route) },
-                onConditions     = { navController.navigate(Screen.GoConditions.route) },
-                onFunctionsGoto  = { navController.navigate(Screen.GoFunctionsGoto.route) }
+                onConditions          = { navController.navigate(Screen.GoConditions.route) },
+                onFunctionsGoto       = { navController.navigate(Screen.GoFunctionsGoto.route) },
+                onAnonFuncs           = { navController.navigate(Screen.GoAnonFuncs.route) },
+                onStructsArraysSlices = { navController.navigate(Screen.GoStructsArraysSlices.route) }
             )
         }
         composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
@@ -226,7 +232,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GoDataTypes.route)      { GoDataTypesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoLooping.route)        { GoLoopingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoConditions.route)     { GoConditionsScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.GoFunctionsGoto.route)  { GoFunctionsGotoScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoFunctionsGoto.route)       { GoFunctionsGotoScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoAnonFuncs.route)           { GoAnonFuncsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoStructsArraysSlices.route) { GoStructsArraysSlicesScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
