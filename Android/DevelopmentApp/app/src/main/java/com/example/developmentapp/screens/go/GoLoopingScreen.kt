@@ -152,6 +152,66 @@ fun GoLoopingScreen(onBack: () -> Unit) {
                     )
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Labels in Nested Loops") {
+                    BodyText(
+                        "Without a label, break and continue only affect the innermost loop. " +
+                        "If you have nested for loops and need to break or continue an outer loop " +
+                        "from inside an inner one, you use a label."
+                    )
+                    BodyText(
+                        "A label is an identifier followed by a colon, written on the line " +
+                        "immediately above the for statement it names. break Label exits the " +
+                        "labeled loop entirely. continue Label skips the rest of the current " +
+                        "inner-loop iteration and jumps to the labeled loop's post statement " +
+                        "(or its next condition check)."
+                    )
+                    CodeBlock(
+                        "// break with label — exit both loops as soon as target is found\n" +
+                        "grid := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}\n" +
+                        "target := 5\n" +
+                        "foundRow, foundCol := -1, -1\n\n" +
+                        "Outer:\n" +
+                        "for row := 0; row < len(grid); row++ {\n" +
+                        "    for col := 0; col < len(grid[row]); col++ {\n" +
+                        "        if grid[row][col] == target {\n" +
+                        "            foundRow, foundCol = row, col\n" +
+                        "            break Outer   // exits both loops immediately\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "}\n" +
+                        "fmt.Println(foundRow, foundCol)  // 1 1"
+                    )
+                    BodyText(
+                        "continue with a label works the same way — it skips the rest of the " +
+                        "current inner iteration AND the remaining code in the outer loop body, " +
+                        "then advances to the outer loop's next iteration."
+                    )
+                    CodeBlock(
+                        "// continue with label — skip to next row if any value is negative\n" +
+                        "rows := [][]int{{1, 2, 3}, {4, -1, 6}, {7, 8, 9}}\n\n" +
+                        "Outer:\n" +
+                        "for _, row := range rows {\n" +
+                        "    for _, v := range row {\n" +
+                        "        if v < 0 {\n" +
+                        "            continue Outer  // skip rest of this row entirely\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "    fmt.Println(\"all positive:\", row)\n" +
+                        "}\n" +
+                        "// prints only: all positive: [1 2 3]\n" +
+                        "//              all positive: [7 8 9]"
+                    )
+                    BodyText(
+                        "A label must refer to an enclosing for statement — you cannot break or " +
+                        "continue to a label that is not an ancestor of the current loop. " +
+                        "Labels are rarely needed, but they are the idiomatic Go alternative to " +
+                        "setting a boolean flag and checking it in the outer loop."
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

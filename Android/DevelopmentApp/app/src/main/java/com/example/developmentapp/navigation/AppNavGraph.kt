@@ -91,6 +91,7 @@ import com.example.developmentapp.screens.go.GoConditionsScreen
 import com.example.developmentapp.screens.go.GoFunctionsGotoScreen
 import com.example.developmentapp.screens.go.GoAnonFuncsScreen
 import com.example.developmentapp.screens.go.GoStructsArraysSlicesScreen
+import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -178,6 +179,8 @@ sealed class Screen(val route: String) {
     object Arp                 : Screen("arp")
     object Dhcp                : Screen("dhcp")
     // Go
+    object DebuggingProfilingTracing : Screen("debugging_profiling_tracing")
+    // Go
     object GoHub              : Screen("go_hub")
     object GoAbout            : Screen("go_about")
     object GoGettingStarted   : Screen("go_getting_started")
@@ -200,9 +203,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onGo             = { navController.navigate(Screen.GoHub.route) },
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
                 onAssembly       = { navController.navigate(Screen.AssemblyHub.route) },
-                onDataStructures = { navController.navigate(Screen.DataStructures.route) },
-                onAlgorithms     = { navController.navigate(Screen.AlgorithmsHub.route) },
-                onTcpIp          = { navController.navigate(Screen.TcpIpHub.route) }
+                onDataStructures             = { navController.navigate(Screen.DataStructures.route) },
+                onAlgorithms                 = { navController.navigate(Screen.AlgorithmsHub.route) },
+                onTcpIp                      = { navController.navigate(Screen.TcpIpHub.route) },
+                onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) }
             )
         }
 
@@ -211,6 +215,10 @@ fun AppNavGraph(navController: NavHostController) {
             arguments = listOf(navArgument("label") { type = NavType.StringType })
         ) {
             ComingSoonScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable(Screen.DebuggingProfilingTracing.route) {
+            DebuggingProfilingTracingScreen(onBack = { navController.popBackStack() })
         }
 
         // ── Go ────────────────────────────────────────────────────────────

@@ -30,7 +30,8 @@ fun HomeScreen(
     onAssembly: () -> Unit,
     onDataStructures: () -> Unit,
     onAlgorithms: () -> Unit,
-    onTcpIp: () -> Unit
+    onTcpIp: () -> Unit,
+    onDebuggingProfilingTracing: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -60,6 +61,8 @@ fun HomeScreen(
             HomeButton("Algorithms",      onAlgorithms)
             Spacer(Modifier.height(12.dp))
             HomeButton("TCP/IP",          onTcpIp)
+            Spacer(Modifier.height(12.dp))
+            HomeButton("Debugging, Profiling And Tracing", onDebuggingProfilingTracing)
         }
     }
 }
