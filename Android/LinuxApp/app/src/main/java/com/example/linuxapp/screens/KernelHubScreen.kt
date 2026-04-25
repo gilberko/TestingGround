@@ -102,7 +102,7 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "Kernel Memory\nAccess", modifier = Modifier.weight(1f), onClick = onKernelMemoryAccess)
-                KernelButton(label = "Threading", modifier = Modifier.weight(1f), onClick = onKernelThreading)
+                KernelButton(label = "Threading and\nSync", modifier = Modifier.weight(1f), onClick = onKernelThreading)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(

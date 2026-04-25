@@ -301,6 +301,100 @@ int old = atomic_cmpxchg(&my_counter, expected, new_val);"""
                 }
             }
 
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "RCU — Read-Copy-Update") {
+                    BodyText(
+                        "RCU stands for Read-Copy-Update. It is a synchronization mechanism optimized for " +
+                        "workloads with many concurrent readers and infrequent writers. Readers proceed " +
+                        "without acquiring any lock — they never block or spin. Only writers need to " +
+                        "coordinate."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "RCU handles the reader/writer relationship only. If there is more than one writer, " +
+                        "the writers must synchronize with each other using a separate lock — a spinlock is " +
+                        "the common choice."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Reader side:")
+                    BodyText(
+                        "A reader marks its reader critical section with rcu_read_lock() before accessing " +
+                        "RCU-protected data and rcu_read_unlock() after. The reader must not sleep inside " +
+                        "this section. Inside it, use rcu_dereference(ptr) to load the protected pointer — " +
+                        "this includes a memory barrier that prevents the compiler and CPU from speculating " +
+                        "past the load."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Writer side (the copy-update pattern):")
+                    BodyText("1. Load the old pointer: rcu_dereference_protected(ptr, condition) — used by the writer because it already holds a lock; lighter than rcu_dereference, and tells lockdep the access is protected.")
+                    BodyText("2. Allocate a new copy and apply the desired changes.")
+                    BodyText("3. Publish: rcu_assign_pointer(ptr, new_val) — stores the new pointer with a write barrier so all preceding writes are visible to readers before the pointer swap is observed.")
+                    BodyText("4. Wait for the Grace Period: all readers that still hold a reference to the old pointer must finish. Use synchronize_rcu() to block until this is guaranteed, then free the old data. Or use call_rcu() to schedule an asynchronous callback.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Grace Period — how it works:")
+                    BodyText(
+                        "Classic (non-preemptible) RCU: rcu_read_lock() disables preemption. A CPU " +
+                        "that context-switches, goes idle, or returns to user space has necessarily left " +
+                        "any reader critical section. The kernel tracks a quiescent state per CPU; once " +
+                        "every CPU has observed at least one quiescent state, the Grace Period is over and " +
+                        "it is safe to free the old data."
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    BodyText(
+                        "PREEMPT_RCU (preemptible kernels): rcu_read_lock() does NOT disable preemption; " +
+                        "it increments a per-CPU nesting counter instead. To end the Grace Period, the " +
+                        "kernel must confirm every CPU's counter reached zero. Tasks that were preempted " +
+                        "while inside a reader critical section are placed on a per-CPU list — " +
+                        "synchronize_rcu() also waits for all of those tasks to exit before declaring the " +
+                        "Grace Period complete."
+                    )
+                    CodeBlock(
+                        """/* RCU-protected pointer (annotate with __rcu) */
+struct my_data __rcu *my_ptr;
+
+/* ---- Reader ---- */
+rcu_read_lock();
+struct my_data *d = rcu_dereference(my_ptr);
+use(d->field);      /* must NOT sleep here */
+rcu_read_unlock();
+
+/* ---- Writer (sole writer — no extra lock needed) ---- */
+struct my_data *old =
+    rcu_dereference_protected(my_ptr, 1 /* sole writer */);
+struct my_data *new = kmalloc(sizeof(*new), GFP_KERNEL);
+*new = *old;                    /* copy */
+new->field = new_value;         /* modify */
+rcu_assign_pointer(my_ptr, new);/* publish with write barrier */
+synchronize_rcu();              /* wait: Grace Period complete */
+kfree(old);                     /* safe to free old data now */
+
+/* ---- Multiple writers: guard with a spinlock ---- */
+spin_lock(&my_writer_lock);
+old = rcu_dereference_protected(my_ptr,
+          lockdep_is_held(&my_writer_lock));
+/* ... same copy-modify-assign steps ... */
+spin_unlock(&my_writer_lock);
+synchronize_rcu();
+kfree(old);
+
+/* ---- Async free with call_rcu ---- */
+/* old_data->rcu_head is struct rcu_head embedded in the struct */
+call_rcu(&old_data->rcu_head, my_free_fn); /* returns immediately */
+/* my_free_fn is called after the Grace Period */"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("API summary:")
+                    BodyText("rcu_read_lock() — enter reader critical section; disables preemption in classic RCU, increments per-CPU counter in PREEMPT_RCU")
+                    BodyText("rcu_read_unlock() — exit reader critical section; symmetric with rcu_read_lock()")
+                    BodyText("rcu_dereference(p) — safe pointer load for readers; memory barrier prevents compiler/CPU reordering")
+                    BodyText("rcu_dereference_protected(p, cond) — safe pointer load for writers; cond is typically lockdep_is_held(&lock) or 1 for a sole writer")
+                    BodyText("rcu_assign_pointer(p, v) — publish new pointer with a write barrier")
+                    BodyText("synchronize_rcu() — block until the Grace Period completes; after this, the old pointer is safe to free")
+                    BodyText("call_rcu(&head, fn) — non-blocking: fn(&head) is called after the Grace Period; use for deferred free in interrupt or performance-sensitive paths")
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

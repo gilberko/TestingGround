@@ -238,6 +238,150 @@ sched_setscheduler(task, SCHED_FIFO, &param);
                     BodyText("Interrupt handlers (hardirq / softirq) are not scheduled tasks — they run in interrupt context, preempting whatever was running, and have no scheduling class or nice value.")
                 }
             }
+            item {
+                SectionCard(title = "schedule() — Yielding the CPU") {
+                    BodyText(
+                        "schedule() is a regular kernel function — not a syscall — that a task calls when it " +
+                        "wants to give up the CPU. It can only be called in process context; calling it while " +
+                        "holding a spinlock or in interrupt context is a bug."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "When a task wants to sleep (e.g., waiting for a lock, I/O, or a condition), it " +
+                        "first changes its own state and then calls schedule():"
+                    )
+                    BodyText("• set_current_state(TASK_INTERRUPTIBLE) — the task will sleep and can be woken by a signal or an explicit wake_up_process().")
+                    BodyText("• set_current_state(TASK_UNINTERRUPTIBLE) — the task will sleep and can only be woken by an explicit wake_up_process(); signals are ignored. Used for waits that must not be interrupted (e.g., waiting on a kernel mutex or disk I/O).")
+                    Spacer(Modifier.height(6.dp))
+                    BodyText(
+                        "schedule() sees the non-RUNNING state, dequeues the task from the runqueue, " +
+                        "picks the next runnable task, and context-switches to it. The sleeping task " +
+                        "consumes no CPU time. It resumes from the instruction immediately after schedule() " +
+                        "only when another code path calls wake_up_process() on it."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "If a task does not want to sleep — just be polite and let another runnable task " +
+                        "go first — it can call cond_resched() or yield(). These keep the task's state as " +
+                        "TASK_RUNNING so it stays on the runqueue and will be rescheduled normally."
+                    )
+                    CodeBlock(
+                        """/* Voluntary sleep — task wakes only when explicitly woken */
+set_current_state(TASK_INTERRUPTIBLE);
+schedule();
+/* resumes here after wake_up_process(); check condition and signals */
+
+/* Polite yield — task stays runnable */
+cond_resched();  /* calls schedule() only if TIF_NEED_RESCHED is set */
+yield();         /* unconditionally reschedules, stays TASK_RUNNING */"""
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "Scheduling In: How a Task Gets Selected") {
+                    BodyText(
+                        "After the outgoing task has been dequeued (or preempted), schedule() calls " +
+                        "pick_next_task() to choose what runs next."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "pick_next_task() walks the scheduling class list from highest to lowest priority — " +
+                        "STOP → DEADLINE → RT → FAIR (CFS) → IDLE — and asks each class for its best " +
+                        "runnable task. It returns the first non-null answer."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("A task is eligible only if it is in state TASK_RUNNING and sitting on a runqueue. Tasks that are sleeping (TASK_INTERRUPTIBLE or TASK_UNINTERRUPTIBLE) have been removed from the runqueue and are invisible to pick_next_task().")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Selection criteria per class:")
+                    BodyText("• DEADLINE — task with the earliest absolute deadline among runnable SCHED_DEADLINE tasks.")
+                    BodyText("• RT (SCHED_FIFO / SCHED_RR) — task with the highest static priority (1–99). Among equal priorities, FIFO picks the head of the queue; RR time-slices round-robin.")
+                    BodyText("• FAIR (CFS / SCHED_NORMAL) — task with the smallest vruntime in the per-CPU red-black tree. This is the task that has received the least CPU time relative to its weight, making scheduling \"fair\" over time.")
+                    BodyText("• IDLE — the per-CPU idle thread (swapper/N), which runs only when every other class has nothing.")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "Once pick_next_task() returns, schedule() calls context_switch() to save the " +
+                        "outgoing task's CPU registers and stack pointer, load those of the incoming task, " +
+                        "and switch the memory map. Execution resumes in the new task."
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "Scheduling Out: Voluntary and Preemptive") {
+                    BodyText("A task loses the CPU in two ways:")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Voluntary scheduling:")
+                    BodyText(
+                        "The task itself changes its state and calls schedule(). All sleeping primitives " +
+                        "(mutex_lock, wait_event, msleep, down, ...) do this internally. The task is " +
+                        "dequeued until something explicitly wakes it."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Preemptive scheduling (involuntary):")
+                    BodyText(
+                        "The task is running normally but the kernel decides it has had enough CPU time, " +
+                        "or a higher-priority task has become runnable. The mechanism:"
+                    )
+                    BodyText("1. A hardware timer fires periodically — typically every 1–4 ms depending on CONFIG_HZ (common values: 250, 300, 1000 Hz).")
+                    BodyText("2. The timer interrupt calls scheduler_tick().")
+                    BodyText("3. scheduler_tick() calls the current scheduling class's task_tick() method. For CFS this updates vruntime; for SCHED_RR it decrements the time slice.")
+                    BodyText("4. If the task has overrun its fair share, task_tick() calls resched_curr(), which sets the TIF_NEED_RESCHED flag on the current task's thread_info.")
+                    BodyText("5. The timer interrupt returns. schedule() is called at the next preemption point (see next section).")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText(
+                        "Wakeup preemption: when wake_up_process() makes a new task runnable, the wakeup " +
+                        "path calls check_preempt_curr(). If the newly woken task has higher priority than " +
+                        "the currently running task, resched_curr() is called on the CPU running the lower-" +
+                        "priority task, setting TIF_NEED_RESCHED there."
+                    )
+                }
+            }
+            item {
+                SectionCard(title = "Other Scheduling Triggers") {
+                    BodyText("schedule() is not the only entry point into the scheduler. Several other events cause TIF_NEED_RESCHED to be set, which then triggers a call to schedule() at the next safe opportunity:")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Timer interrupt / scheduler_tick():")
+                    BodyText(
+                        "The most important trigger for time-sharing. Fires on every timer tick, updates " +
+                        "each class's bookkeeping, and sets TIF_NEED_RESCHED when the running task should " +
+                        "yield. The interrupt itself does NOT call schedule() — that would be illegal in " +
+                        "interrupt context — it only sets the flag."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Return from interrupt or syscall to user space:")
+                    BodyText(
+                        "Before restoring user-space registers, the kernel always checks TIF_NEED_RESCHED. " +
+                        "If set, schedule() is called unconditionally. This is a mandatory reschedule point " +
+                        "regardless of whether CONFIG_PREEMPT is enabled."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Kernel preemption (CONFIG_PREEMPT):")
+                    BodyText(
+                        "On a preemptible kernel, whenever preempt_count drops to zero (e.g., when a " +
+                        "spinlock is released or a preempt_enable() call is made) and TIF_NEED_RESCHED is " +
+                        "set, schedule() is called immediately — even deep in kernel code. On a non-" +
+                        "preemptible kernel this does not happen; reschedule only occurs at explicit " +
+                        "schedule() calls or interrupt returns."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("cond_resched() in long kernel loops:")
+                    BodyText(
+                        "Kernel code that runs a long loop (e.g., iterating over a large data structure) " +
+                        "should periodically call cond_resched(). It checks TIF_NEED_RESCHED and calls " +
+                        "schedule() if set, preventing soft-lockup warnings and keeping the system " +
+                        "responsive. The task stays TASK_RUNNING — it will be rescheduled, not put to sleep."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Summary — what sets TIF_NEED_RESCHED:")
+                    BodyText("• scheduler_tick() when the running task overruns its quantum")
+                    BodyText("• check_preempt_curr() when a higher-priority task wakes up")
+                    BodyText("• Direct calls to resched_curr() from elsewhere in the kernel")
+                    BodyText("")
+                    BodyText("Summary — where schedule() is actually called after the flag is set:")
+                    BodyText("• Return to user space (always)")
+                    BodyText("• Release of a spinlock on CONFIG_PREEMPT kernels")
+                    BodyText("• Explicit cond_resched() / schedule() / yield() calls in kernel code")
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

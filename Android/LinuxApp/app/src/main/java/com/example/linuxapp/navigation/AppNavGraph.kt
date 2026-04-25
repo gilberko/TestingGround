@@ -89,6 +89,7 @@ import com.example.linuxapp.screens.LinuxUsage2Screen
 import com.example.linuxapp.screens.kernel.DeviceTypesHubScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryAccessScreen
 import com.example.linuxapp.screens.kernel.KernelThreadingScreen
+import com.example.linuxapp.screens.kernel.KernelProcessSchedulingScreen
 import com.example.linuxapp.screens.kernel.ForkCloneScreen
 import com.example.linuxapp.screens.kernel.DkmsScreen
 
@@ -162,8 +163,9 @@ sealed class Screen(val route: String) {
     object KernelMemoryAccess        : Screen("kernel_memory_access")
     object KernelThreading           : Screen("kernel_threading")
     object LinuxUsage2               : Screen("linux_usage_2")
-    object KernelForkClone           : Screen("kernel_fork_clone")
-    object KernelDkms                : Screen("kernel_dkms")
+    object KernelForkClone                 : Screen("kernel_fork_clone")
+    object KernelDkms                      : Screen("kernel_dkms")
+    object KernelProcessSchedulingWhole    : Screen("kernel_process_scheduling_whole")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -437,8 +439,12 @@ fun AppNavGraph(navController: NavHostController) {
             TheWholePictureHubScreen(
                 onBack = { navController.popBackStack() },
                 onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
-                onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) }
+                onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) },
+                onProcessScheduling = { navController.navigate(Screen.KernelProcessSchedulingWhole.route) }
             )
+        }
+        composable(Screen.KernelProcessSchedulingWhole.route) {
+            KernelProcessSchedulingScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.KernelMemoryManagement.route) {
             KernelMemoryScreen(onBack = { navController.popBackStack() })

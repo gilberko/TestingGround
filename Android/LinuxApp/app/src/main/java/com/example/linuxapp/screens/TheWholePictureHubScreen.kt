@@ -39,7 +39,8 @@ import com.example.linuxapp.R
 fun TheWholePictureHubScreen(
     onBack: () -> Unit,
     onFileAccessWhole: () -> Unit,
-    onMemoryAccessWhole: () -> Unit
+    onMemoryAccessWhole: () -> Unit,
+    onProcessScheduling: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -80,6 +81,17 @@ fun TheWholePictureHubScreen(
                     WholePictureButton(
                         label = "Memory Access:\nWhole Picture",
                         onClick = onMemoryAccessWhole,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    WholePictureButton(
+                        label = "Process\nScheduling",
+                        onClick = onProcessScheduling,
                         modifier = Modifier.weight(1f)
                     )
                 }
