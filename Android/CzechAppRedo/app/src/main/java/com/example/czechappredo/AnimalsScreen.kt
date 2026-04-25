@@ -20,11 +20,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PeopleAndFamilyScreen(navController: NavController) {
+fun AnimalsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("People & Family", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Animals", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -44,37 +44,54 @@ fun PeopleAndFamilyScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            PFSection("People")
-            PFRow("muž", "man", "m.")
-            PFRow("žena", "woman", "f.")
-            PFRow("kluk / chlapec", "boy", "m. — kluk is colloquial, chlapec is formal")
-            PFRow("holka / dívka", "girl", "f. — holka is colloquial, dívka is formal")
-            PFRow("člověk / osoba", "person", "člověk m. = human being (general); osoba f. = individual (formal contexts)")
-            PFRow("miminko", "baby", "n.")
-            PFRow("kojenec", "infant", "m. — specifically a nursing infant")
-            PFRow("dítě", "kid / child", "n.")
+            ANSection("Birds")
+            ANRow("pták", "bird", "m.")
+            ANRow("orel", "eagle", "m.")
+            ANRow("vrabec", "sparrow", "m.")
+            ANRow("papoušek", "parrot", "m.")
 
-            PFSection("Immediate Family")
-            PFRow("manžel", "husband", "m.")
-            PFRow("manželka", "wife", "f.")
-            PFRow("syn", "son", "m.")
-            PFRow("dcera", "daughter", "f.")
-            PFRow("bratr", "brother", "m.")
-            PFRow("sestra", "sister", "f.")
+            ANSection("Sea & Water Animals")
+            ANRow("delfín", "dolphin", "m.")
+            ANRow("ryba", "fish", "f.")
+            ANRow("žralok", "shark", "m.")
+            ANRow("velryba", "whale", "f.")
+            ANRow("úhoř", "eel", "m.")
 
-            PFSection("Extended Family")
-            PFRow("dědeček", "grandfather", "m.")
-            PFRow("babička", "grandmother", "f.")
-            PFRow("strýc", "uncle", "m. — same word regardless of which side of the family")
-            PFRow("teta", "aunt", "f. — same word regardless of which side of the family")
-            PFRow("bratranec", "cousin (male)", "m. — Czech uses separate words for male and female cousins")
-            PFRow("sestřenice", "cousin (female)", "f.")
-            PFRow("synovec", "nephew", "m.")
-            PFRow("neteř", "niece", "f.")
-            PFRow("švagr", "brother-in-law", "m.")
-            PFRow("švagrová", "sister-in-law", "f.")
-            PFRow("tchán", "father-in-law", "m. — parent of one's spouse; used by both partners in modern Czech")
-            PFRow("tchyně", "mother-in-law", "f. — parent of one's spouse; used by both partners in modern Czech")
+            ANSection("Pets & Farm Animals")
+            ANRow("pes", "dog", "m. — pl. psi")
+            ANRow("kočka", "cat", "f.")
+            ANRow("kůň", "horse", "m. — pl. koně")
+            ANRow("osel", "donkey", "m.")
+            ANRow("ovce", "sheep", "f.")
+
+            ANSection("African & Asian Animals")
+            ANRow("lev", "lion", "m.")
+            ANRow("tygr", "tiger", "m.")
+            ANRow("leopard", "leopard", "m.")
+            ANRow("hyena", "hyena", "f.")
+            ANRow("žirafa", "giraffe", "f.")
+            ANRow("gorila", "gorilla", "f.")
+            ANRow("opice", "monkey", "f.")
+            ANRow("nosorožec", "rhinoceros", "m.")
+            ANRow("hroch", "hippopotamus", "m.")
+            ANRow("zebra", "zebra", "f.")
+
+            ANSection("Reptiles & Bugs")
+            ANRow("had", "snake", "m.")
+            ANRow("krokodýl", "crocodile", "m.")
+            ANRow("aligátor", "alligator", "m.")
+            ANRow("škorpion", "scorpion", "m.")
+            ANRow("pavouk", "spider", "m.")
+
+            ANSection("Other Animals")
+            ANRow("medvěd", "bear", "m.")
+            ANRow("los", "moose", "m.")
+            ANRow("sob", "reindeer", "m.")
+            ANRow("bobr", "beaver", "m.")
+            ANRow("myš", "mouse", "f.")
+            ANRow("krysa", "rat", "f.")
+            ANRow("klokan", "kangaroo", "m.")
+            ANRow("koala", "koala", "m.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -82,14 +99,14 @@ fun PeopleAndFamilyScreen(navController: NavController) {
 }
 
 @Composable
-private fun PFSection(text: String) {
+private fun ANSection(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(text = text, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
     Spacer(modifier = Modifier.height(6.dp))
 }
 
 @Composable
-private fun PFRow(czech: String, english: String, note: String = "") {
+private fun ANRow(czech: String, english: String, note: String = "") {
     Column(modifier = Modifier.padding(vertical = 3.dp)) {
         Text(
             text = buildAnnotatedString {

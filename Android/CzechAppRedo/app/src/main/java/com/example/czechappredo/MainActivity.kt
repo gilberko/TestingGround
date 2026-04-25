@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity() {
                 composable("people_family") { PeopleAndFamilyScreen(navController) }
                 composable("transportation") { TransportationScreen(navController) }
                 composable("food") { FoodScreen(navController) }
+                composable("animals") { AnimalsScreen(navController) }
             }
         }
     }
@@ -196,12 +197,13 @@ fun DictionaryHubScreen(navController: NavController) {
             "Basic Words, Expressions & Greetings" to "basic_words",
             "Jobs & Professions" to "jobs_professions",
             "Places" to "places",
-            "Very Useful Verbs" to "useful_verbs",
+            "Useful Conjugated Verbs" to "useful_verbs",
             "Numbers" to "numbers",
             "Movement" to "movement",
             "People & Family" to "people_family",
             "Transportation" to "transportation",
-            "Food" to "food"
+            "Food" to "food",
+            "Animals" to "animals"
         )
         Column(
             modifier = Modifier

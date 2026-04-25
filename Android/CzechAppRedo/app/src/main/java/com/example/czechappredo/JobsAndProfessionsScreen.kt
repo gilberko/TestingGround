@@ -50,6 +50,7 @@ fun JobsAndProfessionsScreen(navController: NavController) {
             JPRow("hudebník", "hudebnice", "musician")
             JPRow("zpěvák", "zpěvačka", "singer")
             JPRow("spisovatel", "spisovatelka", "writer")
+            JPRow("dirigent", "dirigentka", "orchestra conductor")
 
             JPSection("Food & Hospitality")
             JPRow("pekař", "pekařka", "baker")
@@ -57,11 +58,14 @@ fun JobsAndProfessionsScreen(navController: NavController) {
             JPRow("barman", "barmanka", "bartender")
             JPRow("šéfkuchař", "šéfkuchařka", "chef")
             JPRow("číšník", "číšnice", "waiter")
+            JPRow("kuchař", "kuchařka", "cook", "šéfkuchař / šéfkuchařka = chef (head cook)")
 
             JPSection("Medicine & Law")
             JPRow("lékař", "lékařka", "doctor", "also: doktor / doktorka (colloquial)")
             JPRow("zubař", "zubařka", "dentist")
             JPRow("právník", "právnice", "lawyer", "also: advokát / advokátka")
+            JPRow("soudce", "soudkyně", "judge")
+            JPRow("veterinář", "veterinářka", "veterinarian")
 
             JPSection("Office, Tech & Education")
             JPRow("manažer", "manažerka", "manager")
@@ -70,9 +74,21 @@ fun JobsAndProfessionsScreen(navController: NavController) {
             JPRow("inženýr", "inženýrka", "engineer")
             JPRow("architekt", "architektka", "architect")
             JPRow("učitel", "učitelka", "teacher")
+            JPRow("politik", "politička", "politician")
 
             JPSection("Trades & Crafts")
             JPRow("obuvník", "obuvnice", "cobbler", "also: ševec / ševcová (old-fashioned)")
+            JPRow("krejčí", "krejčová", "tailor")
+            JPRow("kadeřník", "kadeřnice", "hairdresser")
+
+            JPSection("Public Service & Safety")
+            JPRow("záchranář", "záchranářka", "lifeguard / rescue worker", "plavčík / plavčice = pool or beach lifeguard specifically")
+            JPRow("policista", "policistka", "police officer")
+            JPRow("voják", "vojačka", "soldier", "vojákyně = formal feminine form")
+
+            JPSection("Transport & Services")
+            JPRow("řidič", "řidička", "driver")
+            JPRow("průvodčí", "průvodčí", "train conductor", "same form for masculine and feminine")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
