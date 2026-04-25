@@ -14,7 +14,11 @@
       "Bash(./gradlew assembleDebug --quiet)",
       "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\")",
       "Bash(JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
-      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\")"
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\")",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; .\\\\gradlew.bat assembleRelease 2>&1)",
+      "Bash(where java *)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 30)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 20)"
     ]
   }
 }

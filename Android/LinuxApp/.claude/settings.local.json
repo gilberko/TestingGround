@@ -35,7 +35,8 @@
       "Read(//c/Users/gilbe/AppData/Local/Programs//**)",
       "Read(//c/Android/**)",
       "Bash(find /c -maxdepth 5 -name \"java.exe\")",
-      "PowerShell(Test-Path *)"
+      "PowerShell(Test-Path *)",
+      "PowerShell(& \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\gradlew.bat\" assembleRelease 2>&1)"
     ]
   }
 }

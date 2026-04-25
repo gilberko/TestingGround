@@ -66,6 +66,8 @@ fun JobsAndProfessionsScreen(navController: NavController) {
             JPRow("právník", "právnice", "lawyer", "also: advokát / advokátka")
             JPRow("soudce", "soudkyně", "judge")
             JPRow("veterinář", "veterinářka", "veterinarian")
+            JPRow("psycholog", "psycholožka", "psychologist")
+            JPRow("terapeut", "terapeutka", "therapist")
 
             JPSection("Office, Tech & Education")
             JPRow("manažer", "manažerka", "manager")

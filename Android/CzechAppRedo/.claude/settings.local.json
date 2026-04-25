@@ -8,7 +8,16 @@
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" cd \"C:/Code/TestingGround/Android/CzechAppRedo\")",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
       "Bash(./gradlew assembleDebug)",
-      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)"
+      "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleDebug)",
+      "Bash(grep -i \"\\\\.kt$\")",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 30)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 15)",
+      "Bash(./gradlew assembleDebug --quiet)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleDebug --quiet 2>&1 | Select-Object -Last 30)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease --quiet 2>&1 | Select-Object -Last 20)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 20)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 15)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease 2>&1)"
     ]
   }
 }
