@@ -36,7 +36,9 @@
       "Read(//c/Android/**)",
       "Bash(find /c -maxdepth 5 -name \"java.exe\")",
       "PowerShell(Test-Path *)",
-      "PowerShell(& \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\gradlew.bat\" assembleRelease 2>&1)"
+      "PowerShell(& \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\gradlew.bat\" assembleRelease 2>&1)",
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\Android\\\\Android Studio\" -ErrorAction SilentlyContinue | Select-Object Name; $env:ANDROID_HOME; $env:ANDROID_SDK_ROOT)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; .\\\\gradlew assembleRelease)"
     ]
   }
 }

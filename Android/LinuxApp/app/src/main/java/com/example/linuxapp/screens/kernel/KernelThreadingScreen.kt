@@ -331,6 +331,15 @@ int old = atomic_cmpxchg(&my_counter, expected, new_val);"""
                     BodyText("2. Allocate a new copy and apply the desired changes.")
                     BodyText("3. Publish: rcu_assign_pointer(ptr, new_val) — stores the new pointer with a write barrier so all preceding writes are visible to readers before the pointer swap is observed.")
                     BodyText("4. Wait for the Grace Period: all readers that still hold a reference to the old pointer must finish. Use synchronize_rcu() to block until this is guaranteed, then free the old data. Or use call_rcu() to schedule an asynchronous callback.")
+                    Spacer(modifier = Modifier.height(6.dp))
+                    BodyText(
+                        "Important: after step 3, new readers immediately see the new pointer — " +
+                        "rcu_assign_pointer() publishes it atomically with a write barrier. " +
+                        "synchronize_rcu() / call_rcu() is not about making the new value visible; " +
+                        "it is only about waiting for readers that had already loaded the old pointer " +
+                        "before the swap to exit their rcu_read_lock() section, so the old data " +
+                        "can then be freed safely."
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
                     BodyText("Grace Period — how it works:")
                     BodyText(
