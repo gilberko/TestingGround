@@ -96,6 +96,8 @@ import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScr
 import com.example.developmentapp.screens.ai.PerceptronScreen
 import com.example.developmentapp.screens.ai.NeuralNetworksScreen
 import com.example.developmentapp.screens.ai.InferenceForwardPropScreen
+import com.example.developmentapp.screens.ai.TrainingBackwardPropScreen
+import com.example.developmentapp.screens.ai.GanScreen
 import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
 
@@ -203,6 +205,8 @@ sealed class Screen(val route: String) {
     object Perceptron            : Screen("perceptron")
     object NeuralNetworks        : Screen("neural_networks")
     object InferenceForwardProp  : Screen("inference_forward_prop")
+    object TrainingBackwardProp  : Screen("training_backward_prop")
+    object GAN                   : Screen("gan")
 }
 
 @Composable
@@ -448,11 +452,15 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                 = { navController.popBackStack() },
                 onPerceptron           = { navController.navigate(Screen.Perceptron.route) },
                 onNeuralNetworks       = { navController.navigate(Screen.NeuralNetworks.route) },
-                onInferenceForwardProp = { navController.navigate(Screen.InferenceForwardProp.route) }
+                onInferenceForwardProp = { navController.navigate(Screen.InferenceForwardProp.route) },
+                onTrainingBackwardProp = { navController.navigate(Screen.TrainingBackwardProp.route) },
+                onGAN                  = { navController.navigate(Screen.GAN.route) }
             )
         }
         composable(Screen.Perceptron.route)           { PerceptronScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.NeuralNetworks.route)       { NeuralNetworksScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.InferenceForwardProp.route) { InferenceForwardPropScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.TrainingBackwardProp.route) { TrainingBackwardPropScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GAN.route)                  { GanScreen(onBack = { navController.popBackStack() }) }
     }
 }

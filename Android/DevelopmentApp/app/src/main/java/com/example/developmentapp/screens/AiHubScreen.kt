@@ -39,7 +39,9 @@ fun AiHubScreen(
     onBack: () -> Unit,
     onPerceptron: () -> Unit,
     onNeuralNetworks: () -> Unit,
-    onInferenceForwardProp: () -> Unit
+    onInferenceForwardProp: () -> Unit,
+    onTrainingBackwardProp: () -> Unit,
+    onGAN: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -78,6 +80,10 @@ fun AiHubScreen(
             AiButtonRow("Perceptron", onPerceptron, "Neural Networks", onNeuralNetworks)
             Spacer(Modifier.height(12.dp))
             AiHubButton("Inference - Forward Propagation", onInferenceForwardProp, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            AiHubButton("Training - Backward Propagation", onTrainingBackwardProp, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            AiHubButton("Generative Adversarial Network (GAN)", onGAN, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
