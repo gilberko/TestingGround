@@ -384,6 +384,358 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "my" to "pijeme", "vy" to "pijete", "oni" to "pijí / pijou")
             )
 
+            UVSection("Being & Living")
+
+            UVVerbEntry(
+                czech = "být",
+                english = "to be",
+                rule = "Core linking verb. Used for identity, description, location, and existence.",
+                example = "Jsem doma.",
+                translation = "I am at home."
+            )
+            UVTable(
+                verb = "být", label = "irregular",
+                rows = listOf(
+                    "já" to "jsem",
+                    "ty" to "jsi",
+                    "on / ona / ono" to "je",
+                    "my" to "jsme",
+                    "vy" to "jste",
+                    "oni" to "jsou"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "žít",
+                english = "to be alive / to live (life)",
+                rule = "Location with v/ve + Locative. Distinct from bydlet (physical residence).",
+                example = "Žiju v Praze.",
+                translation = "I live in Prague."
+            )
+            UVTable(
+                verb = "žít", label = "irregular",
+                rows = listOf(
+                    "já" to "žiji / žiju",
+                    "ty" to "žiješ",
+                    "on / ona / ono" to "žije",
+                    "my" to "žijeme",
+                    "vy" to "žijete",
+                    "oni" to "žijí / žijou"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "bydlet",
+                english = "to reside / to live (at an address)",
+                rule = "Location with v/ve + Locative. Use for physical address, not general life.",
+                example = "Bydlím v Brně.",
+                translation = "I reside in Brno."
+            )
+            UVTable(
+                verb = "bydlet", label = "Type 2 (-et)",
+                rows = listOf(
+                    "já" to "bydlím",
+                    "ty" to "bydlíš",
+                    "on / ona / ono" to "bydlí",
+                    "my" to "bydlíme",
+                    "vy" to "bydlíte",
+                    "oni" to "bydlí"
+                )
+            )
+
+            UVSection("Communication")
+
+            UVVerbEntry(
+                czech = "mluvit",
+                english = "to speak / to talk",
+                rule = "Topic: o + Locative. With whom: s + Instrumental.",
+                example = "Mluvím česky.",
+                translation = "I speak Czech."
+            )
+            UVTable(
+                verb = "mluvit", label = "Type 2 (-it)",
+                rows = listOf(
+                    "já" to "mluvím",
+                    "ty" to "mluvíš",
+                    "on / ona / ono" to "mluví",
+                    "my" to "mluvíme",
+                    "vy" to "mluvíte",
+                    "oni" to "mluví"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "poslouchat",
+                english = "to listen (to)",
+                rule = "Takes Accusative (what/whom you listen to).",
+                example = "Poslouchám hudbu.",
+                translation = "I'm listening to music."
+            )
+            UVTable(
+                verb = "poslouchat", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "poslouchám",
+                    "ty" to "posloucháš",
+                    "on / ona / ono" to "poslouchá",
+                    "my" to "posloucháme",
+                    "vy" to "posloucháte",
+                    "oni" to "poslouchají"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "říkat",
+                english = "to say / to tell (imperfective)",
+                rule = "Imperfective (habitual/ongoing). Perfective říct → řeknu / řekneš / řekne / řekneme / řeknete / řeknou.",
+                example = "Říkám ti pravdu.",
+                translation = "I'm telling you the truth."
+            )
+            UVTable(
+                verb = "říkat", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "říkám",
+                    "ty" to "říkáš",
+                    "on / ona / ono" to "říká",
+                    "my" to "říkáme",
+                    "vy" to "říkáte",
+                    "oni" to "říkají"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "vidět",
+                english = "to see",
+                rule = "Takes Accusative (what/whom you see).",
+                example = "Vidím tě.",
+                translation = "I see you."
+            )
+            UVTable(
+                verb = "vidět", label = "Type 2 (-et)",
+                rows = listOf(
+                    "já" to "vidím",
+                    "ty" to "vidíš",
+                    "on / ona / ono" to "vidí",
+                    "my" to "vidíme",
+                    "vy" to "vidíte",
+                    "oni" to "vidí"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "dívat se",
+                english = "to look (at) / to watch",
+                rule = "na + Accusative (direction of gaze). Reflexive particle se is always required.",
+                example = "Dívám se na film.",
+                translation = "I'm watching a film."
+            )
+            UVTable(
+                verb = "dívat se", label = "Type 1 (-at), reflexive",
+                rows = listOf(
+                    "já" to "dívám se",
+                    "ty" to "díváš se",
+                    "on / ona / ono" to "dívá se",
+                    "my" to "díváme se",
+                    "vy" to "díváte se",
+                    "oni" to "dívají se"
+                )
+            )
+
+            UVSection("Knowing & Meeting")
+
+            UVVerbEntry(
+                czech = "vědět",
+                english = "to know (a fact)",
+                rule = "Takes Accusative or že + clause. Use for facts, not for knowing people/places.",
+                example = "Vím, kde to je.",
+                translation = "I know where it is."
+            )
+            UVTable(
+                verb = "vědět", label = "irregular",
+                rows = listOf(
+                    "já" to "vím",
+                    "ty" to "víš",
+                    "on / ona / ono" to "ví",
+                    "my" to "víme",
+                    "vy" to "víte",
+                    "oni" to "vědí"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "znát",
+                english = "to know (a person / place)",
+                rule = "Takes Accusative. Use for familiarity with people, places, or works — not for facts.",
+                example = "Znám Prahu.",
+                translation = "I know Prague."
+            )
+            UVTable(
+                verb = "znát", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "znám",
+                    "ty" to "znáš",
+                    "on / ona / ono" to "zná",
+                    "my" to "známe",
+                    "vy" to "znáte",
+                    "oni" to "znají"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "potkávat",
+                english = "to meet / to run into (imperfective)",
+                rule = "Takes Accusative. Casual/chance encounter. For arranged meeting use setkat se s + Instrumental.",
+                example = "Potkávám ho každý den.",
+                translation = "I run into him every day."
+            )
+            UVTable(
+                verb = "potkávat", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "potkávám",
+                    "ty" to "potkáváš",
+                    "on / ona / ono" to "potkává",
+                    "my" to "potkáváme",
+                    "vy" to "potkáváte",
+                    "oni" to "potkávají"
+                )
+            )
+
+            UVSection("Mind & Decisions")
+
+            UVVerbEntry(
+                czech = "pamatovat si",
+                english = "to remember",
+                rule = "Takes Accusative. Reflexive si is obligatory — do not drop it.",
+                example = "Pamatuji si tvé jméno.",
+                translation = "I remember your name."
+            )
+            UVTable(
+                verb = "pamatovat si", label = "Type 3 (-ovat), reflexive",
+                rows = listOf(
+                    "já" to "pamatuji si / pamatuju si",
+                    "ty" to "pamatuješ si",
+                    "on / ona / ono" to "pamatuje si",
+                    "my" to "pamatujeme si",
+                    "vy" to "pamatujete si",
+                    "oni" to "pamatují si / pamatujou si"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "zapomínat",
+                english = "to forget (imperfective)",
+                rule = "na + Accusative (what you forget). Imperfective; perfective is zapomenout.",
+                example = "Zapomínám na klíče.",
+                translation = "I keep forgetting the keys."
+            )
+            UVTable(
+                verb = "zapomínat", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "zapomínám",
+                    "ty" to "zapomínáš",
+                    "on / ona / ono" to "zapomíná",
+                    "my" to "zapomínáme",
+                    "vy" to "zapomínáte",
+                    "oni" to "zapomínají"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "rozhodovat se",
+                english = "to decide (imperfective)",
+                rule = "pro + Accusative (deciding in favour of) or o + Locative (deciding about). Reflexive se required.",
+                example = "Rozhoduji se pro nové auto.",
+                translation = "I'm deciding on a new car."
+            )
+            UVTable(
+                verb = "rozhodovat se", label = "Type 3 (-ovat), reflexive",
+                rows = listOf(
+                    "já" to "rozhoduji se / rozhoduju se",
+                    "ty" to "rozhoduješ se",
+                    "on / ona / ono" to "rozhoduje se",
+                    "my" to "rozhodujeme se",
+                    "vy" to "rozhodujete se",
+                    "oni" to "rozhodují se / rozhodujou se"
+                )
+            )
+
+            UVSection("Finding & Permission")
+
+            UVVerbEntry(
+                czech = "hledat",
+                english = "to look for / to search",
+                rule = "Takes Accusative (what you search for).",
+                example = "Hledám práci.",
+                translation = "I'm looking for work."
+            )
+            UVTable(
+                verb = "hledat", label = "Type 1 (-at)",
+                rows = listOf(
+                    "já" to "hledám",
+                    "ty" to "hledáš",
+                    "on / ona / ono" to "hledá",
+                    "my" to "hledáme",
+                    "vy" to "hledáte",
+                    "oni" to "hledají"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "nacházet",
+                english = "to find (imperfective)",
+                rule = "Takes Accusative. Imperfective of najít (perf.: najdu / najdeš / najde / najdeme / najdete / najdou).",
+                example = "Nacházím řešení.",
+                translation = "I'm finding a solution."
+            )
+            UVTable(
+                verb = "nacházet", label = "Type 2-like (-et)",
+                rows = listOf(
+                    "já" to "nacházím",
+                    "ty" to "nacházíš",
+                    "on / ona / ono" to "nachází",
+                    "my" to "nacházíme",
+                    "vy" to "nacházíte",
+                    "oni" to "nacházejí"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "dovolovat",
+                english = "to allow / to permit (imperfective)",
+                rule = "Takes Dative (to whom) + infinitive. Perfective is dovolit.",
+                example = "Dovoluje mi jít ven.",
+                translation = "He allows me to go outside."
+            )
+            UVTable(
+                verb = "dovolovat", label = "Type 3 (-ovat)",
+                rows = listOf(
+                    "já" to "dovoluji / dovoluju",
+                    "ty" to "dovoluješ",
+                    "on / ona / ono" to "dovoluje",
+                    "my" to "dovolujeme",
+                    "vy" to "dovolujete",
+                    "oni" to "dovolují / dovolujou"
+                )
+            )
+
+            UVVerbEntry(
+                czech = "smět",
+                english = "to be allowed to (modal)",
+                rule = "Followed directly by an infinitive. Expresses permission.",
+                example = "Smím tu parkovat?",
+                translation = "Am I allowed to park here?"
+            )
+            UVTable(
+                verb = "smět", label = "irregular modal",
+                rows = listOf(
+                    "já" to "smím",
+                    "ty" to "smíš",
+                    "on / ona / ono" to "smí",
+                    "my" to "smíme",
+                    "vy" to "smíte",
+                    "oni" to "smí"
+                )
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

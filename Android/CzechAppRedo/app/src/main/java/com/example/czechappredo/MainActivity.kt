@@ -48,6 +48,9 @@ class MainActivity : ComponentActivity() {
                 composable("useful_verbs") { UsefulVerbsScreen(navController) }
                 composable("numbers") { NumbersScreen(navController) }
                 composable("movement") { MovementScreen(navController) }
+                composable("people_family") { PeopleAndFamilyScreen(navController) }
+                composable("transportation") { TransportationScreen(navController) }
+                composable("food") { FoodScreen(navController) }
             }
         }
     }
@@ -93,6 +96,20 @@ fun NavButton(label: String, onClick: () -> Unit) {
         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue)
     ) {
         Text(text = label, fontSize = 18.sp, color = Color.White, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+fun DictNavButton(label: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 64.dp),
+        shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue)
+    ) {
+        Text(text = label, fontSize = 16.sp, color = Color.White, textAlign = TextAlign.Center)
     }
 }
 
@@ -175,36 +192,37 @@ fun DictionaryHubScreen(navController: NavController) {
         },
         containerColor = Color.White
     ) { innerPadding ->
+        val items = listOf(
+            "Basic Words, Expressions & Greetings" to "basic_words",
+            "Jobs & Professions" to "jobs_professions",
+            "Places" to "places",
+            "Very Useful Verbs" to "useful_verbs",
+            "Numbers" to "numbers",
+            "Movement" to "movement",
+            "People & Family" to "people_family",
+            "Transportation" to "transportation",
+            "Food" to "food"
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(horizontal = 16.dp, vertical = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            NavButton(label = "Basic Words, Expressions & Greetings") {
-                navController.navigate("basic_words")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Jobs & Professions") {
-                navController.navigate("jobs_professions")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Places") {
-                navController.navigate("places")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Very Useful Verbs") {
-                navController.navigate("useful_verbs")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Numbers") {
-                navController.navigate("numbers")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Movement") {
-                navController.navigate("movement")
+            items.chunked(2).forEach { pair ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    pair.forEach { (label, route) ->
+                        DictNavButton(label = label, modifier = Modifier.weight(1f)) {
+                            navController.navigate(route)
+                        }
+                    }
+                    if (pair.size == 1) Spacer(modifier = Modifier.weight(1f))
+                }
             }
         }
     }
