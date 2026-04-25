@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -34,30 +35,18 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PythonHubScreen(
+fun AiHubScreen(
     onBack: () -> Unit,
-    onSyntax: () -> Unit,
-    onFunctions: () -> Unit,
-    onVariables: () -> Unit,
-    onClassesObjects: () -> Unit,
-    onConditions: () -> Unit,
-    onLoops: () -> Unit,
-    onArithmetic: () -> Unit,
-    onStrings: () -> Unit,
-    onLibraries: () -> Unit,
-    onInputOutput: () -> Unit,
-    onThreads: () -> Unit,
-    onNetworking: () -> Unit,
-    onCoroutines: () -> Unit,
-    onSwitchCase: () -> Unit,
-    onGenerators: () -> Unit
+    onPerceptron: () -> Unit,
+    onNeuralNetworks: () -> Unit,
+    onInferenceForwardProp: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Python",
+                        text       = "AI and Neural Networks",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -86,49 +75,33 @@ fun PythonHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            ButtonRow("Syntax",              onSyntax,
-                      "Variables",           onVariables)
+            AiButtonRow("Perceptron", onPerceptron, "Neural Networks", onNeuralNetworks)
             Spacer(Modifier.height(12.dp))
-            ButtonRow("Functions",           onFunctions,
-                      "Classes & Objects",   onClassesObjects)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Conditions & If-Else", onConditions,
-                      "Loops",              onLoops)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Arithmetic",          onArithmetic,
-                      "Strings",            onStrings)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Libraries & Imports", onLibraries,
-                      "Input & Output",     onInputOutput)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Threads",    onThreads,
-                      "Networking", onNetworking)
-            Spacer(Modifier.height(12.dp))
-            ButtonRow("Coroutines",   onCoroutines,
-                      "Switch / Match", onSwitchCase)
-            Spacer(Modifier.height(12.dp))
-            HubButton("Generator Functions", onGenerators, Modifier.fillMaxWidth())
+            AiHubButton("Inference - Forward Propagation", onInferenceForwardProp, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
 }
 
 @Composable
-private fun ButtonRow(
+private fun AiButtonRow(
     label1: String, onClick1: () -> Unit,
     label2: String, onClick2: () -> Unit
 ) {
-    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        HubButton(label1, onClick1, Modifier.weight(1f))
-        HubButton(label2, onClick2, Modifier.weight(1f))
+    Row(
+        modifier              = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        AiHubButton(label1, onClick1, Modifier.weight(1f))
+        AiHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun HubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun AiHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
-        modifier = modifier.height(52.dp),
+        modifier = modifier.heightIn(min = 52.dp),
         border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,

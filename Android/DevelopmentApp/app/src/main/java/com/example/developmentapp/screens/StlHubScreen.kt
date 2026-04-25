@@ -37,14 +37,15 @@ import androidx.compose.ui.unit.sp
 fun StlHubScreen(
     onBack: () -> Unit,
     onStlContainers: () -> Unit,
-    onAsyncPromiseFuture: () -> Unit
+    onAsyncPromiseFuture: () -> Unit,
+    onLambdasThreading: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "STL",
+                        text       = "Modern C++ and STL",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -74,6 +75,8 @@ fun StlHubScreen(
         ) {
             Spacer(Modifier.height(24.dp))
             StlButtonRow("STL Containers", onStlContainers, "Async, Promise and Future", onAsyncPromiseFuture)
+            Spacer(Modifier.height(12.dp))
+            StlHubButton("Lambdas & STL Threading", onLambdasThreading, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }

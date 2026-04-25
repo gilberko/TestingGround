@@ -83,6 +83,7 @@ import com.example.developmentapp.screens.tcpip.SslTlsScreen
 import com.example.developmentapp.screens.tcpip.TcpScreen
 import com.example.developmentapp.screens.tcpip.UdpScreen
 import com.example.developmentapp.screens.GoHubScreen
+import com.example.developmentapp.screens.AiHubScreen
 import com.example.developmentapp.screens.go.GoAboutScreen
 import com.example.developmentapp.screens.go.GoGettingStartedScreen
 import com.example.developmentapp.screens.go.GoDataTypesScreen
@@ -92,6 +93,11 @@ import com.example.developmentapp.screens.go.GoFunctionsGotoScreen
 import com.example.developmentapp.screens.go.GoAnonFuncsScreen
 import com.example.developmentapp.screens.go.GoStructsArraysSlicesScreen
 import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScreen
+import com.example.developmentapp.screens.ai.PerceptronScreen
+import com.example.developmentapp.screens.ai.NeuralNetworksScreen
+import com.example.developmentapp.screens.ai.InferenceForwardPropScreen
+import com.example.developmentapp.screens.python.PythonGeneratorsScreen
+import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -131,6 +137,7 @@ sealed class Screen(val route: String) {
     object PythonNetworking    : Screen("python_networking")
     object PythonCoroutines    : Screen("python_coroutines")
     object PythonSwitchCase    : Screen("python_switch_case")
+    object PythonGenerators    : Screen("python_generators")
     // C/C++
     object CppHub                    : Screen("cpp_hub")
     object CppSyntax                 : Screen("cpp_syntax")
@@ -152,9 +159,10 @@ sealed class Screen(val route: String) {
     object CppConstAutoMutable       : Screen("cpp_const_auto_mutable")
     object CppErrorHandling          : Screen("cpp_error_handling")
     object CppStlContainers          : Screen("cpp_stl_containers")
-    object CppLambdasThreading       : Screen("cpp_lambdas_threading")
-    object StlHub                    : Screen("stl_hub")
-    object StlAsyncPromiseFuture     : Screen("stl_async_promise_future")
+    object CppLambdasThreading           : Screen("cpp_lambdas_threading")
+    object CppExpressionTypesCasting     : Screen("cpp_expression_types_casting")
+    object StlHub                        : Screen("stl_hub")
+    object StlAsyncPromiseFuture         : Screen("stl_async_promise_future")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -190,6 +198,11 @@ sealed class Screen(val route: String) {
     object GoFunctionsGoto       : Screen("go_functions_goto")
     object GoAnonFuncs           : Screen("go_anon_funcs")
     object GoStructsArraysSlices : Screen("go_structs_arrays_slices")
+    // AI and Neural Networks
+    object AiHub                 : Screen("ai_hub")
+    object Perceptron            : Screen("perceptron")
+    object NeuralNetworks        : Screen("neural_networks")
+    object InferenceForwardProp  : Screen("inference_forward_prop")
 }
 
 @Composable
@@ -206,7 +219,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDataStructures             = { navController.navigate(Screen.DataStructures.route) },
                 onAlgorithms                 = { navController.navigate(Screen.AlgorithmsHub.route) },
                 onTcpIp                      = { navController.navigate(Screen.TcpIpHub.route) },
-                onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) }
+                onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) },
+                onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) }
             )
         }
 
@@ -266,8 +280,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTemplates           = { navController.navigate(Screen.CppTemplates.route) },
                 onConstAutoMutable    = { navController.navigate(Screen.CppConstAutoMutable.route) },
                 onErrorHandling       = { navController.navigate(Screen.CppErrorHandling.route) },
-                onStl                 = { navController.navigate(Screen.StlHub.route) },
-                onLambdasThreading    = { navController.navigate(Screen.CppLambdasThreading.route) }
+                onStl                    = { navController.navigate(Screen.StlHub.route) },
+                onExpressionTypesCasting = { navController.navigate(Screen.CppExpressionTypesCasting.route) }
             )
         }
         composable(Screen.CppSyntax.route)           { CppSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -289,12 +303,14 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppConstAutoMutable.route)   { CppConstAutoMutableScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppErrorHandling.route)      { CppErrorHandlingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.CppStlContainers.route)      { CppStlContainersScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.CppLambdasThreading.route)   { CppLambdasThreadingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppLambdasThreading.route)       { CppLambdasThreadingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.CppExpressionTypesCasting.route) { CppExpressionTypesCastingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.StlHub.route) {
             StlHubScreen(
                 onBack               = { navController.popBackStack() },
                 onStlContainers      = { navController.navigate(Screen.CppStlContainers.route) },
-                onAsyncPromiseFuture = { navController.navigate(Screen.StlAsyncPromiseFuture.route) }
+                onAsyncPromiseFuture = { navController.navigate(Screen.StlAsyncPromiseFuture.route) },
+                onLambdasThreading   = { navController.navigate(Screen.CppLambdasThreading.route) }
             )
         }
         composable(Screen.StlAsyncPromiseFuture.route) { StlAsyncPromiseFutureScreen(onBack = { navController.popBackStack() }) }
@@ -354,7 +370,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onThreads        = { navController.navigate(Screen.PythonThreads.route) },
                 onNetworking     = { navController.navigate(Screen.PythonNetworking.route) },
                 onCoroutines     = { navController.navigate(Screen.PythonCoroutines.route) },
-                onSwitchCase     = { navController.navigate(Screen.PythonSwitchCase.route) }
+                onSwitchCase     = { navController.navigate(Screen.PythonSwitchCase.route) },
+                onGenerators     = { navController.navigate(Screen.PythonGenerators.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -371,6 +388,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonNetworking.route)    { PythonNetworkingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonCoroutines.route)    { PythonCoroutinesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonSwitchCase.route)    { PythonSwitchCaseScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonGenerators.route)    { PythonGeneratorsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Algorithms ────────────────────────────────────────────────
         composable(Screen.AlgorithmsHub.route) {
@@ -423,5 +441,18 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Proxy.route)    { ProxyScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Arp.route)      { ArpScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Dhcp.route)     { DhcpScreen(onBack = { navController.popBackStack() }) }
+
+        // ── AI and Neural Networks ────────────────────────────────────
+        composable(Screen.AiHub.route) {
+            AiHubScreen(
+                onBack                 = { navController.popBackStack() },
+                onPerceptron           = { navController.navigate(Screen.Perceptron.route) },
+                onNeuralNetworks       = { navController.navigate(Screen.NeuralNetworks.route) },
+                onInferenceForwardProp = { navController.navigate(Screen.InferenceForwardProp.route) }
+            )
+        }
+        composable(Screen.Perceptron.route)           { PerceptronScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.NeuralNetworks.route)       { NeuralNetworksScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.InferenceForwardProp.route) { InferenceForwardPropScreen(onBack = { navController.popBackStack() }) }
     }
 }
