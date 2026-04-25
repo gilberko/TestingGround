@@ -395,6 +395,147 @@ call_rcu(&old_data->rcu_head, my_free_fn); /* returns immediately */
                 }
             }
 
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Preemption Control") {
+                    BodyText(
+                        "Disabling preemption protects per-CPU data structures and ensures a critical " +
+                        "sequence is not interrupted by the scheduler. It does NOT protect from IRQ " +
+                        "handlers — for that you must also disable interrupts."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "preempt_disable() increments an internal per-CPU counter (preempt_count). " +
+                        "As long as preempt_count > 0, the scheduler will not preempt the current task. " +
+                        "preempt_enable() decrements the counter; if it reaches 0 and TIF_NEED_RESCHED " +
+                        "is set, it triggers an immediate reschedule."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Multiple preempt_disable() calls nest safely — the counter simply increments. " +
+                        "Each call must be matched by exactly one preempt_enable(). The scheduler only " +
+                        "regains control when the count drops back to 0."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Variants and helpers:")
+                    BodyText(
+                        "preempt_enable_no_resched() — decrements the count but skips the reschedule " +
+                        "check. Useful in hot paths where you want to defer the reschedule to a later safe point."
+                    )
+                    BodyText(
+                        "preempt_check_resched() — explicitly checks TIF_NEED_RESCHED and reschedules " +
+                        "if needed. Typically called after preempt_enable_no_resched() at the deferred safe point."
+                    )
+                    BodyText(
+                        "preemptible() — returns true if preempt_count == 0 (preemption currently enabled). " +
+                        "Useful for assertions."
+                    )
+                    BodyText(
+                        "preempt_count() — returns the raw preempt_count value. The upper bits also encode " +
+                        "hardirq and softirq nesting depth, not just the preempt_disable nesting level."
+                    )
+                    BodyText(
+                        "might_sleep() — a debug assertion: warns (or BUGs) if preemption is disabled, " +
+                        "catching callers that invoke a potentially-sleeping function from atomic context."
+                    )
+                    CodeBlock(
+                        """#include <linux/preempt.h>
+
+/* Basic pattern — protect a per-CPU sequence */
+preempt_disable();
+    /* scheduler will not preempt here */
+    my_percpu_var = compute_value();
+preempt_enable();       /* reschedule if TIF_NEED_RESCHED is set */
+
+/* Nested calls — count goes 0 → 1 → 2 → 1 → 0 */
+preempt_disable();          /* count = 1 */
+    preempt_disable();      /* count = 2 */
+        /* critical work */
+    preempt_enable();       /* count = 1 — no reschedule yet */
+preempt_enable();           /* count = 0 — reschedule now if needed */
+
+/* Hot-path pattern: defer the reschedule */
+preempt_disable();
+    fast_percpu_update();
+preempt_enable_no_resched();    /* count = 0, but no reschedule yet */
+/* ... other cheap work ... */
+preempt_check_resched();        /* reschedule here if TIF_NEED_RESCHED */
+
+/* Assertion helpers */
+WARN_ON(!preemptible());    /* warn if preemption expected to be on */
+might_sleep();              /* BUG/WARN if currently in atomic context */"""
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Disabling Interrupts (Local IRQ Control)") {
+                    BodyText(
+                        "local_irq_disable() and local_irq_enable() disable and re-enable hardware " +
+                        "interrupts on the current CPU only. Other CPUs are entirely unaffected. They " +
+                        "do not acquire any lock — they only control whether this CPU responds to hardware " +
+                        "interrupt signals."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Use when: data is shared between process context and an IRQ handler, but accessed " +
+                        "on a single CPU only — so no spinlock is needed, but you must prevent the IRQ " +
+                        "handler from running on this CPU while you access the data."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Problem with bare local_irq_disable/enable: if interrupts were already disabled " +
+                        "when you call local_irq_disable(), a subsequent local_irq_enable() incorrectly " +
+                        "re-enables them — corrupting the caller's expected state."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "local_irq_save(flags) / local_irq_restore(flags): saves the current CPU flags " +
+                        "register (including the IF interrupt-enable bit) before disabling, then restores " +
+                        "exactly the original state. Safe even if interrupts were already disabled. " +
+                        "Always prefer save/restore over bare disable/enable."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "spin_lock_irqsave(&lock, flags) / spin_unlock_irqrestore(&lock, flags): combines " +
+                        "spinlock acquisition with IRQ disable. Use this when a spinlock-protected data " +
+                        "structure is also accessed from an IRQ handler. Without the irqsave variant, the " +
+                        "IRQ handler could fire on the same CPU holding the lock and deadlock — it spins " +
+                        "waiting for a lock that can never be released while it's running."
+                    )
+                    CodeBlock(
+                        """#include <linux/irqflags.h>
+#include <linux/spinlock.h>
+
+/* ---- Pattern A: local_irq_save / restore ---- */
+unsigned long flags;
+
+local_irq_save(flags);      /* save EFLAGS, disable IRQs on this CPU */
+    /* IRQ handler cannot fire on this CPU here */
+    percpu_data->count++;
+local_irq_restore(flags);   /* restore original EFLAGS exactly */
+
+/* AVOID: bare disable/enable — breaks if caller had IRQs off */
+/* local_irq_disable(); */
+/* local_irq_enable();  */  /* may incorrectly re-enable IRQs */
+
+/* ---- Pattern B: spin_lock_irqsave ---- */
+/* Use when the same lock is taken inside an IRQ handler */
+DEFINE_SPINLOCK(my_lock);
+
+spin_lock_irqsave(&my_lock, flags);
+    /* safe from both process and interrupt context on any CPU */
+    shared_data->value = new_value;
+spin_unlock_irqrestore(&my_lock, flags);
+
+/* Why irqsave: without it, the IRQ handler could fire on this
+   CPU, try to spin_lock(&my_lock), and deadlock — because this
+   CPU holds the lock and cannot release it while the IRQ runs. */"""
+                    )
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

@@ -259,6 +259,49 @@ fun DeferredWorkScreen(onBack: () -> Unit) {
                         "monopolize the CPU indefinitely, since ksoftirqd can be preempted by user-space " +
                         "processes running at the same or higher scheduling priority."
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Interrupt state during softirq and tasklet execution:")
+                    BodyText(
+                        "IRQ handlers run with local interrupts disabled — the CPU automatically masks " +
+                        "interrupt delivery when it enters the handler. No other hardware IRQ can preempt it."
+                    )
+                    BodyText(
+                        "Softirqs and tasklets run with interrupts re-enabled. They are still in atomic " +
+                        "context (preemption disabled, cannot sleep), but hardware interrupts CAN fire " +
+                        "and will preempt the softirq/tasklet mid-execution."
+                    )
+                    BodyText(
+                        "Consequence: if data is shared between an IRQ handler and a softirq/tasklet, " +
+                        "the softirq/tasklet must use spin_lock_irqsave(). A plain spin_lock() only " +
+                        "disables preemption — it does not prevent the IRQ handler from firing on the " +
+                        "same CPU and deadlocking on the already-held lock."
+                    )
+                    BodyText(
+                        "Workqueues differ: they run in full process context with both interrupts and " +
+                        "preemption enabled, and may run on any CPU."
+                    )
+                    CodeBlock(
+                        "/* Data shared between IRQ handler and a tasklet */\n" +
+                        "DEFINE_SPINLOCK(shared_lock);\n" +
+                        "\n" +
+                        "/* IRQ handler — interrupts already disabled by the CPU */\n" +
+                        "irqreturn_t my_irq_handler(int irq, void *dev_id) {\n" +
+                        "    spin_lock(&shared_lock);     /* plain lock OK — IRQs already off */\n" +
+                        "    shared_data->rx_count++;\n" +
+                        "    spin_unlock(&shared_lock);\n" +
+                        "    tasklet_schedule(&my_tasklet);\n" +
+                        "    return IRQ_HANDLED;\n" +
+                        "}\n" +
+                        "\n" +
+                        "/* Tasklet — runs with interrupts ENABLED */\n" +
+                        "void my_tasklet_fn(struct tasklet_struct *t) {\n" +
+                        "    unsigned long flags;\n" +
+                        "    /* IRQ handler can fire here — must use irqsave */\n" +
+                        "    spin_lock_irqsave(&shared_lock, flags);\n" +
+                        "    process(shared_data->rx_count);\n" +
+                        "    spin_unlock_irqrestore(&shared_lock, flags);\n" +
+                        "}"
+                    )
                 }
             }
 
