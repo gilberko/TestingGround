@@ -92,6 +92,8 @@ import com.example.developmentapp.screens.go.GoConditionsScreen
 import com.example.developmentapp.screens.go.GoFunctionsGotoScreen
 import com.example.developmentapp.screens.go.GoAnonFuncsScreen
 import com.example.developmentapp.screens.go.GoStructsArraysSlicesScreen
+import com.example.developmentapp.screens.go.GoPointersAddressableScreen
+import com.example.developmentapp.screens.go.GoMethodsScreen
 import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScreen
 import com.example.developmentapp.screens.ai.PerceptronScreen
 import com.example.developmentapp.screens.ai.NeuralNetworksScreen
@@ -200,6 +202,8 @@ sealed class Screen(val route: String) {
     object GoFunctionsGoto       : Screen("go_functions_goto")
     object GoAnonFuncs           : Screen("go_anon_funcs")
     object GoStructsArraysSlices : Screen("go_structs_arrays_slices")
+    object GoPointersAddressable : Screen("go_pointers_addressable")
+    object GoMethods             : Screen("go_methods")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -250,7 +254,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onConditions          = { navController.navigate(Screen.GoConditions.route) },
                 onFunctionsGoto       = { navController.navigate(Screen.GoFunctionsGoto.route) },
                 onAnonFuncs           = { navController.navigate(Screen.GoAnonFuncs.route) },
-                onStructsArraysSlices = { navController.navigate(Screen.GoStructsArraysSlices.route) }
+                onStructsArraysSlices = { navController.navigate(Screen.GoStructsArraysSlices.route) },
+                onPointersAddressable = { navController.navigate(Screen.GoPointersAddressable.route) },
+                onMethods             = { navController.navigate(Screen.GoMethods.route) }
             )
         }
         composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
@@ -261,6 +267,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GoFunctionsGoto.route)       { GoFunctionsGotoScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoAnonFuncs.route)           { GoAnonFuncsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoStructsArraysSlices.route) { GoStructsArraysSlicesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoPointersAddressable.route) { GoPointersAddressableScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoMethods.route)             { GoMethodsScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
