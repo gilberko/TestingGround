@@ -94,6 +94,11 @@ import com.example.developmentapp.screens.go.GoAnonFuncsScreen
 import com.example.developmentapp.screens.go.GoStructsArraysSlicesScreen
 import com.example.developmentapp.screens.go.GoPointersAddressableScreen
 import com.example.developmentapp.screens.go.GoMethodsScreen
+import com.example.developmentapp.screens.go.GoPackagesImportsScreen
+import com.example.developmentapp.screens.go.GoMapsScreen
+import com.example.developmentapp.screens.go.GoGoroutinesSyncScreen
+import com.example.developmentapp.screens.go.GoChannelsScreen
+import com.example.developmentapp.screens.go.GoNewMakeScreen
 import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScreen
 import com.example.developmentapp.screens.ai.PerceptronScreen
 import com.example.developmentapp.screens.ai.NeuralNetworksScreen
@@ -204,6 +209,11 @@ sealed class Screen(val route: String) {
     object GoStructsArraysSlices : Screen("go_structs_arrays_slices")
     object GoPointersAddressable : Screen("go_pointers_addressable")
     object GoMethods             : Screen("go_methods")
+    object GoPackagesImports     : Screen("go_packages_imports")
+    object GoMaps                : Screen("go_maps")
+    object GoGoroutinesSync      : Screen("go_goroutines_sync")
+    object GoChannels            : Screen("go_channels")
+    object GoNewMake             : Screen("go_new_make")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -256,7 +266,12 @@ fun AppNavGraph(navController: NavHostController) {
                 onAnonFuncs           = { navController.navigate(Screen.GoAnonFuncs.route) },
                 onStructsArraysSlices = { navController.navigate(Screen.GoStructsArraysSlices.route) },
                 onPointersAddressable = { navController.navigate(Screen.GoPointersAddressable.route) },
-                onMethods             = { navController.navigate(Screen.GoMethods.route) }
+                onMethods             = { navController.navigate(Screen.GoMethods.route) },
+                onPackagesImports     = { navController.navigate(Screen.GoPackagesImports.route) },
+                onMaps                = { navController.navigate(Screen.GoMaps.route) },
+                onGoroutinesSync      = { navController.navigate(Screen.GoGoroutinesSync.route) },
+                onChannels            = { navController.navigate(Screen.GoChannels.route) },
+                onNewMake             = { navController.navigate(Screen.GoNewMake.route) }
             )
         }
         composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
@@ -269,6 +284,11 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GoStructsArraysSlices.route) { GoStructsArraysSlicesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoPointersAddressable.route) { GoPointersAddressableScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoMethods.route)             { GoMethodsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoPackagesImports.route)     { GoPackagesImportsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoMaps.route)                { GoMapsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoGoroutinesSync.route)      { GoGoroutinesSyncScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoChannels.route)            { GoChannelsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoNewMake.route)             { GoNewMakeScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {

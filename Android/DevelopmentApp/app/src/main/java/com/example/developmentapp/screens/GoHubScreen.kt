@@ -1,7 +1,9 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -43,7 +45,12 @@ fun GoHubScreen(
     onAnonFuncs: () -> Unit,
     onStructsArraysSlices: () -> Unit,
     onPointersAddressable: () -> Unit,
-    onMethods: () -> Unit
+    onMethods: () -> Unit,
+    onPackagesImports: () -> Unit,
+    onMaps: () -> Unit,
+    onGoroutinesSync: () -> Unit,
+    onChannels: () -> Unit,
+    onNewMake: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -79,27 +86,44 @@ fun GoHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            GoHubButton("About Go",                      onAboutGo,        Modifier.fillMaxWidth())
+            GoButtonRow("About Go",                         onAboutGo,
+                        "Getting Started",                  onGettingStarted)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Getting Started",               onGettingStarted, Modifier.fillMaxWidth())
+            GoButtonRow("Data Types and Basic Variables",   onDataTypes,
+                        "Looping",                          onLooping)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Data Types and Basic Variables",onDataTypes,      Modifier.fillMaxWidth())
+            GoButtonRow("Conditions",                       onConditions,
+                        "Functions and Goto 101",           onFunctionsGoto)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Looping",                       onLooping,        Modifier.fillMaxWidth())
+            GoButtonRow("Anonymous Functions",              onAnonFuncs,
+                        "Structs, Arrays and Slices",       onStructsArraysSlices)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Conditions",                    onConditions,     Modifier.fillMaxWidth())
+            GoButtonRow("Pointers and Addressable Objects", onPointersAddressable,
+                        "Methods",                          onMethods)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Functions and Goto 101",        onFunctionsGoto,        Modifier.fillMaxWidth())
+            GoButtonRow("Packages and Imports",             onPackagesImports,
+                        "Maps",                             onMaps)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Anonymous Functions",           onAnonFuncs,            Modifier.fillMaxWidth())
+            GoButtonRow("Goroutines and Sync",              onGoroutinesSync,
+                        "Channels",                         onChannels)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("Structs, Arrays and Slices",   onStructsArraysSlices,  Modifier.fillMaxWidth())
-            Spacer(Modifier.height(8.dp))
-            GoHubButton("Pointers and Addressable Objects", onPointersAddressable, Modifier.fillMaxWidth())
-            Spacer(Modifier.height(8.dp))
-            GoHubButton("Methods",                          onMethods,             Modifier.fillMaxWidth())
+            GoHubButton("About new and make",               onNewMake, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
+}
+
+@Composable
+private fun GoButtonRow(
+    label1: String, onClick1: () -> Unit,
+    label2: String, onClick2: () -> Unit
+) {
+    Row(
+        modifier              = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        GoHubButton(label1, onClick1, Modifier.weight(1f))
+        GoHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 

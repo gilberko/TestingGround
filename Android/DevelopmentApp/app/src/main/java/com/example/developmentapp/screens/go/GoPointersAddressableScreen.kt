@@ -73,14 +73,28 @@ fun GoPointersAddressableScreen(onBack: () -> Unit) {
 
             item {
                 SectionCard(title = "Allocating with new") {
-                    BodyText("new(T) allocates a new T on the heap, zero-initialises it, and returns *T.")
+                    BodyText("new(T) does exactly three things: allocates memory for a T on the heap, zero-initialises every byte of that memory, and returns *T — a pointer to the freshly allocated, zeroed value.")
                     CodeBlock("""
-                        type A struct { x int }
+type A struct { x int }
 
-                        p := new(A)   // p is *A; *p == A{x: 0}
-                        fmt.Println(p.x)  // 0  — zero-initialised
+p := new(A)          // p is *A; *p == A{x: 0}
+fmt.Println(p.x)     // 0  — zero-initialised
                     """.trimIndent())
                     BodyText("There is no free, delete, or dispose call. Go's garbage collector automatically reclaims the memory once no pointers to it remain. You allocate; the runtime cleans up.")
+                    BodyText("When new is not enough — types with internal state:")
+                    BodyText("For simple structs, a zeroed value is often perfectly usable. But some types carry hidden internal state that must be properly initialised before they can be used — the most common example is map.")
+                    BodyText("A Go map is not just a plain struct; the runtime needs to set up internal hash buckets, a header, and other bookkeeping. A zeroed map is a nil map — you can read from it (you get zero values back) but writing to it panics at runtime.")
+                    CodeBlock("""
+// new gives a *map[string]int whose value is nil — a nil map
+pm := new(map[string]int)
+(*pm)["key"] = 1   // PANIC: assignment to entry in nil map
+                    """.trimIndent())
+                    BodyText("For types like map, slice, and channel, use make instead. make initialises the internal state and returns a ready-to-use value (not a pointer):")
+                    CodeBlock("""
+m := make(map[string]int)   // internal hash table is set up
+m["key"] = 1                // safe — map is fully initialised
+                    """.trimIndent())
+                    BodyText("The rule of thumb: use new when you just want a zero value of a plain type and a pointer to it. Use make when you are creating a map, slice, or channel — these three types require runtime initialisation that new cannot provide.")
                 }
             }
 

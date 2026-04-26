@@ -168,6 +168,65 @@ fun GoFunctionsGotoScreen(onBack: () -> Unit) {
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
+                SectionCard(title = "No Function Overloading") {
+                    BodyText(
+                        "Go does not support function overloading. You cannot define two functions " +
+                        "with the same name — even if their parameter lists differ — in the same " +
+                        "package. The compiler will reject it:"
+                    )
+                    CodeBlock(
+                        "func print(s string) { fmt.Println(s) }\n" +
+                        "func print(n int)    { fmt.Println(n) }  // compile error: print redeclared"
+                    )
+                    BodyText(
+                        "This is a deliberate design choice. Go keeps name resolution simple and " +
+                        "unambiguous: one name in a package always refers to exactly one function."
+                    )
+                    BodyText("Methods — same name, different receiver type:")
+                    BodyText(
+                        "You CAN define a method with the same name on different types, and this " +
+                        "is correct and idiomatic. Each type has its own independent method set, so " +
+                        "Area() on Circle and Area() on Rectangle are two completely separate " +
+                        "functions that happen to share a name. This is not overloading — the " +
+                        "receiver type is not interchangeable the way overloaded parameters are."
+                    )
+                    CodeBlock(
+                        "type Circle    struct { Radius float64 }\n" +
+                        "type Rectangle struct { W, H   float64 }\n\n" +
+                        "func (c Circle)    Area() float64 { return math.Pi * c.Radius * c.Radius }\n" +
+                        "func (r Rectangle) Area() float64 { return r.W * r.H }\n\n" +
+                        "c := Circle{Radius: 5}\n" +
+                        "r := Rectangle{W: 4, H: 6}\n" +
+                        "fmt.Println(c.Area(), r.Area())  // 78.54  24"
+                    )
+                    BodyText("Interfaces — polymorphic dispatch through a shared method name:")
+                    BodyText(
+                        "An interface declares a method signature. Any type that implements all " +
+                        "the interface's methods automatically satisfies it — no explicit declaration " +
+                        "needed. Through an interface variable, Go dispatches to the correct " +
+                        "implementation at runtime based on the concrete type stored in the interface. " +
+                        "This is polymorphism, not overloading."
+                    )
+                    CodeBlock(
+                        "type Shape interface {\n" +
+                        "    Area() float64\n" +
+                        "}\n\n" +
+                        "func printArea(s Shape) {\n" +
+                        "    fmt.Println(s.Area())   // dispatches to Circle.Area or Rectangle.Area\n" +
+                        "}\n\n" +
+                        "printArea(Circle{Radius: 5})    // 78.54\n" +
+                        "printArea(Rectangle{W: 4, H: 6}) // 24"
+                    )
+                    BodyText(
+                        "To summarise: Go has no overloading at the package-function level. " +
+                        "The same method name can exist on multiple types (separate method sets), " +
+                        "and interfaces let you call them uniformly through runtime dispatch."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
                 SectionCard(title = "goto and Labels") {
                     BodyText(
                         "A label is a name followed by a colon placed before any statement. " +
