@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -35,17 +36,31 @@ fun HypnosisHubScreen(navController: NavController) {
             color = Color.Black,
             modifier = Modifier.padding(bottom = 32.dp)
         )
-        hypnosisTopics.forEach { topic ->
-            Button(
-                onClick = { navController.navigate("hypnosis_section/${topic.key}") },
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+        hypnosisTopics.chunked(2).forEach { rowTopics ->
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .height(56.dp)
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(text = topic.title, color = Color.White, fontSize = 18.sp)
+                rowTopics.forEach { topic ->
+                    Button(
+                        onClick = { navController.navigate("hypnosis_section/${topic.key}") },
+                        shape = RoundedCornerShape(12.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+                        modifier = Modifier.weight(1f).height(56.dp)
+                    ) {
+                        Text(
+                            text = topic.title,
+                            color = Color.White,
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+                if (rowTopics.size == 1) {
+                    Spacer(modifier = Modifier.weight(1f))
+                }
             }
         }
         Spacer(modifier = Modifier.height(24.dp))

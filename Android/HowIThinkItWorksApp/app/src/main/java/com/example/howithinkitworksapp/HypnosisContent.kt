@@ -31,24 +31,6 @@ val hypnosisTopics = listOf(
         )
     ),
     HypnosisTopic(
-        key = "suggestions",
-        title = "Suggestions",
-        sections = listOf(
-            TextSection(
-                heading = "What Is a Suggestion?",
-                body = "In hypnosis, a suggestion is an instruction or idea offered by the hypnotist that the client accepts and acts upon — not because they are forced to, but because they are in a state of cooperative following.\n\nSuggestions can be direct (\"Your arm is becoming heavy\") or indirect (\"You might notice a pleasant feeling of relaxation\"). They can target physical sensations, emotions, thoughts, behaviors, or perceptions."
-            ),
-            TextSection(
-                heading = "How They Work",
-                body = "A suggestion works because the client, in the hypnotic state, tends to accept ideas more readily and translate them into experience. The critical, evaluating part of the mind — the part that might normally say \"no, my arm is not heavy, that's just words\" — becomes less active.\n\nThis is why the hypnotic state matters: suggestions given outside it are just words. Suggestions given inside it can become experience."
-            ),
-            TextSection(
-                heading = "Post-Hypnotic Suggestions",
-                body = "Suggestions can also be designed to take effect after the hypnosis session ends. These are called post-hypnotic suggestions. For example, a suggestion that whenever the client hears a specific word, they will feel calm.\n\nThe effectiveness of post-hypnotic suggestions varies widely between individuals and sessions."
-            )
-        )
-    ),
-    HypnosisTopic(
         key = "pretalk",
         title = "Pre Talk",
         sections = listOf(
@@ -127,6 +109,36 @@ val hypnosisTopics = listOf(
         )
     ),
     HypnosisTopic(
+        key = "induction_concentration",
+        title = "Induction by Concentration",
+        sections = listOf(
+            TextSection(
+                heading = "A Different Context",
+                body = "Induction by concentration is most at home in a hypnotherapy setting rather than a stage show.\n\nThe client has come with a purpose — to work through something — and already holds a degree of trust in the process and the therapist. They are there voluntarily. They expect to be guided. They are prepared to follow. The cooperative state is not something that needs to be seized in a window of confusion; it can be built carefully and deliberately, at whatever pace suits the client."
+            ),
+            TextSection(
+                heading = "Two Goals: Relaxation and Focused Attention",
+                body = "The hypnotherapist is trying to produce a specific combination of states.\n\nRelaxation is one: when the body and mind are at ease, the client is less guarded, less likely to resist or raise objections. Focused attention is the other: when attention is held on one thing, the mind is less free to wander into skepticism or distraction.\n\nTogether, these two states reproduce exactly what was described in the fog metaphor — the client, absorbed in following the car ahead, is too focused on keeping up to ask questions or argue about the route. Relaxation removes the edge; focused attention occupies the mind. The result is a client who cooperates with suggestions naturally and readily."
+            ),
+            TextSection(
+                heading = "A Fixed Point",
+                body = "A simple and classical technique is to ask the client to focus on a specific point — a spot on the wall, the tip of a finger, a candle flame, or a fixed object held slightly above eye level.\n\nThe slight physical effort of maintaining upward gaze begins to tire the eyes. The act of holding attention on one thing naturally quiets the mind's tendency to roam. After a time, the suggestion that the eyes are becoming heavy is not an imposition — it is simply an accurate description of what is already happening. The client accepts it easily, because it is true.\n\nThis is pacing before leading: meet the client where they are, then guide them a little further."
+            ),
+            TextSection(
+                heading = "Guided Imagination",
+                body = "Another powerful approach is guided imagination: the hypnotherapist narrates a slow, immersive story, and the client follows it.\n\nPeople are naturally drawn into stories. A well-constructed narrative captures attention, occupies the thinking mind with imagery, and simultaneously relaxes through its pacing and content. A guided walk through a calm forest, a slow descent in a warm elevator, a journey down a quiet river at dusk — these scripts do double duty. They focus attention through engagement and induce relaxation through content and tone.\n\nThe client is not being pushed into a state. They are being led into one, willingly, by following a story. The story does the work."
+            ),
+            TextSection(
+                heading = "Hypnotic Scripts",
+                body = "There are established hypnosis scripts designed specifically to achieve this transition from ordinary awareness into a relaxed yet attentive state.\n\nA script is a prepared narration, calibrated in pace, language, and imagery to sustain focus without jarring the client. Good scripts use language that invites rather than commands — they suggest what the client might notice, or what they may already begin to feel, rather than telling them what they must experience. The door is always open; the client chooses to walk through it.\n\nOver time and with practice, a skilled hypnotherapist adapts and personalises these scripts rather than reading them verbatim. The specific words matter less than the tone, the rhythm, and the felt sense that the therapist is present and attentive."
+            ),
+            TextSection(
+                heading = "Pacing And Leading As Reinforcement",
+                body = "As the induction proceeds, Pacing and Leading (see the dedicated section) can deepen the state further.\n\nThe hypnotherapist feeds back what is visibly true — the client's slowing breath, their stillness, their softening expression — and gently introduces the next step. The client, already partly in the state, follows more readily with each exchange. The real is paced; the next step is led; the client's response is paced back; and the cycle continues, each iteration bringing them a little deeper.\n\nBy the time the formal induction is complete, the client has not been pushed anywhere. They have been walked there, step by step, through a process that felt natural at every moment."
+            )
+        )
+    ),
+    HypnosisTopic(
         key = "pacing_leading",
         title = "Pacing And Leading",
         sections = listOf(
@@ -161,32 +173,100 @@ val hypnosisTopics = listOf(
         )
     ),
     HypnosisTopic(
-        key = "induction_concentration",
-        title = "Induction by Concentration",
+        key = "deepening",
+        title = "Deepening",
         sections = listOf(
             TextSection(
-                heading = "A Different Context",
-                body = "Induction by concentration is most at home in a hypnotherapy setting rather than a stage show.\n\nThe client has come with a purpose — to work through something — and already holds a degree of trust in the process and the therapist. They are there voluntarily. They expect to be guided. They are prepared to follow. The cooperative state is not something that needs to be seized in a window of confusion; it can be built carefully and deliberately, at whatever pace suits the client."
+                heading = "What Is Deepening?",
+                body = "Induction gets the client into the hypnotic state, but the state has depth — a spectrum from light and barely-there to deeply absorbed and fully immersed. Deepening is the process of moving the client further along that spectrum after the initial induction.\n\nA lightly induced client is cooperative but still partly critical. A deeply induced client is absorbed, imagery is vivid, and suggestions land with much greater force. Deepening is how the hypnotist moves from the former toward the latter."
             ),
             TextSection(
-                heading = "Two Goals: Relaxation and Focused Attention",
-                body = "The hypnotherapist is trying to produce a specific combination of states.\n\nRelaxation is one: when the body and mind are at ease, the client is less guarded, less likely to resist or raise objections. Focused attention is the other: when attention is held on one thing, the mind is less free to wander into skepticism or distraction.\n\nTogether, these two states reproduce exactly what was described in the fog metaphor — the client, absorbed in following the car ahead, is too focused on keeping up to ask questions or argue about the route. Relaxation removes the edge; focused attention occupies the mind. The result is a client who cooperates with suggestions naturally and readily."
+                heading = "Why Depth Matters",
+                body = "In a lighter state, the conscious evaluating mind is still active enough to raise quiet objections. A suggestion of arm heaviness might be noticed but half-dismissed: \"I suppose it is a bit heavy.\"\n\nIn a deeper state, that evaluative layer is much quieter. The suggestion does not need to overcome skepticism — it simply becomes experience. Imagery is more vivid, emotional responses more available, and the client is more willing to engage with challenging therapeutic material.\n\nFor some work — simple relaxation, stress management — light depth is enough. For deeper therapeutic work, the extra depth is worth investing time to achieve."
             ),
             TextSection(
-                heading = "A Fixed Point",
-                body = "A simple and classical technique is to ask the client to focus on a specific point — a spot on the wall, the tip of a finger, a candle flame, or a fixed object held slightly above eye level.\n\nThe slight physical effort of maintaining upward gaze begins to tire the eyes. The act of holding attention on one thing naturally quiets the mind's tendency to roam. After a time, the suggestion that the eyes are becoming heavy is not an imposition — it is simply an accurate description of what is already happening. The client accepts it easily, because it is true.\n\nThis is pacing before leading: meet the client where they are, then guide them a little further."
+                heading = "Counting Down",
+                body = "One of the most common deepening techniques is the countdown. The hypnotist counts slowly — typically from ten to one, or twenty to one — anchoring each number to an instruction to go deeper.\n\n\"Ten... going deeper now... nine... twice as deep with every number... eight... letting go even more...\"\n\nThe counting is rhythmic and predictable, which itself is calming. More importantly, the client has been told to expect that each number means going deeper — so each number becomes a signal that deepening is happening. Expectation becomes experience."
             ),
             TextSection(
-                heading = "Guided Imagination",
-                body = "Another powerful approach is guided imagination: the hypnotherapist narrates a slow, immersive story, and the client follows it.\n\nPeople are naturally drawn into stories. A well-constructed narrative captures attention, occupies the thinking mind with imagery, and simultaneously relaxes through its pacing and content. A guided walk through a calm forest, a slow descent in a warm elevator, a journey down a quiet river at dusk — these scripts do double duty. They focus attention through engagement and induce relaxation through content and tone.\n\nThe client is not being pushed into a state. They are being led into one, willingly, by following a story. The story does the work."
+                heading = "The Staircase and the Elevator",
+                body = "Guided visualisation is another powerful deepening tool. The hypnotist might describe a long staircase leading downward — warm, safe, softly lit — and invite the client to descend one step at a time.\n\nWith each step, the suggestion is that they go a little deeper, relax a little more, become a little more comfortable and absorbed. At the bottom, they arrive at a place of great peace and depth.\n\nAn elevator works the same way — the display ticking from ten down to one, each floor another level of relaxation. The metaphor of descent maps naturally onto the felt sense of going deeper into an inner state."
             ),
             TextSection(
-                heading = "Hypnotic Scripts",
-                body = "There are established hypnosis scripts designed specifically to achieve this transition from ordinary awareness into a relaxed yet attentive state.\n\nA script is a prepared narration, calibrated in pace, language, and imagery to sustain focus without jarring the client. Good scripts use language that invites rather than commands — they suggest what the client might notice, or what they may already begin to feel, rather than telling them what they must experience. The door is always open; the client chooses to walk through it.\n\nOver time and with practice, a skilled hypnotherapist adapts and personalises these scripts rather than reading them verbatim. The specific words matter less than the tone, the rhythm, and the felt sense that the therapist is present and attentive."
+                heading = "Fractionation",
+                body = "Fractionation is a more dynamic technique. Rather than deepening in one continuous movement, the hypnotist briefly brings the client partway back toward ordinary awareness — \"becoming a little more alert now\" — and then re-induces.\n\nEach re-entry goes deeper than the last. The contrast between the two states seems to amplify each: coming out makes the return more noticeable, and each return lands further in than the previous one.\n\nThis oscillation — in and out, in and out, each cycle a little deeper — can achieve significant depth relatively quickly, and is especially useful when a gradual single descent has plateaued."
             ),
             TextSection(
-                heading = "Pacing And Leading As Reinforcement",
-                body = "As the induction proceeds, Pacing and Leading (see the dedicated section) can deepen the state further.\n\nThe hypnotherapist feeds back what is visibly true — the client's slowing breath, their stillness, their softening expression — and gently introduces the next step. The client, already partly in the state, follows more readily with each exchange. The real is paced; the next step is led; the client's response is paced back; and the cycle continues, each iteration bringing them a little deeper.\n\nBy the time the formal induction is complete, the client has not been pushed anywhere. They have been walked there, step by step, through a process that felt natural at every moment."
+                heading = "Progressive Body Relaxation",
+                body = "The hypnotist can deepen by systematically moving attention through the body — typically from the top of the head downward, or from the feet upward — inviting each part to release tension and become heavier.\n\n\"Feel the muscles in your forehead softening... your jaw releasing... your shoulders dropping slightly...\" Each release is small on its own, but the accumulation of many small relaxations across the whole body produces a significant shift. By the time the narration reaches the last body part, the client is noticeably deeper than when it began."
+            ),
+            TextSection(
+                heading = "Feeding Back Depth Signals",
+                body = "A skilled hypnotist watches the client for visible signs of depth — slower breathing, softened facial muscles, stillness, heavier eyelids — and weaves these into the narration as pacing.\n\n\"Your breathing is slower now, your body heavier... each breath taking you a little deeper...\"\n\nThis is pacing and leading applied to depth itself. The observation of what is already happening is fed back as evidence that deepening is occurring. The client, hearing their own state accurately described, accepts the narration as true — and the acceptance deepens the state further. The observation and the deepening become a self-reinforcing loop."
+            )
+        )
+    ),
+    HypnosisTopic(
+        key = "suggestions",
+        title = "Suggestions",
+        sections = listOf(
+            TextSection(
+                heading = "Delivering a Suggestion",
+                body = "How a suggestion is delivered matters as much as what it says. Tone should be calm, confident, and unhurried — the voice of someone who expects to be followed, not someone asking a question.\n\nPace is slower than ordinary speech, with pauses that give the client time to experience what has been suggested before moving on. Rushing past a suggestion before it has time to settle is one of the most common errors.\n\nLanguage should invite rather than command. \"You may find your arm becoming heavier\" lands more gently than \"Your arm is now heavy\" — and paradoxically, the softer form is often more effective, because it does not provoke the part of the mind that resists being told what to feel."
+            ),
+            TextSection(
+                heading = "Start Small — The Yes-Set",
+                body = "The hypnotist should begin with suggestions the client will accept easily — arm heaviness, noticing the breath, a sense of warmth or comfort. These early suggestions are not the goal; they are the on-ramp.\n\nEach accepted suggestion is a small act of compliance. The client's mind, having followed several small suggestions successfully, develops a kind of momentum — a pattern of saying yes. By the time larger or more challenging suggestions arrive, that momentum is established and the path of least resistance is to continue following.\n\nThis sequence is sometimes called a yes-set: a series of easy agreements that prime the client for the more significant ones to come."
+            ),
+            TextSection(
+                heading = "Types of Suggestions",
+                body = "Suggestions come in several forms, each with different strengths.\n\nDirect suggestions are explicit instructions: \"Your right arm is becoming heavy.\" Clear and simple, they work well with clients who are deeply in state and not inclined to question.\n\nIndirect or permissive suggestions are softer: \"You might begin to notice a pleasant heaviness...\" They leave room for the client's own experience and are less likely to trigger resistance.\n\nEmbedded suggestions hide the core instruction inside a larger sentence: \"I wonder if you can notice how your breathing has already begun to slow.\" The embedded suggestion — that breathing has slowed — slips past the conscious filter inside an apparently neutral observation.\n\nCompound suggestions link a natural, inevitable event to the desired response: \"As you breathe out... you go a little deeper.\" Since the client will inevitably breathe out, the suggestion rides along with something already happening."
+            ),
+            TextSection(
+                heading = "Post-Hypnotic Suggestions",
+                body = "Suggestions can be designed to take effect after the session ends. These post-hypnotic suggestions attach a future trigger — a word, a gesture, a specific situation — to a desired response.\n\nFor example: \"After this session, whenever you hear the word 'calm', you will feel a wave of relaxation move through your body.\" Or: \"The next time you sit down to sleep, you will find it easier than before to let your thoughts quieten.\"\n\nPost-hypnotic suggestions work best when they are specific, realistic, aligned with what the client genuinely wants, and reinforced across more than one session. They are not magic switches — they work because the client, at some level, continues to carry the suggestion forward and act on it."
+            ),
+            TextSection(
+                heading = "Pacing and Leading for Suggestions",
+                body = "The same pacing and leading structure that built the trance applies equally to delivering suggestions within it.\n\nThe hypnotist paces the client's current reality — \"you are sitting comfortably, your breathing slow, your body relaxed\" — and then leads: \"and you may already notice your shoulders softening even more, a pleasant heaviness spreading through your arms.\"\n\nPacing first establishes that the hypnotist is accurately perceiving the client's state, which deepens trust. The leading suggestion then arrives in that context of established credibility and lands more easily. Without the pacing, the leading would feel like an imposition. With it, it feels like a natural next step."
+            ),
+            TextSection(
+                heading = "Presuppositions",
+                body = "A presupposition is a linguistic structure that assumes something rather than asserting it. The assumed content bypasses direct scrutiny because the mind processes it as background — the given, not the point.\n\n\"When you notice the heaviness in your hand...\" presupposes the heaviness exists; the question is only when the client notices it. \"As you go deeper into this comfortable state...\" presupposes the deepening is already underway. \"You may be surprised at how easily the change comes\" presupposes the change is coming; the surprise is just its ease.\n\nThe client's mind, occupied with processing the surface meaning of the sentence, does not stop to challenge the presupposed content. It simply absorbs it."
+            ),
+            TextSection(
+                heading = "Direct Suggestions vs Guided Imagination",
+                body = "Direct suggestions — clear statements about sensations, feelings, or behaviors — work well for simpler responses: heaviness, warmth, relaxation, the eyes becoming heavy. They are efficient and, in a sufficiently deep state, reliably effective.\n\nFor more complex therapeutic work — managing pain, addressing a phobia, rehearsing a new behavior, processing an old experience — guided imagination is usually more powerful. Rather than simply suggesting that an outcome exists, the hypnotist narrates an experience in which the client lives it: they walk through a version of the feared situation with calm and ease, or they feel the pain dissolving like warmth spreading through the affected area.\n\nImagined experience activates many of the same neural pathways as actual experience. The body and the emotional system respond to a vividly imagined event in ways that are physiologically similar to a real one. This is what gives guided imagination its therapeutic reach.\n\nThe two approaches can be layered: a direct suggestion sets the frame (\"you are calm and safe\"), and guided imagination fills it with lived texture (\"you find yourself walking through that door, and you notice the steadiness in your breath\")."
+            )
+        )
+    ),
+    HypnosisTopic(
+        key = "back_to_awareness",
+        title = "Back To Awareness",
+        sections = listOf(
+            TextSection(
+                heading = "Why the Return Matters",
+                body = "Bringing the client back to ordinary awareness is not an afterthought. It is the closing of the session — and the quality of that closing shapes how the client feels about everything that preceded it.\n\nA smooth, well-paced return leaves the client feeling refreshed, clear-headed, and positive about the experience. A jarring or rushed return can leave them disoriented, groggy, or with a vague unease. The hypnotist is still working even as the session ends — perhaps more so, because first and last impressions carry disproportionate weight."
+            ),
+            TextSection(
+                heading = "Before the Count-Up",
+                body = "Before beginning to bring the client back, the hypnotist delivers any final post-hypnotic suggestions that are part of the session's goal — suggestions that will carry forward into the client's daily life.\n\nA general orienting statement is also useful at this point: \"In a moment I will begin to bring you back to full waking awareness. When you return, you will feel rested, alert, comfortable, and good. You will remember everything that was useful to you.\"\n\nThis frames the return positively and sets the expectation of how the client will feel when they open their eyes. Because expectations in a hypnotic state tend to become experience, this framing does real work."
+            ),
+            TextSection(
+                heading = "Counting Up",
+                body = "The most widely used re-alerting technique mirrors the countdown used for deepening. The hypnotist counts slowly from one to five, anchoring each number to a progressive return toward full awareness.\n\n\"One... becoming more aware of the room around you, the sounds, the feeling of the chair beneath you... Two... a pleasant sense of returning, your mind becoming clearer... Three... gentle energy returning to your body, your arms and legs beginning to feel more awake... Four... almost fully back now, eyes beginning to feel ready to open... Five... eyes open, fully back, feeling rested and clear.\"\n\nThe slow pace, the gradual progression, and the positive language each serve the same goal: a return that feels comfortable and complete rather than abrupt."
+            ),
+            TextSection(
+                heading = "The Natural Return",
+                body = "An alternative to counting is a narrative return — the same kind of guided imagery used in the induction, now reversed.\n\nIf the induction involved descending a staircase, the return ascends it. If it involved entering a peaceful room, the client now walks back out into the corridor, back toward the ordinary world. If the session used the metaphor of drifting down a river, the client now gently turns and drifts back to the bank.\n\nThe return can also be entirely non-metaphorical: the hypnotist simply narrates the client becoming aware of the physical room — the temperature of the air, the sounds nearby, the weight of their body in the chair — and describes awareness gradually brightening, like morning light increasing."
+            ),
+            TextSection(
+                heading = "Grounding and Orientation",
+                body = "Once the client opens their eyes, a brief grounding is useful — especially after a deeper session where some disorientation is normal and expected.\n\nThe hypnotist might invite the client to take a moment, look around the room, move their hands and feet, take a full breath. Naming the surroundings — \"you're in the room, it's [time], take your time\" — helps the client's awareness settle back into the present.\n\nFor clients who surface quickly and feel fully alert, this can be brief. For clients who surface slowly or who went particularly deep, it deserves more time and patience."
+            ),
+            TextSection(
+                heading = "Checking In",
+                body = "A short post-session check — \"How are you feeling? What did you notice?\" — serves several purposes at once.\n\nIt completes the grounding by engaging the client in ordinary conversation. It gives the hypnotist information about what the client experienced, what resonated, and what might need adjusting in the next session. And it reinforces the collaborative nature of the work — the session is something that happened together, not something done to the client.\n\nThe client's account of their experience is also worth taking seriously as information. What they noticed, what surprised them, what felt strong or weak — these are live data about what is working."
             )
         )
     )
