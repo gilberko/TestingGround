@@ -99,6 +99,14 @@ import com.example.developmentapp.screens.go.GoMapsScreen
 import com.example.developmentapp.screens.go.GoGoroutinesSyncScreen
 import com.example.developmentapp.screens.go.GoChannelsScreen
 import com.example.developmentapp.screens.go.GoNewMakeScreen
+import com.example.developmentapp.screens.go.GoErrorHandlingScreen
+import com.example.developmentapp.screens.go.GoTypesInterfacesScreen
+import com.example.developmentapp.screens.go.GoStandardLibraryScreen
+import com.example.developmentapp.screens.stl.StlAtomicMemoryBarriersScreen
+import com.example.developmentapp.screens.stl.StlChronoScreen
+import com.example.developmentapp.screens.stl.StlFilesystemScreen
+import com.example.developmentapp.screens.stl.StlMemoryStringsScreen
+import com.example.developmentapp.screens.stl.StlAlgorithmsScreen
 import com.example.developmentapp.screens.debugging.DebuggingProfilingTracingScreen
 import com.example.developmentapp.screens.ai.PerceptronScreen
 import com.example.developmentapp.screens.ai.NeuralNetworksScreen
@@ -172,6 +180,11 @@ sealed class Screen(val route: String) {
     object CppExpressionTypesCasting     : Screen("cpp_expression_types_casting")
     object StlHub                        : Screen("stl_hub")
     object StlAsyncPromiseFuture         : Screen("stl_async_promise_future")
+    object StlAtomicMemoryBarriers       : Screen("stl_atomic_memory_barriers")
+    object StlChrono                     : Screen("stl_chrono")
+    object StlFilesystem                 : Screen("stl_filesystem")
+    object StlMemoryStrings              : Screen("stl_memory_strings")
+    object StlAlgorithms                 : Screen("stl_algorithms")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -214,6 +227,9 @@ sealed class Screen(val route: String) {
     object GoGoroutinesSync      : Screen("go_goroutines_sync")
     object GoChannels            : Screen("go_channels")
     object GoNewMake             : Screen("go_new_make")
+    object GoErrorHandling       : Screen("go_error_handling")
+    object GoTypesInterfaces     : Screen("go_types_interfaces")
+    object GoStandardLibrary     : Screen("go_standard_library")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -271,7 +287,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onMaps                = { navController.navigate(Screen.GoMaps.route) },
                 onGoroutinesSync      = { navController.navigate(Screen.GoGoroutinesSync.route) },
                 onChannels            = { navController.navigate(Screen.GoChannels.route) },
-                onNewMake             = { navController.navigate(Screen.GoNewMake.route) }
+                onNewMake             = { navController.navigate(Screen.GoNewMake.route) },
+                onErrorHandling       = { navController.navigate(Screen.GoErrorHandling.route) },
+                onTypesInterfaces     = { navController.navigate(Screen.GoTypesInterfaces.route) },
+                onStandardLibrary     = { navController.navigate(Screen.GoStandardLibrary.route) }
             )
         }
         composable(Screen.GoAbout.route)          { GoAboutScreen(onBack = { navController.popBackStack() }) }
@@ -289,6 +308,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GoGoroutinesSync.route)      { GoGoroutinesSyncScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoChannels.route)            { GoChannelsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoNewMake.route)             { GoNewMakeScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoErrorHandling.route)       { GoErrorHandlingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoTypesInterfaces.route)     { GoTypesInterfacesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GoStandardLibrary.route)     { GoStandardLibraryScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
@@ -339,13 +361,23 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.CppExpressionTypesCasting.route) { CppExpressionTypesCastingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.StlHub.route) {
             StlHubScreen(
-                onBack               = { navController.popBackStack() },
-                onStlContainers      = { navController.navigate(Screen.CppStlContainers.route) },
-                onAsyncPromiseFuture = { navController.navigate(Screen.StlAsyncPromiseFuture.route) },
-                onLambdasThreading   = { navController.navigate(Screen.CppLambdasThreading.route) }
+                onBack                 = { navController.popBackStack() },
+                onStlContainers        = { navController.navigate(Screen.CppStlContainers.route) },
+                onAsyncPromiseFuture   = { navController.navigate(Screen.StlAsyncPromiseFuture.route) },
+                onLambdasThreading     = { navController.navigate(Screen.CppLambdasThreading.route) },
+                onAtomicMemoryBarriers = { navController.navigate(Screen.StlAtomicMemoryBarriers.route) },
+                onChrono               = { navController.navigate(Screen.StlChrono.route) },
+                onFilesystem           = { navController.navigate(Screen.StlFilesystem.route) },
+                onMemoryStrings        = { navController.navigate(Screen.StlMemoryStrings.route) },
+                onAlgorithms           = { navController.navigate(Screen.StlAlgorithms.route) }
             )
         }
-        composable(Screen.StlAsyncPromiseFuture.route) { StlAsyncPromiseFutureScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlAsyncPromiseFuture.route)     { StlAsyncPromiseFutureScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlAtomicMemoryBarriers.route)   { StlAtomicMemoryBarriersScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlChrono.route)                 { StlChronoScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlFilesystem.route)             { StlFilesystemScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlMemoryStrings.route)          { StlMemoryStringsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlAlgorithms.route)             { StlAlgorithmsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {

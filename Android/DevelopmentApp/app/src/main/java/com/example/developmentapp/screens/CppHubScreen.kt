@@ -109,7 +109,7 @@ fun CppHubScreen(
             Spacer(Modifier.height(12.dp))
             CppButtonRow("const, auto, mutable", onConstAutoMutable, "Error Handling", onErrorHandling)
             Spacer(Modifier.height(12.dp))
-            CppButtonRow("Modern C++ and STL", onStl, "Expression Types and Casting", onExpressionTypesCasting)
+            CppButtonRow("Advanced Features", onStl, "Expression Types and Casting", onExpressionTypesCasting)
             Spacer(Modifier.height(24.dp))
         }
     }

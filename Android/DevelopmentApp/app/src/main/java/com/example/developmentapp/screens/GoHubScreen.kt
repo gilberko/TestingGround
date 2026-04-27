@@ -50,7 +50,10 @@ fun GoHubScreen(
     onMaps: () -> Unit,
     onGoroutinesSync: () -> Unit,
     onChannels: () -> Unit,
-    onNewMake: () -> Unit
+    onNewMake: () -> Unit,
+    onErrorHandling: () -> Unit,
+    onTypesInterfaces: () -> Unit,
+    onStandardLibrary: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -107,7 +110,11 @@ fun GoHubScreen(
             GoButtonRow("Goroutines and Sync",              onGoroutinesSync,
                         "Channels",                         onChannels)
             Spacer(Modifier.height(8.dp))
-            GoHubButton("About new and make",               onNewMake, Modifier.fillMaxWidth())
+            GoButtonRow("Error Handling",                   onErrorHandling,
+                        "Types and Interfaces",             onTypesInterfaces)
+            Spacer(Modifier.height(8.dp))
+            GoButtonRow("Standard Library",                 onStandardLibrary,
+                        "About new and make",               onNewMake)
             Spacer(Modifier.height(24.dp))
         }
     }

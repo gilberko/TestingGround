@@ -38,14 +38,19 @@ fun StlHubScreen(
     onBack: () -> Unit,
     onStlContainers: () -> Unit,
     onAsyncPromiseFuture: () -> Unit,
-    onLambdasThreading: () -> Unit
+    onLambdasThreading: () -> Unit,
+    onAtomicMemoryBarriers: () -> Unit,
+    onChrono: () -> Unit,
+    onFilesystem: () -> Unit,
+    onMemoryStrings: () -> Unit,
+    onAlgorithms: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Modern C++ and STL",
+                        text       = "Advanced Features",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -76,7 +81,11 @@ fun StlHubScreen(
             Spacer(Modifier.height(24.dp))
             StlButtonRow("STL Containers", onStlContainers, "Async, Promise and Future", onAsyncPromiseFuture)
             Spacer(Modifier.height(12.dp))
-            StlHubButton("Lambdas & STL Threading", onLambdasThreading, Modifier.fillMaxWidth())
+            StlButtonRow("Lambdas & STL Threading", onLambdasThreading, "Atomic and Memory Barriers", onAtomicMemoryBarriers)
+            Spacer(Modifier.height(12.dp))
+            StlButtonRow("STL Chrono", onChrono, "STL Filesystem", onFilesystem)
+            Spacer(Modifier.height(12.dp))
+            StlButtonRow("Memory and Strings", onMemoryStrings, "Algorithms", onAlgorithms)
             Spacer(Modifier.height(24.dp))
         }
     }
