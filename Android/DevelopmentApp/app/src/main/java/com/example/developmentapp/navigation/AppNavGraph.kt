@@ -115,6 +115,12 @@ import com.example.developmentapp.screens.ai.TrainingBackwardPropScreen
 import com.example.developmentapp.screens.ai.GanScreen
 import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
+import com.example.developmentapp.screens.RustHubScreen
+import com.example.developmentapp.screens.rust.RustAboutScreen
+import com.example.developmentapp.screens.rust.RustHelloWorldScreen
+import com.example.developmentapp.screens.rust.RustVariablesScreen
+import com.example.developmentapp.screens.rust.RustComparisonsLoopsScreen
+import com.example.developmentapp.screens.rust.RustFunctionsScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -230,6 +236,13 @@ sealed class Screen(val route: String) {
     object GoErrorHandling       : Screen("go_error_handling")
     object GoTypesInterfaces     : Screen("go_types_interfaces")
     object GoStandardLibrary     : Screen("go_standard_library")
+    // Rust
+    object RustHub               : Screen("rust_hub")
+    object RustAbout             : Screen("rust_about")
+    object RustHelloWorld        : Screen("rust_hello_world")
+    object RustVariables         : Screen("rust_variables")
+    object RustComparisonsLoops  : Screen("rust_comparisons_loops")
+    object RustFunctions         : Screen("rust_functions")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -246,7 +259,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Home.route) {
             HomeScreen(
                 onCpp            = { navController.navigate(Screen.CppHub.route) },
-                onRust           = { navController.navigate(Screen.ComingSoon.withLabel("Rust")) },
+                onRust           = { navController.navigate(Screen.RustHub.route) },
                 onGo             = { navController.navigate(Screen.GoHub.route) },
                 onPython         = { navController.navigate(Screen.PythonHub.route) },
                 onAssembly       = { navController.navigate(Screen.AssemblyHub.route) },
@@ -311,6 +324,23 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GoErrorHandling.route)       { GoErrorHandlingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoTypesInterfaces.route)     { GoTypesInterfacesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.GoStandardLibrary.route)     { GoStandardLibraryScreen(onBack = { navController.popBackStack() }) }
+
+        // ── Rust ──────────────────────────────────────────────────────────
+        composable(Screen.RustHub.route) {
+            RustHubScreen(
+                onBack             = { navController.popBackStack() },
+                onAboutRust        = { navController.navigate(Screen.RustAbout.route) },
+                onHelloWorld       = { navController.navigate(Screen.RustHelloWorld.route) },
+                onVariables        = { navController.navigate(Screen.RustVariables.route) },
+                onComparisonsLoops = { navController.navigate(Screen.RustComparisonsLoops.route) },
+                onFunctions        = { navController.navigate(Screen.RustFunctions.route) }
+            )
+        }
+        composable(Screen.RustAbout.route)            { RustAboutScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustHelloWorld.route)       { RustHelloWorldScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustVariables.route)        { RustVariablesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustComparisonsLoops.route) { RustComparisonsLoopsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustFunctions.route)        { RustFunctionsScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
