@@ -96,7 +96,7 @@ fun GoHubScreen(
                         "Looping",                          onLooping)
             Spacer(Modifier.height(8.dp))
             GoButtonRow("Conditions",                       onConditions,
-                        "Functions and Goto 101",           onFunctionsGoto)
+                        "Functions, Goto and Defer 101",    onFunctionsGoto)
             Spacer(Modifier.height(8.dp))
             GoButtonRow("Anonymous Functions",              onAnonFuncs,
                         "Structs, Arrays and Slices",       onStructsArraysSlices)

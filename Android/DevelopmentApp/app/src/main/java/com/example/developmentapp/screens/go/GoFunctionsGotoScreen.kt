@@ -31,7 +31,7 @@ fun GoFunctionsGotoScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Go — Functions and Goto 101",
+                        text       = "Go — Functions, Goto and Defer 101",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -261,6 +261,63 @@ fun GoFunctionsGotoScreen(onBack: () -> Unit) {
                         "            fmt.Println(i, j)\n" +
                         "        }\n" +
                         "    }"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "defer — Deferred Function Calls") {
+                    BodyText(
+                        "The defer keyword schedules a function call to run just before the " +
+                        "surrounding function returns — whether it returns normally, falls off " +
+                        "the end, or panics. The deferred call's arguments are evaluated " +
+                        "immediately, but the call itself is held back until the function exits."
+                    )
+                    CodeBlock(
+                        "func readFile(name string) error {\n" +
+                        "    f, err := os.Open(name)\n" +
+                        "    if err != nil { return err }\n" +
+                        "    defer f.Close()   // will run when readFile returns\n" +
+                        "    // ... read from f\n" +
+                        "    return nil\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "This pattern — open a resource immediately then defer its cleanup — is " +
+                        "the standard Go idiom. The defer keeps the open and close calls " +
+                        "visually close together, no matter how many return paths the function has."
+                    )
+                    BodyText("Arguments are evaluated at the defer site, not when the call runs:")
+                    CodeBlock(
+                        "x := 10\n" +
+                        "defer fmt.Println(x)  // captures x=10 right now\n" +
+                        "x = 20\n" +
+                        "fmt.Println(x)        // prints 20\n" +
+                        "// deferred call prints 10"
+                    )
+                    BodyText(
+                        "Multiple defer statements are all called — none is skipped. They " +
+                        "execute in LIFO order (last deferred, first called), like a stack " +
+                        "being unwound."
+                    )
+                    CodeBlock(
+                        "func example() {\n" +
+                        "    defer fmt.Println(\"first deferred\")   // runs third\n" +
+                        "    defer fmt.Println(\"second deferred\")  // runs second\n" +
+                        "    defer fmt.Println(\"third deferred\")   // runs first\n" +
+                        "    fmt.Println(\"function body\")\n" +
+                        "}\n" +
+                        "// Output:\n" +
+                        "// function body\n" +
+                        "// third deferred\n" +
+                        "// second deferred\n" +
+                        "// first deferred"
+                    )
+                    BodyText(
+                        "LIFO order is useful when resources must be released in the reverse " +
+                        "order they were acquired — for example, releasing nested locks or " +
+                        "closing a stack of files."
                     )
                 }
             }

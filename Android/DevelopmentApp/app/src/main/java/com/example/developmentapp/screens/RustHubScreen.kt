@@ -41,7 +41,12 @@ fun RustHubScreen(
     onHelloWorld: () -> Unit,
     onVariables: () -> Unit,
     onComparisonsLoops: () -> Unit,
-    onFunctions: () -> Unit
+    onFunctions: () -> Unit,
+    onOwnershipBorrowing: () -> Unit,
+    onEnumsStructs: () -> Unit,
+    onTraits: () -> Unit,
+    onTuplesArraysSlices: () -> Unit,
+    onVectorsStrings: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -77,11 +82,20 @@ fun RustHubScreen(
                 .padding(vertical = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            RustButtonRow("About Rust", onAboutRust, "Hello, World!", onHelloWorld)
+            RustButtonRow("About Rust",                        onAboutRust,
+                          "Hello, World!",                     onHelloWorld)
             Spacer(Modifier.height(8.dp))
-            RustButtonRow("Variables", onVariables, "Comparisons and Loops", onComparisonsLoops)
+            RustButtonRow("Variables",                         onVariables,
+                          "Comparisons and Loops",             onComparisonsLoops)
             Spacer(Modifier.height(8.dp))
-            RustHubButton("Functions", onFunctions, Modifier.fillMaxWidth())
+            RustButtonRow("Functions",                         onFunctions,
+                          "Lifetimes, Ownership and Borrowing", onOwnershipBorrowing)
+            Spacer(Modifier.height(8.dp))
+            RustButtonRow("Enums and Structs",                 onEnumsStructs,
+                          "Traits",                            onTraits)
+            Spacer(Modifier.height(8.dp))
+            RustButtonRow("Tuples, Arrays and Slices",         onTuplesArraysSlices,
+                          "Vectors and Strings",               onVectorsStrings)
         }
     }
 }

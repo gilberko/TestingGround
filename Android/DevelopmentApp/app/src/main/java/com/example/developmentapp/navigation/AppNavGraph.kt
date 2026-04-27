@@ -113,6 +113,8 @@ import com.example.developmentapp.screens.ai.NeuralNetworksScreen
 import com.example.developmentapp.screens.ai.InferenceForwardPropScreen
 import com.example.developmentapp.screens.ai.TrainingBackwardPropScreen
 import com.example.developmentapp.screens.ai.GanScreen
+import com.example.developmentapp.screens.ai.AttentionTransformersScreen
+import com.example.developmentapp.screens.ai.AnomalyDetectionScreen
 import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
 import com.example.developmentapp.screens.RustHubScreen
@@ -121,6 +123,11 @@ import com.example.developmentapp.screens.rust.RustHelloWorldScreen
 import com.example.developmentapp.screens.rust.RustVariablesScreen
 import com.example.developmentapp.screens.rust.RustComparisonsLoopsScreen
 import com.example.developmentapp.screens.rust.RustFunctionsScreen
+import com.example.developmentapp.screens.rust.RustOwnershipBorrowingScreen
+import com.example.developmentapp.screens.rust.RustEnumsStructsScreen
+import com.example.developmentapp.screens.rust.RustTraitsScreen
+import com.example.developmentapp.screens.rust.RustTuplesArraysSlicesScreen
+import com.example.developmentapp.screens.rust.RustVectorsStringsScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -243,6 +250,11 @@ sealed class Screen(val route: String) {
     object RustVariables         : Screen("rust_variables")
     object RustComparisonsLoops  : Screen("rust_comparisons_loops")
     object RustFunctions         : Screen("rust_functions")
+    object RustOwnershipBorrowing: Screen("rust_ownership_borrowing")
+    object RustEnumsStructs      : Screen("rust_enums_structs")
+    object RustTraits            : Screen("rust_traits")
+    object RustTuplesArraysSlices: Screen("rust_tuples_arrays_slices")
+    object RustVectorsStrings    : Screen("rust_vectors_strings")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -250,6 +262,8 @@ sealed class Screen(val route: String) {
     object InferenceForwardProp  : Screen("inference_forward_prop")
     object TrainingBackwardProp  : Screen("training_backward_prop")
     object GAN                   : Screen("gan")
+    object AttentionTransformers : Screen("attention_transformers")
+    object AnomalyDetection      : Screen("anomaly_detection")
 }
 
 @Composable
@@ -328,19 +342,29 @@ fun AppNavGraph(navController: NavHostController) {
         // ── Rust ──────────────────────────────────────────────────────────
         composable(Screen.RustHub.route) {
             RustHubScreen(
-                onBack             = { navController.popBackStack() },
-                onAboutRust        = { navController.navigate(Screen.RustAbout.route) },
-                onHelloWorld       = { navController.navigate(Screen.RustHelloWorld.route) },
-                onVariables        = { navController.navigate(Screen.RustVariables.route) },
-                onComparisonsLoops = { navController.navigate(Screen.RustComparisonsLoops.route) },
-                onFunctions        = { navController.navigate(Screen.RustFunctions.route) }
+                onBack                = { navController.popBackStack() },
+                onAboutRust           = { navController.navigate(Screen.RustAbout.route) },
+                onHelloWorld          = { navController.navigate(Screen.RustHelloWorld.route) },
+                onVariables           = { navController.navigate(Screen.RustVariables.route) },
+                onComparisonsLoops    = { navController.navigate(Screen.RustComparisonsLoops.route) },
+                onFunctions           = { navController.navigate(Screen.RustFunctions.route) },
+                onOwnershipBorrowing  = { navController.navigate(Screen.RustOwnershipBorrowing.route) },
+                onEnumsStructs        = { navController.navigate(Screen.RustEnumsStructs.route) },
+                onTraits              = { navController.navigate(Screen.RustTraits.route) },
+                onTuplesArraysSlices  = { navController.navigate(Screen.RustTuplesArraysSlices.route) },
+                onVectorsStrings      = { navController.navigate(Screen.RustVectorsStrings.route) }
             )
         }
-        composable(Screen.RustAbout.route)            { RustAboutScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.RustHelloWorld.route)       { RustHelloWorldScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.RustVariables.route)        { RustVariablesScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.RustComparisonsLoops.route) { RustComparisonsLoopsScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.RustFunctions.route)        { RustFunctionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustAbout.route)             { RustAboutScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustHelloWorld.route)        { RustHelloWorldScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustVariables.route)         { RustVariablesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustComparisonsLoops.route)  { RustComparisonsLoopsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustFunctions.route)         { RustFunctionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustOwnershipBorrowing.route){ RustOwnershipBorrowingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustEnumsStructs.route)      { RustEnumsStructsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustTraits.route)            { RustTraitsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustTuplesArraysSlices.route){ RustTuplesArraysSlicesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustVectorsStrings.route)    { RustVectorsStringsScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {
@@ -544,13 +568,17 @@ fun AppNavGraph(navController: NavHostController) {
                 onNeuralNetworks       = { navController.navigate(Screen.NeuralNetworks.route) },
                 onInferenceForwardProp = { navController.navigate(Screen.InferenceForwardProp.route) },
                 onTrainingBackwardProp = { navController.navigate(Screen.TrainingBackwardProp.route) },
-                onGAN                  = { navController.navigate(Screen.GAN.route) }
+                onGAN                  = { navController.navigate(Screen.GAN.route) },
+                onAttentionTransformers = { navController.navigate(Screen.AttentionTransformers.route) },
+                onAnomalyDetection      = { navController.navigate(Screen.AnomalyDetection.route) }
             )
         }
-        composable(Screen.Perceptron.route)           { PerceptronScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.NeuralNetworks.route)       { NeuralNetworksScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.InferenceForwardProp.route) { InferenceForwardPropScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.TrainingBackwardProp.route) { TrainingBackwardPropScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.GAN.route)                  { GanScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Perceptron.route)            { PerceptronScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.NeuralNetworks.route)        { NeuralNetworksScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.InferenceForwardProp.route)  { InferenceForwardPropScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.TrainingBackwardProp.route)  { TrainingBackwardPropScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.GAN.route)                   { GanScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AttentionTransformers.route) { AttentionTransformersScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AnomalyDetection.route)      { AnomalyDetectionScreen(onBack = { navController.popBackStack() }) }
     }
 }

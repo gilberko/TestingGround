@@ -41,7 +41,9 @@ fun AiHubScreen(
     onNeuralNetworks: () -> Unit,
     onInferenceForwardProp: () -> Unit,
     onTrainingBackwardProp: () -> Unit,
-    onGAN: () -> Unit
+    onGAN: () -> Unit,
+    onAttentionTransformers: () -> Unit,
+    onAnomalyDetection: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -84,6 +86,10 @@ fun AiHubScreen(
             AiHubButton("Training - Backward Propagation", onTrainingBackwardProp, Modifier.fillMaxWidth())
             Spacer(Modifier.height(12.dp))
             AiHubButton("Generative Adversarial Network (GAN)", onGAN, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            AiHubButton("Attention and Transformers", onAttentionTransformers, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(12.dp))
+            AiHubButton("Anomaly Detection", onAnomalyDetection, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
