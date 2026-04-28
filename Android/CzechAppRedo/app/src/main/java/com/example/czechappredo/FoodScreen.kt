@@ -61,6 +61,7 @@ fun FoodScreen(navController: NavController) {
             FORow("mléko", "milk", "n.")
             FORow("máslo", "butter", "n.")
             FORow("sýr", "cheese", "m.")
+            FORow("tavený sýr", "melted / processed cheese", "e.g. Laughing Cow type; tavený = melted")
 
             FOSection("Meat & Fish")
             FORow("maso", "meat", "n.")
@@ -69,6 +70,7 @@ fun FoodScreen(navController: NavController) {
             FORow("krůtí maso", "turkey meat", "n.")
             FORow("hovězí maso", "beef", "n.")
             FORow("jehněčí maso", "lamb", "n.")
+            FORow("vepřové maso", "pork", "n. — vepřové = of pork")
             FORow("steak", "steak", "m.")
             FORow("špízy", "skewers", "pl., m.")
 
@@ -83,6 +85,7 @@ fun FoodScreen(navController: NavController) {
             FORow("brambor", "potato", "m.")
             FORow("batát", "sweet potato", "m.")
             FORow("bramborová kaše", "mashed potatoes", "f.")
+            FORow("zelený salát", "green salad / lettuce", "salát = salad or lettuce depending on context")
 
             FOSection("Fruits")
             FORow("citron", "lemon", "m.")
@@ -142,6 +145,20 @@ fun FoodScreen(navController: NavController) {
             FORow("bourbon", "bourbon", "m.")
             FORow("žitná", "rye whiskey", "f. — short for žitná whisky; rye grain = žito")
             FORow("gin", "gin", "m.")
+            FORow("džus", "juice (packaged)", "šťáva = freshly squeezed juice")
+            FORow("neperlivá voda", "still water", "also: voda bez bublinek")
+            FORow("perlivá voda", "sparkling water", "colloquially: soda")
+
+            FOSection("Soups (Polévky)")
+            FORow("hovězí polévka", "beef soup", "hovězí = beef (adj)")
+            FORow("bramborová polévka", "potato soup", "bramborová = potato (adj)")
+
+            FOSection("Popular Dishes")
+            FORow("vegetariánská pizza", "vegetarian pizza")
+            FORow("italské těstoviny", "Italian pasta", "těstoviny = pasta (always plural)")
+
+            FOSection("Ordering")
+            FORow("dám si", "I'll have (ordering)", "literally 'I'll give myself'; see Basic Words for full explanation")
 
             FOSection("Allergens & Dietary")
             FORow("alergeny", "allergens", "pl., m.")

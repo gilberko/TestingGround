@@ -99,6 +99,19 @@ fun NumbersScreen(navController: NavController) {
             NURow("900", "devět set")
             NURow("1000", "tisíc")
 
+            // Thousands
+            NUSection("Thousands (2 000 – 10 000)")
+            NUNote("2–4 use tisíce (plural); 5–10 use tisíc (genitive plural). Same pattern as hundreds: larger count changes the noun form.")
+            NURow("2 000", "dva tisíce")
+            NURow("3 000", "tři tisíce")
+            NURow("4 000", "čtyři tisíce")
+            NURow("5 000", "pět tisíc")
+            NURow("6 000", "šest tisíc")
+            NURow("7 000", "sedm tisíc")
+            NURow("8 000", "osm tisíc")
+            NURow("9 000", "devět tisíc")
+            NURow("10 000", "deset tisíc")
+
             // Examples
             NUSection("Compound Number Examples")
             NUNote("Compound numbers are formed by saying the larger unit first, then the smaller.")

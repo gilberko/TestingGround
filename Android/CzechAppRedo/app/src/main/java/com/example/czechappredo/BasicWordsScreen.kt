@@ -58,6 +58,10 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("nebo", "or")
             BWRow("ale", "but")
             BWRow("tak", "so / well / then")
+            BWRow("i", "and / also / even", "literary variant of 'a'; i...i = both...and; e.g. i já = me too")
+            BWRow("znovu", "again", "also: zase (colloquial), zas (very short form)")
+            BWRow("zase / zas", "again (colloquial)", "variant of znovu; zas is the clipped form")
+            BWRow("anebo", "or (emphatic)", "stronger variant of nebo; implies 'or else'")
 
             // ── Greetings ─────────────────────────────────────────────────
             BWSection("Greetings")
@@ -107,6 +111,14 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Studuju v ...", "I study in ...", "colloquial / spoken alternative. Example: Studuju v Praze.")
             BWRow("Pracuji v ...", "I work in ...", "formal / written. Uses Locative. Example: Pracuji v Brně.  (I work in Brno.)")
             BWRow("Pracuju v ...", "I work in ...", "colloquial / spoken alternative. Example: Pracuju v Brně.")
+
+            // ── Common Phrases ────────────────────────────────────────────
+            BWSection("Common Phrases")
+            BWRow("mám rád", "I like (said by a man)", "literally 'I have gladly'; rád is the masculine form")
+            BWRow("mám ráda", "I like (said by a woman)", "ráda is the feminine form; the verb mám does not change")
+            BWRow("nemám rád / nemám ráda", "I don't like", "nemám = I don't have; rád / ráda same rule as above")
+            BWRow("dám si", "I'll have (ordering food or drink)", "literally 'I'll give myself'; e.g. Dám si polévku. = I'll have the soup.")
+            BWRow("nedám si", "I won't have / I'll pass", "literally 'I won't give myself'")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

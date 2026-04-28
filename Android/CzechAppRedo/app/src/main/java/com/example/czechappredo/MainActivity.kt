@@ -52,6 +52,8 @@ class MainActivity : ComponentActivity() {
                 composable("transportation") { TransportationScreen(navController) }
                 composable("food") { FoodScreen(navController) }
                 composable("animals") { AnimalsScreen(navController) }
+                composable("adjectives") { AdjectivesScreen(navController) }
+                composable("adjectives_list") { AdjectivesListScreen(navController) }
             }
         }
     }
@@ -169,6 +171,10 @@ fun LearningHubScreen(navController: NavController) {
             NavButton(label = "Questions") {
                 navController.navigate("questions")
             }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Adjectives") {
+                navController.navigate("adjectives")
+            }
         }
     }
 }
@@ -203,7 +209,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "People & Family" to "people_family",
             "Transportation" to "transportation",
             "Food" to "food",
-            "Animals" to "animals"
+            "Animals" to "animals",
+            "Adjectives" to "adjectives_list"
         )
         Column(
             modifier = Modifier
