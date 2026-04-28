@@ -78,6 +78,11 @@ fun BasicWordsScreen(navController: NavController) {
             BWSection("Pleasantries")
             BWRow("Prosím", "Please / You're welcome / Here you go", "extremely versatile — context tells you which meaning")
             BWRow("Děkuji", "Thank you", "formal")
+            BWRow("Děkuju", "Thank you", "colloquial — same meaning, more casual")
+            BWNote("Like the -uji/-uju distinction seen in verbs (studuji/studuju), děkuji and děkuju are fully interchangeable. Děkuju is very common in everyday spoken Czech.")
+            BWRow("Děkuji mockrát / Mockrát děkuji", "Thank you very much")
+            BWRow("Děkuji moc / Děkuju moc", "Thank you very much", "colloquial; moc = a lot / very much used informally as an adverb. Word order can be reversed: Moc děkuji / Moc děkuju. In formal or written Czech, mockrát or velmi is preferred.")
+            BWRow("Díky moc", "Thanks a lot", "very casual; combines díky (informal thanks) with moc (a lot). Common in everyday spoken Czech.")
             BWRow("Díky", "Thanks", "informal")
             BWRow("Promiňte", "Excuse me / Sorry", "formal")
             BWRow("Promiň", "Excuse me / Sorry", "informal")
@@ -111,6 +116,19 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Studuju v ...", "I study in ...", "colloquial / spoken alternative. Example: Studuju v Praze.")
             BWRow("Pracuji v ...", "I work in ...", "formal / written. Uses Locative. Example: Pracuji v Brně.  (I work in Brno.)")
             BWRow("Pracuju v ...", "I work in ...", "colloquial / spoken alternative. Example: Pracuju v Brně.")
+
+            // ── At a Restaurant ───────────────────────────────────────────
+            BWSection("At a Restaurant")
+            BWRow("jídelní lístek", "menu (the printed menu card)", "also commonly just called menu — a borrowed word")
+            BWRow("menu", "set menu / today's lunch special", "in Czech restaurants, 'menu' often means a fixed-price lunch deal, not the full menu card")
+            BWRow("koruna", "1 crown", "1 koruna česká (Kč) — the Czech currency")
+            BWRow("koruny", "2–4 crowns", "e.g. 2 koruny, 3 koruny, 4 koruny")
+            BWRow("korun", "5 or more crowns", "e.g. 5 korun, 60 korun, 200 korun")
+            BWNote("The rule: 1 → koruna,  2–4 → koruny,  5 or more → korun. Example: Zmrzlina stojí 60 korun. (The ice cream costs 60 crowns.)")
+            BWRow("To stojí 60 korun.", "It costs 60 crowns.")
+            BWRow("Zaplatím.", "I will pay. / I'd like to pay.", "from zaplatit (to pay). Common when asking for the bill.")
+            BWRow("Zaplatím kartou.", "I will pay by card.")
+            BWRow("Zaplatím hotově.", "I will pay in cash.")
 
             // ── Common Phrases ────────────────────────────────────────────
             BWSection("Common Phrases")

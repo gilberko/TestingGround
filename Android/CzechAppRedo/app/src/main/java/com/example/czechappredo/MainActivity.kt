@@ -54,6 +54,9 @@ class MainActivity : ComponentActivity() {
                 composable("animals") { AnimalsScreen(navController) }
                 composable("adjectives") { AdjectivesScreen(navController) }
                 composable("adjectives_list") { AdjectivesListScreen(navController) }
+                composable("this_and_that") { ThisAndThatScreen(navController) }
+                composable("colors_materials") { ColorsAndMaterialsScreen(navController) }
+                composable("countries") { CountriesScreen(navController) }
             }
         }
     }
@@ -136,44 +139,37 @@ fun LearningHubScreen(navController: NavController) {
         },
         containerColor = Color.White
     ) { innerPadding ->
+        val learningItems = listOf(
+            "Letters & Pronunciation" to "letters_pronunciation",
+            "About Nouns And Basic Demonstratives" to "nouns_demonstratives",
+            "Cases" to "cases",
+            "Present Tense Verb Conjugation" to "present_tense",
+            "Verbs Of Movement" to "verbs_of_movement",
+            "Prepositions" to "prepositions",
+            "Questions" to "questions",
+            "Adjectives" to "adjectives",
+            "This and That" to "this_and_that"
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(horizontal = 16.dp, vertical = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            NavButton(label = "Letters & Pronunciation") {
-                navController.navigate("letters_pronunciation")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "About Nouns And Basic Demonstratives") {
-                navController.navigate("nouns_demonstratives")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Cases") {
-                navController.navigate("cases")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Present Tense Verb Conjugation") {
-                navController.navigate("present_tense")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Verbs Of Movement") {
-                navController.navigate("verbs_of_movement")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Prepositions") {
-                navController.navigate("prepositions")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Questions") {
-                navController.navigate("questions")
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            NavButton(label = "Adjectives") {
-                navController.navigate("adjectives")
+            learningItems.chunked(2).forEach { pair ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    pair.forEach { (label, route) ->
+                        DictNavButton(label = label, modifier = Modifier.weight(1f)) {
+                            navController.navigate(route)
+                        }
+                    }
+                    if (pair.size == 1) Spacer(modifier = Modifier.weight(1f))
+                }
             }
         }
     }
@@ -210,7 +206,9 @@ fun DictionaryHubScreen(navController: NavController) {
             "Transportation" to "transportation",
             "Food" to "food",
             "Animals" to "animals",
-            "Adjectives" to "adjectives_list"
+            "Adjectives" to "adjectives_list",
+            "Colors & Materials" to "colors_materials",
+            "Countries & Languages" to "countries"
         )
         Column(
             modifier = Modifier
