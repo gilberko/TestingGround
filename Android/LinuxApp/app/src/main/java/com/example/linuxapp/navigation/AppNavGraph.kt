@@ -85,6 +85,7 @@ import com.example.linuxapp.screens.ebpf.EbpfAdvancedScreen
 import com.example.linuxapp.screens.ebpf.EbpfSecurityScreen
 import com.example.linuxapp.screens.ebpf.EbpfKptrsScreen
 import com.example.linuxapp.screens.ebpf.EbpfHelpersKfuncsScreen
+import com.example.linuxapp.screens.ebpf.EbpfSleepableScreen
 import com.example.linuxapp.screens.LinuxUsage2Screen
 import com.example.linuxapp.screens.kernel.DeviceTypesHubScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryAccessScreen
@@ -166,6 +167,7 @@ sealed class Screen(val route: String) {
     object KernelForkClone                 : Screen("kernel_fork_clone")
     object KernelDkms                      : Screen("kernel_dkms")
     object KernelProcessSchedulingWhole    : Screen("kernel_process_scheduling_whole")
+    object EbpfSleepable                  : Screen("ebpf_sleepable")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -350,7 +352,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) },
                 onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) },
                 onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
-                onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) }
+                onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) },
+                onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -475,6 +478,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfHelpersKfuncs.route) {
             EbpfHelpersKfuncsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfSleepable.route) {
+            EbpfSleepableScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.DeviceTypesHub.route) {
             DeviceTypesHubScreen(

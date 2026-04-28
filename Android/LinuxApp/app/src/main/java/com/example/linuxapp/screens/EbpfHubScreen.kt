@@ -47,7 +47,8 @@ fun EbpfHubScreen(
     onEbpfSecurity: () -> Unit,
     onEbpfSharingData: () -> Unit,
     onEbpfKptrs: () -> Unit,
-    onEbpfHelpersKfuncs: () -> Unit
+    onEbpfHelpersKfuncs: () -> Unit,
+    onEbpfSleepable: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -114,6 +115,13 @@ fun EbpfHubScreen(
             ) {
                 EbpfButton(label = "kptrs", onClick = onEbpfKptrs, modifier = Modifier.weight(1f))
                 EbpfButton(label = "BPF Helpers\n& kfuncs", onClick = onEbpfHelpersKfuncs, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "Sleepable\neBPF Programs", onClick = onEbpfSleepable, modifier = Modifier.weight(1f))
             }
         }
         }
