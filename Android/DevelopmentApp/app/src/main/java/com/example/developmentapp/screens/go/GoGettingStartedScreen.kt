@@ -104,6 +104,30 @@ fun GoGettingStartedScreen(onBack: () -> Unit) {
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
+                SectionCard(title = "Comments") {
+                    BodyText(
+                        "Go uses the same comment syntax as C. Single-line comments start with // " +
+                        "and run to the end of the line. Multi-line comments are enclosed between " +
+                        "/* and */."
+                    )
+                    CodeBlock(
+                        "// This is a single-line comment\n\n" +
+                        "/*\n" +
+                        "   This is a\n" +
+                        "   multi-line comment\n" +
+                        "*/"
+                    )
+                    BodyText(
+                        "In practice, // comments are used for almost everything — inline notes, " +
+                        "function documentation, and temporarily disabling code. /* */ comments " +
+                        "are mainly used for large block-outs or the package doc comment at the " +
+                        "top of a file."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
                 SectionCard(title = "Import Directives") {
                     BodyText(
                         "The import keyword brings in packages by their import path. There are two " +
