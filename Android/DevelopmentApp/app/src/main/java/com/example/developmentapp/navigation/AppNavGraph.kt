@@ -128,6 +128,9 @@ import com.example.developmentapp.screens.rust.RustEnumsStructsScreen
 import com.example.developmentapp.screens.rust.RustTraitsScreen
 import com.example.developmentapp.screens.rust.RustTuplesArraysSlicesScreen
 import com.example.developmentapp.screens.rust.RustVectorsStringsScreen
+import com.example.developmentapp.screens.rust.RustModulesCratesScreen
+import com.example.developmentapp.screens.rust.RustClosuresScreen
+import com.example.developmentapp.screens.rust.RustThreadsScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -255,6 +258,9 @@ sealed class Screen(val route: String) {
     object RustTraits            : Screen("rust_traits")
     object RustTuplesArraysSlices: Screen("rust_tuples_arrays_slices")
     object RustVectorsStrings    : Screen("rust_vectors_strings")
+    object RustModulesCrates     : Screen("rust_modules_crates")
+    object RustClosures          : Screen("rust_closures")
+    object RustThreads           : Screen("rust_threads")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -352,7 +358,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onEnumsStructs        = { navController.navigate(Screen.RustEnumsStructs.route) },
                 onTraits              = { navController.navigate(Screen.RustTraits.route) },
                 onTuplesArraysSlices  = { navController.navigate(Screen.RustTuplesArraysSlices.route) },
-                onVectorsStrings      = { navController.navigate(Screen.RustVectorsStrings.route) }
+                onVectorsStrings      = { navController.navigate(Screen.RustVectorsStrings.route) },
+                onModulesCrates       = { navController.navigate(Screen.RustModulesCrates.route) },
+                onClosures            = { navController.navigate(Screen.RustClosures.route) },
+                onThreads             = { navController.navigate(Screen.RustThreads.route) }
             )
         }
         composable(Screen.RustAbout.route)             { RustAboutScreen(onBack = { navController.popBackStack() }) }
@@ -365,6 +374,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.RustTraits.route)            { RustTraitsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustTuplesArraysSlices.route){ RustTuplesArraysSlicesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustVectorsStrings.route)    { RustVectorsStringsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustModulesCrates.route)     { RustModulesCratesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustClosures.route)          { RustClosuresScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustThreads.route)           { RustThreadsScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {

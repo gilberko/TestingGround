@@ -46,7 +46,10 @@ fun RustHubScreen(
     onEnumsStructs: () -> Unit,
     onTraits: () -> Unit,
     onTuplesArraysSlices: () -> Unit,
-    onVectorsStrings: () -> Unit
+    onVectorsStrings: () -> Unit,
+    onModulesCrates: () -> Unit,
+    onClosures: () -> Unit,
+    onThreads: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -96,6 +99,11 @@ fun RustHubScreen(
             Spacer(Modifier.height(8.dp))
             RustButtonRow("Tuples, Arrays and Slices",         onTuplesArraysSlices,
                           "Vectors and Strings",               onVectorsStrings)
+            Spacer(Modifier.height(8.dp))
+            RustButtonRow("Modules and Crates",                onModulesCrates,
+                          "Closures",                          onClosures)
+            Spacer(Modifier.height(8.dp))
+            RustHubButton("Threads", onThreads, Modifier.fillMaxWidth())
         }
     }
 }
