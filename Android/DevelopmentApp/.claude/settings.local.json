@@ -22,7 +22,9 @@
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleRelease 2>&1)",
       "PowerShell(Get-Command *)",
       "Bash(export JAVA_HOME)",
-      "Bash(gradlew.bat assembleRelease)"
+      "Bash(gradlew.bat assembleRelease)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; .\\\\gradlew assembleRelease 2>&1)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; .\\\\gradlew assembleRelease 2>&1)"
     ]
   }
 }

@@ -137,6 +137,37 @@ fun RustOwnershipBorrowingScreen(onBack: () -> Unit) {
             item {
                 SectionCard(title = "Lifetime Bounds — Variables, Owners, and Data") {
                     BodyText(
+                        "Before understanding lifetime bounds, it helps to see that Rust variables " +
+                        "fall into three distinct kinds — and lifetime bounds only matter for one of them."
+                    )
+                    BodyText("Kind 1 — The variable IS the data (i32, f64, bool, char):")
+                    BodyText(
+                        "These types live entirely on the stack. There is no pointer, no indirection, " +
+                        "no reference to anything outside the variable itself. If you have an i32, " +
+                        "the value is right there in the variable. Lifetime bounds never restrict these."
+                    )
+                    BodyText("Kind 2 — The variable OWNS its data (String, Vec<T>, Box<T>):")
+                    BodyText(
+                        "These types hold a pointer to heap memory, but that memory belongs entirely " +
+                        "to the owner. As long as you hold the value, the data is alive and valid. " +
+                        "There are no external references embedded in them, so lifetime bounds do not " +
+                        "restrict them either."
+                    )
+                    BodyText("Kind 3 — The variable BORROWS data (&T, &mut T, &str, &[T]):")
+                    BodyText(
+                        "These are pointers to data that lives somewhere else — owned by another " +
+                        "variable. The data's lifetime is determined by whoever owns it, not by the " +
+                        "reference. This is the only kind where lifetime bounds actually constrain " +
+                        "things: you cannot use the reference after the owner drops, return it after " +
+                        "the owner's scope ends, or store it somewhere that outlives it."
+                    )
+                    BodyText(
+                        "Lifetime bounds — T: 'a — apply only to references (Kind 3). " +
+                        "They are asking: \"do all the references inside T live at least as long as 'a?\" " +
+                        "For Kind 1 and Kind 2 types that contain no external references, the answer " +
+                        "is trivially yes — there is nothing to check."
+                    )
+                    BodyText(
                         "A lifetime bound like T: 'a says all references inside T must be valid " +
                         "for at least 'a. What this means in practice depends on what T actually is."
                     )
