@@ -91,7 +91,16 @@ fun AdjectivesScreen(navController: NavController) {
                     "Plural" to "-é → dobré  (vidím dobré filmy)"
                 )
             )
-            AJNote("Soft adjectives: masc animate → jarního; masc inanimate, neuter, feminine, plural → jarní (unchanged).")
+            AJTable(
+                label = "Soft adjective — cizí (foreign)",
+                rows = listOf(
+                    "Masc animate" to "-ího → cizího  (vidím cizího muže)",
+                    "Masc inanimate" to "-í (= nom) → cizí  (vidím cizí vlak)",
+                    "Neuter" to "-í (= nom) → cizí  (vidím cizí město)",
+                    "Feminine" to "-í → cizí  (vidím cizí ženu)",
+                    "Plural" to "-í → cizí  (vidím cizí lidi)"
+                )
+            )
 
             // ── Genitive ──────────────────────────────────────────────────
             AJSection("Genitive (Of / From / Without)")
@@ -103,7 +112,14 @@ fun AdjectivesScreen(navController: NavController) {
                     "Plural" to "-ých → dobrých  (od dobrých lidí)"
                 )
             )
-            AJNote("Soft adjectives: masc/neuter → jarního; feminine → jarní; plural → jarních.")
+            AJTable(
+                label = "Soft adjective — cizí (foreign)",
+                rows = listOf(
+                    "Masc + Neuter" to "-ího → cizího  (od cizího muže)",
+                    "Feminine" to "-í → cizí  (od cizí ženy)",
+                    "Plural" to "-ích → cizích  (od cizích lidí)"
+                )
+            )
 
             // ── Dative ────────────────────────────────────────────────────
             AJSection("Dative (To / For)")

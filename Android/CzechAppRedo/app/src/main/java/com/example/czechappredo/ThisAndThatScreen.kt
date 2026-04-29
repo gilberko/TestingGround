@@ -85,6 +85,20 @@ fun ThisAndThatScreen(navController: NavController) {
             TATNote("Locative:    té ženě / té růži")
             TATNote("Instrumental:    tou ženou / tou růží")
 
+            // ── To je ─────────────────────────────────────────────────────
+            TATHeader("\"To je\" — Identifying Anyone or Anything")
+            TATNote("The phrase to je (this is / that is) is used to introduce or identify someone or something regardless of their grammatical gender. The to here is not the demonstrative pronoun agreeing with the noun — it is a fixed presentational particle, always neuter singular.")
+            TATNote("So to je moje maminka is completely correct and natural Czech even though maminka is feminine. The gender of the noun after to je does not matter:")
+            TATNote("To je můj bratr.  —  This is my brother.  (bratr = masculine)")
+            TATNote("To je moje sestra.  —  This is my sister.  (sestra = feminine)")
+            TATNote("To je moje maminka.  —  This is my mom.  (maminka = feminine — ✓ correct)")
+            TATNote("To je moje auto.  —  This is my car.  (auto = neuter)")
+            TATNote("For plural nouns the verb changes to jsou (are), but to stays unchanged:")
+            TATNote("To jsou moje děti.  —  These are my children.")
+            TATNote("To jsou moji přátelé.  —  These are my friends.  (m. anim pl. → moji)")
+            TATNote("To jsou moje auta.  —  These are my cars.  (neuter pl. → moje)")
+            TATNote("In all cases to / jsou stays fixed; only the possessive or adjective after it agrees with the noun.")
+
             // ── Full case tables ──────────────────────────────────────────
             TATHeader("All Cases — Full Declension Tables")
             TATNote("The tables below show how ten / ta / to changes across all cases, for all four gender/animacy categories.")

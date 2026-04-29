@@ -86,6 +86,10 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Díky", "Thanks", "informal")
             BWRow("Promiňte", "Excuse me / Sorry", "formal")
             BWRow("Promiň", "Excuse me / Sorry", "informal")
+            BWNote("You're welcome — responding to děkuji:")
+            BWRow("Prosím.", "You're welcome.", "when said in response to děkuji, prosím means 'you're welcome'. It is the most natural and common reply.")
+            BWRow("Není zač.", "Don't mention it.", "lit. 'There is nothing to thank for.' Very common in everyday Czech.")
+            BWRow("Rádo se stalo.", "My pleasure.", "lit. 'It happened gladly.' Slightly warmer / more formal.")
 
             // ── How Are You? ──────────────────────────────────────────────
             BWSection("How Are You?")
@@ -98,6 +102,19 @@ fun BasicWordsScreen(navController: NavController) {
             // ── Nice To Meet You ──────────────────────────────────────────
             BWSection("Nice To Meet You")
             BWRow("Těší mě.", "Nice to meet you.", "lit. \"It pleases me.\"")
+
+            // ── What Is Your Name? ────────────────────────────────────────
+            BWSection("What Is Your Name?")
+            BWNote("To say your name in Czech, use jmenovat se (to be called). It conjugates like pracovat: jmenuji/jmenuju se · jmenuješ se · jmenuje se · jmenujeme se · jmenujete se · jmenují se. The se is a clitic that sits in the second slot of the sentence.")
+            BWRow("Jmenuji se Gil. / Jmenuju se Gil.", "My name is Gil.", "jmenuji = formal; jmenuju = colloquial — both correct")
+            BWRow("Jak se jmenuješ?", "What is your name?", "informal")
+            BWRow("Jak se jmenujete?", "What is your name?", "formal / addressing a group")
+            BWRow("Jak se jmenuje?", "What is his / her name?", "3rd person singular — same form for he and she")
+            BWRow("Jak se jmenují?", "What are their names?", "3rd person plural")
+            BWRow("Jmenuje se Tomáš.", "His name is Tomáš.")
+            BWRow("Jmenuje se Marie.", "Her name is Marie.")
+            BWRow("Jak se jmenuje tvůj bratr?", "What is your brother's name?", "informal")
+            BWRow("Jak se jmenují tví rodiče?", "What are your parents' names?", "informal")
 
             // ── Where Are You From? ───────────────────────────────────────
             BWSection("Where Are You From?")
@@ -130,6 +147,24 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Zaplatím kartou.", "I will pay by card.")
             BWRow("Zaplatím hotově.", "I will pay in cash.")
 
+            // ── How Old Are You? ──────────────────────────────────────────
+            BWSection("How Old Are You?")
+            BWNote("Czech uses the dative pronoun + je (is) + number + rok / roky / let. Rule: 1 → rok,  2–4 → roky,  5 or more → let.")
+            BWRow("Kolik je ti let?", "How old are you?", "informal")
+            BWRow("Kolik je vám let?", "How old are you?", "formal")
+            BWRow("Je mi X let.", "I am X years old.")
+            BWRow("Je ti X let.", "You are X years old.", "informal")
+            BWRow("Je mu X let.", "He is X years old.")
+            BWRow("Je jí X let.", "She is X years old.")
+            BWRow("Je nám X let.", "We are X years old.")
+            BWRow("Je vám X let.", "You are X years old.", "formal / plural")
+            BWRow("Je jim X let.", "They are X years old.")
+            BWNote("Examples showing the rok / roky / let rule:")
+            BWRow("Je mu 1 rok.", "He is 1 year old.")
+            BWRow("Je jí 3 roky.", "She is 3 years old.")
+            BWRow("Je mi 25 let.", "I am 25 years old.")
+            BWRow("Je vám 50 let?", "Are you 50 years old?", "formal")
+
             // ── Common Phrases ────────────────────────────────────────────
             BWSection("Common Phrases")
             BWRow("mám rád", "I like (said by a man)", "literally 'I have gladly'; rád is the masculine form")
@@ -137,6 +172,13 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("nemám rád / nemám ráda", "I don't like", "nemám = I don't have; rád / ráda same rule as above")
             BWRow("dám si", "I'll have (ordering food or drink)", "literally 'I'll give myself'; e.g. Dám si polévku. = I'll have the soup.")
             BWRow("nedám si", "I won't have / I'll pass", "literally 'I won't give myself'")
+
+            // ── Welcome ───────────────────────────────────────────────────
+            BWSection("Welcome")
+            BWRow("Vítejte!", "Welcome!", "formal or addressing a group")
+            BWRow("Vítej!", "Welcome!", "informal, addressing one person")
+            BWRow("Vítejte v Praze!", "Welcome to Prague!", "uses Locative: Praha → Praze")
+            BWRow("Vítejte v České republice!", "Welcome to the Czech Republic!")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

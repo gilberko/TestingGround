@@ -540,6 +540,25 @@ fun UsefulVerbsScreen(navController: NavController) {
                 )
             )
 
+            UVVerbEntry(
+                czech = "jmenovat se",
+                english = "to be called / to be named",
+                rule = "Reflexive verb — se is a clitic occupying the second position in the sentence. Conjugates like pracovat (-ovat type). Formal: jmenuji se; colloquial: jmenuju se — both are correct.",
+                example = "Jak se jmenuješ?",
+                translation = "What is your name? (informal)"
+            )
+            UVTable(
+                verb = "jmenovat se", label = "Type 3 (-ovat), reflexive",
+                rows = listOf(
+                    "já" to "jmenuji se  (jmenuju se)",
+                    "ty" to "jmenuješ se",
+                    "on / ona / ono" to "jmenuje se",
+                    "my" to "jmenujeme se",
+                    "vy" to "jmenujete se",
+                    "oni" to "jmenují se"
+                )
+            )
+
             UVSection("Knowing & Meeting")
 
             UVVerbEntry(

@@ -53,8 +53,13 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             PFRow("miminko", "baby", "n.")
             PFRow("kojenec", "infant", "m. — specifically a nursing infant")
             PFRow("dítě", "kid / child", "n.")
+            PFRow("děti", "children", "pl. of dítě — irregular plural. e.g. Mám dvě děti. (I have two children.)")
 
             PFSection("Immediate Family")
+            PFRow("otec", "father", "m., formal/neutral")
+            PFRow("táta", "dad", "m., colloquial; tatínek = daddy (affectionate)")
+            PFRow("matka", "mother", "f., formal/neutral")
+            PFRow("máma", "mom", "f., colloquial; maminka = mommy (affectionate)")
             PFRow("manžel", "husband", "m.")
             PFRow("manželka", "wife", "f.")
             PFRow("syn", "son", "m.")
@@ -75,6 +80,12 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             PFRow("švagrová", "sister-in-law", "f.")
             PFRow("tchán", "father-in-law", "m. — parent of one's spouse; used by both partners in modern Czech")
             PFRow("tchyně", "mother-in-law", "f. — parent of one's spouse; used by both partners in modern Czech")
+
+            PFSection("Romantic Partners")
+            PFRow("přítel", "(male) friend / boyfriend", "m. — context determines the meaning; Mám přítele. = I have a boyfriend.")
+            PFRow("přítelkyně", "(female) friend / girlfriend", "f. — Mám přítelkyni. = I have a girlfriend. Both přítel and přítelkyně can mean friend or romantic partner; in romantic context they are the standard term. The colloquial kluk (boyfriend, lit. guy) and holka (girlfriend, lit. girl) are also common.")
+            PFRow("snoubenec", "fiancé", "m.")
+            PFRow("snoubenka", "fiancée", "f.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

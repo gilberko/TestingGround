@@ -55,6 +55,7 @@ class MainActivity : ComponentActivity() {
                 composable("adjectives") { AdjectivesScreen(navController) }
                 composable("adjectives_list") { AdjectivesListScreen(navController) }
                 composable("this_and_that") { ThisAndThatScreen(navController) }
+                composable("possessive_pronouns") { PossessivePronounsScreen(navController) }
                 composable("colors_materials") { ColorsAndMaterialsScreen(navController) }
                 composable("countries") { CountriesScreen(navController) }
             }
@@ -148,7 +149,8 @@ fun LearningHubScreen(navController: NavController) {
             "Prepositions" to "prepositions",
             "Questions" to "questions",
             "Adjectives" to "adjectives",
-            "This and That" to "this_and_that"
+            "This and That" to "this_and_that",
+            "Possessive Pronouns" to "possessive_pronouns"
         )
         Column(
             modifier = Modifier

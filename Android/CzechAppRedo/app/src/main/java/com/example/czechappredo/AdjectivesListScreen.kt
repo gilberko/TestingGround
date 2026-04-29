@@ -58,8 +58,10 @@ fun AdjectivesListScreen(navController: NavController) {
             ALRow("světlý / světlá / světlé", "light / bright")
 
             ALSection("Size")
+            ALRow("malý / malá / malé", "small")
+            ALRow("velký / velká / velké", "big / large")
             ALRow("vysoký / vysoká / vysoké", "tall / high")
-            ALRow("nízký / nízká / nízké", "short / low", "for height; malý / malá / malé = small / short in size")
+            ALRow("nízký / nízká / nízké", "short / low", "for height")
             ALRow("tenký / tenká / tenké", "thin / slim", "for objects; štíhlý / štíhlá / štíhlé = slim for people")
             ALRow("tlustý / tlustá / tlusté", "thick / fat", "for objects; silný / silná / silné = strong / thick for materials")
 
@@ -80,6 +82,29 @@ fun AdjectivesListScreen(navController: NavController) {
             ALRow("špatný / špatná / špatné", "bad")
             ALRow("nový / nová / nové", "new")
             ALRow("starý / stará / staré", "old")
+            ALRow("mladý / mladá / mladé", "young")
+
+            ALSection("Character & Appearance")
+            ALRow("laskavý / laskavá / laskavé", "kind / gentle")
+            ALRow("hezký / hezká / hezké", "handsome / nice-looking", "for people and things")
+            ALRow("pohledný / pohledná / pohledné", "attractive / good-looking", "specifically for people")
+            ALRow("krásný / krásná / krásné", "beautiful")
+
+            ALSection("Speed & Reliability")
+            ALRow("rychlý / rychlá / rychlé", "fast")
+            ALRow("pomalý / pomalá / pomalé", "slow")
+            ALRow("spolehlivý / spolehlivá / spolehlivé", "reliable")
+
+            ALSection("Comparative Forms")
+            ALNote("Comparatives are formed with a -ší or -í suffix and always decline as soft adjectives.")
+            ALRow("mladší", "younger", "comparative of mladý")
+            ALRow("starší", "older", "comparative of starý")
+            ALRow("větší", "bigger", "comparative of velký")
+            ALRow("menší", "smaller", "comparative of malý")
+            ALRow("rychlejší", "faster", "comparative of rychlý")
+            ALRow("pomalejší", "slower", "comparative of pomalý")
+            ALNote("Example: Mám mladšího bratra a starší sestru.  —  I have a younger brother and an older sister.")
+            ALNote("'mladšího' uses the soft adjective accusative masculine animate ending -ího (→ mladšího bratra). 'starší sestru' — soft adjective feminine accusative is unchanged.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

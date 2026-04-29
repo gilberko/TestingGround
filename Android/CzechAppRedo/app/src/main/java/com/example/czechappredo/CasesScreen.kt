@@ -85,7 +85,7 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "Masc. inanimate (hard)" to "hrad → hradu",
                     "Masc. inanimate (soft)" to "nůž → nože",
-                    "Masc. animate (hard)" to "pán → pána",
+                    "Masc. animate (hard)" to "pán → pána;  tatínek → tatínka;  dědeček → dědečka",
                     "Masc. animate (soft)" to "muž → muže",
                     "Feminine -a" to "žena → ženy",
                     "Feminine -e (soft)" to "růže → růže  (no change)",
@@ -94,6 +94,8 @@ fun CasesScreen(navController: NavController) {
                     "Fem. consonant stem" to "místnost → místnosti"
                 )
             )
+
+            CaseNote("Fleeting e (pohybné e): Some masculine animate nouns ending in -ek or -eček drop the -e- before their final consonant whenever a case ending is added. Examples: tatínek (daddy) → tatínka (not tatíneka); dědeček (grandpa) → dědečka (not dědečeka). The underlying pattern (hard animate → -a) is unchanged — only the spelling shifts.")
 
             CaseBlock(
                 number = "3",
@@ -127,7 +129,7 @@ fun CasesScreen(navController: NavController) {
             CaseMiniTable(
                 rows = listOf(
                     "Masc. inanimate" to "hrad → hrad  (= Nominative)",
-                    "Masc. animate" to "muž → muže; pán → pána  (= Genitive)",
+                    "Masc. animate" to "muž → muže; pán → pána; tatínek → tatínka; dědeček → dědečka  (= Genitive)",
                     "Feminine -a" to "žena → ženu; matka → matku",
                     "Feminine -e (soft)" to "růže → růži",
                     "Neuter -o" to "město → město  (= Nominative)",
@@ -135,6 +137,8 @@ fun CasesScreen(navController: NavController) {
                     "Fem. consonant stem" to "místnost → místnost  (= Nominative)"
                 )
             )
+
+            CaseNote("Masculine animate accusative = genitive, so the same fleeting-e rule applies: tatínka, dědečka.")
 
             CaseBlock(
                 number = "5",
