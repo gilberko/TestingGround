@@ -135,6 +135,116 @@ fun RustOwnershipBorrowingScreen(onBack: () -> Unit) {
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
+                SectionCard(title = "Lifetime Bounds — Variables, Owners, and Data") {
+                    BodyText(
+                        "A lifetime bound like T: 'a says all references inside T must be valid " +
+                        "for at least 'a. What this means in practice depends on what T actually is."
+                    )
+                    BodyText("Basic types (i32, bool, f64, char):")
+                    BodyText(
+                        "The variable IS the data — stored directly on the stack, no pointers " +
+                        "to anything else. They contain no references, so they trivially satisfy " +
+                        "T: 'a for any 'a, including 'static. A lifetime bound does not restrict " +
+                        "them in any way."
+                    )
+                    BodyText("Owning types (String, Vec<T>, Box<T>):")
+                    BodyText(
+                        "The variable owns its heap data — as long as the owner is alive, the " +
+                        "data is guaranteed valid. No external references, so they also trivially " +
+                        "satisfy any lifetime bound."
+                    )
+                    BodyText("Reference types (&T, &mut T, &str, &[T]):")
+                    BodyText(
+                        "The variable is a pointer to data owned elsewhere. The lifetime tracks " +
+                        "how long you're allowed to use that pointer — bounded by when the owner " +
+                        "goes out of scope. This is where lifetime bounds actually constrain things."
+                    )
+                    BodyText(
+                        "Rust guarantees you can never use a dangling reference — but this safety " +
+                        "is achieved by restricting what you can do: you cannot store a local " +
+                        "reference somewhere that outlives it, return it after the owner drops, or " +
+                        "pass it to a function requiring a longer lifetime. Lifetime bounds are " +
+                        "how those restrictions are expressed in generic code."
+                    )
+                    CodeBlock(
+                        "// \"bla\" is in the binary's read-only section — never goes away\n" +
+                        "let s = \"bla\";               // type: &'static str ('static inferred)\n" +
+                        "let s: &'static str = \"bla\"; // explicit annotation — same thing\n\n" +
+                        "// s is a (pointer, length) on the stack; the bytes live forever."
+                    )
+                    BodyText("Now contrast with a slice of a local String:")
+                    CodeBlock(
+                        "fn func() {\n" +
+                        "    let s = String::from(\"bla\");  // s owns the heap bytes\n" +
+                        "    let sl: &str = &s[..];         // sl borrows s; lifetime = scope of s\n\n" +
+                        "    // sl is valid only while s is alive — i.e., inside func\n" +
+                        "}  // s is dropped here — sl would dangle if it could escape"
+                    )
+                    BodyText(
+                        "sl has a lifetime bounded by func's scope — not 'static. The data sl " +
+                        "points to is the heap memory owned by s. When s drops, that memory is " +
+                        "freed. Your intuition is correct: sl's lifetime is tied to s's scope, " +
+                        "and the compiler prevents sl from escaping."
+                    )
+                    CodeBlock(
+                        "fn store_forever<T: 'static>(x: T) { /* ... */ }\n\n" +
+                        "fn func() {\n" +
+                        "    let s = String::from(\"bla\");\n" +
+                        "    let sl: &str = &s[..];     // lifetime = scope of func\n\n" +
+                        "    // store_forever(sl);      // ✗ compile error — sl is not 'static\n" +
+                        "    store_forever(\"bla\");     // ✓ &'static str — in the binary\n" +
+                        "    store_forever(s);          // ✓ String moved in — owns its data\n" +
+                        "    store_forever(42i32);      // ✓ i32 — no references at all\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "sl cannot be passed to store_forever because its lifetime is local — it " +
+                        "does not satisfy T: 'static. Moving s works because ownership transfers " +
+                        "with it. The literal \"bla\" is always 'static."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "static mut — Does It Break Safety?") {
+                    BodyText(
+                        "Rust lets you declare a global variable as both static and mut. The " +
+                        "moment you do, a real safety problem appears: any part of the code — " +
+                        "including multiple threads — can read or write it at any time. " +
+                        "Simultaneous reads and writes are a data race, which is undefined behavior."
+                    )
+                    BodyText(
+                        "Rust's answer is deliberate and simple: any read or write of a static mut " +
+                        "variable is only allowed inside an unsafe {} block. The compiler refuses to " +
+                        "compile the access otherwise. This is not a workaround — it is Rust " +
+                        "acknowledging that it cannot prove the access is safe, so it requires you " +
+                        "to promise (via unsafe) that you are managing the hazard yourself."
+                    )
+                    CodeBlock(
+                        "static mut COUNTER: i32 = 0;\n\n" +
+                        "fn increment() {\n" +
+                        "    unsafe {\n" +
+                        "        COUNTER += 1;   // must be in unsafe — compiler enforces this\n" +
+                        "    }\n" +
+                        "}\n\n" +
+                        "fn read_counter() -> i32 {\n" +
+                        "    unsafe { COUNTER }  // reading is also unsafe\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "Your intuition is correct — static mut does break Rust's normal safety " +
+                        "guarantees. It is fine in single-threaded code or with external " +
+                        "synchronization (a hardware guarantee, a C mutex, etc.), but the compiler " +
+                        "cannot verify that. For safe shared mutable state across threads, prefer " +
+                        "Mutex<T>, RwLock<T>, or the std::sync::atomic types — these wrap the " +
+                        "unsafe internals so callers remain in safe Rust."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
                 SectionCard(title = "Ownership") {
                     BodyText(
                         "Every value in Rust has exactly one owner — a variable. When that " +

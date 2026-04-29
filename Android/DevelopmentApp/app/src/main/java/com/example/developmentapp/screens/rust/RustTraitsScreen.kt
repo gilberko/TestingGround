@@ -287,6 +287,65 @@ fun RustTraitsScreen(onBack: () -> Unit) {
                         "}"
                     )
                     BodyText(
+                        "'a is a lifetime parameter — a compile-time label you introduce in " +
+                        "angle brackets, just like a type parameter T. The name is arbitrary " +
+                        "(by convention: short lowercase letters like 'a, 'b, 'r). It does not " +
+                        "create a variable or allocate memory; the compiler uses it purely to " +
+                        "check that references don't outlive the data they point to."
+                    )
+                    BodyText(
+                        "You can also use 'static directly as a concrete lifetime bound — the " +
+                        "strictest possible requirement. T: 'static means T must not contain any " +
+                        "references shorter than the entire program."
+                    )
+                    BodyText(
+                        "Calling a function with a lifetime parameter — you never write 'a " +
+                        "explicitly at the call site. The compiler infers it from the reference " +
+                        "you actually pass. 'a is bounded by the owner's lifetime, not the " +
+                        "reference variable itself."
+                    )
+                    BodyText("Three calls — three inferred lifetimes:")
+                    CodeBlock(
+                        "fn announce<'a, T: Display + 'a>(msg: &'a T) {\n" +
+                        "    println!(\"{}\", msg);\n" +
+                        "}\n\n" +
+                        "fn example() {\n" +
+                        "    let x: i32 = 42;\n" +
+                        "    announce(&x);       // 'a = lifetime of x (local to example)\n\n" +
+                        "    let s = String::from(\"hello\");\n" +
+                        "    announce(&s);       // 'a = lifetime of s (also local)\n\n" +
+                        "    announce(\"world\"); // 'a = 'static — literal lives in the binary\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "For &x: 'a is bounded by when x goes out of scope (end of example). " +
+                        "For \"world\": the bytes are in the binary so 'a = 'static. In both " +
+                        "cases the compiler infers this silently."
+                    )
+                    BodyText(
+                        "What 'a actually tracks: the region for which the borrow is valid, " +
+                        "constrained by the owner's lifetime. For &x where x: i32, 'a cannot " +
+                        "exceed x's scope. The reference variable (a pointer on the stack) is " +
+                        "not what 'a measures — 'a measures how long you are allowed to use " +
+                        "that pointer safely."
+                    )
+                    BodyText(
+                        "Consequence: a T: 'static bound accepts owned values and 'static " +
+                        "references, but rejects a local borrow:"
+                    )
+                    CodeBlock(
+                        "fn store_forever<T: 'static>(x: T) { /* ... */ }\n\n" +
+                        "fn example() {\n" +
+                        "    let n: i32 = 5;\n" +
+                        "    store_forever(n);                  // ✓  i32 copied in\n\n" +
+                        "    store_forever(String::from(\"hi\")); // ✓  String moved in\n\n" +
+                        "    store_forever(\"hello\");            // ✓  &'static str\n\n" +
+                        "    let s = String::from(\"local\");\n" +
+                        "    let sl: &str = &s;                 // 'a = scope of s (local)\n" +
+                        "    // store_forever(sl);              // ✗  not 'static\n" +
+                        "}"
+                    )
+                    BodyText(
                         "Lifetime bounds. T: 'a means any references stored inside T must be valid " +
                         "for at least lifetime 'a. This is required when a generic type holds a " +
                         "reference and you need to prove the reference won't dangle."
@@ -296,6 +355,16 @@ fun RustTraitsScreen(onBack: () -> Unit) {
                         "fn announce<'a, T: Display + 'a>(msg: &'a T) {\n" +
                         "    println!(\"{}\", msg);\n" +
                         "}"
+                    )
+                    BodyText("Using 'static as a concrete lifetime bound:")
+                    CodeBlock(
+                        "// 'static bound — T must own all its data (no temporary borrows)\n" +
+                        "fn store_forever<T: 'static>(x: T) {\n" +
+                        "    // safe to store x indefinitely — nothing inside will dangle\n" +
+                        "}\n\n" +
+                        "store_forever(42i32);               // ✓  i32 — no references\n" +
+                        "store_forever(String::from(\"hi\")); // ✓  String — owns its data\n" +
+                        "// store_forever(&local_var);        // ✗  &'a str — temporary borrow"
                     )
                     BodyText("Combining type and lifetime bounds in a where clause:")
                     CodeBlock(

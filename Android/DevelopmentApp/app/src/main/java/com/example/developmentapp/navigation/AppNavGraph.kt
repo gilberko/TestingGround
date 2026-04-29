@@ -134,6 +134,7 @@ import com.example.developmentapp.screens.rust.RustThreadsScreen
 import com.example.developmentapp.screens.rust.RustOptionsResultScreen
 import com.example.developmentapp.screens.rust.RustStdLibScreen
 import com.example.developmentapp.screens.rust.RustCommentsDocsScreen
+import com.example.developmentapp.screens.rust.RustUnsafeScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -267,6 +268,7 @@ sealed class Screen(val route: String) {
     object RustStdLib            : Screen("rust_std_lib")
     object RustCommentsDocs      : Screen("rust_comments_docs")
     object RustThreads           : Screen("rust_threads")
+    object RustUnsafe            : Screen("rust_unsafe")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -370,7 +372,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onOptionsResult       = { navController.navigate(Screen.RustOptionsResult.route) },
                 onStdLib              = { navController.navigate(Screen.RustStdLib.route) },
                 onCommentsDocs        = { navController.navigate(Screen.RustCommentsDocs.route) },
-                onThreads             = { navController.navigate(Screen.RustThreads.route) }
+                onThreads             = { navController.navigate(Screen.RustThreads.route) },
+                onUnsafe              = { navController.navigate(Screen.RustUnsafe.route) }
             )
         }
         composable(Screen.RustAbout.route)             { RustAboutScreen(onBack = { navController.popBackStack() }) }
@@ -389,6 +392,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.RustStdLib.route)            { RustStdLibScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustCommentsDocs.route)      { RustCommentsDocsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustThreads.route)           { RustThreadsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustUnsafe.route)            { RustUnsafeScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────
         composable(Screen.CppHub.route) {

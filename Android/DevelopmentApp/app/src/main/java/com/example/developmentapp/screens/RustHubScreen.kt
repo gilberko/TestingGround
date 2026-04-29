@@ -52,7 +52,8 @@ fun RustHubScreen(
     onOptionsResult: () -> Unit,
     onStdLib: () -> Unit,
     onCommentsDocs: () -> Unit,
-    onThreads: () -> Unit
+    onThreads: () -> Unit,
+    onUnsafe: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -111,6 +112,12 @@ fun RustHubScreen(
             Spacer(Modifier.height(8.dp))
             RustButtonRow("Comments and Documentation",          onCommentsDocs,
                           "Threads",                             onThreads)
+            Spacer(Modifier.height(8.dp))
+            RustHubButton(
+                label    = "Unsafe",
+                onClick  = onUnsafe,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
