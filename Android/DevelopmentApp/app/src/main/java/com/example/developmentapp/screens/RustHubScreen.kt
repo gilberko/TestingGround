@@ -49,6 +49,9 @@ fun RustHubScreen(
     onVectorsStrings: () -> Unit,
     onModulesCrates: () -> Unit,
     onClosures: () -> Unit,
+    onOptionsResult: () -> Unit,
+    onStdLib: () -> Unit,
+    onCommentsDocs: () -> Unit,
     onThreads: () -> Unit
 ) {
     Scaffold(
@@ -91,11 +94,11 @@ fun RustHubScreen(
             RustButtonRow("Variables",                         onVariables,
                           "Comparisons and Loops",             onComparisonsLoops)
             Spacer(Modifier.height(8.dp))
-            RustButtonRow("Functions",                         onFunctions,
-                          "Lifetimes, Ownership and Borrowing", onOwnershipBorrowing)
+            RustButtonRow("Functions",                               onFunctions,
+                          "Lifetimes, Statics, Ownership and Borrowing", onOwnershipBorrowing)
             Spacer(Modifier.height(8.dp))
             RustButtonRow("Enums and Structs",                 onEnumsStructs,
-                          "Traits",                            onTraits)
+                          "Traits and Generic Functions",      onTraits)
             Spacer(Modifier.height(8.dp))
             RustButtonRow("Tuples, Arrays and Slices",         onTuplesArraysSlices,
                           "Vectors and Strings",               onVectorsStrings)
@@ -103,7 +106,11 @@ fun RustHubScreen(
             RustButtonRow("Modules and Crates",                onModulesCrates,
                           "Closures",                          onClosures)
             Spacer(Modifier.height(8.dp))
-            RustHubButton("Threads", onThreads, Modifier.fillMaxWidth())
+            RustButtonRow("Options, Result, and Error Handling", onOptionsResult,
+                          "Standard Library",                    onStdLib)
+            Spacer(Modifier.height(8.dp))
+            RustButtonRow("Comments and Documentation",          onCommentsDocs,
+                          "Threads",                             onThreads)
         }
     }
 }

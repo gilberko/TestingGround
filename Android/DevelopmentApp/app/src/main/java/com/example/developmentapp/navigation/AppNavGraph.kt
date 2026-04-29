@@ -131,6 +131,9 @@ import com.example.developmentapp.screens.rust.RustVectorsStringsScreen
 import com.example.developmentapp.screens.rust.RustModulesCratesScreen
 import com.example.developmentapp.screens.rust.RustClosuresScreen
 import com.example.developmentapp.screens.rust.RustThreadsScreen
+import com.example.developmentapp.screens.rust.RustOptionsResultScreen
+import com.example.developmentapp.screens.rust.RustStdLibScreen
+import com.example.developmentapp.screens.rust.RustCommentsDocsScreen
 
 sealed class Screen(val route: String) {
     object Home                : Screen("home")
@@ -260,6 +263,9 @@ sealed class Screen(val route: String) {
     object RustVectorsStrings    : Screen("rust_vectors_strings")
     object RustModulesCrates     : Screen("rust_modules_crates")
     object RustClosures          : Screen("rust_closures")
+    object RustOptionsResult     : Screen("rust_options_result")
+    object RustStdLib            : Screen("rust_std_lib")
+    object RustCommentsDocs      : Screen("rust_comments_docs")
     object RustThreads           : Screen("rust_threads")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
@@ -361,6 +367,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onVectorsStrings      = { navController.navigate(Screen.RustVectorsStrings.route) },
                 onModulesCrates       = { navController.navigate(Screen.RustModulesCrates.route) },
                 onClosures            = { navController.navigate(Screen.RustClosures.route) },
+                onOptionsResult       = { navController.navigate(Screen.RustOptionsResult.route) },
+                onStdLib              = { navController.navigate(Screen.RustStdLib.route) },
+                onCommentsDocs        = { navController.navigate(Screen.RustCommentsDocs.route) },
                 onThreads             = { navController.navigate(Screen.RustThreads.route) }
             )
         }
@@ -376,6 +385,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.RustVectorsStrings.route)    { RustVectorsStringsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustModulesCrates.route)     { RustModulesCratesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustClosures.route)          { RustClosuresScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustOptionsResult.route)     { RustOptionsResultScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustStdLib.route)            { RustStdLibScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RustCommentsDocs.route)      { RustCommentsDocsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RustThreads.route)           { RustThreadsScreen(onBack = { navController.popBackStack() }) }
 
         // ── C/C++ ─────────────────────────────────────────────────────────

@@ -31,7 +31,7 @@ fun RustTraitsScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Rust — Traits",
+                        text       = "Rust — Traits and Generic Functions",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -212,6 +212,108 @@ fun RustTraitsScreen(onBack: () -> Unit) {
                     BodyText(
                         "Prefer inline bounds for simple cases (one param, one bound). " +
                         "Switch to where when bounds grow complex enough to hurt readability."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Generic Functions") {
+                    BodyText(
+                        "A generic function is parameterized over one or more types. Rust resolves " +
+                        "generics at compile time — a process called monomorphization — so there is " +
+                        "no runtime overhead."
+                    )
+                    CodeBlock(
+                        "fn run<T>(x: T) {\n" +
+                        "    // x can be any type — we just accept it\n" +
+                        "    // (we can't do much without a trait bound)\n" +
+                        "}\n\n" +
+                        "run(42);\n" +
+                        "run(\"hello\");\n" +
+                        "run(vec![1, 2, 3]);"
+                    )
+                    BodyText(
+                        "Without a trait bound, T is completely opaque — you can pass it around but " +
+                        "not inspect or print it. Add bounds to unlock capabilities:"
+                    )
+                    CodeBlock(
+                        "use std::fmt::Display;\n\n" +
+                        "fn print_it<T: Display>(x: T) {\n" +
+                        "    println!(\"{}\", x);\n" +
+                        "}\n\n" +
+                        "print_it(42);       // prints: 42\n" +
+                        "print_it(\"world\"); // prints: world"
+                    )
+                    BodyText(
+                        "Multiple bounds use +; multiple parameters each get their own angle-bracket " +
+                        "entry. For complex signatures prefer the where clause (covered below)."
+                    )
+                    CodeBlock(
+                        "fn compare_and_print<T: PartialOrd + Display>(a: T, b: T) {\n" +
+                        "    if a > b { println!(\"{} is bigger\", a); }\n" +
+                        "    else     { println!(\"{} is bigger\", b); }\n" +
+                        "}"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Bounds in Generic Functions — Type and Lifetime") {
+                    BodyText(
+                        "A type parameter can carry two kinds of bounds: trait bounds (what the type " +
+                        "must implement) and lifetime bounds (how long references inside the type " +
+                        "must live). Both can be written inline or moved to a where clause."
+                    )
+                    BodyText("Type bounds — inline syntax:")
+                    CodeBlock(
+                        "use std::fmt::{Display, Clone};\n\n" +
+                        "fn print_twice<T: Display + Clone>(x: T) {\n" +
+                        "    let copy = x.clone();\n" +
+                        "    println!(\"{}\", x);\n" +
+                        "    println!(\"{}\", copy);\n" +
+                        "}"
+                    )
+                    BodyText("Same function using a where clause — identical behaviour, better readability for multiple bounds:")
+                    CodeBlock(
+                        "fn print_twice<T>(x: T)\n" +
+                        "where\n" +
+                        "    T: Display + Clone,\n" +
+                        "{\n" +
+                        "    let copy = x.clone();\n" +
+                        "    println!(\"{}\", x);\n" +
+                        "    println!(\"{}\", copy);\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "Lifetime bounds. T: 'a means any references stored inside T must be valid " +
+                        "for at least lifetime 'a. This is required when a generic type holds a " +
+                        "reference and you need to prove the reference won't dangle."
+                    )
+                    BodyText("Lifetime bound — inline:")
+                    CodeBlock(
+                        "fn announce<'a, T: Display + 'a>(msg: &'a T) {\n" +
+                        "    println!(\"{}\", msg);\n" +
+                        "}"
+                    )
+                    BodyText("Combining type and lifetime bounds in a where clause:")
+                    CodeBlock(
+                        "fn longest_with_note<'a, T>(\n" +
+                        "    x:    &'a str,\n" +
+                        "    y:    &'a str,\n" +
+                        "    note: T,\n" +
+                        ") -> &'a str\n" +
+                        "where\n" +
+                        "    T: Display,\n" +
+                        "{\n" +
+                        "    println!(\"Note: {}\", note);\n" +
+                        "    if x.len() > y.len() { x } else { y }\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "Rule of thumb: use inline bounds for simple, one-line signatures; " +
+                        "switch to where as soon as bounds make the parameter list hard to read."
                     )
                 }
             }

@@ -31,7 +31,7 @@ fun RustOwnershipBorrowingScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Rust — Lifetimes, Ownership and Borrowing",
+                        text       = "Rust — Lifetimes, Statics, Ownership and Borrowing",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -52,6 +52,86 @@ fun RustOwnershipBorrowingScreen(onBack: () -> Unit) {
         containerColor = Color.Black
     ) { innerPadding ->
         LazyColumn(modifier = Modifier.padding(innerPadding).padding(horizontal = 16.dp)) {
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Lifetimes — What Are They?") {
+                    BodyText(
+                        "A lifetime is the region of code during which a reference is guaranteed " +
+                        "to be valid. Rust tracks lifetimes at compile time to ensure no reference " +
+                        "ever outlives the data it points to — eliminating dangling pointers without " +
+                        "a garbage collector."
+                    )
+                    BodyText(
+                        "Most of the time Rust infers lifetimes automatically. You only write them " +
+                        "explicitly when the compiler cannot figure them out on its own — usually " +
+                        "in function signatures that return references."
+                    )
+                    CodeBlock(
+                        "// 'a is a lifetime parameter — \"at least as long as 'a\"\n" +
+                        "fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {\n" +
+                        "    if x.len() > y.len() { x } else { y }\n" +
+                        "}\n" +
+                        "// The returned reference lives at least as long as\n" +
+                        "// the shorter of x and y."
+                    )
+                    BodyText(
+                        "If a is a lifetime variable, writing 'a on a reference type (&'a T) says: " +
+                        "\"this reference must not outlive lifetime a.\" It's a constraint, not a " +
+                        "storage annotation."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "'static — The Eternal Lifetime") {
+                    BodyText(
+                        "'static is a special built-in lifetime meaning \"lives for the entire " +
+                        "program.\" It has two uses: static variables (globals) and the 'static " +
+                        "bound on generic types."
+                    )
+                    BodyText(
+                        "Static variables. Rust allows static globals declared outside any function. " +
+                        "They must be outside functions because they need a fixed address in the " +
+                        "binary that exists before main runs and after it returns. A local variable " +
+                        "lives on the stack and is destroyed when its function exits — making it " +
+                        "unusable as a forever-valid reference."
+                    )
+                    CodeBlock(
+                        "static GREETING: &str = \"hello\";  // lives in read-only binary\n\n" +
+                        "fn main() {\n" +
+                        "    println!(\"{}\", GREETING);\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "String literals are 'static. When you write let s: &'static str = \"hello\"; " +
+                        "you're annotating that the data s points to must have static lifetime. " +
+                        "String literals are embedded in the binary, so this is always true."
+                    )
+                    CodeBlock(
+                        "let s: &'static str = \"hello\";\n" +
+                        "// \"hello\" is in the binary — valid for the whole program."
+                    )
+                    BodyText(
+                        "'static as a trait bound. fn run<T: 'static>(x: T) means T must not " +
+                        "contain any references shorter than 'static — T must own all its data " +
+                        "(or borrow only truly permanent data).\n\n" +
+                        "  • i32 satisfies T: 'static — it's a plain value with no references at all.\n" +
+                        "  • String satisfies it — it owns its heap bytes; no dangling-reference risk.\n" +
+                        "  • &'a str (a temporary borrow) does NOT satisfy it unless 'a == 'static."
+                    )
+                    CodeBlock(
+                        "fn run<T: 'static>(x: T) {\n" +
+                        "    // x is safe to store, send to a thread, etc.\n" +
+                        "    // because nothing inside it will disappear.\n" +
+                        "}\n\n" +
+                        "run(42i32);               // ✓  i32 has no references\n" +
+                        "run(String::from(\"hi\")); // ✓  String owns its data\n" +
+                        "// run(&local_str);        // ✗  &'a str — temporary borrow"
+                    )
+                }
+            }
             item { Spacer(Modifier.height(8.dp)) }
 
             item {

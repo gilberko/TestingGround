@@ -136,6 +136,33 @@ fun RustVectorsStringsScreen(onBack: () -> Unit) {
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
+                SectionCard(title = "String Literal — A Prelude to Strings in Rust") {
+                    BodyText(
+                        "In Rust you can write let s = \"some string\"; — we haven't told Rust " +
+                        "what type s is, but \"some string\" is a string literal. String literals " +
+                        "do not live on the heap."
+                    )
+                    BodyText(
+                        "Instead, the literal is baked directly into the compiled binary in a " +
+                        "static, read-only memory section. It will be there for the entire " +
+                        "lifetime of the program."
+                    )
+                    CodeBlock(
+                        "let s = \"some string\";\n" +
+                        "// s is &str — a slice (pointer + length)\n" +
+                        "// \"some string\" lives in read-only binary memory"
+                    )
+                    BodyText(
+                        "s is of type &str — a string slice. A slice is just a reference: a " +
+                        "pointer and a length. It does not own the data it points to; it simply " +
+                        "borrows a view of it. This is why you can freely copy &str values — " +
+                        "you're just copying the pointer and length, never the underlying bytes."
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
                 SectionCard(title = "String — The Owned String Type") {
                     BodyText(
                         "String is Rust's growable, heap-allocated, UTF-8 encoded string type. " +
