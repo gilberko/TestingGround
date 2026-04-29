@@ -62,6 +62,11 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("znovu", "again", "also: zase (colloquial), zas (very short form)")
             BWRow("zase / zas", "again (colloquial)", "variant of znovu; zas is the clipped form")
             BWRow("anebo", "or (emphatic)", "stronger variant of nebo; implies 'or else'")
+            BWRow("jako", "as a / like", "jako + role/profession: Pracuji jako programátor. (man) / Pracuji jako manažerka. (woman). Also means \"like\" in comparisons: Je to jako doma. = It's like home.")
+            BWNote("In Czech, job descriptions use no article after jako — just the noun directly. Women use the feminine form of the profession: manažer (m.) → manažerka (f.), programátor (m.) → programátorka (f.).")
+            BWRow("pak", "then / afterwards", "common in spoken Czech — temporal sequence")
+            BWRow("potom", "then / afterwards", "neutral variant; pak and potom are largely interchangeable")
+            BWNote("More formal alternatives: nato = right after that; poté = after that (written/formal). Example: Nejdřív jsem pracoval, pak jsem šel domů. — First I worked, then I went home.")
 
             // ── Greetings ─────────────────────────────────────────────────
             BWSection("Greetings")
@@ -73,6 +78,16 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Ahoj", "Hi / Bye", "informal — used among friends")
             BWRow("Čau", "Hi / Bye", "very informal, from Italian ciao")
             BWRow("Nashledanou", "Goodbye", "formal farewell")
+
+            // ── Special Occasion Greetings ────────────────────────────────
+            BWSection("Special Occasion Greetings")
+            BWRow("Všechno nejlepší k narozeninám!", "Happy Birthday!", "lit. \"All the best for your birthday\" — the most common form")
+            BWRow("Šťastné narozeniny!", "Happy Birthday!", "more direct form")
+            BWRow("Veselé Vánoce!", "Merry Christmas!")
+            BWRow("Šťastný Nový rok!", "Happy New Year!")
+            BWRow("Veselé svátky!", "Happy Holidays! / Merry Celebrations!")
+            BWRow("Šťastné svátky!", "Happy Holidays!")
+            BWNote("Vánoce (Christmas) is always plural in Czech. Veselé and Šťastné agree with the plural: Veselé Vánoce! The same applies to svátky (holidays / celebrations).")
 
             // ── Pleasantries ──────────────────────────────────────────────
             BWSection("Pleasantries")
@@ -133,6 +148,15 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Studuju v ...", "I study in ...", "colloquial / spoken alternative. Example: Studuju v Praze.")
             BWRow("Pracuji v ...", "I work in ...", "formal / written. Uses Locative. Example: Pracuji v Brně.  (I work in Brno.)")
             BWRow("Pracuju v ...", "I work in ...", "colloquial / spoken alternative. Example: Pracuju v Brně.")
+
+            // ── Asking Questions Politely ─────────────────────────────────
+            BWSection("Asking Questions Politely")
+            BWNote("In Czech, using the negative form of a verb in a question softens it — like saying \"You wouldn't happen to know...?\" instead of \"Do you know...?\" This is very common when asking strangers for help, especially for directions.")
+            BWNote("Vědět (to know) conjugates: vím · víš · ví · víme · víte · vědí. Adding ne- gives: nevím · nevíš · neví · nevíte...")
+            BWRow("Nevíte, kde je...?", "Would you happen to know where ... is?", "formal — use with strangers or in polite situations")
+            BWRow("Nevíš, kde je...?", "Do you know where ... is?", "informal — lit. \"Don't you know where ... is?\"")
+            BWRow("Nevíte, kde je nádraží?", "Would you happen to know where the train station is?", "example with a stranger (formal)")
+            BWRow("Nevíš, kde je pošta?", "Do you know where the post office is?", "example with a friend (informal)")
 
             // ── At a Restaurant ───────────────────────────────────────────
             BWSection("At a Restaurant")

@@ -95,6 +95,33 @@ fun AdjectivesListScreen(navController: NavController) {
             ALRow("pomalý / pomalá / pomalé", "slow")
             ALRow("spolehlivý / spolehlivá / spolehlivé", "reliable")
 
+            ALSection("Personality & Character")
+            ALRow("hodný / hodná / hodné", "kind / well-behaved / good-natured", "also used as \"good\" for children — Buď hodný! = Be good!")
+            ALRow("veselý / veselá / veselé", "cheerful / merry")
+            ALRow("přísný / přísná / přísné", "strict")
+            ALRow("trpělivý / trpělivá / trpělivé", "patient")
+            ALRow("netrpělivý / netrpělivá / netrpělivé", "impatient")
+            ALRow("impulzivní / impulzivní / impulzivní", "impulsive")
+            ALNote("impulzivní is a soft adjective — all three genders share the same nominative form.")
+
+            ALSection("Emotions & Mood")
+            ALRow("šťastný / šťastná / šťastné", "happy", "also means \"lucky\" — context determines which")
+            ALRow("smutný / smutná / smutné", "sad")
+            ALRow("rozzlobený / rozzlobená / rozzlobené", "angry / upset", "neutral register; colloquial/stronger alternative: naštvaný / naštvaná / naštvanné")
+
+            ALSection("Style & Modernity")
+            ALRow("moderní / moderní / moderní", "modern")
+            ALRow("staromódní / staromódní / staromódní", "old-fashioned")
+            ALNote("moderní and staromódní are soft adjectives — all three genders share the same nominative form.")
+
+            ALSection("Interest & Complexity")
+            ALRow("nudný / nudná / nudné", "boring")
+            ALRow("zajímavý / zajímavá / zajímavé", "interesting")
+            ALRow("fascinující / fascinující / fascinující", "fascinating")
+            ALNote("fascinující is a soft adjective — same form for all three genders in the nominative.")
+            ALRow("složitý / složitá / složité", "complicated")
+            ALRow("jednoduchý / jednoduchá / jednoduché", "simple / easy")
+
             ALSection("Comparative Forms")
             ALNote("Comparatives are formed with a -ší or -í suffix and always decline as soft adjectives.")
             ALRow("mladší", "younger", "comparative of mladý")

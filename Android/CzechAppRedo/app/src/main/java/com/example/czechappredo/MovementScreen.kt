@@ -24,7 +24,7 @@ fun MovementScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Movement", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Movement and Directions", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -81,6 +81,29 @@ fun MovementScreen(navController: NavController) {
             MVRow("zpět", "back (more formal)")
             MVRow("zpátky", "back (colloquial, very common)")
             MVNote("zpět and zpátky are interchangeable; zpátky is more colloquial.")
+
+            MVSection("Asking for Directions")
+            MVNote("The polite way to ask a stranger for directions is to use the negative form of vědět (to know). This softens the question — \"You wouldn't happen to know...?\" rather than a direct demand. Very common in Czech.")
+            MVRow("Nevíte, kde je...?", "Would you happen to know where ... is?", note = "formal — use with strangers")
+            MVRow("Nevíš, kde je...?", "Do you know where ... is?", note = "informal — lit. \"Don't you know...?\"")
+            MVRow("Kde je...?", "Where is...?", note = "direct question — fine after the polite opener")
+            MVRow("Kde je nádraží?", "Where is the train station?")
+            MVRow("Jak se dostanu do...?", "How do I get to...?", note = "do + Genitive: do centra, do nemocnice, do hotelu")
+            MVRow("Jak se dostanu na nádraží?", "How do I get to the train station?", note = "na + Accusative for stations, squares, airports")
+            MVRow("Je to daleko?", "Is it far?")
+            MVNote("Preposition rule: do + Genitive for most destinations (do centra, do nemocnice). na + Accusative for stations, squares, airports (na nádraží, na náměstí, na letiště).")
+
+            MVSection("Direction Examples — Muset (have to)")
+            MVRow("Musíte jet autobusem číslo čtyřicet.", "You have to take bus number forty.", note = "formal")
+            MVRow("Musíte jít rovně a pak doleva.", "You have to go straight and then left.")
+            MVRow("Musíš přestoupit na metru.", "You have to transfer on the metro.", note = "informal")
+
+            MVSection("Direction Examples — Moct (can)")
+            MVRow("Můžete jet metrem nebo taxíkem.", "You can take the metro or a taxi.", note = "formal")
+            MVRow("Můžete vzít autobus nebo tramvaj.", "You can take the bus or the tram.")
+            MVRow("Můžeš jít pěšky.", "You can go on foot.", note = "informal")
+            MVNote("taxík = taxi (colloquial diminutive, very common in speech). tramvaj (f.) = tram.")
+            MVNote("Example: — Promiňte, nevíte, kde je nádraží?  (Excuse me, would you happen to know where the station is?)  — Musíte jít rovně, pak doleva. Můžete také vzít tramvaj číslo sedm.  (You have to go straight, then left. You can also take tram number seven.)")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

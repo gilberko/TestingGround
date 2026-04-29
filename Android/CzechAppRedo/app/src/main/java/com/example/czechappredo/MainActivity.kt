@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
                 composable("possessive_pronouns") { PossessivePronounsScreen(navController) }
                 composable("colors_materials") { ColorsAndMaterialsScreen(navController) }
                 composable("countries") { CountriesScreen(navController) }
+                composable("vacation") { VacationScreen(navController) }
             }
         }
     }
@@ -203,14 +204,15 @@ fun DictionaryHubScreen(navController: NavController) {
             "Places" to "places",
             "Useful Conjugated Verbs" to "useful_verbs",
             "Numbers" to "numbers",
-            "Movement" to "movement",
+            "Movement & Directions" to "movement",
             "People & Family" to "people_family",
             "Transportation" to "transportation",
             "Food" to "food",
             "Animals" to "animals",
             "Adjectives" to "adjectives_list",
             "Colors & Materials" to "colors_materials",
-            "Countries & Languages" to "countries"
+            "Countries & Languages" to "countries",
+            "Vacation" to "vacation"
         )
         Column(
             modifier = Modifier

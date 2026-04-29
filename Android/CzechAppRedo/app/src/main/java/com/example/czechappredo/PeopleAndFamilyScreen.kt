@@ -49,17 +49,24 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             PFRow("žena", "woman", "f.")
             PFRow("kluk / chlapec", "boy", "m. — kluk is colloquial, chlapec is formal")
             PFRow("holka / dívka", "girl", "f. — holka is colloquial, dívka is formal")
+            PFRow("děvče", "girl / young woman", "n. — slightly literary; less common than holka or dívka in everyday speech, but widely understood")
             PFRow("člověk / osoba", "person", "člověk m. = human being (general); osoba f. = individual (formal contexts)")
             PFRow("miminko", "baby", "n.")
+            PFRow("batole", "toddler", "n. — a child who has started walking but is not yet school age")
             PFRow("kojenec", "infant", "m. — specifically a nursing infant")
             PFRow("dítě", "kid / child", "n.")
             PFRow("děti", "children", "pl. of dítě — irregular plural. e.g. Mám dvě děti. (I have two children.)")
+            PFNote("Neuter gender: Several Czech words for children or young people are neuter, even when they refer to a female. miminko (baby), batole (toddler), dítě (child), and děvče (girl) are all neuter (n.). This surprises English speakers, but Czech follows a historical pattern where young or small beings often take neuter gender — similar to German das Kind (child) or das Mädchen (girl). This means pronouns and adjectives for these nouns use neuter forms: malé dítě (small child), hezké děvče (pretty girl).")
 
             PFSection("Immediate Family")
+            PFRow("rodič / rodiče", "parent / parents", "rodič m. = one parent; rodiče = both parents together (always plural in this sense). e.g. Moji rodiče jsou z Prahy. = My parents are from Prague.")
             PFRow("otec", "father", "m., formal/neutral")
-            PFRow("táta", "dad", "m., colloquial; tatínek = daddy (affectionate)")
+            PFRow("táta", "dad", "m., colloquial")
             PFRow("matka", "mother", "f., formal/neutral")
-            PFRow("máma", "mom", "f., colloquial; maminka = mommy (affectionate)")
+            PFRow("máma", "mom", "f., colloquial")
+            PFRow("tatínek", "daddy / dear dad", "m. — affectionate diminutive of táta; fleeting-e pattern: tatínek → tatínka (Gen/Acc)")
+            PFRow("maminka", "mommy / dear mom", "f. — affectionate diminutive of máma")
+            PFNote("The spectrum: otec / matka = formal (\"father\" / \"mother\") · táta / máma = everyday colloquial (\"dad\" / \"mom\") · tatínek / maminka = affectionate / tender (\"daddy\" / \"mommy\"). Tatínek and maminka are widely used by adults, not only children.")
             PFRow("manžel", "husband", "m.")
             PFRow("manželka", "wife", "f.")
             PFRow("syn", "son", "m.")
@@ -90,6 +97,16 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
+}
+
+@Composable
+private fun PFNote(text: String) {
+    Text(
+        text = text,
+        fontSize = 14.sp,
+        color = Color.DarkGray,
+        modifier = Modifier.padding(vertical = 4.dp)
+    )
 }
 
 @Composable
