@@ -37,23 +37,18 @@ import com.example.linuxapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PermissionsHubScreen(
+fun NamespacesHubScreen(
     onBack: () -> Unit,
-    onFilePermissions: () -> Unit,
-    onCgroups: () -> Unit,
-    onTun: () -> Unit,
-    onBootProcess: () -> Unit,
-    onAffinity: () -> Unit,
-    onProcessScheduling: () -> Unit,
-    onCallingConventions: () -> Unit,
-    onLsm: () -> Unit,
-    onMakefileCmake: () -> Unit,
-    onIptablesNetfilter: () -> Unit,
-    onDeviceTrees: () -> Unit,
-    onPlugAndPlay: () -> Unit,
-    onStackFrames: () -> Unit,
-    onKernelVmDebugging: () -> Unit,
-    onNamespaces: () -> Unit
+    onAboutNamespaces: () -> Unit,
+    onPidNamespace: () -> Unit,
+    onNetNamespace: () -> Unit,
+    onMountNamespace: () -> Unit,
+    onUtsNamespace: () -> Unit,
+    onIpcNamespace: () -> Unit,
+    onUserNamespace: () -> Unit,
+    onTimeNamespace: () -> Unit,
+    onCgroupNamespace: () -> Unit,
+    onAccessingNamespaces: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -86,30 +81,14 @@ fun PermissionsHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    PermissionsHubButton(
-                        label = "Capabilities, File\nPermissions & chmod",
-                        onClick = onFilePermissions,
+                    NamespacesHubButton(
+                        label = "About\nNamespaces",
+                        onClick = onAboutNamespaces,
                         modifier = Modifier.weight(1f)
                     )
-                    PermissionsHubButton(
-                        label = "cgroups",
-                        onClick = onCgroups,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    PermissionsHubButton(
-                        label = "TUN Device",
-                        onClick = onTun,
-                        modifier = Modifier.weight(1f)
-                    )
-                    PermissionsHubButton(
-                        label = "Boot Process",
-                        onClick = onBootProcess,
+                    NamespacesHubButton(
+                        label = "PID\nNamespace",
+                        onClick = onPidNamespace,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -118,30 +97,14 @@ fun PermissionsHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    PermissionsHubButton(
-                        label = "CPU\nAffinity",
-                        onClick = onAffinity,
+                    NamespacesHubButton(
+                        label = "Net\nNamespace",
+                        onClick = onNetNamespace,
                         modifier = Modifier.weight(1f)
                     )
-                    PermissionsHubButton(
-                        label = "Process\nScheduling",
-                        onClick = onProcessScheduling,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    PermissionsHubButton(
-                        label = "Calling\nConventions",
-                        onClick = onCallingConventions,
-                        modifier = Modifier.weight(1f)
-                    )
-                    PermissionsHubButton(
-                        label = "LSM",
-                        onClick = onLsm,
+                    NamespacesHubButton(
+                        label = "Mount\nNamespace",
+                        onClick = onMountNamespace,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -150,30 +113,14 @@ fun PermissionsHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    PermissionsHubButton(
-                        label = "Makefile and\nCMake",
-                        onClick = onMakefileCmake,
+                    NamespacesHubButton(
+                        label = "UTS\nNamespace",
+                        onClick = onUtsNamespace,
                         modifier = Modifier.weight(1f)
                     )
-                    PermissionsHubButton(
-                        label = "iptables &\nnetfilter",
-                        onClick = onIptablesNetfilter,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    PermissionsHubButton(
-                        label = "Device Trees\n& ACPI",
-                        onClick = onDeviceTrees,
-                        modifier = Modifier.weight(1f)
-                    )
-                    PermissionsHubButton(
-                        label = "Plug And\nPlay",
-                        onClick = onPlugAndPlay,
+                    NamespacesHubButton(
+                        label = "IPC\nNamespace",
+                        onClick = onIpcNamespace,
                         modifier = Modifier.weight(1f)
                     )
                 }
@@ -182,23 +129,33 @@ fun PermissionsHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    PermissionsHubButton(
-                        label = "Stacks &\nStack Frames",
-                        onClick = onStackFrames,
+                    NamespacesHubButton(
+                        label = "User\nNamespace",
+                        onClick = onUserNamespace,
                         modifier = Modifier.weight(1f)
                     )
-                    PermissionsHubButton(
-                        label = "Kernel VM\nDebugging",
-                        onClick = onKernelVmDebugging,
+                    NamespacesHubButton(
+                        label = "Time\nNamespace",
+                        onClick = onTimeNamespace,
                         modifier = Modifier.weight(1f)
                     )
                 }
                 Spacer(Modifier.height(8.dp))
-                PermissionsHubButton(
-                    label = "Namespaces",
-                    onClick = onNamespaces,
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
-                )
+                ) {
+                    NamespacesHubButton(
+                        label = "Cgroup\nNamespace",
+                        onClick = onCgroupNamespace,
+                        modifier = Modifier.weight(1f)
+                    )
+                    NamespacesHubButton(
+                        label = "Accessing\nNamespaces\nFrom The Host",
+                        onClick = onAccessingNamespaces,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
                 Spacer(Modifier.height(8.dp))
             }
         }
@@ -206,7 +163,7 @@ fun PermissionsHubScreen(
 }
 
 @Composable
-private fun PermissionsHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun NamespacesHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick = onClick,
         modifier = modifier.heightIn(min = 64.dp),

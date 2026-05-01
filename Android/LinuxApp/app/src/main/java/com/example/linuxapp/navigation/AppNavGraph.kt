@@ -93,6 +93,17 @@ import com.example.linuxapp.screens.kernel.KernelThreadingScreen
 import com.example.linuxapp.screens.kernel.KernelProcessSchedulingScreen
 import com.example.linuxapp.screens.kernel.ForkCloneScreen
 import com.example.linuxapp.screens.kernel.DkmsScreen
+import com.example.linuxapp.screens.NamespacesHubScreen
+import com.example.linuxapp.screens.permissions.namespaces.AboutNamespacesScreen
+import com.example.linuxapp.screens.permissions.namespaces.PidNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.NetNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.MountNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.UtsNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.IpcNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.UserNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.TimeNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.CgroupNamespaceScreen
+import com.example.linuxapp.screens.permissions.namespaces.AccessingNamespacesScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -168,6 +179,17 @@ sealed class Screen(val route: String) {
     object KernelDkms                      : Screen("kernel_dkms")
     object KernelProcessSchedulingWhole    : Screen("kernel_process_scheduling_whole")
     object EbpfSleepable                  : Screen("ebpf_sleepable")
+    object NamespacesHub          : Screen("namespaces_hub")
+    object AboutNamespaces        : Screen("about_namespaces")
+    object PidNamespace           : Screen("pid_namespace")
+    object NetNamespace           : Screen("net_namespace")
+    object MountNamespace         : Screen("mount_namespace")
+    object UtsNamespace           : Screen("uts_namespace")
+    object IpcNamespace           : Screen("ipc_namespace")
+    object UserNamespace          : Screen("user_namespace")
+    object TimeNamespace          : Screen("time_namespace")
+    object CgroupNamespace        : Screen("cgroup_namespace")
+    object AccessingNamespaces    : Screen("accessing_namespaces")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -393,8 +415,54 @@ fun AppNavGraph(navController: NavHostController) {
                 onDeviceTrees = { navController.navigate(Screen.AdvancedDeviceTrees.route) },
                 onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) },
                 onStackFrames = { navController.navigate(Screen.AdvancedStackFrames.route) },
-                onKernelVmDebugging = { navController.navigate(Screen.AdvancedKernelVmDebugging.route) }
+                onKernelVmDebugging = { navController.navigate(Screen.AdvancedKernelVmDebugging.route) },
+                onNamespaces = { navController.navigate(Screen.NamespacesHub.route) }
             )
+        }
+        composable(Screen.NamespacesHub.route) {
+            NamespacesHubScreen(
+                onBack = { navController.popBackStack() },
+                onAboutNamespaces = { navController.navigate(Screen.AboutNamespaces.route) },
+                onPidNamespace = { navController.navigate(Screen.PidNamespace.route) },
+                onNetNamespace = { navController.navigate(Screen.NetNamespace.route) },
+                onMountNamespace = { navController.navigate(Screen.MountNamespace.route) },
+                onUtsNamespace = { navController.navigate(Screen.UtsNamespace.route) },
+                onIpcNamespace = { navController.navigate(Screen.IpcNamespace.route) },
+                onUserNamespace = { navController.navigate(Screen.UserNamespace.route) },
+                onTimeNamespace = { navController.navigate(Screen.TimeNamespace.route) },
+                onCgroupNamespace = { navController.navigate(Screen.CgroupNamespace.route) },
+                onAccessingNamespaces = { navController.navigate(Screen.AccessingNamespaces.route) }
+            )
+        }
+        composable(Screen.AboutNamespaces.route) {
+            AboutNamespacesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.PidNamespace.route) {
+            PidNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.NetNamespace.route) {
+            NetNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.MountNamespace.route) {
+            MountNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UtsNamespace.route) {
+            UtsNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.IpcNamespace.route) {
+            IpcNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserNamespace.route) {
+            UserNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TimeNamespace.route) {
+            TimeNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.CgroupNamespace.route) {
+            CgroupNamespaceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AccessingNamespaces.route) {
+            AccessingNamespacesScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.FilePermissions.route) {
             FilePermissionsScreen(onBack = { navController.popBackStack() })
