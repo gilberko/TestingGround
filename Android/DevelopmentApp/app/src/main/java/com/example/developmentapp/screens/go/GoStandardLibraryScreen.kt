@@ -768,6 +768,38 @@ fun GoStandardLibraryScreen(onBack: () -> Unit) {
                         "reflect.ValueOf(p).Elem().SetInt(99)\n" +
                         "fmt.Println(x) // 99"
                     )
+                    BodyText("Checking whether an interface holds a nil value — the problem. An interface value has two internal slots: a dynamic type and a dynamic value. The interface itself is nil only when both slots are empty. When you wrap a typed nil (e.g. a nil *MyError) inside an interface, the type slot is filled, so == nil returns false even though the concrete value is nil:")
+                    CodeBlock(
+                        "var p *MyError = nil\n" +
+                        "var i error = p          // i holds type=*MyError, value=nil\n" +
+                        "fmt.Println(p == nil)    // true\n" +
+                        "fmt.Println(i == nil)    // false — the interface is NOT nil!\n" +
+                        "\n" +
+                        "// This catches many people off guard when a function returns\n" +
+                        "// a typed nil wrapped in an interface (e.g. error)."
+                    )
+                    BodyText("Using reflect to check the concrete value. reflect.ValueOf(i) unwraps the interface and gives you the underlying value. Calling IsNil() on it tells you whether that concrete value is nil. IsNil() panics on non-nilable kinds (int, struct, etc.), so always check the Kind first:")
+                    CodeBlock(
+                        "import \"reflect\"\n" +
+                        "\n" +
+                        "func isNil(i interface{}) bool {\n" +
+                        "    if i == nil {\n" +
+                        "        return true  // both slots are empty — truly nil\n" +
+                        "    }\n" +
+                        "    v := reflect.ValueOf(i)\n" +
+                        "    switch v.Kind() {\n" +
+                        "    case reflect.Ptr, reflect.Slice, reflect.Map,\n" +
+                        "         reflect.Chan, reflect.Func, reflect.Interface:\n" +
+                        "        return v.IsNil()  // concrete value is nil\n" +
+                        "    }\n" +
+                        "    return false  // non-nilable kind (int, struct, ...)\n" +
+                        "}\n" +
+                        "\n" +
+                        "var p *MyError = nil\n" +
+                        "var i error = p\n" +
+                        "fmt.Println(isNil(i))  // true"
+                    )
+                    BodyText("The real fix is to avoid returning typed nils in the first place — return bare nil from functions that return an interface type. The reflect approach is a last resort when you receive an interface from code you cannot control.")
                     BodyText("Caution: reflection bypasses compile-time type safety and is significantly slower than direct code. Use it only when the type is genuinely unknown at compile time.")
                 }
             }

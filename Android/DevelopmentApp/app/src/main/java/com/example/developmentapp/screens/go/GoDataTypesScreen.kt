@@ -191,6 +191,105 @@ fun GoDataTypesScreen(onBack: () -> Unit) {
             item { Spacer(Modifier.height(8.dp)) }
 
             item {
+                SectionCard(title = "nil") {
+                    BodyText(
+                        "nil is the zero value for six reference-like types: pointers, slices, maps, " +
+                        "channels, functions, and interfaces. It is not a keyword you invent — it is a " +
+                        "pre-declared identifier built into the language. nil has no type of its own; " +
+                        "it takes the type of whatever it is assigned to."
+                    )
+                    BodyText("Types whose zero value is nil:")
+                    CodeBlock(
+                        "var p   *int          // pointer  — p == nil\n" +
+                        "var s   []int         // slice    — s == nil\n" +
+                        "var m   map[string]int // map     — m == nil\n" +
+                        "var ch  chan int       // channel  — ch == nil\n" +
+                        "var fn  func()        // function — fn == nil\n" +
+                        "var i   interface{}   // interface — i == nil"
+                    )
+                    BodyText(
+                        "nil is NOT the zero value for bool, int, float64, string, struct, or array — " +
+                        "those types can never be nil. Assigning nil to them is a compile error."
+                    )
+                    BodyText("Checking for nil — use == nil or != nil:")
+                    CodeBlock(
+                        "var p *int\n" +
+                        "if p == nil {\n" +
+                        "    fmt.Println(\"pointer is nil\")\n" +
+                        "}\n\n" +
+                        "var m map[string]int\n" +
+                        "if m == nil {\n" +
+                        "    m = make(map[string]int)  // initialise before use\n" +
+                        "}\n\n" +
+                        "var fn func()\n" +
+                        "if fn != nil {\n" +
+                        "    fn()  // safe to call\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "Interface values and nil — the subtle case. An interface value internally " +
+                        "holds two things: a dynamic type and a dynamic value. The interface is nil " +
+                        "only when BOTH are nil. This creates a counterintuitive situation:"
+                    )
+                    CodeBlock(
+                        "var p *int = nil         // p is a nil pointer\n" +
+                        "var i interface{} = p    // assign the nil pointer to an interface\n\n" +
+                        "fmt.Println(p == nil)    // true  — p itself is nil\n" +
+                        "fmt.Println(i == nil)    // false — the interface is NOT nil!\n\n" +
+                        "// Why? Because i now holds:\n" +
+                        "//   dynamic type  = *int   ← non-nil!\n" +
+                        "//   dynamic value = nil\n" +
+                        "// The interface is nil only when the type slot is also empty."
+                    )
+                    BodyText(
+                        "This is a well-known Go gotcha. It shows up most often when a function " +
+                        "returns an error interface holding a nil concrete type:"
+                    )
+                    CodeBlock(
+                        "type MyError struct{}\n" +
+                        "func (e *MyError) Error() string { return \"oops\" }\n\n" +
+                        "func mayFail(fail bool) error {\n" +
+                        "    var err *MyError  // typed nil\n" +
+                        "    if fail {\n" +
+                        "        err = &MyError{}\n" +
+                        "    }\n" +
+                        "    return err  // BUG: always returns a non-nil interface!\n" +
+                        "}\n\n" +
+                        "if mayFail(false) != nil {\n" +
+                        "    fmt.Println(\"this prints even though no error occurred\")\n" +
+                        "}\n\n" +
+                        "// Fix: return nil directly, not a typed nil variable\n" +
+                        "func mayFailFixed(fail bool) error {\n" +
+                        "    if fail {\n" +
+                        "        return &MyError{}\n" +
+                        "    }\n" +
+                        "    return nil  // bare nil — both type and value slots are empty\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "To inspect an interface's underlying value when you need to check whether " +
+                        "the concrete value is nil regardless of type, use the reflect package:"
+                    )
+                    CodeBlock(
+                        "import \"reflect\"\n\n" +
+                        "func isNil(i interface{}) bool {\n" +
+                        "    if i == nil {\n" +
+                        "        return true  // both type and value are nil\n" +
+                        "    }\n" +
+                        "    v := reflect.ValueOf(i)\n" +
+                        "    switch v.Kind() {\n" +
+                        "    case reflect.Ptr, reflect.Slice, reflect.Map,\n" +
+                        "         reflect.Chan, reflect.Func, reflect.Interface:\n" +
+                        "        return v.IsNil()\n" +
+                        "    }\n" +
+                        "    return false\n" +
+                        "}"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
                 SectionCard(title = "Type Conversion") {
                     BodyText(
                         "Go has no implicit type casting. Every type conversion must be written " +

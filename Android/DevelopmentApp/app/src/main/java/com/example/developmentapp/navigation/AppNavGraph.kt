@@ -116,6 +116,8 @@ import com.example.developmentapp.screens.ai.GanScreen
 import com.example.developmentapp.screens.ai.AttentionTransformersScreen
 import com.example.developmentapp.screens.ai.AnomalyDetectionScreen
 import com.example.developmentapp.screens.python.PythonGeneratorsScreen
+import com.example.developmentapp.screens.python.PythonBuiltInVariablesScreen
+import com.example.developmentapp.screens.python.PythonUsefulPackagesScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
@@ -174,7 +176,9 @@ sealed class Screen(val route: String) {
     object PythonNetworking    : Screen("python_networking")
     object PythonCoroutines    : Screen("python_coroutines")
     object PythonSwitchCase    : Screen("python_switch_case")
-    object PythonGenerators    : Screen("python_generators")
+    object PythonGenerators       : Screen("python_generators")
+    object PythonBuiltInVariables : Screen("python_built_in_variables")
+    object PythonUsefulPackages   : Screen("python_useful_packages")
     // C/C++
     object CppHub                    : Screen("cpp_hub")
     object CppSyntax                 : Screen("cpp_syntax")
@@ -515,9 +519,11 @@ fun AppNavGraph(navController: NavHostController) {
                 onInputOutput    = { navController.navigate(Screen.PythonInputOutput.route) },
                 onThreads        = { navController.navigate(Screen.PythonThreads.route) },
                 onNetworking     = { navController.navigate(Screen.PythonNetworking.route) },
-                onCoroutines     = { navController.navigate(Screen.PythonCoroutines.route) },
-                onSwitchCase     = { navController.navigate(Screen.PythonSwitchCase.route) },
-                onGenerators     = { navController.navigate(Screen.PythonGenerators.route) }
+                onCoroutines        = { navController.navigate(Screen.PythonCoroutines.route) },
+                onSwitchCase        = { navController.navigate(Screen.PythonSwitchCase.route) },
+                onBuiltInVariables  = { navController.navigate(Screen.PythonBuiltInVariables.route) },
+                onUsefulPackages    = { navController.navigate(Screen.PythonUsefulPackages.route) },
+                onGenerators        = { navController.navigate(Screen.PythonGenerators.route) }
             )
         }
         composable(Screen.PythonSyntax.route)         { PythonSyntaxScreen(onBack = { navController.popBackStack() }) }
@@ -534,7 +540,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonNetworking.route)    { PythonNetworkingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonCoroutines.route)    { PythonCoroutinesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonSwitchCase.route)    { PythonSwitchCaseScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.PythonGenerators.route)    { PythonGeneratorsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonGenerators.route)       { PythonGeneratorsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonBuiltInVariables.route) { PythonBuiltInVariablesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonUsefulPackages.route)   { PythonUsefulPackagesScreen(onBack = { navController.popBackStack() }) }
 
         // ── Algorithms ────────────────────────────────────────────────
         composable(Screen.AlgorithmsHub.route) {

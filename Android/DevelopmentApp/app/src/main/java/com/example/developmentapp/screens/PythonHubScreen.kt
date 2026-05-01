@@ -50,6 +50,8 @@ fun PythonHubScreen(
     onNetworking: () -> Unit,
     onCoroutines: () -> Unit,
     onSwitchCase: () -> Unit,
+    onBuiltInVariables: () -> Unit,
+    onUsefulPackages: () -> Unit,
     onGenerators: () -> Unit
 ) {
     Scaffold(
@@ -106,6 +108,9 @@ fun PythonHubScreen(
             Spacer(Modifier.height(12.dp))
             ButtonRow("Coroutines",   onCoroutines,
                       "Switch / Match", onSwitchCase)
+            Spacer(Modifier.height(12.dp))
+            ButtonRow("Built-In Variables", onBuiltInVariables,
+                      "Useful Packages",   onUsefulPackages)
             Spacer(Modifier.height(12.dp))
             HubButton("Generator Functions", onGenerators, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
