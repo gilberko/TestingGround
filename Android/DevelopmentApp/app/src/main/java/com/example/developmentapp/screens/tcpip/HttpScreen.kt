@@ -232,6 +232,80 @@ fun HttpScreen(onBack: () -> Unit) {
                     BodyText("Summary: Base64 is a text-transport workaround. HTTP bodies are already binary-safe, so compressed or binary response bodies never need Base64.")
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── HTTP CONNECT (Proxy Tunneling) ───────────────────────────
+            item {
+                SectionCard(title = "HTTP CONNECT — Proxy Tunneling") {
+                    BodyText("HTTP CONNECT is a special request method that tells a proxy server to open a raw TCP tunnel to a target host and port. Once the tunnel is open, the proxy becomes a dumb pipe — it blindly forwards bytes in both directions without inspecting them.")
+                    BodyText("Why is it needed? An HTTP proxy normally reads and rewrites full HTTP requests. That works fine for plain HTTP, but breaks TLS — the proxy cannot see inside an encrypted stream. CONNECT solves this: the client negotiates the tunnel with the proxy, then performs a TLS handshake directly with the real server through that tunnel.")
+                    BodyText("Example exchange:")
+                    CodeBlock(
+                        "-- Client to proxy: --\n" +
+                        "CONNECT example.com:443 HTTP/1.1\n" +
+                        "Host: example.com:443\n" +
+                        "Proxy-Authorization: Basic dXNlcjpwYXNz\n" +
+                        "\n" +
+                        "-- Proxy replies: --\n" +
+                        "HTTP/1.1 200 Connection Established\n" +
+                        "\n" +
+                        "-- Client now sends TLS ClientHello to example.com --\n" +
+                        "   (proxy forwards raw bytes; cannot read the TLS traffic)"
+                    )
+                    BodyText("After the 200 response, the TCP socket is handed off. The client sends a TLS ClientHello; the proxy forwards it to example.com; the TLS handshake completes with the real server. Certificate validation still happens on the client against the real server's certificate.")
+                    BodyText("Plain HTTP through a proxy works differently — no CONNECT needed:")
+                    CodeBlock(
+                        "-- Client sends the full URL to the proxy: --\n" +
+                        "GET http://example.com/page HTTP/1.1\n" +
+                        "Host: example.com\n" +
+                        "\n" +
+                        "The proxy reads, forwards (and can cache or modify)\n" +
+                        "the content because the connection is plain."
+                    )
+                    BodyText("Port is almost always :443 (HTTPS), but any TCP port is valid. CONNECT is also used to tunnel other protocols (e.g., SSH) through an HTTP proxy.")
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Upgrading to TLS (HTTP Upgrade) ──────────────────────────
+            item {
+                SectionCard(title = "Upgrading a Connection to TLS") {
+                    BodyText("HTTP/1.1 includes an Upgrade mechanism (RFC 7230 / RFC 2817) that lets a client request a protocol switch on the same TCP connection. The connection starts as plain HTTP and can be upgraded to TLS without opening a new socket.")
+                    BodyText("How it works:")
+                    CodeBlock(
+                        "-- Client request: --\n" +
+                        "GET /resource HTTP/1.1\n" +
+                        "Host: example.com\n" +
+                        "Connection: Upgrade\n" +
+                        "Upgrade: TLS/1.0\n" +
+                        "\n" +
+                        "-- Server agrees: --\n" +
+                        "HTTP/1.1 101 Switching Protocols\n" +
+                        "Upgrade: TLS/1.0\n" +
+                        "Connection: Upgrade\n" +
+                        "\n" +
+                        "-- Client sends TLS ClientHello on the same TCP socket --"
+                    )
+                    BodyText("101 Switching Protocols is the status code that confirms the switch. After this response both sides speak the new protocol — TLS in this case, followed by HTTPS once the handshake completes.")
+                    BodyText("Reality check: HTTP→TLS upgrade via the Upgrade header (RFC 2817) is almost never used in practice. The industry settled on a simpler model: connect to port 443 with TLS from the start. Clients and servers know to speak TLS immediately based on the port and scheme (https://).")
+                    BodyText("Where HTTP Upgrade IS actively used today:")
+                    CodeBlock(
+                        "Upgrade: websocket  -- HTTP -> WebSocket (very common)\n" +
+                        "                       used by chat apps, live feeds, games\n" +
+                        "\n" +
+                        "Upgrade: h2c        -- HTTP -> HTTP/2 cleartext (rare)\n" +
+                        "                       only on internal/trusted networks"
+                    )
+                    BodyText("STARTTLS analogy: SMTP uses the same start-plain-then-upgrade concept with its STARTTLS command — the client issues STARTTLS and both sides switch to TLS on the same TCP connection. See the SSL/TLS screen for the full TLS handshake detail.")
+                    BodyText("Choosing an approach:")
+                    CodeBlock(
+                        "Direct TLS from the start (port 443)  -- modern HTTPS standard\n" +
+                        "CONNECT through a proxy               -- reach HTTPS via HTTP proxy\n" +
+                        "HTTP Upgrade: TLS/1.0                 -- RFC 2817, almost never used\n" +
+                        "HTTP Upgrade: websocket               -- the common real-world upgrade"
+                    )
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

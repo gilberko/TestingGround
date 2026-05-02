@@ -29,7 +29,10 @@
       "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\Android\\\\Android Studio\" -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem \"C:\\\\Program Files\\\\Java\" -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem \"C:\\\\Program Files\\\\Microsoft\" -Filter \"*jdk*\" -ErrorAction SilentlyContinue | Select-Object Name; $env:JAVA_HOME)",
       "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; & \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\\\\gradlew.bat\" assembleRelease 2>&1)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\\\\app\\\\src\\\\main\" -Recurse | Where-Object { $_.Extension -eq \".kt\" -or $_.Extension -eq \".xml\" } | Select-Object -ExpandProperty FullName | Sort-Object)",
-      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; .\\\\gradlew assembleRelease 2>&1)"
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\"; .\\\\gradlew assembleRelease 2>&1)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\" -Recurse -Filter \"*Http*\" -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(Get-ChildItem *)"
     ]
   }
 }
