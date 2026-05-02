@@ -12,7 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -59,6 +59,11 @@ class MainActivity : ComponentActivity() {
                 composable("colors_materials") { ColorsAndMaterialsScreen(navController) }
                 composable("countries") { CountriesScreen(navController) }
                 composable("vacation") { VacationScreen(navController) }
+                composable("quiz_eng_czech") { QuizScreen(navController, engToCzech = true) }
+                composable("quiz_czech_eng") { QuizScreen(navController, engToCzech = false) }
+                composable("dialogues") { DialoguesHubScreen(navController) }
+                composable("dialogue_restaurant") { RestaurantDialogueScreen(navController) }
+                composable("dialogue_directions") { DirectionsDialogueScreen(navController) }
             }
         }
     }
@@ -71,10 +76,12 @@ fun HomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
+        Spacer(modifier = Modifier.height(48.dp))
         Text(
             text = "A Stranger In A Strange Land",
             fontSize = 20.sp,
@@ -90,6 +97,13 @@ fun HomeScreen(navController: NavController) {
         NavButton(label = "Learning The Language") { navController.navigate("learning") }
         Spacer(modifier = Modifier.height(20.dp))
         NavButton(label = "Simple Dictionary") { navController.navigate("dictionary") }
+        Spacer(modifier = Modifier.height(20.dp))
+        NavButton(label = "Quiz — English to Czech") { navController.navigate("quiz_eng_czech") }
+        Spacer(modifier = Modifier.height(20.dp))
+        NavButton(label = "Quiz — Czech to English") { navController.navigate("quiz_czech_eng") }
+        Spacer(modifier = Modifier.height(20.dp))
+        NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
+        Spacer(modifier = Modifier.height(48.dp))
     }
 }
 
