@@ -59,6 +59,8 @@ class MainActivity : ComponentActivity() {
                 composable("colors_materials") { ColorsAndMaterialsScreen(navController) }
                 composable("countries") { CountriesScreen(navController) }
                 composable("vacation") { VacationScreen(navController) }
+                composable("daily_routines") { DailyRoutinesScreen(navController) }
+                composable("days_of_week") { DaysOfWeekScreen(navController) }
                 composable("quiz_eng_czech") { QuizScreen(navController, engToCzech = true) }
                 composable("quiz_czech_eng") { QuizScreen(navController, engToCzech = false) }
                 composable("dialogues") { DialoguesHubScreen(navController) }
@@ -226,7 +228,9 @@ fun DictionaryHubScreen(navController: NavController) {
             "Adjectives" to "adjectives_list",
             "Colors & Materials" to "colors_materials",
             "Countries & Languages" to "countries",
-            "Vacation" to "vacation"
+            "Vacation" to "vacation",
+            "Daily Routines" to "daily_routines",
+            "Days of the Week" to "days_of_week"
         )
         Column(
             modifier = Modifier

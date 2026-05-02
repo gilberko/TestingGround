@@ -196,6 +196,12 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("nemám rád / nemám ráda", "I don't like", "nemám = I don't have; rád / ráda same rule as above")
             BWRow("dám si", "I'll have (ordering food or drink)", "literally 'I'll give myself'; e.g. Dám si polévku. = I'll have the soup.")
             BWRow("nedám si", "I won't have / I'll pass", "literally 'I won't give myself'")
+            BWNote("To say you like to do something, use rád (man) or ráda (woman) + conjugated verb. This is different from mám rád + noun — here a verb follows directly:")
+            BWRow("Rád piju kávu.", "I like to drink coffee.", "said by a man; rád marks gender, verb is conjugated normally")
+            BWRow("Ráda piju čaj.", "I like to drink tea.", "said by a woman; ráda is the feminine form")
+            BWNote("To say you don't like to do something, use nerad (man) or nerada (woman) + conjugated verb. Written as one word:")
+            BWRow("Nerad uklízím.", "I don't like to clean.", "said by a man; infinitive: uklízet")
+            BWRow("Nerada jezdím autobusem.", "I don't like to go by bus.", "said by a woman; infinitive: jezdit")
 
             // ── Welcome ───────────────────────────────────────────────────
             BWSection("Welcome")

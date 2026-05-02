@@ -61,7 +61,8 @@ fun PrepositionsScreen(navController: NavController) {
                 example = "Bydlím vedle školy.", translation = "I live next to the school.")
             PPRow("kolem", "around / approximately",
                 example = "Přijdu kolem deseti.", translation = "I'll come around ten.")
-            PPNote("do + Genitive is the standard way to express destination: do Prahy, do školy, do obchodu.")
+            PPNote("do means 'to' and is the standard destination preposition. It is most commonly used for buildings and enclosed places (do školy, do obchodu, do kina), but also applies to countries, cities, parks, and most destinations in general — not only closed spaces.")
+            PPNote("Examples: do parku (to the park) · do Prahy (to Prague) · do Rakouska (to Austria) · do města (to the city) · do školy (to school) · do obchodu (to the shop)")
             PPNote("Is this the train to Brno? → Je to vlak do Brna?")
 
             PPSection("Dative (3rd case)")
