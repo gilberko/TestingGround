@@ -104,6 +104,7 @@ import com.example.linuxapp.screens.permissions.namespaces.UserNamespaceScreen
 import com.example.linuxapp.screens.permissions.namespaces.TimeNamespaceScreen
 import com.example.linuxapp.screens.permissions.namespaces.CgroupNamespaceScreen
 import com.example.linuxapp.screens.permissions.namespaces.AccessingNamespacesScreen
+import com.example.linuxapp.screens.permissions.ProcessStartScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -190,6 +191,7 @@ sealed class Screen(val route: String) {
     object TimeNamespace          : Screen("time_namespace")
     object CgroupNamespace        : Screen("cgroup_namespace")
     object AccessingNamespaces    : Screen("accessing_namespaces")
+    object AdvancedProcessStart   : Screen("advanced_process_start")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -416,7 +418,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPlugAndPlay = { navController.navigate(Screen.AdvancedPlugAndPlay.route) },
                 onStackFrames = { navController.navigate(Screen.AdvancedStackFrames.route) },
                 onKernelVmDebugging = { navController.navigate(Screen.AdvancedKernelVmDebugging.route) },
-                onNamespaces = { navController.navigate(Screen.NamespacesHub.route) }
+                onNamespaces = { navController.navigate(Screen.NamespacesHub.route) },
+                onProcessStart = { navController.navigate(Screen.AdvancedProcessStart.route) }
             )
         }
         composable(Screen.NamespacesHub.route) {
@@ -537,6 +540,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedKernelVmDebugging.route) {
             KernelVmDebuggingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedProcessStart.route) {
+            ProcessStartScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfSharingData.route) {
             EbpfSharingDataScreen(onBack = { navController.popBackStack() })

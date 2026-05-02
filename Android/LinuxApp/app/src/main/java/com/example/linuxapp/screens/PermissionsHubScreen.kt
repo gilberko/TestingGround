@@ -53,7 +53,8 @@ fun PermissionsHubScreen(
     onPlugAndPlay: () -> Unit,
     onStackFrames: () -> Unit,
     onKernelVmDebugging: () -> Unit,
-    onNamespaces: () -> Unit
+    onNamespaces: () -> Unit,
+    onProcessStart: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -194,11 +195,21 @@ fun PermissionsHubScreen(
                     )
                 }
                 Spacer(Modifier.height(8.dp))
-                PermissionsHubButton(
-                    label = "Namespaces",
-                    onClick = onNamespaces,
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
-                )
+                ) {
+                    PermissionsHubButton(
+                        label = "Namespaces",
+                        onClick = onNamespaces,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "Process\nStart",
+                        onClick = onProcessStart,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
                 Spacer(Modifier.height(8.dp))
             }
         }
