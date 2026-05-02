@@ -46,7 +46,13 @@ fun TcpIpHubScreen(
     onVpn:      () -> Unit,
     onProxy:    () -> Unit,
     onArp:      () -> Unit,
-    onDhcp:     () -> Unit
+    onDhcp:     () -> Unit,
+    onQuic:     () -> Unit,
+    onSmtp:     () -> Unit,
+    onHttp:     () -> Unit,
+    onFtp:      () -> Unit,
+    onTftp:     () -> Unit,
+    onWifi:     () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -99,6 +105,15 @@ fun TcpIpHubScreen(
             Spacer(Modifier.height(12.dp))
             TcpIpButtonRow("ARP",       onArp,
                            "DHCP",      onDhcp)
+            Spacer(Modifier.height(12.dp))
+            TcpIpButtonRow("QUIC",      onQuic,
+                           "SMTP",      onSmtp)
+            Spacer(Modifier.height(12.dp))
+            TcpIpButtonRow("HTTP",      onHttp,
+                           "FTP",       onFtp)
+            Spacer(Modifier.height(12.dp))
+            TcpIpButtonRow("TFTP",      onTftp,
+                           "WiFi",      onWifi)
             Spacer(Modifier.height(24.dp))
         }
     }

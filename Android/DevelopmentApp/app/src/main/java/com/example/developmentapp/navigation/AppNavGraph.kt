@@ -82,6 +82,12 @@ import com.example.developmentapp.screens.tcpip.IpsecScreen
 import com.example.developmentapp.screens.tcpip.SslTlsScreen
 import com.example.developmentapp.screens.tcpip.TcpScreen
 import com.example.developmentapp.screens.tcpip.UdpScreen
+import com.example.developmentapp.screens.tcpip.QuicScreen
+import com.example.developmentapp.screens.tcpip.SmtpScreen
+import com.example.developmentapp.screens.tcpip.HttpScreen
+import com.example.developmentapp.screens.tcpip.FtpScreen
+import com.example.developmentapp.screens.tcpip.TftpScreen
+import com.example.developmentapp.screens.tcpip.WifiScreen
 import com.example.developmentapp.screens.GoHubScreen
 import com.example.developmentapp.screens.AiHubScreen
 import com.example.developmentapp.screens.go.GoAboutScreen
@@ -232,6 +238,12 @@ sealed class Screen(val route: String) {
     object Proxy               : Screen("proxy")
     object Arp                 : Screen("arp")
     object Dhcp                : Screen("dhcp")
+    object Quic                : Screen("quic")
+    object Smtp                : Screen("smtp")
+    object Http                : Screen("http")
+    object Ftp                 : Screen("ftp")
+    object Tftp                : Screen("tftp")
+    object Wifi                : Screen("wifi")
     // Go
     object DebuggingProfilingTracing : Screen("debugging_profiling_tracing")
     // Go
@@ -580,7 +592,13 @@ fun AppNavGraph(navController: NavHostController) {
                 onVpn       = { navController.navigate(Screen.Vpn.route) },
                 onProxy     = { navController.navigate(Screen.Proxy.route) },
                 onArp       = { navController.navigate(Screen.Arp.route) },
-                onDhcp      = { navController.navigate(Screen.Dhcp.route) }
+                onDhcp      = { navController.navigate(Screen.Dhcp.route) },
+                onQuic      = { navController.navigate(Screen.Quic.route) },
+                onSmtp      = { navController.navigate(Screen.Smtp.route) },
+                onHttp      = { navController.navigate(Screen.Http.route) },
+                onFtp       = { navController.navigate(Screen.Ftp.route) },
+                onTftp      = { navController.navigate(Screen.Tftp.route) },
+                onWifi      = { navController.navigate(Screen.Wifi.route) }
             )
         }
         composable(Screen.Ethernet.route) { EthernetScreen(onBack = { navController.popBackStack() }) }
@@ -593,8 +611,14 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.SslTls.route)   { SslTlsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Vpn.route)      { VpnScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Proxy.route)    { ProxyScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.Arp.route)      { ArpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Arp.route)      { ArpScreen(onBack  = { navController.popBackStack() }) }
         composable(Screen.Dhcp.route)     { DhcpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Quic.route)     { QuicScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Smtp.route)     { SmtpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Http.route)     { HttpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Ftp.route)      { FtpScreen(onBack  = { navController.popBackStack() }) }
+        composable(Screen.Tftp.route)     { TftpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Wifi.route)     { WifiScreen(onBack = { navController.popBackStack() }) }
 
         // ── AI and Neural Networks ────────────────────────────────────
         composable(Screen.AiHub.route) {
