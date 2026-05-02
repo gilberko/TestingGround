@@ -56,6 +56,9 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             PFRow("kojenec", "infant", "m. — specifically a nursing infant")
             PFRow("dítě", "kid / child", "n.")
             PFRow("děti", "children", "pl. of dítě — irregular plural. e.g. Mám dvě děti. (I have two children.)")
+            PFRow("kamarád", "friend (casual, platonic)", "m. — everyday word for a strictly platonic friend; plural: kamarádi; s kamarády = with friends (instr.)")
+            PFRow("kamarádka", "friend (casual, platonic, f.)", "f. — female form of kamarád; plural: kamarádky; s kamarádkami = with friends (instr.)")
+            PFNote("přátelé vs kamarádi — both mean 'friends'. Kamarád is strictly platonic and more casual/everyday. Přítel (plural přátelé) is more formal/neutral but can also mean romantic partner depending on context. Instrumental: s přáteli / s kamarády (= 'with friends').")
             PFNote("Neuter gender: Several Czech words for children or young people are neuter, even when they refer to a female. miminko (baby), batole (toddler), dítě (child), and děvče (girl) are all neuter (n.). This surprises English speakers, but Czech follows a historical pattern where young or small beings often take neuter gender — similar to German das Kind (child) or das Mädchen (girl). This means pronouns and adjectives for these nouns use neuter forms: malé dítě (small child), hezké děvče (pretty girl).")
 
             PFSection("Immediate Family")
@@ -89,7 +92,7 @@ fun PeopleAndFamilyScreen(navController: NavController) {
             PFRow("tchyně", "mother-in-law", "f. — parent of one's spouse; used by both partners in modern Czech")
 
             PFSection("Romantic Partners")
-            PFRow("přítel", "(male) friend / boyfriend", "m. — context determines the meaning; Mám přítele. = I have a boyfriend.")
+            PFRow("přítel", "(male) friend / boyfriend", "m. — context determines meaning; plural: přátelé; instr. s přáteli = with friends; Mám přítele. = I have a boyfriend.")
             PFRow("přítelkyně", "(female) friend / girlfriend", "f. — Mám přítelkyni. = I have a girlfriend. Both přítel and přítelkyně can mean friend or romantic partner; in romantic context they are the standard term. The colloquial kluk (boyfriend, lit. guy) and holka (girlfriend, lit. girl) are also common.")
             PFRow("snoubenec", "fiancé", "m.")
             PFRow("snoubenka", "fiancée", "f.")

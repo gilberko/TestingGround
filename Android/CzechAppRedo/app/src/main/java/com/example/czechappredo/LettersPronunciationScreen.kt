@@ -74,6 +74,7 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow("tě", "→ \"tye\"")
             LPRow("ně", "→ \"nye\"")
             LPRow("mě", "→ \"mnye\"")
+            LPNote("Example: město (city) → sounds like \"mnye-sto\"")
             LPNote("After any other consonant, ě simply sounds like \"ye\".")
 
             // ── 5. Consonants With Háček ─────────────────────────────────
