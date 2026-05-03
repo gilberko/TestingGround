@@ -105,6 +105,10 @@ import com.example.linuxapp.screens.permissions.namespaces.TimeNamespaceScreen
 import com.example.linuxapp.screens.permissions.namespaces.CgroupNamespaceScreen
 import com.example.linuxapp.screens.permissions.namespaces.AccessingNamespacesScreen
 import com.example.linuxapp.screens.permissions.ProcessStartScreen
+import com.example.linuxapp.screens.kernel.WritingKernelModulesHubScreen
+import com.example.linuxapp.screens.kernel.SysCallsScreen
+import com.example.linuxapp.screens.kernel.KallsymsScreen
+import com.example.linuxapp.screens.kernel.KernelAddingFilesScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -191,7 +195,11 @@ sealed class Screen(val route: String) {
     object TimeNamespace          : Screen("time_namespace")
     object CgroupNamespace        : Screen("cgroup_namespace")
     object AccessingNamespaces    : Screen("accessing_namespaces")
-    object AdvancedProcessStart   : Screen("advanced_process_start")
+    object AdvancedProcessStart       : Screen("advanced_process_start")
+    object WritingKernelModulesHub    : Screen("writing_kernel_modules_hub")
+    object SysCalls                   : Screen("kernel_sys_calls")
+    object Kallsyms                   : Screen("kernel_kallsyms")
+    object KernelAddingFiles          : Screen("kernel_adding_files")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -253,22 +261,20 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.KernelHub.route) {
             KernelHubScreen(
                 onBack = { navController.popBackStack() },
-                onLkm = { navController.navigate(Screen.KernelLkm.route) },
-                onDeviceTypes = { navController.navigate(Screen.DeviceTypesHub.route) },
-                onKernelMemoryAccess = { navController.navigate(Screen.KernelMemoryAccess.route) },
-                onKernelThreading = { navController.navigate(Screen.KernelThreading.route) },
+                onWritingKernelModules = { navController.navigate(Screen.WritingKernelModulesHub.route) },
                 onLowLevel = { navController.navigate(Screen.KernelLowLevel.route) },
                 onOsStructs = { navController.navigate(Screen.KernelOsStructs.route) },
                 onLowLevel2 = { navController.navigate(Screen.KernelLowLevel2.route) },
                 onDebugging = { navController.navigate(Screen.KernelDebugging.route) },
-                onDeferredWork = { navController.navigate(Screen.KernelDeferredWork.route) },
                 onDataStructures = { navController.navigate(Screen.KernelDataStructures.route) },
                 onVfs = { navController.navigate(Screen.KernelVfs.route) },
                 onTheWholePicture = { navController.navigate(Screen.TheWholePictureHub.route) },
                 onMemoryManagement = { navController.navigate(Screen.KernelMemoryManagement.route) },
-                onPendOperations = { navController.navigate(Screen.KernelPendOperations.route) },
                 onForkClone = { navController.navigate(Screen.KernelForkClone.route) },
-                onDkms = { navController.navigate(Screen.KernelDkms.route) }
+                onDkms = { navController.navigate(Screen.KernelDkms.route) },
+                onSysCalls = { navController.navigate(Screen.SysCalls.route) },
+                onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
+                onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) }
             )
         }
 
@@ -578,6 +584,26 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelDkms.route) {
             DkmsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.WritingKernelModulesHub.route) {
+            WritingKernelModulesHubScreen(
+                onBack               = { navController.popBackStack() },
+                onLkm                = { navController.navigate(Screen.KernelLkm.route) },
+                onDeviceTypes        = { navController.navigate(Screen.DeviceTypesHub.route) },
+                onKernelMemoryAccess = { navController.navigate(Screen.KernelMemoryAccess.route) },
+                onKernelThreading    = { navController.navigate(Screen.KernelThreading.route) },
+                onPendOperations     = { navController.navigate(Screen.KernelPendOperations.route) },
+                onDeferredWork       = { navController.navigate(Screen.KernelDeferredWork.route) }
+            )
+        }
+        composable(Screen.SysCalls.route) {
+            SysCallsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Kallsyms.route) {
+            KallsymsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelAddingFiles.route) {
+            KernelAddingFilesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

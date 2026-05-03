@@ -276,6 +276,163 @@ exec i3                 # start the i3 window manager"""
                 }
             }
 
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "What Is cron") {
+                    BodyText(
+                        "The cron daemon (crond) is a background service that wakes up every minute and " +
+                        "checks whether any scheduled commands are due to run. It is the standard way to " +
+                        "automate recurring tasks on Linux."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Two names to keep straight: cron is the daemon (the running service); crontab is " +
+                        "both the command-line tool and the file format it manages. Per-user crontab files " +
+                        "are stored in /var/spool/cron/crontabs/<username>."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("System-wide job locations:")
+                    CodeBlock(
+                        """/etc/cron.d/          — drop files with full cron syntax + username field
+/etc/cron.daily/      — executable scripts run once a day
+/etc/cron.weekly/     — executable scripts run once a week
+/etc/cron.monthly/    — executable scripts run once a month
+/etc/cron.hourly/     — executable scripts run once an hour
+/etc/crontab          — the system crontab (run-parts uses this)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "anacron is an alternative scheduler for machines that are not always powered on. " +
+                        "If a job was missed while the machine was off, anacron runs it shortly after the " +
+                        "next boot, with a configurable delay."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Crontab Syntax") {
+                    BodyText(
+                        "Each cron entry has five time fields followed by the command to run:"
+                    )
+                    CodeBlock(
+                        """# min  hour  dom  month  dow  command
+#  |    |     |     |      |
+#  |    |     |     |      +-- day of week  (0-7, 0 and 7 = Sunday)
+#  |    |     |     +--------- month        (1-12)
+#  |    |     +--------------- day of month (1-31)
+#  |    +--------------------- hour         (0-23)
+#  +-------------------------- minute       (0-59)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Examples:")
+                    CodeBlock(
+                        """0   9  *  *  1-5   /scripts/backup.sh   # weekdays 09:00
+*/5  *  *  *   *   /scripts/monitor.sh  # every 5 minutes
+0   0  1  *    *   /scripts/monthly.sh  # 1st of each month
+0   2  *  *    0   /scripts/weekly.sh   # every Sunday 02:00
+@reboot             /scripts/startup.sh  # once on boot"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Special time strings (shortcuts):")
+                    CodeBlock(
+                        """@reboot   — run once at startup
+@daily    — equivalent to:  0 0 * * *
+@weekly   — equivalent to:  0 0 * * 0
+@monthly  — equivalent to:  0 0 1 * *
+@hourly   — equivalent to:  0 * * * *"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Field value specials:")
+                    CodeBlock(
+                        """*       any value         (0 * * * * = every hour, on the hour)
+*/n     every n units     (*/15 = every 15 minutes)
+a-b     range inclusive   (1-5 = Monday through Friday)
+a,b,c   list              (1,3,5 = Mon, Wed, Fri)"""
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Adding and Removing Tasks") {
+                    BodyText("Managing the current user's crontab:")
+                    CodeBlock(
+                        """crontab -e   # open in editor (add/edit/remove lines, then save)
+crontab -l   # list current crontab
+crontab -r   # remove the entire crontab — no confirmation prompt!"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "To remove a specific job: run crontab -e, delete that line, and save. " +
+                        "To view another user's crontab (as root): crontab -l -u username."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "System-wide jobs via /etc/cron.d/ — create a file (any name) with entries " +
+                        "that include a username field between the time fields and the command:"
+                    )
+                    CodeBlock(
+                        """# /etc/cron.d/myjob
+# min  hour  dom  month  dow  user   command
+  0     3     *     *     *    root   /usr/local/bin/cleanup.sh"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Drop-in directories (/etc/cron.daily/ etc.) — place an executable script " +
+                        "with no extension and chmod +x. run-parts calls every script in that " +
+                        "directory on the schedule defined in /etc/crontab. The script's filename " +
+                        "must contain only letters, digits, hyphens, and underscores."
+                    )
+                    CodeBlock(
+                        """# Create and enable a daily script:
+sudo cp myscript.sh /etc/cron.daily/myscript
+sudo chmod +x /etc/cron.daily/myscript"""
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Reading cron Logs") {
+                    BodyText(
+                        "How to check what cron ran and whether it succeeded:"
+                    )
+                    CodeBlock(
+                        """# systemd-based (Ubuntu/Debian — service name is 'cron'):
+journalctl -u cron
+
+# systemd-based (RHEL/Fedora — service name is 'crond'):
+journalctl -u crond
+
+# Syslog-based (older or non-systemd distros):
+grep CRON /var/log/syslog         # Debian/Ubuntu
+grep CRON /var/log/cron           # RHEL/CentOS
+
+# Follow the log in real time:
+journalctl -u cron -f"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "By default cron emails any output from a command to the local user. " +
+                        "To suppress all mail, add MAILTO=\"\" at the top of the crontab. " +
+                        "To redirect output to a file instead, append redirection to the command:"
+                    )
+                    CodeBlock(
+                        """# Suppress mail for all jobs in this crontab:
+MAILTO=""
+
+# Redirect both stdout and stderr to a log file:
+0 2 * * *  /scripts/backup.sh >> /var/log/backup.log 2>&1"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "2>&1 redirects stderr (file descriptor 2) into stdout (file descriptor 1), " +
+                        "so both go to the log file. Without it, errors are silently lost or emailed."
+                    )
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

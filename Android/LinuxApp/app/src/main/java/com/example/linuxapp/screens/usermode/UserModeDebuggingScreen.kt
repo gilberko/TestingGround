@@ -392,6 +392,64 @@ ASAN_OPTIONS=detect_leaks=1:halt_on_error=0 ./myprogram"""
                     BodyText("ASAN vs Valgrind: ASAN is ~10x faster and catches stack and global errors that Valgrind misses, but requires recompilation. Valgrind works on unmodified binaries and also detects uninitialised-memory reads (use --tool=memcheck for that). Use ASAN during development for fast iteration; use Valgrind when you cannot recompile or need uninitialized-read detection.")
                 }
             }
+            item {
+                SectionCard(title = "nm — Symbol Table Inspector") {
+                    BodyText(
+                        "nm lists the symbols in a compiled binary, shared library, object file, " +
+                        "or static archive. It is the quickest way to check whether a function is " +
+                        "defined, find where a symbol comes from, or debug linker errors."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Common usage:")
+                    CodeBlock(
+                        """# List all symbols in a binary or library:
+nm myprogram
+nm libfoo.a
+
+# Demangle C++ symbol names (removes mangling like _ZN3Foo3barEv):
+nm -C myprogram_cpp
+
+# Show only dynamic (exported) symbols of a shared library:
+nm -D libfoo.so
+
+# Show only undefined (imported) symbols — what the binary needs:
+nm -u myprogram
+
+# Sort by address:
+nm -n myprogram"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Symbol type letters:")
+                    CodeBlock(
+                        """T   defined in the .text section (function, global)
+t   defined in .text (static/local function)
+D   defined in .data (global variable, initialised)
+B   defined in .bss (global variable, zero-initialised)
+R   defined in .rodata (const global)
+U   undefined — must be provided by another object or library
+W   weak — can be overridden by a strong symbol"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Practical examples:")
+                    CodeBlock(
+                        """# Is pthread_mutex_lock defined or just imported?
+nm -u myprogram | grep pthread_mutex_lock
+# → U pthread_mutex_lock@GLIBC_2.2.5  (imported from libc)
+
+# Debug "undefined reference to foo" — check if foo is in libbar:
+nm libbar.a | grep " T foo"
+
+# See what C++ class methods a .so exports (demangled):
+nm -DC libmylib.so | grep "MyClass""""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "nm vs readelf -s: both show the symbol table, but nm is simpler and " +
+                        "portable. readelf gives more detail (symbol binding, visibility, section " +
+                        "index). For quick lookups, nm is faster to type and easier to grep."
+                    )
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }

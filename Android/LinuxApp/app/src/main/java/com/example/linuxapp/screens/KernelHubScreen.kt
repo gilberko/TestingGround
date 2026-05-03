@@ -42,22 +42,20 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun KernelHubScreen(
     onBack: () -> Unit,
-    onLkm: () -> Unit,
-    onDeviceTypes: () -> Unit,
-    onKernelMemoryAccess: () -> Unit,
-    onKernelThreading: () -> Unit,
+    onWritingKernelModules: () -> Unit,
     onLowLevel: () -> Unit,
     onOsStructs: () -> Unit,
     onLowLevel2: () -> Unit,
     onDebugging: () -> Unit,
-    onDeferredWork: () -> Unit,
     onDataStructures: () -> Unit,
     onVfs: () -> Unit,
     onTheWholePicture: () -> Unit,
     onMemoryManagement: () -> Unit,
-    onPendOperations: () -> Unit,
     onForkClone: () -> Unit,
-    onDkms: () -> Unit
+    onDkms: () -> Unit,
+    onSysCalls: () -> Unit,
+    onKallsyms: () -> Unit,
+    onAddingFiles: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -89,35 +87,25 @@ fun KernelHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Row(
+            KernelButton(
+                label = "Writing Linux\nKernel Modules",
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                KernelButton(label = "Loadable Kernel Module", modifier = Modifier.weight(1f), onClick = onLkm)
-                KernelButton(label = "Device Types", modifier = Modifier.weight(1f), onClick = onDeviceTypes)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                KernelButton(label = "Kernel Memory\nAccess", modifier = Modifier.weight(1f), onClick = onKernelMemoryAccess)
-                KernelButton(label = "Threading and\nSync", modifier = Modifier.weight(1f), onClick = onKernelThreading)
-            }
+                onClick = onWritingKernelModules
+            )
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "OS Structs", modifier = Modifier.weight(1f), onClick = onOsStructs)
-                KernelButton(label = "Low Level Principles", modifier = Modifier.weight(1f), onClick = onLowLevel)
+                KernelButton(label = "Low Level\nPrinciples", modifier = Modifier.weight(1f), onClick = onLowLevel)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Low Level Principles Pt. 2", modifier = Modifier.weight(1f), onClick = onLowLevel2)
+                KernelButton(label = "Low Level Principles\nPt. 2", modifier = Modifier.weight(1f), onClick = onLowLevel2)
                 KernelButton(label = "Kernel Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
             }
             Spacer(modifier = Modifier.height(12.dp))
@@ -125,16 +113,8 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Interrupt Handling\n& Deferred Work", modifier = Modifier.weight(1f), onClick = onDeferredWork)
-                KernelButton(label = "Kernel Data Structures", modifier = Modifier.weight(1f), onClick = onDataStructures)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
+                KernelButton(label = "Kernel Data\nStructures", modifier = Modifier.weight(1f), onClick = onDataStructures)
                 KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
-                KernelButton(label = "How To Pend\nOperations", modifier = Modifier.weight(1f), onClick = onPendOperations)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
@@ -152,6 +132,20 @@ fun KernelHubScreen(
                 KernelButton(label = "fork() and\nclone()", modifier = Modifier.weight(1f), onClick = onForkClone)
                 KernelButton(label = "DKMS", modifier = Modifier.weight(1f), onClick = onDkms)
             }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Sys Calls", modifier = Modifier.weight(1f), onClick = onSysCalls)
+                KernelButton(label = "kallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            KernelButton(
+                label = "Adding Files\nto Kernel",
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onAddingFiles
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
         }

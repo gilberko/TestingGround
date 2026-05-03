@@ -770,6 +770,51 @@ Freed by task 1357:
                     BodyText("KASAN vs kmemleak: KASAN catches illegal accesses (use-after-free, out-of-bounds) at the moment they happen. kmemleak catches allocations that are never freed. They complement each other — enable both when developing or testing kernel code.")
                 }
             }
+            item {
+                SectionCard(title = "nm — Symbol Table Inspector") {
+                    BodyText(
+                        "nm reads the symbol table from ELF files: compiled object files (.o), " +
+                        "static archives (.a), kernel modules (.ko), and the vmlinux binary. " +
+                        "It is the quickest way to answer: is this symbol defined here? what " +
+                        "address does it have? what does this module import from the kernel?"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Common usage with kernel artifacts:")
+                    CodeBlock(
+                        """# Find the address of schedule() in the full kernel binary:
+nm vmlinux | grep " T schedule${'$'}"
+
+# All symbols sorted by address (useful for call-trace decoding):
+nm -n vmlinux | head -30
+
+# What symbols does my module define (T) and need from kernel (U)?
+nm my_module.ko
+
+# Show only undefined (imported) symbols — what the kernel must provide:
+nm -u my_module.ko
+
+# Count how many symbols vmlinux has:
+nm vmlinux | wc -l"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Symbol type letters (same as /proc/kallsyms):")
+                    CodeBlock(
+                        """T / t   text (code)   — T=global, t=static/local
+D / d   initialised data
+B / b   BSS (zero-init data)
+R / r   read-only data (.rodata)
+U       undefined — resolved at link time (kernel symbols for .ko)
+W       weak symbol"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "nm vs /proc/kallsyms: nm reads from the file on disk (vmlinux or .ko) " +
+                        "and is not affected by kptr_restrict. /proc/kallsyms reads the live " +
+                        "running kernel and includes KASLR-adjusted addresses. Use nm when you " +
+                        "have vmlinux offline; use /proc/kallsyms on a running system."
+                    )
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }
