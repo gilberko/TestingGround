@@ -30,6 +30,9 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_ioctl") { IoctlScreen(navController) }
                     composable("advanced_system_services") { SystemServicesScreen(navController) }
                     composable("kernel_processes_threads") { ProcessesAndThreadsScreen(navController) }
+                    composable("kernel_nt_zw") { NtZwScreen(navController) }
+                    composable("kernel_debugging") { KernelDebuggingScreen(navController) }
+                    composable("kernel_simple_driver") { SimpleDriverScreen(navController) }
                 }
             }
         }

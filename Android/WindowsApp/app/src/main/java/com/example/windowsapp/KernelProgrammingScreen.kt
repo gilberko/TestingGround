@@ -56,6 +56,12 @@ fun KernelProgrammingScreen(navController: NavController) {
         HackerButton("INTERNAL DATA STRUCTURES") { navController.navigate("kernel_data_structures") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("IOCTL") { navController.navigate("kernel_ioctl") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("NT... VS ZW...") { navController.navigate("kernel_nt_zw") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("KERNEL DEBUGGING") { navController.navigate("kernel_debugging") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("SIMPLE DRIVER") { navController.navigate("kernel_simple_driver") }
 
         Spacer(modifier = Modifier.height(32.dp))
 
