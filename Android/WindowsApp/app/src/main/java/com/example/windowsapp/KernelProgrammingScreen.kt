@@ -86,7 +86,20 @@ fun KernelProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("SYNCHRONIZATION", fontSize = 13.sp) { navController.navigate("kernel_synchronization") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        HackerButton("INTERRUPT HANDLING", fontSize = 13.sp) { navController.navigate("kernel_interrupt_handling") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("INTERRUPT HANDLING", fontSize = 13.sp) { navController.navigate("kernel_interrupt_handling") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WFP", fontSize = 13.sp) { navController.navigate("kernel_wfp") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("FILESYSTEM MINIFILTERS", fontSize = 12.sp) { navController.navigate("kernel_fs_minifilters") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("APC", fontSize = 12.sp) { navController.navigate("kernel_apc") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("MEMORY ALLOCATION", fontSize = 12.sp) { navController.navigate("kernel_memory_allocation") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("BUGCHECKS AND DRIVER VERIFIER", fontSize = 12.sp) { navController.navigate("kernel_bugchecks") } }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 

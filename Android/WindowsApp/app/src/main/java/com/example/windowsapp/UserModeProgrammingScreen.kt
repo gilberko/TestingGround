@@ -58,6 +58,14 @@ fun UserModeProgrammingScreen(navController: NavController) {
         HackerButton("COM") { navController.navigate("user_com") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("COMMUNICATING WITH DEVICE DRIVERS") { navController.navigate("user_communicating_drivers") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("IPC") { navController.navigate("user_ipc") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("THREADING AND SYNCHRONIZATION") { navController.navigate("user_threading_sync") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("WINSOCK") { navController.navigate("user_winsock") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("WRITING A SERVICE") { navController.navigate("user_writing_service") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

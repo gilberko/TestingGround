@@ -48,6 +48,23 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_threads") { ThreadsScreen(navController) }
                     composable("kernel_synchronization") { SynchronizationScreen(navController) }
                     composable("kernel_interrupt_handling") { InterruptHandlingScreen(navController) }
+                    composable("kernel_wfp") { WFPHubScreen(navController) }
+                    composable("kernel_wfp_overview") { WFPOverviewScreen(navController) }
+                    composable("kernel_wfp_sublayers") { WFPSublayersScreen(navController) }
+                    composable("kernel_wfp_classify_notify") { WFPClassifyAndNotifyScreen(navController) }
+                    composable("kernel_wfp_flows") { WFPFlowsScreen(navController) }
+                    composable("kernel_wfp_ale_layers") { WFPALELayersScreen(navController) }
+                    composable("kernel_fs_minifilters") { FileSystemMinifiltersScreen(navController) }
+                    composable("user_ipc") { IPCScreen(navController) }
+                    composable("user_threading_sync") { UserThreadingAndSyncScreen(navController) }
+                    composable("user_winsock") { WinSockScreen(navController) }
+                    composable("user_writing_service") { WritingAServiceScreen(navController) }
+                    composable("advanced_access_tokens") { AccessTokensAndImpersonationScreen(navController) }
+                    composable("kernel_apc") { APCScreen(navController) }
+                    composable("kernel_memory_allocation") { MemoryAllocationScreen(navController) }
+                    composable("kernel_bugchecks") { BugChecksAndDriverVerifierScreen(navController) }
+                    composable("advanced_memory_paging") { MemoryAndPagingScreen(navController) }
+                    composable("advanced_dlls") { DLLsScreen(navController) }
                 }
             }
         }

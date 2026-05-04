@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import com.example.windowsapp.ui.theme.HackerGreen
 
 @Composable
-fun AdvancedTopicsScreen(navController: NavController) {
+fun WFPHubScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +34,7 @@ fun AdvancedTopicsScreen(navController: NavController) {
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = "ADVANCED TOPICS",
+            text = "WFP",
             color = HackerGreen,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold,
@@ -53,19 +53,15 @@ fun AdvancedTopicsScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        HackerButton("SYSTEM SERVICES") { navController.navigate("advanced_system_services") }
+        HackerButton("OVERVIEW") { navController.navigate("kernel_wfp_overview") }
         Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("RPC AND WMI") { navController.navigate("advanced_rpc_wmi") }
+        HackerButton("SUBLAYERS") { navController.navigate("kernel_wfp_sublayers") }
         Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("PE FILE STRUCTURE AND LOADING") { navController.navigate("advanced_pe_file") }
+        HackerButton("CLASSIFY AND NOTIFY") { navController.navigate("kernel_wfp_classify_notify") }
         Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("HOW A DEBUGGER WORKS") { navController.navigate("how_a_debugger_works") }
+        HackerButton("FLOWS") { navController.navigate("kernel_wfp_flows") }
         Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("ACCESS TOKENS AND IMPERSONATION") { navController.navigate("advanced_access_tokens") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("MEMORY AND PAGING") { navController.navigate("advanced_memory_paging") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("DLLs") { navController.navigate("advanced_dlls") }
+        HackerButton("ALE LAYERS") { navController.navigate("kernel_wfp_ale_layers") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

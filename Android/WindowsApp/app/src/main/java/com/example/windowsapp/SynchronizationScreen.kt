@@ -295,11 +295,55 @@ fun SynchronizationScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        SectionHeader("RCU (READ-COPY-UPDATE)")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("RCU is a synchronization pattern from the Linux kernel that allows readers to run lock-free while a writer atomically replaces a data structure. The writer makes a copy, modifies the copy, publishes the new pointer atomically, then waits for all concurrent readers to finish before freeing the old version.")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("Windows does NOT expose an RCU API in the DDI (Driver Development Interface). There is no documented rcu_read_lock / call_rcu equivalent for driver developers.")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("The closest Windows DDI mechanisms for read-mostly patterns:")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "1. EX_PUSH_LOCK (shared/exclusive) -- already covered above.\n" +
+            "   Readers acquire shared (non-blocking if no writer);\n" +
+            "   writer acquires exclusive. Not lock-free, but very\n" +
+            "   lightweight for read-dominated workloads.\n\n" +
+            "2. InterlockedExchangePointer -- atomically swap a pointer.\n" +
+            "   Combined with EX_PUSH_LOCK or reference counting this\n" +
+            "   can approximate the 'publish new version' step of RCU.\n\n" +
+            "3. EX_RUNDOWN_REF -- prevents object teardown while\n" +
+            "   references are outstanding. Readers call\n" +
+            "   ExAcquireRundownProtection; writer calls\n" +
+            "   ExWaitForRundownProtectionRelease to wait for all\n" +
+            "   readers to finish before freeing.\n" +
+            "   This matches the RCU 'grace period' concept."
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "// Rundown protection pattern:\n" +
+            "EX_RUNDOWN_REF rundown;\n" +
+            "ExInitializeRundownProtection(&rundown);\n\n" +
+            "// Reader side:\n" +
+            "if (ExAcquireRundownProtection(&rundown)) {\n" +
+            "    // use shared object\n" +
+            "    ExReleaseRundownProtection(&rundown);\n" +
+            "}\n\n" +
+            "// Writer/cleanup side:\n" +
+            "ExWaitForRundownProtectionRelease(&rundown);\n" +
+            "// all readers have exited -- safe to free\n" +
+            "// (reinitialize with ExReInitializeRundownProtection\n" +
+            "//  if the object will be reused)"
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("Windows does use RCU-like mechanisms internally (e.g., in the kernel's own lock-free data structures and in Hyper-V), but these are not exported through the public DDI. For driver code, EX_PUSH_LOCK + EX_RUNDOWN_REF is the practical combination.")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         SectionHeader("SUMMARY TABLE")
         Spacer(modifier = Modifier.height(8.dp))
         CodeBlock(
             "Primitive         IRQL           Reentrant  Sleeps  Notes\n" +
-            "───────────────────────────────────────────────────────────\n" +
+            "────────────────────────────────────────────────────────────────\n" +
             "Interrupt SpinLk  <= DIRQL       No         No      Raises to DIRQL; ISR sync\n" +
             "KSPIN_LOCK        <= DISPATCH   No         No      Raises to DISPATCH\n" +
             "Queued SpinLk     <= DISPATCH   No         No      Better multicore\n" +
@@ -308,7 +352,8 @@ fun SynchronizationScreen(navController: NavController) {
             "KSEMAPHORE        wait:PASSIVE  No         Yes     Counting\n" +
             "KEVENT            wait:PASSIVE  N/A        Yes     Set at <=DISPATCH\n" +
             "ERESOURCE         PASSIVE       Yes        Yes     R/W lock\n" +
-            "EX_PUSH_LOCK      PASSIVE       No         Yes     Lightweight R/W"
+            "EX_PUSH_LOCK      PASSIVE       No         Yes     Lightweight R/W\n" +
+            "EX_RUNDOWN_REF    PASSIVE       No         Yes     Grace-period (RCU-like)"
         )
 
         Spacer(modifier = Modifier.height(32.dp))

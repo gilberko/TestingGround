@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import com.example.windowsapp.ui.theme.HackerGreen
 
 @Composable
-fun AdvancedTopicsScreen(navController: NavController) {
+fun FileSystemMinifiltersScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +34,7 @@ fun AdvancedTopicsScreen(navController: NavController) {
         verticalArrangement = Arrangement.Top
     ) {
         Text(
-            text = "ADVANCED TOPICS",
+            text = "FILESYSTEM MINIFILTERS",
             color = HackerGreen,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold,
@@ -50,22 +50,6 @@ fun AdvancedTopicsScreen(navController: NavController) {
             fontFamily = FontFamily.Monospace,
             fontSize = 14.sp
         )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        HackerButton("SYSTEM SERVICES") { navController.navigate("advanced_system_services") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("RPC AND WMI") { navController.navigate("advanced_rpc_wmi") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("PE FILE STRUCTURE AND LOADING") { navController.navigate("advanced_pe_file") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("HOW A DEBUGGER WORKS") { navController.navigate("how_a_debugger_works") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("ACCESS TOKENS AND IMPERSONATION") { navController.navigate("advanced_access_tokens") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("MEMORY AND PAGING") { navController.navigate("advanced_memory_paging") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("DLLs") { navController.navigate("advanced_dlls") }
 
         Spacer(modifier = Modifier.height(32.dp))
 
