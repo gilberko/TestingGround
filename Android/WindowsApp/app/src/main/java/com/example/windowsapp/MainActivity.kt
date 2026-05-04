@@ -38,6 +38,10 @@ class MainActivity : ComponentActivity() {
                     composable("user_writing_dll") { WritingADllScreen(navController) }
                     composable("advanced_pe_file") { PeFileScreen(navController) }
                     composable("kernel_callbacks") { RegisteringForCallbacksScreen(navController) }
+                    composable("irql") { IrqlScreen(navController) }
+                    composable("user_com") { ComScreen(navController) }
+                    composable("how_a_debugger_works") { HowADebuggerWorksScreen(navController) }
+                    composable("user_communicating_drivers") { CommunicatingWithDeviceDriversScreen(navController) }
                 }
             }
         }

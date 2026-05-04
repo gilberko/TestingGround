@@ -2,9 +2,12 @@ package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -53,19 +56,25 @@ fun KernelProgrammingScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        HackerButton("INTERNAL DATA STRUCTURES") { navController.navigate("kernel_data_structures") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("IOCTL") { navController.navigate("kernel_ioctl") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("NT... VS ZW...") { navController.navigate("kernel_nt_zw") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("KERNEL DEBUGGING") { navController.navigate("kernel_debugging") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("SIMPLE DRIVER") { navController.navigate("kernel_simple_driver") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("PLUG AND PLAY") { navController.navigate("kernel_pnp") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("REGISTERING FOR CALLBACKS") { navController.navigate("kernel_callbacks") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("INTERNAL DATA STRUCTURES") { navController.navigate("kernel_data_structures") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IOCTL") { navController.navigate("kernel_ioctl") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("NT... VS ZW...") { navController.navigate("kernel_nt_zw") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("KERNEL DEBUGGING") { navController.navigate("kernel_debugging") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("SIMPLE DRIVER") { navController.navigate("kernel_simple_driver") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("PLUG AND PLAY") { navController.navigate("kernel_pnp") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("REGISTERING FOR CALLBACKS") { navController.navigate("kernel_callbacks") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IRQL") { navController.navigate("irql") } }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 

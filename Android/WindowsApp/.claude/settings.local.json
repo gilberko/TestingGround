@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(keytool -genkey -v -keystore \"app/windowsapp_keystore.jks\" -alias windowsapp_key -keyalg RSA -keysize 2048 -validity 10000 -storepass 12345678 -keypass 12345678 -dname \"CN=Windows App, OU=Development, O=TestingGround, L=Unknown, ST=Unknown, C=US\")",
+      "PowerShell(Get-Command *)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleRelease 2>&1)",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(.\\\\gradlew assembleRelease)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\" -Recurse -Force)",
+      "Bash(Select-Object -First 50)"
+    ]
+  }
+}

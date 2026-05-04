@@ -54,6 +54,10 @@ fun UserModeProgrammingScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
 
         HackerButton("WRITING A DLL") { navController.navigate("user_writing_dll") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("COM") { navController.navigate("user_com") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("COMMUNICATING WITH DEVICE DRIVERS") { navController.navigate("user_communicating_drivers") }
 
         Spacer(modifier = Modifier.height(32.dp))
 
