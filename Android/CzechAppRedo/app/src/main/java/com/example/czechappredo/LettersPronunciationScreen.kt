@@ -77,7 +77,15 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPNote("Example: město (city) → sounds like \"mnye-sto\"")
             LPNote("After any other consonant, ě simply sounds like \"ye\".")
 
-            // ── 5. Consonants With Háček ─────────────────────────────────
+            // ── 5. Softening Before i and í ──────────────────────────────
+            LPSectionHeader("Softening Before i and í")
+            LPNote("When d, t, or n is written before i or í, they are automatically pronounced as their soft counterparts ď, ť, ň. The spelling does not change — only the pronunciation does. This applies equally to short i and long í.")
+            LPRow("di / dí", "→ pronounced like ď + i/í", note = "Example: dítě (child) — the d sounds like ď")
+            LPRow("ti / tí", "→ pronounced like ť + i/í", note = "Example: tichý (quiet) — the t sounds like ť; tisíc (thousand) — both t sounds softened")
+            LPRow("ni / ní", "→ pronounced like ň + i/í", note = "Example: nic (nothing) — the n sounds like ň; nikdo (nobody) — the n sounds like ň")
+            LPNote("The written háček forms ď, ť, ň are only needed when these soft sounds appear before other vowels (a, e, o, u). Before i/í, the softening is automatic and silent in the spelling.")
+
+            // ── 6. Consonants With Háček ─────────────────────────────────
             LPSectionHeader("Consonants With Háček  ( ˇ )")
             LPRow("č", "\"ch\" in cheese")
             LPRow("š", "\"sh\" in shoe")
@@ -90,7 +98,7 @@ fun LettersPronunciationScreen(navController: NavController) {
             // ── 6. Letters That Surprise English Speakers ────────────────
             LPSectionHeader("Letters That Surprise English Speakers")
             LPRow("c", "\"ts\" in cats  (never \"k\" or \"s\" alone)")
-            LPRow("j", "\"y\" in yes  (never \"dj\")")
+            LPRow("j", "\"y\" in yes  (never \"dj\")", note = "js- words (jsem, jsi, jsme, jste, jsou) are a special case. In careful/formal speech the j is a very light y-sound. In colloquial Bohemian Czech (Prague and central Bohemia) the j is typically dropped entirely — jsem becomes \"sem\", jsme becomes \"sme\". In Moravian speech the j tends to be more clearly pronounced. Both forms are widely heard; this is one of the most recognizable features of everyday spoken Czech.")
             LPRow("ch", "\"kh\" — like Scottish loch or German Bach. A raspy sound made in the throat.", note = "ch is its own letter in the Czech alphabet, listed after h.")
             LPRow("h", "breathy, voiced — slightly softer than English h")
             LPRow("w", "same as v  (only in foreign words)")

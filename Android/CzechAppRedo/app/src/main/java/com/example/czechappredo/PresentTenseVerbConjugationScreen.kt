@@ -53,9 +53,10 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
                 "to — it (neuter, everyday usage)\n" +
                 "my — we\n" +
                 "vy — you (plural, or singular formal)\n" +
-                "oni — they"
+                "oni — they (group with at least one man, or masculine animate nouns)\n" +
+                "ony — they (all-women/girls group; all-feminine nouns; neuter nouns; masculine inanimate nouns)"
             )
-            PTNote("Note: to is technically a demonstrative pronoun (this/that), but it is overwhelmingly used as the neuter subject \"it\" in everyday Czech. The formal neuter personal pronoun ono does exist but is rarely heard in modern speech. The verb form is identical for on, ona, to, and ono.")
+            PTNote("Note: to is technically a demonstrative pronoun (this/that), but it is overwhelmingly used as the neuter subject \"it\" in everyday Czech. The formal neuter personal pronoun ono does exist but is rarely heard in modern speech. The verb form is identical for on, ona, to, and ono.\n\noni vs ony: In the present tense, oni and ony always take the same verb form, so they are shown together in the tables below. The distinction matters most in the past tense, where the verb must agree in gender: oni dělali (men or mixed group did) but ony dělaly (women-only or inanimate group did).")
 
             // Být
             PTSection("Být — To Be (Irregular)")
@@ -69,7 +70,7 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
                     "on / ona / to" to "je",
                     "my" to "jsme",
                     "vy" to "jste",
-                    "oni" to "jsou"
+                    "oni / ony" to "jsou"
                 )
             )
 
@@ -85,7 +86,7 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
                     "on / ona / to" to "dělá",
                     "my" to "děláme",
                     "vy" to "děláte",
-                    "oni" to "dělají"
+                    "oni / ony" to "dělají"
                 )
             )
 
@@ -101,13 +102,13 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
                     "on / ona / to" to "mluví",
                     "my" to "mluvíme",
                     "vy" to "mluvíte",
-                    "oni" to "mluví"
+                    "oni / ony" to "mluví"
                 )
             )
 
             // Type 3
             PTSection("Type 3 — Verbs Ending in -ovat (já → -uji / -uju)")
-            PTNote("Two accepted forms exist for já and oni.")
+            PTNote("Two accepted forms exist for já and oni / ony.")
             VerbTable(
                 verb = "pracovat",
                 label = "to work",
@@ -117,7 +118,7 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
                     "on / ona / to" to "pracuje",
                     "my" to "pracujeme",
                     "vy" to "pracujete",
-                    "oni" to "pracují / pracujou"
+                    "oni / ony" to "pracují / pracujou"
                 )
             )
             PTNote("pracuji / pracují — formal and written Czech\npracuju / pracujou — colloquial and spoken Czech\nBoth are correct and widely understood.")

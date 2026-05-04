@@ -57,7 +57,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "jít", label = "irregular",
                 rows = listOf("já" to "jdu", "ty" to "jdeš", "on / ona / ono" to "jde",
-                    "my" to "jdeme", "vy" to "jdete", "oni" to "jdou")
+                    "my" to "jdeme", "vy" to "jdete", "oni / ony" to "jdou")
             )
             UVVerbEntry(
                 czech = "jet",
@@ -69,7 +69,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "jet", label = "irregular",
                 rows = listOf("já" to "jedu", "ty" to "jedeš", "on / ona / ono" to "jede",
-                    "my" to "jedeme", "vy" to "jedete", "oni" to "jedou")
+                    "my" to "jedeme", "vy" to "jedete", "oni / ony" to "jedou")
             )
 
             UVSection("Modal Verbs")
@@ -83,7 +83,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "muset", label = "Type 2 (-et)",
                 rows = listOf("já" to "musím", "ty" to "musíš", "on / ona / ono" to "musí",
-                    "my" to "musíme", "vy" to "musíte", "oni" to "musí")
+                    "my" to "musíme", "vy" to "musíte", "oni / ony" to "musí")
             )
             UVVerbEntry(
                 czech = "moct",
@@ -95,7 +95,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "moct", label = "irregular",
                 rows = listOf("já" to "můžu / mohu", "ty" to "můžeš", "on / ona / ono" to "může",
-                    "my" to "můžeme", "vy" to "můžete", "oni" to "můžou / mohou")
+                    "my" to "můžeme", "vy" to "můžete", "oni / ony" to "můžou / mohou")
             )
 
             UVSection("Giving, Taking & Transfer")
@@ -109,7 +109,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "dát", label = "irregular",
                 rows = listOf("já" to "dám", "ty" to "dáš", "on / ona / ono" to "dá",
-                    "my" to "dáme", "vy" to "dáte", "oni" to "dají")
+                    "my" to "dáme", "vy" to "dáte", "oni / ony" to "dají")
             )
             UVVerbEntry(
                 czech = "vzít",
@@ -121,7 +121,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "vzít", label = "irregular",
                 rows = listOf("já" to "vezmu", "ty" to "vezmeš", "on / ona / ono" to "vezme",
-                    "my" to "vezmeme", "vy" to "vezmete", "oni" to "vezmou")
+                    "my" to "vezmeme", "vy" to "vezmete", "oni / ony" to "vezmou")
             )
             UVVerbEntry(
                 czech = "poslat",
@@ -133,7 +133,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "poslat", label = "irregular",
                 rows = listOf("já" to "pošlu", "ty" to "pošleš", "on / ona / ono" to "pošle",
-                    "my" to "pošleme", "vy" to "pošlete", "oni" to "pošlou")
+                    "my" to "pošleme", "vy" to "pošlete", "oni / ony" to "pošlou")
             )
             UVVerbEntry(
                 czech = "dostat",
@@ -145,7 +145,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "dostat", label = "irregular",
                 rows = listOf("já" to "dostanu", "ty" to "dostaneš", "on / ona / ono" to "dostane",
-                    "my" to "dostaneme", "vy" to "dostanete", "oni" to "dostanou")
+                    "my" to "dostaneme", "vy" to "dostanete", "oni / ony" to "dostanou")
             )
             UVVerbEntry(
                 czech = "přinést",
@@ -157,7 +157,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "přinést", label = "irregular",
                 rows = listOf("já" to "přinesu", "ty" to "přineseš", "on / ona / ono" to "přinese",
-                    "my" to "přineseme", "vy" to "přinesete", "oni" to "přinesou")
+                    "my" to "přineseme", "vy" to "přinesete", "oni / ony" to "přinesou")
             )
 
             UVSection("Common Everyday Verbs")
@@ -171,7 +171,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "mít", label = "irregular",
                 rows = listOf("já" to "mám", "ty" to "máš", "on / ona / ono" to "má",
-                    "my" to "máme", "vy" to "máte", "oni" to "mají")
+                    "my" to "máme", "vy" to "máte", "oni / ony" to "mají")
             )
             UVVerbEntry(
                 czech = "dělat",
@@ -183,7 +183,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "dělat", label = "Type 1 (-at)",
                 rows = listOf("já" to "dělám", "ty" to "děláš", "on / ona / ono" to "dělá",
-                    "my" to "děláme", "vy" to "děláte", "oni" to "dělají")
+                    "my" to "děláme", "vy" to "děláte", "oni / ony" to "dělají")
             )
             UVVerbEntry(
                 czech = "pracovat",
@@ -195,7 +195,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "pracovat", label = "Type 3 (-ovat)",
                 rows = listOf("já" to "pracuji / pracuju", "ty" to "pracuješ", "on / ona / ono" to "pracuje",
-                    "my" to "pracujeme", "vy" to "pracujete", "oni" to "pracují / pracujou")
+                    "my" to "pracujeme", "vy" to "pracujete", "oni / ony" to "pracují / pracujou")
             )
             UVVerbEntry(
                 czech = "studovat",
@@ -207,7 +207,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "studovat", label = "Type 3 (-ovat)",
                 rows = listOf("já" to "studuji / studuju", "ty" to "studuješ", "on / ona / ono" to "studuje",
-                    "my" to "studujeme", "vy" to "studujete", "oni" to "studují / studujou")
+                    "my" to "studujeme", "vy" to "studujete", "oni / ony" to "studují / studujou")
             )
             UVVerbEntry(
                 czech = "myslet",
@@ -219,7 +219,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "myslet", label = "Type 2 (-et)",
                 rows = listOf("já" to "myslím", "ty" to "myslíš", "on / ona / ono" to "myslí",
-                    "my" to "myslíme", "vy" to "myslíte", "oni" to "myslí")
+                    "my" to "myslíme", "vy" to "myslíte", "oni / ony" to "myslí")
             )
             UVVerbEntry(
                 czech = "přestat",
@@ -231,7 +231,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "přestat", label = "irregular",
                 rows = listOf("já" to "přestanu", "ty" to "přestaneš", "on / ona / ono" to "přestane",
-                    "my" to "přestaneme", "vy" to "přestanete", "oni" to "přestanou")
+                    "my" to "přestaneme", "vy" to "přestanete", "oni / ony" to "přestanou")
             )
             UVVerbEntry(
                 czech = "běžet",
@@ -243,7 +243,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "běžet", label = "Type 2 (-et)",
                 rows = listOf("já" to "běžím", "ty" to "běžíš", "on / ona / ono" to "běží",
-                    "my" to "běžíme", "vy" to "běžíte", "oni" to "běží")
+                    "my" to "běžíme", "vy" to "běžíte", "oni / ony" to "běží")
             )
             UVVerbEntry(
                 czech = "vracet se",
@@ -255,7 +255,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "vracet se", label = "Type 1 (-at), reflexive",
                 rows = listOf("já" to "vracím se", "ty" to "vracíš se", "on / ona / ono" to "vrací se",
-                    "my" to "vracíme se", "vy" to "vracíte se", "oni" to "vracejí se")
+                    "my" to "vracíme se", "vy" to "vracíte se", "oni / ony" to "vracejí se")
             )
 
             UVSection("Shopping")
@@ -269,7 +269,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "kupovat", label = "Type 3 (-ovat)",
                 rows = listOf("já" to "kupuji / kupuju", "ty" to "kupuješ", "on / ona / ono" to "kupuje",
-                    "my" to "kupujeme", "vy" to "kupujete", "oni" to "kupují / kupujou")
+                    "my" to "kupujeme", "vy" to "kupujete", "oni / ony" to "kupují / kupujou")
             )
             UVVerbEntry(
                 czech = "prodávat",
@@ -281,7 +281,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "prodávat", label = "Type 1 (-at)",
                 rows = listOf("já" to "prodávám", "ty" to "prodáváš", "on / ona / ono" to "prodává",
-                    "my" to "prodáváme", "vy" to "prodáváte", "oni" to "prodávají")
+                    "my" to "prodáváme", "vy" to "prodáváte", "oni / ony" to "prodávají")
             )
 
             UVSection("Actions")
@@ -295,7 +295,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "otevírat", label = "Type 1 (-at)",
                 rows = listOf("já" to "otevírám", "ty" to "otevíráš", "on / ona / ono" to "otevírá",
-                    "my" to "otevíráme", "vy" to "otevíráte", "oni" to "otevírají")
+                    "my" to "otevíráme", "vy" to "otevíráte", "oni / ony" to "otevírají")
             )
             UVVerbEntry(
                 czech = "zavírat",
@@ -307,7 +307,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "zavírat", label = "Type 1 (-at)",
                 rows = listOf("já" to "zavírám", "ty" to "zavíráš", "on / ona / ono" to "zavírá",
-                    "my" to "zavíráme", "vy" to "zavíráte", "oni" to "zavírají")
+                    "my" to "zavíráme", "vy" to "zavíráte", "oni / ony" to "zavírají")
             )
             UVVerbEntry(
                 czech = "hrát",
@@ -319,7 +319,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "hrát", label = "irregular (-át)",
                 rows = listOf("já" to "hraji / hraju", "ty" to "hraješ", "on / ona / ono" to "hraje",
-                    "my" to "hrajeme", "vy" to "hrajete", "oni" to "hrají")
+                    "my" to "hrajeme", "vy" to "hrajete", "oni / ony" to "hrají")
             )
             UVVerbEntry(
                 czech = "čekat",
@@ -331,7 +331,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "čekat", label = "Type 1 (-at)",
                 rows = listOf("já" to "čekám", "ty" to "čekáš", "on / ona / ono" to "čeká",
-                    "my" to "čekáme", "vy" to "čekáte", "oni" to "čekají")
+                    "my" to "čekáme", "vy" to "čekáte", "oni / ony" to "čekají")
             )
 
             UVSection("States")
@@ -345,7 +345,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "sedět", label = "Type 2 (-et)",
                 rows = listOf("já" to "sedím", "ty" to "sedíš", "on / ona / ono" to "sedí",
-                    "my" to "sedíme", "vy" to "sedíte", "oni" to "sedí")
+                    "my" to "sedíme", "vy" to "sedíte", "oni / ony" to "sedí")
             )
             UVVerbEntry(
                 czech = "spát",
@@ -357,7 +357,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "spát", label = "irregular",
                 rows = listOf("já" to "spím", "ty" to "spíš", "on / ona / ono" to "spí",
-                    "my" to "spíme", "vy" to "spíte", "oni" to "spí")
+                    "my" to "spíme", "vy" to "spíte", "oni / ony" to "spí")
             )
             UVVerbEntry(
                 czech = "jíst",
@@ -369,7 +369,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "jíst", label = "irregular",
                 rows = listOf("já" to "jím", "ty" to "jíš", "on / ona / ono" to "jí",
-                    "my" to "jíme", "vy" to "jíte", "oni" to "jedí")
+                    "my" to "jíme", "vy" to "jíte", "oni / ony" to "jedí")
             )
             UVVerbEntry(
                 czech = "pít",
@@ -381,7 +381,7 @@ fun UsefulVerbsScreen(navController: NavController) {
             UVTable(
                 verb = "pít", label = "irregular",
                 rows = listOf("já" to "piji / piju", "ty" to "piješ", "on / ona / ono" to "pije",
-                    "my" to "pijeme", "vy" to "pijete", "oni" to "pijí / pijou")
+                    "my" to "pijeme", "vy" to "pijete", "oni / ony" to "pijí / pijou")
             )
 
             UVSection("Being & Living")
@@ -401,7 +401,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "je",
                     "my" to "jsme",
                     "vy" to "jste",
-                    "oni" to "jsou"
+                    "oni / ony" to "jsou"
                 )
             )
 
@@ -420,7 +420,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "žije",
                     "my" to "žijeme",
                     "vy" to "žijete",
-                    "oni" to "žijí / žijou"
+                    "oni / ony" to "žijí / žijou"
                 )
             )
 
@@ -439,7 +439,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "bydlí",
                     "my" to "bydlíme",
                     "vy" to "bydlíte",
-                    "oni" to "bydlí"
+                    "oni / ony" to "bydlí"
                 )
             )
 
@@ -460,7 +460,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "mluví",
                     "my" to "mluvíme",
                     "vy" to "mluvíte",
-                    "oni" to "mluví"
+                    "oni / ony" to "mluví"
                 )
             )
 
@@ -479,7 +479,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "poslouchá",
                     "my" to "posloucháme",
                     "vy" to "posloucháte",
-                    "oni" to "poslouchají"
+                    "oni / ony" to "poslouchají"
                 )
             )
 
@@ -498,7 +498,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "říká",
                     "my" to "říkáme",
                     "vy" to "říkáte",
-                    "oni" to "říkají"
+                    "oni / ony" to "říkají"
                 )
             )
 
@@ -517,7 +517,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "vidí",
                     "my" to "vidíme",
                     "vy" to "vidíte",
-                    "oni" to "vidí"
+                    "oni / ony" to "vidí"
                 )
             )
 
@@ -536,7 +536,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "dívá se",
                     "my" to "díváme se",
                     "vy" to "díváte se",
-                    "oni" to "dívají se"
+                    "oni / ony" to "dívají se"
                 )
             )
 
@@ -555,7 +555,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "jmenuje se",
                     "my" to "jmenujeme se",
                     "vy" to "jmenujete se",
-                    "oni" to "jmenují se"
+                    "oni / ony" to "jmenují se"
                 )
             )
 
@@ -576,7 +576,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "ví",
                     "my" to "víme",
                     "vy" to "víte",
-                    "oni" to "vědí"
+                    "oni / ony" to "vědí"
                 )
             )
 
@@ -595,7 +595,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "zná",
                     "my" to "známe",
                     "vy" to "znáte",
-                    "oni" to "znají"
+                    "oni / ony" to "znají"
                 )
             )
 
@@ -614,7 +614,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "potkává",
                     "my" to "potkáváme",
                     "vy" to "potkáváte",
-                    "oni" to "potkávají"
+                    "oni / ony" to "potkávají"
                 )
             )
 
@@ -635,7 +635,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "pamatuje si",
                     "my" to "pamatujeme si",
                     "vy" to "pamatujete si",
-                    "oni" to "pamatují si / pamatujou si"
+                    "oni / ony" to "pamatují si / pamatujou si"
                 )
             )
 
@@ -654,7 +654,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "zapomíná",
                     "my" to "zapomínáme",
                     "vy" to "zapomínáte",
-                    "oni" to "zapomínají"
+                    "oni / ony" to "zapomínají"
                 )
             )
 
@@ -673,7 +673,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "rozhoduje se",
                     "my" to "rozhodujeme se",
                     "vy" to "rozhodujete se",
-                    "oni" to "rozhodují se / rozhodujou se"
+                    "oni / ony" to "rozhodují se / rozhodujou se"
                 )
             )
 
@@ -694,7 +694,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "hledá",
                     "my" to "hledáme",
                     "vy" to "hledáte",
-                    "oni" to "hledají"
+                    "oni / ony" to "hledají"
                 )
             )
 
@@ -713,7 +713,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "nachází",
                     "my" to "nacházíme",
                     "vy" to "nacházíte",
-                    "oni" to "nacházejí"
+                    "oni / ony" to "nacházejí"
                 )
             )
 
@@ -732,7 +732,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "dovoluje",
                     "my" to "dovolujeme",
                     "vy" to "dovolujete",
-                    "oni" to "dovolují / dovolujou"
+                    "oni / ony" to "dovolují / dovolujou"
                 )
             )
 
@@ -751,7 +751,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                     "on / ona / ono" to "smí",
                     "my" to "smíme",
                     "vy" to "smíte",
-                    "oni" to "smí"
+                    "oni / ony" to "smí"
                 )
             )
 
