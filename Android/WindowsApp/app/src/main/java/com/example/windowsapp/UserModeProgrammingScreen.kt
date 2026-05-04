@@ -66,6 +66,14 @@ fun UserModeProgrammingScreen(navController: NavController) {
         HackerButton("WINSOCK") { navController.navigate("user_winsock") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("WRITING A SERVICE") { navController.navigate("user_writing_service") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("IO COMPLETION PORT\nAND ASYNC OPS") { navController.navigate("user_io_completion_port") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("UI PROGRAMMING") { navController.navigate("user_ui_programming") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("MEMORY ALLOCATION") { navController.navigate("user_memory_allocation") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("CALLING CONVENTIONS") { navController.navigate("user_calling_conventions") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

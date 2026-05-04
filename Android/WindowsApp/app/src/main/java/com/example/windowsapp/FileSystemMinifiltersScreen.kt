@@ -51,6 +51,24 @@ fun FileSystemMinifiltersScreen(navController: NavController) {
             fontSize = 14.sp
         )
 
+        Spacer(modifier = Modifier.height(24.dp))
+
+        HackerButton("HISTORY AND OVERVIEW") { navController.navigate("kernel_fsmf_history") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("ALTITUDE") { navController.navigate("kernel_fsmf_altitude") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("BASIC MINIFILTER") { navController.navigate("kernel_fsmf_basic") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("PRE AND POST OPERATION") { navController.navigate("kernel_fsmf_pre_post") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("WHAT IS THE RAW DISK?") { navController.navigate("kernel_fsmf_raw_disk") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("NAMED PIPES") { navController.navigate("kernel_fsmf_named_pipes") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("MUP FS") { navController.navigate("kernel_fsmf_mup") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("REPARSE POINT") { navController.navigate("kernel_fsmf_reparse_point") }
+
         Spacer(modifier = Modifier.height(32.dp))
 
         HackerButton("< BACK") { navController.popBackStack() }

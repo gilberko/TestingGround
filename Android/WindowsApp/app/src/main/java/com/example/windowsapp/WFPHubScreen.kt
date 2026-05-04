@@ -62,6 +62,8 @@ fun WFPHubScreen(navController: NavController) {
         HackerButton("FLOWS") { navController.navigate("kernel_wfp_flows") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("ALE LAYERS") { navController.navigate("kernel_wfp_ale_layers") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("RAW SOCKETS") { navController.navigate("kernel_wfp_raw_sockets") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

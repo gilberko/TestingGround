@@ -65,6 +65,20 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_bugchecks") { BugChecksAndDriverVerifierScreen(navController) }
                     composable("advanced_memory_paging") { MemoryAndPagingScreen(navController) }
                     composable("advanced_dlls") { DLLsScreen(navController) }
+                    composable("user_io_completion_port") { IOCompletionPortScreen(navController) }
+                    composable("user_ui_programming") { UIProgrammingScreen(navController) }
+                    composable("user_memory_allocation") { UserMemoryAllocationScreen(navController) }
+                    composable("kernel_fsmf_history") { FSMFHistoryScreen(navController) }
+                    composable("kernel_fsmf_altitude") { FSMFAltitudeScreen(navController) }
+                    composable("kernel_fsmf_basic") { FSMFBasicScreen(navController) }
+                    composable("kernel_fsmf_pre_post") { FSMFPrePostScreen(navController) }
+                    composable("kernel_fsmf_raw_disk") { FSMFRawDiskScreen(navController) }
+                    composable("kernel_fsmf_named_pipes") { FSMFNamedPipesScreen(navController) }
+                    composable("kernel_fsmf_mup") { FSMFMupScreen(navController) }
+                    composable("kernel_fsmf_reparse_point") { FSMFReparsePointScreen(navController) }
+                    composable("kernel_wfp_raw_sockets") { WFPRawSocketsScreen(navController) }
+                    composable("user_calling_conventions") { CallingConventionsScreen(navController) }
+                    composable("advanced_oplocks") { OpportunisticLocksScreen(navController) }
                 }
             }
         }
