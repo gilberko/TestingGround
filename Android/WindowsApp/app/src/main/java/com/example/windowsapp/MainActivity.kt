@@ -33,6 +33,11 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_nt_zw") { NtZwScreen(navController) }
                     composable("kernel_debugging") { KernelDebuggingScreen(navController) }
                     composable("kernel_simple_driver") { SimpleDriverScreen(navController) }
+                    composable("advanced_rpc_wmi") { RpcWmiScreen(navController) }
+                    composable("kernel_pnp") { PlugAndPlayScreen(navController) }
+                    composable("user_writing_dll") { WritingADllScreen(navController) }
+                    composable("advanced_pe_file") { PeFileScreen(navController) }
+                    composable("kernel_callbacks") { RegisteringForCallbacksScreen(navController) }
                 }
             }
         }

@@ -54,6 +54,10 @@ fun AdvancedTopicsScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
 
         HackerButton("SYSTEM SERVICES") { navController.navigate("advanced_system_services") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("RPC AND WMI") { navController.navigate("advanced_rpc_wmi") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("PE FILE STRUCTURE AND LOADING") { navController.navigate("advanced_pe_file") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

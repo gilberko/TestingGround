@@ -62,6 +62,10 @@ fun KernelProgrammingScreen(navController: NavController) {
         HackerButton("KERNEL DEBUGGING") { navController.navigate("kernel_debugging") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("SIMPLE DRIVER") { navController.navigate("kernel_simple_driver") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("PLUG AND PLAY") { navController.navigate("kernel_pnp") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("REGISTERING FOR CALLBACKS") { navController.navigate("kernel_callbacks") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

@@ -51,17 +51,11 @@ fun UserModeProgrammingScreen(navController: NavController) {
             fontSize = 14.sp
         )
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-        Text(
-            text = "[ COMING SOON ]",
-            color = HackerGreen,
-            fontFamily = FontFamily.Monospace,
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center
-        )
+        HackerButton("WRITING A DLL") { navController.navigate("user_writing_dll") }
 
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         HackerButton("< BACK") { navController.popBackStack() }
     }
