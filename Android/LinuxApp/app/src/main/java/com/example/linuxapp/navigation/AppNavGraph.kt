@@ -109,6 +109,7 @@ import com.example.linuxapp.screens.kernel.WritingKernelModulesHubScreen
 import com.example.linuxapp.screens.kernel.SysCallsScreen
 import com.example.linuxapp.screens.kernel.KallsymsScreen
 import com.example.linuxapp.screens.kernel.KernelAddingFilesScreen
+import com.example.linuxapp.screens.kernel.SecurityFeaturesScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -200,6 +201,7 @@ sealed class Screen(val route: String) {
     object SysCalls                   : Screen("kernel_sys_calls")
     object Kallsyms                   : Screen("kernel_kallsyms")
     object KernelAddingFiles          : Screen("kernel_adding_files")
+    object KernelSecurityFeatures     : Screen("kernel_security_features")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -274,7 +276,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDkms = { navController.navigate(Screen.KernelDkms.route) },
                 onSysCalls = { navController.navigate(Screen.SysCalls.route) },
                 onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
-                onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) }
+                onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) },
+                onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) }
             )
         }
 
@@ -604,6 +607,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelAddingFiles.route) {
             KernelAddingFilesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelSecurityFeatures.route) {
+            SecurityFeaturesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -55,7 +55,8 @@ fun KernelHubScreen(
     onDkms: () -> Unit,
     onSysCalls: () -> Unit,
     onKallsyms: () -> Unit,
-    onAddingFiles: () -> Unit
+    onAddingFiles: () -> Unit,
+    onSecurityFeatures: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -142,9 +143,15 @@ fun KernelHubScreen(
             }
             Spacer(modifier = Modifier.height(12.dp))
             KernelButton(
-                label = "Adding Files\nto Kernel",
+                label = "Adding Files\nto the Kernel",
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onAddingFiles
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            KernelButton(
+                label = "Security Features",
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onSecurityFeatures
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
