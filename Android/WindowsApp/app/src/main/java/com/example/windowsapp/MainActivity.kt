@@ -42,6 +42,12 @@ class MainActivity : ComponentActivity() {
                     composable("user_com") { ComScreen(navController) }
                     composable("how_a_debugger_works") { HowADebuggerWorksScreen(navController) }
                     composable("user_communicating_drivers") { CommunicatingWithDeviceDriversScreen(navController) }
+                    composable("kernel_filter_drivers") { FilterDriversScreen(navController) }
+                    composable("kernel_symbolic_links") { SymbolicLinksScreen(navController) }
+                    composable("kernel_objects_overview") { ObjectsOverviewScreen(navController) }
+                    composable("kernel_threads") { ThreadsScreen(navController) }
+                    composable("kernel_synchronization") { SynchronizationScreen(navController) }
+                    composable("kernel_interrupt_handling") { InterruptHandlingScreen(navController) }
                 }
             }
         }

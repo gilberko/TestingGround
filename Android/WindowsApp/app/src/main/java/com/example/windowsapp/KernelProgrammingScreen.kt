@@ -57,24 +57,36 @@ fun KernelProgrammingScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(modifier = Modifier.weight(1f)) { HackerButton("INTERNAL DATA STRUCTURES") { navController.navigate("kernel_data_structures") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("IOCTL") { navController.navigate("kernel_ioctl") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("INTERNAL DATA STRUCTURES", fontSize = 13.sp) { navController.navigate("kernel_data_structures") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IOCTL", fontSize = 13.sp) { navController.navigate("kernel_ioctl") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(modifier = Modifier.weight(1f)) { HackerButton("NT... VS ZW...") { navController.navigate("kernel_nt_zw") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("KERNEL DEBUGGING") { navController.navigate("kernel_debugging") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("NT... VS ZW...", fontSize = 13.sp) { navController.navigate("kernel_nt_zw") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("KERNEL DEBUGGING", fontSize = 13.sp) { navController.navigate("kernel_debugging") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(modifier = Modifier.weight(1f)) { HackerButton("SIMPLE DRIVER") { navController.navigate("kernel_simple_driver") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("PLUG AND PLAY") { navController.navigate("kernel_pnp") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("SIMPLE DRIVER", fontSize = 13.sp) { navController.navigate("kernel_simple_driver") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("PLUG AND PLAY", fontSize = 13.sp) { navController.navigate("kernel_pnp") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(modifier = Modifier.weight(1f)) { HackerButton("REGISTERING FOR CALLBACKS") { navController.navigate("kernel_callbacks") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("IRQL") { navController.navigate("irql") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("REGISTERING FOR CALLBACKS", fontSize = 13.sp) { navController.navigate("kernel_callbacks") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IRQL", fontSize = 13.sp) { navController.navigate("irql") } }
         }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("FILTER DRIVERS", fontSize = 13.sp) { navController.navigate("kernel_filter_drivers") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("SYMBOLIC LINKS", fontSize = 13.sp) { navController.navigate("kernel_symbolic_links") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("THREADS", fontSize = 13.sp) { navController.navigate("kernel_threads") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("SYNCHRONIZATION", fontSize = 13.sp) { navController.navigate("kernel_synchronization") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("INTERRUPT HANDLING", fontSize = 13.sp) { navController.navigate("kernel_interrupt_handling") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

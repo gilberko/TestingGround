@@ -64,6 +64,8 @@ fun InternalDataStructuresScreen(navController: NavController) {
         HackerButton("NET_BUFFER_LIST") { navController.navigate("kernel_nbl") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("PROCESSES AND THREADS") { navController.navigate("kernel_processes_threads") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("OBJECTS OVERVIEW") { navController.navigate("kernel_objects_overview") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

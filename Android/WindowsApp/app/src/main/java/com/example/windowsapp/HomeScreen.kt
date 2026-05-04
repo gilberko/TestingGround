@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.TextUnit
 import androidx.navigation.NavController
 import com.example.windowsapp.ui.theme.HackerGreen
 
@@ -65,7 +67,7 @@ fun HomeScreen(navController: NavController) {
 }
 
 @Composable
-fun HackerButton(text: String, onClick: () -> Unit) {
+fun HackerButton(text: String, fontSize: TextUnit = 15.sp, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
         border = BorderStroke(1.dp, HackerGreen),
@@ -75,13 +77,14 @@ fun HackerButton(text: String, onClick: () -> Unit) {
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .heightIn(min = 56.dp)
     ) {
         Text(
             text = "> $text",
             fontFamily = FontFamily.Monospace,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Medium
+            fontSize = fontSize,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
         )
     }
 }
