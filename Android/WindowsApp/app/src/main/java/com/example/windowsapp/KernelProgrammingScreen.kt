@@ -101,7 +101,12 @@ fun KernelProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("BUGCHECKS AND DRIVER VERIFIER", fontSize = 12.sp) { navController.navigate("kernel_bugchecks") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        HackerButton("NDIS LWF", fontSize = 12.sp) { navController.navigate("kernel_ndis_lwf") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("NDIS LWF", fontSize = 12.sp) { navController.navigate("kernel_ndis_lwf") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WSK KERNEL", fontSize = 12.sp) { navController.navigate("kernel_wsk") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

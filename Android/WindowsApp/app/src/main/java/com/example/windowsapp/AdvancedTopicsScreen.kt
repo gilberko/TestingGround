@@ -68,6 +68,14 @@ fun AdvancedTopicsScreen(navController: NavController) {
         HackerButton("DLLs") { navController.navigate("advanced_dlls") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("OPPORTUNISTIC LOCKS") { navController.navigate("advanced_oplocks") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("REGISTRY") { navController.navigate("advanced_registry") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("PAGING I/O") { navController.navigate("advanced_paging_io") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("LSASS") { navController.navigate("advanced_lsass") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("WERFAULT") { navController.navigate("advanced_werfault") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

@@ -80,6 +80,12 @@ class MainActivity : ComponentActivity() {
                     composable("user_calling_conventions") { CallingConventionsScreen(navController) }
                     composable("advanced_oplocks") { OpportunisticLocksScreen(navController) }
                     composable("kernel_ndis_lwf") { NdisLightweightFilterScreen(navController) }
+                    composable("advanced_registry") { RegistryScreen(navController) }
+                    composable("advanced_paging_io") { PagingIOScreen(navController) }
+                    composable("advanced_lsass") { LsassScreen(navController) }
+                    composable("advanced_werfault") { WerFaultScreen(navController) }
+                    composable("kernel_wsk") { WinSockKernelScreen(navController) }
+                    composable("kernel_seh") { KernelSehScreen(navController) }
                 }
             }
         }
