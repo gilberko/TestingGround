@@ -65,7 +65,8 @@ fun DialoguesHubScreen(navController: NavController) {
     ) { innerPadding ->
         val items = listOf(
             "At the Restaurant" to "dialogue_restaurant",
-            "Asking for Directions" to "dialogue_directions"
+            "Asking for Directions" to "dialogue_directions",
+            "Doctor's Appointment" to "dialogue_doctor"
         )
         Column(
             modifier = Modifier
@@ -181,6 +182,72 @@ fun DirectionsDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Asking for Directions", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DoctorAppointmentDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Doktorka", "Dobrý den. Posaďte se prosím. Co vás trápí?"),
+        DialogueLine("Pacient", "Dobrý den. Necítím se dobře. Mám horečku a zimnici, a bolí mě hlava."),
+        DialogueLine("Doktorka", "Jak vysokou horečku máte?"),
+        DialogueLine("Pacient", "Mám 39,5 stupňů. Také mě bolí svaly — záda a ramena."),
+        DialogueLine("Doktorka", "Jak dlouho máte tyto příznaky?"),
+        DialogueLine("Pacient", "Od včera večera."),
+        DialogueLine("Doktorka", "Dobře. Nechte mě vás vyšetřit."),
+        DialogueLine("Doktorka", "Pravděpodobně máte chřipku. Nic vážného, ale potřebujete odpočívat."),
+        DialogueLine("Pacient", "Mám brát nějaké léky?"),
+        DialogueLine("Doktorka", "Ano. Doporučuji prášky na snížení horečky. Jsou bez receptu — koupíte je v lékárně."),
+        DialogueLine("Pacient", "Kolikrát denně je mám brát?"),
+        DialogueLine("Doktorka", "Třikrát denně, po jídle. A pijte hodně tekutin."),
+        DialogueLine("Pacient", "Jak dlouho budu nemocný?"),
+        DialogueLine("Doktorka", "Odpočívejte několik dní. Mělo by vám být lépe do týdne."),
+        DialogueLine("Pacient", "Děkuji vám, doktorko."),
+        DialogueLine("Doktorka", "Brzy se uzdravte. Na shledanou.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Doctor", "Good day. Please sit down. What is troubling you?"),
+        DialogueLine("Patient", "Good day. I don't feel well. I have a fever and chills, and my head hurts."),
+        DialogueLine("Doctor", "How high is your fever?"),
+        DialogueLine("Patient", "I have 39.5 degrees. My muscles also ache — my back and shoulders."),
+        DialogueLine("Doctor", "How long have you had these symptoms?"),
+        DialogueLine("Patient", "Since yesterday evening."),
+        DialogueLine("Doctor", "Alright. Let me examine you."),
+        DialogueLine("Doctor", "You probably have the flu. Nothing serious, but you need to rest."),
+        DialogueLine("Patient", "Should I take any medicine?"),
+        DialogueLine("Doctor", "Yes. I recommend fever-reducing tablets. They are without prescription — you can buy them at the pharmacy."),
+        DialogueLine("Patient", "How many times a day should I take them?"),
+        DialogueLine("Doctor", "Three times a day, after meals. And drink plenty of fluids."),
+        DialogueLine("Patient", "How long will I be sick?"),
+        DialogueLine("Doctor", "Rest for a few days. You should feel better within a week."),
+        DialogueLine("Patient", "Thank you, doctor."),
+        DialogueLine("Doctor", "Get well soon. Goodbye.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Doctor's Appointment", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

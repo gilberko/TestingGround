@@ -66,6 +66,10 @@ class MainActivity : ComponentActivity() {
                 composable("dialogues") { DialoguesHubScreen(navController) }
                 composable("dialogue_restaurant") { RestaurantDialogueScreen(navController) }
                 composable("dialogue_directions") { DirectionsDialogueScreen(navController) }
+                composable("dialogue_doctor") { DoctorAppointmentDialogueScreen(navController) }
+                composable("housing") { HousingScreen(navController) }
+                composable("body_health") { BodyAndHealthScreen(navController) }
+                composable("negation") { NegationScreen(navController) }
             }
         }
     }
@@ -167,7 +171,8 @@ fun LearningHubScreen(navController: NavController) {
             "Questions" to "questions",
             "Adjectives" to "adjectives",
             "This and That" to "this_and_that",
-            "Possessive Pronouns" to "possessive_pronouns"
+            "Possessive Pronouns" to "possessive_pronouns",
+            "Negation" to "negation"
         )
         Column(
             modifier = Modifier
@@ -230,7 +235,9 @@ fun DictionaryHubScreen(navController: NavController) {
             "Countries & Languages" to "countries",
             "Vacation" to "vacation",
             "Daily Routines" to "daily_routines",
-            "Days of the Week" to "days_of_week"
+            "Days of the Week" to "days_of_week",
+            "Housing" to "housing",
+            "Body and Health" to "body_health"
         )
         Column(
             modifier = Modifier

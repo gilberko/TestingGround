@@ -51,6 +51,7 @@ fun ColorsAndMaterialsScreen(navController: NavController) {
             CMNote("Color words in Czech are adjectives and agree in gender with the noun they describe. The forms given below are masculine / feminine / neuter.")
             CMNote("Example: černý kůň (black horse, masc) — černá kočka (black cat, fem) — černé auto (black car, neut)")
             Spacer(modifier = Modifier.height(4.dp))
+            CMRow("barva", "color", "f. — the noun meaning \"color\"; the adjective forms below describe which color")
             CMRow("černý / černá / černé", "black")
             CMRow("bílý / bílá / bílé", "white")
             CMRow("zelený / zelená / zelené", "green")
