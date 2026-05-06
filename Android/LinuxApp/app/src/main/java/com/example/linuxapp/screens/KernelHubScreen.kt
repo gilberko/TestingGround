@@ -56,7 +56,8 @@ fun KernelHubScreen(
     onSysCalls: () -> Unit,
     onKallsyms: () -> Unit,
     onAddingFiles: () -> Unit,
-    onSecurityFeatures: () -> Unit
+    onSecurityFeatures: () -> Unit,
+    onNetlink: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -152,6 +153,12 @@ fun KernelHubScreen(
                 label = "Security Features",
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onSecurityFeatures
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            KernelButton(
+                label = "Netlink",
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onNetlink
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
