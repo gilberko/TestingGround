@@ -14,7 +14,9 @@
       "Bash(Sort-Object)",
       "Bash(.\\\\gradlew assembleRelease)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\" -Recurse -Force)",
-      "Bash(Select-Object -First 50)"
+      "Bash(Select-Object -First 50)",
+      "Bash(findstr /R \"@Composable\" app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\windowsapp\\\\Components.kt app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\windowsapp\\\\*.kt)",
+      "Bash(./gradlew assembleDebug)"
     ]
   }
 }

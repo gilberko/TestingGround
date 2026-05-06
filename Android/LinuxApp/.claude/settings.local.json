@@ -44,7 +44,11 @@
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew.bat assembleDebug 2>&1 | Select-Object -Last 40)",
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew.bat assembleRelease 2>&1 | Select-Object -Last 20)",
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 25)",
-      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 20)"
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 20)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleRelease 2>&1)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\" -Recurse -Directory)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\" -Recurse | Where-Object {$_.Extension -eq \".kt\"} | Select-Object -ExpandProperty FullName | Sort-Object)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; .\\\\gradlew assembleRelease 2>&1)"
     ]
   }
 }

@@ -30,7 +30,17 @@
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 5)",
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew clean assembleDebug 2>&1 | Select-Object -Last 8)",
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleRelease 2>&1 | Select-Object -Last 8)",
-      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 25)"
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; .\\\\gradlew assembleDebug 2>&1 | Select-Object -Last 25)",
+      "Bash(gradlew.bat assembleRelease)",
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\" -Directory | Where-Object { $_.Name -match \"java|jdk|jre|android\" -or $_.Name -match \"Android\" } | Select-Object Name)",
+      "PowerShell(Get-ChildItem *)",
+      "Read(//c/Program Files//**)",
+      "Read(//c/Users/gilbe/AppData/Local//**)",
+      "PowerShell(Test-Path *)",
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease 2>&1)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Recurse -Filter \"*.kt\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)"
     ]
   }
 }
