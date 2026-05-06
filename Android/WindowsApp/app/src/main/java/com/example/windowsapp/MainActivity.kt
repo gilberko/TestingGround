@@ -79,6 +79,7 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_wfp_raw_sockets") { WFPRawSocketsScreen(navController) }
                     composable("user_calling_conventions") { CallingConventionsScreen(navController) }
                     composable("advanced_oplocks") { OpportunisticLocksScreen(navController) }
+                    composable("kernel_ndis_lwf") { NdisLightweightFilterScreen(navController) }
                 }
             }
         }
