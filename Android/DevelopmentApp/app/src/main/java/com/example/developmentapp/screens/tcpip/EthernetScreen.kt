@@ -126,6 +126,42 @@ fun EthernetScreen(onBack: () -> Unit) {
                     BodyText("CSMA/CD is largely obsolete today. Full-duplex switches give each device a dedicated point-to-point link — there is no shared medium and no collisions. CSMA/CD is disabled on full-duplex links.")
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Broadcast ────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Broadcast") {
+                    BodyText("The Ethernet broadcast address is FF:FF:FF:FF:FF:FF. Every NIC on the local network segment accepts a frame with this destination — no filtering occurs in hardware.")
+                    BodyText("When a switch receives a broadcast frame it floods it out every port except the one it arrived on. Every device on the LAN sees it.")
+                    BodyText("Common uses:")
+                    BodyText("  • ARP requests — \"Who has IP 192.168.1.5?\" sent to FF:FF:FF:FF:FF:FF")
+                    BodyText("  • DHCP Discover — a new client with no IP broadcasts to find a DHCP server")
+                    BodyText("  • Legacy service discovery (NetBIOS, some routing protocols)")
+                    BodyText("A broadcast domain is the set of all devices that receive a given broadcast. Routers do not forward Ethernet broadcasts — they terminate the broadcast domain at each network boundary. Switches extend a broadcast domain; routers divide it.")
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Multicast ────────────────────────────────────────────────
+            item {
+                SectionCard(title = "Multicast") {
+                    BodyText("A multicast MAC address is identified by the LSB (least significant bit) of the first byte being 1. This is the Individual/Group bit — 0 = unicast, 1 = multicast or broadcast.")
+                    CodeBlock(
+                        "Unicast:   00:1A:2B:3C:4D:5E   (first byte 0x00 → LSB = 0)\n" +
+                        "Broadcast: FF:FF:FF:FF:FF:FF   (all ones — a special case of multicast)\n" +
+                        "Multicast: 01:00:5E:xx:xx:xx   (IPv4 multicast, first byte 0x01 → LSB = 1)\n" +
+                        "           33:33:xx:xx:xx:xx   (IPv6 multicast)"
+                    )
+                    BodyText("IPv4 multicast frames use the prefix 01:00:5E:xx:xx:xx. The lower 23 bits of the destination MAC come from the lower 23 bits of the IPv4 multicast group address (e.g. 224.0.0.251 → 01:00:5E:00:00:FB).")
+                    BodyText("IPv6 multicast frames use the prefix 33:33:xx:xx:xx:xx, with the last 32 bits copied from the IPv6 multicast address.")
+                    BodyText("Unlike broadcast, a NIC only receives a multicast frame if it has joined that multicast group. The NIC maintains a multicast filter table in hardware.")
+                    BodyText("How a NIC joins a multicast group:")
+                    BodyText("  • At the IP level: calling setsockopt(IP_ADD_MEMBERSHIP) tells the kernel to join an IP multicast group. The kernel computes the corresponding Ethernet multicast MAC and programs it into the NIC's filter table via the driver.")
+                    BodyText("  • On Linux, you can also add a multicast MAC directly: ip maddr add 01:00:5e:00:00:fb dev eth0")
+                    BodyText("Leaving a group: setsockopt(IP_DROP_MEMBERSHIP) triggers the kernel to remove the entry from the NIC filter. Directly: ip maddr del 01:00:5e:00:00:fb dev eth0.")
+                    BodyText("Hardware filter limits: a NIC's multicast filter table has a finite number of entries. If more groups are joined than the table can hold, the driver falls back to allmulticast mode — the NIC accepts all multicast frames and lets the kernel software-filter the ones the application actually wants. Not all NICs support hardware multicast filtering; low-end and embedded adapters may always use software filtering.")
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

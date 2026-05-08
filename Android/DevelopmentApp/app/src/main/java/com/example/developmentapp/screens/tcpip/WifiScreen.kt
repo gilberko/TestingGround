@@ -207,6 +207,42 @@ fun WifiScreen(onBack: () -> Unit) {
                     BodyText("Benefits of Enterprise mode: each user has individual credentials; compromising one user's password does not affect others; credentials can be revoked centrally; audit trail per user. Standard for corporate and university networks.")
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            // ── Promiscuous Mode ──────────────────────────────────────────
+            item {
+                SectionCard(title = "Promiscuous Mode") {
+                    BodyText("Normal NIC operation: the hardware filter accepts only three kinds of frames:")
+                    BodyText("  1. Frames addressed to the NIC's own MAC address")
+                    BodyText("  2. Broadcast frames (FF:FF:FF:FF:FF:FF)")
+                    BodyText("  3. Multicast frames for groups the NIC has joined")
+                    BodyText("All other frames are silently dropped in hardware before the OS ever sees them.")
+                    BodyText("Promiscuous mode: the hardware filter is disabled. The NIC passes every frame it physically receives up to the OS, regardless of the destination MAC. Software (Wireshark, tcpdump) can then inspect all traffic.")
+                    BodyText("Limitation on switched networks: a switch only sends a frame to the port where the destination MAC lives. In promiscuous mode you still only see your own unicast traffic plus broadcasts and multicasts — not traffic flowing between two other hosts. To capture all switch traffic you need a mirror port (SPAN port) configured on the switch.")
+                    BodyText("On WiFi — promiscuous mode vs monitor mode:")
+                    BodyText("  • Promiscuous mode on WiFi: receive all 802.11 data frames within your associated BSS (your own network). Useful but limited.")
+                    BodyText("  • Monitor mode (RFMON): the card leaves associated mode entirely and becomes a passive radio receiver. It captures all raw 802.11 frames on the current channel — data, management (beacons, probe requests, auth), and control frames — from any SSID on the channel. This is what airodump-ng, Wireshark, and tcpdump use for full wireless packet capture.")
+                    BodyText("Do all adapters support it?")
+                    BodyText("  • Wired Ethernet: supported by virtually all modern NICs.")
+                    BodyText("  • WiFi monitor mode: chipset- and driver-dependent. Widely supported: Atheros, Ralink/MediaTek, many Intel chipsets (iwlwifi). Often not supported or limited: many Broadcom and Realtek consumer adapters. Verify compatibility before buying a WiFi adapter for security research.")
+                    CodeBlock(
+                        "# Wired promiscuous mode (Linux)\n" +
+                        "ip link set eth0 promisc on\n" +
+                        "\n" +
+                        "# WiFi monitor mode (Linux)\n" +
+                        "ip link set wlan0 down\n" +
+                        "iw dev wlan0 set type monitor\n" +
+                        "ip link set wlan0 up\n" +
+                        "\n" +
+                        "# Programmatic (Linux): opening AF_PACKET / SOCK_RAW\n" +
+                        "# automatically enables promiscuous mode on the interface.\n" +
+                        "\n" +
+                        "# Windows: WinPcap / Npcap (used by Wireshark) handles it\n" +
+                        "# transparently when opening a capture device."
+                    )
+                    BodyText("Use cases: packet capture and protocol analysis (Wireshark, tcpdump), network troubleshooting, security auditing, intrusion detection systems (IDS/IPS), WiFi auditing tools (airodump-ng, kismet).")
+                }
+            }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }
