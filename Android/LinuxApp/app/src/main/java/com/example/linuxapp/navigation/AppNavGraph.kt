@@ -114,6 +114,10 @@ import com.example.linuxapp.screens.kernel.NetlinkScreen
 import com.example.linuxapp.screens.usermode.UserModeCommunicatingWithKernelScreen
 import com.example.linuxapp.screens.kernel.KernelNetworkingScreen
 import com.example.linuxapp.screens.kernel.KernelFileAccessScreen
+import com.example.linuxapp.screens.kernel.LinuxDeviceModelScreen
+import com.example.linuxapp.screens.kernel.ExportingKernelModuleApiScreen
+import com.example.linuxapp.screens.kernel.AlternativeModuleCommScreen
+import com.example.linuxapp.screens.kernel.NotifierChainsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -210,6 +214,10 @@ sealed class Screen(val route: String) {
     object UsermodeCommunicatingWithKernel : Screen("usermode_communicating_with_kernel")
     object KernelNetworking            : Screen("kernel_networking")
     object KernelFileAccess            : Screen("kernel_file_access")
+    object LinuxDeviceModel            : Screen("linux_device_model")
+    object ExportingKernelModuleApi    : Screen("exporting_kernel_module_api")
+    object AlternativeModuleComm       : Screen("alternative_module_comm")
+    object NotifierChains              : Screen("notifier_chains")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -285,10 +293,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onSysCalls = { navController.navigate(Screen.SysCalls.route) },
                 onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
                 onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) },
-                onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) },
-                onNetlink = { navController.navigate(Screen.KernelNetlink.route) },
-                onNetworking = { navController.navigate(Screen.KernelNetworking.route) },
-                onFileAccess = { navController.navigate(Screen.KernelFileAccess.route) }
+                onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) }
             )
         }
 
@@ -608,7 +613,14 @@ fun AppNavGraph(navController: NavHostController) {
                 onKernelMemoryAccess = { navController.navigate(Screen.KernelMemoryAccess.route) },
                 onKernelThreading    = { navController.navigate(Screen.KernelThreading.route) },
                 onPendOperations     = { navController.navigate(Screen.KernelPendOperations.route) },
-                onDeferredWork       = { navController.navigate(Screen.KernelDeferredWork.route) }
+                onDeferredWork       = { navController.navigate(Screen.KernelDeferredWork.route) },
+                onNetlink            = { navController.navigate(Screen.KernelNetlink.route) },
+                onNetworking         = { navController.navigate(Screen.KernelNetworking.route) },
+                onFileAccess         = { navController.navigate(Screen.KernelFileAccess.route) },
+                onLinuxDeviceModel   = { navController.navigate(Screen.LinuxDeviceModel.route) },
+                onExportingApi       = { navController.navigate(Screen.ExportingKernelModuleApi.route) },
+                onAltModuleComm      = { navController.navigate(Screen.AlternativeModuleComm.route) },
+                onNotifierChains     = { navController.navigate(Screen.NotifierChains.route) }
             )
         }
         composable(Screen.SysCalls.route) {
@@ -634,6 +646,18 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelFileAccess.route) {
             KernelFileAccessScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxDeviceModel.route) {
+            LinuxDeviceModelScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ExportingKernelModuleApi.route) {
+            ExportingKernelModuleApiScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AlternativeModuleComm.route) {
+            AlternativeModuleCommScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.NotifierChains.route) {
+            NotifierChainsScreen(onBack = { navController.popBackStack() })
         }
     }
 }

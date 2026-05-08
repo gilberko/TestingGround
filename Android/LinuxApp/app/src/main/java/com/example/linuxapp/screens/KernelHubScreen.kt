@@ -56,10 +56,7 @@ fun KernelHubScreen(
     onSysCalls: () -> Unit,
     onKallsyms: () -> Unit,
     onAddingFiles: () -> Unit,
-    onSecurityFeatures: () -> Unit,
-    onNetlink: () -> Unit,
-    onNetworking: () -> Unit,
-    onFileAccess: () -> Unit
+    onSecurityFeatures: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -152,15 +149,6 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "Security Features", modifier = Modifier.weight(1f), onClick = onSecurityFeatures)
-                KernelButton(label = "Netlink", modifier = Modifier.weight(1f), onClick = onNetlink)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                KernelButton(label = "Networking", modifier = Modifier.weight(1f), onClick = onNetworking)
-                KernelButton(label = "File Access", modifier = Modifier.weight(1f), onClick = onFileAccess)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

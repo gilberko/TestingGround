@@ -46,7 +46,14 @@ fun WritingKernelModulesHubScreen(
     onKernelMemoryAccess: () -> Unit,
     onKernelThreading: () -> Unit,
     onPendOperations: () -> Unit,
-    onDeferredWork: () -> Unit
+    onDeferredWork: () -> Unit,
+    onNetlink: () -> Unit,
+    onNetworking: () -> Unit,
+    onFileAccess: () -> Unit,
+    onLinuxDeviceModel: () -> Unit,
+    onExportingApi: () -> Unit,
+    onAltModuleComm: () -> Unit,
+    onNotifierChains: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -100,6 +107,37 @@ fun WritingKernelModulesHubScreen(
                 ) {
                     WritingKernelModulesButton(label = "How To Pend\nOperations", modifier = Modifier.weight(1f), onClick = onPendOperations)
                     WritingKernelModulesButton(label = "Interrupt Handling\n& Deferred Work", modifier = Modifier.weight(1f), onClick = onDeferredWork)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    WritingKernelModulesButton(label = "Netlink", modifier = Modifier.weight(1f), onClick = onNetlink)
+                    WritingKernelModulesButton(label = "Networking", modifier = Modifier.weight(1f), onClick = onNetworking)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    WritingKernelModulesButton(label = "File Access", modifier = Modifier.weight(1f), onClick = onFileAccess)
+                    WritingKernelModulesButton(label = "Linux Device\nModel", modifier = Modifier.weight(1f), onClick = onLinuxDeviceModel)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    WritingKernelModulesButton(label = "Exporting Kernel\nModule API", modifier = Modifier.weight(1f), onClick = onExportingApi)
+                    WritingKernelModulesButton(label = "Alt. Module-to-\nModule Comm.", modifier = Modifier.weight(1f), onClick = onAltModuleComm)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    WritingKernelModulesButton(label = "Notifier Chains", modifier = Modifier.weight(1f), onClick = onNotifierChains)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
