@@ -2,9 +2,12 @@ package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -53,27 +56,32 @@ fun UserModeProgrammingScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        HackerButton("WRITING A DLL") { navController.navigate("user_writing_dll") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("COM") { navController.navigate("user_com") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("COMMUNICATING WITH DEVICE DRIVERS") { navController.navigate("user_communicating_drivers") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("IPC") { navController.navigate("user_ipc") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("THREADING AND SYNCHRONIZATION") { navController.navigate("user_threading_sync") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("WINSOCK") { navController.navigate("user_winsock") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("WRITING A SERVICE") { navController.navigate("user_writing_service") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("IO COMPLETION PORT\nAND ASYNC OPS") { navController.navigate("user_io_completion_port") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("UI PROGRAMMING") { navController.navigate("user_ui_programming") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("MEMORY ALLOCATION") { navController.navigate("user_memory_allocation") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("CALLING CONVENTIONS") { navController.navigate("user_calling_conventions") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WRITING A DLL", fontSize = 12.sp) { navController.navigate("user_writing_dll") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("COM", fontSize = 12.sp) { navController.navigate("user_com") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("COMMUNICATING WITH DEVICE DRIVERS", fontSize = 11.sp) { navController.navigate("user_communicating_drivers") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IPC", fontSize = 12.sp) { navController.navigate("user_ipc") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("THREADING AND SYNCHRONIZATION", fontSize = 11.sp) { navController.navigate("user_threading_sync") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WINSOCK", fontSize = 12.sp) { navController.navigate("user_winsock") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WRITING A SERVICE", fontSize = 12.sp) { navController.navigate("user_writing_service") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("IO COMPLETION PORT\nAND ASYNC OPS", fontSize = 11.sp) { navController.navigate("user_io_completion_port") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("UI PROGRAMMING", fontSize = 12.sp) { navController.navigate("user_ui_programming") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("MEMORY ALLOCATION", fontSize = 12.sp) { navController.navigate("user_memory_allocation") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("CALLING CONVENTIONS", fontSize = 12.sp) { navController.navigate("user_calling_conventions") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

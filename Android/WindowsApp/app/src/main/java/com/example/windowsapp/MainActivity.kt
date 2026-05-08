@@ -86,6 +86,12 @@ class MainActivity : ComponentActivity() {
                     composable("advanced_werfault") { WerFaultScreen(navController) }
                     composable("kernel_wsk") { WinSockKernelScreen(navController) }
                     composable("kernel_seh") { KernelSehScreen(navController) }
+                    composable("kernel_networking") { NetworkingHubScreen(navController) }
+                    composable("kernel_ndis_miniport") { NdisMiniportScreen(navController) }
+                    composable("advanced_startup") { StartupScreen(navController) }
+                    composable("advanced_elam") { ElamScreen(navController) }
+                    composable("advanced_protected_ppl") { ProtectedPplScreen(navController) }
+                    composable("advanced_dacl_sddl") { DaclSddlScreen(navController) }
                 }
             }
         }

@@ -88,7 +88,7 @@ fun KernelProgrammingScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("INTERRUPT HANDLING", fontSize = 13.sp) { navController.navigate("kernel_interrupt_handling") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("WFP", fontSize = 13.sp) { navController.navigate("kernel_wfp") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("NETWORKING", fontSize = 13.sp) { navController.navigate("kernel_networking") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -99,11 +99,6 @@ fun KernelProgrammingScreen(navController: NavController) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("MEMORY ALLOCATION", fontSize = 12.sp) { navController.navigate("kernel_memory_allocation") } }
             Box(modifier = Modifier.weight(1f)) { HackerButton("BUGCHECKS AND DRIVER VERIFIER", fontSize = 12.sp) { navController.navigate("kernel_bugchecks") } }
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(modifier = Modifier.weight(1f)) { HackerButton("NDIS LWF", fontSize = 12.sp) { navController.navigate("kernel_ndis_lwf") } }
-            Box(modifier = Modifier.weight(1f)) { HackerButton("WSK KERNEL", fontSize = 12.sp) { navController.navigate("kernel_wsk") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
         HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") }

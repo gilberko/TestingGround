@@ -2,9 +2,12 @@ package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -53,29 +56,45 @@ fun AdvancedTopicsScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        HackerButton("SYSTEM SERVICES") { navController.navigate("advanced_system_services") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("RPC AND WMI") { navController.navigate("advanced_rpc_wmi") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("PE FILE STRUCTURE AND LOADING") { navController.navigate("advanced_pe_file") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("HOW A DEBUGGER WORKS") { navController.navigate("how_a_debugger_works") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("ACCESS TOKENS AND IMPERSONATION") { navController.navigate("advanced_access_tokens") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("MEMORY AND PAGING") { navController.navigate("advanced_memory_paging") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("DLLs") { navController.navigate("advanced_dlls") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("OPPORTUNISTIC LOCKS") { navController.navigate("advanced_oplocks") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("REGISTRY") { navController.navigate("advanced_registry") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("PAGING I/O") { navController.navigate("advanced_paging_io") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("LSASS") { navController.navigate("advanced_lsass") }
-        Spacer(modifier = Modifier.height(16.dp))
-        HackerButton("WERFAULT") { navController.navigate("advanced_werfault") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("SYSTEM SERVICES", fontSize = 12.sp) { navController.navigate("advanced_system_services") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("RPC AND WMI", fontSize = 12.sp) { navController.navigate("advanced_rpc_wmi") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("PE FILE STRUCTURE\nAND LOADING", fontSize = 12.sp) { navController.navigate("advanced_pe_file") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("HOW A DEBUGGER WORKS", fontSize = 12.sp) { navController.navigate("how_a_debugger_works") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("ACCESS TOKENS AND IMPERSONATION", fontSize = 11.sp) { navController.navigate("advanced_access_tokens") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("MEMORY AND PAGING", fontSize = 12.sp) { navController.navigate("advanced_memory_paging") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("DLLs", fontSize = 12.sp) { navController.navigate("advanced_dlls") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("OPPORTUNISTIC LOCKS", fontSize = 12.sp) { navController.navigate("advanced_oplocks") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("REGISTRY", fontSize = 12.sp) { navController.navigate("advanced_registry") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("PAGING I/O", fontSize = 12.sp) { navController.navigate("advanced_paging_io") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("LSASS", fontSize = 12.sp) { navController.navigate("advanced_lsass") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WERFAULT", fontSize = 12.sp) { navController.navigate("advanced_werfault") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("STARTUP", fontSize = 12.sp) { navController.navigate("advanced_startup") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("ELAM", fontSize = 12.sp) { navController.navigate("advanced_elam") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("PROTECTED AND PPL", fontSize = 12.sp) { navController.navigate("advanced_protected_ppl") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("DACL AND SDDL", fontSize = 12.sp) { navController.navigate("advanced_dacl_sddl") } }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
