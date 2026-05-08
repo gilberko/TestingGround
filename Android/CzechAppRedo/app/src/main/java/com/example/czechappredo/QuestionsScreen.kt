@@ -90,6 +90,31 @@ fun QuestionsScreen(navController: NavController) {
             QSExample("Pro koho je to?", "Who is it for?")
             QSExample("Na jak dlouho jdeš?", "For how long are you going?")
 
+            QSSection("At What Time (V kolik hodin?)")
+            QSRow("V kolik hodin?", "At what time? / At what hour?")
+            QSNote("'v' (at) + kolik (how many) + hodin (hours, genitive plural). Asks for a specific clock time. 'v' becomes 've' before consonant clusters.")
+            QSExample("V kolik hodin odjíždí vlak?", "At what time does the train leave?")
+            QSExample("V kolik hodin odlétá letadlo?", "At what time does the plane depart?")
+            QSExample("V kolik hodin začíná film?", "At what time does the film start?")
+            QSExample("V osm hodin.", "At eight o'clock.")
+            QSExample("Ve tři hodiny.", "At three o'clock. ('v' → 've' before 'tř')")
+
+            QSSection("What Kind of (Jaký / Jaká / Jaké)")
+            QSNote("Asks about the nature or type of something. Agrees with noun gender: jaký (m.), jaká (f.), jaké (n.).")
+            QSRow("Jaký dort to je?", "What kind of cake is it? (dort = m.)")
+            QSRow("Jaké auto to je?", "What kind of car is it? (auto = n.)")
+            QSRow("Jaká polévka to je?", "What kind of soup is it? (polévka = f.)")
+            QSRow("Jaká je to restaurace?", "What kind of restaurant is it? / What is the restaurant like?")
+            QSNote("Jaký can also ask about quality: Jaké to bylo? = How was it?")
+
+            QSSection("Which (Který / Která / Které)")
+            QSNote("Selects from a known or visible set. Agrees with noun gender: který (m.), která (f.), které (n.).")
+            QSRow("Které auto je vaše?", "Which car is yours? (auto = n.)")
+            QSRow("Které z těch aut je vaše?", "Which of those cars is yours? (aut = genitive plural)")
+            QSRow("Který kabát si vezmeš?", "Which coat will you take? (kabát = m.)")
+            QSRow("Která ulice je to?", "Which street is it? (ulice = f.)")
+            QSNote("Distinction: Jaký asks 'what kind/type?'; Který asks 'which specific one from a set?'")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

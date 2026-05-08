@@ -66,6 +66,26 @@ fun TransportationScreen(navController: NavController) {
             TRRow("člun", "boat", "m.")
             TRRow("trajekt / přívoz", "ferry", "m. / m. — trajekt is a large vehicle ferry; přívoz is a small river crossing")
 
+            TRSection("City Transit")
+            TRRow("tramvaj", "tram", "f.")
+            TRRow("metro", "metro / subway", "n.")
+            TRRow("trolejbus", "trolleybus", "m.")
+
+            TRSection("Stations & Travel Info")
+            TRRow("nádraží / vlakové nádraží", "train station", "n.")
+            TRRow("autobusová zastávka", "bus stop", "f.")
+            TRRow("autobusové nádraží", "bus station", "n.")
+            TRRow("letiště", "airport", "n.")
+            TRRow("nástupiště", "platform / track", "n. — the boarding area at a train or metro station")
+            TRRow("jízdní řád", "timetable", "m. — jízdní = travel/riding, řád = schedule")
+            TRRow("přestupní uzel", "transit hub", "m. — a station where multiple lines connect; přestupovat = to transfer")
+
+            TRSection("Documents")
+            TRRow("řidičský průkaz", "driver's license", "m. — průkaz = card/document; řidičský = driving")
+            TRRow("technický průkaz (malý TP)", "vehicle registration card", "m. — the small document kept in the car at all times")
+            TRRow("osvědčení o technické způsobilosti (velký TP)", "roadworthiness certificate", "n. — the larger technical document")
+            TRNote("Both are colloquially called 'technický průkaz' or 'TP'; malý vs. velký distinguishes them in formal usage.")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -101,4 +121,15 @@ private fun TRRow(czech: String, english: String, note: String = "") {
             )
         }
     }
+}
+
+@Composable
+private fun TRNote(text: String) {
+    Text(
+        text = text,
+        fontSize = 13.sp,
+        fontStyle = FontStyle.Italic,
+        color = Color.Gray,
+        modifier = Modifier.padding(vertical = 2.dp)
+    )
 }

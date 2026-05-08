@@ -75,6 +75,7 @@ fun FoodScreen(navController: NavController) {
             FORow("špízy", "skewers", "pl., m.")
 
             FOSection("Vegetables")
+            FORow("zelenina", "vegetables (general)", "f. — collective noun: all vegetables collectively")
             FORow("okurka", "cucumber", "f.")
             FORow("salát", "salad", "m.")
             FORow("hlávkový salát", "lettuce", "m.")
@@ -88,6 +89,7 @@ fun FoodScreen(navController: NavController) {
             FORow("zelený salát", "green salad / lettuce", "salát = salad or lettuce depending on context")
 
             FOSection("Fruits")
+            FORow("ovoce", "fruit (general)", "n. — collective noun, always singular: ovoce je čerstvé = the fruit is fresh")
             FORow("citron", "lemon", "m.")
             FORow("pomeranč", "orange", "m.")
             FORow("jahody", "strawberries", "pl., f.")
@@ -111,6 +113,8 @@ fun FoodScreen(navController: NavController) {
             FORow("kopr", "dill", "m.")
             FORow("koriandr", "coriander", "m.")
             FORow("omáčka", "sauce", "f.")
+            FORow("koření", "seasoning / spices (general)", "n. — collective noun for all spices and seasonings")
+            FORow("sojová omáčka", "soy sauce", "f.")
 
             FOSection("Utensils & Tableware")
             FORow("vidlička", "fork", "f.")
@@ -156,6 +160,7 @@ fun FoodScreen(navController: NavController) {
             FOSection("Popular Dishes")
             FORow("vegetariánská pizza", "vegetarian pizza")
             FORow("italské těstoviny", "Italian pasta", "těstoviny = pasta (always plural)")
+            FORow("grilované kuře", "grilled chicken", "grilované = grilled (adj, n.); kuře = chicken (n.)")
 
             FOSection("Desserts & Sweets")
             FORow("zmrzlina", "ice cream", "f.")
@@ -166,6 +171,10 @@ fun FoodScreen(navController: NavController) {
             FORow("dezert", "dessert", "m. — general term")
             FORow("moučník", "sweet dish / dessert", "m. — traditional Czech term; broader than dezert")
             FORow("koláč", "Czech pastry / kolach", "m. — small round pastry with sweet filling; not the same as dort")
+            FORow("vanilkový dort", "vanilla cake", "m.")
+            FORow("jahodový dort", "strawberry cake", "m.")
+            FORow("cheesecake / tvarohový koláč", "cheesecake", "m. — 'cheesecake' widely used; tvarohový = cream-cheese style")
+            FORow("marshmallow", "marshmallow", "n. — borrowed word; pl. marshmallows")
 
             FOSection("Ordering")
             FORow("dám si", "I'll have (ordering)", "literally 'I'll give myself'; see Basic Words for full explanation")
@@ -184,12 +193,34 @@ fun FoodScreen(navController: NavController) {
             FORow("příliš pikantní", "too spicy")
             FORow("příliš kyselé", "too sour")
             FORow("příliš", "too / too much", "used before adjectives: příliš sladké = too sweet")
+            FORow("suchý / suchá / suché", "dry")
+            FORow("šťavnatý / šťavnatá / šťavnaté", "juicy / moist")
+            FORow("křehký / křehká / křehké", "tender")
+            FORow("grilovaný / grilovaná / grilované", "grilled")
+
+            FOSection("Food Questions & Recommendations")
+            FORow("Co doporučujete?", "What do you recommend?")
+            FORow("Který dort doporučujete?", "Which cake do you recommend?")
+            FORow("Jaký je to dort?", "What kind of cake is it?")
+            FORow("Je to chutné?", "Is it tasty?")
+            FORow("Jak je propečený steak?", "What is the doneness of the steak?", "propečení = degree of doneness; propečený = cooked through")
+
+            FOSection("Steak Doneness (Propečení)")
+            FORow("dobře propečený", "well done", "fully cooked through")
+            FORow("středně propečený", "medium-well", "středně = halfway/medium")
+            FORow("středně krvavý", "medium", "krvavý = bloody; středně = medium")
+            FORow("krvavý / málo propečený", "rare", "krvavý = bloody; málo = little/barely")
+            FONote("In Czech restaurants the English terms 'medium' and 'rare' are also widely understood.")
 
             FOSection("Allergens & Dietary")
             FORow("alergeny", "allergens", "pl., m.")
             FORow("lepek", "gluten", "m.")
             FORow("sladidlo", "sweetener", "n.")
             FORow("umělé sladidlo", "artificial sweetener", "n.")
+            FORow("Jsem alergický / alergická na mléko.", "I am allergic to milk.", "alergický = m.; alergická = f.")
+            FORow("Jsem alergický / alergická na ořechy.", "I am allergic to nuts.", "ořechy = accusative plural of ořech (nut)")
+            FORow("Obsahuje to ořechy?", "Does it contain nuts?", "obsahuje = 3rd sg. of obsahovat (to contain)")
+            FORow("Je to bez lepku?", "Is it gluten free?", "bez + genitive: bez lepku")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -226,4 +257,15 @@ private fun FORow(czech: String, english: String, note: String = "") {
             )
         }
     }
+}
+
+@Composable
+private fun FONote(text: String) {
+    Text(
+        text = text,
+        fontSize = 13.sp,
+        fontStyle = FontStyle.Italic,
+        color = Color.Gray,
+        modifier = Modifier.padding(vertical = 2.dp)
+    )
 }

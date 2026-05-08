@@ -66,7 +66,9 @@ fun DialoguesHubScreen(navController: NavController) {
         val items = listOf(
             "At the Restaurant" to "dialogue_restaurant",
             "Asking for Directions" to "dialogue_directions",
-            "Doctor's Appointment" to "dialogue_doctor"
+            "Doctor's Appointment" to "dialogue_doctor",
+            "Introducing Yourself" to "dialogue_intro",
+            "At the Supermarket" to "dialogue_supermarket"
         )
         Column(
             modifier = Modifier
@@ -248,6 +250,122 @@ fun DoctorAppointmentDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Doctor's Appointment", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IntroducingYourselfDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Tomáš", "Dobrý den. Jmenuji se Tomáš. Jak se jmenujete?"),
+        DialogueLine("Jana", "Dobrý den, Tomáši. Já jsem Jana. Odkud jste?"),
+        DialogueLine("Tomáš", "Jsem z Prahy. Narodil jsem se tady. A vy, odkud jste?"),
+        DialogueLine("Jana", "Jsem z Brna. Čím se zabýváte?"),
+        DialogueLine("Tomáš", "Pracuji jako programátor. A co vy?"),
+        DialogueLine("Jana", "Já pracuji jako učitelka. Jak dlouho jste v Praze?"),
+        DialogueLine("Tomáš", "Celý život. Je mi třicet dva let. A vám?"),
+        DialogueLine("Jana", "Mně je dvacet devět let. Máte nějaké koníčky?"),
+        DialogueLine("Tomáš", "Rád čtu knihy a chodím na výlety. A vy?"),
+        DialogueLine("Jana", "Mám ráda hudbu a sport. Hraju tenis."),
+        DialogueLine("Tomáš", "To je skvělé. Těší mě."),
+        DialogueLine("Jana", "I mě těší. Na shledanou, Tomáši.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Tomáš", "Good day. My name is Tomáš. What is your name?"),
+        DialogueLine("Jana", "Good day, Tomáš. I am Jana. Where are you from?"),
+        DialogueLine("Tomáš", "I am from Prague. I was born here. And you, where are you from?"),
+        DialogueLine("Jana", "I am from Brno. What do you do for work?"),
+        DialogueLine("Tomáš", "I work as a programmer. And you?"),
+        DialogueLine("Jana", "I work as a teacher. How long have you been in Prague?"),
+        DialogueLine("Tomáš", "My whole life. I am thirty-two years old. And you?"),
+        DialogueLine("Jana", "I am twenty-nine years old. Do you have any hobbies?"),
+        DialogueLine("Tomáš", "I enjoy reading books and going on trips. And you?"),
+        DialogueLine("Jana", "I like music and sport. I play tennis."),
+        DialogueLine("Tomáš", "That is great. Nice to meet you."),
+        DialogueLine("Jana", "Nice to meet you too. Goodbye, Tomáš.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Introducing Yourself", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SupermarketDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Zákazník", "Dobrý den. Hledám zeleninu na polévku. Kde najdu mrkev a celer?"),
+        DialogueLine("Pracovnice", "Dobrý den. Zelenina je v zadní části obchodu, ve třetí uličce."),
+        DialogueLine("Zákazník", "Děkuji. A kde jsou koření a bylinky?"),
+        DialogueLine("Pracovnice", "Koření najdete v páté uličce, vedle těstovin."),
+        DialogueLine("Zákazník", "Skvělé. Prodáváte taky potraviny bez lepku? Hledám bezlepkové těstoviny."),
+        DialogueLine("Pracovnice", "Ano. Bezlepkové produkty jsou ve druhé uličce, vedle mléčných výrobků."),
+        DialogueLine("Zákazník", "A máte sekci pro dietní nebo keto produkty?"),
+        DialogueLine("Pracovnice", "Ano, keto a dietní produkty jsou na konci druhé uličky, napravo."),
+        DialogueLine("Zákazník", "Výborně. Ještě jedna otázka — kde jsou čerstvé bylinky, třeba petržel?"),
+        DialogueLine("Pracovnice", "Čerstvé bylinky jsou u zeleniny, vedle rajčat."),
+        DialogueLine("Zákazník", "Moc děkuji za pomoc."),
+        DialogueLine("Pracovnice", "Rádo se stalo. Přeji hezký den.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Customer", "Good day. I am looking for vegetables for soup. Where can I find carrot and celery?"),
+        DialogueLine("Shop Worker", "Good day. The vegetables are at the back of the store, in the third aisle."),
+        DialogueLine("Customer", "Thank you. And where are the spices and herbs?"),
+        DialogueLine("Shop Worker", "You will find spices in the fifth aisle, next to the pasta."),
+        DialogueLine("Customer", "Great. Do you also sell gluten-free food? I am looking for gluten-free pasta."),
+        DialogueLine("Shop Worker", "Yes. Gluten-free products are in the second aisle, next to the dairy products."),
+        DialogueLine("Customer", "And do you have a section for dietary or keto products?"),
+        DialogueLine("Shop Worker", "Yes, keto and dietary products are at the end of the second aisle, on the right."),
+        DialogueLine("Customer", "Excellent. One more question — where are the fresh herbs, for example parsley?"),
+        DialogueLine("Shop Worker", "Fresh herbs are by the vegetables, next to the tomatoes."),
+        DialogueLine("Customer", "Thank you very much for your help."),
+        DialogueLine("Shop Worker", "You're welcome. Have a nice day.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("At the Supermarket", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

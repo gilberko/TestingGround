@@ -70,6 +70,11 @@ class MainActivity : ComponentActivity() {
                 composable("housing") { HousingScreen(navController) }
                 composable("body_health") { BodyAndHealthScreen(navController) }
                 composable("negation") { NegationScreen(navController) }
+                composable("weather") { WeatherScreen(navController) }
+                composable("shopping") { ShoppingScreen(navController) }
+                composable("connecting_words") { ConnectingWordsScreen(navController) }
+                composable("dialogue_intro") { IntroducingYourselfDialogueScreen(navController) }
+                composable("dialogue_supermarket") { SupermarketDialogueScreen(navController) }
             }
         }
     }
@@ -237,7 +242,10 @@ fun DictionaryHubScreen(navController: NavController) {
             "Daily Routines" to "daily_routines",
             "Days of the Week" to "days_of_week",
             "Housing" to "housing",
-            "Body and Health" to "body_health"
+            "Body and Health" to "body_health",
+            "Weather" to "weather",
+            "Shopping" to "shopping",
+            "Connecting Words" to "connecting_words"
         )
         Column(
             modifier = Modifier
