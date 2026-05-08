@@ -86,6 +86,35 @@ fun TransportationScreen(navController: NavController) {
             TRRow("osvědčení o technické způsobilosti (velký TP)", "roadworthiness certificate", "n. — the larger technical document")
             TRNote("Both are colloquially called 'technický průkaz' or 'TP'; malý vs. velký distinguishes them in formal usage.")
 
+            TRSection("Tickets & Seating")
+            TRRow("jízdenka", "ticket (general)", "f. — the standard word for any transit ticket; used for bus, tram, metro")
+            TRRow("jízdenka na vlak / vlakový lístek", "train ticket", "f. / m. — jízdenka na vlak is the fuller form; lístek is the colloquial everyday word")
+            TRRow("jízdenka na autobus", "bus ticket", "f.")
+            TRRow("letenka", "plane ticket", "f. — a distinct word, not jízdenka; always used for air travel")
+            TRRow("Kde si mohu koupit jízdenku na vlak?", "Where can I buy a ticket for the train?", "phrase — si mohu = may I / can I (polite); koupit = to buy (perfective)")
+            TRRow("Kde si mohu koupit jízdenku na autobus?", "Where can I buy a ticket for the bus?", "phrase")
+            TRRow("sedadlo", "seat", "n.")
+            TRRow("přední sedadlo", "front seat", "n. — přední = front/forward")
+            TRRow("zadní sedadlo", "back seat", "n. — zadní = rear/back")
+
+            TRSection("Car Parts")
+            TRRow("pneumatika / guma", "tire", "f. / f. — pneumatika is standard; guma is the very common colloquial form")
+            TRRow("defekt / prasklá pneumatika", "flat tire", "m. / f. — defekt is the everyday term (mám defekt = I have a flat); prasklá pneumatika is descriptive")
+            TRRow("volant", "steering wheel", "m. — borrowed from French; fully naturalized in Czech")
+            TRRow("brzdy", "brakes", "f.pl. — plural is standard in everyday speech; singular brzda exists but is rare in context")
+            TRRow("ruční brzda", "hand brake / parking brake", "f. — ruční = hand/manual")
+            TRRow("bezpečnostní pás / pás", "safety belt / seatbelt", "m. — bezpečnostní pás is the full term; pás alone is widely understood in context")
+            TRRow("rezerva / rezervní kolo", "spare tire", "f. / n. — rezerva is the colloquial shorthand; rezervní kolo is explicit")
+            TRRow("motor", "engine", "m.")
+            TRRow("kufr", "trunk (car boot)", "m. — note: kufr also means 'suitcase'; context disambiguates")
+
+            TRSection("Fuel & Transmission")
+            TRRow("čerpací stanice / benzínka", "gas station / petrol station", "f. / f. — čerpací stanice is the formal/signage term; benzínka is the very common colloquial word")
+            TRRow("benzín", "gasoline / petrol", "m. — the standard word; natural 95 is the most common grade at Czech pumps")
+            TRRow("nafta", "diesel", "f. — a distinct word; do not confuse with benzín when fueling")
+            TRRow("manuální převodovka / manuál", "manual transmission", "f. / m. — převodovka is the full term; manuál is the spoken shorthand")
+            TRRow("automatická převodovka / automat", "automatic transmission", "f. / m. — automat is the very common spoken form")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

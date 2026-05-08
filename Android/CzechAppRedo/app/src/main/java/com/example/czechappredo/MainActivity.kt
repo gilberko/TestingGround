@@ -75,6 +75,7 @@ class MainActivity : ComponentActivity() {
                 composable("connecting_words") { ConnectingWordsScreen(navController) }
                 composable("dialogue_intro") { IntroducingYourselfDialogueScreen(navController) }
                 composable("dialogue_supermarket") { SupermarketDialogueScreen(navController) }
+                composable("dialogue_train_station") { TrainStationDialogueScreen(navController) }
             }
         }
     }

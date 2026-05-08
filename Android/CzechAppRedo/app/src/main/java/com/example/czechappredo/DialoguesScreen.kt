@@ -68,7 +68,8 @@ fun DialoguesHubScreen(navController: NavController) {
             "Asking for Directions" to "dialogue_directions",
             "Doctor's Appointment" to "dialogue_doctor",
             "Introducing Yourself" to "dialogue_intro",
-            "At the Supermarket" to "dialogue_supermarket"
+            "At the Supermarket" to "dialogue_supermarket",
+            "At the Train Station" to "dialogue_train_station"
         )
         Column(
             modifier = Modifier
@@ -366,6 +367,64 @@ fun SupermarketDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("At the Supermarket", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TrainStationDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Cestující", "Dobrý den. Chtěl bych jet do Prahy. Kdy odjíždí nejbližší vlak?"),
+        DialogueLine("Zaměstnanec", "Dobrý den. Máte dvě možnosti. Za dvacet minut odjíždí vlak, ale musíte přestupovat v Pardubicích. Přímý vlak jede až za hodinu."),
+        DialogueLine("Cestující", "Rozumím. A kde si mohu koupit jízdenku?"),
+        DialogueLine("Zaměstnanec", "Jízdenku si můžete koupit na pokladně — je hned tady napravo — nebo v automatech na jízdenky, které jsou u vchodu."),
+        DialogueLine("Cestující", "Děkuji. Ještě se chci zeptat — jak funguje MHD v Praze? Platí se za každou jízdu, nebo je lepší koupit denní nebo týdenní jízdenku?"),
+        DialogueLine("Zaměstnanec", "Obojí je možné. Jednorázová jízdenka stojí čtyřicet korun a platí devadesát minut. Denní jízdenka stojí sto deset korun a týdenní třista deset korun. Záleží na tom, kolik plánujete cestovat."),
+        DialogueLine("Cestující", "Jasně. A musím jízdenku nějak označit nebo zkompostovat?"),
+        DialogueLine("Zaměstnanec", "Ano, určitě. V Praze jsou žluté kompostéry — označovací přístroje. Musíte jízdenku označit před nastoupením nebo ihned po nastoupení do vozidla. Bez označení je jízdenka neplatná."),
+        DialogueLine("Cestující", "A jsou kompostéry přímo ve vozidlech?"),
+        DialogueLine("Zaměstnanec", "Ano, jsou uvnitř — v tramvajích, autobusech i v metru u vstupu na nástupiště. Nemůžete je přehlédnout, jsou žluté."),
+        DialogueLine("Cestující", "Výborně. Moc vám děkuji za informace."),
+        DialogueLine("Zaměstnanec", "Prosím. Přeji vám příjemnou cestu do Prahy!")
+    )
+    val englishLines = listOf(
+        DialogueLine("Traveler", "Good day. I would like to go to Prague. When does the next train depart?"),
+        DialogueLine("Employee", "Good day. You have two options. A train leaves in twenty minutes, but you have to transfer in Pardubice. A direct train goes in one hour."),
+        DialogueLine("Traveler", "I understand. And where can I buy a ticket?"),
+        DialogueLine("Employee", "You can buy a ticket at the ticket booth — it is right here on the right — or at the ticket vending machines, which are by the entrance."),
+        DialogueLine("Traveler", "Thank you. I also want to ask — how does public transportation work in Prague? Do you pay per ride, or is it better to buy a daily or weekly pass?"),
+        DialogueLine("Employee", "Both are possible. A single ticket costs forty crowns and is valid for ninety minutes. A daily pass costs one hundred and ten crowns and a weekly pass three hundred and ten crowns. It depends on how much you plan to travel."),
+        DialogueLine("Traveler", "I see. And do I need to validate or stamp the ticket somehow?"),
+        DialogueLine("Employee", "Yes, definitely. In Prague there are yellow validators — called kompostéry. You must validate the ticket before boarding or immediately after boarding the vehicle. Without validation the ticket is invalid."),
+        DialogueLine("Traveler", "And are the validators right inside the vehicles?"),
+        DialogueLine("Employee", "Yes, they are inside — on trams, buses, and in the metro at the entrance to the platform. You cannot miss them; they are yellow."),
+        DialogueLine("Traveler", "Excellent. Thank you very much for the information."),
+        DialogueLine("Employee", "You are welcome. I wish you a pleasant journey to Prague!")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("At the Train Station", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
