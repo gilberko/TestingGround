@@ -54,7 +54,8 @@ fun UserModeHubScreen(
     onAsyncOperations: () -> Unit,
     onGraphicalInterface: () -> Unit,
     onInlineAssembly: () -> Unit,
-    onFanotify: () -> Unit
+    onFanotify: () -> Unit,
+    onCommunicatingWithKernel: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -139,6 +140,7 @@ fun UserModeHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 UserModeButton(label = "fanotify /\ninotify", modifier = Modifier.weight(1f), onClick = onFanotify)
+                UserModeButton(label = "Communicating\nWith Kernel", modifier = Modifier.weight(1f), onClick = onCommunicatingWithKernel)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

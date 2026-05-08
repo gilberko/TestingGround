@@ -111,6 +111,9 @@ import com.example.linuxapp.screens.kernel.KallsymsScreen
 import com.example.linuxapp.screens.kernel.KernelAddingFilesScreen
 import com.example.linuxapp.screens.kernel.SecurityFeaturesScreen
 import com.example.linuxapp.screens.kernel.NetlinkScreen
+import com.example.linuxapp.screens.usermode.UserModeCommunicatingWithKernelScreen
+import com.example.linuxapp.screens.kernel.KernelNetworkingScreen
+import com.example.linuxapp.screens.kernel.KernelFileAccessScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -204,6 +207,9 @@ sealed class Screen(val route: String) {
     object KernelAddingFiles          : Screen("kernel_adding_files")
     object KernelSecurityFeatures     : Screen("kernel_security_features")
     object KernelNetlink               : Screen("kernel_netlink")
+    object UsermodeCommunicatingWithKernel : Screen("usermode_communicating_with_kernel")
+    object KernelNetworking            : Screen("kernel_networking")
+    object KernelFileAccess            : Screen("kernel_file_access")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -280,7 +286,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
                 onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) },
                 onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) },
-                onNetlink = { navController.navigate(Screen.KernelNetlink.route) }
+                onNetlink = { navController.navigate(Screen.KernelNetlink.route) },
+                onNetworking = { navController.navigate(Screen.KernelNetworking.route) },
+                onFileAccess = { navController.navigate(Screen.KernelFileAccess.route) }
             )
         }
 
@@ -322,7 +330,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAsyncOperations = { navController.navigate(Screen.UserModeAsync.route) },
                 onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) },
                 onInlineAssembly = { navController.navigate(Screen.UserModeInlineAssembly.route) },
-                onFanotify = { navController.navigate(Screen.UserModeFanotify.route) }
+                onFanotify = { navController.navigate(Screen.UserModeFanotify.route) },
+                onCommunicatingWithKernel = { navController.navigate(Screen.UsermodeCommunicatingWithKernel.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -616,6 +625,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelNetlink.route) {
             NetlinkScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UsermodeCommunicatingWithKernel.route) {
+            UserModeCommunicatingWithKernelScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelNetworking.route) {
+            KernelNetworkingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelFileAccess.route) {
+            KernelFileAccessScreen(onBack = { navController.popBackStack() })
         }
     }
 }

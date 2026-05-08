@@ -57,7 +57,9 @@ fun KernelHubScreen(
     onKallsyms: () -> Unit,
     onAddingFiles: () -> Unit,
     onSecurityFeatures: () -> Unit,
-    onNetlink: () -> Unit
+    onNetlink: () -> Unit,
+    onNetworking: () -> Unit,
+    onFileAccess: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -89,77 +91,77 @@ fun KernelHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            KernelButton(
-                label = "Writing Linux\nKernel Modules",
-                modifier = Modifier.fillMaxWidth(),
-                onClick = onWritingKernelModules
-            )
-            Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                KernelButton(label = "Writing Linux\nKernel Modules", modifier = Modifier.weight(1f), onClick = onWritingKernelModules)
                 KernelButton(label = "OS Structs", modifier = Modifier.weight(1f), onClick = onOsStructs)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 KernelButton(label = "Low Level\nPrinciples", modifier = Modifier.weight(1f), onClick = onLowLevel)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "Low Level Principles\nPt. 2", modifier = Modifier.weight(1f), onClick = onLowLevel2)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 KernelButton(label = "Kernel Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "Kernel Data\nStructures", modifier = Modifier.weight(1f), onClick = onDataStructures)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "The Whole\nPicture", modifier = Modifier.weight(1f), onClick = onTheWholePicture)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 KernelButton(label = "Memory\nManagement", modifier = Modifier.weight(1f), onClick = onMemoryManagement)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "fork() and\nclone()", modifier = Modifier.weight(1f), onClick = onForkClone)
-                KernelButton(label = "DKMS", modifier = Modifier.weight(1f), onClick = onDkms)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                KernelButton(label = "DKMS", modifier = Modifier.weight(1f), onClick = onDkms)
                 KernelButton(label = "Sys Calls", modifier = Modifier.weight(1f), onClick = onSysCalls)
-                KernelButton(label = "kallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
             }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(
-                label = "Adding Files\nto the Kernel",
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onAddingFiles
-            )
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "kallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
+                KernelButton(label = "Adding Files\nto the Kernel", modifier = Modifier.weight(1f), onClick = onAddingFiles)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(
-                label = "Security Features",
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onSecurityFeatures
-            )
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Security Features", modifier = Modifier.weight(1f), onClick = onSecurityFeatures)
+                KernelButton(label = "Netlink", modifier = Modifier.weight(1f), onClick = onNetlink)
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            KernelButton(
-                label = "Netlink",
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onNetlink
-            )
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                KernelButton(label = "Networking", modifier = Modifier.weight(1f), onClick = onNetworking)
+                KernelButton(label = "File Access", modifier = Modifier.weight(1f), onClick = onFileAccess)
+            }
             Spacer(modifier = Modifier.height(16.dp))
         }
         }
