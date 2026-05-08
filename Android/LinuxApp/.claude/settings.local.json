@@ -48,7 +48,9 @@
       "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; $env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; .\\\\gradlew assembleRelease 2>&1)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\" -Recurse -Directory)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\" -Recurse | Where-Object {$_.Extension -eq \".kt\"} | Select-Object -ExpandProperty FullName | Sort-Object)",
-      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; .\\\\gradlew assembleRelease 2>&1)"
+      "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; .\\\\gradlew assembleRelease 2>&1)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\\\\screens\\\\kernel\" -Name)",
+      "Bash(Get-ChildItem *)"
     ]
   }
 }

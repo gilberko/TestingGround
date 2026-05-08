@@ -40,7 +40,11 @@
       "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; $env:PATH = \"$env:JAVA_HOME\\\\bin;$env:PATH\"; Set-Location \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease 2>&1)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Recurse -Filter \"*.kt\")",
       "Bash(Select-Object -ExpandProperty FullName)",
-      "Bash(Sort-Object)"
+      "Bash(Sort-Object)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Force)",
+      "Bash(Select-Object Name, FullName)",
+      "Bash(git -C \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" log --oneline)",
+      "Bash(gradlew assembleDebug)"
     ]
   }
 }

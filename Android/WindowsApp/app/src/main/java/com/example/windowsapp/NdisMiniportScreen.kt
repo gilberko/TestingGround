@@ -68,6 +68,33 @@ fun NdisMiniportScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        SectionHeader("NDIS_MINIPORT_DRIVER DEFINE")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("ndis.h is a shared WDK header used by miniport drivers, LWF filter drivers, and protocol drivers. Miniport-specific declarations are gated behind a preprocessor flag. You must define NDIS_MINIPORT_DRIVER before including ndis.h, or the compiler will not see the core miniport APIs and structures.")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "// Must appear BEFORE #include <ndis.h>\n" +
+            "#define NDIS_MINIPORT_DRIVER 1\n" +
+            "#include <ndis.h>\n\n" +
+            "// Without this define, the compiler won't find:\n" +
+            "//   NDIS_MINIPORT_DRIVER_CHARACTERISTICS\n" +
+            "//   NdisMRegisterMiniportDriver\n" +
+            "//   NdisMDeregisterMiniportDriver\n" +
+            "//   NdisMSetMiniportAttributes\n" +
+            "//   NdisMSendNetBufferListsComplete\n" +
+            "//   NdisMIndicateReceiveNetBufferLists\n" +
+            "//   ...and all miniport callback typedefs\n\n" +
+            "// WHERE TO PUT IT — three options:\n" +
+            "// 1. Top of each .c/.cpp file, before any includes\n" +
+            "// 2. In pch.h (precompiled header) — before ndis.h\n" +
+            "// 3. Project preprocessor definitions (.vcxproj)\n" +
+            "//    → C/C++ → Preprocessor → Preprocessor Definitions\n\n" +
+            "// LWF filter drivers do NOT need an equivalent flag —\n" +
+            "// filter APIs are always visible after #include <ndis.h>"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         SectionHeader("MINIPORT VS LWF")
         Spacer(modifier = Modifier.height(8.dp))
         CodeBlock(

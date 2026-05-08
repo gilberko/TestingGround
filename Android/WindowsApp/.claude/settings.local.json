@@ -16,7 +16,12 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\" -Recurse -Force)",
       "Bash(Select-Object -First 50)",
       "Bash(findstr /R \"@Composable\" app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\windowsapp\\\\Components.kt app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\windowsapp\\\\*.kt)",
-      "Bash(./gradlew assembleDebug)"
+      "Bash(./gradlew assembleDebug)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\" -Recurse -Filter \"*.kt\" -File)",
+      "Bash(\"/c/Program Files/Android/Android Studio/jbr/bin/jarsigner.exe\" -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore app/windowsapp_keystore.jks -storepass 12345678 -keypass 12345678 app/build/outputs/apk/release/app-release-unsigned.apk windowsapp_key)",
+      "Bash(Get-ChildItem -Recurse -Filter \"*.kt\" -Path \"app/src\")",
+      "Bash(xargs grep -l \"WFP\\\\|NDIS\\\\|WSK\")",
+      "Bash(Select-String -Pattern \"\\(SectionHeader|BodyText|CodeBlock|HackerButton\\)\")"
     ]
   }
 }
