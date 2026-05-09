@@ -95,6 +95,13 @@ fun AdvancedTopicsScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("PROTECTED AND PPL", fontSize = 12.sp) { navController.navigate("advanced_protected_ppl") } }
             Box(modifier = Modifier.weight(1f)) { HackerButton("DACL AND SDDL", fontSize = 12.sp) { navController.navigate("advanced_dacl_sddl") } }
         }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WAITING THREAD\nBEHIND THE SCENES", fontSize = 11.sp) { navController.navigate("advanced_waiting_thread") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("BEWARE THE\nREGISTRY", fontSize = 11.sp) { navController.navigate("advanced_beware_registry") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("CERTIFICATE STORE", fontSize = 12.sp) { navController.navigate("advanced_certificate_store") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

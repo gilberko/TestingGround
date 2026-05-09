@@ -101,6 +101,11 @@ fun KernelProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("BUGCHECKS AND DRIVER VERIFIER", fontSize = 12.sp) { navController.navigate("kernel_bugchecks") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("DATA STRUCTURES", fontSize = 12.sp) { navController.navigate("kernel_driver_ds") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("CREATING AND\nSENDING IRPs", fontSize = 12.sp) { navController.navigate("kernel_creating_irps") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
         HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") }
 
         Spacer(modifier = Modifier.height(32.dp))

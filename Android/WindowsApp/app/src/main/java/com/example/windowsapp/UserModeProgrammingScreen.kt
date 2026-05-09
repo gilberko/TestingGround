@@ -81,6 +81,11 @@ fun UserModeProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("MEMORY ALLOCATION", fontSize = 12.sp) { navController.navigate("user_memory_allocation") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("MFC", fontSize = 12.sp) { navController.navigate("user_mfc") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("ATL", fontSize = 12.sp) { navController.navigate("user_atl") } }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
         HackerButton("CALLING CONVENTIONS", fontSize = 12.sp) { navController.navigate("user_calling_conventions") }
 
         Spacer(modifier = Modifier.height(32.dp))

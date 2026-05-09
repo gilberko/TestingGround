@@ -92,6 +92,13 @@ class MainActivity : ComponentActivity() {
                     composable("advanced_elam") { ElamScreen(navController) }
                     composable("advanced_protected_ppl") { ProtectedPplScreen(navController) }
                     composable("advanced_dacl_sddl") { DaclSddlScreen(navController) }
+                    composable("kernel_driver_ds") { KernelDataStructuresScreen(navController) }
+                    composable("kernel_creating_irps") { CreatingIrpsScreen(navController) }
+                    composable("advanced_waiting_thread") { WaitingThreadScreen(navController) }
+                    composable("user_mfc") { MfcScreen(navController) }
+                    composable("user_atl") { AtlScreen(navController) }
+                    composable("advanced_beware_registry") { BewareRegistryScreen(navController) }
+                    composable("advanced_certificate_store") { CertificateStoreScreen(navController) }
                 }
             }
         }
