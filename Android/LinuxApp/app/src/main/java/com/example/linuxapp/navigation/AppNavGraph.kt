@@ -118,6 +118,9 @@ import com.example.linuxapp.screens.kernel.LinuxDeviceModelScreen
 import com.example.linuxapp.screens.kernel.ExportingKernelModuleApiScreen
 import com.example.linuxapp.screens.kernel.AlternativeModuleCommScreen
 import com.example.linuxapp.screens.kernel.NotifierChainsScreen
+import com.example.linuxapp.screens.kernel.ErrorInjectionScreen
+import com.example.linuxapp.screens.kernel.KprobesScreen
+import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -218,6 +221,9 @@ sealed class Screen(val route: String) {
     object ExportingKernelModuleApi    : Screen("exporting_kernel_module_api")
     object AlternativeModuleComm       : Screen("alternative_module_comm")
     object NotifierChains              : Screen("notifier_chains")
+    object KernelErrorInjection        : Screen("kernel_error_injection")
+    object KernelKprobes               : Screen("kernel_kprobes")
+    object EbpfModifyReturn            : Screen("ebpf_modify_return")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -403,7 +409,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) },
                 onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
                 onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) },
-                onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) }
+                onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) },
+                onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -620,7 +627,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onLinuxDeviceModel   = { navController.navigate(Screen.LinuxDeviceModel.route) },
                 onExportingApi       = { navController.navigate(Screen.ExportingKernelModuleApi.route) },
                 onAltModuleComm      = { navController.navigate(Screen.AlternativeModuleComm.route) },
-                onNotifierChains     = { navController.navigate(Screen.NotifierChains.route) }
+                onNotifierChains     = { navController.navigate(Screen.NotifierChains.route) },
+                onErrorInjection     = { navController.navigate(Screen.KernelErrorInjection.route) },
+                onKprobes            = { navController.navigate(Screen.KernelKprobes.route) }
             )
         }
         composable(Screen.SysCalls.route) {
@@ -658,6 +667,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.NotifierChains.route) {
             NotifierChainsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelErrorInjection.route) {
+            ErrorInjectionScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelKprobes.route) {
+            KprobesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfModifyReturn.route) {
+            EbpfModifyReturnScreen(onBack = { navController.popBackStack() })
         }
     }
 }

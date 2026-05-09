@@ -53,7 +53,9 @@ fun WritingKernelModulesHubScreen(
     onLinuxDeviceModel: () -> Unit,
     onExportingApi: () -> Unit,
     onAltModuleComm: () -> Unit,
-    onNotifierChains: () -> Unit
+    onNotifierChains: () -> Unit,
+    onErrorInjection: () -> Unit,
+    onKprobes: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -138,6 +140,14 @@ fun WritingKernelModulesHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     WritingKernelModulesButton(label = "Notifier Chains", modifier = Modifier.weight(1f), onClick = onNotifierChains)
+                    WritingKernelModulesButton(label = "Error Injection", modifier = Modifier.weight(1f), onClick = onErrorInjection)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    WritingKernelModulesButton(label = "kprobes", modifier = Modifier.weight(1f), onClick = onKprobes)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }

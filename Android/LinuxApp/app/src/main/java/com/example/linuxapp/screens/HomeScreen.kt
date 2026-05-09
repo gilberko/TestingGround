@@ -77,7 +77,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v2.8",
+                    text = "v4.6",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace
