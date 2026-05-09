@@ -269,5 +269,31 @@ val hypnosisTopics = listOf(
                 body = "A short post-session check — \"How are you feeling? What did you notice?\" — serves several purposes at once.\n\nIt completes the grounding by engaging the client in ordinary conversation. It gives the hypnotist information about what the client experienced, what resonated, and what might need adjusting in the next session. And it reinforces the collaborative nature of the work — the session is something that happened together, not something done to the client.\n\nThe client's account of their experience is also worth taking seriously as information. What they noticed, what surprised them, what felt strong or weak — these are live data about what is working."
             )
         )
+    ),
+    HypnosisTopic(
+        key = "counting_up_down",
+        title = "Counting Up And Down",
+        sections = listOf(
+            TextSection(
+                heading = "What It Is And Why It Works",
+                body = "When a hypnotist counts — from ten down to one, or from one up to five — it is not arbitrary. Counting exploits something the brain does naturally and automatically: it recognizes patterns and sequences, and it generates a quiet, pleasant anticipation around them. The moment a sequence begins, the brain has already predicted what comes next, and when. This is not effortful cognition — it is automatic, beneath deliberation. And in a hypnotic context, that automatic prediction-and-confirmation loop quietly does significant work."
+            ),
+            TextSection(
+                heading = "The Predictability Response",
+                body = "The brain is, among other things, a prediction machine. It is constantly building models of what is about to happen and checking those predictions against what actually occurs. When predictions are confirmed — when the expected event arrives on schedule — there is a small but real reward signal. A subtle relaxation. A sense of rightness.\n\nCounting delivers this on a loop. The client hears \"nine\" and immediately knows what comes next: \"eight,\" arriving in roughly the same interval. When \"eight\" arrives, the prediction was correct. Then \"seven\" — predicted, confirmed, correct again. With every number, the brain makes a small correct prediction, receives the small confirmation, and relaxes a little further. The sequence is a series of tiny, guaranteed wins for the predicting mind."
+            ),
+            TextSection(
+                heading = "Even Rhythm: Predicting Both What And When",
+                body = "A significant part of what makes this work is the evenness of the rhythm. When the hypnotist counts in a steady, unhurried cadence, the client can predict not only what the next number will be, but precisely when it will arrive.\n\nThis doubles the predictability. The brain is not just anticipating the content of the next item — it is anticipating its timing. Both predictions are confirmed with each count. This synchrony between expected content and expected timing produces a particularly settled quality of attention. The mind has nothing to search for, nothing to resolve, nothing left uncertain. It can simply receive."
+            ),
+            TextSection(
+                heading = "Counting Down vs Counting Up",
+                body = "Counting down — ten to one — carries a culturally loaded expectation of arrival. Rockets launch. Timers end. Something is coming. In a deepening context, the hypnotist frames this as arrival at a deeper place, and the cultural weight of the countdown amplifies the suggestion. Each descending number feels like approaching the destination.\n\nCounting up — one to five — carries the feel of a building, gradual return. Surfaces are approached, not plunged toward. The ascending sequence softens the transition back to ordinary awareness, the same calming predictability now gently reversing direction. The return feels earned, gradual, natural — not a jolt but a gentle ascent."
+            ),
+            TextSection(
+                heading = "Combined With Suggestion",
+                body = "The counting becomes most effective when each number is paired with a suggestion that anchors it: \"eight... going deeper with every number... seven... twice as relaxed now...\"\n\nThe suggestion is not separate from the count — it rides along with the count's natural momentum. The client is already in a state of small, repeating confirmations; the attached suggestion inherits that credibility. They are not evaluating whether to accept the suggestion in isolation. They are in a flowing sequence of confirmed predictions, and the suggestion simply arrives as part of that flow.\n\nThis is why counting is one of the most reliable and widely used tools in hypnosis — not because of any mystical property of numbers, but because of what sequences do to the predicting, pattern-seeking human brain."
+            )
+        )
     )
 )

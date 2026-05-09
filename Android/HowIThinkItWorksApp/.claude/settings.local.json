@@ -11,7 +11,10 @@
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew.bat assembleRelease *)",
       "Read(//c/Program Files/Android/Android Studio/jbr/**)",
       "Read(//c/Program Files/Android/Android Studio/**)",
-      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)"
+      "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(Format-List)"
     ]
   }
 }

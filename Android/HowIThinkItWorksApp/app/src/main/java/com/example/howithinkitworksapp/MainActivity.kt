@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -41,6 +43,12 @@ class MainActivity : ComponentActivity() {
                         val key = backStackEntry.arguments?.getString("topicKey") ?: ""
                         HypnosisSectionScreen(key, navController)
                     }
+                    composable("neuromarketing_hub") { NeuromarketingHubScreen(navController) }
+                    composable("biases_hub") { BiasesSelectionScreen(navController) }
+                    composable("general_decision_making") { GeneralDecisionMakingScreen(navController) }
+                    composable("brain_areas_emotions") { BrainAreasAndEmotionsScreen(navController) }
+                    composable("neurotransmitters") { NeurotransmittersScreen(navController) }
+                    composable("dopamine") { DopamineScreen(navController) }
                 }
             }
         }
@@ -51,15 +59,25 @@ val ButtonBlue = Color(0xFF1565C0)
 
 @Composable
 fun MainScreen(navController: NavController) {
-    val topics = listOf("Hypnosis", "Neuromarketing", "Meditation")
+    val buttons = listOf(
+        "Hypnosis" to "hypnosis_hub",
+        "Neuromarketing" to "neuromarketing_hub",
+        "Meditation" to "topic/Meditation",
+        "General Decision Making" to "general_decision_making",
+        "Brain Areas And Emotions" to "brain_areas_emotions",
+        "Neurotransmitters" to "neurotransmitters",
+        "Dopamine" to "dopamine"
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(24.dp),
+            .padding(24.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
+        Spacer(modifier = Modifier.height(40.dp))
         Text(
             text = "How I Think It Works",
             fontSize = 24.sp,
@@ -67,13 +85,9 @@ fun MainScreen(navController: NavController) {
             color = Color.Black,
             modifier = Modifier.padding(bottom = 40.dp)
         )
-        topics.forEach { topic ->
+        buttons.forEach { (label, route) ->
             Button(
-                onClick = {
-                    navController.navigate(
-                        if (topic == "Hypnosis") "hypnosis_hub" else "topic/$topic"
-                    )
-                },
+                onClick = { navController.navigate(route) },
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
                 modifier = Modifier
@@ -81,9 +95,10 @@ fun MainScreen(navController: NavController) {
                     .padding(vertical = 8.dp)
                     .height(56.dp)
             ) {
-                Text(text = topic, color = Color.White, fontSize = 18.sp)
+                Text(text = label, color = Color.White, fontSize = 18.sp)
             }
         }
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
