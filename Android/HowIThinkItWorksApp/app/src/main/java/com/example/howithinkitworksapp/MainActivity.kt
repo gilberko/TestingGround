@@ -45,6 +45,11 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("neuromarketing_hub") { NeuromarketingHubScreen(navController) }
                     composable("biases_hub") { BiasesSelectionScreen(navController) }
+                    composable("biases_section/{biasKey}") { backStackEntry ->
+                        val key = backStackEntry.arguments?.getString("biasKey") ?: ""
+                        BiasesSectionScreen(key, navController)
+                    }
+                    composable("priming") { PrimingScreen(navController) }
                     composable("general_decision_making") { GeneralDecisionMakingScreen(navController) }
                     composable("brain_areas_emotions") { BrainAreasAndEmotionsScreen(navController) }
                     composable("neurotransmitters") { NeurotransmittersScreen(navController) }

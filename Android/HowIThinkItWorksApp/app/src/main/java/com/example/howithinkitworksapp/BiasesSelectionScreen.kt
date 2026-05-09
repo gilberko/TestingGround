@@ -30,7 +30,15 @@ private val biases = listOf(
     "Status Quo Bias",
     "Negativity Bias",
     "Optimism Bias",
-    "Attribution Bias"
+    "Attribution Bias",
+    "Misattribution - A few effects / biases",
+    "Mere Exposure Effect"
+)
+
+private val biasContentKeys = mapOf(
+    "Anchoring" to "anchoring",
+    "Misattribution - A few effects / biases" to "misattribution",
+    "Mere Exposure Effect" to "mere_exposure"
 )
 
 @Composable
@@ -60,7 +68,11 @@ fun BiasesSelectionScreen(navController: NavController) {
             ) {
                 row.forEach { bias ->
                     Button(
-                        onClick = { navController.navigate("topic/$bias") },
+                        onClick = {
+                            val key = biasContentKeys[bias]
+                            if (key != null) navController.navigate("biases_section/$key")
+                            else navController.navigate("topic/$bias")
+                        },
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
                         modifier = Modifier.weight(1f).height(56.dp)
