@@ -55,7 +55,9 @@
       "Bash(cat commonMain/alphaTab/platform/skia/AlphaSkiaImage.kt)",
       "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/alphaTab/platform/skia/SkiaCanvas.kt)",
       "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/platform/skia/SkiaCanvas.kt)",
-      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/rendering/layout/ScoreLayout.kt)"
+      "Bash('C:/Program Files/Android/Android Studio/jbr/bin/jar' xf C:/Users/gilbe/.gradle/caches/modules-2/files-2.1/net.alphatab/alphaTab-android/1.3.0/5058de6f5b21a882ab031d290074df4e820a5eba/alphaTab-android-1.3.0-sources.jar commonMain/rendering/layout/ScoreLayout.kt)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\ChordProject\" -Recurse -Directory -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -First 30 FullName)"
     ]
   }
 }

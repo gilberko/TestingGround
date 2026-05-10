@@ -1812,7 +1812,9 @@ private fun GuitarTuningContent() {
 @Composable
 private fun TutorialsHub(onSelect: (String) -> Unit) {
     val topics = listOf(
-        "scales"       to "Scales",
+        "scales"              to "Scales",
+        "a_major_patterns"    to "A Major Scale - 7 Patterns",
+        "fsharp_minor_patterns" to "F# Minor - 7 Patterns",
         "cycle"        to "Cycle of Fifths",
         "improv"       to "Improvisation",
         "arpeggios"    to "Arpeggios",
@@ -1854,7 +1856,9 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
     var selectedTopic by remember { mutableStateOf<String?>(null) }
 
     val title = when (selectedTopic) {
-        "scales"       -> "Scales"
+        "scales"                -> "Scales"
+        "a_major_patterns"      -> "A Major Scale - 7 Patterns"
+        "fsharp_minor_patterns" -> "F# Minor - 7 Patterns"
         "cycle"        -> "Cycle of Fifths"
         "improv"       -> "Improvisation"
         "arpeggios"    -> "Arpeggios"
@@ -1896,7 +1900,9 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
 
             // Body
             when (selectedTopic) {
-                "scales"       -> ScalesContent()
+                "scales"                -> ScalesContent()
+                "a_major_patterns"      -> AMajorScalePatternsContent()
+                "fsharp_minor_patterns" -> FSharpMinorPatternsContent()
                 "cycle"        -> CycleContent()
                 "improv"       -> ImprovisationContent()
                 "arpeggios"    -> ArpeggiosContent()
@@ -1908,5 +1914,197 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
                 else           -> TutorialsHub(onSelect = { selectedTopic = it })
             }
         }
+    }
+}
+
+// ── A Major Scale — 7 Patterns ────────────────────────────────────────────────
+
+@Composable
+private fun AMajorScalePatternsContent() {
+    val p1 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,false), NeckDot(5,3,true),
+        NeckDot(4,0,false), NeckDot(4,2,false), NeckDot(4,3,false),
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,4,false),
+        NeckDot(2,0,true),  NeckDot(2,2,false),
+        NeckDot(1,0,false), NeckDot(1,1,false), NeckDot(1,3,false),
+        NeckDot(0,0,false), NeckDot(0,2,false), NeckDot(0,3,true),
+    )
+    val p2 = listOf(
+        NeckDot(5,0,false), NeckDot(5,1,true),  NeckDot(5,3,false),
+        NeckDot(4,0,false), NeckDot(4,1,false), NeckDot(4,3,false),
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,3,true),
+        NeckDot(2,0,false), NeckDot(2,2,false), NeckDot(2,3,false),
+        NeckDot(1,1,false), NeckDot(1,3,false),
+        NeckDot(0,0,false), NeckDot(0,1,true),  NeckDot(0,3,false),
+    )
+    val p3 = listOf(
+        NeckDot(5,0,true),  NeckDot(5,2,false), NeckDot(5,4,false),
+        NeckDot(4,0,false), NeckDot(4,2,false), NeckDot(4,4,false),
+        NeckDot(3,1,false), NeckDot(3,2,true),  NeckDot(3,4,false),
+        NeckDot(2,1,false), NeckDot(2,2,false), NeckDot(2,4,false),
+        NeckDot(1,2,false), NeckDot(1,4,false),
+        NeckDot(0,0,true),  NeckDot(0,2,false), NeckDot(0,4,false),
+    )
+    val p4 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,false), NeckDot(5,3,false),
+        NeckDot(4,0,false), NeckDot(4,2,false), NeckDot(4,4,false),
+        NeckDot(3,0,true),  NeckDot(3,2,false), NeckDot(3,4,false),
+        NeckDot(2,0,false), NeckDot(2,2,false),
+        NeckDot(1,0,false), NeckDot(1,2,false), NeckDot(1,3,true),
+        NeckDot(0,0,false), NeckDot(0,2,false), NeckDot(0,3,false),
+    )
+    val p5 = listOf(
+        NeckDot(5,0,false), NeckDot(5,1,false), NeckDot(5,3,false),
+        NeckDot(4,0,false), NeckDot(4,2,false), NeckDot(4,3,true),
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,3,false),
+        NeckDot(2,0,false), NeckDot(2,2,false),
+        NeckDot(1,0,false), NeckDot(1,1,true),  NeckDot(1,3,false),
+        NeckDot(0,0,false), NeckDot(0,1,false), NeckDot(0,3,false),
+    )
+    val p6 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,false), NeckDot(5,4,false),
+        NeckDot(4,1,false), NeckDot(4,2,true),  NeckDot(4,4,false),
+        NeckDot(3,1,false), NeckDot(3,2,false), NeckDot(3,4,false),
+        NeckDot(2,1,false), NeckDot(2,3,false), NeckDot(2,4,true),
+        NeckDot(1,2,false), NeckDot(1,4,false),
+        NeckDot(0,0,false), NeckDot(0,2,false), NeckDot(0,4,false),
+    )
+    val p7 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,false), NeckDot(5,4,false),
+        NeckDot(4,0,true),  NeckDot(4,2,false), NeckDot(4,4,false),
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,4,false),
+        NeckDot(2,1,false), NeckDot(2,2,true),  NeckDot(2,4,false),
+        NeckDot(1,2,false), NeckDot(1,3,false),
+        NeckDot(0,0,false), NeckDot(0,2,false), NeckDot(0,4,false),
+    )
+
+    val patterns = listOf(
+        Triple(p1, 2,  "Frets 2–6"),
+        Triple(p2, 4,  "Frets 4–8"),
+        Triple(p3, 5,  "Frets 5–9"),
+        Triple(p4, 7,  "Frets 7–11"),
+        Triple(p5, 9,  "Frets 9–13"),
+        Triple(p6, 10, "Frets 10–14"),
+        Triple(p7, 12, "Frets 12–16"),
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("The A major scale (A  B  C#  D  E  F#  G#) divides the neck into 7 interlocking patterns. Each covers one position; together they span the full fretboard.")
+        ItalicNote("Green = root note (A).  Blue = scale tone.")
+
+        patterns.forEachIndexed { idx, (dots, startFret, label) ->
+            HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+            SectionHeader("Pattern ${idx + 1}")
+            NeckDiagram(
+                dots           = dots,
+                fretCount      = 5,
+                startFretLabel = startFret,
+                label          = label,
+                modifier       = Modifier.fillMaxWidth()
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
+// ── F# Minor — 7 Patterns ─────────────────────────────────────────────────────
+
+@Composable
+private fun FSharpMinorPatternsContent() {
+    val p1 = listOf(
+        NeckDot(5,0,true),  NeckDot(5,2,false), NeckDot(5,3,false), // E: 2(R),4,5
+        NeckDot(4,0,false), NeckDot(4,2,true),  NeckDot(4,3,false), // A: 2,4(R),5
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,4,false), // D: 2,4,6
+        NeckDot(2,0,false), NeckDot(2,2,false),                     // G: 2,4
+        NeckDot(1,0,false), NeckDot(1,1,false), NeckDot(1,3,false), // B: 2,3,5
+        NeckDot(0,0,true),  NeckDot(0,2,false), NeckDot(0,3,false), // e: 2(R),4,5
+    )
+    val p2 = listOf(
+        NeckDot(5,0,false), NeckDot(5,1,false), NeckDot(5,3,true),  // E: 4,5,7(R)
+        NeckDot(4,0,false), NeckDot(4,1,false), NeckDot(4,3,true),  // A: 4,5,7(R)
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,3,false), // D: 4,6,7
+        NeckDot(2,0,false), NeckDot(2,2,true),  NeckDot(2,3,false), // G: 4,6(R),7
+        NeckDot(1,1,false), NeckDot(1,3,false),                     // B: 5,7
+        NeckDot(0,0,false), NeckDot(0,1,false), NeckDot(0,3,true),  // e: 4,5,7(R)
+    )
+    val p3 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,true),  NeckDot(5,4,false), // E: 5,7(R),9
+        NeckDot(4,0,false), NeckDot(4,2,true),  NeckDot(4,4,false), // A: 5,7(R),9
+        NeckDot(3,1,false), NeckDot(3,2,false), NeckDot(3,4,false), // D: 6,7,9
+        NeckDot(2,1,true),  NeckDot(2,2,false), NeckDot(2,4,false), // G: 6(R),7,9
+        NeckDot(1,2,false), NeckDot(1,4,false),                     // B: 7,9
+        NeckDot(0,0,false), NeckDot(0,2,true),  NeckDot(0,4,false), // e: 5,7(R),9
+    )
+    val p4 = listOf(
+        NeckDot(5,0,true),  NeckDot(5,2,false), NeckDot(5,3,false), // E: 7(R),9,10
+        NeckDot(4,0,true),  NeckDot(4,2,false), NeckDot(4,4,false), // A: 7(R),9,11
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,4,true),  // D: 7,9,11(R)
+        NeckDot(2,0,false), NeckDot(2,2,false),                     // G: 7,9
+        NeckDot(1,0,false), NeckDot(1,2,false), NeckDot(1,3,false), // B: 7,9,10
+        NeckDot(0,0,true),  NeckDot(0,2,false), NeckDot(0,3,false), // e: 7(R),9,10
+    )
+    val p5 = listOf(
+        NeckDot(5,0,false), NeckDot(5,1,false), NeckDot(5,3,true),  // E: 9,10,12(R)
+        NeckDot(4,0,false), NeckDot(4,2,true),  NeckDot(4,3,false), // A: 9,11(R),12
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,3,false), // D: 9,11,12
+        NeckDot(2,0,false), NeckDot(2,2,false),                     // G: 9,11
+        NeckDot(1,0,false), NeckDot(1,1,false), NeckDot(1,3,false), // B: 9,10,12
+        NeckDot(0,0,false), NeckDot(0,1,false), NeckDot(0,3,true),  // e: 9,10,12(R)
+    )
+    val p6 = listOf(
+        NeckDot(5,0,false), NeckDot(5,2,true),  NeckDot(5,4,false), // E: 10,12(R),14
+        NeckDot(4,1,true),  NeckDot(4,2,false), NeckDot(4,4,false), // A: 11(R),12,14
+        NeckDot(3,1,false), NeckDot(3,2,false), NeckDot(3,4,false), // D: 11,12,14
+        NeckDot(2,1,true),  NeckDot(2,3,false), NeckDot(2,4,false), // G: 11(R),13,14
+        NeckDot(1,2,false), NeckDot(1,4,false),                     // B: 12,14
+        NeckDot(0,0,false), NeckDot(0,2,true),  NeckDot(0,4,false), // e: 10,12(R),14
+    )
+    val p7 = listOf(
+        NeckDot(5,0,true),  NeckDot(5,2,false), NeckDot(5,4,false), // E: 12(R),14,16
+        NeckDot(4,0,true),  NeckDot(4,2,false), NeckDot(4,4,false), // A: 12(R),14,16
+        NeckDot(3,0,false), NeckDot(3,2,false), NeckDot(3,4,false), // D: 12,14,16
+        NeckDot(2,1,false), NeckDot(2,2,false), NeckDot(2,4,true),  // G: 13,14,16(R)
+        NeckDot(1,2,false), NeckDot(1,3,false),                     // B: 14,15
+        NeckDot(0,0,true),  NeckDot(0,2,false), NeckDot(0,4,false), // e: 12(R),14,16
+    )
+
+    val patterns = listOf(
+        Triple(p1, 2,  "Frets 2–6"),
+        Triple(p2, 4,  "Frets 4–8"),
+        Triple(p3, 5,  "Frets 5–9"),
+        Triple(p4, 7,  "Frets 7–11"),
+        Triple(p5, 9,  "Frets 9–13"),
+        Triple(p6, 10, "Frets 10–14"),
+        Triple(p7, 12, "Frets 12–16"),
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("The F# minor scale (F#  G#  A  B  C#  D  E) divides the neck into 7 interlocking patterns. Each covers one position; together they span the full fretboard.")
+        ItalicNote("Green = root note (F#).  Blue = scale tone.")
+
+        patterns.forEachIndexed { idx, (dots, startFret, label) ->
+            HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+            SectionHeader("Pattern ${idx + 1}")
+            NeckDiagram(
+                dots           = dots,
+                fretCount      = 5,
+                startFretLabel = startFret,
+                label          = label,
+                modifier       = Modifier.fillMaxWidth()
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
