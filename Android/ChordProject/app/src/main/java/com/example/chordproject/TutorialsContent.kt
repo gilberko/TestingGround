@@ -1447,7 +1447,7 @@ private fun ChordShapeCard(entry: ChordShapeEntry) {
 private fun ChordShapesContent() {
 
     val openMajor = listOf(
-        ChordShapeEntry("C",  ChordVoicing("Open", intArrayOf( 0, 3, 2, 0, 1, 0)), "Warm & full-bodied"),
+        ChordShapeEntry("C",  ChordVoicing("Open", intArrayOf(-1, 3, 2, 0, 1, 0)), "Warm & full-bodied"),
         ChordShapeEntry("A",  ChordVoicing("Open", intArrayOf(-1, 0, 2, 2, 2, 0)), "Bright & punchy"),
         ChordShapeEntry("G",  ChordVoicing("Open", intArrayOf( 3, 2, 0, 0, 0, 3)), "Big & resonant"),
         ChordShapeEntry("E",  ChordVoicing("Open", intArrayOf( 0, 2, 2, 1, 0, 0)), "Full & powerful"),
@@ -1464,6 +1464,7 @@ private fun ChordShapesContent() {
         ChordShapeEntry("A7", ChordVoicing("Open", intArrayOf(-1, 0, 2, 0, 2, 0)), "Bluesy & funky"),
         ChordShapeEntry("E7", ChordVoicing("Open", intArrayOf( 0, 2, 0, 1, 0, 0)), "Twangy blues feel"),
         ChordShapeEntry("D7", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 1, 2)), "Bright country twang"),
+        ChordShapeEntry("B7", ChordVoicing("Open", intArrayOf(-1, 2, 1, 2, 0, 2)),  "Bright & country-bluesy"),
     )
 
     val min7 = listOf(
@@ -1489,6 +1490,12 @@ private fun ChordShapesContent() {
         ChordShapeEntry("Cm",  ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 5, 4, 3), baseFret = 3), "Heavy & tense"),
         ChordShapeEntry("C7",  ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 3, 5, 3), baseFret = 3), "Driving & funky"),
         ChordShapeEntry("Cm7", ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 3, 4, 3), baseFret = 3), "Jazzy & moody"),
+    )
+
+    val extended = listOf(
+        ChordShapeEntry("A6",    ChordVoicing("Open",  intArrayOf(-1, 0, 2, 2, 2, 2)),                "Lush & mellow"),
+        ChordShapeEntry("F9",    ChordVoicing("Barre", intArrayOf(-1, 8, 7, 8, 8, 8), baseFret = 7), "Jazzy & sophisticated"),
+        ChordShapeEntry("Aadd9", ChordVoicing("Barre", intArrayOf(-1,-1, 7, 6, 5, 7), baseFret = 5), "Shimmering & open"),
     )
 
     val other = listOf(
@@ -1598,6 +1605,18 @@ private fun ChordShapesContent() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             other.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Extended Chords ──────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Extended Chords")
+        BodyText("6th, 9th, and add9 voicings that layer colour beyond the basic triad. A6 and Aadd9 are open or near-open; F9 is a closed jazz voicing up the neck.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            extended.forEach { ChordShapeCard(it) }
         }
 
         Spacer(modifier = Modifier.height(24.dp))

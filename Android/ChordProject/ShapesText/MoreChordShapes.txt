@@ -1,0 +1,18 @@
+
+	B7	A6
+e	2	2
+B	0	2
+G	2	2
+D	1	2
+A	2	0
+E	x	x
+
+
+	F9	Aadd9
+e	8	7
+B	8	5
+G	8	6
+D	7	7
+A	8	x
+E	x	x
+
