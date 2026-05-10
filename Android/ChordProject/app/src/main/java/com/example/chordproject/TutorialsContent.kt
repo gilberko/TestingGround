@@ -1415,17 +1415,393 @@ private fun IdeasContent() {
     }
 }
 
+// ── Chord Shapes ─────────────────────────────────────────────────────────────
+
+private data class ChordShapeEntry(
+    val name: String,
+    val voicing: ChordVoicing,
+    val sound: String
+)
+
+@Composable
+private fun ChordShapeCard(entry: ChordShapeEntry) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            entry.name,
+            color = Color(0xFFFFCC80),
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(bottom = 2.dp)
+        )
+        ChordDiagram(entry.voicing)
+        Text(
+            entry.sound,
+            color = Color(0xFF888888),
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(top = 2.dp)
+        )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ChordShapesContent() {
+
+    val openMajor = listOf(
+        ChordShapeEntry("C",  ChordVoicing("Open", intArrayOf( 0, 3, 2, 0, 1, 0)), "Warm & full-bodied"),
+        ChordShapeEntry("A",  ChordVoicing("Open", intArrayOf(-1, 0, 2, 2, 2, 0)), "Bright & punchy"),
+        ChordShapeEntry("G",  ChordVoicing("Open", intArrayOf( 3, 2, 0, 0, 0, 3)), "Big & resonant"),
+        ChordShapeEntry("E",  ChordVoicing("Open", intArrayOf( 0, 2, 2, 1, 0, 0)), "Full & powerful"),
+        ChordShapeEntry("D",  ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 3, 2)), "Bright & jangly"),
+    )
+
+    val openMinor = listOf(
+        ChordShapeEntry("Am", ChordVoicing("Open", intArrayOf(-1, 0, 2, 2, 1, 0)), "Dark & melancholy"),
+        ChordShapeEntry("Em", ChordVoicing("Open", intArrayOf( 0, 2, 2, 0, 0, 0)), "Deep & haunting"),
+        ChordShapeEntry("Dm", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 3, 1)), "Sad & intimate"),
+    )
+
+    val dom7 = listOf(
+        ChordShapeEntry("A7", ChordVoicing("Open", intArrayOf(-1, 0, 2, 0, 2, 0)), "Bluesy & funky"),
+        ChordShapeEntry("E7", ChordVoicing("Open", intArrayOf( 0, 2, 0, 1, 0, 0)), "Twangy blues feel"),
+        ChordShapeEntry("D7", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 1, 2)), "Bright country twang"),
+    )
+
+    val min7 = listOf(
+        ChordShapeEntry("Am7", ChordVoicing("Open", intArrayOf(-1, 0, 2, 0, 1, 0)), "Smooth & soulful"),
+        ChordShapeEntry("Em7", ChordVoicing("Open", intArrayOf( 0, 2, 0, 0, 0, 0)), "Airy & spacious"),
+    )
+
+    val sus = listOf(
+        ChordShapeEntry("Esus4", ChordVoicing("Open", intArrayOf( 0, 2, 2, 2, 0, 0)), "Tense & expectant"),
+        ChordShapeEntry("Dsus4", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 3, 3)), "Soaring & unresolved"),
+        ChordShapeEntry("Dsus2", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 3, 0)), "Dreamy & open"),
+    )
+
+    val barreEShape = listOf(
+        ChordShapeEntry("F",   ChordVoicing("E Shape", intArrayOf(1, 3, 3, 2, 1, 1)), "Warm & resolved"),
+        ChordShapeEntry("Fm",  ChordVoicing("E Shape", intArrayOf(1, 3, 3, 1, 1, 1)), "Dark & heavy"),
+        ChordShapeEntry("F7",  ChordVoicing("E Shape", intArrayOf(1, 3, 1, 2, 1, 1)), "Punchy blues tone"),
+        ChordShapeEntry("Fm7", ChordVoicing("E Shape", intArrayOf(1, 3, 1, 1, 1, 1)), "Silky & dark"),
+    )
+
+    val barreAShape = listOf(
+        ChordShapeEntry("C",   ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 5, 5, 3), baseFret = 3), "Bold & chunky"),
+        ChordShapeEntry("Cm",  ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 5, 4, 3), baseFret = 3), "Heavy & tense"),
+        ChordShapeEntry("C7",  ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 3, 5, 3), baseFret = 3), "Driving & funky"),
+        ChordShapeEntry("Cm7", ChordVoicing("A Shape", intArrayOf(-1, 3, 5, 3, 4, 3), baseFret = 3), "Jazzy & moody"),
+    )
+
+    val other = listOf(
+        ChordShapeEntry("F (D shape)", ChordVoicing("D Shape", intArrayOf(-1,-1, 3, 2, 1, 1)),            "Bright treble clarity"),
+        ChordShapeEntry("CMaj7",       ChordVoicing("Barre",   intArrayOf(-1, 3, 5, 4, 5, 3), baseFret = 3), "Lush & romantic"),
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("Open chords ring out with open strings for a natural, resonant sound. Barre chords close off the open strings so the same shape can be moved anywhere on the neck.")
+
+        // ── Open Major ──────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Open Major Chords")
+        BodyText("The five foundational open major chords. Bright, full, and essential in almost every genre.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            openMajor.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Open Minor ──────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Open Minor Chords")
+        BodyText("Sadder and darker than their major counterparts. Great for emotional, introspective playing.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            openMinor.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Dom7 ────────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Dominant 7th Chords")
+        BodyText("Root + major 3rd + perfect 5th + minor 7th. A bluesy tension that wants to resolve — a staple of blues, country, and soul.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            dom7.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Min7 ────────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Minor 7th Chords")
+        BodyText("Root + minor 3rd + perfect 5th + minor 7th. Smoother and jazzier than plain minor chords. Common in jazz, soul, and R&B.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            min7.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Sus ─────────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Suspended Chords")
+        BodyText("Sus chords replace the 3rd with a 2nd (sus2) or 4th (sus4). Neither major nor minor — they create an open, unresolved feeling that naturally wants to move to a major or minor chord.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            sus.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Barre — E Shape ─────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Barre Chords — E Shape")
+        BodyText("Index finger bars all 6 strings; the other fingers form the open-E chord shape behind it. F at fret 1 is typically the first barre chord a player learns. Slide the shape up the neck to play any key.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            barreEShape.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Barre — A Shape ─────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Barre Chords — A Shape")
+        BodyText("Index bars strings 1–5 (low E muted); the remaining fingers form the open-A shape. C at fret 3 is the home position — move the whole shape to any fret to play that key.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            barreAShape.forEach { ChordShapeCard(it) }
+        }
+
+        // ── Other ────────────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Other Closed Voicings")
+        BodyText("Partial-string voicings and extensions that don't fit neatly into the standard E or A barre shapes.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            other.forEach { ChordShapeCard(it) }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
+// ── Harmonics ────────────────────────────────────────────────────────────────
+
+@Composable
+private fun HarmonicsContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("A guitar string doesn't only vibrate as a whole — it simultaneously vibrates in halves, thirds, quarters, and smaller divisions. Each division produces a higher pitch called a harmonic or overtone. On guitar you can isolate individual harmonics by touching the string at exactly the right point.")
+
+        // ── What Are Harmonics ──────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("What Are Harmonics")
+        BodyText("Every vibrating string produces a fundamental frequency (the main note) plus a series of overtones at integer multiples of that frequency: 2f, 3f, 4f, and so on. These overtones are always present — you hear them as the tone colour of the note. What changes between a guitar and a violin playing the same pitch is not the harmonics themselves, but how loud each harmonic is relative to the others.")
+        BodyText("The positions along the string where a given mode has zero movement are called nodes. By lightly touching the string at a node, you cancel all vibrational modes that don't share that node — the remaining modes ring out as a chime-like tone. The lower the harmonic, the louder and more bell-like the sound.")
+
+        // ── Natural Harmonics — How to Play ────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Natural Harmonics — How to Play")
+        listOf(
+            "Rest a fretting-hand finger lightly directly above the fret wire — not between frets, and not pressing down.",
+            "Pick the string while your finger rests on it.",
+            "Lift your fretting finger immediately after the pick attack — the harmonic rings freely on its own.",
+            "The cleaner your touch (not too heavy, not sliding), the clearer the chime."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Works best at the 12th, 7th, and 5th fret positions. These divisions (halves, thirds, quarters) give the strongest, most audible harmonics.")
+
+        // ── The Three Main Positions ────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("The Three Main Positions")
+        listOf(
+            "12th fret — string divides in half (1/2). Produces the 2nd harmonic: exactly 1 octave above the open string.",
+            "7th fret — string divides in thirds (1/3). Produces the 3rd harmonic: 1 octave + a perfect 5th above open.",
+            "5th fret — string divides in quarters (1/4). Produces the 4th harmonic: 2 octaves above open."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Additional harmonics exist at the 4th fret (5th harmonic, 2 octaves + major 3rd) and 3rd fret (6th harmonic), but they are quieter and harder to produce cleanly.")
+
+        // ── Notes at Each Position ──────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Notes at Each Position (Standard Tuning)")
+        BodyText("The note produced at each harmonic position on every string:")
+        listOf(
+            "E (6th)  open E2  →  12th fret E3  →  7th fret B3  →  5th fret E4",
+            "A (5th)  open A2  →  12th fret A3  →  7th fret E4  →  5th fret A4",
+            "D (4th)  open D3  →  12th fret D4  →  7th fret A4  →  5th fret D5",
+            "G (3rd)  open G3  →  12th fret G4  →  7th fret D5  →  5th fret G5",
+            "B (2nd)  open B3  →  12th fret B4  →  7th fret F#5  →  5th fret B5",
+            "e (1st)  open E4  →  12th fret E5  →  7th fret B5  →  5th fret E6"
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Notice that the 7th-fret harmonic of one string often matches the 5th-fret harmonic of the next — this is the basis for harmonic tuning (see the Guitar Tuning screen).")
+
+        // ── Artificial Harmonics (Pinch Harmonics) ──────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Artificial Harmonics — Pinch Harmonics")
+        BodyText("Pinch harmonics let you produce harmonics above any fretted note, not just open strings.")
+        listOf(
+            "Fret a note normally with your left hand.",
+            "Hold the pick so the thumb extends slightly beyond the tip.",
+            "As the pick attacks the string, let the thumb immediately graze the string at the same spot.",
+            "The thumb acts as a moving node — the exact position of your thumb changes which harmonic you emphasise.",
+            "A slight forward angle of the pick and wrist helps the thumb contact cleanly."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Pinch harmonics produce the characteristic 'squeal' of hard rock and metal guitar. Key players: Zakk Wylde, Billy Gibbons (ZZ Top), Eddie Van Halen.")
+
+        // ── Touch Harmonics (Harp Harmonics) ────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Touch Harmonics — Harp Harmonics")
+        BodyText("A technique common in fingerstyle and classical guitar:")
+        listOf(
+            "Fret a note normally with the left hand.",
+            "With the right-hand index finger, lightly touch the string exactly 12 frets above the fretted note.",
+            "Pluck the string with another right-hand finger (ring or middle).",
+            "The result is the octave harmonic of the fretted note — bell-like and clear.",
+            "Arpeggiating chords this way produces a harp-like cascading effect."
+        ).forEach { BodyText("• $it") }
+
+        // ── Uses in Music ────────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Uses in Music")
+        listOf(
+            "Intro and verse chimes on clean electric — the 12th and 7th fret positions ring out beautifully.",
+            "Ambient texture in post-rock and shoegaze — sustaining harmonics blend into reverb-drenched soundscapes.",
+            "Phrase endings — letting a harmonic ring out instead of a fretted note adds a floating, ethereal quality.",
+            "Pinch harmonic squeals punctuating a rock or blues solo for drama and intensity.",
+            "Harp harmonic arpeggio passages in fingerstyle and classical arrangements."
+        ).forEach { BodyText("• $it") }
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
+// ── Guitar Tuning ─────────────────────────────────────────────────────────────
+
+@Composable
+private fun GuitarTuningContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("There are three common ways to tune a guitar: using an electronic tuner, matching fretted notes string to string, and using harmonics. Each method has different trade-offs in accuracy and convenience.")
+
+        // ── Electronic Tuner ────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Using an Electronic Tuner")
+        BodyText("The most accurate and reliable method. Tune each string independently to the correct absolute pitch.")
+        listOf(
+            "Chromatic tuners recognise all 12 notes — show the note name and how far off you are.",
+            "Clip-on tuners clamp to the headstock and sense vibration through the wood — work well in noisy rooms.",
+            "Microphone tuners pick up the sound — better in quiet environments.",
+            "Tuner apps on your phone work well for acoustic guitar in a quiet room."
+        ).forEach { BodyText("• $it") }
+        BodyText("Standard tuning, low to high:  E2 · A2 · D3 · G3 · B3 · E4")
+        BodyText("Reading the display:")
+        listOf(
+            "Indicator left of centre = flat (pitch too low) → tighten the tuning peg.",
+            "Right of centre = sharp (pitch too high) → loosen the peg.",
+            "Green or centred = in tune."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Always tune up to pitch — approach from below. If you overshoot, go past and come back up. Machine heads hold tension more consistently when the string arrives at pitch from below.")
+
+        // ── 5th Fret Relative Tuning ────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Relative Tuning — 5th Fret Method")
+        BodyText("Tune the low E string to a reference pitch, then tune each subsequent string by matching it to the previous one:")
+        listOf(
+            "E string, fret 5  (note A)  →  tune open A string to match.",
+            "A string, fret 5  (note D)  →  tune open D string to match.",
+            "D string, fret 5  (note G)  →  tune open G string to match.",
+            "G string, fret 4  (note B)  →  tune open B string to match.  ← 4th fret, not 5th!",
+            "B string, fret 5  (note E)  →  tune open high e string to match."
+        ).forEach { BodyText("• $it") }
+        BodyText("Why the 4th fret for G→B? Every other adjacent string pair is a perfect 4th apart (5 semitones). The G-to-B interval is a major 3rd (4 semitones) — one semitone narrower. So the matching note is one fret lower, at the 4th fret.")
+        ItalicNote("Drawback: errors accumulate. A slightly flat E produces a slightly flat A, then D, then G — by the high e you can be noticeably out of tune with a reference pitch even though the strings all match each other.")
+
+        // ── Harmonic Tuning ──────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Harmonic Tuning — The 5th + 7th Fret Method")
+        BodyText("Tune the low E with a tuner, then use harmonics to match adjacent strings. To produce a harmonic: lightly rest a finger above the fret wire (don't press), pick, and immediately release the finger.")
+        BodyText("For each adjacent pair tuned a perfect 4th apart, the lower string's 5th-fret harmonic and the upper string's 7th-fret harmonic produce exactly the same pitch. Play both simultaneously and listen for beating:")
+        listOf(
+            "E string 5th fret harmonic  +  A string 7th fret harmonic  →  both sound E4",
+            "A string 5th fret harmonic  +  D string 7th fret harmonic  →  both sound A4",
+            "D string 5th fret harmonic  +  G string 7th fret harmonic  →  both sound D5",
+            "B string 5th fret harmonic  +  e string 7th fret harmonic  →  both sound B5"
+        ).forEach { BodyText("• $it") }
+        BodyText("⚠  G → B: EXCEPTION. The G-to-B interval is a major 3rd, not a perfect 4th. The G string's 5th-fret harmonic is G5; the B string's 7th-fret harmonic is F#5 — a semitone apart. They will never match. For this pair, use the standard method: press G string at the 4th fret (normal fretted note) and tune open B to match.")
+        ItalicNote("Advantage: harmonics sustain much longer than fretted notes. You can hold both simultaneously for several seconds, giving your ear plenty of time to detect and eliminate beating.")
+
+        // ── Listening for Beats ──────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Listening for Beats")
+        BodyText("When two notes are close in pitch but not identical, their sound waves periodically reinforce and cancel each other, creating a slow, regular wavering in loudness called beating.")
+        listOf(
+            "The beat rate (pulses per second) equals the frequency difference between the two pitches.",
+            "If one harmonic is 440 Hz and the other is 442 Hz, you hear 2 beats per second — a slow throb.",
+            "As you tune closer to the target pitch, the beating slows down.",
+            "When the beating stops completely — a single, stable, unwavering tone — the strings are in unison."
+        ).forEach { BodyText("• $it") }
+        ItalicNote("Train your ear: deliberately detune one string slightly, listen to the beating speed up, then retune and hear it slow to nothing. The moment it stops is unmistakable.")
+
+        // ── Why the Physics Works ────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Why the Physics Works")
+        BodyText("The 5th-fret harmonic divides the string into 4 equal parts — it is the 4th harmonic, at 4× the string's fundamental frequency. The 7th-fret harmonic divides the string into 3 equal parts — it is the 3rd harmonic, at 3× the fundamental.")
+        BodyText("For two strings tuned a perfect 4th apart (frequency ratio 4 : 3), let f = lower string fundamental:")
+        listOf(
+            "4th harmonic of lower string  =  4f",
+            "3rd harmonic of upper string  =  3 × (4f ÷ 3)  =  4f  →  exact match ✓"
+        ).forEach { BodyText("• $it") }
+        BodyText("For the G→B major 3rd (frequency ratio 5 : 4):")
+        listOf(
+            "4th harmonic of G string  =  4f  →  G5 (≈ 784 Hz)",
+            "3rd harmonic of B string  =  3 × (5f ÷ 4)  =  3.75f  →  F#5 (≈ 740 Hz)  →  mismatch ✗"
+        ).forEach { BodyText("• $it") }
+        ItalicNote("This mismatch is not a flaw in the tuning method — it reflects equal temperament. The major 3rd in equal temperament (ratio ≈ 1.260) is slightly wider than the just major 3rd (ratio 5 : 4 = 1.250), so no exact harmonic pair exists for the G→B interval.")
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
 // ── Hub ──────────────────────────────────────────────────────────────────────
 
 @Composable
 private fun TutorialsHub(onSelect: (String) -> Unit) {
     val topics = listOf(
-        "scales"     to "Scales",
-        "cycle"      to "Cycle of Fifths",
-        "improv"     to "Improvisation",
-        "arpeggios"  to "Arpeggios",
-        "caged"      to "CAGED Chord Shapes",
-        "ideas"      to "Ideas"
+        "scales"       to "Scales",
+        "cycle"        to "Cycle of Fifths",
+        "improv"       to "Improvisation",
+        "arpeggios"    to "Arpeggios",
+        "caged"        to "CAGED Chord Shapes",
+        "chord_shapes" to "Chord Shapes",
+        "harmonics"    to "Harmonics",
+        "guitar_tuning" to "Guitar Tuning",
+        "ideas"        to "Ideas"
     )
     Column(
         modifier = Modifier
@@ -1459,13 +1835,16 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
     var selectedTopic by remember { mutableStateOf<String?>(null) }
 
     val title = when (selectedTopic) {
-        "scales"    -> "Scales"
-        "cycle"     -> "Cycle of Fifths"
-        "improv"    -> "Improvisation"
-        "arpeggios" -> "Arpeggios"
-        "caged"     -> "CAGED Chord Shapes"
-        "ideas"     -> "Ideas"
-        else        -> "Learning"
+        "scales"       -> "Scales"
+        "cycle"        -> "Cycle of Fifths"
+        "improv"       -> "Improvisation"
+        "arpeggios"    -> "Arpeggios"
+        "caged"        -> "CAGED Chord Shapes"
+        "chord_shapes" -> "Chord Shapes"
+        "harmonics"    -> "Harmonics"
+        "guitar_tuning" -> "Guitar Tuning"
+        "ideas"        -> "Ideas"
+        else           -> "Learning"
     }
 
     BackHandler { onDismiss() }
@@ -1498,13 +1877,16 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
 
             // Body
             when (selectedTopic) {
-                "scales"    -> ScalesContent()
-                "cycle"     -> CycleContent()
-                "improv"    -> ImprovisationContent()
-                "arpeggios" -> ArpeggiosContent()
-                "caged"     -> CagedChordsContent()
-                "ideas"     -> IdeasContent()
-                else        -> TutorialsHub(onSelect = { selectedTopic = it })
+                "scales"       -> ScalesContent()
+                "cycle"        -> CycleContent()
+                "improv"       -> ImprovisationContent()
+                "arpeggios"    -> ArpeggiosContent()
+                "caged"        -> CagedChordsContent()
+                "chord_shapes" -> ChordShapesContent()
+                "harmonics"    -> HarmonicsContent()
+                "guitar_tuning" -> GuitarTuningContent()
+                "ideas"        -> IdeasContent()
+                else           -> TutorialsHub(onSelect = { selectedTopic = it })
             }
         }
     }
