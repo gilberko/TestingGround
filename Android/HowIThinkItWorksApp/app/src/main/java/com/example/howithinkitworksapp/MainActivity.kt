@@ -56,10 +56,13 @@ class MainActivity : ComponentActivity() {
                     composable("dopamine") { DopamineScreen(navController) }
                     composable("cortisol") { CortisolScreen(navController) }
                     composable("vagus_nerve") { VagusNerveScreen(navController) }
+                    composable("brain_and_its_chemistry") { BrainAndItsChemistryHubScreen(navController) }
+                    composable("winning_and_losing") { WinningAndLosingScreen(navController) }
                     composable("meditation_hub") { MeditationHubScreen(navController) }
                     composable("meditation_whats_it_about") { MeditationWhatsItAboutScreen(navController) }
                     composable("meditation_breathing") { MeditationBreathingScreen(navController) }
                     composable("meditation_body_scanning") { MeditationBodyScanningScreen(navController) }
+                    composable("meditation_emotions") { MeditationEmotionsScreen(navController) }
                 }
             }
         }
@@ -75,11 +78,9 @@ fun MainScreen(navController: NavController) {
         "Neuromarketing and Persuasion" to "neuromarketing_hub",
         "Meditation" to "meditation_hub",
         "General Decision Making" to "general_decision_making",
-        "Brain Areas And Emotions" to "brain_areas_emotions",
-        "Neurotransmitters" to "neurotransmitters",
-        "Dopamine" to "dopamine",
-        "Cortisol" to "cortisol",
-        "Vagus Nerve" to "vagus_nerve"
+        "The Brain And Its Chemistry" to "brain_and_its_chemistry",
+        "Vagus Nerve" to "vagus_nerve",
+        "Winning And Losing" to "winning_and_losing"
     )
     Column(
         modifier = Modifier

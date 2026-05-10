@@ -19,12 +19,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun MeditationHubScreen(navController: NavController) {
+fun BrainAndItsChemistryHubScreen(navController: NavController) {
     val items = listOf(
-        "What's It About" to "meditation_whats_it_about",
-        "Breathing" to "meditation_breathing",
-        "Body Scanning" to "meditation_body_scanning",
-        "Dealing With Emotions" to "meditation_emotions"
+        "Brain Areas And Emotions" to "brain_areas_emotions",
+        "Neurotransmitters" to "neurotransmitters",
+        "Dopamine" to "dopamine",
+        "Cortisol" to "cortisol"
     )
     Column(
         modifier = Modifier
@@ -36,7 +36,7 @@ fun MeditationHubScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = "Meditation",
+            text = "The Brain And Its Chemistry",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,

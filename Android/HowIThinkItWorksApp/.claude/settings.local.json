@@ -20,7 +20,10 @@
       "Bash(Sort-Object)",
       "WebSearch",
       "Bash(xargs grep -l \"TextSection\\\\|data class TextSection\")",
-      "Bash(.\\\\gradlew assembleRelease)"
+      "Bash(.\\\\gradlew assembleRelease)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -Directory)",
+      "Bash(Head -50)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -File -Filter \"*.kt\")"
     ]
   }
 }
