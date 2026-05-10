@@ -54,6 +54,12 @@ class MainActivity : ComponentActivity() {
                     composable("brain_areas_emotions") { BrainAreasAndEmotionsScreen(navController) }
                     composable("neurotransmitters") { NeurotransmittersScreen(navController) }
                     composable("dopamine") { DopamineScreen(navController) }
+                    composable("cortisol") { CortisolScreen(navController) }
+                    composable("vagus_nerve") { VagusNerveScreen(navController) }
+                    composable("meditation_hub") { MeditationHubScreen(navController) }
+                    composable("meditation_whats_it_about") { MeditationWhatsItAboutScreen(navController) }
+                    composable("meditation_breathing") { MeditationBreathingScreen(navController) }
+                    composable("meditation_body_scanning") { MeditationBodyScanningScreen(navController) }
                 }
             }
         }
@@ -66,12 +72,14 @@ val ButtonBlue = Color(0xFF1565C0)
 fun MainScreen(navController: NavController) {
     val buttons = listOf(
         "Hypnosis" to "hypnosis_hub",
-        "Neuromarketing" to "neuromarketing_hub",
-        "Meditation" to "topic/Meditation",
+        "Neuromarketing and Persuasion" to "neuromarketing_hub",
+        "Meditation" to "meditation_hub",
         "General Decision Making" to "general_decision_making",
         "Brain Areas And Emotions" to "brain_areas_emotions",
         "Neurotransmitters" to "neurotransmitters",
-        "Dopamine" to "dopamine"
+        "Dopamine" to "dopamine",
+        "Cortisol" to "cortisol",
+        "Vagus Nerve" to "vagus_nerve"
     )
     Column(
         modifier = Modifier

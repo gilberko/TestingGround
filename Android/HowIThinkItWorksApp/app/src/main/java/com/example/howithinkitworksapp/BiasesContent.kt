@@ -92,5 +92,65 @@ val biasTopics = listOf(
                 body = "The effect follows an inverted-U curve. Initial and moderate exposures increase liking reliably. At very high repetition — particularly in controlled lab settings with dozens of back-to-back repetitions — the effect plateaus and eventually reverses into boredom or irritation. The stimulus has become monotonous rather than comfortingly familiar.\n\nIf the initial encounter was clearly negative, additional exposure tends to amplify the dislike rather than neutralize it. The effect strengthens whatever feeling was there to begin with. It does not automatically convert negative impressions into positive ones.\n\nResearch has also found that high trait anxiety reduces the effect: more anxious individuals are less soothed by familiarity alone, possibly because the threat-detection system remains more sensitive regardless of prior safe exposures."
             )
         )
+    ),
+    BiasTopic(
+        key = "information_gap",
+        title = "Riddles and Quizzes - Information Gap / Curiosity Gap",
+        sections = listOf(
+            TextSection(
+                heading = "What Is the Information Gap",
+                body = "George Loewenstein (1994) defined curiosity as the uncomfortable feeling that arises from a perceived gap between what we know and what we want to know. The larger the gap, the stronger the drive to close it. This is not a metaphor — it produces measurable tension states that motivate real behaviour, just as hunger motivates eating. Loewenstein called it the information gap theory of curiosity, and it remains the most influential framework in the field."
+            ),
+            TextSection(
+                heading = "The Tension State",
+                body = "While the gap is open, you are in a state of motivated discomfort. People describe it as an itch, a nagging feeling, or mild anxiety. This is why half-finished riddles are so hard to abandon, why you read the last page of a thriller standing in a bookshop, and why cliffhanger episodes make you immediately start the next one. The brain treats unresolved information as an open loop that demands closure."
+            ),
+            TextSection(
+                heading = "Dopamine and Information Seeking",
+                body = "Bromberg-Martin and Hikosaka (2009) showed that dopamine neurons in the brain fire not just for physical rewards but in anticipation of information, even when that information has no direct material benefit. The brain treats the prospect of resolving a knowledge gap as intrinsically rewarding.\n\nGruber, Heschl, and Krebs (2014, Neuron) found that states of curiosity activate the VTA (a key dopamine source) and the hippocampus simultaneously, which is why things learned while curious are remembered far better than things learned from obligation."
+            ),
+            TextSection(
+                heading = "The Resolution Reward",
+                body = "When the gap closes — you solve the riddle, find the answer, hear the reveal — dopamine signals a prediction resolved. This produces satisfaction, sometimes even a small surge of pride if the task felt hard. Schultz et al.'s (1997) prediction-error framework explains this: the brain releases dopamine to mark \"this worked; do it again.\"\n\nThat is why people seek out puzzles repeatedly: the cycle of tension, search, and resolution is itself the reward loop. Curiosity is not just the precursor to learning — it is reinforcing."
+            ),
+            TextSection(
+                heading = "Information Gap in Everyday Life",
+                body = "Clickbait headlines exploit the gap deliberately. A headline like \"You won't believe what happened next\" creates a gap; the click closes it. Listicles (\"7 things you didn't know about X\") open multiple small gaps at once. True crime podcasts and murder mysteries sustain a large gap across hours or episodes.\n\nTrivia games and riddle books make the gap-resolution cycle the entire entertainment. Teachers who ask a question before explaining a concept are, consciously or not, using Loewenstein's framework: the gap makes the subsequent explanation stick."
+            ),
+            TextSection(
+                heading = "Why It Works So Well",
+                body = "Evolutionary accounts suggest that information reducing uncertainty about the environment has always had survival value — knowing where predators are, where food is, what a stranger's intentions are. The brain may therefore treat unresolved information as a genuine threat to preparedness, and dopamine-driven curiosity as the mechanism to fix it.\n\nThe same system that once drove ancestors to investigate unfamiliar sounds now compels you to read one more chapter, watch one more episode, or click one more link."
+            )
+        )
+    ),
+    BiasTopic(
+        key = "reactance",
+        title = "Don't Tell Me What To Do - Reactance / Psychological Reactance",
+        sections = listOf(
+            TextSection(
+                heading = "What Is Psychological Reactance",
+                body = "Jack Brehm (1966) proposed that when people perceive a free behaviour as threatened or eliminated, they experience a motivational state — reactance — aimed at restoring that freedom. The stronger the perceived threat, the stronger the reactance. Crucially, the object of the restriction becomes more desirable, not less. Brehm's core finding: telling people they cannot have or do something reliably increases their desire for exactly that thing."
+            ),
+            TextSection(
+                heading = "The Forbidden Fruit Effect",
+                body = "Worchel, Lee, and Adewole (1975) put cookies in two jars — one with many, one with just a few. Participants rated the scarce-jar cookies as significantly tastier, even though they were identical. The scarcity implied restriction, and restriction triggered desire.\n\nSeparately, Driscoll, Davis, and Lipetz (1972) found that parental interference in a romantic relationship — the Romeo and Juliet effect — increased reported love between partners. External pressure to end a relationship made the partners value it more."
+            ),
+            TextSection(
+                heading = "Classic Studies and Everyday Evidence",
+                body = "The US \"Parental Advisory\" label introduced in 1985 increased sales of the labelled albums, particularly among teenagers — the restriction signalled something worth having. Children told \"do not play with that toy\" subsequently rated it as more attractive than before the warning.\n\nPublic service announcements that open with \"Don't drink and drive\" sometimes increase the salience of the prohibited act in the minds of the very audience they are trying to deter. Warning labels on violent video games have repeatedly been shown to increase their appeal to young people."
+            ),
+            TextSection(
+                heading = "Why the Brain Does This",
+                body = "Self-Determination Theory (Deci and Ryan, 1985) identifies autonomy — the experience of acting from one's own agency — as a core psychological need. A perceived threat to autonomy feels like a threat to the self. Reactance is the corrective response: by wanting the restricted thing more and sometimes pursuing it despite the restriction, the person psychologically reasserts agency.\n\nThe rebel feeling is precisely this — it is not irrationality, it is the brain defending its sense of freedom."
+            ),
+            TextSection(
+                heading = "Reactance in Marketing and Persuasion",
+                body = "Hard-sell tactics (\"You must buy today\") often backfire because they signal pressure on the customer's choice freedom. Conversely, reverse psychology advertising (\"Not for everyone\") exploits reactance deliberately — the implied exclusion makes the product more desirable.\n\nGiving people explicit permission to say no (\"Feel free to refuse\") paradoxically increases agreement (Guéguen and Pascal, 2000). Effective persuasion generally preserves the sense of autonomy: presenting information and letting people decide outperforms telling people what they should do."
+            ),
+            TextSection(
+                heading = "Reactance in Everyday Life",
+                body = "Parents who forbid certain music, films, or friendships often intensify exactly the interest they were trying to extinguish. Managers who micromanage can trigger deliberate slowdown or error as a form of covert autonomy restoration. Rules that are over-explained with \"because I said so\" generate more defiance than rules accompanied by a clear rationale.\n\nReactance also explains why unsolicited advice (\"You should really...\") tends to harden rather than change people's positions — the advice is heard as a threat to their right to choose."
+            )
+        )
     )
 )

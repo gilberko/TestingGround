@@ -14,7 +14,13 @@
       "Bash(JAVA_HOME=\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\" ./gradlew assembleRelease)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -File)",
       "Bash(Select-Object FullName)",
-      "Bash(Format-List)"
+      "Bash(Format-List)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -Include \"*.kt\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "WebSearch",
+      "Bash(xargs grep -l \"TextSection\\\\|data class TextSection\")",
+      "Bash(.\\\\gradlew assembleRelease)"
     ]
   }
 }

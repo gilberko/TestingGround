@@ -32,13 +32,17 @@ private val biases = listOf(
     "Optimism Bias",
     "Attribution Bias",
     "Misattribution - A few effects / biases",
-    "Mere Exposure Effect"
+    "Mere Exposure Effect",
+    "Riddles and Quizzes - Information Gap / Curiosity Gap",
+    "Don't Tell Me What To Do - Reactance / Psychological Reactance"
 )
 
 private val biasContentKeys = mapOf(
     "Anchoring" to "anchoring",
     "Misattribution - A few effects / biases" to "misattribution",
-    "Mere Exposure Effect" to "mere_exposure"
+    "Mere Exposure Effect" to "mere_exposure",
+    "Riddles and Quizzes - Information Gap / Curiosity Gap" to "information_gap",
+    "Don't Tell Me What To Do - Reactance / Psychological Reactance" to "reactance"
 )
 
 @Composable
@@ -53,7 +57,7 @@ fun BiasesSelectionScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = "Biases",
+            text = "Biases and Effects",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,

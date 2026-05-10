@@ -19,8 +19,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun NeuromarketingHubScreen(navController: NavController) {
-    val items = listOf("Biases and Effects" to "biases_hub", "Priming and Activation" to "priming")
+fun MeditationHubScreen(navController: NavController) {
+    val items = listOf(
+        "What's It About" to "meditation_whats_it_about",
+        "Breathing" to "meditation_breathing",
+        "Body Scanning" to "meditation_body_scanning"
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +35,7 @@ fun NeuromarketingHubScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = "Neuromarketing",
+            text = "Meditation",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
