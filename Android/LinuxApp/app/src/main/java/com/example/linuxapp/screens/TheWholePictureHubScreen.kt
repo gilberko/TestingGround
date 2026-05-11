@@ -58,7 +58,7 @@ fun TheWholePictureHubScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
-                painter = painterResource(id = R.drawable.linux_background),
+                painter = painterResource(id = R.drawable.linux_hub_background),
                 contentDescription = null,
                 contentScale = ContentScale.FillWidth,
                 modifier = Modifier.fillMaxSize()

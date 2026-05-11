@@ -19,7 +19,7 @@ fun SplashScreen(onFinished: () -> Unit) {
     }
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.linux_splash),
+            painter = painterResource(id = R.drawable.linux_title),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
