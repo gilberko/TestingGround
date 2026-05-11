@@ -1,7 +1,6 @@
 package com.example.developmentapp.screens
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,10 +38,10 @@ fun HomeScreen(
     onDebuggingProfilingTracing: () -> Unit,
     onAiNeuralNetworks: () -> Unit
 ) {
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 32.dp)
             .padding(vertical = 32.dp),
@@ -58,6 +57,7 @@ fun HomeScreen(
         HomeButtonRow("Algorithms", onAlgorithms, "TCP/IP", onTcpIp)
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Debugging, Profiling And Tracing", onDebuggingProfilingTracing, "AI and Neural Networks", onAiNeuralNetworks)
+    }
     }
 }
 

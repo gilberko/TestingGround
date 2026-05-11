@@ -55,6 +55,7 @@ fun GoHubScreen(
     onTypesInterfaces: () -> Unit,
     onStandardLibrary: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -78,7 +79,7 @@ fun GoHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -117,6 +118,7 @@ fun GoHubScreen(
                         "About new and make",               onNewMake)
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

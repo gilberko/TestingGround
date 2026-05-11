@@ -11,6 +11,7 @@ import com.example.developmentapp.screens.AssemblyHubScreen
 import com.example.developmentapp.screens.ComingSoonScreen
 import com.example.developmentapp.screens.DataStructuresScreen
 import com.example.developmentapp.screens.HomeScreen
+import com.example.developmentapp.screens.SplashScreen
 import com.example.developmentapp.screens.PythonHubScreen
 import com.example.developmentapp.screens.TcpIpHubScreen
 import com.example.developmentapp.screens.CppHubScreen
@@ -145,6 +146,7 @@ import com.example.developmentapp.screens.rust.RustCommentsDocsScreen
 import com.example.developmentapp.screens.rust.RustUnsafeScreen
 
 sealed class Screen(val route: String) {
+    object Splash              : Screen("splash")
     object Home                : Screen("home")
     object ComingSoon          : Screen("coming_soon/{label}") {
         fun withLabel(label: String) = "coming_soon/$label"
@@ -298,7 +300,17 @@ sealed class Screen(val route: String) {
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+
+        composable(Screen.Splash.route) {
+            SplashScreen(
+                onNavigateToHome = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                }
+            )
+        }
 
         composable(Screen.Home.route) {
             HomeScreen(

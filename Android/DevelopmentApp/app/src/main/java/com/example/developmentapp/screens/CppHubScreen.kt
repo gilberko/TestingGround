@@ -57,6 +57,7 @@ fun CppHubScreen(
     onStl: () -> Unit,
     onExpressionTypesCasting: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,7 +81,7 @@ fun CppHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -112,6 +113,7 @@ fun CppHubScreen(
             CppButtonRow("Advanced Features", onStl, "Expression Types and Casting", onExpressionTypesCasting)
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

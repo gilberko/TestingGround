@@ -42,6 +42,7 @@ fun AlgorithmsHubScreen(
     onHeap: () -> Unit,
     onTwoThreeTrees: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -65,7 +66,7 @@ fun AlgorithmsHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -91,6 +92,7 @@ fun AlgorithmsHubScreen(
             AlgoHubButton("2-3 Trees",                   onTwoThreeTrees,      Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

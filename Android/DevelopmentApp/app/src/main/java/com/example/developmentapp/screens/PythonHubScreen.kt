@@ -54,6 +54,7 @@ fun PythonHubScreen(
     onUsefulPackages: () -> Unit,
     onGenerators: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -77,7 +78,7 @@ fun PythonHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -115,6 +116,7 @@ fun PythonHubScreen(
             HubButton("Generator Functions", onGenerators, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

@@ -50,6 +50,7 @@ fun AssemblyHubScreen(
     onLabels: () -> Unit,
     onSpecialCommands: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -73,7 +74,7 @@ fun AssemblyHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -99,6 +100,7 @@ fun AssemblyHubScreen(
             AsmHubButton("Special Commands", onSpecialCommands, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

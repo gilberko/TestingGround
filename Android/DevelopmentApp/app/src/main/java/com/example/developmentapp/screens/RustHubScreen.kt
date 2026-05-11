@@ -55,6 +55,7 @@ fun RustHubScreen(
     onThreads: () -> Unit,
     onUnsafe: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -78,7 +79,7 @@ fun RustHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -120,6 +121,7 @@ fun RustHubScreen(
             )
             Spacer(Modifier.height(16.dp))
         }
+    }
     }
 }
 

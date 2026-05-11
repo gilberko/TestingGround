@@ -45,6 +45,7 @@ fun StlHubScreen(
     onMemoryStrings: () -> Unit,
     onAlgorithms: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -68,7 +69,7 @@ fun StlHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -88,6 +89,7 @@ fun StlHubScreen(
             StlButtonRow("Memory and Strings", onMemoryStrings, "Algorithms", onAlgorithms)
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

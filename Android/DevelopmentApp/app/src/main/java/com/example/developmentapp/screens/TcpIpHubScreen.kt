@@ -54,6 +54,7 @@ fun TcpIpHubScreen(
     onTftp:     () -> Unit,
     onWifi:     () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -77,7 +78,7 @@ fun TcpIpHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -116,6 +117,7 @@ fun TcpIpHubScreen(
                            "WiFi",      onWifi)
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 

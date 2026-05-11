@@ -45,6 +45,7 @@ fun AiHubScreen(
     onAttentionTransformers: () -> Unit,
     onAnomalyDetection: () -> Unit
 ) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -68,7 +69,7 @@ fun AiHubScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
             )
         },
-        containerColor = Color.Black
+        containerColor = Color.Transparent
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -92,6 +93,7 @@ fun AiHubScreen(
             AiHubButton("Anomaly Detection", onAnomalyDetection, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
+    }
     }
 }
 
