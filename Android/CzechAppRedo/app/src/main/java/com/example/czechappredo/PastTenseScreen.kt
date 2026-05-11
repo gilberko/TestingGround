@@ -47,7 +47,7 @@ fun PastTenseScreen(navController: NavController) {
             PASNote("The Czech past tense has two components: a helper form of být + the l-form (past participle).")
             PASNote("The l-form is built from the verb stem and changes its ending depending on the gender and number of the subject.")
 
-            PASSection("The l-form — Four Endings")
+            PASSection("The l-form — Five Endings")
             PASNote("Singular masculine:  -l  →  dělal  (he did / I did — male)")
             PASNote("Singular feminine:  -la  →  dělala  (she did / I did — female)")
             PASNote("Singular neuter:  -lo  →  dělalo  (it did)")
