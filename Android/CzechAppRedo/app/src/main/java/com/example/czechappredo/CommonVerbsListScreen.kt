@@ -46,6 +46,15 @@ fun CommonVerbsListScreen(navController: NavController) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
 
+            // ── 0. Modal Verbs ────────────────────────────────────────────
+            CVLSection("Modal Verbs")
+            CVLRow("mít", "Imperf.", "to have")
+            CVLRow("moci / moct", "Imperf.", "to be able to / can", "same verb — moci = formal/written; moct = colloquial/spoken")
+            CVLRow("umět", "Imperf.", "to know how to / can (skill)")
+            CVLRow("muset", "Imperf.", "to have to / must")
+            CVLRow("potřebovat", "Imperf.", "to need")
+            CVLRow("vyžadovat", "Imperf.", "to require")
+
             // ── 1. Daily Life ─────────────────────────────────────────────
             CVLSection("Daily Life")
             CVLRow("dělat", "Imperf.", "to do", "→ udělat (Perf.)")
@@ -82,6 +91,16 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("létat", "Imperf.", "to fly (regularly)")
             CVLRow("plout", "Imperf.", "to sail", "→ přeplout (Perf.)")
             CVLRow("pohybovat se", "Imperf.", "to move", "→ přesunout se (Perf.)")
+            CVLRow("cestovat", "Imperf.", "to travel")
+            CVLRow("přicházet", "Imperf.", "to come (on foot)", "→ přijít (Perf.)")
+            CVLRow("přijít", "Perf.", "to come (once)", "→ přicházet (Imperf.)")
+            CVLRow("odcházet", "Imperf.", "to leave", "→ odejít (Perf.)")
+            CVLRow("odejít", "Perf.", "to leave (complete)", "→ odcházet (Imperf.)")
+            CVLRow("přijíždět", "Imperf.", "to arrive (by vehicle)", "→ přijet (Perf.)")
+            CVLRow("přijet", "Perf.", "to arrive (complete)", "→ přijíždět (Imperf.)")
+            CVLRow("spěchat", "Imperf.", "to hurry")
+            CVLRow("procházet", "Imperf.", "to pass by / go through", "→ projít (Perf.)")
+            CVLRow("projít", "Perf.", "to pass (complete)", "→ procházet (Imperf.)")
 
             // ── 3. Communication & Speech ─────────────────────────────────
             CVLSection("Communication & Speech")
@@ -109,6 +128,12 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("zapomenout", "Perf.", "to forget (completely)", "→ zapomínat (Imperf.)")
             CVLRow("procvičovat", "Imperf.", "to practice", "→ procvičit (Perf.)")
             CVLRow("procvičit", "Perf.", "to practice (complete)", "→ procvičovat (Imperf.)")
+            CVLRow("rozumět", "Imperf.", "to understand", "→ pochopit (Perf.)")
+            CVLRow("pochopit", "Perf.", "to understand (grasp)", "→ rozumět (Imperf.)")
+            CVLRow("odhadovat", "Imperf.", "to estimate", "→ odhadnout (Perf.)")
+            CVLRow("odhadnout", "Perf.", "to estimate (once)", "→ odhadovat (Imperf.)")
+            CVLRow("určovat", "Imperf.", "to determine", "→ určit (Perf.)")
+            CVLRow("určit", "Perf.", "to determine (complete)", "→ určovat (Imperf.)")
 
             // ── 5. Emotions & Feelings ────────────────────────────────────
             CVLSection("Emotions & Feelings")
@@ -118,6 +143,10 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("obtěžovat", "Imperf.", "to annoy / bother")
             CVLRow("chválit", "Imperf.", "to compliment / praise", "→ pochválit (Perf.)")
             CVLRow("pochválit", "Perf.", "to compliment (complete)", "→ chválit (Imperf.)")
+            CVLRow("starat se", "Imperf.", "to care (about)")
+            CVLRow("oceňovat", "Imperf.", "to appreciate", "→ ocenit (Perf.)")
+            CVLRow("ocenit", "Perf.", "to appreciate (once)", "→ oceňovat (Imperf.)")
+            CVLRow("pečovat", "Imperf.", "to nurture / care for")
 
             // ── 6. Work & Study ───────────────────────────────────────────
             CVLSection("Work & Study")
@@ -130,6 +159,16 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("vyléčit", "Perf.", "to cure / treat (complete)", "→ léčit (Imperf.)")
             CVLRow("vyšetřovat", "Imperf.", "to investigate", "→ vyšetřit (Perf.)")
             CVLRow("vyšetřit", "Perf.", "to investigate (complete)", "→ vyšetřovat (Imperf.)")
+            CVLRow("zvládat", "Imperf.", "to handle", "→ zvládnout (Perf.)")
+            CVLRow("zvládnout", "Perf.", "to handle (complete)", "→ zvládat (Imperf.)")
+            CVLRow("spravovat", "Imperf.", "to manage / administer")
+            CVLRow("zakládat", "Imperf.", "to establish / found", "→ založit (Perf.)")
+            CVLRow("založit", "Perf.", "to establish (complete)", "→ zakládat (Imperf.)")
+            CVLRow("povyšovat", "Imperf.", "to promote (career)", "→ povýšit (Perf.)")
+            CVLRow("povýšit", "Perf.", "to promote (complete)", "→ povyšovat (Imperf.)")
+            CVLRow("degradovat", "Imperf.", "to demote")
+            CVLRow("dosahovat", "Imperf.", "to achieve", "→ dosáhnout (Perf.)")
+            CVLRow("dosáhnout", "Perf.", "to achieve (complete)", "→ dosahovat (Imperf.)")
 
             // ── 7. Objects & Household Actions ───────────────────────────
             CVLSection("Objects & Household Actions")
@@ -151,6 +190,10 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("poslat", "Perf.", "to send (complete)", "→ posílat (Imperf.)")
             CVLRow("dostávat", "Imperf.", "to receive", "→ dostat (Perf.)")
             CVLRow("dostat", "Perf.", "to receive (complete)", "→ dostávat (Imperf.)")
+            CVLRow("zapalovat", "Imperf.", "to ignite / light (fire)", "→ zapálit (Perf.)")
+            CVLRow("zapálit", "Perf.", "to ignite (complete)", "→ zapalovat (Imperf.)")
+            CVLRow("rozsvěcovat", "Imperf.", "to light up / switch on", "→ rozsvítit (Perf.)")
+            CVLRow("rozsvítit", "Perf.", "to light up (complete)", "→ rozsvěcovat (Imperf.)")
 
             // ── 8. Digital & Tech Actions ─────────────────────────────────
             CVLSection("Digital & Tech Actions")
@@ -163,6 +206,28 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("navrhnout", "Perf.", "to design (complete)", "→ navrhovat (Imperf.)")
             CVLRow("tisknout", "Imperf.", "to print", "→ vytisknout (Perf.)")
             CVLRow("vytisknout", "Perf.", "to print (complete)", "→ tisknout (Imperf.)")
+            CVLRow("používat", "Imperf.", "to use", "→ použít (Perf.)")
+            CVLRow("použít", "Perf.", "to use (once)", "→ používat (Imperf.)")
+            CVLRow("ladit", "Imperf.", "to debug", "→ odladit (Perf.)")
+            CVLRow("odladit", "Perf.", "to debug (complete)", "→ ladit (Imperf.)")
+            CVLRow("kompilovat", "Imperf.", "to compile")
+            CVLRow("linkovat", "Imperf.", "to link (build process)")
+            CVLRow("programovat", "Imperf.", "to code / program")
+            CVLRow("zpracovávat", "Imperf.", "to process", "→ zpracovat (Perf.)")
+            CVLRow("zpracovat", "Perf.", "to process (complete)", "→ zpracovávat (Imperf.)")
+            CVLRow("blokovat", "Imperf.", "to block")
+            CVLRow("povolovat", "Imperf.", "to allow", "→ povolit (Perf.)")
+            CVLRow("povolit", "Perf.", "to allow (complete)", "→ povolovat (Imperf.)")
+            CVLRow("zakazovat", "Imperf.", "to deny / forbid", "→ zakázat (Perf.)")
+            CVLRow("zakázat", "Perf.", "to deny (complete)", "→ zakazovat (Imperf.)")
+            CVLRow("načítat", "Imperf.", "to load (data)", "→ načíst (Perf.)")
+            CVLRow("načíst", "Perf.", "to load (complete)", "→ načítat (Imperf.)")
+            CVLRow("ukládat", "Imperf.", "to save (data)", "→ uložit (Perf.)")
+            CVLRow("uložit", "Perf.", "to save (complete)", "→ ukládat (Imperf.)")
+            CVLRow("připojovat", "Imperf.", "to connect", "→ připojit (Perf.)")
+            CVLRow("připojit", "Perf.", "to connect (complete)", "→ připojovat (Imperf.)")
+            CVLRow("odpojovat", "Imperf.", "to disconnect", "→ odpojit (Perf.)")
+            CVLRow("odpojit", "Perf.", "to disconnect (complete)", "→ odpojovat (Imperf.)")
 
             // ── 9. Food & Cooking ─────────────────────────────────────────
             CVLSection("Food & Cooking")
@@ -200,6 +265,17 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("žádat", "Imperf.", "to request / ask for", "→ požádat (Perf.)")
             CVLRow("požádat", "Perf.", "to request (complete)", "→ žádat (Imperf.)")
             CVLRow("investovat", "Imperf.", "to invest")
+            CVLRow("šetřit", "Imperf.", "to save (money)")
+            CVLRow("zachraňovat", "Imperf.", "to save / rescue", "→ zachránit (Perf.)")
+            CVLRow("zachránit", "Perf.", "to rescue (complete)", "→ zachraňovat (Imperf.)")
+            CVLRow("vyhrávat", "Imperf.", "to win", "→ vyhrát (Perf.)")
+            CVLRow("vyhrát", "Perf.", "to win (complete)", "→ vyhrávat (Imperf.)")
+            CVLRow("prohrávat", "Imperf.", "to lose (a game)", "→ prohrát (Perf.)")
+            CVLRow("prohrát", "Perf.", "to lose (complete)", "→ prohrávat (Imperf.)")
+            CVLRow("sázet", "Imperf.", "to bet / gamble", "→ vsadit (Perf.)")
+            CVLRow("vsadit", "Perf.", "to place a bet", "→ sázet (Imperf.)")
+            CVLRow("propagovat", "Imperf.", "to market / promote")
+            CVLRow("distribuovat", "Imperf.", "to distribute")
 
             // ── 11. Social & Relationships ────────────────────────────────
             CVLSection("Social & Relationships")
@@ -215,6 +291,13 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("pozvat", "Perf.", "to invite (complete)", "→ zvát (Imperf.)")
             CVLRow("navštěvovat", "Imperf.", "to visit", "→ navštívit (Perf.)")
             CVLRow("navštívit", "Perf.", "to visit (complete)", "→ navštěvovat (Imperf.)")
+            CVLRow("jmenovat se", "Imperf.", "to be called / named")
+            CVLRow("přibližovat se", "Imperf.", "to approach", "→ přiblížit se (Perf.)")
+            CVLRow("přiblížit se", "Perf.", "to approach (complete)", "→ přibližovat se (Imperf.)")
+            CVLRow("flirtovat", "Imperf.", "to flirt")
+            CVLRow("dvořit se", "Imperf.", "to court / woo")
+            CVLRow("otravovat", "Imperf.", "to nag / pester")
+            CVLRow("modlit se", "Imperf.", "to pray")
 
             // ── 12. Creation & Maintenance ────────────────────────────────
             CVLSection("Creation & Maintenance")
@@ -236,6 +319,10 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("zorganizovat", "Perf.", "to organize (complete)", "→ organizovat (Imperf.)")
             CVLRow("oddělovat", "Imperf.", "to separate", "→ oddělit (Perf.)")
             CVLRow("oddělit", "Perf.", "to separate (complete)", "→ oddělovat (Imperf.)")
+            CVLRow("vynalézat", "Imperf.", "to invent", "→ vynalést (Perf.)")
+            CVLRow("vynalést", "Perf.", "to invent (complete)", "→ vynalézat (Imperf.)")
+            CVLRow("upravovat", "Imperf.", "to adjust", "→ upravit (Perf.)")
+            CVLRow("upravit", "Perf.", "to adjust (complete)", "→ upravovat (Imperf.)")
 
             // ── 13. Processes & Life Events ───────────────────────────────
             CVLSection("Processes & Life Events")
@@ -266,6 +353,18 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("spočítat", "Perf.", "to count (complete)", "→ počítat (Imperf.)")
             CVLRow("objevovat se", "Imperf.", "to appear", "→ objevit se (Perf.)")
             CVLRow("objevit se", "Perf.", "to appear (once)", "→ objevovat se (Imperf.)")
+            CVLRow("dýchat", "Imperf.", "to breathe")
+            CVLRow("přestávat", "Imperf.", "to quit / stop doing", "→ přestat (Perf.)")
+            CVLRow("přestat", "Perf.", "to quit (complete)", "→ přestávat (Imperf.)")
+            CVLRow("stahovat se", "Imperf.", "to withdraw", "→ stáhnout se (Perf.)")
+            CVLRow("stáhnout se", "Perf.", "to withdraw (complete)", "→ stahovat se (Imperf.)")
+            CVLRow("odcházet do důchodu", "Imperf.", "to retire")
+            CVLRow("topit se", "Imperf.", "to drown", "→ utopit se (Perf.)")
+            CVLRow("utopit se", "Perf.", "to drown (complete)", "→ topit se (Imperf.)")
+            CVLRow("růst", "Imperf.", "to grow (intransitive)", "→ vyrůst (Perf.)")
+            CVLRow("vyrůst", "Perf.", "to grow up (complete)", "→ růst (Imperf.)")
+            CVLRow("pěstovat", "Imperf.", "to grow (plants / raise)", "→ vypěstovat (Perf.)")
+            CVLRow("vypěstovat", "Perf.", "to grow (complete)", "→ pěstovat (Imperf.)")
 
             // ── 14. Senses & Perception ───────────────────────────────────
             CVLSection("Senses & Perception")
@@ -275,6 +374,8 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("dívat se", "Imperf.", "to watch", "→ podívat se (Perf.)")
             CVLRow("podívat se", "Perf.", "to take a look", "→ dívat se (Imperf.)")
             CVLRow("čichat", "Imperf.", "to smell")
+            CVLRow("hledět", "Imperf.", "to gaze")
+            CVLRow("zírat", "Imperf.", "to stare")
 
             // ── 15. Reading, Writing & Language ──────────────────────────
             CVLSection("Reading, Writing & Language")
@@ -282,6 +383,42 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("přečíst", "Perf.", "to read (complete)", "→ číst (Imperf.)")
             CVLRow("psát", "Imperf.", "to write", "→ napsat (Perf.)")
             CVLRow("napsat", "Perf.", "to write (complete)", "→ psát (Imperf.)")
+
+            // ── 16. Arts & Entertainment ──────────────────────────────────
+            CVLSection("Arts & Entertainment")
+            CVLRow("tančit", "Imperf.", "to dance")
+            CVLRow("zpívat", "Imperf.", "to sing")
+            CVLRow("hrát", "Imperf.", "to play (a game)")
+            CVLRow("hrát na", "Imperf.", "to play (an instrument)")
+
+            // ── 17. Math & Quantities ─────────────────────────────────────
+            CVLSection("Math & Quantities")
+            CVLRow("přidávat", "Imperf.", "to add", "→ přidat (Perf.)")
+            CVLRow("přidat", "Perf.", "to add (complete)", "→ přidávat (Imperf.)")
+            CVLRow("odečítat", "Imperf.", "to subtract", "→ odečíst (Perf.)")
+            CVLRow("odečíst", "Perf.", "to subtract (complete)", "→ odečítat (Imperf.)")
+            CVLRow("násobit", "Imperf.", "to multiply", "→ znásobit (Perf.)")
+            CVLRow("znásobit", "Perf.", "to multiply (complete)", "→ násobit (Imperf.)")
+            CVLRow("dělit", "Imperf.", "to divide", "→ rozdělit (Perf.)")
+            CVLRow("rozdělit", "Perf.", "to divide (complete)", "→ dělit (Imperf.)")
+            CVLRow("zvyšovat", "Imperf.", "to raise", "→ zvýšit (Perf.)")
+            CVLRow("zvýšit", "Perf.", "to raise (complete)", "→ zvyšovat (Imperf.)")
+            CVLRow("snižovat", "Imperf.", "to lower", "→ snížit (Perf.)")
+            CVLRow("snížit", "Perf.", "to lower (complete)", "→ snižovat (Imperf.)")
+
+            // ── 18. Conflict & Influence ──────────────────────────────────
+            CVLSection("Conflict & Influence")
+            CVLRow("útočit", "Imperf.", "to attack", "→ zaútočit (Perf.)")
+            CVLRow("zaútočit", "Perf.", "to attack (once)", "→ útočit (Imperf.)")
+            CVLRow("bránit", "Imperf.", "to defend", "→ ubránit (Perf.)")
+            CVLRow("ubránit", "Perf.", "to defend (successfully)", "→ bránit (Imperf.)")
+            CVLRow("přesvědčovat", "Imperf.", "to persuade / convince", "→ přesvědčit (Perf.)")
+            CVLRow("přesvědčit", "Perf.", "to persuade (complete)", "→ přesvědčovat (Imperf.)")
+            CVLRow("ovlivňovat", "Imperf.", "to influence", "→ ovlivnit (Perf.)")
+            CVLRow("ovlivnit", "Perf.", "to influence (complete)", "→ ovlivňovat (Imperf.)")
+            CVLRow("podvádět", "Imperf.", "to trick / deceive", "→ oklamat (Perf.)")
+            CVLRow("oklamat", "Perf.", "to trick (complete)", "→ podvádět (Imperf.)")
+            CVLRow("hypnotizovat", "Imperf.", "to hypnotize")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
