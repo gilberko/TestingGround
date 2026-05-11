@@ -210,6 +210,34 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Vítejte v Praze!", "Welcome to Prague!", "uses Locative: Praha → Praze")
             BWRow("Vítejte v České republice!", "Welcome to the Czech Republic!")
 
+            // ── Saying You Like or Love Someone ───────────────────────────
+            BWSection("Saying You Like or Love Someone")
+            BWNote("Czech has three different expressions for liking or loving — each carries a different shade of meaning and uses a different verb structure.")
+
+            BWNote("Líbit se — to appeal to / to be attractive to someone")
+            BWNote("Verb: líbit se (imperfective, reflexive). Structure: [subject] + se + [dative] + líbí. The subject is the thing or person being liked; the dative is the person doing the liking. This expression also works for objects — not just people.")
+            BWRow("Líbíš se mi", "I like you / I find you attractive")
+            BWRow("To triko se mi líbí", "I like that shirt", "yes — líbit se works for objects too")
+            BWRow("Líbí se mi to auto", "I like that car")
+            BWRow("Nelíbíš se mi", "I don't like you / I don't find you attractive", "add ne- prefix to negate")
+            BWRow("Navzájem se si nelíbí", "They don't appeal to each other", "navzájem = each other; si = reflexive dative")
+
+            BWNote("Mít rád / ráda — to like / to be fond of")
+            BWNote("Verb phrase: mít (to have) + rád — an adjective that agrees with the speaker's gender. Rád (male speaker), ráda (female speaker), rádi (male/mixed group), rády (female group). Works for both people and things.")
+            BWRow("Mám tě rád", "I like you", "male speaker")
+            BWRow("Mám tě ráda", "I like you", "female speaker")
+            BWRow("Mám rád kávu", "I like coffee", "male speaker — works for things too")
+            BWRow("Mám ráda kávu", "I like coffee", "female speaker")
+            BWRow("Nemám tě rád / ráda", "I don't like you", "negate with ne- prefix on mám")
+            BWRow("Nemají se rádi", "They don't like each other", "reflexive se makes it reciprocal")
+
+            BWNote("Milovat — to love")
+            BWNote("Verb: milovat (imperfective). The strongest expression — romantic or deep love. Conjugates regularly: miluju / miluješ / miluje / milujeme / milujete / milují.")
+            BWRow("Miluju tě", "I love you")
+            BWRow("Miluješ mě?", "Do you love me?")
+            BWRow("Nemiluju tě", "I don't love you", "ne- prefix negates the verb")
+            BWRow("Nemilují se", "They don't love each other", "reflexive se = each other")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

@@ -80,6 +80,7 @@ class MainActivity : ComponentActivity() {
                 composable("past_tense") { PastTenseScreen(navController) }
                 composable("adverbs") { AdverbsScreen(navController) }
                 composable("adverb_list") { AdverbListScreen(navController) }
+                composable("common_verbs") { CommonVerbsListScreen(navController) }
             }
         }
     }
@@ -254,7 +255,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "Weather" to "weather",
             "Shopping" to "shopping",
             "Connecting Words" to "connecting_words",
-            "Adverbs" to "adverb_list"
+            "Adverbs" to "adverb_list",
+            "Common Verbs List" to "common_verbs"
         )
         Column(
             modifier = Modifier

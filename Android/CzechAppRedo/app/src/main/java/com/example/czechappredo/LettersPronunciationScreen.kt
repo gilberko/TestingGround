@@ -135,6 +135,24 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow("vlk", "wolf — one syllable: v‑L‑k")
             LPRow("prst", "finger — one syllable: p‑R‑st")
 
+            // ── 11. The Czech Diacritical Marks ──────────────────────────
+            LPSectionHeader("The Czech Diacritical Marks")
+            LPNote("Czech uses three special signs that modify letters. Knowing their names helps when reading grammar rules or looking words up.")
+            LPRow("Čárka  ( ´ )", "Acute accent — lengthens a vowel", note = "Used on: á, é, í, ý, ó, ú")
+            LPRow("Háček  ( ˇ )", "Caron / wedge — softens a consonant or changes a vowel's sound", note = "Used on consonants: č, š, ž, ř, ň, ď, ť — and on the vowel: ě")
+            LPRow("Kroužek  ( ˚ )", "Ring above — marks the long vowel ů", note = "Only ever appears on ů; no other Czech letter uses kroužek")
+
+            // ── 12. Ú vs Ů ───────────────────────────────────────────────
+            LPSectionHeader("Ú vs Ů — Same Sound, Different Mark")
+            LPNote("Both ú and ů are pronounced identically — a long \"oo\" as in moon. The mark you write depends entirely on where the long U appears in the word.")
+            LPRow("u", "short — \"oo\" in book", note = "e.g., studovat (to study), ulice (street)")
+            LPRow("ú", "long — \"oo\" in moon, written with čárka", note = "Used at the beginning of a word, or in foreign loanwords regardless of position")
+            LPRow("ů", "long — \"oo\" in moon, written with kroužek", note = "Used in the middle or end of a word in native Czech words; never at the start")
+            LPNote("The position rule — ů at the start: never. Every Czech word that begins with a long U uses ú, not ů. This is a hard rule with no exceptions.")
+            LPNote("ú at the start — examples: útok (attack), úkol (task), úžasný (amazing), území (territory), úspěch (success), úsměv (smile).")
+            LPNote("ů in the middle or end — examples: dům (house), stůl (table), půl (half), nůž (knife), můj (my), domů (home — direction), růže (rose).")
+            LPNote("Foreign loanwords keep ú regardless of position — ů is reserved for native Czech words of Slavic origin. This is also why ů reflects a historical sound shift: long ó in Old Czech gradually changed ó → uo → ů over centuries, which is why it appears in native vocabulary but never in borrowings.")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
