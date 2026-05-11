@@ -227,6 +227,128 @@ objdump -T libmath.so"""
                     BodyText("Hiding symbols also prevents accidental symbol collisions when two .so files define the same internal name.")
                 }
             }
+            item {
+                SectionCard(title = "Shared Object Constructor and Destructor") {
+                    BodyText("Linux's equivalent of Windows DllMain is __attribute__((constructor)) and __attribute__((destructor)). Functions marked this way run automatically when the .so is loaded or unloaded.")
+                    CodeBlock(
+                        """DllMain reason         Linux equivalent
+DLL_PROCESS_ATTACH  →  __attribute__((constructor))
+DLL_PROCESS_DETACH  →  __attribute__((destructor))
+DLL_THREAD_ATTACH   →  (no equivalent)
+DLL_THREAD_DETACH   →  (no equivalent)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("The constructor runs at program startup if the .so was linked in, or when dlopen() loads it. The destructor runs at exit, or when dlclose() drops the last reference. No parameters; return type must be void.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """/* mylib.c */
+#include <stdio.h>
+
+__attribute__((constructor))
+static void my_init(void) {
+    printf("mylib loaded\n");
+    /* malloc, printf, open files -- all safe here */
+}
+
+__attribute__((destructor))
+static void my_fini(void) {
+    printf("mylib unloaded\n");
+}
+
+void do_work(void) { printf("doing work\n"); }"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """/* loader.c -- test with dlopen */
+#include <dlfcn.h>
+#include <stdio.h>
+int main() {
+    printf("before dlopen\n");
+    void *h = dlopen("./libmy.so", RTLD_LAZY);
+    printf("after dlopen\n");
+    dlclose(h);
+    printf("after dlclose\n");
+    return 0;
+}
+
+gcc -fPIC -shared -o libmy.so mylib.c
+gcc loader.c -ldl -o loader
+./loader
+# before dlopen
+# mylib loaded
+# after dlopen
+# mylib unloaded
+# after dlclose"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Thread attach/detach notifications do not exist in Linux. For per-thread cleanup, use pthread_key_create() with a destructor function — it fires when any thread exits and has a non-NULL value for that key.")
+                }
+            }
+            item {
+                SectionCard(title = "Constructor Priority and Ordering") {
+                    BodyText("Pass an optional integer priority to control the order: __attribute__((constructor(N))). Lower number runs first during load. Destructors run in reverse order (LIFO). User range: 101–65535 (0–100 reserved for glibc/compiler).")
+                    CodeBlock(
+                        """__attribute__((constructor(200)))
+static void init_b(void) { printf("init B (200)\n"); }
+
+__attribute__((constructor(101)))
+static void init_a(void) { printf("init A (101)\n"); }
+
+/* Load output:
+   init A (101)   <- lower number first
+   init B (200)
+*/
+
+__attribute__((destructor(200)))
+static void fini_b(void) { printf("fini B (200)\n"); }
+
+__attribute__((destructor(101)))
+static void fini_a(void) { printf("fini A (101)\n"); }
+
+/* Unload output:
+   fini B (200)   <- higher number destructor first (LIFO)
+   fini A (101)
+*/"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("__attribute__((constructor)) with no number runs after all numbered constructors. Across multiple .so files, load order determines constructor order — dependencies are always initialised before dependents.")
+                }
+            }
+            item {
+                SectionCard(title = "ELF Storage: .init_array and .fini_array") {
+                    BodyText("Constructor function pointers are stored in the .init_array ELF section; destructor pointers in .fini_array. The dynamic linker (ld.so) iterates .init_array forward on load and .fini_array in reverse on unload.")
+                    CodeBlock(
+                        """# Show all sections -- look for .init_array / .fini_array
+readelf -S libmy.so | grep -E 'init|fini'
+
+# Dump raw pointer values stored in .init_array
+objdump -s -j .init_array libmy.so
+
+# Disassemble to see the actual constructor function
+objdump -d libmy.so
+
+# Confirm symbol is exported (T = text/code)
+nm -D libmy.so | grep -E 'my_init|my_fini'"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("There are also legacy .init and .fini sections (a single _init()/_fini() function each) inherited from crti.o/crtn.o. They still appear in modern .so files but GCC-generated constructors go directly into .init_array, not into _init.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Loader lock comparison vs Windows:")
+                    CodeBlock(
+                        """                  Windows DllMain          Linux constructor
+Lock held         Loader Lock              _dl_load_lock (glibc)
+                  (CRITICAL_SECTION)       (recursive pthread_mutex)
+Can call malloc?  DANGEROUS                YES -- safe
+Can call printf?  DANGEROUS                YES -- safe
+Recursive         Deadlocks                Allowed (recursive mutex)
+  dlopen inside
+Thread notify     DLL_THREAD_ATTACH/       None -- use
+                    DETACH                   pthread_key_create"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Linux constructors are far less restricted than DllMain. The main deadlock risk is a lock-ordering inversion: thread A holds a user lock and calls dlopen; thread B is inside a constructor trying to acquire the same user lock. Keep constructors simple to avoid this.")
+                }
+            }
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }
