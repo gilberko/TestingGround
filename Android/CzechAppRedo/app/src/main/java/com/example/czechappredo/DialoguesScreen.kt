@@ -46,6 +46,7 @@ private fun DialogueSection(header: String, lines: List<DialogueLine>) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DialoguesHubScreen(navController: NavController) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,7 +62,7 @@ fun DialoguesHubScreen(navController: NavController) {
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
             )
         },
-        containerColor = Color.White
+        containerColor = Color.Transparent
     ) { innerPadding ->
         val items = listOf(
             "At the Restaurant" to "dialogue_restaurant",
@@ -93,6 +94,7 @@ fun DialoguesHubScreen(navController: NavController) {
                 }
             }
         }
+    }
     }
 }
 

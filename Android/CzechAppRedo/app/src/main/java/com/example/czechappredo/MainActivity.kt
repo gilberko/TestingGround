@@ -20,10 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +35,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "home") {
+            NavHost(navController = navController, startDestination = "splash") {
+                composable("splash") { SplashScreen(navController) }
                 composable("home") { HomeScreen(navController) }
                 composable("learning") { LearningHubScreen(navController) }
                 composable("letters_pronunciation") { LettersPronunciationScreen(navController) }
@@ -89,38 +94,70 @@ class MainActivity : ComponentActivity() {
 internal val ButtonBlue = Color(0xFF1565C0)
 
 @Composable
+fun SplashScreen(navController: NavController) {
+    LaunchedEffect(Unit) {
+        delay(2000)
+        navController.navigate("home") {
+            popUpTo("splash") { inclusive = true }
+        }
+    }
+    Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+        Image(
+            painter = painterResource(R.drawable.title),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
+}
+
+@Composable
+fun HubBackground(content: @Composable () -> Unit) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(R.drawable.hub_background),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+        content()
+    }
+}
+
+@Composable
 fun HomeScreen(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ) {
-        Spacer(modifier = Modifier.height(48.dp))
-        Text(
-            text = "A Stranger In A Strange Land",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
-        Text(
-            text = "Czech Edition",
-            fontSize = 16.sp,
-            color = Color.DarkGray
-        )
-        Spacer(modifier = Modifier.height(48.dp))
-        NavButton(label = "Learning The Language") { navController.navigate("learning") }
-        Spacer(modifier = Modifier.height(20.dp))
-        NavButton(label = "Simple Dictionary") { navController.navigate("dictionary") }
-        Spacer(modifier = Modifier.height(20.dp))
-        NavButton(label = "Quiz — English to Czech") { navController.navigate("quiz_eng_czech") }
-        Spacer(modifier = Modifier.height(20.dp))
-        NavButton(label = "Quiz — Czech to English") { navController.navigate("quiz_czech_eng") }
-        Spacer(modifier = Modifier.height(20.dp))
-        NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
-        Spacer(modifier = Modifier.height(48.dp))
+    HubBackground {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Spacer(modifier = Modifier.height(48.dp))
+            Text(
+                text = "A Stranger In A Strange Land",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+            Text(
+                text = "Czech Edition",
+                fontSize = 16.sp,
+                color = Color.DarkGray
+            )
+            Spacer(modifier = Modifier.height(48.dp))
+            NavButton(label = "Learning The Language") { navController.navigate("learning") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Simple Dictionary") { navController.navigate("dictionary") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Quiz — English to Czech") { navController.navigate("quiz_eng_czech") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Quiz — Czech to English") { navController.navigate("quiz_czech_eng") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
+            Spacer(modifier = Modifier.height(48.dp))
+        }
     }
 }
 
@@ -155,6 +192,7 @@ fun DictNavButton(label: String, modifier: Modifier = Modifier, onClick: () -> U
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LearningHubScreen(navController: NavController) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -170,7 +208,7 @@ fun LearningHubScreen(navController: NavController) {
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
             )
         },
-        containerColor = Color.White
+        containerColor = Color.Transparent
     ) { innerPadding ->
         val learningItems = listOf(
             "Letters & Pronunciation" to "letters_pronunciation",
@@ -211,11 +249,13 @@ fun LearningHubScreen(navController: NavController) {
             }
         }
     }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DictionaryHubScreen(navController: NavController) {
+    HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -231,7 +271,7 @@ fun DictionaryHubScreen(navController: NavController) {
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
             )
         },
-        containerColor = Color.White
+        containerColor = Color.Transparent
     ) { innerPadding ->
         val items = listOf(
             "Basic Words, Expressions & Greetings" to "basic_words",
@@ -280,6 +320,7 @@ fun DictionaryHubScreen(navController: NavController) {
                 }
             }
         }
+    }
     }
 }
 
