@@ -24,10 +24,10 @@ import com.example.windowsapp.ui.theme.HackerGreen
 
 @Composable
 fun FileSystemMinifiltersScreen(navController: NavController) {
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 24.dp, vertical = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -72,5 +72,6 @@ fun FileSystemMinifiltersScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(32.dp))
 
         HackerButton("< BACK") { navController.popBackStack() }
+    }
     }
 }

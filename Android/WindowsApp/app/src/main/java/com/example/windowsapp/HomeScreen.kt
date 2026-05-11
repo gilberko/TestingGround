@@ -30,10 +30,10 @@ import com.example.windowsapp.ui.theme.HackerGreen
 
 @Composable
 fun HomeScreen(navController: NavController) {
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 24.dp, vertical = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,6 +63,7 @@ fun HomeScreen(navController: NavController) {
         HackerButton("USER MODE PROGRAMMING") { navController.navigate("user_mode") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("ADVANCED TOPICS") { navController.navigate("advanced") }
+    }
     }
 }
 
