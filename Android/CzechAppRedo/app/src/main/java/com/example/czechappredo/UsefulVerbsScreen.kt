@@ -54,10 +54,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jdu do školy.",
                 translation = "I'm going to school."
             )
+            UVAspect("Imperfective (unidirectional). Perfective with prefix: přijít (arrive), odejít (leave).")
             UVTable(
                 verb = "jít", label = "irregular",
-                rows = listOf("já" to "jdu", "ty" to "jdeš", "on / ona / ono" to "jde",
-                    "my" to "jdeme", "vy" to "jdete", "oni / ony" to "jdou")
+                rows = listOf(
+                    Triple("já", "jdu", "jsem šel / šla"),
+                    Triple("ty", "jdeš", "jsi šel / šla"),
+                    Triple("on / ona / ono", "jde", "šel / šla / šlo"),
+                    Triple("my", "jdeme", "jsme šli / šly"),
+                    Triple("vy", "jdete", "jste šli / šly"),
+                    Triple("oni / ony", "jdou", "šli / šly")
+                )
             )
             UVVerbEntry(
                 czech = "jet",
@@ -66,10 +73,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jedu do Prahy.",
                 translation = "I'm going to Prague (by vehicle)."
             )
+            UVAspect("Imperfective (unidirectional). Perfective with prefix: přijet (arrive), odjet (leave).")
             UVTable(
                 verb = "jet", label = "irregular",
-                rows = listOf("já" to "jedu", "ty" to "jedeš", "on / ona / ono" to "jede",
-                    "my" to "jedeme", "vy" to "jedete", "oni / ony" to "jedou")
+                rows = listOf(
+                    Triple("já", "jedu", "jsem jel / jela"),
+                    Triple("ty", "jedeš", "jsi jel / jela"),
+                    Triple("on / ona / ono", "jede", "jel / jela / jelo"),
+                    Triple("my", "jedeme", "jsme jeli / jely"),
+                    Triple("vy", "jedete", "jste jeli / jely"),
+                    Triple("oni / ony", "jedou", "jeli / jely")
+                )
             )
 
             UVSection("Modal Verbs")
@@ -80,10 +94,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Musím jít.",
                 translation = "I have to go."
             )
+            UVAspect("Imperfective. No perfective counterpart (modal verb).")
             UVTable(
                 verb = "muset", label = "Type 2 (-et)",
-                rows = listOf("já" to "musím", "ty" to "musíš", "on / ona / ono" to "musí",
-                    "my" to "musíme", "vy" to "musíte", "oni / ony" to "musí")
+                rows = listOf(
+                    Triple("já", "musím", "jsem musel / musela"),
+                    Triple("ty", "musíš", "jsi musel / musela"),
+                    Triple("on / ona / ono", "musí", "musel / musela / muselo"),
+                    Triple("my", "musíme", "jsme museli / musely"),
+                    Triple("vy", "musíte", "jste museli / musely"),
+                    Triple("oni / ony", "musí", "museli / musely")
+                )
             )
             UVVerbEntry(
                 czech = "moct",
@@ -92,10 +113,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Můžeš mi pomoci?",
                 translation = "Can you help me?"
             )
+            UVAspect("Imperfective. No perfective counterpart (modal verb).")
             UVTable(
                 verb = "moct", label = "irregular",
-                rows = listOf("já" to "můžu / mohu", "ty" to "můžeš", "on / ona / ono" to "může",
-                    "my" to "můžeme", "vy" to "můžete", "oni / ony" to "můžou / mohou")
+                rows = listOf(
+                    Triple("já", "můžu / mohu", "jsem mohl / mohla"),
+                    Triple("ty", "můžeš", "jsi mohl / mohla"),
+                    Triple("on / ona / ono", "může", "mohl / mohla / mohlo"),
+                    Triple("my", "můžeme", "jsme mohli / mohly"),
+                    Triple("vy", "můžete", "jste mohli / mohly"),
+                    Triple("oni / ony", "můžou / mohou", "mohli / mohly")
+                )
             )
 
             UVSection("Giving, Taking & Transfer")
@@ -106,10 +134,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dám ti knihu.",
                 translation = "I'll give you a book."
             )
+            UVAspect("Perfective. Imperfective: dávat.")
             UVTable(
                 verb = "dát", label = "irregular",
-                rows = listOf("já" to "dám", "ty" to "dáš", "on / ona / ono" to "dá",
-                    "my" to "dáme", "vy" to "dáte", "oni / ony" to "dají")
+                rows = listOf(
+                    Triple("já", "dám", "jsem dal / dala"),
+                    Triple("ty", "dáš", "jsi dal / dala"),
+                    Triple("on / ona / ono", "dá", "dal / dala / dalo"),
+                    Triple("my", "dáme", "jsme dali / daly"),
+                    Triple("vy", "dáte", "jste dali / daly"),
+                    Triple("oni / ony", "dají", "dali / daly")
+                )
             )
             UVVerbEntry(
                 czech = "vzít",
@@ -118,10 +153,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Vezmu si kabelku.",
                 translation = "I'll take the bag."
             )
+            UVAspect("Perfective. Imperfective: brát.")
             UVTable(
                 verb = "vzít", label = "irregular",
-                rows = listOf("já" to "vezmu", "ty" to "vezmeš", "on / ona / ono" to "vezme",
-                    "my" to "vezmeme", "vy" to "vezmete", "oni / ony" to "vezmou")
+                rows = listOf(
+                    Triple("já", "vezmu", "jsem vzal / vzala"),
+                    Triple("ty", "vezmeš", "jsi vzal / vzala"),
+                    Triple("on / ona / ono", "vezme", "vzal / vzala / vzalo"),
+                    Triple("my", "vezmeme", "jsme vzali / vzaly"),
+                    Triple("vy", "vezmete", "jste vzali / vzaly"),
+                    Triple("oni / ony", "vezmou", "vzali / vzaly")
+                )
             )
             UVVerbEntry(
                 czech = "poslat",
@@ -130,10 +172,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Pošlu ti zprávu.",
                 translation = "I'll send you a message."
             )
+            UVAspect("Perfective. Imperfective: posílat.")
             UVTable(
                 verb = "poslat", label = "irregular",
-                rows = listOf("já" to "pošlu", "ty" to "pošleš", "on / ona / ono" to "pošle",
-                    "my" to "pošleme", "vy" to "pošlete", "oni / ony" to "pošlou")
+                rows = listOf(
+                    Triple("já", "pošlu", "jsem poslal / poslala"),
+                    Triple("ty", "pošleš", "jsi poslal / poslala"),
+                    Triple("on / ona / ono", "pošle", "poslal / poslala / poslalo"),
+                    Triple("my", "pošleme", "jsme poslali / poslaly"),
+                    Triple("vy", "pošlete", "jste poslali / poslaly"),
+                    Triple("oni / ony", "pošlou", "poslali / poslaly")
+                )
             )
             UVVerbEntry(
                 czech = "dostat",
@@ -142,10 +191,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dostal jsem dopis.",
                 translation = "I received a letter."
             )
+            UVAspect("Perfective. Imperfective: dostávat.")
             UVTable(
                 verb = "dostat", label = "irregular",
-                rows = listOf("já" to "dostanu", "ty" to "dostaneš", "on / ona / ono" to "dostane",
-                    "my" to "dostaneme", "vy" to "dostanete", "oni / ony" to "dostanou")
+                rows = listOf(
+                    Triple("já", "dostanu", "jsem dostal / dostala"),
+                    Triple("ty", "dostaneš", "jsi dostal / dostala"),
+                    Triple("on / ona / ono", "dostane", "dostal / dostala / dostalo"),
+                    Triple("my", "dostaneme", "jsme dostali / dostaly"),
+                    Triple("vy", "dostanete", "jste dostali / dostaly"),
+                    Triple("oni / ony", "dostanou", "dostali / dostaly")
+                )
             )
             UVVerbEntry(
                 czech = "přinést",
@@ -154,10 +210,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Přinesu ti vodu.",
                 translation = "I'll bring you water."
             )
+            UVAspect("Perfective. Imperfective: přinášet.")
             UVTable(
                 verb = "přinést", label = "irregular",
-                rows = listOf("já" to "přinesu", "ty" to "přineseš", "on / ona / ono" to "přinese",
-                    "my" to "přineseme", "vy" to "přinesete", "oni / ony" to "přinesou")
+                rows = listOf(
+                    Triple("já", "přinesu", "jsem přinesl / přinesla"),
+                    Triple("ty", "přineseš", "jsi přinesl / přinesla"),
+                    Triple("on / ona / ono", "přinese", "přinesl / přinesla / přineslo"),
+                    Triple("my", "přineseme", "jsme přinesli / přinesly"),
+                    Triple("vy", "přinesete", "jste přinesli / přinesly"),
+                    Triple("oni / ony", "přinesou", "přinesli / přinesly")
+                )
             )
 
             UVSection("Common Everyday Verbs")
@@ -168,10 +231,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Mám knihu.",
                 translation = "I have a book."
             )
+            UVAspect("Imperfective (stative). No standard perfective.")
             UVTable(
                 verb = "mít", label = "irregular",
-                rows = listOf("já" to "mám", "ty" to "máš", "on / ona / ono" to "má",
-                    "my" to "máme", "vy" to "máte", "oni / ony" to "mají")
+                rows = listOf(
+                    Triple("já", "mám", "jsem měl / měla"),
+                    Triple("ty", "máš", "jsi měl / měla"),
+                    Triple("on / ona / ono", "má", "měl / měla / mělo"),
+                    Triple("my", "máme", "jsme měli / měly"),
+                    Triple("vy", "máte", "jste měli / měly"),
+                    Triple("oni / ony", "mají", "měli / měly")
+                )
             )
             UVVerbEntry(
                 czech = "dělat",
@@ -180,10 +250,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Co děláš?",
                 translation = "What are you doing?"
             )
+            UVAspect("Imperfective. Perfective: udělat.")
             UVTable(
                 verb = "dělat", label = "Type 1 (-at)",
-                rows = listOf("já" to "dělám", "ty" to "děláš", "on / ona / ono" to "dělá",
-                    "my" to "děláme", "vy" to "děláte", "oni / ony" to "dělají")
+                rows = listOf(
+                    Triple("já", "dělám", "jsem dělal / dělala"),
+                    Triple("ty", "děláš", "jsi dělal / dělala"),
+                    Triple("on / ona / ono", "dělá", "dělal / dělala / dělalo"),
+                    Triple("my", "děláme", "jsme dělali / dělaly"),
+                    Triple("vy", "děláte", "jste dělali / dělaly"),
+                    Triple("oni / ony", "dělají", "dělali / dělaly")
+                )
             )
             UVVerbEntry(
                 czech = "pracovat",
@@ -192,10 +269,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Pracuji v kanceláři.",
                 translation = "I work in an office."
             )
+            UVAspect("Imperfective. No standard perfective.")
             UVTable(
                 verb = "pracovat", label = "Type 3 (-ovat)",
-                rows = listOf("já" to "pracuji / pracuju", "ty" to "pracuješ", "on / ona / ono" to "pracuje",
-                    "my" to "pracujeme", "vy" to "pracujete", "oni / ony" to "pracují / pracujou")
+                rows = listOf(
+                    Triple("já", "pracuji / pracuju", "jsem pracoval / pracovala"),
+                    Triple("ty", "pracuješ", "jsi pracoval / pracovala"),
+                    Triple("on / ona / ono", "pracuje", "pracoval / pracovala / pracovalo"),
+                    Triple("my", "pracujeme", "jsme pracovali / pracovaly"),
+                    Triple("vy", "pracujete", "jste pracovali / pracovaly"),
+                    Triple("oni / ony", "pracují / pracujou", "pracovali / pracovaly")
+                )
             )
             UVVerbEntry(
                 czech = "studovat",
@@ -204,10 +288,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Studuji češtinu.",
                 translation = "I'm studying Czech."
             )
+            UVAspect("Imperfective. No standard perfective.")
             UVTable(
                 verb = "studovat", label = "Type 3 (-ovat)",
-                rows = listOf("já" to "studuji / studuju", "ty" to "studuješ", "on / ona / ono" to "studuje",
-                    "my" to "studujeme", "vy" to "studujete", "oni / ony" to "studují / studujou")
+                rows = listOf(
+                    Triple("já", "studuji / studuju", "jsem studoval / studovala"),
+                    Triple("ty", "studuješ", "jsi studoval / studovala"),
+                    Triple("on / ona / ono", "studuje", "studoval / studovala / studovalo"),
+                    Triple("my", "studujeme", "jsme studovali / studovaly"),
+                    Triple("vy", "studujete", "jste studovali / studovaly"),
+                    Triple("oni / ony", "studují / studujou", "studovali / studovaly")
+                )
             )
             UVVerbEntry(
                 czech = "myslet",
@@ -216,10 +307,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Myslím na tebe.",
                 translation = "I'm thinking about you."
             )
+            UVAspect("Imperfective. Perfective: pomyslet (si) (to have a thought).")
             UVTable(
                 verb = "myslet", label = "Type 2 (-et)",
-                rows = listOf("já" to "myslím", "ty" to "myslíš", "on / ona / ono" to "myslí",
-                    "my" to "myslíme", "vy" to "myslíte", "oni / ony" to "myslí")
+                rows = listOf(
+                    Triple("já", "myslím", "jsem myslel / myslela"),
+                    Triple("ty", "myslíš", "jsi myslel / myslela"),
+                    Triple("on / ona / ono", "myslí", "myslel / myslela / myslelo"),
+                    Triple("my", "myslíme", "jsme mysleli / myslely"),
+                    Triple("vy", "myslíte", "jste mysleli / myslely"),
+                    Triple("oni / ony", "myslí", "mysleli / myslely")
+                )
             )
             UVVerbEntry(
                 czech = "přestat",
@@ -228,10 +326,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Přestaň mluvit!",
                 translation = "Stop talking!"
             )
+            UVAspect("Perfective. Imperfective: přestávat.")
             UVTable(
                 verb = "přestat", label = "irregular",
-                rows = listOf("já" to "přestanu", "ty" to "přestaneš", "on / ona / ono" to "přestane",
-                    "my" to "přestaneme", "vy" to "přestanete", "oni / ony" to "přestanou")
+                rows = listOf(
+                    Triple("já", "přestanu", "jsem přestal / přestala"),
+                    Triple("ty", "přestaneš", "jsi přestal / přestala"),
+                    Triple("on / ona / ono", "přestane", "přestal / přestala / přestalo"),
+                    Triple("my", "přestaneme", "jsme přestali / přestaly"),
+                    Triple("vy", "přestanete", "jste přestali / přestaly"),
+                    Triple("oni / ony", "přestanou", "přestali / přestaly")
+                )
             )
             UVVerbEntry(
                 czech = "běžet",
@@ -240,10 +345,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Běžím do parku.",
                 translation = "I'm running to the park."
             )
+            UVAspect("Imperfective (unidirectional). Perfective with prefix: přiběhnout (run here), odběhnout (run away).")
             UVTable(
                 verb = "běžet", label = "Type 2 (-et)",
-                rows = listOf("já" to "běžím", "ty" to "běžíš", "on / ona / ono" to "běží",
-                    "my" to "běžíme", "vy" to "běžíte", "oni / ony" to "běží")
+                rows = listOf(
+                    Triple("já", "běžím", "jsem běžel / běžela"),
+                    Triple("ty", "běžíš", "jsi běžel / běžela"),
+                    Triple("on / ona / ono", "běží", "běžel / běžela / běželo"),
+                    Triple("my", "běžíme", "jsme běželi / běžely"),
+                    Triple("vy", "běžíte", "jste běželi / běžely"),
+                    Triple("oni / ony", "běží", "běželi / běžely")
+                )
             )
             UVVerbEntry(
                 czech = "vracet se",
@@ -252,62 +364,97 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Vracím se domů.",
                 translation = "I'm returning home."
             )
+            UVAspect("Imperfective. Perfective: vrátit se.")
             UVTable(
                 verb = "vracet se", label = "Type 1 (-at), reflexive",
-                rows = listOf("já" to "vracím se", "ty" to "vracíš se", "on / ona / ono" to "vrací se",
-                    "my" to "vracíme se", "vy" to "vracíte se", "oni / ony" to "vracejí se")
+                rows = listOf(
+                    Triple("já", "vracím se", "jsem se vracel / vracela"),
+                    Triple("ty", "vracíš se", "jsi se vracel / vracela"),
+                    Triple("on / ona / ono", "vrací se", "vracel se / vracela se / vracelo se"),
+                    Triple("my", "vracíme se", "jsme se vraceli / vracely"),
+                    Triple("vy", "vracíte se", "jste se vraceli / vracely"),
+                    Triple("oni / ony", "vracejí se", "vraceli se / vracely se")
+                )
             )
 
             UVSection("Shopping")
             UVVerbEntry(
                 czech = "kupovat",
                 english = "to buy",
-                rule = "Takes Accusative (what you buy). Imperfective; perfective is koupit.",
+                rule = "Takes Accusative (what you buy).",
                 example = "Kupuji si nové boty.",
                 translation = "I'm buying new shoes."
             )
+            UVAspect("Imperfective. Perfective: koupit.")
             UVTable(
                 verb = "kupovat", label = "Type 3 (-ovat)",
-                rows = listOf("já" to "kupuji / kupuju", "ty" to "kupuješ", "on / ona / ono" to "kupuje",
-                    "my" to "kupujeme", "vy" to "kupujete", "oni / ony" to "kupují / kupujou")
+                rows = listOf(
+                    Triple("já", "kupuji / kupuju", "jsem kupoval / kupovala"),
+                    Triple("ty", "kupuješ", "jsi kupoval / kupovala"),
+                    Triple("on / ona / ono", "kupuje", "kupoval / kupovala / kupovalo"),
+                    Triple("my", "kupujeme", "jsme kupovali / kupovaly"),
+                    Triple("vy", "kupujete", "jste kupovali / kupovaly"),
+                    Triple("oni / ony", "kupují / kupujou", "kupovali / kupovaly")
+                )
             )
             UVVerbEntry(
                 czech = "prodávat",
                 english = "to sell",
-                rule = "Takes Accusative (what you sell). Imperfective; perfective is prodat.",
+                rule = "Takes Accusative (what you sell).",
                 example = "Prodávám auto.",
                 translation = "I'm selling a car."
             )
+            UVAspect("Imperfective. Perfective: prodat.")
             UVTable(
                 verb = "prodávat", label = "Type 1 (-at)",
-                rows = listOf("já" to "prodávám", "ty" to "prodáváš", "on / ona / ono" to "prodává",
-                    "my" to "prodáváme", "vy" to "prodáváte", "oni / ony" to "prodávají")
+                rows = listOf(
+                    Triple("já", "prodávám", "jsem prodával / prodávala"),
+                    Triple("ty", "prodáváš", "jsi prodával / prodávala"),
+                    Triple("on / ona / ono", "prodává", "prodával / prodávala / prodávalo"),
+                    Triple("my", "prodáváme", "jsme prodávali / prodávaly"),
+                    Triple("vy", "prodáváte", "jste prodávali / prodávaly"),
+                    Triple("oni / ony", "prodávají", "prodávali / prodávaly")
+                )
             )
 
             UVSection("Actions")
             UVVerbEntry(
                 czech = "otevírat",
                 english = "to open",
-                rule = "Takes Accusative (what you open). Imperfective; perfective is otevřít.",
+                rule = "Takes Accusative (what you open).",
                 example = "Otevírám okno.",
                 translation = "I'm opening the window."
             )
+            UVAspect("Imperfective. Perfective: otevřít.")
             UVTable(
                 verb = "otevírat", label = "Type 1 (-at)",
-                rows = listOf("já" to "otevírám", "ty" to "otevíráš", "on / ona / ono" to "otevírá",
-                    "my" to "otevíráme", "vy" to "otevíráte", "oni / ony" to "otevírají")
+                rows = listOf(
+                    Triple("já", "otevírám", "jsem otevíral / otevírala"),
+                    Triple("ty", "otevíráš", "jsi otevíral / otevírala"),
+                    Triple("on / ona / ono", "otevírá", "otevíral / otevírala / otevíralo"),
+                    Triple("my", "otevíráme", "jsme otevírali / otevíraly"),
+                    Triple("vy", "otevíráte", "jste otevírali / otevíraly"),
+                    Triple("oni / ony", "otevírají", "otevírali / otevíraly")
+                )
             )
             UVVerbEntry(
                 czech = "zavírat",
                 english = "to close",
-                rule = "Takes Accusative (what you close). Imperfective; perfective is zavřít.",
+                rule = "Takes Accusative (what you close).",
                 example = "Zavírám dveře.",
                 translation = "I'm closing the door."
             )
+            UVAspect("Imperfective. Perfective: zavřít.")
             UVTable(
                 verb = "zavírat", label = "Type 1 (-at)",
-                rows = listOf("já" to "zavírám", "ty" to "zavíráš", "on / ona / ono" to "zavírá",
-                    "my" to "zavíráme", "vy" to "zavíráte", "oni / ony" to "zavírají")
+                rows = listOf(
+                    Triple("já", "zavírám", "jsem zavíral / zavírala"),
+                    Triple("ty", "zavíráš", "jsi zavíral / zavírala"),
+                    Triple("on / ona / ono", "zavírá", "zavíral / zavírala / zavíralo"),
+                    Triple("my", "zavíráme", "jsme zavírali / zavíraly"),
+                    Triple("vy", "zavíráte", "jste zavírali / zavíraly"),
+                    Triple("oni / ony", "zavírají", "zavírali / zavíraly")
+                )
             )
             UVVerbEntry(
                 czech = "hrát",
@@ -316,10 +463,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Hrajeme fotbal.",
                 translation = "We're playing football."
             )
+            UVAspect("Imperfective. Perfective: zahrát (si).")
             UVTable(
                 verb = "hrát", label = "irregular (-át)",
-                rows = listOf("já" to "hraji / hraju", "ty" to "hraješ", "on / ona / ono" to "hraje",
-                    "my" to "hrajeme", "vy" to "hrajete", "oni / ony" to "hrají")
+                rows = listOf(
+                    Triple("já", "hraji / hraju", "jsem hrál / hrála"),
+                    Triple("ty", "hraješ", "jsi hrál / hrála"),
+                    Triple("on / ona / ono", "hraje", "hrál / hrála / hrálo"),
+                    Triple("my", "hrajeme", "jsme hráli / hrály"),
+                    Triple("vy", "hrajete", "jste hráli / hrály"),
+                    Triple("oni / ony", "hrají", "hráli / hrály")
+                )
             )
             UVVerbEntry(
                 czech = "čekat",
@@ -328,10 +482,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Čekám na autobus.",
                 translation = "I'm waiting for the bus."
             )
+            UVAspect("Imperfective. Perfective: počkat.")
             UVTable(
                 verb = "čekat", label = "Type 1 (-at)",
-                rows = listOf("já" to "čekám", "ty" to "čekáš", "on / ona / ono" to "čeká",
-                    "my" to "čekáme", "vy" to "čekáte", "oni / ony" to "čekají")
+                rows = listOf(
+                    Triple("já", "čekám", "jsem čekal / čekala"),
+                    Triple("ty", "čekáš", "jsi čekal / čekala"),
+                    Triple("on / ona / ono", "čeká", "čekal / čekala / čekalo"),
+                    Triple("my", "čekáme", "jsme čekali / čekaly"),
+                    Triple("vy", "čekáte", "jste čekali / čekaly"),
+                    Triple("oni / ony", "čekají", "čekali / čekaly")
+                )
             )
 
             UVSection("States")
@@ -342,10 +503,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Sedím na lavičce.",
                 translation = "I'm sitting on a bench."
             )
+            UVAspect("Imperfective. Perfective: sednout si (to sit down).")
             UVTable(
                 verb = "sedět", label = "Type 2 (-et)",
-                rows = listOf("já" to "sedím", "ty" to "sedíš", "on / ona / ono" to "sedí",
-                    "my" to "sedíme", "vy" to "sedíte", "oni / ony" to "sedí")
+                rows = listOf(
+                    Triple("já", "sedím", "jsem seděl / seděla"),
+                    Triple("ty", "sedíš", "jsi seděl / seděla"),
+                    Triple("on / ona / ono", "sedí", "seděl / seděla / sedělo"),
+                    Triple("my", "sedíme", "jsme seděli / seděly"),
+                    Triple("vy", "sedíte", "jste seděli / seděly"),
+                    Triple("oni / ony", "sedí", "seděli / seděly")
+                )
             )
             UVVerbEntry(
                 czech = "spát",
@@ -354,10 +522,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Spím osm hodin.",
                 translation = "I sleep eight hours."
             )
+            UVAspect("Imperfective. Perfective: prospat (to sleep through something).")
             UVTable(
                 verb = "spát", label = "irregular",
-                rows = listOf("já" to "spím", "ty" to "spíš", "on / ona / ono" to "spí",
-                    "my" to "spíme", "vy" to "spíte", "oni / ony" to "spí")
+                rows = listOf(
+                    Triple("já", "spím", "jsem spal / spala"),
+                    Triple("ty", "spíš", "jsi spal / spala"),
+                    Triple("on / ona / ono", "spí", "spal / spala / spalo"),
+                    Triple("my", "spíme", "jsme spali / spaly"),
+                    Triple("vy", "spíte", "jste spali / spaly"),
+                    Triple("oni / ony", "spí", "spali / spaly")
+                )
             )
             UVVerbEntry(
                 czech = "jíst",
@@ -366,10 +541,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jím polévku.",
                 translation = "I'm eating soup."
             )
+            UVAspect("Imperfective. Perfective: sníst (to eat up / finish eating).")
             UVTable(
                 verb = "jíst", label = "irregular",
-                rows = listOf("já" to "jím", "ty" to "jíš", "on / ona / ono" to "jí",
-                    "my" to "jíme", "vy" to "jíte", "oni / ony" to "jedí")
+                rows = listOf(
+                    Triple("já", "jím", "jsem jedl / jedla"),
+                    Triple("ty", "jíš", "jsi jedl / jedla"),
+                    Triple("on / ona / ono", "jí", "jedl / jedla / jedlo"),
+                    Triple("my", "jíme", "jsme jedli / jedly"),
+                    Triple("vy", "jíte", "jste jedli / jedly"),
+                    Triple("oni / ony", "jedí", "jedli / jedly")
+                )
             )
             UVVerbEntry(
                 czech = "pít",
@@ -378,10 +560,17 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Piji kávu.",
                 translation = "I'm drinking coffee."
             )
+            UVAspect("Imperfective. Perfective: vypít (to drink up).")
             UVTable(
                 verb = "pít", label = "irregular",
-                rows = listOf("já" to "piji / piju", "ty" to "piješ", "on / ona / ono" to "pije",
-                    "my" to "pijeme", "vy" to "pijete", "oni / ony" to "pijí / pijou")
+                rows = listOf(
+                    Triple("já", "piji / piju", "jsem pil / pila"),
+                    Triple("ty", "piješ", "jsi pil / pila"),
+                    Triple("on / ona / ono", "pije", "pil / pila / pilo"),
+                    Triple("my", "pijeme", "jsme pili / pily"),
+                    Triple("vy", "pijete", "jste pili / pily"),
+                    Triple("oni / ony", "pijí / pijou", "pili / pily")
+                )
             )
 
             UVSection("Being & Living")
@@ -393,15 +582,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jsem doma.",
                 translation = "I am at home."
             )
+            UVAspect("Imperfective. No perfective counterpart.")
             UVTable(
                 verb = "být", label = "irregular",
                 rows = listOf(
-                    "já" to "jsem",
-                    "ty" to "jsi",
-                    "on / ona / ono" to "je",
-                    "my" to "jsme",
-                    "vy" to "jste",
-                    "oni / ony" to "jsou"
+                    Triple("já", "jsem", "jsem byl / jsem byla"),
+                    Triple("ty", "jsi", "jsi byl / jsi byla"),
+                    Triple("on / ona / ono", "je", "byl / byla / bylo"),
+                    Triple("my", "jsme", "jsme byli / jsme byly"),
+                    Triple("vy", "jste", "jste byli / jste byly"),
+                    Triple("oni / ony", "jsou", "byli / byly")
                 )
             )
 
@@ -412,15 +602,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Žiju v Praze.",
                 translation = "I live in Prague."
             )
+            UVAspect("Imperfective. Perfective: prožít (to live through / experience fully).")
             UVTable(
                 verb = "žít", label = "irregular",
                 rows = listOf(
-                    "já" to "žiji / žiju",
-                    "ty" to "žiješ",
-                    "on / ona / ono" to "žije",
-                    "my" to "žijeme",
-                    "vy" to "žijete",
-                    "oni / ony" to "žijí / žijou"
+                    Triple("já", "žiji / žiju", "jsem žil / žila"),
+                    Triple("ty", "žiješ", "jsi žil / žila"),
+                    Triple("on / ona / ono", "žije", "žil / žila / žilo"),
+                    Triple("my", "žijeme", "jsme žili / žily"),
+                    Triple("vy", "žijete", "jste žili / žily"),
+                    Triple("oni / ony", "žijí / žijou", "žili / žily")
                 )
             )
 
@@ -431,15 +622,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Bydlím v Brně.",
                 translation = "I reside in Brno."
             )
+            UVAspect("Imperfective. No standard perfective.")
             UVTable(
                 verb = "bydlet", label = "Type 2 (-et)",
                 rows = listOf(
-                    "já" to "bydlím",
-                    "ty" to "bydlíš",
-                    "on / ona / ono" to "bydlí",
-                    "my" to "bydlíme",
-                    "vy" to "bydlíte",
-                    "oni / ony" to "bydlí"
+                    Triple("já", "bydlím", "jsem bydlel / bydlela"),
+                    Triple("ty", "bydlíš", "jsi bydlel / bydlela"),
+                    Triple("on / ona / ono", "bydlí", "bydlel / bydlela / bydlelo"),
+                    Triple("my", "bydlíme", "jsme bydleli / bydlely"),
+                    Triple("vy", "bydlíte", "jste bydleli / bydlely"),
+                    Triple("oni / ony", "bydlí", "bydleli / bydlely")
                 )
             )
 
@@ -452,15 +644,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Mluvím česky.",
                 translation = "I speak Czech."
             )
+            UVAspect("Imperfective. Perfective: promluvit (to say something / speak up).")
             UVTable(
                 verb = "mluvit", label = "Type 2 (-it)",
                 rows = listOf(
-                    "já" to "mluvím",
-                    "ty" to "mluvíš",
-                    "on / ona / ono" to "mluví",
-                    "my" to "mluvíme",
-                    "vy" to "mluvíte",
-                    "oni / ony" to "mluví"
+                    Triple("já", "mluvím", "jsem mluvil / mluvila"),
+                    Triple("ty", "mluvíš", "jsi mluvil / mluvila"),
+                    Triple("on / ona / ono", "mluví", "mluvil / mluvila / mluvilo"),
+                    Triple("my", "mluvíme", "jsme mluvili / mluvily"),
+                    Triple("vy", "mluvíte", "jste mluvili / mluvily"),
+                    Triple("oni / ony", "mluví", "mluvili / mluvily")
                 )
             )
 
@@ -471,15 +664,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Poslouchám hudbu.",
                 translation = "I'm listening to music."
             )
+            UVAspect("Imperfective. Perfective: poslechnout (si).")
             UVTable(
                 verb = "poslouchat", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "poslouchám",
-                    "ty" to "posloucháš",
-                    "on / ona / ono" to "poslouchá",
-                    "my" to "posloucháme",
-                    "vy" to "posloucháte",
-                    "oni / ony" to "poslouchají"
+                    Triple("já", "poslouchám", "jsem poslouchal / poslouchala"),
+                    Triple("ty", "posloucháš", "jsi poslouchal / poslouchala"),
+                    Triple("on / ona / ono", "poslouchá", "poslouchal / poslouchala / poslouchalo"),
+                    Triple("my", "posloucháme", "jsme poslouchali / poslouchaly"),
+                    Triple("vy", "posloucháte", "jste poslouchali / poslouchaly"),
+                    Triple("oni / ony", "poslouchají", "poslouchali / poslouchaly")
                 )
             )
 
@@ -490,15 +684,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Říkám ti pravdu.",
                 translation = "I'm telling you the truth."
             )
+            UVAspect("Imperfective. Perfective: říct / říci.")
             UVTable(
                 verb = "říkat", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "říkám",
-                    "ty" to "říkáš",
-                    "on / ona / ono" to "říká",
-                    "my" to "říkáme",
-                    "vy" to "říkáte",
-                    "oni / ony" to "říkají"
+                    Triple("já", "říkám", "jsem říkal / říkala"),
+                    Triple("ty", "říkáš", "jsi říkal / říkala"),
+                    Triple("on / ona / ono", "říká", "říkal / říkala / říkalo"),
+                    Triple("my", "říkáme", "jsme říkali / říkaly"),
+                    Triple("vy", "říkáte", "jste říkali / říkaly"),
+                    Triple("oni / ony", "říkají", "říkali / říkaly")
                 )
             )
 
@@ -509,15 +704,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Vidím tě.",
                 translation = "I see you."
             )
+            UVAspect("Imperfective (stative). Perfective: uvidět, spatřit.")
             UVTable(
                 verb = "vidět", label = "Type 2 (-et)",
                 rows = listOf(
-                    "já" to "vidím",
-                    "ty" to "vidíš",
-                    "on / ona / ono" to "vidí",
-                    "my" to "vidíme",
-                    "vy" to "vidíte",
-                    "oni / ony" to "vidí"
+                    Triple("já", "vidím", "jsem viděl / viděla"),
+                    Triple("ty", "vidíš", "jsi viděl / viděla"),
+                    Triple("on / ona / ono", "vidí", "viděl / viděla / vidělo"),
+                    Triple("my", "vidíme", "jsme viděli / viděly"),
+                    Triple("vy", "vidíte", "jste viděli / viděly"),
+                    Triple("oni / ony", "vidí", "viděli / viděly")
                 )
             )
 
@@ -528,15 +724,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dívám se na film.",
                 translation = "I'm watching a film."
             )
+            UVAspect("Imperfective. Perfective: podívat se.")
             UVTable(
                 verb = "dívat se", label = "Type 1 (-at), reflexive",
                 rows = listOf(
-                    "já" to "dívám se",
-                    "ty" to "díváš se",
-                    "on / ona / ono" to "dívá se",
-                    "my" to "díváme se",
-                    "vy" to "díváte se",
-                    "oni / ony" to "dívají se"
+                    Triple("já", "dívám se", "jsem se díval / dívala"),
+                    Triple("ty", "díváš se", "jsi se díval / dívala"),
+                    Triple("on / ona / ono", "dívá se", "díval se / dívala se / dívalo se"),
+                    Triple("my", "díváme se", "jsme se dívali / dívaly"),
+                    Triple("vy", "díváte se", "jste se dívali / dívaly"),
+                    Triple("oni / ony", "dívají se", "dívali se / dívaly se")
                 )
             )
 
@@ -547,15 +744,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Jak se jmenuješ?",
                 translation = "What is your name? (informal)"
             )
+            UVAspect("Imperfective. No standard perfective.")
             UVTable(
                 verb = "jmenovat se", label = "Type 3 (-ovat), reflexive",
                 rows = listOf(
-                    "já" to "jmenuji se  (jmenuju se)",
-                    "ty" to "jmenuješ se",
-                    "on / ona / ono" to "jmenuje se",
-                    "my" to "jmenujeme se",
-                    "vy" to "jmenujete se",
-                    "oni / ony" to "jmenují se"
+                    Triple("já", "jmenuji se  (jmenuju se)", "jsem se jmenoval / jmenovala"),
+                    Triple("ty", "jmenuješ se", "jsi se jmenoval / jmenovala"),
+                    Triple("on / ona / ono", "jmenuje se", "jmenoval se / jmenovala se / jmenovalo se"),
+                    Triple("my", "jmenujeme se", "jsme se jmenovali / jmenovaly"),
+                    Triple("vy", "jmenujete se", "jste se jmenovali / jmenovaly"),
+                    Triple("oni / ony", "jmenují se", "jmenovali se / jmenovaly se")
                 )
             )
 
@@ -568,15 +766,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Vím, kde to je.",
                 translation = "I know where it is."
             )
+            UVAspect("Imperfective (stative). No standard perfective.")
             UVTable(
                 verb = "vědět", label = "irregular",
                 rows = listOf(
-                    "já" to "vím",
-                    "ty" to "víš",
-                    "on / ona / ono" to "ví",
-                    "my" to "víme",
-                    "vy" to "víte",
-                    "oni / ony" to "vědí"
+                    Triple("já", "vím", "jsem věděl / věděla"),
+                    Triple("ty", "víš", "jsi věděl / věděla"),
+                    Triple("on / ona / ono", "ví", "věděl / věděla / vědělo"),
+                    Triple("my", "víme", "jsme věděli / věděly"),
+                    Triple("vy", "víte", "jste věděli / věděly"),
+                    Triple("oni / ony", "vědí", "věděli / věděly")
                 )
             )
 
@@ -587,15 +786,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Znám Prahu.",
                 translation = "I know Prague."
             )
+            UVAspect("Imperfective (stative). No standard perfective.")
             UVTable(
                 verb = "znát", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "znám",
-                    "ty" to "znáš",
-                    "on / ona / ono" to "zná",
-                    "my" to "známe",
-                    "vy" to "znáte",
-                    "oni / ony" to "znají"
+                    Triple("já", "znám", "jsem znal / znala"),
+                    Triple("ty", "znáš", "jsi znal / znala"),
+                    Triple("on / ona / ono", "zná", "znal / znala / znalo"),
+                    Triple("my", "známe", "jsme znali / znaly"),
+                    Triple("vy", "znáte", "jste znali / znaly"),
+                    Triple("oni / ony", "znají", "znali / znaly")
                 )
             )
 
@@ -606,15 +806,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Potkávám ho každý den.",
                 translation = "I run into him every day."
             )
+            UVAspect("Imperfective. Perfective: potkat.")
             UVTable(
                 verb = "potkávat", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "potkávám",
-                    "ty" to "potkáváš",
-                    "on / ona / ono" to "potkává",
-                    "my" to "potkáváme",
-                    "vy" to "potkáváte",
-                    "oni / ony" to "potkávají"
+                    Triple("já", "potkávám", "jsem potkával / potkávala"),
+                    Triple("ty", "potkáváš", "jsi potkával / potkávala"),
+                    Triple("on / ona / ono", "potkává", "potkával / potkávala / potkávalo"),
+                    Triple("my", "potkáváme", "jsme potkávali / potkávaly"),
+                    Triple("vy", "potkáváte", "jste potkávali / potkávaly"),
+                    Triple("oni / ony", "potkávají", "potkávali / potkávaly")
                 )
             )
 
@@ -627,15 +828,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Pamatuji si tvé jméno.",
                 translation = "I remember your name."
             )
+            UVAspect("Imperfective. Perfective: zapamatovat si.")
             UVTable(
                 verb = "pamatovat si", label = "Type 3 (-ovat), reflexive",
                 rows = listOf(
-                    "já" to "pamatuji si / pamatuju si",
-                    "ty" to "pamatuješ si",
-                    "on / ona / ono" to "pamatuje si",
-                    "my" to "pamatujeme si",
-                    "vy" to "pamatujete si",
-                    "oni / ony" to "pamatují si / pamatujou si"
+                    Triple("já", "pamatuji si / pamatuju si", "jsem si pamatoval / pamatovala"),
+                    Triple("ty", "pamatuješ si", "jsi si pamatoval / pamatovala"),
+                    Triple("on / ona / ono", "pamatuje si", "pamatoval si / pamatovala si / pamatovalo si"),
+                    Triple("my", "pamatujeme si", "jsme si pamatovali / pamatovaly"),
+                    Triple("vy", "pamatujete si", "jste si pamatovali / pamatovaly"),
+                    Triple("oni / ony", "pamatují si / pamatujou si", "pamatovali si / pamatovaly si")
                 )
             )
 
@@ -646,15 +848,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Zapomínám na klíče.",
                 translation = "I keep forgetting the keys."
             )
+            UVAspect("Imperfective. Perfective: zapomenout.")
             UVTable(
                 verb = "zapomínat", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "zapomínám",
-                    "ty" to "zapomínáš",
-                    "on / ona / ono" to "zapomíná",
-                    "my" to "zapomínáme",
-                    "vy" to "zapomínáte",
-                    "oni / ony" to "zapomínají"
+                    Triple("já", "zapomínám", "jsem zapomínal / zapomínala"),
+                    Triple("ty", "zapomínáš", "jsi zapomínal / zapomínala"),
+                    Triple("on / ona / ono", "zapomíná", "zapomínal / zapomínala / zapomínalo"),
+                    Triple("my", "zapomínáme", "jsme zapomínali / zapomínaly"),
+                    Triple("vy", "zapomínáte", "jste zapomínali / zapomínaly"),
+                    Triple("oni / ony", "zapomínají", "zapomínali / zapomínaly")
                 )
             )
 
@@ -665,15 +868,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Rozhoduji se pro nové auto.",
                 translation = "I'm deciding on a new car."
             )
+            UVAspect("Imperfective. Perfective: rozhodnout se.")
             UVTable(
                 verb = "rozhodovat se", label = "Type 3 (-ovat), reflexive",
                 rows = listOf(
-                    "já" to "rozhoduji se / rozhoduju se",
-                    "ty" to "rozhoduješ se",
-                    "on / ona / ono" to "rozhoduje se",
-                    "my" to "rozhodujeme se",
-                    "vy" to "rozhodujete se",
-                    "oni / ony" to "rozhodují se / rozhodujou se"
+                    Triple("já", "rozhoduji se / rozhoduju se", "jsem se rozhodoval / rozhodovala"),
+                    Triple("ty", "rozhoduješ se", "jsi se rozhodoval / rozhodovala"),
+                    Triple("on / ona / ono", "rozhoduje se", "rozhodoval se / rozhodovala se / rozhodovalo se"),
+                    Triple("my", "rozhodujeme se", "jsme se rozhodovali / rozhodovaly"),
+                    Triple("vy", "rozhodujete se", "jste se rozhodovali / rozhodovaly"),
+                    Triple("oni / ony", "rozhodují se / rozhodujou se", "rozhodovali se / rozhodovaly se")
                 )
             )
 
@@ -686,15 +890,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Hledám práci.",
                 translation = "I'm looking for work."
             )
+            UVAspect("Imperfective. Perfective: najít (irregular: najdu / najdeš / najde).")
             UVTable(
                 verb = "hledat", label = "Type 1 (-at)",
                 rows = listOf(
-                    "já" to "hledám",
-                    "ty" to "hledáš",
-                    "on / ona / ono" to "hledá",
-                    "my" to "hledáme",
-                    "vy" to "hledáte",
-                    "oni / ony" to "hledají"
+                    Triple("já", "hledám", "jsem hledal / hledala"),
+                    Triple("ty", "hledáš", "jsi hledal / hledala"),
+                    Triple("on / ona / ono", "hledá", "hledal / hledala / hledalo"),
+                    Triple("my", "hledáme", "jsme hledali / hledaly"),
+                    Triple("vy", "hledáte", "jste hledali / hledaly"),
+                    Triple("oni / ony", "hledají", "hledali / hledaly")
                 )
             )
 
@@ -705,15 +910,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Nacházím řešení.",
                 translation = "I'm finding a solution."
             )
+            UVAspect("Imperfective. Perfective: najít.")
             UVTable(
                 verb = "nacházet", label = "Type 2-like (-et)",
                 rows = listOf(
-                    "já" to "nacházím",
-                    "ty" to "nacházíš",
-                    "on / ona / ono" to "nachází",
-                    "my" to "nacházíme",
-                    "vy" to "nacházíte",
-                    "oni / ony" to "nacházejí"
+                    Triple("já", "nacházím", "jsem nacházel / nacházela"),
+                    Triple("ty", "nacházíš", "jsi nacházel / nacházela"),
+                    Triple("on / ona / ono", "nachází", "nacházel / nacházela / nacházelo"),
+                    Triple("my", "nacházíme", "jsme nacházeli / nacházely"),
+                    Triple("vy", "nacházíte", "jste nacházeli / nacházely"),
+                    Triple("oni / ony", "nacházejí", "nacházeli / nacházely")
                 )
             )
 
@@ -724,15 +930,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Dovoluje mi jít ven.",
                 translation = "He allows me to go outside."
             )
+            UVAspect("Imperfective. Perfective: dovolit.")
             UVTable(
                 verb = "dovolovat", label = "Type 3 (-ovat)",
                 rows = listOf(
-                    "já" to "dovoluji / dovoluju",
-                    "ty" to "dovoluješ",
-                    "on / ona / ono" to "dovoluje",
-                    "my" to "dovolujeme",
-                    "vy" to "dovolujete",
-                    "oni / ony" to "dovolují / dovolujou"
+                    Triple("já", "dovoluji / dovoluju", "jsem dovoloval / dovolovala"),
+                    Triple("ty", "dovoluješ", "jsi dovoloval / dovolovala"),
+                    Triple("on / ona / ono", "dovoluje", "dovoloval / dovolovala / dovolovalo"),
+                    Triple("my", "dovolujeme", "jsme dovolovali / dovolovaly"),
+                    Triple("vy", "dovolujete", "jste dovolovali / dovolovaly"),
+                    Triple("oni / ony", "dovolují / dovolujou", "dovolovali / dovolovaly")
                 )
             )
 
@@ -743,15 +950,16 @@ fun UsefulVerbsScreen(navController: NavController) {
                 example = "Smím tu parkovat?",
                 translation = "Am I allowed to park here?"
             )
+            UVAspect("Imperfective. No standard perfective (modal verb).")
             UVTable(
                 verb = "smět", label = "irregular modal",
                 rows = listOf(
-                    "já" to "smím",
-                    "ty" to "smíš",
-                    "on / ona / ono" to "smí",
-                    "my" to "smíme",
-                    "vy" to "smíte",
-                    "oni / ony" to "smí"
+                    Triple("já", "smím", "jsem směl / směla"),
+                    Triple("ty", "smíš", "jsi směl / směla"),
+                    Triple("on / ona / ono", "smí", "směl / směla / smělo"),
+                    Triple("my", "smíme", "jsme směli / směly"),
+                    Triple("vy", "smíte", "jste směli / směly"),
+                    Triple("oni / ony", "smí", "směli / směly")
                 )
             )
 
@@ -807,7 +1015,18 @@ private fun UVVerbEntry(
 }
 
 @Composable
-private fun UVTable(verb: String, label: String, rows: List<Pair<String, String>>) {
+private fun UVAspect(text: String) {
+    Text(
+        text = text,
+        fontSize = 13.sp,
+        color = Color.Gray,
+        fontStyle = FontStyle.Italic,
+        modifier = Modifier.padding(top = 2.dp, bottom = 2.dp, start = 2.dp)
+    )
+}
+
+@Composable
+private fun UVTable(verb: String, label: String, rows: List<Triple<String, String, String>>) {
     Spacer(modifier = Modifier.height(8.dp))
     Column(
         modifier = Modifier
@@ -818,14 +1037,16 @@ private fun UVTable(verb: String, label: String, rows: List<Pair<String, String>
         Text(text = label, fontSize = 13.sp, fontStyle = FontStyle.Italic, color = Color.Gray)
         Spacer(modifier = Modifier.height(4.dp))
         Row {
-            Text("Pronoun", modifier = Modifier.weight(1f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
-            Text("Form", modifier = Modifier.weight(0.8f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Pronoun", modifier = Modifier.weight(0.9f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Present", modifier = Modifier.weight(0.8f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Past", modifier = Modifier.weight(1.3f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
         }
         HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
-        rows.forEach { (pronoun, form) ->
+        rows.forEach { (pronoun, present, past) ->
             Row(modifier = Modifier.padding(vertical = 3.dp)) {
-                Text(pronoun, modifier = Modifier.weight(1f), fontSize = 14.sp, color = Color.DarkGray)
-                Text(form, modifier = Modifier.weight(0.8f), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                Text(pronoun, modifier = Modifier.weight(0.9f), fontSize = 14.sp, color = Color.DarkGray)
+                Text(present, modifier = Modifier.weight(0.8f), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                Text(past, modifier = Modifier.weight(1.3f), fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Color.Black)
             }
         }
         Spacer(modifier = Modifier.height(4.dp))

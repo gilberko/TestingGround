@@ -76,6 +76,10 @@ class MainActivity : ComponentActivity() {
                 composable("dialogue_intro") { IntroducingYourselfDialogueScreen(navController) }
                 composable("dialogue_supermarket") { SupermarketDialogueScreen(navController) }
                 composable("dialogue_train_station") { TrainStationDialogueScreen(navController) }
+                composable("future_tense") { FutureTenseScreen(navController) }
+                composable("past_tense") { PastTenseScreen(navController) }
+                composable("adverbs") { AdverbsScreen(navController) }
+                composable("adverb_list") { AdverbListScreen(navController) }
             }
         }
     }
@@ -178,7 +182,10 @@ fun LearningHubScreen(navController: NavController) {
             "Adjectives" to "adjectives",
             "This and That" to "this_and_that",
             "Possessive Pronouns" to "possessive_pronouns",
-            "Negation" to "negation"
+            "Negation" to "negation",
+            "Future Tense" to "future_tense",
+            "Past Tense" to "past_tense",
+            "Adverbs" to "adverbs"
         )
         Column(
             modifier = Modifier
@@ -246,7 +253,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "Body and Health" to "body_health",
             "Weather" to "weather",
             "Shopping" to "shopping",
-            "Connecting Words" to "connecting_words"
+            "Connecting Words" to "connecting_words",
+            "Adverbs" to "adverb_list"
         )
         Column(
             modifier = Modifier
