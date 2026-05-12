@@ -121,6 +121,9 @@ import com.example.linuxapp.screens.kernel.NotifierChainsScreen
 import com.example.linuxapp.screens.kernel.ErrorInjectionScreen
 import com.example.linuxapp.screens.kernel.KprobesScreen
 import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
+import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
+import com.example.linuxapp.screens.permissions.IoUringScreen
+import com.example.linuxapp.screens.permissions.DaemonsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -224,6 +227,9 @@ sealed class Screen(val route: String) {
     object KernelErrorInjection        : Screen("kernel_error_injection")
     object KernelKprobes               : Screen("kernel_kprobes")
     object EbpfModifyReturn            : Screen("ebpf_modify_return")
+    object AdvancedElfFileFormat       : Screen("advanced_elf_file_format")
+    object AdvancedIoUring             : Screen("advanced_io_uring")
+    object AdvancedDaemons             : Screen("advanced_daemons")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -452,7 +458,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onStackFrames = { navController.navigate(Screen.AdvancedStackFrames.route) },
                 onKernelVmDebugging = { navController.navigate(Screen.AdvancedKernelVmDebugging.route) },
                 onNamespaces = { navController.navigate(Screen.NamespacesHub.route) },
-                onProcessStart = { navController.navigate(Screen.AdvancedProcessStart.route) }
+                onProcessStart = { navController.navigate(Screen.AdvancedProcessStart.route) },
+                onElfFileFormat = { navController.navigate(Screen.AdvancedElfFileFormat.route) },
+                onIoUring = { navController.navigate(Screen.AdvancedIoUring.route) },
+                onDaemons = { navController.navigate(Screen.AdvancedDaemons.route) }
             )
         }
         composable(Screen.NamespacesHub.route) {
@@ -576,6 +585,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedProcessStart.route) {
             ProcessStartScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedElfFileFormat.route) {
+            ElfFileFormatScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedIoUring.route) {
+            IoUringScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedDaemons.route) {
+            DaemonsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfSharingData.route) {
             EbpfSharingDataScreen(onBack = { navController.popBackStack() })

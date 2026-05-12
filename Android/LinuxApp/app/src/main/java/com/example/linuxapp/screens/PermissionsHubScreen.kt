@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ButtonDefaults
@@ -54,7 +56,10 @@ fun PermissionsHubScreen(
     onStackFrames: () -> Unit,
     onKernelVmDebugging: () -> Unit,
     onNamespaces: () -> Unit,
-    onProcessStart: () -> Unit
+    onProcessStart: () -> Unit,
+    onElfFileFormat: () -> Unit,
+    onIoUring: () -> Unit,
+    onDaemons: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -82,6 +87,7 @@ fun PermissionsHubScreen(
                     .fillMaxSize()
                     .padding(innerPadding)
                     .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -210,6 +216,28 @@ fun PermissionsHubScreen(
                         modifier = Modifier.weight(1f)
                     )
                 }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "ELF File\nFormat",
+                        onClick = onElfFileFormat,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PermissionsHubButton(
+                        label = "io_uring",
+                        onClick = onIoUring,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                PermissionsHubButton(
+                    label = "Daemons",
+                    onClick = onDaemons,
+                    modifier = Modifier.fillMaxWidth()
+                )
                 Spacer(Modifier.height(8.dp))
             }
         }
