@@ -79,6 +79,7 @@ class MainActivity : ComponentActivity() {
                     composable("advanced_memory_paging") { MemoryAndPagingScreen(navController) }
                     composable("advanced_dlls") { DLLsScreen(navController) }
                     composable("user_io_completion_port") { IOCompletionPortScreen(navController) }
+                    composable("user_sync_async_io") { SyncAsyncIoScreen(navController) }
                     composable("user_ui_programming") { UIProgrammingScreen(navController) }
                     composable("user_memory_allocation") { UserMemoryAllocationScreen(navController) }
                     composable("kernel_fsmf_history") { FSMFHistoryScreen(navController) }

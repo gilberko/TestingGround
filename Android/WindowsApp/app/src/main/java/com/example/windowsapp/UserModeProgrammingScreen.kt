@@ -86,6 +86,8 @@ fun UserModeProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("ATL", fontSize = 12.sp) { navController.navigate("user_atl") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("SYNC AND\nASYNC IO", fontSize = 12.sp) { navController.navigate("user_sync_async_io") }
+        Spacer(modifier = Modifier.height(8.dp))
         HackerButton("CALLING CONVENTIONS", fontSize = 12.sp) { navController.navigate("user_calling_conventions") }
 
         Spacer(modifier = Modifier.height(32.dp))
