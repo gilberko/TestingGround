@@ -63,6 +63,13 @@ class MainActivity : ComponentActivity() {
                     composable("meditation_breathing") { MeditationBreathingScreen(navController) }
                     composable("meditation_body_scanning") { MeditationBodyScanningScreen(navController) }
                     composable("meditation_emotions") { MeditationEmotionsScreen(navController) }
+                    composable("motivation") { MotivationScreen(navController) }
+                    composable("about_music_hub") { AboutMusicHubScreen(navController) }
+                    composable("about_music_rhythm") { AboutMusicRhythmScreen(navController) }
+                    composable("about_music_motives") { AboutMusicMotivesScreen(navController) }
+                    composable("about_music_harmony") { AboutMusicHarmonyScreen(navController) }
+                    composable("about_music_lyrics") { AboutMusicLyricsScreen(navController) }
+                    composable("avoidance") { AvoidanceScreen(navController) }
                 }
             }
         }
@@ -80,7 +87,10 @@ fun MainScreen(navController: NavController) {
         "General Decision Making" to "general_decision_making",
         "The Brain And Its Chemistry" to "brain_and_its_chemistry",
         "Vagus Nerve" to "vagus_nerve",
-        "Winning And Losing" to "winning_and_losing"
+        "Winning And Losing" to "winning_and_losing",
+        "Motivation" to "motivation",
+        "About Music" to "about_music_hub",
+        "Avoidance" to "avoidance"
     )
     Column(
         modifier = Modifier
