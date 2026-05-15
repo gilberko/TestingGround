@@ -99,7 +99,8 @@ fun PastTenseScreen(navController: NavController) {
             PASNote("Já jsem dělal.  →  Dělal jsem.  (I was doing it. — masc.)")
             PASNote("Ty jsi dělala.  →  Dělala jsi.  (You were doing it. — fem.)")
             PASNote("My jsme byli doma.  →  Byli jsme doma.  (We were at home.)")
-            PASNote("The rule is: jsem / jsi / jsme / jste must occupy the second position in the sentence, not the first. The l-form comes first, then the helper.")
+            PASNote("The rule is: jsem / jsi / jsme / jste must occupy the second position in the sentence — never first. The first position can be the l-form itself, or any other element you put at the front (a time word, a topic, an adverb).")
+            PASNote("Ráno jsem dokončil projekt.  (In the morning, I finished the project.) — Ráno is first; jsem is second, before dokončil. The clitic does not move after the verb — it always sits in second position, whatever comes first.")
             PASNote("on / ona / ono / oni / ony never use a helper verb in the past tense, so no reordering applies to them.")
 
             Spacer(modifier = Modifier.height(24.dp))

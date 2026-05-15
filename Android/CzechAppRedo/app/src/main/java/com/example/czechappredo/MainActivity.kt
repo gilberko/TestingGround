@@ -289,7 +289,7 @@ fun DictionaryHubScreen(navController: NavController) {
             "Countries & Languages" to "countries",
             "Vacation" to "vacation",
             "Daily Routines" to "daily_routines",
-            "Days of the Week" to "days_of_week",
+            "Days and Months" to "days_of_week",
             "Housing" to "housing",
             "Body and Health" to "body_health",
             "Weather" to "weather",
