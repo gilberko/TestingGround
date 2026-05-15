@@ -124,6 +124,7 @@ import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
 import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
 import com.example.linuxapp.screens.permissions.IoUringScreen
 import com.example.linuxapp.screens.permissions.DaemonsScreen
+import com.example.linuxapp.screens.permissions.NatVpnScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -230,6 +231,7 @@ sealed class Screen(val route: String) {
     object AdvancedElfFileFormat       : Screen("advanced_elf_file_format")
     object AdvancedIoUring             : Screen("advanced_io_uring")
     object AdvancedDaemons             : Screen("advanced_daemons")
+    object AdvancedNatVpn              : Screen("advanced_nat_vpn")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -461,7 +463,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onProcessStart = { navController.navigate(Screen.AdvancedProcessStart.route) },
                 onElfFileFormat = { navController.navigate(Screen.AdvancedElfFileFormat.route) },
                 onIoUring = { navController.navigate(Screen.AdvancedIoUring.route) },
-                onDaemons = { navController.navigate(Screen.AdvancedDaemons.route) }
+                onDaemons = { navController.navigate(Screen.AdvancedDaemons.route) },
+                onNatVpn = { navController.navigate(Screen.AdvancedNatVpn.route) }
             )
         }
         composable(Screen.NamespacesHub.route) {
@@ -594,6 +597,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.AdvancedDaemons.route) {
             DaemonsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AdvancedNatVpn.route) {
+            NatVpnScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfSharingData.route) {
             EbpfSharingDataScreen(onBack = { navController.popBackStack() })

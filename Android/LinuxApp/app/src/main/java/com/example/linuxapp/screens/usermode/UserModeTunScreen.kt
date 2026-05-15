@@ -223,6 +223,103 @@ fun UserModeTunScreen(onBack: () -> Unit) {
                 }
             }
 
+            item {
+                SectionCard(title = "Setting IP Address and Netmask") {
+                    BodyText(
+                        "After creating the TUN device, you need to assign it an IP address and netmask. " +
+                        "All three methods below use a regular AF_INET SOCK_DGRAM socket — not the TUN fd."
+                    )
+                    BodyText("Command line:")
+                    CodeBlock(
+                        "ip addr add 10.0.0.1/24 dev tun0\n" +
+                        "ip addr del 10.0.0.1/24 dev tun0   # remove\n" +
+                        "ip addr show dev tun0              # verify"
+                    )
+                    BodyText("Via ioctl (SIOCSIFADDR + SIOCSIFNETMASK):")
+                    CodeBlock(
+                        "#include <sys/ioctl.h>\n" +
+                        "#include <net/if.h>\n" +
+                        "#include <arpa/inet.h>\n\n" +
+                        "int sock = socket(AF_INET, SOCK_DGRAM, 0);\n\n" +
+                        "struct ifreq ifr = {};\n" +
+                        "strncpy(ifr.ifr_name, \"tun0\", IFNAMSIZ);\n\n" +
+                        "struct sockaddr_in *sin = (struct sockaddr_in *)&ifr.ifr_addr;\n" +
+                        "sin->sin_family = AF_INET;\n\n" +
+                        "/* Set IP address */\n" +
+                        "inet_pton(AF_INET, \"10.0.0.1\", &sin->sin_addr);\n" +
+                        "ioctl(sock, SIOCSIFADDR, &ifr);\n\n" +
+                        "/* Set netmask */\n" +
+                        "inet_pton(AF_INET, \"255.255.255.0\", &sin->sin_addr);\n" +
+                        "ioctl(sock, SIOCSIFNETMASK, &ifr);\n\n" +
+                        "close(sock);"
+                    )
+                    BodyText("Via netlink (RTM_NEWADDR):")
+                    CodeBlock(
+                        "#include <linux/rtnetlink.h>\n" +
+                        "#include <linux/if_addr.h>\n\n" +
+                        "/* Open a NETLINK_ROUTE socket */\n" +
+                        "int nl = socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE);\n\n" +
+                        "/* Build and send a message with these fields: */\n" +
+                        "struct nlmsghdr nlh;      /* type = RTM_NEWADDR             */\n" +
+                        "                          /* flags = NLM_F_REQUEST|NLM_F_CREATE|NLM_F_ACK */\n" +
+                        "struct ifaddrmsg ifa;     /* ifa_family    = AF_INET        */\n" +
+                        "                          /* ifa_prefixlen = 24             */\n" +
+                        "                          /* ifa_index     = if_nametoindex(\"tun0\") */\n" +
+                        "/* Append RTA_LOCAL attribute: the 10.0.0.1 in_addr */\n" +
+                        "/* Send with sendto(nl, ..., (struct sockaddr *)&nl_addr, ...) */\n" +
+                        "/* Read ACK: recvfrom -> nlmsgerr.error == 0 means success */"
+                    )
+                }
+            }
+
+            item {
+                SectionCard(title = "Bringing the Interface Up and Down") {
+                    BodyText(
+                        "An interface must be brought UP before the kernel will route packets through it " +
+                        "or deliver them to the TUN fd. Again, these ioctls and netlink messages use a " +
+                        "regular socket, not the TUN fd."
+                    )
+                    BodyText("Command line:")
+                    CodeBlock(
+                        "ip link set tun0 up\n" +
+                        "ip link set tun0 down\n" +
+                        "ip link show tun0   # verify flags: <UP,POINTOPOINT,..."
+                    )
+                    BodyText("Via ioctl (SIOCGIFFLAGS + SIOCSIFFLAGS):")
+                    CodeBlock(
+                        "int sock = socket(AF_INET, SOCK_DGRAM, 0);\n\n" +
+                        "struct ifreq ifr = {};\n" +
+                        "strncpy(ifr.ifr_name, \"tun0\", IFNAMSIZ);\n\n" +
+                        "/* Read current flags */\n" +
+                        "ioctl(sock, SIOCGIFFLAGS, &ifr);\n\n" +
+                        "/* Bring up: set IFF_UP and IFF_RUNNING */\n" +
+                        "ifr.ifr_flags |= (IFF_UP | IFF_RUNNING);\n" +
+                        "ioctl(sock, SIOCSIFFLAGS, &ifr);\n\n" +
+                        "/* Bring down: clear IFF_UP */\n" +
+                        "/* ifr.ifr_flags &= ~IFF_UP; */\n" +
+                        "/* ioctl(sock, SIOCSIFFLAGS, &ifr); */\n\n" +
+                        "close(sock);"
+                    )
+                    BodyText("Via netlink (RTM_NEWLINK):")
+                    CodeBlock(
+                        "/* Build and send RTM_NEWLINK with: */\n" +
+                        "struct nlmsghdr nlh;     /* type = RTM_NEWLINK              */\n" +
+                        "                         /* flags = NLM_F_REQUEST|NLM_F_ACK */\n" +
+                        "struct ifinfomsg ifi;    /* ifi_index  = if_nametoindex(\"tun0\") */\n" +
+                        "                         /* ifi_flags  = IFF_UP   (bring up) */\n" +
+                        "                         /* ifi_flags  = 0        (bring down) */\n" +
+                        "                         /* ifi_change = IFF_UP   (bitmask of */\n" +
+                        "                         /*              fields to change)     */\n" +
+                        "/* No extra attributes needed for a simple up/down toggle */"
+                    )
+                    BodyText(
+                        "The ifi_change field is a bitmask that tells the kernel which flag bits to " +
+                        "actually modify. Setting ifi_change = IFF_UP means: only touch the UP bit, " +
+                        "leave all other flags (PROMISC, MULTICAST, etc.) unchanged."
+                    )
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(24.dp)) }
         }
     }
