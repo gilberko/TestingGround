@@ -32,7 +32,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             HowIThinkItWorksAppTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "main") {
+                NavHost(navController = navController, startDestination = "splash") {
+                    composable("splash") {
+                        SplashScreen(onNavigateToMain = {
+                            navController.navigate("main") {
+                                popUpTo("splash") { inclusive = true }
+                            }
+                        })
+                    }
                     composable("main") { MainScreen(navController) }
                     composable("topic/{name}") { backStackEntry ->
                         val name = backStackEntry.arguments?.getString("name") ?: ""
@@ -71,6 +78,8 @@ class MainActivity : ComponentActivity() {
                     composable("about_music_lyrics") { AboutMusicLyricsScreen(navController) }
                     composable("about_music_song_structure") { AboutMusicSongStructureScreen(navController) }
                     composable("grab_attention") { GrabTheirAttentionScreen(navController) }
+                    composable("get_them_to_act") { GetThemToActScreen(navController) }
+                    composable("storytelling_attention") { StorytellingScreen(navController) }
                     composable("avoidance") { AvoidanceScreen(navController) }
                 }
             }
@@ -94,10 +103,10 @@ fun MainScreen(navController: NavController) {
         "About Music" to "about_music_hub",
         "Avoidance" to "avoidance"
     )
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -125,6 +134,7 @@ fun MainScreen(navController: NavController) {
             }
         }
         Spacer(modifier = Modifier.height(24.dp))
+    }
     }
 }
 

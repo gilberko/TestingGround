@@ -27,10 +27,10 @@ fun AboutMusicHubScreen(navController: NavController) {
         "Lyrics" to "about_music_lyrics",
         "Song Structure" to "about_music_song_structure"
     )
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -85,5 +85,6 @@ fun AboutMusicHubScreen(navController: NavController) {
             Text(text = "Back", color = Color.White, fontSize = 16.sp)
         }
         Spacer(modifier = Modifier.height(24.dp))
+    }
     }
 }

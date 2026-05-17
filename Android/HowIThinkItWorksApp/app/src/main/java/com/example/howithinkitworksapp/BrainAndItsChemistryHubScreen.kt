@@ -26,10 +26,10 @@ fun BrainAndItsChemistryHubScreen(navController: NavController) {
         "Dopamine" to "dopamine",
         "Cortisol" to "cortisol"
     )
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -81,5 +81,6 @@ fun BrainAndItsChemistryHubScreen(navController: NavController) {
         ) {
             Text(text = "Back", color = Color.White, fontSize = 18.sp)
         }
+    }
     }
 }

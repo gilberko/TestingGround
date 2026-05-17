@@ -49,10 +49,10 @@ private val biasContentKeys = mapOf(
 
 @Composable
 fun BiasesSelectionScreen(navController: NavController) {
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -108,5 +108,6 @@ fun BiasesSelectionScreen(navController: NavController) {
         ) {
             Text(text = "Back", color = Color.White, fontSize = 18.sp)
         }
+    }
     }
 }

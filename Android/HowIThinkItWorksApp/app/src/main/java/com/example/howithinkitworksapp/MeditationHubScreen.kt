@@ -26,10 +26,10 @@ fun MeditationHubScreen(navController: NavController) {
         "Body Scanning" to "meditation_body_scanning",
         "Dealing With Emotions" to "meditation_emotions"
     )
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -81,5 +81,6 @@ fun MeditationHubScreen(navController: NavController) {
         ) {
             Text(text = "Back", color = Color.White, fontSize = 18.sp)
         }
+    }
     }
 }

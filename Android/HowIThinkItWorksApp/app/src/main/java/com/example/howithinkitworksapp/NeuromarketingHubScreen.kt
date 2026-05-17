@@ -23,12 +23,14 @@ fun NeuromarketingHubScreen(navController: NavController) {
     val items = listOf(
         "Biases and Effects" to "biases_hub",
         "Priming and Activation" to "priming",
-        "Grab Their Attention" to "grab_attention"
+        "Grab Their Attention" to "grab_attention",
+        "Get Them To Act" to "get_them_to_act",
+        "Storytelling — Keeping the Attention" to "storytelling_attention"
     )
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -80,5 +82,6 @@ fun NeuromarketingHubScreen(navController: NavController) {
         ) {
             Text(text = "Back", color = Color.White, fontSize = 18.sp)
         }
+    }
     }
 }

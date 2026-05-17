@@ -20,10 +20,10 @@ import androidx.navigation.NavController
 
 @Composable
 fun HypnosisHubScreen(navController: NavController) {
+    HubBackground {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -75,5 +75,6 @@ fun HypnosisHubScreen(navController: NavController) {
         ) {
             Text(text = "Back", color = Color.White, fontSize = 18.sp)
         }
+    }
     }
 }
