@@ -69,6 +69,8 @@ class MainActivity : ComponentActivity() {
                     composable("about_music_motives") { AboutMusicMotivesScreen(navController) }
                     composable("about_music_harmony") { AboutMusicHarmonyScreen(navController) }
                     composable("about_music_lyrics") { AboutMusicLyricsScreen(navController) }
+                    composable("about_music_song_structure") { AboutMusicSongStructureScreen(navController) }
+                    composable("grab_attention") { GrabTheirAttentionScreen(navController) }
                     composable("avoidance") { AvoidanceScreen(navController) }
                 }
             }

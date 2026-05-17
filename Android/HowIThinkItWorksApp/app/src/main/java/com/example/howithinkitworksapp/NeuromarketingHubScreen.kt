@@ -20,7 +20,11 @@ import androidx.navigation.NavController
 
 @Composable
 fun NeuromarketingHubScreen(navController: NavController) {
-    val items = listOf("Biases and Effects" to "biases_hub", "Priming and Activation" to "priming")
+    val items = listOf(
+        "Biases and Effects" to "biases_hub",
+        "Priming and Activation" to "priming",
+        "Grab Their Attention" to "grab_attention"
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()

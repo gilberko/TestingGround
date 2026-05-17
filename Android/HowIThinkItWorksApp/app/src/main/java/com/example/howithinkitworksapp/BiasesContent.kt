@@ -152,5 +152,31 @@ val biasTopics = listOf(
                 body = "Parents who forbid certain music, films, or friendships often intensify exactly the interest they were trying to extinguish. Managers who micromanage can trigger deliberate slowdown or error as a form of covert autonomy restoration. Rules that are over-explained with \"because I said so\" generate more defiance than rules accompanied by a clear rationale.\n\nReactance also explains why unsolicited advice (\"You should really...\") tends to harden rather than change people's positions — the advice is heard as a threat to their right to choose."
             )
         )
+    ),
+    BiasTopic(
+        key = "mirror_neurons",
+        title = "Mirror Neurons",
+        sections = listOf(
+            TextSection(
+                heading = "The Discovery",
+                body = "Mirror neurons were discovered serendipitously in the early 1990s by Giacomo Rizzolatti and colleagues — including Vittorio Gallese — at the University of Parma. They were recording from individual neurons in the premotor cortex of macaque monkeys (area F5), the region responsible for planning hand and mouth movements. The finding was unexpected: the same neurons that fired when the monkey reached for food also fired when the monkey watched a researcher reach for the same food. The monkey did nothing. Its hand did not move. But its brain responded as though it had. These were named mirror neurons — they mirrored observed actions in the observer's own motor system."
+            ),
+            TextSection(
+                heading = "What They Do",
+                body = "Mirror neurons respond to goal-directed actions — reaching, grasping, bringing food to the mouth — both when performed and when observed. The crucial element is the goal, not the movement. When a researcher picks up a peanut, the neurons fire. When the researcher makes the same hand motion without an object present, the response is weaker or absent. The system appears to encode what someone is doing and why, not merely the mechanics of the motion.\n\nIn humans, brain imaging studies show similar activation in premotor and parietal areas during both action observation and action execution — consistent with a human mirror system. Direct recording of individual mirror neurons in humans has been limited to rare surgical contexts, but the broader pattern is well-replicated."
+            ),
+            TextSection(
+                heading = "Vicarious Experience — Why Observation Is Not Passive",
+                body = "The practical consequence is that watching is not neutral. Observing an action partially recruits the same neural machinery as performing it. Watching someone eat activates motor and gustatory circuits in the observer. Watching someone in pain activates pain-associated regions. Watching an athlete jump activates motor areas linked to jumping.\n\nThis is one reason why watching someone unbox a new product can generate something resembling genuine excitement: the viewer's nervous system is running a partial simulation of the experience — the anticipation, the unwrapping, the reveal. The mechanism is not metaphorical. Some part of the neural substrate of the experience is engaged, even at a distance."
+            ),
+            TextSection(
+                heading = "The Controversy",
+                body = "Mirror neurons became one of the most overclaimed concepts in modern neuroscience. They were proposed as the neural basis of empathy, language acquisition, imitation, and — most influentially — autism (the \"broken mirror\" theory, suggesting autistic individuals had a defective mirror neuron system).\n\nMost of these extensions were not supported. The autism-mirror-neuron theory was directly contradicted by studies finding intact or stronger mirror responses in autistic individuals. Research also showed that people can understand actions they have never performed and cannot physically perform — which limits the motor-simulation account considerably.\n\nWhat remains well-supported is narrower: a mechanism linking observed and executed goal-directed actions exists, it is real, and it has genuine implications for imitation, learning, and vicarious experience. The broader claims — that mirror neurons explain the full range of human social cognition — are where the science overreached."
+            ),
+            TextSection(
+                heading = "Examples in Everyday Life",
+                body = "A crowd watching a gymnast stumble winces collectively — their motor systems registered the error before the mind formed a thought. A film audience flinches during a punch even though nothing touched them. Sports fans watching a penalty kick feel tension in their own bodies. Watching skilled cooking activates appetite; watching someone yawn is almost contagious.\n\nThese are not metaphors. They reflect the mirror system running partial simulations of what it observes — automatically, without deliberate effort. Marketing that shows desirable experience — travel, luxury, warmth, connection — exploits exactly this: showing the experience is not merely informative, it partially delivers it. Observation and experience are not as separate as they appear."
+            )
+        )
     )
 )

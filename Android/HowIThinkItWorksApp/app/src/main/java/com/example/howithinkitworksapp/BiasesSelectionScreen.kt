@@ -34,7 +34,8 @@ private val biases = listOf(
     "Misattribution - A few effects / biases",
     "Mere Exposure Effect",
     "Riddles and Quizzes - Information Gap / Curiosity Gap",
-    "Don't Tell Me What To Do - Reactance / Psychological Reactance"
+    "Don't Tell Me What To Do - Reactance / Psychological Reactance",
+    "Mirror Neurons"
 )
 
 private val biasContentKeys = mapOf(
@@ -42,7 +43,8 @@ private val biasContentKeys = mapOf(
     "Misattribution - A few effects / biases" to "misattribution",
     "Mere Exposure Effect" to "mere_exposure",
     "Riddles and Quizzes - Information Gap / Curiosity Gap" to "information_gap",
-    "Don't Tell Me What To Do - Reactance / Psychological Reactance" to "reactance"
+    "Don't Tell Me What To Do - Reactance / Psychological Reactance" to "reactance",
+    "Mirror Neurons" to "mirror_neurons"
 )
 
 @Composable

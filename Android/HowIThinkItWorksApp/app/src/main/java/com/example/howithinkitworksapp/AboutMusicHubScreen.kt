@@ -24,7 +24,8 @@ fun AboutMusicHubScreen(navController: NavController) {
         "Rhythm" to "about_music_rhythm",
         "Motives" to "about_music_motives",
         "Harmony" to "about_music_harmony",
-        "Lyrics" to "about_music_lyrics"
+        "Lyrics" to "about_music_lyrics",
+        "Song Structure" to "about_music_song_structure"
     )
     Column(
         modifier = Modifier
