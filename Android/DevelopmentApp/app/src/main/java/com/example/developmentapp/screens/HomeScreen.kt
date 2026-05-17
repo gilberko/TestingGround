@@ -36,7 +36,8 @@ fun HomeScreen(
     onAlgorithms: () -> Unit,
     onTcpIp: () -> Unit,
     onDebuggingProfilingTracing: () -> Unit,
-    onAiNeuralNetworks: () -> Unit
+    onAiNeuralNetworks: () -> Unit,
+    onJava: () -> Unit
 ) {
     HubBackground {
     Column(
@@ -57,6 +58,8 @@ fun HomeScreen(
         HomeButtonRow("Algorithms", onAlgorithms, "TCP/IP", onTcpIp)
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Debugging, Profiling And Tracing", onDebuggingProfilingTracing, "AI and Neural Networks", onAiNeuralNetworks)
+        Spacer(Modifier.height(12.dp))
+        HomeSingleButton("Java", onJava)
     }
     }
 }
@@ -72,6 +75,28 @@ private fun HomeButtonRow(
     ) {
         HomeButton(label1, onClick1, Modifier.weight(1f))
         HomeButton(label2, onClick2, Modifier.weight(1f))
+    }
+}
+
+@Composable
+private fun HomeSingleButton(label: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick  = onClick,
+        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
+        border = BorderStroke(1.dp, Color(0xFF00FF41)),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = Color.Black,
+            contentColor   = Color(0xFF00FF41)
+        )
+    ) {
+        Text(
+            text       = label,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Medium,
+            color      = Color(0xFF00FF41),
+            textAlign  = TextAlign.Center,
+            fontSize   = 11.sp
+        )
     }
 }
 

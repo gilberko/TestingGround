@@ -126,6 +126,11 @@ import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.python.PythonBuiltInVariablesScreen
 import com.example.developmentapp.screens.python.PythonUsefulPackagesScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
+import com.example.developmentapp.screens.JavaHubScreen
+import com.example.developmentapp.screens.java.JavaAboutScreen
+import com.example.developmentapp.screens.java.JavaHelloWorldScreen
+import com.example.developmentapp.screens.java.JavaBasicTypesScreen
+import com.example.developmentapp.screens.java.JavaConditionalsLoopsScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -287,6 +292,12 @@ sealed class Screen(val route: String) {
     object RustCommentsDocs      : Screen("rust_comments_docs")
     object RustThreads           : Screen("rust_threads")
     object RustUnsafe            : Screen("rust_unsafe")
+    // Java
+    object JavaHub        : Screen("java_hub")
+    object JavaAbout      : Screen("java_about")
+    object JavaHelloWorld : Screen("java_hello_world")
+    object JavaBasicTypes : Screen("java_basic_types")
+    object JavaCondLoops  : Screen("java_cond_loops")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -323,7 +334,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAlgorithms                 = { navController.navigate(Screen.AlgorithmsHub.route) },
                 onTcpIp                      = { navController.navigate(Screen.TcpIpHub.route) },
                 onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) },
-                onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) }
+                onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) },
+                onJava                       = { navController.navigate(Screen.JavaHub.route) }
             )
         }
 
@@ -337,6 +349,21 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.DebuggingProfilingTracing.route) {
             DebuggingProfilingTracingScreen(onBack = { navController.popBackStack() })
         }
+
+        // ── Java ─────────────────────────────────────────────────────────
+        composable(Screen.JavaHub.route) {
+            JavaHubScreen(
+                onBack        = { navController.popBackStack() },
+                onAboutJava   = { navController.navigate(Screen.JavaAbout.route) },
+                onHelloWorld  = { navController.navigate(Screen.JavaHelloWorld.route) },
+                onBasicTypes  = { navController.navigate(Screen.JavaBasicTypes.route) },
+                onCondLoops   = { navController.navigate(Screen.JavaCondLoops.route) }
+            )
+        }
+        composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaHelloWorld.route) { JavaHelloWorldScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaBasicTypes.route) { JavaBasicTypesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaCondLoops.route)  { JavaConditionalsLoopsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
