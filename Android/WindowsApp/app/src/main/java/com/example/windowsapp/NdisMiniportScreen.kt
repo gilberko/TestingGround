@@ -232,6 +232,35 @@ fun NdisMiniportScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        SectionHeader("WHAT ARE OIDs")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("OIDs (Object Identifiers) are 4-byte integer constants defined in ndis.h and ntddndis.h. NDIS uses them as a standardized vocabulary to query state from an adapter or push configuration into it — without knowing anything about the underlying hardware. Two operations exist: query (OS reads current state) and set (OS writes new configuration).")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("OIDs are grouped by prefix:")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "OID_GEN_*          // general: link speed, MTU, packet filter,\n" +
+            "                   //          vendor description, statistics\n" +
+            "OID_802_3_*        // Ethernet: current MAC, permanent MAC,\n" +
+            "                   //           multicast list\n" +
+            "OID_TCP_TASK_*     // offloads: checksum (TX/RX), LSO,\n" +
+            "                   //           RSS configuration\n" +
+            "OID_GEN_STATISTICS // counters: bytes/frames sent and received\n\n" +
+            "// Examples:\n" +
+            "OID_GEN_MAXIMUM_TOTAL_SIZE    // max frame size incl. header\n" +
+            "OID_GEN_LINK_SPEED            // speed in units of 100 bps\n" +
+            "OID_GEN_CURRENT_PACKET_FILTER // bitmask: directed/broadcast/\n" +
+            "                              //          multicast/promiscuous\n" +
+            "OID_GEN_VENDOR_DESCRIPTION    // human-readable adapter name\n" +
+            "OID_802_3_CURRENT_ADDRESS     // active 6-byte MAC address\n" +
+            "OID_802_3_PERMANENT_ADDRESS   // factory-burned MAC address\n" +
+            "OID_TCP_TASK_OFFLOAD          // checksum and LSO capabilities"
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("OID requests arrive through MiniportOidRequest. The NDIS_OID_REQUEST structure carries: RequestType (NdisRequestQueryInformation / NdisRequestSetInformation / NdisRequestMethod), the OID code, InformationBuffer, InformationBufferLength, and output fields BytesWritten / BytesNeeded. The driver fills BytesWritten for queries and returns NDIS_STATUS_SUCCESS, NDIS_STATUS_BUFFER_TOO_SHORT, or NDIS_STATUS_NOT_SUPPORTED.")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         SectionHeader("OID HANDLING")
         Spacer(modifier = Modifier.height(8.dp))
         BodyText("MiniportOidRequest handles queries and sets from the OS. Mandatory OIDs for a virtual Ethernet adapter:")
@@ -244,6 +273,74 @@ fun NdisMiniportScreen(navController: NavController) {
             "OID_802_3_PERMANENT_ADDRESS    // permanent MAC address\n\n" +
             "// Return NDIS_STATUS_NOT_SUPPORTED for all other OIDs"
         )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        SectionHeader("OID HANDLING — REAL HARDWARE DEVICE")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("For a real NIC, OID queries read actual values from hardware registers or firmware, and OID sets reprogram hardware. The OS trusts these values for flow control, routing, and offload decisions.")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "case OID_802_3_CURRENT_ADDRESS:\n" +
+            "case OID_802_3_PERMANENT_ADDRESS:\n" +
+            "    // MAC burned into EEPROM — read it once at init,\n" +
+            "    // store in context, return the stored bytes here\n" +
+            "    NdisMoveMemory(\n" +
+            "        pReq->DATA.QUERY_INFORMATION.InformationBuffer,\n" +
+            "        pCtx->MacAddress, 6);\n" +
+            "    pReq->DATA.QUERY_INFORMATION.BytesWritten = 6;\n" +
+            "    return NDIS_STATUS_SUCCESS;\n\n" +
+            "case OID_GEN_LINK_SPEED:\n" +
+            "    // Read auto-negotiated speed from PHY register;\n" +
+            "    // unit is 100 bps: 1 Gbps = 10,000,000\n" +
+            "    *(ULONG*)pReq->DATA.QUERY_INFORMATION.InformationBuffer =\n" +
+            "        ReadPhyRegister(pCtx, PHY_SPEED_REG) * 10000000;\n" +
+            "    pReq->DATA.QUERY_INFORMATION.BytesWritten = sizeof(ULONG);\n" +
+            "    return NDIS_STATUS_SUCCESS;\n\n" +
+            "case OID_GEN_CURRENT_PACKET_FILTER:\n" +
+            "    if (pReq->RequestType == NdisRequestSetInformation) {\n" +
+            "        ULONG filter = *(ULONG*)pReq->DATA.SET_INFORMATION\n" +
+            "                                    .InformationBuffer;\n" +
+            "        // Write filter bitmask to NIC receive filter register\n" +
+            "        // so hardware only DMA-s matching frames\n" +
+            "        WriteNicRegister(pCtx, NIC_RX_FILTER_REG, filter);\n" +
+            "    }\n" +
+            "    return NDIS_STATUS_SUCCESS;"
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        SectionHeader("OID HANDLING — VIRTUAL / VPN DEVICE")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("A virtual adapter has no hardware to read or program. All OID responses come from values stored in the adapter context at initialization. Sets that would configure hardware are simply saved back to the context — there is nothing to write to. OID_GEN_CURRENT_PACKET_FILTER is stored so the driver knows what traffic to inject; OID_802_3_CURRENT_ADDRESS returns a statically generated or configurable MAC.")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "// MiniportInitializeEx — seed context with fixed defaults\n" +
+            "pCtx->MacAddress[0] = 0x02;  // locally administered bit set\n" +
+            "pCtx->MacAddress[1] = 0xAB;\n" +
+            "pCtx->MacAddress[2] = 0xCD;\n" +
+            "pCtx->MacAddress[3] = 0xEF;\n" +
+            "pCtx->MacAddress[4] = 0x01;\n" +
+            "pCtx->MacAddress[5] = 0x02;\n" +
+            "pCtx->LinkSpeedIn100Bps = 10000000ULL;  // report 1 Gbps\n" +
+            "pCtx->PacketFilter      = 0;\n\n" +
+            "// MiniportOidRequest — virtual dispatch\n" +
+            "case OID_802_3_CURRENT_ADDRESS:\n" +
+            "case OID_802_3_PERMANENT_ADDRESS:\n" +
+            "    NdisMoveMemory(buf, pCtx->MacAddress, 6);\n" +
+            "    pReq->DATA.QUERY_INFORMATION.BytesWritten = 6;\n" +
+            "    return NDIS_STATUS_SUCCESS;\n\n" +
+            "case OID_GEN_LINK_SPEED:\n" +
+            "    *(ULONG*)buf = (ULONG)pCtx->LinkSpeedIn100Bps;\n" +
+            "    pReq->DATA.QUERY_INFORMATION.BytesWritten = sizeof(ULONG);\n" +
+            "    return NDIS_STATUS_SUCCESS;\n\n" +
+            "case OID_GEN_CURRENT_PACKET_FILTER:\n" +
+            "    if (isSet)\n" +
+            "        pCtx->PacketFilter = *(ULONG*)buf; // save; nothing to program\n" +
+            "    else\n" +
+            "        *(ULONG*)buf = pCtx->PacketFilter;\n" +
+            "    return NDIS_STATUS_SUCCESS;"
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("Real miniport = hardware I/O for every OID. Virtual miniport = context struct I/O for every OID. The NDIS_OID_REQUEST structure, status codes, and MiniportOidRequest signature are identical in both cases — NDIS never knows the difference.")
 
         Spacer(modifier = Modifier.height(16.dp))
 

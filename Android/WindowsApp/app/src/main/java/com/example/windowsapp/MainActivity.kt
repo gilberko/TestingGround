@@ -113,6 +113,9 @@ class MainActivity : ComponentActivity() {
                     composable("user_atl") { AtlScreen(navController) }
                     composable("advanced_beware_registry") { BewareRegistryScreen(navController) }
                     composable("advanced_certificate_store") { CertificateStoreScreen(navController) }
+                    composable("kernel_net_adapter_cx") { NetAdapterCxScreen(navController) }
+                    composable("kernel_wdf_kmdf") { WdfKmdfScreen(navController) }
+                    composable("user_wdf_umdf") { UmdfScreen(navController) }
                 }
             }
         }

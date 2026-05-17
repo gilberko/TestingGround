@@ -60,6 +60,8 @@ fun NetworkingHubScreen(navController: NavController) {
         HackerButton("WSK KERNEL") { navController.navigate("kernel_wsk") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("NDIS MINIPORT") { navController.navigate("kernel_ndis_miniport") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("NET ADAPTER CX") { navController.navigate("kernel_net_adapter_cx") }
 
         Spacer(modifier = Modifier.height(32.dp))
 

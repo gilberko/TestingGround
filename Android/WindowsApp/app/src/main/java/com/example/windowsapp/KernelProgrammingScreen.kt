@@ -106,7 +106,10 @@ fun KernelProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("CREATING AND\nSENDING IRPs", fontSize = 12.sp) { navController.navigate("kernel_creating_irps") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("WDF / KMDF", fontSize = 12.sp) { navController.navigate("kernel_wdf_kmdf") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") } }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
