@@ -221,6 +221,65 @@ fun JavaBasicSyntaxScreen(onBack: () -> Unit) {
                 }
             }
 
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "The final Keyword") {
+                    BodyText(
+                        "final on a local variable or field means it can only be assigned once. After " +
+                        "the first assignment, any attempt to change the value is a compile error."
+                    )
+                    CodeBlock(
+                        "final int MAX = 100;\n" +
+                        "MAX = 200;   // COMPILE ERROR — cannot reassign a final variable\n\n" +
+                        "final double PI = 3.14159;\n" +
+                        "PI += 1;     // COMPILE ERROR"
+                    )
+                    BodyText(
+                        "When final is applied to a reference variable (a variable that holds an " +
+                        "object), only the reference is locked — you cannot point it at a different " +
+                        "object. The object itself remains fully mutable: you can still call any " +
+                        "method on it and change its fields."
+                    )
+                    CodeBlock(
+                        "final Dog d = new Dog(\"Rex\");\n\n" +
+                        "d.setName(\"Buddy\");  // OK — object's internal state changed\n" +
+                        "d.bark();             // OK — any method can be called\n\n" +
+                        "d = new Dog(\"Max\");  // COMPILE ERROR — can't rebind a final reference"
+                    )
+                    BodyText(
+                        "final also applies to method parameters. Inside the method body you cannot " +
+                        "reassign a final parameter to point to something else, but you can still " +
+                        "mutate the object it points to."
+                    )
+                    CodeBlock(
+                        "void greet(final String name) {\n" +
+                        "    name = \"Bob\";  // COMPILE ERROR — can't reassign final parameter\n" +
+                        "}\n\n" +
+                        "void process(final Dog dog) {\n" +
+                        "    dog.setName(\"Buddy\");  // OK — mutates the object\n" +
+                        "    dog = new Dog();       // COMPILE ERROR — can't rebind\n" +
+                        "}"
+                    )
+                    BodyText(
+                        "A static final field is effectively a compile-time constant for primitive " +
+                        "types and String: the compiler may inline its value directly. This is the " +
+                        "idiomatic Java way to declare named constants.\n\n" +
+                        "There is no const in Java. Unlike C++, Java provides no way to declare that " +
+                        "a reference prevents mutation of the object it points to. Making an object " +
+                        "truly immutable requires designing the class itself to be immutable: private " +
+                        "final fields, no setters, and defensive copies in constructors."
+                    )
+                    CodeBlock(
+                        "public static final int MAX_CONNECTIONS = 100;  // constant\n" +
+                        "public static final String APP_NAME = \"MyApp\";\n\n" +
+                        "// C++ const prevents mutation through the reference:\n" +
+                        "// const Dog* d = new Dog();  d->setName(\"x\");  // error in C++\n" +
+                        "// Java has no such mechanism — final locks only the reference binding."
+                    )
+                }
+            }
+
             item { Spacer(Modifier.height(24.dp)) }
         }
     }

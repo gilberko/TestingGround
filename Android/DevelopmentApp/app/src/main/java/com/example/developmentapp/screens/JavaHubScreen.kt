@@ -41,7 +41,11 @@ fun JavaHubScreen(
     onBasicTypes: () -> Unit,
     onCondLoops: () -> Unit,
     onBasicSyntax: () -> Unit,
-    onClasses101: () -> Unit
+    onClasses101: () -> Unit,
+    onPackages: () -> Unit,
+    onClasses2: () -> Unit,
+    onInterfaces: () -> Unit,
+    onJni: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -86,6 +90,12 @@ fun JavaHubScreen(
             Spacer(Modifier.height(8.dp))
             JavaButtonRow("Basic Syntax",              onBasicSyntax,
                           "Classes 101",               onClasses101)
+            Spacer(Modifier.height(8.dp))
+            JavaButtonRow("Packages",                  onPackages,
+                          "Classes - Part 2",          onClasses2)
+            Spacer(Modifier.height(8.dp))
+            JavaButtonRow("Interfaces",                onInterfaces,
+                          "JNI",                       onJni)
             Spacer(Modifier.height(24.dp))
         }
     }

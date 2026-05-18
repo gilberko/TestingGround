@@ -133,6 +133,10 @@ import com.example.developmentapp.screens.java.JavaBasicTypesScreen
 import com.example.developmentapp.screens.java.JavaConditionalsLoopsScreen
 import com.example.developmentapp.screens.java.JavaBasicSyntaxScreen
 import com.example.developmentapp.screens.java.JavaClasses101Screen
+import com.example.developmentapp.screens.java.JavaPackagesScreen
+import com.example.developmentapp.screens.java.JavaClasses2Screen
+import com.example.developmentapp.screens.java.JavaInterfacesScreen
+import com.example.developmentapp.screens.java.JavaJniScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -302,6 +306,10 @@ sealed class Screen(val route: String) {
     object JavaCondLoops  : Screen("java_cond_loops")
     object JavaBasicSyntax : Screen("java_basic_syntax")
     object JavaClasses101  : Screen("java_classes_101")
+    object JavaPackages    : Screen("java_packages")
+    object JavaClasses2    : Screen("java_classes_2")
+    object JavaInterfaces  : Screen("java_interfaces")
+    object JavaJni         : Screen("java_jni")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -363,7 +371,11 @@ fun AppNavGraph(navController: NavHostController) {
                 onBasicTypes  = { navController.navigate(Screen.JavaBasicTypes.route) },
                 onCondLoops   = { navController.navigate(Screen.JavaCondLoops.route) },
                 onBasicSyntax = { navController.navigate(Screen.JavaBasicSyntax.route) },
-                onClasses101  = { navController.navigate(Screen.JavaClasses101.route) }
+                onClasses101  = { navController.navigate(Screen.JavaClasses101.route) },
+                onPackages    = { navController.navigate(Screen.JavaPackages.route) },
+                onClasses2    = { navController.navigate(Screen.JavaClasses2.route) },
+                onInterfaces  = { navController.navigate(Screen.JavaInterfaces.route) },
+                onJni         = { navController.navigate(Screen.JavaJni.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -372,6 +384,10 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaCondLoops.route)   { JavaConditionalsLoopsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaBasicSyntax.route) { JavaBasicSyntaxScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaClasses101.route)  { JavaClasses101Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaPackages.route)    { JavaPackagesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaClasses2.route)    { JavaClasses2Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaInterfaces.route)  { JavaInterfacesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaJni.route)         { JavaJniScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
