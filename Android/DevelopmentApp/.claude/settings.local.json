@@ -39,7 +39,9 @@
       "Bash(.\\\\gradlew assembleRelease)",
       "Bash(Select-Object -First 20)",
       "Bash(gradlew assembleRelease)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "PowerShell(head *)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }

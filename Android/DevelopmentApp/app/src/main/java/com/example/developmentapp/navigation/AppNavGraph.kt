@@ -138,6 +138,8 @@ import com.example.developmentapp.screens.java.JavaClasses2Screen
 import com.example.developmentapp.screens.java.JavaInterfacesScreen
 import com.example.developmentapp.screens.java.JavaJniScreen
 import com.example.developmentapp.screens.java.JavaGenericsScreen
+import com.example.developmentapp.screens.java.JavaLambdasScreen
+import com.example.developmentapp.screens.java.JavaDataStructuresScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -311,7 +313,9 @@ sealed class Screen(val route: String) {
     object JavaClasses2    : Screen("java_classes_2")
     object JavaInterfaces  : Screen("java_interfaces")
     object JavaJni         : Screen("java_jni")
-    object JavaGenerics    : Screen("java_generics")
+    object JavaGenerics       : Screen("java_generics")
+    object JavaLambdas        : Screen("java_lambdas")
+    object JavaDataStructures : Screen("java_data_structures")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -378,7 +382,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onClasses2    = { navController.navigate(Screen.JavaClasses2.route) },
                 onInterfaces  = { navController.navigate(Screen.JavaInterfaces.route) },
                 onJni         = { navController.navigate(Screen.JavaJni.route) },
-                onGenerics    = { navController.navigate(Screen.JavaGenerics.route) }
+                onGenerics        = { navController.navigate(Screen.JavaGenerics.route) },
+                onLambdas         = { navController.navigate(Screen.JavaLambdas.route) },
+                onDataStructures  = { navController.navigate(Screen.JavaDataStructures.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -391,7 +397,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaClasses2.route)    { JavaClasses2Screen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaInterfaces.route)  { JavaInterfacesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaJni.route)         { JavaJniScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.JavaGenerics.route)    { JavaGenericsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaGenerics.route)       { JavaGenericsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaLambdas.route)        { JavaLambdasScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaDataStructures.route) { JavaDataStructuresScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
