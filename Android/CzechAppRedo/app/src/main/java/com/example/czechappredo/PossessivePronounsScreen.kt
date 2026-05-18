@@ -173,6 +173,11 @@ fun PossessivePronounsScreen(navController: NavController) {
             )
             PPNote("Examples: s mým bratrem (with my brother) · s naší rodinou (with our family) · před vaším domem (in front of your house)")
 
+            PPSection("What about Vocative?")
+            PPNote("Possessive pronouns (můj, tvůj, jeho, etc.) do not have vocative forms. In Czech, the vocative case applies to nouns and some adjectives used as titles when directly addressing someone — e.g. \"Petře!\" (Hey, Peter!) or \"Pane doktore!\" (Doctor!).")
+            PPNote("Possessive pronouns modify nouns but do not themselves take a vocative ending. When you address someone, only their name or title goes into the vocative — the possessive stays in whatever case the sentence requires.")
+            PPNote("Example: \"Petře, kde je tvoje auto?\" — Petře is vocative; tvoje stays in nominative because it describes the subject (auto). The possessive never changes to match the vocative context.")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

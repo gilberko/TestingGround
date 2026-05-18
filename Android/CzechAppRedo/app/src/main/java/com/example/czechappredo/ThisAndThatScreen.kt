@@ -176,6 +176,10 @@ fun ThisAndThatScreen(navController: NavController) {
                 )
             )
 
+            TATHeader("What about Vocative?")
+            TATNote("The demonstrative pronouns ten / ta / to do not have vocative forms. The vocative case is used when directly addressing someone by name or title — for example, \"Pane!\" (Sir!) or \"Petře!\" (Hey, Peter!). You cannot address a demonstrative pronoun in the vocative.")
+            TATNote("Czech speakers use the noun's or name's vocative directly — \"Petře!\" — not a demonstrative. Vocative is simply not applicable to ten / ta / to.")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

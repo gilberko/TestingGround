@@ -85,6 +85,10 @@ class MainActivity : ComponentActivity() {
                 composable("past_tense") { PastTenseScreen(navController) }
                 composable("adverbs") { AdverbsScreen(navController) }
                 composable("adverb_list") { AdverbListScreen(navController) }
+                composable("object_pronouns") { ObjectPronounsScreen(navController) }
+                composable("reflexive_verbs") { ReflexiveVerbsScreen(navController) }
+                composable("someone_somewhere") { IndefinitePronounsScreen(navController) }
+                composable("many_and_few") { ManyAndFewScreen(navController) }
                 composable("common_verbs") { CommonVerbsListScreen(navController) }
             }
         }
@@ -224,7 +228,11 @@ fun LearningHubScreen(navController: NavController) {
             "Negation" to "negation",
             "Future Tense" to "future_tense",
             "Past Tense" to "past_tense",
-            "Adverbs" to "adverbs"
+            "Adverbs" to "adverbs",
+            "Object Pronouns" to "object_pronouns",
+            "Reflexive Verbs" to "reflexive_verbs",
+            "Someone, Somewhere..." to "someone_somewhere",
+            "Many and Few" to "many_and_few"
         )
         Column(
             modifier = Modifier
