@@ -137,6 +137,7 @@ import com.example.developmentapp.screens.java.JavaPackagesScreen
 import com.example.developmentapp.screens.java.JavaClasses2Screen
 import com.example.developmentapp.screens.java.JavaInterfacesScreen
 import com.example.developmentapp.screens.java.JavaJniScreen
+import com.example.developmentapp.screens.java.JavaGenericsScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -310,6 +311,7 @@ sealed class Screen(val route: String) {
     object JavaClasses2    : Screen("java_classes_2")
     object JavaInterfaces  : Screen("java_interfaces")
     object JavaJni         : Screen("java_jni")
+    object JavaGenerics    : Screen("java_generics")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -375,7 +377,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onPackages    = { navController.navigate(Screen.JavaPackages.route) },
                 onClasses2    = { navController.navigate(Screen.JavaClasses2.route) },
                 onInterfaces  = { navController.navigate(Screen.JavaInterfaces.route) },
-                onJni         = { navController.navigate(Screen.JavaJni.route) }
+                onJni         = { navController.navigate(Screen.JavaJni.route) },
+                onGenerics    = { navController.navigate(Screen.JavaGenerics.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -388,6 +391,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaClasses2.route)    { JavaClasses2Screen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaInterfaces.route)  { JavaInterfacesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaJni.route)         { JavaJniScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaGenerics.route)    { JavaGenericsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {

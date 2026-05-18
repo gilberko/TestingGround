@@ -45,7 +45,8 @@ fun JavaHubScreen(
     onPackages: () -> Unit,
     onClasses2: () -> Unit,
     onInterfaces: () -> Unit,
-    onJni: () -> Unit
+    onJni: () -> Unit,
+    onGenerics: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -96,6 +97,8 @@ fun JavaHubScreen(
             Spacer(Modifier.height(8.dp))
             JavaButtonRow("Interfaces",                onInterfaces,
                           "JNI",                       onJni)
+            Spacer(Modifier.height(8.dp))
+            JavaHubButton("Generics", onGenerics, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
