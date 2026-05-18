@@ -48,7 +48,9 @@ fun JavaHubScreen(
     onJni: () -> Unit,
     onGenerics: () -> Unit,
     onLambdas: () -> Unit,
-    onDataStructures: () -> Unit
+    onDataStructures: () -> Unit,
+    onExceptions: () -> Unit,
+    onThreadingSync: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -102,6 +104,9 @@ fun JavaHubScreen(
             Spacer(Modifier.height(8.dp))
             JavaButtonRow("Lambdas",          onLambdas,
                           "Data Structures",   onDataStructures)
+            Spacer(Modifier.height(8.dp))
+            JavaButtonRow("Exceptions",        onExceptions,
+                          "Threading & Sync",  onThreadingSync)
             Spacer(Modifier.height(8.dp))
             JavaHubButton("Generics", onGenerics, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))

@@ -140,6 +140,8 @@ import com.example.developmentapp.screens.java.JavaJniScreen
 import com.example.developmentapp.screens.java.JavaGenericsScreen
 import com.example.developmentapp.screens.java.JavaLambdasScreen
 import com.example.developmentapp.screens.java.JavaDataStructuresScreen
+import com.example.developmentapp.screens.java.JavaExceptionsScreen
+import com.example.developmentapp.screens.java.JavaThreadingSyncScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -316,6 +318,8 @@ sealed class Screen(val route: String) {
     object JavaGenerics       : Screen("java_generics")
     object JavaLambdas        : Screen("java_lambdas")
     object JavaDataStructures : Screen("java_data_structures")
+    object JavaExceptions     : Screen("java_exceptions")
+    object JavaThreadingSync  : Screen("java_threading_sync")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -384,7 +388,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onJni         = { navController.navigate(Screen.JavaJni.route) },
                 onGenerics        = { navController.navigate(Screen.JavaGenerics.route) },
                 onLambdas         = { navController.navigate(Screen.JavaLambdas.route) },
-                onDataStructures  = { navController.navigate(Screen.JavaDataStructures.route) }
+                onDataStructures  = { navController.navigate(Screen.JavaDataStructures.route) },
+                onExceptions      = { navController.navigate(Screen.JavaExceptions.route) },
+                onThreadingSync   = { navController.navigate(Screen.JavaThreadingSync.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -400,6 +406,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaGenerics.route)       { JavaGenericsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaLambdas.route)        { JavaLambdasScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaDataStructures.route) { JavaDataStructuresScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaExceptions.route)     { JavaExceptionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaThreadingSync.route)  { JavaThreadingSyncScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
