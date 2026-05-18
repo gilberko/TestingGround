@@ -78,6 +78,8 @@ fun AdjectivesScreen(navController: NavController) {
                     "All genders" to "jarní  (jarní den · jarní zahrada · jarní ráno)"
                 )
             )
+            AJNote("Common example — unavený / unavená / unavené (tired): Jsem unavený. (I am tired. — man.) / Jsem unavená. (I am tired. — woman.) / Dítě je unavené. (The child is tired.)")
+            AJNote("Note on drahý / drahá / drahé: This adjective has two distinct meanings. (1) Expensive — Toto auto je drahé. (This car is expensive.) (2) Dear / precious — used as a term of endearment or in formal/literary address. So 'drahé dítě' means 'dear child' or 'precious child' in the right context — not 'expensive child.' Similarly: Drahý příteli! = Dear friend! / Moje drahá. = My dear. In everyday speech about prices, drahý means expensive. In emotional or formal address, it means dear/precious. Context tells you which is intended.")
 
             // ── Accusative ────────────────────────────────────────────────
             AJSection("Accusative (Direct Object)")

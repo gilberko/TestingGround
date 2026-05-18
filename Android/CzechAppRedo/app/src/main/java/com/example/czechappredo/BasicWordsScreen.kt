@@ -108,11 +108,20 @@ fun BasicWordsScreen(navController: NavController) {
 
             // ── How Are You? ──────────────────────────────────────────────
             BWSection("How Are You?")
-            BWRow("Jak se máte?", "How are you?", "formal")
-            BWRow("Jak se máš?", "How are you?", "informal")
-            BWRow("Mám se dobře.", "I'm fine.")
+            BWNote("The key to this section: mít se is completely different from mít. mít alone = to have (Mám auto. = I have a car.). mít se = a fixed reflexive idiom meaning 'to be doing' — how one is getting along. The se changes the meaning entirely. So 'Jak se máš?' literally means 'How do you have yourself?' — which is how Czech expresses 'How are you doing?'")
+            BWNote("This is why the answer is 'Mám se dobře.' (I'm doing well.) — not just 'Jsem dobře.' Both are used, but 'Mám se dobře.' is the idiomatic match for 'Jak se máš?'")
+            BWRow("Jak se máte?", "How are you doing?", "formal — mít se = to be doing (not mít = to have)")
+            BWRow("Jak se máš?", "How are you doing?", "informal")
+            BWRow("Mám se dobře.", "I'm doing well.", "mám se = I'm doing; dobře = well")
+            BWRow("Mám se špatně.", "I'm not doing well.", "špatně = badly/poorly")
             BWRow("A vy?", "And you?", "formal")
             BWRow("A ty?", "And you?", "informal")
+            BWNote("mít volno — to have free time / to have time off. volno (n.) = free time, a day off. Use mít volno any time you have no obligations: a free afternoon, a day off work, school holidays, etc.")
+            BWRow("Mám volno.", "I have free time. / I'm off.")
+            BWRow("Nemám volno.", "I don't have free time. / I'm not off.")
+            BWRow("Měl jsem volno.", "I had free time. / I had the day off.", "said by a man; woman: Měla jsem volno.")
+            BWRow("Máš dnes volno?", "Do you have the day off today?", "informal; formal: Máte dnes volno?")
+            BWNote("Word order note: The standard spoken form drops 'já' — 'Měl jsem volno.' is natural. 'Já jsem měl volno.' is also correct but puts extra emphasis on 'I' (já = emphatic I).")
 
             // ── Nice To Meet You ──────────────────────────────────────────
             BWSection("Nice To Meet You")

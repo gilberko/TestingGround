@@ -49,6 +49,7 @@ fun CommonVerbsListScreen(navController: NavController) {
             // ── 0. Modal Verbs ────────────────────────────────────────────
             CVLSection("Modal Verbs")
             CVLRow("mít", "Imperf.", "to have")
+            CVLRow("mít se", "Imperf.", "to be doing (how one is)", "completely different from mít (to have) — se changes the meaning entirely. Mám se dobře. = I'm doing well. Jak se máš? = How are you doing?")
             CVLRow("moci / moct", "Imperf.", "to be able to / can", "same verb — moci = formal/written; moct = colloquial/spoken")
             CVLRow("umět", "Imperf.", "to know how to / can (skill)")
             CVLRow("muset", "Imperf.", "to have to / must")
@@ -70,6 +71,10 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("uklidit", "Perf.", "to clean up (complete)", "→ uklízet (Imperf.)")
             CVLRow("mýt", "Imperf.", "to wash", "→ umýt (Perf.)")
             CVLRow("umýt", "Perf.", "to wash (complete)", "→ mýt (Imperf.)")
+            CVLRow("mýt se", "Imperf.", "to wash oneself", "→ umýt se (Perf.); se = reflexive accusative — the person washing IS the direct object (oneself)")
+            CVLRow("umýt se", "Perf.", "to wash oneself (complete)", "→ mýt se (Imperf.)")
+            CVLRow("mýt si ruce", "Imperf.", "to wash one's (own) hands", "si = reflexive dative ('for oneself'); ruce = acc. of ruce (hands). Compare: mýt se (wash self, acc. se) vs mýt si ruce (wash hands for oneself, dative si + acc. ruce)")
+            CVLRow("umýt si ruce", "Perf.", "to wash one's hands (complete)", "→ mýt si ruce (Imperf.)")
             CVLRow("nosit", "Imperf.", "to wear / carry")
             CVLRow("odpočívat", "Imperf.", "to rest", "→ odpočinout si (Perf.)")
             CVLRow("odpočinout si", "Perf.", "to take a rest", "→ odpočívat (Imperf.)")
@@ -147,6 +152,9 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("oceňovat", "Imperf.", "to appreciate", "→ ocenit (Perf.)")
             CVLRow("ocenit", "Perf.", "to appreciate (once)", "→ oceňovat (Imperf.)")
             CVLRow("pečovat", "Imperf.", "to nurture / care for")
+            CVLRow("usmívat se", "Imperf.", "to smile", "→ usmát se (Perf.)")
+            CVLRow("usmát se", "Perf.", "to smile (once)", "→ usmívat se (Imperf.)")
+            CVLRow("bát se", "Imperf.", "to be afraid / to fear", "inherently reflexive — no perfective pair for ongoing fear; leknout se (Perf.) = to get startled (sudden fright — related but different)")
 
             // ── 6. Work & Study ───────────────────────────────────────────
             CVLSection("Work & Study")

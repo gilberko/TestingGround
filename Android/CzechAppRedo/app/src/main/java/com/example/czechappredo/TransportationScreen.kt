@@ -67,7 +67,9 @@ fun TransportationScreen(navController: NavController) {
             TRRow("trajekt / přívoz", "ferry", "m. / m. — trajekt is a large vehicle ferry; přívoz is a small river crossing")
 
             TRSection("City Transit")
-            TRRow("tramvaj", "tram", "f.")
+            TRRow("tramvaj", "tram", "f. — the standard word used throughout the Czech Republic")
+            TRRow("šalina", "tram (Brno regional word)", "f. — used almost exclusively in Brno; in Prague and other Czech cities, tramvaj is the standard. From German 'Elektrische' (electric [line]), which became 'šalina' in the Brno dialect.")
+            TRNote("When you're in Brno, locals say šalina; when you're in Prague, always say tramvaj. Using šalina in Prague sounds regional, but tramvaj is understood everywhere including Brno.")
             TRRow("metro", "metro / subway", "n.")
             TRRow("trolejbus", "trolleybus", "m.")
 

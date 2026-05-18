@@ -73,6 +73,7 @@ fun AdverbsScreen(navController: NavController) {
             ADVRow("opatrně", "carefully")
             ADVRow("správně", "correctly / properly")
             ADVRow("úplně", "completely / totally")
+            ADVRow("unaveně", "tiredly", "← unavený (tired); hard adj. -ný → -ně: unavený → unaveně")
 
             ADVSection("Time Adverbs — Kdy? (When?)")
             ADVRow("teď / nyní", "now")
