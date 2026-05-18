@@ -33,7 +33,13 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\" -Recurse -Filter \"*Http*\" -File)",
       "Bash(Select-Object FullName)",
       "Bash(Get-ChildItem *)",
-      "Bash(Select-Object -First 20 FullName)"
+      "Bash(Select-Object -First 20 FullName)",
+      "Bash(Select-Object -Property FullName, Name)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(.\\\\gradlew assembleRelease)",
+      "Bash(Select-Object -First 20)",
+      "Bash(gradlew assembleRelease)",
+      "Bash(git add *)"
     ]
   }
 }

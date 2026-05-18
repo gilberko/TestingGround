@@ -131,6 +131,8 @@ import com.example.developmentapp.screens.java.JavaAboutScreen
 import com.example.developmentapp.screens.java.JavaHelloWorldScreen
 import com.example.developmentapp.screens.java.JavaBasicTypesScreen
 import com.example.developmentapp.screens.java.JavaConditionalsLoopsScreen
+import com.example.developmentapp.screens.java.JavaBasicSyntaxScreen
+import com.example.developmentapp.screens.java.JavaClasses101Screen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -298,6 +300,8 @@ sealed class Screen(val route: String) {
     object JavaHelloWorld : Screen("java_hello_world")
     object JavaBasicTypes : Screen("java_basic_types")
     object JavaCondLoops  : Screen("java_cond_loops")
+    object JavaBasicSyntax : Screen("java_basic_syntax")
+    object JavaClasses101  : Screen("java_classes_101")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -357,13 +361,17 @@ fun AppNavGraph(navController: NavHostController) {
                 onAboutJava   = { navController.navigate(Screen.JavaAbout.route) },
                 onHelloWorld  = { navController.navigate(Screen.JavaHelloWorld.route) },
                 onBasicTypes  = { navController.navigate(Screen.JavaBasicTypes.route) },
-                onCondLoops   = { navController.navigate(Screen.JavaCondLoops.route) }
+                onCondLoops   = { navController.navigate(Screen.JavaCondLoops.route) },
+                onBasicSyntax = { navController.navigate(Screen.JavaBasicSyntax.route) },
+                onClasses101  = { navController.navigate(Screen.JavaClasses101.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaHelloWorld.route) { JavaHelloWorldScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaBasicTypes.route) { JavaBasicTypesScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.JavaCondLoops.route)  { JavaConditionalsLoopsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaCondLoops.route)   { JavaConditionalsLoopsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaBasicSyntax.route) { JavaBasicSyntaxScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaClasses101.route)  { JavaClasses101Screen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
