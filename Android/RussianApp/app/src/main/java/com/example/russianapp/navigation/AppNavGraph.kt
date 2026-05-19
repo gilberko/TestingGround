@@ -27,6 +27,7 @@ import com.example.russianapp.screens.AdjectivesScreen
 import com.example.russianapp.screens.ConditionalsScreen
 import com.example.russianapp.screens.DateTimeScreen
 import com.example.russianapp.screens.NegationScreen
+import com.example.russianapp.screens.NiVsNeScreen
 import com.example.russianapp.screens.NounDeclensionScreen
 import com.example.russianapp.screens.PrepositionsScreen
 import com.example.russianapp.screens.AdverbsScreen
@@ -93,6 +94,7 @@ sealed class Screen(val route: String) {
     object DictBasicWords         : Screen("dict_basic_words")
     object ThisAndThat            : Screen("this_and_that")
     object Questions              : Screen("questions")
+    object NiVsNe                 : Screen("ni_vs_ne")
     object Myself                 : Screen("myself")
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
@@ -146,7 +148,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onComparisons           = { navController.navigate(Screen.Comparisons.route) },
                 onMisc                  = { navController.navigate(Screen.Misc.route) },
                 onThisAndThat           = { navController.navigate(Screen.ThisAndThat.route) },
-                onQuestions             = { navController.navigate(Screen.Questions.route) }
+                onQuestions             = { navController.navigate(Screen.Questions.route) },
+                onNiVsNe                = { navController.navigate(Screen.NiVsNe.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -282,6 +285,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Questions.route) {
             QuestionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.NiVsNe.route) {
+            NiVsNeScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.QuizAdjective.route) {
             AdjectiveQuizScreen(

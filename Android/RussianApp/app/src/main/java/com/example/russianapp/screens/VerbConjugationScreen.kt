@@ -23,6 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 private data class ConjugationRow(val pronoun: String, val form: String)
@@ -227,6 +229,92 @@ private fun ImperativeCard() {
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.padding(vertical = 1.dp)
                 )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "1st Person Plural — \"Let's...\"",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "The imperative is not only for 2nd person. Russian uses 1st person plural forms to suggest a shared action — the equivalent of \"let's...\" in English. A parent saying to their kids \"let's go home\" would use one of these forms.",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text("Form 1 — Perfective future 1pl (main form):", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            listOf(
+                "Пойдём!  — Let's go! (from пойти)",
+                "Напишем!  — Let's write! (from написать)",
+                "Купим!  — Let's buy! (from купить)"
+            ).forEach { example ->
+                Text("• $example", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 1.dp))
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Take the perfective verb and use its 1pl future form — that is also the \"let's\" imperative.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text("Form 2 — Пошли (colloquial \"Let's go\"):", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Пошли is technically the past tense plural of пойти (they/we went), repurposed as a casual, urgent command. This pattern is specific to the идти/пойти family — other verbs don't reuse their past tense this way.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text("Form 3 — Давай(те) constructions:", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            listOf(
+                "Давай читать  — Let's read (давай + imperfective infinitive)",
+                "Давайте пойдём  — Let's go (давайте + perfective 1pl, formal/plural)"
+            ).forEach { example ->
+                Text("• $example", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 1.dp))
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(
+                        text = "Пойдём vs Пошли:",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    listOf(
+                        Pair("Пойдём домой!", "Softer, invitation-like — \"Shall we go home?\""),
+                        Pair("Пошли домой!",  "Casual and urgent — \"Come on, let's go home!\"")
+                    ).forEach { (russian, note) ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 2.dp)
+                        ) {
+                            Text(russian, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.2f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text(note, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.8f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Пошли домой, дети! — Let's go home, kids!",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                }
             }
         }
     }
