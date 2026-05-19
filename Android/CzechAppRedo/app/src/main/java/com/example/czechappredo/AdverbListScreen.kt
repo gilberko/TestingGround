@@ -54,6 +54,7 @@ fun AdverbListScreen(navController: NavController) {
             AVLRow("tiše", "quietly")
             AVLRow("hlasitě", "loudly")
             AVLRow("opatrně", "carefully")
+            AVLRow("unaveně", "tiredly", "formed from unavený → unaveně (-ný → -ně)")
             AVLRow("správně", "correctly / properly")
             AVLRow("úplně", "completely / totally")
             AVLRow("asi", "probably / approximately")

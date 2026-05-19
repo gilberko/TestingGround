@@ -76,7 +76,7 @@ fun AdjectivesListScreen(navController: NavController) {
             ALSection("Value & Quality")
             ALRow("bohatý / bohatá / bohaté", "rich")
             ALRow("chudý / chudá / chudé", "poor")
-            ALRow("drahý / drahá / drahé", "expensive")
+            ALRow("drahý / drahá / drahé", "expensive / dear", "drahé dítě = expensive child (sounds funny — children aren't bought!) or dear child (affectionate/literary: moje drahé dítě = my dear child)")
             ALRow("levný / levná / levné", "cheap / affordable")
             ALRow("dobrý / dobrá / dobré", "good")
             ALRow("špatný / špatná / špatné", "bad")
@@ -107,6 +107,7 @@ fun AdjectivesListScreen(navController: NavController) {
             ALSection("Emotions & Mood")
             ALRow("šťastný / šťastná / šťastné", "happy", "also means \"lucky\" — context determines which")
             ALRow("smutný / smutná / smutné", "sad")
+            ALRow("unavený / unavená / unavené", "tired")
             ALRow("rozzlobený / rozzlobená / rozzlobené", "angry / upset", "neutral register; colloquial/stronger alternative: naštvaný / naštvaná / naštvanné")
 
             ALSection("Style & Modernity")

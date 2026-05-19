@@ -70,7 +70,9 @@ fun DialoguesHubScreen(navController: NavController) {
             "Doctor's Appointment" to "dialogue_doctor",
             "Introducing Yourself" to "dialogue_intro",
             "At the Supermarket" to "dialogue_supermarket",
-            "At the Train Station" to "dialogue_train_station"
+            "At the Train Station" to "dialogue_train_station",
+            "At the Park" to "dialogue_park",
+            "How Was School Today" to "dialogue_school"
         )
         Column(
             modifier = Modifier
@@ -427,6 +429,122 @@ fun TrainStationDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("At the Train Station", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AtTheParkDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Táta", "Eliško, pojď, jdeme domů. Už jsi si dvě hodiny hrála na hřišti."),
+        DialogueLine("Eliška", "Ale tatínku, ještě chvíli! Prosím tě."),
+        DialogueLine("Táta", "Dvě hodiny, Eliško. Začíná se stmívat a je pozdě."),
+        DialogueLine("Eliška", "Ale já jsem ještě neviděla tu malou zoo! Je tady v parku zoo, víš o tom?"),
+        DialogueLine("Táta", "Vím o tom. Ale dnes je pozdě. Půjdeme příště."),
+        DialogueLine("Eliška", "Příště? Opravdu slíbíš? A koupíš mi zmrzlinu, než půjdeme?"),
+        DialogueLine("Táta", "Zmrzlinu? Ale je skoro večer, Eliško..."),
+        DialogueLine("Eliška", "Prosíím! Zmrzlinu a pak hned jdeme, slibuji."),
+        DialogueLine("Táta", "(povzdechne si) Dobře, dobře. Koupím ti zmrzlinu. A zoo — příště, to ti slibuju."),
+        DialogueLine("Eliška", "Hurá! Ty jsi nejlepší tatínek na světě!"),
+        DialogueLine("Táta", "Ale po zmrzlině opravdu jdeme. Domluveno?"),
+        DialogueLine("Eliška", "Domluveno!")
+    )
+    val englishLines = listOf(
+        DialogueLine("Dad", "Eliška, come on, we're going home. You've already played at the playground for two hours."),
+        DialogueLine("Eliška", "But daddy, just a little more! Please."),
+        DialogueLine("Dad", "Two hours, Eliška. It's getting dark and it's late."),
+        DialogueLine("Eliška", "But I haven't seen the small zoo yet! There's a zoo here in the park, did you know?"),
+        DialogueLine("Dad", "I know about it. But today it's too late. We'll go next time."),
+        DialogueLine("Eliška", "Next time? Do you really promise? And will you buy me ice cream before we go?"),
+        DialogueLine("Dad", "Ice cream? But it's almost evening, Eliška..."),
+        DialogueLine("Eliška", "Pleease! Ice cream and then we go right away, I promise."),
+        DialogueLine("Dad", "(sighs) Alright, alright. I'll buy you ice cream. And the zoo — next time, I promise."),
+        DialogueLine("Eliška", "Hooray! You are the best daddy in the world!"),
+        DialogueLine("Dad", "But after the ice cream we really are going. Deal?"),
+        DialogueLine("Eliška", "Deal!")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("At the Park", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HowWasSchoolDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Máma", "Ahoj Terezo! Jak ti bylo dnes ve škole?"),
+        DialogueLine("Tereza", "Ahoj, mami! Bylo to dobré. Měli jsme matematiku, češtinu a přírodovědu."),
+        DialogueLine("Táta", "A co jste dělali v přírodovědě?"),
+        DialogueLine("Tereza", "Učili jsme se o zvířatech v lese. Věděl jsi, tatínku, že jezevci spí celou zimu? To jsem nevěděla!"),
+        DialogueLine("Máma", "Zajímavé! A co přestávky? Hrála sis s kamarádkami?"),
+        DialogueLine("Tereza", "Jo! Hrály jsme na honěnou s Adélou a Luckou. Lucka je nejrychlejší ze třídy, nikdo ji nemůže chytit."),
+        DialogueLine("Táta", "A ty?"),
+        DialogueLine("Tereza", "Já jsem chytila Adélu. Ale jsem teď hodně unavená — ty hry jsou vyčerpávající!"),
+        DialogueLine("Máma", "Chceš si lehnout a odpočinout?"),
+        DialogueLine("Tereza", "Ne, nechci spát. Můžu se dívat na televizi? Dnes je nový díl mého seriálu."),
+        DialogueLine("Máma", "Nejdřív svačina a pak televize. Dám ti jablko a jogurt."),
+        DialogueLine("Tereza", "Fajn! Mami, ty jsi nejlepší.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Mom", "Hi Tereza! How was school today?"),
+        DialogueLine("Tereza", "Hi, Mom! It was good. We had math, Czech, and science."),
+        DialogueLine("Dad", "And what did you do in science?"),
+        DialogueLine("Tereza", "We learned about forest animals. Did you know, Dad, that badgers sleep all winter? I didn't know that!"),
+        DialogueLine("Mom", "Interesting! And what about recess? Did you play with your friends?"),
+        DialogueLine("Tereza", "Yes! We played tag with Adéla and Lucka. Lucka is the fastest in the class — nobody can catch her."),
+        DialogueLine("Dad", "And you?"),
+        DialogueLine("Tereza", "I caught Adéla. But I'm very tired now — those games are exhausting!"),
+        DialogueLine("Mom", "Do you want to lie down and rest?"),
+        DialogueLine("Tereza", "No, I don't want to sleep. Can I watch TV? There's a new episode of my show today."),
+        DialogueLine("Mom", "Snack first and then TV. I'll give you an apple and yogurt."),
+        DialogueLine("Tereza", "Okay! Mom, you're the best.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("How Was School Today", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
