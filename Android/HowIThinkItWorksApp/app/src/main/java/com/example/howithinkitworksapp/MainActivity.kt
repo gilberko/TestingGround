@@ -81,6 +81,7 @@ class MainActivity : ComponentActivity() {
                     composable("get_them_to_act") { GetThemToActScreen(navController) }
                     composable("storytelling_attention") { StorytellingScreen(navController) }
                     composable("do_people_listen") { DoPeopleListenScreen(navController) }
+                    composable("what_will_they_remember") { WhatWillTheyRememberScreen(navController) }
                     composable("avoidance") { AvoidanceScreen(navController) }
                 }
             }

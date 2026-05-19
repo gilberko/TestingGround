@@ -47,7 +47,12 @@ private val biasContentKeys = mapOf(
     "Don't Tell Me What To Do - Reactance / Psychological Reactance" to "reactance",
     "Mirror Neurons" to "mirror_neurons",
     "Authority Bias" to "authority_bias",
-    "Sunk Cost Fallacy" to "sunk_cost_fallacy"
+    "Sunk Cost Fallacy" to "sunk_cost_fallacy",
+    "Dunning-Kruger" to "dunning_kruger",
+    "Negativity Bias" to "negativity_bias",
+    "Optimism Bias" to "optimism_bias",
+    "Hindsight Bias" to "hindsight_bias",
+    "Bandwagon Effect" to "bandwagon_effect"
 )
 
 @Composable
