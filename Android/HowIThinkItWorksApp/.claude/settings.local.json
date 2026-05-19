@@ -23,7 +23,22 @@
       "Bash(.\\\\gradlew assembleRelease)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -Directory)",
       "Bash(Head -50)",
-      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -File -Filter \"*.kt\")"
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\" -Recurse -File -Filter \"*.kt\")",
+      "Bash(.\\\\gradlew.bat assembleRelease)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\howithinkitworksapp\" -Filter \"*euro*\" -o Name)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\howithinkitworksapp\" -Filter \"*Music*\" -o Name)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\howithinkitworksapp\" -Filter \"*Grab*\" -o Name)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Get-ChildItem -Recurse \"C:\\\\Code\\\\TestingGround\\\\Android\\\\DevelopmentApp\\\\app\\\\src\\\\main\\\\res\" -Force)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowItWorks\\\\Images\" -Force | Select-Object Name, @{Name=\"Size\";Expression={if\\($_.PSIsContainer\\){\"<DIR>\"} else{$_.Length}}} | Format-Table -AutoSize)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\HowIThinkItWorksApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\howithinkitworksapp\" -Filter \"*Screen.kt\")",
+      "Bash(Select-Object Name)",
+      "Bash(Sort-Object Name)",
+      "Bash(xargs grep -l \"AppNavGraph\\\\|navController\\\\|composable\")",
+      "Bash(xargs grep -l \"ExpandableSection\\\\|InfoCard\\\\|SectionTitle\\\\|CodeBlock\")",
+      "Bash(./gradlew assembleDebug)"
     ]
   }
 }
