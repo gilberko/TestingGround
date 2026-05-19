@@ -67,6 +67,9 @@ import com.example.app2.screens.JobApplicationConversationScreen
 import com.example.app2.screens.AirportConversationScreen
 import com.example.app2.screens.SchoolConversationScreen
 import com.example.app2.screens.WorkMeetingConversationScreen
+import com.example.app2.screens.CasualExpressionsScreen
+import com.example.app2.screens.CasualMeetingConversationScreen
+import com.example.app2.screens.RealEstateConversationScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -132,6 +135,9 @@ sealed class Screen(val route: String) {
     object ConversationAirport : Screen("conversation_airport")
     object ConversationSchool : Screen("conversation_school")
     object ConversationWorkMeeting : Screen("conversation_work_meeting")
+    object DictCasualExpressions : Screen("dict_casual_expressions")
+    object ConversationCasualMeeting : Screen("conversation_casual_meeting")
+    object ConversationRealEstate : Screen("conversation_real_estate")
 }
 
 @Composable
@@ -239,7 +245,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onCooking = { navController.navigate(Screen.DictCooking.route) },
                 onHomeImprovement = { navController.navigate(Screen.DictHomeImprovement.route) },
                 onSports = { navController.navigate(Screen.DictSports.route) },
-                onCountries = { navController.navigate(Screen.DictCountries.route) }
+                onCountries = { navController.navigate(Screen.DictCountries.route) },
+                onCasualExpressions = { navController.navigate(Screen.DictCasualExpressions.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -429,7 +436,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onJobApplication = { navController.navigate(Screen.ConversationJobApplication.route) },
                 onAirport = { navController.navigate(Screen.ConversationAirport.route) },
                 onSchool = { navController.navigate(Screen.ConversationSchool.route) },
-                onWorkMeeting = { navController.navigate(Screen.ConversationWorkMeeting.route) }
+                onWorkMeeting = { navController.navigate(Screen.ConversationWorkMeeting.route) },
+                onCasualMeeting = { navController.navigate(Screen.ConversationCasualMeeting.route) },
+                onRealEstate = { navController.navigate(Screen.ConversationRealEstate.route) }
             )
         }
         composable(Screen.ConversationDirections.route) {
@@ -449,6 +458,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ConversationWorkMeeting.route) {
             WorkMeetingConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictCasualExpressions.route) {
+            CasualExpressionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationCasualMeeting.route) {
+            CasualMeetingConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationRealEstate.route) {
+            RealEstateConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -30,7 +30,9 @@ fun ConversationsScreen(
     onJobApplication: () -> Unit,
     onAirport: () -> Unit,
     onSchool: () -> Unit,
-    onWorkMeeting: () -> Unit
+    onWorkMeeting: () -> Unit,
+    onCasualMeeting: () -> Unit,
+    onRealEstate: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -121,6 +123,30 @@ fun ConversationsScreen(
                     )
                 ) {
                     Text("Work Meeting")
+                }
+            }
+            item {
+                Button(
+                    onClick = onCasualMeeting,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Casual Meeting")
+                }
+            }
+            item {
+                Button(
+                    onClick = onRealEstate,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Real Estate")
                 }
             }
         }
