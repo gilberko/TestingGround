@@ -21,7 +21,11 @@
       "Bash(\"/c/Program Files/Android/Android Studio/jbr/bin/jarsigner.exe\" -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore app/windowsapp_keystore.jks -storepass 12345678 -keypass 12345678 app/build/outputs/apk/release/app-release-unsigned.apk windowsapp_key)",
       "Bash(Get-ChildItem -Recurse -Filter \"*.kt\" -Path \"app/src\")",
       "Bash(xargs grep -l \"WFP\\\\|NDIS\\\\|WSK\")",
-      "Bash(Select-String -Pattern \"\\(SectionHeader|BodyText|CodeBlock|HackerButton\\)\")"
+      "Bash(Select-String -Pattern \"\\(SectionHeader|BodyText|CodeBlock|HackerButton\\)\")",
+      "Bash(Get-ChildItem *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(head *)",
+      "Bash(./gradlew assembleDebug --quiet)"
     ]
   }
 }

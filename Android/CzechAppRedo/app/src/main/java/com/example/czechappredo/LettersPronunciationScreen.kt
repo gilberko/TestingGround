@@ -172,6 +172,24 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPNote("ů in the middle or end — examples: dům (house), stůl (table), půl (half), nůž (knife), můj (my), domů (home — direction), růže (rose).")
             LPNote("Foreign loanwords keep ú regardless of position — ů is reserved for native Czech words of Slavic origin. This is also why ů reflects a historical sound shift: long ó in Old Czech gradually changed ó → uo → ů over centuries, which is why it appears in native vocabulary but never in borrowings.")
 
+            // ── 14. Punctuation Marks ────────────────────────────────
+            LPSectionHeader("Punctuation Marks")
+            LPNote("Common symbols: their English name and Czech name.")
+            LPRow(",",  "comma",                                                         name = "čárka")
+            LPRow(".",  "period  (British English: full stop)",                          name = "tečka")
+            LPRow(";",  "semicolon",                                                     name = "středník")
+            LPRow("-",  "hyphen / dash",                                                 name = "spojovník (hyphen)  /  pomlčka (dash)")
+            LPRow(":",  "colon  (note: in English this is not called \"double dots\")",  name = "dvojtečka  (= double dot)")
+            LPRow("( )", "parentheses  (singular: parenthesis)",                         name = "závorky  /  kulatá závorka")
+            LPRow("?",  "question mark",                                                 name = "otazník")
+            LPRow("!",  "exclamation mark  (American English: exclamation point)",       name = "vykřičník")
+            LPRow("'",  "apostrophe  /  single quote",                                  name = "apostrof  /  jednoduchá uvozovka")
+            LPRow("\"\"", "double quotes  /  quotation marks",                          name = "uvozovky  (Czech style: „text\")")
+            LPRow("@",  "at sign  (note: & is ampersand — a different symbol)",         name = "zavináč")
+            LPRow("&",  "ampersand  (means \"and\"; used in company names, logos)",      name = "ampersand  /  et")
+            LPRow("/",  "slash  (also: forward slash)",                                  name = "lomítko")
+            LPRow("\\", "backslash",                                                     name = "zpětné lomítko")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

@@ -41,7 +41,10 @@
       "Bash(gradlew assembleRelease)",
       "Bash(git add *)",
       "PowerShell(head *)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(Select-Object -First 30)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

@@ -59,7 +59,13 @@
       "PowerShell(head *)",
       "Bash(Get-Content \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\czechappredo\\\\CommonVerbsListScreen.kt\")",
       "Bash(Measure-Object -Line)",
-      "PowerShell(Get-Content *)"
+      "PowerShell(Get-Content *)",
+      "PowerShell(cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\"; .\\\\gradlew assembleRelease `\"-Pandroid.injected.signing.store.file=$PWD\\\\app\\\\czechappredo_keystore.jks`\" `\"-Pandroid.injected.signing.store.password=12345678`\" `\"-Pandroid.injected.signing.key.alias=czechappredo_key`\" `\"-Pandroid.injected.signing.key.password=12345678`\" 2>&1 | Select-Object -Last 15)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Recurse -Directory | Select-Object -First 20 | ForEach-Object { Write-Output $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Recurse -Directory -Filter \"src\" | Select-Object -First 5 | ForEach-Object { $_.FullName })",
+      "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Directory)",
+      "Bash(Select-Object -First 20)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }

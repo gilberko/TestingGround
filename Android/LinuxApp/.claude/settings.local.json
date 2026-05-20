@@ -50,7 +50,16 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\" -Recurse | Where-Object {$_.Extension -eq \".kt\"} | Select-Object -ExpandProperty FullName | Sort-Object)",
       "PowerShell($env:JAVA_HOME = \"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\"; cd \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\"; .\\\\gradlew assembleRelease 2>&1)",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\\\\screens\\\\kernel\" -Name)",
-      "Bash(Get-ChildItem *)"
+      "Bash(Get-ChildItem *)",
+      "Bash(./gradlew assembleDebug --info)",
+      "Bash(Select-Object -First 20)",
+      "PowerShell(ls -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\WindowsApp\\\\app\\\\src\\\\main\" -Recurse | Where-Object {$_.Extension -eq '.kt'} | Select-Object -ExpandProperty FullName)",
+      "Bash(Select-Object -First 30)",
+      "Bash(Format-Table FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\" -Directory | ForEach-Object { \"$\\($_.Name\\)/\" })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\\\\screens\" -Directory | ForEach-Object { \"$\\($_.Name\\)/\" } | Sort-Object)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\LinuxApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\example\\\\linuxapp\\\\screens\\\\usermode\" -File | ForEach-Object { $_.Name })"
     ]
   }
 }

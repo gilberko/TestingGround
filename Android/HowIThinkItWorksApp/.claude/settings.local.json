@@ -38,7 +38,8 @@
       "Bash(Sort-Object Name)",
       "Bash(xargs grep -l \"AppNavGraph\\\\|navController\\\\|composable\")",
       "Bash(xargs grep -l \"ExpandableSection\\\\|InfoCard\\\\|SectionTitle\\\\|CodeBlock\")",
-      "Bash(./gradlew assembleDebug)"
+      "Bash(./gradlew assembleDebug)",
+      "Bash(git push *)"
     ]
   }
 }
