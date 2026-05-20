@@ -50,6 +50,7 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPSectionHeader("Czech Alphabet — Letter Names")
             LPNote("When spelling a word aloud, Czechs say each letter by its name — just like English speakers say \"ay, bee, see\". Czech has 42 letters. ch is its own letter in the alphabet, listed after h.")
             LPNote("Each entry: letter — Czech name.")
+            LPNote("The Czech word for a letter of the alphabet is písmeno (n., pl. písmena).")
             val alphabet = listOf(
                 "a" to "a", "á" to "á", "b" to "bé", "c" to "cé",
                 "č" to "čé", "d" to "dé", "ď" to "ďé", "e" to "e",
@@ -178,7 +179,8 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow(",",  "comma",                                                         name = "čárka")
             LPRow(".",  "period  (British English: full stop)",                          name = "tečka")
             LPRow(";",  "semicolon",                                                     name = "středník")
-            LPRow("-",  "hyphen / dash",                                                 name = "spojovník (hyphen)  /  pomlčka (dash)")
+            LPRow("-",  "hyphen",                                                        name = "spojovník — joins compound words (e.g. česko-slovenský)")
+            LPRow("—",  "dash  (em dash)",                                               name = "pomlčka — used for dialogue, pauses, parenthetical remarks; Czech uses the long em dash (—)")
             LPRow(":",  "colon  (note: in English this is not called \"double dots\")",  name = "dvojtečka  (= double dot)")
             LPRow("( )", "parentheses  (singular: parenthesis)",                         name = "závorky  /  kulatá závorka")
             LPRow("?",  "question mark",                                                 name = "otazník")
@@ -189,6 +191,7 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow("&",  "ampersand  (means \"and\"; used in company names, logos)",      name = "ampersand  /  et")
             LPRow("/",  "slash  (also: forward slash)",                                  name = "lomítko")
             LPRow("\\", "backslash",                                                     name = "zpětné lomítko")
+            LPRow("_",  "underscore  (also: underline character)",                       name = "podtržítko")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

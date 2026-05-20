@@ -49,6 +49,11 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("orel", "eagle", "m.")
             ANRow("vrabec", "sparrow", "m.")
             ANRow("papoušek", "parrot", "m.")
+            ANRow("pštros", "ostrich", "m.")
+            ANRow("tučňák", "penguin", "m.")
+            ANRow("vrána", "crow", "f.")
+            ANRow("krkavec", "raven", "m.")
+            ANRow("sup", "vulture", "m.")
 
             ANSection("Sea & Water Animals")
             ANRow("delfín", "dolphin", "m.")
@@ -56,6 +61,7 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("žralok", "shark", "m.")
             ANRow("velryba", "whale", "f.")
             ANRow("úhoř", "eel", "m.")
+            ANRow("medúza", "jellyfish", "f.")
 
             ANSection("Pets & Farm Animals")
             ANRow("pes", "dog", "m. — pl. psi")
@@ -63,6 +69,7 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("kůň", "horse", "m. — pl. koně")
             ANRow("osel", "donkey", "m.")
             ANRow("ovce", "sheep", "f.")
+            ANRow("koza", "goat", "f.")
 
             ANSection("African & Asian Animals")
             ANRow("lev", "lion", "m.")
@@ -75,6 +82,8 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("nosorožec", "rhinoceros", "m.")
             ANRow("hroch", "hippopotamus", "m.")
             ANRow("zebra", "zebra", "f.")
+            ANRow("gazela", "gazelle", "f.")
+            ANRow("lemur", "lemur", "m.")
 
             ANSection("Reptiles & Bugs")
             ANRow("had", "snake", "m.")
@@ -82,6 +91,10 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("aligátor", "alligator", "m.")
             ANRow("škorpion", "scorpion", "m.")
             ANRow("pavouk", "spider", "m.")
+            ANRow("želva", "turtle / tortoise", "f. — Czech uses the same word for both")
+            ANRow("mravenec", "ant", "m.")
+            ANRow("brouk", "beetle", "m.")
+            ANRow("šváb", "cockroach", "m.")
 
             ANSection("Other Animals")
             ANRow("medvěd", "bear", "m.")
@@ -92,6 +105,7 @@ fun AnimalsScreen(navController: NavController) {
             ANRow("krysa", "rat", "f.")
             ANRow("klokan", "kangaroo", "m.")
             ANRow("koala", "koala", "m.")
+            ANRow("jelen", "deer", "m.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
