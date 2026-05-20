@@ -144,6 +144,9 @@ import com.example.developmentapp.screens.java.JavaExceptionsScreen
 import com.example.developmentapp.screens.java.JavaThreadingSyncScreen
 import com.example.developmentapp.screens.java.JavaEnumsScreen
 import com.example.developmentapp.screens.java.JavaIOScreen
+import com.example.developmentapp.screens.java.JavaAvailableLibrariesScreen
+import com.example.developmentapp.screens.java.JavaAwtScreen
+import com.example.developmentapp.screens.java.JavaSwingScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -322,8 +325,11 @@ sealed class Screen(val route: String) {
     object JavaDataStructures : Screen("java_data_structures")
     object JavaExceptions     : Screen("java_exceptions")
     object JavaThreadingSync  : Screen("java_threading_sync")
-    object JavaEnums          : Screen("java_enums")
-    object JavaIO             : Screen("java_io")
+    object JavaEnums             : Screen("java_enums")
+    object JavaIO                : Screen("java_io")
+    object JavaAvailableLibraries: Screen("java_available_libraries")
+    object JavaAwt               : Screen("java_awt")
+    object JavaSwing             : Screen("java_swing")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -395,8 +401,11 @@ fun AppNavGraph(navController: NavHostController) {
                 onDataStructures  = { navController.navigate(Screen.JavaDataStructures.route) },
                 onExceptions      = { navController.navigate(Screen.JavaExceptions.route) },
                 onThreadingSync   = { navController.navigate(Screen.JavaThreadingSync.route) },
-                onEnums           = { navController.navigate(Screen.JavaEnums.route) },
-                onIO              = { navController.navigate(Screen.JavaIO.route) }
+                onEnums               = { navController.navigate(Screen.JavaEnums.route) },
+                onIO                  = { navController.navigate(Screen.JavaIO.route) },
+                onAvailableLibraries  = { navController.navigate(Screen.JavaAvailableLibraries.route) },
+                onAwt                 = { navController.navigate(Screen.JavaAwt.route) },
+                onSwing               = { navController.navigate(Screen.JavaSwing.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -414,8 +423,11 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaDataStructures.route) { JavaDataStructuresScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaExceptions.route)     { JavaExceptionsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaThreadingSync.route)  { JavaThreadingSyncScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.JavaEnums.route)          { JavaEnumsScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.JavaIO.route)             { JavaIOScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaEnums.route)             { JavaEnumsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaIO.route)                { JavaIOScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaAvailableLibraries.route){ JavaAvailableLibrariesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaAwt.route)               { JavaAwtScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaSwing.route)             { JavaSwingScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {

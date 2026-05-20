@@ -52,7 +52,10 @@ fun JavaHubScreen(
     onExceptions: () -> Unit,
     onThreadingSync: () -> Unit,
     onEnums: () -> Unit,
-    onIO: () -> Unit
+    onIO: () -> Unit,
+    onAvailableLibraries: () -> Unit,
+    onAwt: () -> Unit,
+    onSwing: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -113,7 +116,11 @@ fun JavaHubScreen(
             JavaButtonRow("Enums",  onEnums,
                           "I/O",    onIO)
             Spacer(Modifier.height(8.dp))
-            JavaHubButton("Generics", onGenerics, Modifier.fillMaxWidth())
+            JavaButtonRow("Available Libraries", onAvailableLibraries,
+                          "AWT",                 onAwt)
+            Spacer(Modifier.height(8.dp))
+            JavaButtonRow("Swing",    onSwing,
+                          "Generics", onGenerics)
             Spacer(Modifier.height(24.dp))
         }
     }

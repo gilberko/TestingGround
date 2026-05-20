@@ -267,6 +267,48 @@ fun JavaClasses2Screen(onBack: () -> Unit) {
                 }
             }
 
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Abstract Classes") {
+                    BodyText(
+                        "Mark a class abstract when it should never be instantiated on its own — " +
+                        "only its concrete subclasses make sense. This is Java's equivalent of a C++ " +
+                        "class with at least one pure-virtual method.\n\n" +
+                        "Rules:\n" +
+                        "• A method declared abstract has no body; every concrete subclass must override it.\n" +
+                        "• If a class has any abstract method, the class itself must be abstract.\n" +
+                        "• An abstract class can also contain fully implemented methods — only the ones " +
+                        "that subclasses must override need the abstract keyword.\n" +
+                        "• A subclass that doesn't implement all abstract methods must itself be abstract.\n\n" +
+                        "C++ equivalent: virtual void draw() = 0; is a pure virtual method — same idea, " +
+                        "different syntax. In C++ you don't have to mark the class separately; in Java " +
+                        "the class keyword must carry abstract."
+                    )
+                    CodeBlock(
+                        "abstract class Shape {\n" +
+                        "    // Abstract method — no body, must be overridden\n" +
+                        "    abstract double area();\n\n" +
+                        "    // Concrete method — inherited as-is, no override required\n" +
+                        "    void describe() {\n" +
+                        "        System.out.println(\"Area: \" + area());\n" +
+                        "    }\n" +
+                        "}\n\n" +
+                        "class Circle extends Shape {\n" +
+                        "    double radius;\n" +
+                        "    Circle(double r) { radius = r; }\n\n" +
+                        "    @Override\n" +
+                        "    double area() { return Math.PI * radius * radius; }\n" +
+                        "}\n\n" +
+                        "// Shape s = new Shape();  // COMPILE ERROR — abstract class\n" +
+                        "Shape s = new Circle(5);  // OK — concrete subclass\n" +
+                        "s.describe();             // prints \"Area: 78.53...\"\n\n" +
+                        "// C++ pure virtual equivalent:\n" +
+                        "// virtual double area() = 0;"
+                    )
+                }
+            }
+
             item { Spacer(Modifier.height(24.dp)) }
         }
     }
