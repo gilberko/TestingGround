@@ -26,11 +26,59 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
+private data class LetterEntry(val letter: String, val name: String, val guide: String)
+private data class PunctEntry(val symbol: String, val english: String, val portuguese: String)
 private data class PronunciationEntry(
     val symbol: String,
     val rule: String,
     val phonetic: String,
     val examples: List<Triple<String, String, String>>
+)
+
+private val alphabetEntries = listOf(
+    LetterEntry("A", "a", "ah"),
+    LetterEntry("B", "bê", "bay"),
+    LetterEntry("C", "cê", "say"),
+    LetterEntry("D", "dê", "day"),
+    LetterEntry("E", "e", "eh"),
+    LetterEntry("F", "efe", "EH-fe"),
+    LetterEntry("G", "gê", "zhay"),
+    LetterEntry("H", "agá", "ah-GAH"),
+    LetterEntry("I", "i", "ee"),
+    LetterEntry("J", "jota", "ZHOH-ta"),
+    LetterEntry("K", "capa", "KAH-pa"),
+    LetterEntry("L", "ele", "EH-le"),
+    LetterEntry("M", "eme", "EH-me"),
+    LetterEntry("N", "ene", "EH-ne"),
+    LetterEntry("O", "o", "oh"),
+    LetterEntry("P", "pê", "pay"),
+    LetterEntry("Q", "quê", "kay"),
+    LetterEntry("R", "erre", "EH-rre"),
+    LetterEntry("S", "esse", "EH-se"),
+    LetterEntry("T", "tê", "tay"),
+    LetterEntry("U", "u", "oo"),
+    LetterEntry("V", "vê", "vay"),
+    LetterEntry("W", "dáblio", "DAH-blee-oo"),
+    LetterEntry("X", "xis", "shees"),
+    LetterEntry("Y", "ípsilon", "EEP-si-lon"),
+    LetterEntry("Z", "zê", "zay")
+)
+
+private val punctuationEntries = listOf(
+    PunctEntry(",", "comma", "vírgula"),
+    PunctEntry(".", "period / full stop", "ponto"),
+    PunctEntry(";", "semicolon", "ponto e vírgula"),
+    PunctEntry("- / —", "hyphen / dash", "hífen / travessão"),
+    PunctEntry(":", "colon", "dois pontos"),
+    PunctEntry("()", "parentheses", "parênteses"),
+    PunctEntry("?", "question mark", "ponto de interrogação"),
+    PunctEntry("!", "exclamation mark", "ponto de exclamação"),
+    PunctEntry("'", "apostrophe / single quote", "apóstrofo / aspas simples"),
+    PunctEntry("\"\"", "double quotes", "aspas duplas"),
+    PunctEntry("@", "at sign", "arroba"),
+    PunctEntry("&", "ampersand", "e comercial"),
+    PunctEntry("/", "slash", "barra oblíqua"),
+    PunctEntry("\\", "backslash", "barra invertida")
 )
 
 private val pronunciationEntries = listOf(
@@ -174,6 +222,10 @@ fun PronunciationScreen(onBack: () -> Unit) {
                 }
             }
 
+            item {
+                AlphabetCard()
+            }
+
             items(pronunciationEntries) { entry ->
                 PhonemeCard(entry)
             }
@@ -184,6 +236,10 @@ fun PronunciationScreen(onBack: () -> Unit) {
 
             item {
                 NotableFeaturesCard()
+            }
+
+            item {
+                PunctuationCard()
             }
 
             item { Spacer(modifier = Modifier.height(16.dp)) }
@@ -258,6 +314,137 @@ private fun PhonemeCard(entry: PronunciationEntry) {
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AlphabetCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "The Alphabet — Letter Names",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "K, W and Y were officially added back in the 2009 Orthographic Agreement.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(bottom = 2.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "Letter",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(0.6f)
+                )
+                Text(
+                    text = "Name",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    text = "Sounds like",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+            alphabetEntries.forEach { entry ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = entry.letter,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(0.6f)
+                    )
+                    Text(
+                        text = entry.name,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = entry.guide,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PunctuationCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "Punctuation & Special Characters",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(bottom = 2.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "Sign",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(0.6f)
+                )
+                Text(
+                    text = "English",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1.4f)
+                )
+                Text(
+                    text = "Portuguese",
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1.4f)
+                )
+            }
+            punctuationEntries.forEach { entry ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = entry.symbol,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(0.6f)
+                    )
+                    Text(
+                        text = entry.english,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.weight(1.4f)
+                    )
+                    Text(
+                        text = entry.portuguese,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.weight(1.4f)
                     )
                 }
             }
