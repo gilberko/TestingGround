@@ -40,7 +40,8 @@ fun AlgorithmsHubScreen(
     onFourierTransform: () -> Unit,
     onAlphaBetaPruning: () -> Unit,
     onHeap: () -> Unit,
-    onTwoThreeTrees: () -> Unit
+    onTwoThreeTrees: () -> Unit,
+    onLsmBloomFilters: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -90,6 +91,8 @@ fun AlgorithmsHubScreen(
             AlgoHubButton("Heap",                        onHeap,               Modifier.fillMaxWidth())
             Spacer(Modifier.height(8.dp))
             AlgoHubButton("2-3 Trees",                   onTwoThreeTrees,      Modifier.fillMaxWidth())
+            Spacer(Modifier.height(8.dp))
+            AlgoHubButton("LSM Trees & Bloom Filters",   onLsmBloomFilters,    Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }

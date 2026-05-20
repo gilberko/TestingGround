@@ -41,7 +41,8 @@ fun DatabasesHubScreen(
     onSql: () -> Unit,
     onDocumentDb: () -> Unit,
     onGraphDb: () -> Unit,
-    onKeyValueStores: () -> Unit
+    onKeyValueStores: () -> Unit,
+    onWideColumnDb: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -82,7 +83,7 @@ fun DatabasesHubScreen(
             Spacer(Modifier.height(8.dp))
             DbButtonRow("DocumentDB", onDocumentDb, "Graph DB", onGraphDb)
             Spacer(Modifier.height(8.dp))
-            DbHubButton("Key-Value Stores", onKeyValueStores, Modifier.fillMaxWidth())
+            DbButtonRow("Key-Value Stores", onKeyValueStores, "Wide-Column Databases", onWideColumnDb)
             Spacer(Modifier.height(24.dp))
         }
     }

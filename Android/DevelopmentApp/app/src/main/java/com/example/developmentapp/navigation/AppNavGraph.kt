@@ -46,6 +46,8 @@ import com.example.developmentapp.screens.cpp.CppLambdasThreadingScreen
 import com.example.developmentapp.screens.algorithms.AlphaBetaPruningScreen
 import com.example.developmentapp.screens.algorithms.HeapScreen
 import com.example.developmentapp.screens.algorithms.TwoThreeTreesScreen
+import com.example.developmentapp.screens.algorithms.LsmBloomFiltersScreen
+import com.example.developmentapp.screens.database.WideColumnDbScreen
 import com.example.developmentapp.screens.python.PythonCoroutinesScreen
 import com.example.developmentapp.screens.python.PythonSwitchCaseScreen
 import com.example.developmentapp.screens.python.PythonNetworkingScreen
@@ -255,6 +257,7 @@ sealed class Screen(val route: String) {
     object AlphaBetaPruning     : Screen("alpha_beta_pruning")
     object Heap                 : Screen("heap")
     object TwoThreeTrees        : Screen("two_three_trees")
+    object LsmBloomFilters      : Screen("lsm_bloom_filters")
     // TCP/IP
     object TcpIpHub            : Screen("tcpip_hub")
     object Ethernet            : Screen("ethernet")
@@ -356,6 +359,7 @@ sealed class Screen(val route: String) {
     object DbDocumentDb     : Screen("db_document_db")
     object DbGraphDb        : Screen("db_graph_db")
     object DbKeyValueStores : Screen("db_key_value_stores")
+    object DbWideColumn     : Screen("db_wide_column")
 }
 
 @Composable
@@ -691,7 +695,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onFourierTransform      = { navController.navigate(Screen.FourierTransform.route) },
                 onAlphaBetaPruning      = { navController.navigate(Screen.AlphaBetaPruning.route) },
                 onHeap                  = { navController.navigate(Screen.Heap.route) },
-                onTwoThreeTrees         = { navController.navigate(Screen.TwoThreeTrees.route) }
+                onTwoThreeTrees         = { navController.navigate(Screen.TwoThreeTrees.route) },
+                onLsmBloomFilters       = { navController.navigate(Screen.LsmBloomFilters.route) }
             )
         }
         composable(Screen.BasicGraphAlgorithms.route) { BasicGraphAlgorithmsScreen(onBack = { navController.popBackStack() }) }
@@ -701,6 +706,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AlphaBetaPruning.route)     { AlphaBetaPruningScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Heap.route)                 { HeapScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.TwoThreeTrees.route)        { TwoThreeTreesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.LsmBloomFilters.route)      { LsmBloomFiltersScreen(onBack = { navController.popBackStack() }) }
 
         // ── TCP/IP ────────────────────────────────────────────────────
         composable(Screen.TcpIpHub.route) {
@@ -774,7 +780,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSql            = { navController.navigate(Screen.DbSql.route) },
                 onDocumentDb     = { navController.navigate(Screen.DbDocumentDb.route) },
                 onGraphDb        = { navController.navigate(Screen.DbGraphDb.route) },
-                onKeyValueStores = { navController.navigate(Screen.DbKeyValueStores.route) }
+                onKeyValueStores = { navController.navigate(Screen.DbKeyValueStores.route) },
+                onWideColumnDb   = { navController.navigate(Screen.DbWideColumn.route) }
             )
         }
         composable(Screen.DbHistory.route)        { DbHistoryScreen(onBack = { navController.popBackStack() }) }
@@ -782,5 +789,6 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.DbDocumentDb.route)     { DocumentDbScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.DbGraphDb.route)        { GraphDbScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.DbKeyValueStores.route) { KeyValueStoresScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.DbWideColumn.route)     { WideColumnDbScreen(onBack = { navController.popBackStack() }) }
     }
 }
