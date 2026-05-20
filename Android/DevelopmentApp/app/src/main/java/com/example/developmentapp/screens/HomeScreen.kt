@@ -37,7 +37,8 @@ fun HomeScreen(
     onTcpIp: () -> Unit,
     onDebuggingProfilingTracing: () -> Unit,
     onAiNeuralNetworks: () -> Unit,
-    onJava: () -> Unit
+    onJava: () -> Unit,
+    onDatabases: () -> Unit
 ) {
     HubBackground {
     Column(
@@ -59,7 +60,7 @@ fun HomeScreen(
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Debugging, Profiling And Tracing", onDebuggingProfilingTracing, "AI and Neural Networks", onAiNeuralNetworks)
         Spacer(Modifier.height(12.dp))
-        HomeSingleButton("Java", onJava)
+        HomeButtonRow("Java", onJava, "Databases", onDatabases)
     }
     }
 }

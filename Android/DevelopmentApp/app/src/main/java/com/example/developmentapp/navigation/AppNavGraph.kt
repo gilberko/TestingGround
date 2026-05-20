@@ -126,6 +126,12 @@ import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.python.PythonBuiltInVariablesScreen
 import com.example.developmentapp.screens.python.PythonUsefulPackagesScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
+import com.example.developmentapp.screens.DatabasesHubScreen
+import com.example.developmentapp.screens.database.DbHistoryScreen
+import com.example.developmentapp.screens.database.SqlScreen
+import com.example.developmentapp.screens.database.DocumentDbScreen
+import com.example.developmentapp.screens.database.GraphDbScreen
+import com.example.developmentapp.screens.database.KeyValueStoresScreen
 import com.example.developmentapp.screens.JavaHubScreen
 import com.example.developmentapp.screens.java.JavaAboutScreen
 import com.example.developmentapp.screens.java.JavaHelloWorldScreen
@@ -343,6 +349,13 @@ sealed class Screen(val route: String) {
     object GAN                   : Screen("gan")
     object AttentionTransformers : Screen("attention_transformers")
     object AnomalyDetection      : Screen("anomaly_detection")
+    // Databases
+    object DatabasesHub     : Screen("databases_hub")
+    object DbHistory        : Screen("db_history")
+    object DbSql            : Screen("db_sql")
+    object DbDocumentDb     : Screen("db_document_db")
+    object DbGraphDb        : Screen("db_graph_db")
+    object DbKeyValueStores : Screen("db_key_value_stores")
 }
 
 @Composable
@@ -371,7 +384,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onTcpIp                      = { navController.navigate(Screen.TcpIpHub.route) },
                 onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) },
                 onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) },
-                onJava                       = { navController.navigate(Screen.JavaHub.route) }
+                onJava                       = { navController.navigate(Screen.JavaHub.route) },
+                onDatabases                  = { navController.navigate(Screen.DatabasesHub.route) }
             )
         }
 
@@ -751,5 +765,22 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.GAN.route)                   { GanScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AttentionTransformers.route) { AttentionTransformersScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AnomalyDetection.route)      { AnomalyDetectionScreen(onBack = { navController.popBackStack() }) }
+
+        // ── Databases ─────────────────────────────────────────────────────
+        composable(Screen.DatabasesHub.route) {
+            DatabasesHubScreen(
+                onBack           = { navController.popBackStack() },
+                onDbHistory      = { navController.navigate(Screen.DbHistory.route) },
+                onSql            = { navController.navigate(Screen.DbSql.route) },
+                onDocumentDb     = { navController.navigate(Screen.DbDocumentDb.route) },
+                onGraphDb        = { navController.navigate(Screen.DbGraphDb.route) },
+                onKeyValueStores = { navController.navigate(Screen.DbKeyValueStores.route) }
+            )
+        }
+        composable(Screen.DbHistory.route)        { DbHistoryScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.DbSql.route)            { SqlScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.DbDocumentDb.route)     { DocumentDbScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.DbGraphDb.route)        { GraphDbScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.DbKeyValueStores.route) { KeyValueStoresScreen(onBack = { navController.popBackStack() }) }
     }
 }
