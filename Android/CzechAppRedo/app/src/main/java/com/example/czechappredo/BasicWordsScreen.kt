@@ -247,6 +247,63 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Nemiluju tě", "I don't love you", "ne- prefix negates the verb")
             BWRow("Nemilují se", "They don't love each other", "reflexive se = each other")
 
+            // ── Today, Yesterday, Tomorrow ───────────────────────────────
+            BWSection("Today, Yesterday, Tomorrow")
+            BWRow("dnes", "today")
+            BWRow("dneska", "today", "colloquial form, interchangeable with dnes in everyday speech")
+            BWRow("včera", "yesterday")
+            BWRow("zítra", "tomorrow")
+            BWNote("Czech has no articles. Time words go directly into the sentence: Jdu tam dnes. = I'm going there today. Přijdeš zítra? = Will you come tomorrow?")
+
+            // ── Just, Right Now, Right Here ──────────────────────────────
+            BWSection("Just, Right Now, Right Here")
+            BWRow("právě", "just / right now", "Právě jsem přišel domů. = I just came home. Also means 'exactly': Právě proto. = Exactly because of that.")
+            BWRow("právě teď", "just now / right now", "combines právě (just/exactly) + teď (now)")
+            BWRow("hned", "right away / immediately", "implies immediacy: Přijdu hned. = I'll come right away.")
+            BWRow("hned teď", "right now (this very moment)", "slightly stronger than právě teď — right this instant")
+            BWRow("tady", "here / right here", "also: tu (slightly more formal); tady is preferred in everyday speech")
+            BWRow("přímo tady", "right here", "přímo = directly / exactly; emphasizes the specific location")
+
+            // ── Only, Just, Nothing But ──────────────────────────────────
+            BWSection("Only, Just, Nothing But")
+            BWRow("jen / jenom", "only / just", "interchangeable; jen is slightly shorter, jenom slightly more emphatic")
+            BWRow("pouze", "only", "more formal than jen; used in written Czech and formal speech — identical in meaning")
+            BWRow("jen jedno jablko", "only one apple", "example of jen as a restrictive particle")
+            BWRow("teprve", "only / not until", "implies 'not sooner than expected': Teprve teď rozumím. = Only now do I understand.")
+            BWRow("teprve teď", "only now", "emphasizes that something is happening later than expected")
+            BWNote("jen/jenom = 'only' as a restriction (I only want water = Chci jen vodu.). teprve = 'only' as in 'not until now' — there's an implied sense that it took longer than expected.")
+
+            // ── Never, Nowhere, No One ───────────────────────────────────
+            BWSection("Never, Nowhere, No One")
+            BWNote("Czech requires double negation — use these negative words together with a negated verb. See also: Learning → Negation.")
+            BWRow("nikdy", "never", "Nikdy nejím maso. = I never eat meat.")
+            BWRow("nikde", "nowhere / not anywhere", "Nikde ho nevidím. = I don't see him anywhere.")
+            BWRow("nikdo", "no one / nobody", "Nikdo nepřišel. = No one came.")
+
+            // ── Always, Everywhere, Everyone ─────────────────────────────
+            BWSection("Always, Everywhere, Everyone")
+            BWRow("vždy / vždycky", "always", "vždy is slightly more formal/written; vždycky is more colloquial — both very common")
+            BWRow("pokaždé", "every time", "po (each) + každé (each); Pokaždé se směje. = He laughs every time.")
+            BWRow("všude", "everywhere", "Hledám tě všude. = I'm looking for you everywhere.")
+            BWRow("každý", "everyone / each one", "masculine singular form; gender agreement: každý muž (every man), každá žena (every woman), každé dítě (every child)")
+            BWRow("všichni", "everyone / all of them", "plural for mixed or male groups; all-female group: všechny")
+            BWNote("každý = each individual person (emphasizes one by one). všichni = all of them as a group. Both are common; the choice depends on whether you're thinking of individuals or the whole group.")
+
+            // ── Even, Neither...Nor... ────────────────────────────────────
+            BWSection("Even, Neither...Nor...")
+            BWRow("ani", "not even / even (in negative)", "Ani jedno jablko jsem nedostal. = I didn't get even one apple. Requires a negative verb.")
+            BWRow("ani … ani …", "neither … nor …", "Nechci ani kávu, ani čaj. = I want neither coffee nor tea. Always used with a negative verb.")
+            BWRow("dokonce", "even (additive / emphatic)", "Dokonce přišel včas. = He even came on time. Works in positive sentences — adds a sense of surprise or extra emphasis.")
+            BWNote("ani = 'not even' (requires a negated verb). dokonce = 'even' in the sense of 'surprisingly also' — works in positive sentences without any negation.")
+
+            // ── Odd and Even (Numbers) ────────────────────────────────────
+            BWSection("Odd and Even (Numbers)")
+            BWNote("Used in mathematics, page numbers, street address numbering, and everyday scheduling.")
+            BWRow("sudý", "even (number)", "2, 4, 6, 8… — sudé číslo = even number; sudá strana = even side")
+            BWRow("lichý", "odd (number)", "1, 3, 5, 7… — liché číslo = odd number; lichá strana = odd side")
+            BWRow("sudá čísla", "even numbers")
+            BWRow("lichá čísla", "odd numbers")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

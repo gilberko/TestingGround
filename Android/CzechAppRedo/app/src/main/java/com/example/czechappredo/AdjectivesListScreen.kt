@@ -55,7 +55,8 @@ fun AdjectivesListScreen(navController: NavController) {
 
             ALSection("Light & Dark")
             ALRow("tmavý / tmavá / tmavé", "dark")
-            ALRow("světlý / světlá / světlé", "light / bright")
+            ALRow("světlý / světlá / světlé", "light / bright", "světlý = light-colored / not dark; refers to hue or tone (světlá místnost = bright/light room)")
+            ALRow("jasný / jasná / jasné", "bright / clear", "jasné světlo = bright light; jasná obloha = clear sky; also means obvious: Je to jasné. = It's obvious.")
 
             ALSection("Size")
             ALRow("malý / malá / malé", "small")
@@ -83,6 +84,8 @@ fun AdjectivesListScreen(navController: NavController) {
             ALRow("nový / nová / nové", "new")
             ALRow("starý / stará / staré", "old")
             ALRow("mladý / mladá / mladé", "young")
+            ALRow("dostupný / dostupná / dostupné", "affordable / accessible", "cenově dostupný = price-affordable; also means available/accessible in general")
+            ALRow("efektivní / efektivní / efektivní", "efficient / effective", "soft adjective — same form for all genders in nominative")
 
             ALSection("Character & Appearance")
             ALRow("laskavý / laskavá / laskavé", "kind / gentle")
@@ -122,6 +125,7 @@ fun AdjectivesListScreen(navController: NavController) {
             ALNote("fascinující is a soft adjective — same form for all three genders in the nominative.")
             ALRow("složitý / složitá / složité", "complicated")
             ALRow("jednoduchý / jednoduchá / jednoduché", "simple / easy")
+            ALRow("překvapující / překvapující / překvapující", "surprising", "soft adjective; also: překvapivý/á/é (hard adj, same meaning, slightly more common in writing)")
 
             ALSection("Comparative Forms")
             ALNote("Comparatives are formed with a -ší or -í suffix and always decline as soft adjectives.")
@@ -133,6 +137,43 @@ fun AdjectivesListScreen(navController: NavController) {
             ALRow("pomalejší", "slower", "comparative of pomalý")
             ALNote("Example: Mám mladšího bratra a starší sestru.  —  I have a younger brother and an older sister.")
             ALNote("'mladšího' uses the soft adjective accusative masculine animate ending -ího (→ mladšího bratra). 'starší sestru' — soft adjective feminine accusative is unchanged.")
+
+            ALSection("Time & Order")
+            ALRow("poslední / poslední / poslední", "last / the last", "soft adjective; poslední autobus = the last bus; v poslední době = lately (lit. in the last time)")
+            ALRow("předchozí / předchozí / předchozí", "previous / preceding", "soft adjective; formal/written style; also: minulý/á/é = previous/last (common in speech: minulý týden = last week)")
+            ALRow("minulý / minulá / minulé", "last / past", "most common for 'last' in speech: minulý rok = last year; minulý týden = last week")
+            ALRow("příští / příští / příští", "next", "soft adjective; příští týden = next week; příštích 5 let = the next 5 years")
+            ALRow("další / další / další", "next / another / further", "soft adjective; next in sequence: další zastávka = the next stop; or another one: Chcete další kávu? = Do you want another coffee?")
+            ALRow("starověký / starověká / starověké", "ancient / of antiquity", "from starověk (antiquity, ancient times); starověký Řím = ancient Rome")
+            ALRow("prastarý / prastará / prastaré", "very ancient / age-old", "pra- prefix intensifies; prastarý strom = an age-old tree")
+            ALRow("vintage / vintage / vintage", "vintage", "loanword, indeclinable — same form for all genders and cases; also: retro; starožitný = antique (specifically old collectibles)")
+
+            ALSection("Funny, Weird & Unbelievable")
+            ALNote("Czech has distinct words for different shades of 'funny' and 'weird'.")
+            ALRow("divný / divná / divné", "weird / odd / strange", "most common in everyday speech: To je divné. = That's weird.")
+            ALRow("zvláštní / zvláštní / zvláštní", "strange / peculiar / special", "soft adjective; slightly more formal than divný; also means 'special': zvláštní případ = special case")
+            ALRow("vtipný / vtipná / vtipné", "funny / witty", "from vtip (joke); implies intentional humor")
+            ALRow("legrační / legrační / legrační", "funny / comical / amusing", "soft adjective; from legranda (fun); often for situations or behavior: legrační situace = funny situation")
+            ALRow("srandovní / srandovní / srandovní", "hilarious / very funny", "soft adjective; colloquial, from sranda (fun/laugh): To bylo srandovní! = That was hilarious!")
+            ALRow("neuvěřitelný / neuvěřitelná / neuvěřitelné", "unbelievable / incredible", "ne- (un-) + uvěřitelný (believable): To je neuvěřitelné! = That's unbelievable!")
+
+            ALSection("Famous & Known")
+            ALRow("slavný / slavná / slavné", "famous / celebrated", "slavný herec = famous actor; also means 'glorious' in historical context")
+            ALRow("proslulý / proslulá / proslulé", "renowned / famous for something", "slightly more formal than slavný; proslulý svou kuchyní = famous for his cooking")
+            ALRow("neznámý / neznámá / neznámé", "unknown", "ne- + známý (known/familiar); neznámý člověk = unknown/unfamiliar person")
+            ALRow("známý / známá / známé", "known / familiar / well-known", "Jsi mi známý. = You look familiar to me. Also a noun: můj známý = my acquaintance")
+
+            ALSection("Intelligence")
+            ALRow("chytrý / chytrá / chytré", "smart / clever", "the most common everyday word for 'smart'")
+            ALRow("bystrý / bystrá / bystré", "bright / sharp / quick-witted", "implies mental quickness: bystré dítě = bright/quick child")
+            ALRow("inteligentní / inteligentní / inteligentní", "intelligent", "soft adjective; loanword; more formal/clinical than chytrý")
+            ALRow("hloupý / hloupá / hloupé", "stupid / foolish", "the standard neutral word; colloquial alternative: blbý / blbá / blbé — more informal/rude, use carefully")
+
+            ALSection("Health & Safety")
+            ALRow("zdravý / zdravá / zdravé", "healthy", "zdravé jídlo = healthy food; Buď zdráv! = Be well! (formal farewell or after a sneeze)")
+            ALRow("jedovatý / jedovatá / jedovaté", "poisonous / toxic", "from jed (poison); jedovatá houba = poisonous mushroom; colloquially also 'venomous/nasty' of a person")
+            ALRow("bezlepkový / bezlepková / bezlepkové", "gluten-free", "bez (without) + lepek (gluten) + -ový suffix; bezlepková dieta = gluten-free diet")
+            ALRow("alergický / alergická / alergické", "allergic", "Jsem alergický/á na lepek. = I am allergic to gluten.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

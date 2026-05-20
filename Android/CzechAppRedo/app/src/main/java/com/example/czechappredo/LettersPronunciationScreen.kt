@@ -46,6 +46,25 @@ fun LettersPronunciationScreen(navController: NavController) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
 
+            // ── 0. Czech Alphabet — Letter Names ─────────────────────────
+            LPSectionHeader("Czech Alphabet — Letter Names")
+            LPNote("When spelling a word aloud, Czechs say each letter by its name — just like English speakers say \"ay, bee, see\". Czech has 42 letters. ch is its own letter in the alphabet, listed after h.")
+            LPNote("Each entry: letter — Czech name.")
+            val alphabet = listOf(
+                "a" to "a", "á" to "á", "b" to "bé", "c" to "cé",
+                "č" to "čé", "d" to "dé", "ď" to "ďé", "e" to "e",
+                "é" to "é", "ě" to "ě", "f" to "ef", "g" to "gé",
+                "h" to "há", "ch" to "chá", "i" to "í", "í" to "í",
+                "j" to "jé", "k" to "ká", "l" to "el", "m" to "em",
+                "n" to "en", "ň" to "eň", "o" to "o", "ó" to "ó",
+                "p" to "pé", "q" to "kvé", "r" to "er", "ř" to "eř",
+                "s" to "es", "š" to "eš", "t" to "té", "ť" to "ťé",
+                "u" to "u", "ú" to "ú", "ů" to "ů", "v" to "vé",
+                "w" to "dvojité vé", "x" to "iks", "y" to "ypsilon",
+                "ý" to "ý", "z" to "zet", "ž" to "žet"
+            )
+            LPAlphabetTable(alphabet)
+
             // ── 1. Word Stress ───────────────────────────────────────────
             LPSectionHeader("Word Stress")
             LPNote("Czech stress always falls on the first syllable of every word, no matter how long the word is. Long vowels (á, é, í…) make a vowel sound longer — they do NOT move the stress.")
@@ -53,19 +72,19 @@ fun LettersPronunciationScreen(navController: NavController) {
 
             // ── 2. Short Vowels ──────────────────────────────────────────
             LPSectionHeader("Short Vowels")
-            LPRow("a", "\"a\" in father")
-            LPRow("e", "\"e\" in bed")
-            LPRow("i / y", "\"i\" in sit  (i and y are identical in sound)")
-            LPRow("o", "\"o\" in hot")
-            LPRow("u", "\"oo\" in book")
+            LPRow("a", "\"a\" in father", name = "a")
+            LPRow("e", "\"e\" in bed", name = "e")
+            LPRow("i / y", "\"i\" in sit  (i and y are identical in sound)", name = "í / ypsilon")
+            LPRow("o", "\"o\" in hot", name = "o")
+            LPRow("u", "\"oo\" in book", name = "u")
 
             // ── 3. Long Vowels ───────────────────────────────────────────
             LPSectionHeader("Long Vowels — held about twice as long")
-            LPRow("á", "\"a\" in father, held longer")
-            LPRow("é", "\"e\" in bed, held longer")
-            LPRow("í / ý", "\"ee\" in see  (both letters spell the same sound)")
-            LPRow("ó", "\"o\" in more, held longer  (rare — mostly loanwords)")
-            LPRow("ú / ů", "\"oo\" in moon  (identical sound; ů never starts a word)")
+            LPRow("á", "\"a\" in father, held longer", name = "á")
+            LPRow("é", "\"e\" in bed, held longer", name = "é")
+            LPRow("í / ý", "\"ee\" in see  (both letters spell the same sound)", name = "í / ý")
+            LPRow("ó", "\"o\" in more, held longer  (rare — mostly loanwords)", name = "ó")
+            LPRow("ú / ů", "\"oo\" in moon  (identical sound; ů never starts a word)", name = "ú / ů")
 
             // ── 4. ě — The Softening Vowel ───────────────────────────────
             LPSectionHeader("ě — The Softening Vowel")
@@ -87,31 +106,31 @@ fun LettersPronunciationScreen(navController: NavController) {
 
             // ── 6. Consonants With Háček ─────────────────────────────────
             LPSectionHeader("Consonants With Háček  ( ˇ )")
-            LPRow("č", "\"ch\" in cheese")
-            LPRow("š", "\"sh\" in shoe")
-            LPRow("ž", "\"s\" in measure  /  French j")
-            LPRow("ř", "Unique Czech sound — a simultaneous rolled-r and ž. Like trilling your tongue while saying \"zh\". Widely considered the hardest Czech sound for foreigners.", note = "Example: řeka (river), Dvořák")
-            LPRow("ň", "\"ny\" in canyon")
-            LPRow("ď", "\"dy\" — soft d, like \"dew\" said quickly")
-            LPRow("ť", "\"ty\" — soft t, like \"tune\" said quickly")
+            LPRow("č", "\"ch\" in cheese", name = "čé")
+            LPRow("š", "\"sh\" in shoe", name = "eš")
+            LPRow("ž", "\"s\" in measure  /  French j", name = "žet")
+            LPRow("ř", "Unique Czech sound — a simultaneous rolled-r and ž. Like trilling your tongue while saying \"zh\". Widely considered the hardest Czech sound for foreigners.", note = "Example: řeka (river), Dvořák", name = "eř")
+            LPRow("ň", "\"ny\" in canyon", name = "eň")
+            LPRow("ď", "\"dy\" — soft d, like \"dew\" said quickly", name = "ďé")
+            LPRow("ť", "\"ty\" — soft t, like \"tune\" said quickly", name = "ťé")
 
-            // ── 6. Letters That Surprise English Speakers ────────────────
+            // ── 7. Letters That Surprise English Speakers ────────────────
             LPSectionHeader("Letters That Surprise English Speakers")
-            LPRow("c", "\"ts\" in cats  (never \"k\" or \"s\" alone)")
-            LPRow("j", "\"y\" in yes  (never \"dj\")", note = "js- words (jsem, jsi, jsme, jste, jsou) are a special case. In careful/formal speech the j is a very light y-sound. In colloquial Bohemian Czech (Prague and central Bohemia) the j is typically dropped entirely — jsem becomes \"sem\", jsme becomes \"sme\". In Moravian speech the j tends to be more clearly pronounced. Both forms are widely heard; this is one of the most recognizable features of everyday spoken Czech.")
-            LPRow("ch", "\"kh\" — like Scottish loch or German Bach. A raspy sound made in the throat.", note = "ch is its own letter in the Czech alphabet, listed after h.")
-            LPRow("h", "breathy, voiced — slightly softer than English h")
-            LPRow("w", "same as v  (only in foreign words)")
-            LPRow("q", "\"kv\"  (only in foreign words)")
-            LPRow("x", "\"ks\"  (only in foreign words)")
+            LPRow("c", "\"ts\" in cats  (never \"k\" or \"s\" alone)", name = "cé")
+            LPRow("j", "\"y\" in yes  (never \"dj\")", note = "js- words (jsem, jsi, jsme, jste, jsou) are a special case. In careful/formal speech the j is a very light y-sound. In colloquial Bohemian Czech (Prague and central Bohemia) the j is typically dropped entirely — jsem becomes \"sem\", jsme becomes \"sme\". In Moravian speech the j tends to be more clearly pronounced. Both forms are widely heard; this is one of the most recognizable features of everyday spoken Czech.", name = "jé")
+            LPRow("ch", "\"kh\" — like Scottish loch or German Bach. A raspy sound made in the throat.", note = "ch is its own letter in the Czech alphabet, listed after h.", name = "chá")
+            LPRow("h", "breathy, voiced — slightly softer than English h", name = "há")
+            LPRow("w", "same as v  (only in foreign words)", name = "dvojité vé")
+            LPRow("q", "\"kv\"  (only in foreign words)", name = "kvé")
+            LPRow("x", "\"ks\"  (only in foreign words)", name = "iks")
 
-            // ── 7. Letter Combinations That Change Sound ─────────────────
+            // ── 8. Letter Combinations That Change Sound ─────────────────
             LPSectionHeader("Letter Combinations That Change Sound")
             LPRow("ch", "Always \"kh\" — never read as k + h separately. It is a single letter.")
             LPRow("dž", "like \"j\" in jungle. Appears in loanwords.", note = "Example: džem (jam), džíny (jeans)")
             LPNote("The combination of a consonant + ě also changes pronunciation — see the ě section above.")
 
-            // ── 8. Final Devoicing ───────────────────────────────────────
+            // ── 9. Final Devoicing ───────────────────────────────────────
             LPSectionHeader("Final Devoicing")
             LPNote("At the end of a word, voiced consonants automatically become their voiceless counterpart. The spelling does not change — only the pronunciation does.")
             LPRow("b → p", "")
@@ -122,27 +141,27 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow("ž → š", "")
             LPNote("Example: hrad (castle) is spelled with d but pronounced \"hrat\".")
 
-            // ── 9. Voice Assimilation in Clusters ────────────────────────
+            // ── 10. Voice Assimilation in Clusters ────────────────────────
             LPSectionHeader("Voice Assimilation in Consonant Clusters")
             LPNote("When two consonants appear together, they harmonize in voicing. The last consonant in the cluster decides whether the whole group is voiced or voiceless.")
             LPRow("kde (where)", "k is normally voiceless, but before voiced d it becomes voiced → \"gde\"")
             LPRow("vstát (to stand up)", "v is voiced, but before voiceless st it becomes f → \"fstát\"")
 
-            // ── 10. Syllabic r and l ─────────────────────────────────────
+            // ── 11. Syllabic r and l ─────────────────────────────────────
             LPSectionHeader("Syllabic r and l")
             LPNote("In Czech, r and l can act as vowels — they carry a whole syllable by themselves, with no vowel needed.")
             LPRow("krk", "neck — one syllable: k‑R‑k  (no vowel at all)")
             LPRow("vlk", "wolf — one syllable: v‑L‑k")
             LPRow("prst", "finger — one syllable: p‑R‑st")
 
-            // ── 11. The Czech Diacritical Marks ──────────────────────────
+            // ── 12. The Czech Diacritical Marks ──────────────────────────
             LPSectionHeader("The Czech Diacritical Marks")
             LPNote("Czech uses three special signs that modify letters. Knowing their names helps when reading grammar rules or looking words up.")
             LPRow("Čárka  ( ´ )", "Acute accent — lengthens a vowel", note = "Used on: á, é, í, ý, ó, ú")
             LPRow("Háček  ( ˇ )", "Caron / wedge — softens a consonant or changes a vowel's sound", note = "Used on consonants: č, š, ž, ř, ň, ď, ť — and on the vowel: ě")
             LPRow("Kroužek  ( ˚ )", "Ring above — marks the long vowel ů", note = "Only ever appears on ů; no other Czech letter uses kroužek")
 
-            // ── 12. Ú vs Ů ───────────────────────────────────────────────
+            // ── 13. Ú vs Ů ───────────────────────────────────────────────
             LPSectionHeader("Ú vs Ů — Same Sound, Different Mark")
             LPNote("Both ú and ů are pronounced identically — a long \"oo\" as in moon. The mark you write depends entirely on where the long U appears in the word.")
             LPRow("u", "short — \"oo\" in book", note = "e.g., studovat (to study), ulice (street)")
@@ -171,7 +190,36 @@ private fun LPSectionHeader(text: String) {
 }
 
 @Composable
-private fun LPRow(letter: String, pronunciation: String, note: String = "") {
+private fun LPAlphabetTable(entries: List<Pair<String, String>>) {
+    entries.chunked(2).forEach { row ->
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 2.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            row.forEach { (letter, name) ->
+                Row(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = letter,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                    Text(
+                        text = "  —  $name",
+                        fontSize = 15.sp,
+                        color = Color.DarkGray
+                    )
+                }
+            }
+            if (row.size == 1) Spacer(modifier = Modifier.weight(1f))
+        }
+    }
+}
+
+@Composable
+private fun LPRow(letter: String, pronunciation: String, note: String = "", name: String = "") {
     Column(modifier = Modifier.padding(vertical = 3.dp)) {
         if (pronunciation.isNotEmpty()) {
             Text(
@@ -190,6 +238,15 @@ private fun LPRow(letter: String, pronunciation: String, note: String = "") {
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
+            )
+        }
+        if (name.isNotEmpty()) {
+            Text(
+                text = "Czech name: $name",
+                fontSize = 12.sp,
+                fontStyle = FontStyle.Italic,
+                color = ButtonBlue,
+                modifier = Modifier.padding(start = 4.dp, top = 1.dp)
             )
         }
         if (note.isNotEmpty()) {

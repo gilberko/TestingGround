@@ -91,6 +91,7 @@ class MainActivity : ComponentActivity() {
                 composable("many_and_few") { ManyAndFewScreen(navController) }
                 composable("common_verbs") { CommonVerbsListScreen(navController) }
                 composable("imperative") { ImperativeScreen(navController) }
+                composable("conditions") { ConditionsScreen(navController) }
                 composable("dialogue_park") { AtTheParkDialogueScreen(navController) }
                 composable("dialogue_school") { HowWasSchoolDialogueScreen(navController) }
             }
@@ -236,7 +237,8 @@ fun LearningHubScreen(navController: NavController) {
             "Reflexive Verbs" to "reflexive_verbs",
             "Someone, Somewhere..." to "someone_somewhere",
             "Many and Few" to "many_and_few",
-            "Imperative" to "imperative"
+            "Imperative" to "imperative",
+            "Conditions" to "conditions"
         )
         Column(
             modifier = Modifier
