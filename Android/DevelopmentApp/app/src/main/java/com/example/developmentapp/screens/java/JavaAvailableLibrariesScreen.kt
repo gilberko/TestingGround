@@ -348,6 +348,229 @@ fun JavaAvailableLibrariesScreen(onBack: () -> Unit) {
                     )
                 }
             }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Date and Time") {
+                    BodyText(
+                        "java.time (introduced in Java 8) replaces the old java.util.Date and " +
+                        "Calendar. All types are immutable and thread-safe.\n\n" +
+                        "Key types:\n" +
+                        "• LocalDate — date only (year/month/day), no time zone\n" +
+                        "• LocalTime — time only, no date\n" +
+                        "• LocalDateTime — date + time, no time zone\n" +
+                        "• ZonedDateTime — date + time + time zone (ZoneId)\n" +
+                        "• Instant — a point on the timeline (nanoseconds since epoch)\n" +
+                        "• Duration / Period — amount of time (seconds vs. date units)\n" +
+                        "• DateTimeFormatter — parse and format strings"
+                    )
+                    CodeBlock(
+                        "LocalDate today    = LocalDate.now();\n" +
+                        "LocalDate deadline = today.plusDays(30);\n" +
+                        "DateTimeFormatter fmt = DateTimeFormatter.ofPattern(\"dd/MM/yyyy\");\n" +
+                        "System.out.println(deadline.format(fmt));  // \"19/06/2026\"\n\n" +
+                        "ZonedDateTime nyNow = ZonedDateTime.now(ZoneId.of(\"America/New_York\"));\n" +
+                        "Instant epoch = nyNow.toInstant();\n\n" +
+                        "Duration gap   = Duration.between(LocalTime.NOON, LocalTime.now());\n" +
+                        "long hours     = gap.toHours();\n\n" +
+                        "// Parsing — ISO 8601 by default\n" +
+                        "LocalDate parsed = LocalDate.parse(\"2026-01-15\");\n\n" +
+                        "// Arithmetic\n" +
+                        "LocalDate nextMonth = today.plus(1, ChronoUnit.MONTHS);\n" +
+                        "long days = ChronoUnit.DAYS.between(today, deadline);  // 30"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Threading") {
+                    BodyText(
+                        "Threading is covered in depth in the Threading & Sync screen. Quick " +
+                        "library overview:\n\n" +
+                        "• Thread / Runnable — lowest level; one OS thread per task\n" +
+                        "• ExecutorService — thread pool via Executors factory methods " +
+                        "(newFixedThreadPool, newCachedThreadPool, newSingleThreadExecutor)\n" +
+                        "• Callable<V> — like Runnable but returns a value\n" +
+                        "• Future<V> — holds a pending result; get() blocks until ready\n" +
+                        "• CompletableFuture (Java 8+) — async pipelines with thenApply, " +
+                        "thenAccept, thenCompose, allOf, anyOf\n" +
+                        "• java.util.concurrent — the main package for all high-level concurrency"
+                    )
+                    CodeBlock(
+                        "// Fixed thread pool — reuse 4 threads\n" +
+                        "ExecutorService pool = Executors.newFixedThreadPool(4);\n\n" +
+                        "// Callable returns a value\n" +
+                        "Future<Integer> f = pool.submit(() -> heavyCalc());\n" +
+                        "pool.shutdown();\n" +
+                        "System.out.println(f.get());    // blocks until result ready\n\n" +
+                        "// CompletableFuture — async pipeline\n" +
+                        "CompletableFuture.supplyAsync(() -> fetchData())\n" +
+                        "                 .thenApply(data -> transform(data))\n" +
+                        "                 .thenAccept(System.out::println)\n" +
+                        "                 .join();        // wait for completion\n\n" +
+                        "// Wait for multiple futures\n" +
+                        "CompletableFuture<Void> all = CompletableFuture.allOf(f1, f2, f3);\n" +
+                        "all.join();"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Synchronization") {
+                    BodyText(
+                        "Covered in depth in Threading & Sync. Quick library overview:\n\n" +
+                        "• synchronized — keyword; locks on any Object's monitor (intrinsic lock)\n" +
+                        "• ReentrantLock — explicit lock with tryLock(timeout) and " +
+                        "lockInterruptibly()\n" +
+                        "• ReadWriteLock — multiple concurrent readers or one exclusive writer\n" +
+                        "• Semaphore — limits concurrent access to N permits\n" +
+                        "• CountDownLatch — one thread waits until N others call countDown()\n" +
+                        "• CyclicBarrier — N threads rendezvous at a barrier, then continue\n" +
+                        "• AtomicInteger / AtomicLong / AtomicReference — lock-free operations\n" +
+                        "• ConcurrentHashMap / CopyOnWriteArrayList — thread-safe collections"
+                    )
+                    CodeBlock(
+                        "// Lock-free atomic counter\n" +
+                        "AtomicInteger count = new AtomicInteger(0);\n" +
+                        "count.incrementAndGet();   // thread-safe, no lock\n\n" +
+                        "// ReentrantLock — explicit lock/unlock\n" +
+                        "ReentrantLock lock = new ReentrantLock();\n" +
+                        "lock.lock();\n" +
+                        "try {\n" +
+                        "    // critical section\n" +
+                        "} finally { lock.unlock(); }  // always in finally\n\n" +
+                        "// CountDownLatch — wait for 3 workers to finish\n" +
+                        "CountDownLatch latch = new CountDownLatch(3);\n" +
+                        "// each worker calls:\n" +
+                        "latch.countDown();\n" +
+                        "// main thread waits:\n" +
+                        "latch.await();   // blocks until count reaches 0\n\n" +
+                        "// Semaphore — allow max 5 concurrent connections\n" +
+                        "Semaphore sem = new Semaphore(5);\n" +
+                        "sem.acquire();   // blocks if 5 already held\n" +
+                        "try { /* use resource */ } finally { sem.release(); }"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Image File Formats") {
+                    BodyText(
+                        "javax.imageio.ImageIO reads and writes common image formats out of the " +
+                        "box — no extra dependency needed:\n" +
+                        "• Supported natively: PNG, JPEG, BMP, GIF, WBMP\n" +
+                        "• BufferedImage — the in-memory ARGB pixel grid\n" +
+                        "• Graphics2D — draw shapes, text, gradients onto a BufferedImage\n" +
+                        "• ImageReader / ImageWriter — format-specific access for metadata " +
+                        "(EXIF, DPI, color profiles)\n\n" +
+                        "For TIFF, WebP, HEIC, or raw camera formats, add the " +
+                        "TwelveMonkeys ImageIO plugins or Apache Commons Imaging."
+                    )
+                    CodeBlock(
+                        "// Read\n" +
+                        "BufferedImage img = ImageIO.read(new File(\"photo.jpg\"));\n" +
+                        "System.out.println(img.getWidth() + \"x\" + img.getHeight());\n\n" +
+                        "// Convert JPEG → PNG\n" +
+                        "BufferedImage src = ImageIO.read(new File(\"input.jpg\"));\n" +
+                        "ImageIO.write(src, \"png\", new File(\"output.png\"));\n\n" +
+                        "// Draw on an image\n" +
+                        "Graphics2D g = img.createGraphics();\n" +
+                        "g.setColor(Color.RED);\n" +
+                        "g.setFont(new Font(\"Arial\", Font.BOLD, 24));\n" +
+                        "g.drawString(\"Watermark\", 10, 30);\n" +
+                        "g.dispose();\n" +
+                        "ImageIO.write(img, \"png\", new File(\"annotated.png\"));\n\n" +
+                        "// Check supported formats\n" +
+                        "String[] formats = ImageIO.getReaderFormatNames();\n" +
+                        "// [\"JPEG\", \"jpeg\", \"jpg\", \"PNG\", \"png\", \"GIF\", \"gif\", ...]"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "File I/O and NIO") {
+                    BodyText(
+                        "Two generations of file I/O in the JDK:\n\n" +
+                        "java.io — stream-based, blocking (Java 1.0+):\n" +
+                        "• FileInputStream / FileOutputStream — raw bytes\n" +
+                        "• FileReader / FileWriter — characters\n" +
+                        "• BufferedReader / BufferedWriter — adds buffering and readLine()\n\n" +
+                        "java.nio.file (NIO.2, Java 7+) — preferred for new code:\n" +
+                        "• Path — represents a file or directory path\n" +
+                        "• Files — utility class: readAllBytes, readAllLines, writeString, " +
+                        "copy, move, delete, walk, createDirectories\n" +
+                        "• FileChannel + ByteBuffer — memory-mapped and scatter/gather I/O " +
+                        "for maximum throughput"
+                    )
+                    CodeBlock(
+                        "// NIO.2 — modern, concise\n" +
+                        "Path p = Path.of(\"data.txt\");\n" +
+                        "List<String> lines = Files.readAllLines(p);\n" +
+                        "Files.writeString(p, \"Hello\", StandardOpenOption.CREATE);\n\n" +
+                        "// Copy / move / delete\n" +
+                        "Files.copy(Path.of(\"a.txt\"), Path.of(\"b.txt\"),\n" +
+                        "           StandardCopyOption.REPLACE_EXISTING);\n" +
+                        "Files.move(Path.of(\"b.txt\"), Path.of(\"c.txt\"));\n" +
+                        "Files.delete(Path.of(\"c.txt\"));\n\n" +
+                        "// Walk a directory tree\n" +
+                        "Files.walk(Path.of(\"/tmp\"))\n" +
+                        "     .filter(Files::isRegularFile)\n" +
+                        "     .forEach(System.out::println);\n\n" +
+                        "// FileChannel — memory-mapped (zero-copy read)\n" +
+                        "try (FileChannel ch = FileChannel.open(p, StandardOpenOption.READ)) {\n" +
+                        "    MappedByteBuffer buf =\n" +
+                        "        ch.map(FileChannel.MapMode.READ_ONLY, 0, ch.size());\n" +
+                        "    // buf backed by OS page cache — no extra copy\n" +
+                        "}"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "Non-Blocking Sockets (NIO)") {
+                    BodyText(
+                        "java.nio.channels provides non-blocking socket I/O. A single Selector " +
+                        "thread can monitor thousands of channels simultaneously — no " +
+                        "thread-per-connection overhead:\n\n" +
+                        "• SocketChannel — non-blocking TCP client\n" +
+                        "• ServerSocketChannel — non-blocking TCP server\n" +
+                        "• DatagramChannel — non-blocking UDP\n" +
+                        "• Selector — multiplexer; select() blocks until ≥1 channel is ready\n" +
+                        "• SelectionKey — one channel's registration; interest ops: OP_ACCEPT, " +
+                        "OP_CONNECT, OP_READ, OP_WRITE\n\n" +
+                        "NIO channels are the foundation that Netty, Undertow, and other " +
+                        "high-performance frameworks build on top of."
+                    )
+                    CodeBlock(
+                        "Selector selector = Selector.open();\n\n" +
+                        "ServerSocketChannel server = ServerSocketChannel.open();\n" +
+                        "server.bind(new InetSocketAddress(8080));\n" +
+                        "server.configureBlocking(false);\n" +
+                        "server.register(selector, SelectionKey.OP_ACCEPT);\n\n" +
+                        "while (true) {\n" +
+                        "    selector.select();   // blocks until ≥1 channel ready\n\n" +
+                        "    for (SelectionKey key : selector.selectedKeys()) {\n" +
+                        "        if (key.isAcceptable()) {\n" +
+                        "            SocketChannel client = server.accept();\n" +
+                        "            client.configureBlocking(false);\n" +
+                        "            client.register(selector, SelectionKey.OP_READ);\n\n" +
+                        "        } else if (key.isReadable()) {\n" +
+                        "            SocketChannel ch = (SocketChannel) key.channel();\n" +
+                        "            ByteBuffer buf = ByteBuffer.allocate(1024);\n" +
+                        "            int n = ch.read(buf);   // non-blocking — may return 0\n" +
+                        "            if (n == -1) ch.close();\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "    selector.selectedKeys().clear();\n" +
+                        "}"
+                    )
+                }
+            }
 
             item { Spacer(Modifier.height(24.dp)) }
         }

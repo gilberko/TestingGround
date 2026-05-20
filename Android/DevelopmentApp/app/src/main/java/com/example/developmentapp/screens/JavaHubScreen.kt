@@ -55,7 +55,9 @@ fun JavaHubScreen(
     onIO: () -> Unit,
     onAvailableLibraries: () -> Unit,
     onAwt: () -> Unit,
-    onSwing: () -> Unit
+    onSwing: () -> Unit,
+    onReflections: () -> Unit,
+    onLargeProject: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -121,6 +123,9 @@ fun JavaHubScreen(
             Spacer(Modifier.height(8.dp))
             JavaButtonRow("Swing",    onSwing,
                           "Generics", onGenerics)
+            Spacer(Modifier.height(8.dp))
+            JavaButtonRow("Reflections and more . . .", onReflections,
+                          "Large Project",               onLargeProject)
             Spacer(Modifier.height(24.dp))
         }
     }

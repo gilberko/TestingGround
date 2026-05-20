@@ -147,6 +147,8 @@ import com.example.developmentapp.screens.java.JavaIOScreen
 import com.example.developmentapp.screens.java.JavaAvailableLibrariesScreen
 import com.example.developmentapp.screens.java.JavaAwtScreen
 import com.example.developmentapp.screens.java.JavaSwingScreen
+import com.example.developmentapp.screens.java.JavaReflectionsScreen
+import com.example.developmentapp.screens.java.JavaLargeProjectScreen
 import com.example.developmentapp.screens.RustHubScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
@@ -330,6 +332,8 @@ sealed class Screen(val route: String) {
     object JavaAvailableLibraries: Screen("java_available_libraries")
     object JavaAwt               : Screen("java_awt")
     object JavaSwing             : Screen("java_swing")
+    object JavaReflections       : Screen("java_reflections")
+    object JavaLargeProject      : Screen("java_large_project")
     // AI and Neural Networks
     object AiHub                 : Screen("ai_hub")
     object Perceptron            : Screen("perceptron")
@@ -405,7 +409,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onIO                  = { navController.navigate(Screen.JavaIO.route) },
                 onAvailableLibraries  = { navController.navigate(Screen.JavaAvailableLibraries.route) },
                 onAwt                 = { navController.navigate(Screen.JavaAwt.route) },
-                onSwing               = { navController.navigate(Screen.JavaSwing.route) }
+                onSwing               = { navController.navigate(Screen.JavaSwing.route) },
+                onReflections         = { navController.navigate(Screen.JavaReflections.route) },
+                onLargeProject        = { navController.navigate(Screen.JavaLargeProject.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -428,6 +434,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaAvailableLibraries.route){ JavaAvailableLibrariesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaAwt.route)               { JavaAwtScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaSwing.route)             { JavaSwingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaReflections.route)       { JavaReflectionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaLargeProject.route)      { JavaLargeProjectScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
