@@ -26,12 +26,21 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.arabicapp.screens.AdjectivesScreen
+import com.example.arabicapp.screens.AdverbsScreen
+import com.example.arabicapp.screens.CommonAdjectivesScreen
+import com.example.arabicapp.screens.CommonAdverbsScreen
 import com.example.arabicapp.screens.CommonVerbsScreen
 import com.example.arabicapp.screens.CommonWordsScreen
+import com.example.arabicapp.screens.ConditionsScreen
 import com.example.arabicapp.screens.DictionaryScreen
+import com.example.arabicapp.screens.FutureTenseScreen
 import com.example.arabicapp.screens.LearningScreen
 import com.example.arabicapp.screens.NegationScreen
 import com.example.arabicapp.screens.NumbersScreen
+import com.example.arabicapp.screens.ObjectPronounsScreen
+import com.example.arabicapp.screens.PastTenseScreen
+import com.example.arabicapp.screens.PossessivesScreen
 import com.example.arabicapp.screens.QuestionsScreen
 import com.example.arabicapp.screens.SpokenVsMSAScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
@@ -105,6 +114,51 @@ fun AppNavigation() {
         composable("common_verbs") {
             ScreenWithBackButton(title = "Common Verbs", onBack = { navController.popBackStack() }) {
                 CommonVerbsScreen()
+            }
+        }
+        composable("possessives") {
+            ScreenWithBackButton(title = "Possessives", onBack = { navController.popBackStack() }) {
+                PossessivesScreen()
+            }
+        }
+        composable("object_pronouns") {
+            ScreenWithBackButton(title = "Object Pronouns", onBack = { navController.popBackStack() }) {
+                ObjectPronounsScreen()
+            }
+        }
+        composable("past_tense") {
+            ScreenWithBackButton(title = "Past Tense", onBack = { navController.popBackStack() }) {
+                PastTenseScreen()
+            }
+        }
+        composable("future_tense") {
+            ScreenWithBackButton(title = "Future Tense", onBack = { navController.popBackStack() }) {
+                FutureTenseScreen()
+            }
+        }
+        composable("adjectives") {
+            ScreenWithBackButton(title = "Adjectives", onBack = { navController.popBackStack() }) {
+                AdjectivesScreen()
+            }
+        }
+        composable("adverbs") {
+            ScreenWithBackButton(title = "Adverbs", onBack = { navController.popBackStack() }) {
+                AdverbsScreen()
+            }
+        }
+        composable("conditions") {
+            ScreenWithBackButton(title = "Conditions", onBack = { navController.popBackStack() }) {
+                ConditionsScreen()
+            }
+        }
+        composable("common_adjectives") {
+            ScreenWithBackButton(title = "Common Adjectives", onBack = { navController.popBackStack() }) {
+                CommonAdjectivesScreen()
+            }
+        }
+        composable("common_adverbs") {
+            ScreenWithBackButton(title = "Common Adverbs", onBack = { navController.popBackStack() }) {
+                CommonAdverbsScreen()
             }
         }
     }

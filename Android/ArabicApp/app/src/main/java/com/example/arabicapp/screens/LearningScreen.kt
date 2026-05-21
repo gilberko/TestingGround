@@ -51,9 +51,51 @@ fun LearningScreen(navController: NavController) {
         }
         Button(
             onClick = { navController.navigate("subject_pronouns") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
             Text("Subject Pronouns")
+        }
+        Button(
+            onClick = { navController.navigate("possessives") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Possessives")
+        }
+        Button(
+            onClick = { navController.navigate("object_pronouns") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Object Pronouns")
+        }
+        Button(
+            onClick = { navController.navigate("past_tense") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Past Tense")
+        }
+        Button(
+            onClick = { navController.navigate("future_tense") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Future Tense")
+        }
+        Button(
+            onClick = { navController.navigate("adjectives") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Adjectives")
+        }
+        Button(
+            onClick = { navController.navigate("adverbs") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Adverbs")
+        }
+        Button(
+            onClick = { navController.navigate("conditions") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Conditions")
         }
     }
 }
