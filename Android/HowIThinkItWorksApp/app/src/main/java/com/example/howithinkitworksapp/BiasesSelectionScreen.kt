@@ -36,7 +36,8 @@ private val biases = listOf(
     "Riddles and Quizzes - Information Gap / Curiosity Gap",
     "Don't Tell Me What To Do - Reactance / Psychological Reactance",
     "Mirror Neurons",
-    "Authority Bias"
+    "Authority Bias",
+    "Only 2 Items Left — Loss Aversion"
 )
 
 private val biasContentKeys = mapOf(
@@ -52,7 +53,8 @@ private val biasContentKeys = mapOf(
     "Negativity Bias" to "negativity_bias",
     "Optimism Bias" to "optimism_bias",
     "Hindsight Bias" to "hindsight_bias",
-    "Bandwagon Effect" to "bandwagon_effect"
+    "Bandwagon Effect" to "bandwagon_effect",
+    "Only 2 Items Left — Loss Aversion" to "loss_aversion"
 )
 
 @Composable
@@ -89,7 +91,7 @@ fun BiasesSelectionScreen(navController: NavController) {
                         },
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
-                        modifier = Modifier.weight(1f).height(56.dp)
+                        modifier = Modifier.weight(1f).heightIn(min = 56.dp)
                     ) {
                         Text(
                             text = bias,

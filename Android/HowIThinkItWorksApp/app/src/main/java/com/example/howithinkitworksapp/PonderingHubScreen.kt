@@ -1,6 +1,5 @@
 package com.example.howithinkitworksapp
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,15 +18,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun NeuromarketingHubScreen(navController: NavController) {
+fun PonderingHubScreen(navController: NavController) {
     val items = listOf(
-        "Biases and Effects" to "biases_hub",
-        "Priming, Availability and Spreading Activation" to "priming",
-        "Grab Their Attention" to "grab_attention",
-        "Get Them To Act" to "get_them_to_act",
-        "Storytelling — Keeping the Attention" to "storytelling_attention",
-        "Do People Listen?" to "do_people_listen",
-        "What Will They Remember?" to "what_will_they_remember"
+        "Boredom" to "boredom",
+        "Religion Is Evolving — How?" to "religion_evolving"
     )
     HubBackground {
     Column(
@@ -39,7 +33,7 @@ fun NeuromarketingHubScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = "Neuromarketing",
+            text = "Pondering",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,

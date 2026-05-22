@@ -83,6 +83,9 @@ class MainActivity : ComponentActivity() {
                     composable("do_people_listen") { DoPeopleListenScreen(navController) }
                     composable("what_will_they_remember") { WhatWillTheyRememberScreen(navController) }
                     composable("avoidance") { AvoidanceScreen(navController) }
+                    composable("pondering_hub") { PonderingHubScreen(navController) }
+                    composable("boredom") { BoredomScreen(navController) }
+                    composable("religion_evolving") { ReligionEvolvingScreen(navController) }
                 }
             }
         }
@@ -103,7 +106,8 @@ fun MainScreen(navController: NavController) {
         "Winning And Losing" to "winning_and_losing",
         "Motivation" to "motivation",
         "About Music" to "about_music_hub",
-        "Avoidance" to "avoidance"
+        "Avoidance" to "avoidance",
+        "Pondering" to "pondering_hub"
     )
     HubBackground {
     Column(

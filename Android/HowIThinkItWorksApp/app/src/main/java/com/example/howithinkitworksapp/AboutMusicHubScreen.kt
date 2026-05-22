@@ -58,7 +58,7 @@ fun AboutMusicHubScreen(navController: NavController) {
                         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
                         modifier = Modifier
                             .weight(1f)
-                            .height(56.dp)
+                            .heightIn(min = 56.dp)
                     ) {
                         Text(
                             text = label,

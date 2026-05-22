@@ -48,7 +48,7 @@ fun HypnosisHubScreen(navController: NavController) {
                         onClick = { navController.navigate("hypnosis_section/${topic.key}") },
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
-                        modifier = Modifier.weight(1f).height(56.dp)
+                        modifier = Modifier.weight(1f).heightIn(min = 56.dp)
                     ) {
                         Text(
                             text = topic.title,
