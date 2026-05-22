@@ -37,7 +37,8 @@ private val biases = listOf(
     "Don't Tell Me What To Do - Reactance / Psychological Reactance",
     "Mirror Neurons",
     "Authority Bias",
-    "Only 2 Items Left — Loss Aversion"
+    "Only 2 Items Left — Loss Aversion",
+    "Reciprocation"
 )
 
 private val biasContentKeys = mapOf(
@@ -54,7 +55,8 @@ private val biasContentKeys = mapOf(
     "Optimism Bias" to "optimism_bias",
     "Hindsight Bias" to "hindsight_bias",
     "Bandwagon Effect" to "bandwagon_effect",
-    "Only 2 Items Left — Loss Aversion" to "loss_aversion"
+    "Only 2 Items Left — Loss Aversion" to "loss_aversion",
+    "Reciprocation" to "reciprocation"
 )
 
 @Composable
