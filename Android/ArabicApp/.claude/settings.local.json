@@ -6,7 +6,10 @@
       "Bash(./gradlew assembleRelease)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" cd C:/Code/TestingGround/Android/ArabicApp)",
       "Bash(JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\" ./gradlew assembleRelease)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(ls *)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

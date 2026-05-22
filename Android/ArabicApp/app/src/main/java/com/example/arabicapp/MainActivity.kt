@@ -44,6 +44,7 @@ import com.example.arabicapp.screens.PossessivesScreen
 import com.example.arabicapp.screens.QuestionsScreen
 import com.example.arabicapp.screens.SpokenVsMSAScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
+import com.example.arabicapp.screens.PracticeLettersScreen
 import com.example.arabicapp.screens.TheLettersScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
@@ -74,6 +75,11 @@ fun AppNavigation() {
         composable("dictionary") {
             ScreenWithBackButton(title = "Simple Dictionary", onBack = { navController.popBackStack() }) {
                 DictionaryScreen(navController)
+            }
+        }
+        composable("practice_letters") {
+            ScreenWithBackButton(title = "Practice Letters", onBack = { navController.popBackStack() }) {
+                PracticeLettersScreen()
             }
         }
         composable("the_letters") {
@@ -204,9 +210,15 @@ fun HomeScreen(navController: NavController) {
             }
             Button(
                 onClick = { navController.navigate("dictionary") },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
             ) {
                 Text("Simple Dictionary")
+            }
+            Button(
+                onClick = { navController.navigate("practice_letters") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Practice Letters")
             }
         }
     }
