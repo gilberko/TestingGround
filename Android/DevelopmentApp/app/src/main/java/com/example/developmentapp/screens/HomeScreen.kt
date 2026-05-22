@@ -38,7 +38,8 @@ fun HomeScreen(
     onDebuggingProfilingTracing: () -> Unit,
     onAiNeuralNetworks: () -> Unit,
     onJava: () -> Unit,
-    onDatabases: () -> Unit
+    onDatabases: () -> Unit,
+    onKotlin: () -> Unit
 ) {
     HubBackground {
     Column(
@@ -61,6 +62,8 @@ fun HomeScreen(
         HomeButtonRow("Debugging, Profiling And Tracing", onDebuggingProfilingTracing, "AI and Neural Networks", onAiNeuralNetworks)
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Java", onJava, "Databases", onDatabases)
+        Spacer(Modifier.height(12.dp))
+        HomeSingleButton("Kotlin", onKotlin)
     }
     }
 }

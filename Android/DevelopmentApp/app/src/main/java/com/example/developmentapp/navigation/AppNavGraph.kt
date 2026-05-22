@@ -135,6 +135,20 @@ import com.example.developmentapp.screens.database.DocumentDbScreen
 import com.example.developmentapp.screens.database.GraphDbScreen
 import com.example.developmentapp.screens.database.KeyValueStoresScreen
 import com.example.developmentapp.screens.JavaHubScreen
+import com.example.developmentapp.screens.KotlinHubScreen
+import com.example.developmentapp.screens.kotlin.KotlinAboutScreen
+import com.example.developmentapp.screens.kotlin.KotlinHelloWorldScreen
+import com.example.developmentapp.screens.kotlin.KotlinVariableTypesScreen
+import com.example.developmentapp.screens.kotlin.KotlinBasicSyntaxScreen
+import com.example.developmentapp.screens.kotlin.KotlinClasses101Screen
+import com.example.developmentapp.screens.kotlin.KotlinPackagesScreen
+import com.example.developmentapp.screens.kotlin.KotlinClasses2Screen
+import com.example.developmentapp.screens.kotlin.KotlinLambdasScreen
+import com.example.developmentapp.screens.kotlin.KotlinGenericsScreen
+import com.example.developmentapp.screens.kotlin.KotlinCollectionsScreen
+import com.example.developmentapp.screens.kotlin.KotlinExceptionsScreen
+import com.example.developmentapp.screens.kotlin.KotlinThreadingSyncScreen
+import com.example.developmentapp.screens.kotlin.KotlinIOScreen
 import com.example.developmentapp.screens.java.JavaAboutScreen
 import com.example.developmentapp.screens.java.JavaHelloWorldScreen
 import com.example.developmentapp.screens.java.JavaBasicTypesScreen
@@ -319,6 +333,21 @@ sealed class Screen(val route: String) {
     object RustCommentsDocs      : Screen("rust_comments_docs")
     object RustThreads           : Screen("rust_threads")
     object RustUnsafe            : Screen("rust_unsafe")
+    // Kotlin
+    object KotlinHub           : Screen("kotlin_hub")
+    object KotlinAbout         : Screen("kotlin_about")
+    object KotlinHelloWorld    : Screen("kotlin_hello_world")
+    object KotlinVariableTypes : Screen("kotlin_variable_types")
+    object KotlinBasicSyntax   : Screen("kotlin_basic_syntax")
+    object KotlinClasses101    : Screen("kotlin_classes_101")
+    object KotlinPackages      : Screen("kotlin_packages")
+    object KotlinClasses2      : Screen("kotlin_classes_2")
+    object KotlinLambdas       : Screen("kotlin_lambdas")
+    object KotlinGenerics      : Screen("kotlin_generics")
+    object KotlinCollections   : Screen("kotlin_collections")
+    object KotlinExceptions    : Screen("kotlin_exceptions")
+    object KotlinThreadingSync : Screen("kotlin_threading_sync")
+    object KotlinIO            : Screen("kotlin_io")
     // Java
     object JavaHub        : Screen("java_hub")
     object JavaAbout      : Screen("java_about")
@@ -389,7 +418,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDebuggingProfilingTracing  = { navController.navigate(Screen.DebuggingProfilingTracing.route) },
                 onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) },
                 onJava                       = { navController.navigate(Screen.JavaHub.route) },
-                onDatabases                  = { navController.navigate(Screen.DatabasesHub.route) }
+                onDatabases                  = { navController.navigate(Screen.DatabasesHub.route) },
+                onKotlin                     = { navController.navigate(Screen.KotlinHub.route) }
             )
         }
 
@@ -403,6 +433,39 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.DebuggingProfilingTracing.route) {
             DebuggingProfilingTracingScreen(onBack = { navController.popBackStack() })
         }
+
+        // ── Kotlin ───────────────────────────────────────────────────────
+        composable(Screen.KotlinHub.route) {
+            KotlinHubScreen(
+                onBack           = { navController.popBackStack() },
+                onAboutKotlin    = { navController.navigate(Screen.KotlinAbout.route) },
+                onHelloWorld     = { navController.navigate(Screen.KotlinHelloWorld.route) },
+                onVariableTypes  = { navController.navigate(Screen.KotlinVariableTypes.route) },
+                onBasicSyntax    = { navController.navigate(Screen.KotlinBasicSyntax.route) },
+                onClasses101     = { navController.navigate(Screen.KotlinClasses101.route) },
+                onPackages       = { navController.navigate(Screen.KotlinPackages.route) },
+                onClasses2       = { navController.navigate(Screen.KotlinClasses2.route) },
+                onLambdas        = { navController.navigate(Screen.KotlinLambdas.route) },
+                onGenerics       = { navController.navigate(Screen.KotlinGenerics.route) },
+                onCollections    = { navController.navigate(Screen.KotlinCollections.route) },
+                onExceptions     = { navController.navigate(Screen.KotlinExceptions.route) },
+                onThreadingSync  = { navController.navigate(Screen.KotlinThreadingSync.route) },
+                onIO             = { navController.navigate(Screen.KotlinIO.route) }
+            )
+        }
+        composable(Screen.KotlinAbout.route)         { KotlinAboutScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinHelloWorld.route)    { KotlinHelloWorldScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinVariableTypes.route) { KotlinVariableTypesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinBasicSyntax.route)   { KotlinBasicSyntaxScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinClasses101.route)    { KotlinClasses101Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinPackages.route)      { KotlinPackagesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinClasses2.route)      { KotlinClasses2Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinLambdas.route)       { KotlinLambdasScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinGenerics.route)      { KotlinGenericsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinCollections.route)   { KotlinCollectionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinExceptions.route)    { KotlinExceptionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinThreadingSync.route) { KotlinThreadingSyncScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinIO.route)            { KotlinIOScreen(onBack = { navController.popBackStack() }) }
 
         // ── Java ─────────────────────────────────────────────────────────
         composable(Screen.JavaHub.route) {

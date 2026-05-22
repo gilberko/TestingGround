@@ -275,34 +275,116 @@ fun JavaThreadingSyncScreen(onBack: () -> Unit) {
                         "The lock is reentrant: if the thread that already holds the lock tries to " +
                         "acquire it again (e.g. from a synchronized method calling another synchronized " +
                         "method on the same object), it succeeds instead of deadlocking.\n\n" +
-                        "synchronized on an instance method is equivalent to synchronized(this). " +
-                        "synchronized on a static method locks the Class object."
+                        "What can you synchronize on? Any non-null object reference — the object itself " +
+                        "is not special, only its identity matters. Common choices:\n\n" +
+                        "• this — synchronized method or synchronized(this) block. Simple, but external " +
+                        "code can also lock on your object and interfere.\n\n" +
+                        "• private final Object lock = new Object() — a dedicated, hidden lock. " +
+                        "Preferred: nobody outside the class can acquire it, so you fully control who " +
+                        "competes for it. The lock object itself does nothing — it is just a token.\n\n" +
+                        "• ClassName.class — the Class object. Used by static synchronized methods. " +
+                        "One instance shared across all threads for that class.\n\n" +
+                        "• Any other object you own — e.g. a List or Map field. Two synchronized " +
+                        "blocks that use the same object instance are mutually exclusive; blocks that " +
+                        "use different objects are not.\n\n" +
+                        "What NOT to synchronize on:\n" +
+                        "• String literals — they are interned and shared across the JVM. " +
+                        "synchronized(\"lock\") may accidentally contend with completely unrelated code.\n" +
+                        "• Boxed Integer / Long from small values — Integer.valueOf(n) for small n " +
+                        "returns cached instances, so two unrelated classes can end up locking the " +
+                        "same object without knowing it.\n" +
+                        "• null — throws NullPointerException immediately."
                     )
                     CodeBlock(
+                        "// 1. synchronized method — locks 'this':\n" +
                         "class Counter {\n" +
-                        "    private int count = 0;\n\n" +
-                        "    // Acquires lock on 'this':\n" +
+                        "    private int count = 0;\n" +
                         "    public synchronized void increment() { count++; }\n" +
                         "    public synchronized int  get()       { return count; }\n" +
                         "}\n\n" +
-                        "// Equivalent using a synchronized block — finer-grained control:\n" +
+                        "// 2. synchronized block on 'this' — identical effect, finer scope:\n" +
+                        "public void increment() {\n" +
+                        "    doSomeUnsynchronizedWork();\n" +
+                        "    synchronized (this) { count++; }   // only this line is locked\n" +
+                        "}\n\n" +
+                        "// 3. Private dedicated lock object — preferred:\n" +
                         "class Counter2 {\n" +
                         "    private int count = 0;\n" +
-                        "    private final Object lock = new Object();  // dedicated lock object\n\n" +
+                        "    private final Object lock = new Object();\n\n" +
                         "    public void increment() {\n" +
-                        "        synchronized (lock) { count++; }   // only this section is locked\n" +
+                        "        synchronized (lock) { count++; }\n" +
                         "    }\n" +
                         "}\n\n" +
-                        "// Static synchronized — locks the Class object:\n" +
+                        "// 4. Two independent locks — separate concerns don't block each other:\n" +
+                        "class Store {\n" +
+                        "    private final Object inventoryLock = new Object();\n" +
+                        "    private final Object orderLock     = new Object();\n\n" +
+                        "    public void updateInventory() { synchronized (inventoryLock) { ... } }\n" +
+                        "    public void placeOrder()      { synchronized (orderLock)     { ... } }\n" +
+                        "    // updateInventory and placeOrder can now run truly in parallel\n" +
+                        "}\n\n" +
+                        "// 5. Static synchronized — locks Counter.class, not an instance:\n" +
                         "class IdGen {\n" +
                         "    private static int next = 0;\n" +
                         "    public static synchronized int nextId() { return next++; }\n" +
+                        "    // equivalent: synchronized (IdGen.class) { return next++; }\n" +
                         "}\n\n" +
-                        "// Reentrant — same thread can re-enter without deadlock:\n" +
-                        "synchronized void outer() {\n" +
-                        "    inner();  // also synchronized on 'this' — JVM allows re-entry\n" +
-                        "}\n" +
-                        "synchronized void inner() { /* ... */ }"
+                        "// BAD — String literal (interned, shared globally):\n" +
+                        "synchronized (\"myLock\") { ... }  // dangerous\n\n" +
+                        "// BAD — cached Integer (Integer.valueOf(42) is the same object everywhere):\n" +
+                        "Integer key = 42;\n" +
+                        "synchronized (key) { ... }  // dangerous\n\n" +
+                        "// Reentrant — same thread re-enters its own lock without deadlock:\n" +
+                        "synchronized void outer() { inner(); }\n" +
+                        "synchronized void inner() { /* ... */ }  // same 'this' lock — OK"
+                    )
+                }
+            }
+            item { Spacer(Modifier.height(8.dp)) }
+
+            item {
+                SectionCard(title = "volatile — Visibility and Ordering") {
+                    BodyText(
+                        "The problem volatile solves: by default the JVM and CPU are free to cache " +
+                        "variables in registers or CPU caches. A write on thread A may not be visible " +
+                        "to thread B for an indefinite time — thread B just keeps reading its stale " +
+                        "cached copy. The JIT compiler may also hoist a variable read out of a loop " +
+                        "entirely, making the loop never see an update written by another thread.\n\n" +
+                        "Marking a field volatile gives two guarantees:\n" +
+                        "• Visibility: every write is flushed to main memory immediately; every read " +
+                        "fetches from main memory, never a cached copy. Thread B always sees what " +
+                        "thread A last wrote.\n" +
+                        "• Ordering (happens-before): a volatile write happens-before any subsequent " +
+                        "volatile read of the same field. Reads and writes to volatile fields are not " +
+                        "reordered relative to each other by the compiler or CPU.\n\n" +
+                        "What volatile does NOT guarantee: atomicity of compound operations. count++ is " +
+                        "read-modify-write — three steps. Even on a volatile int, two threads doing " +
+                        "count++ simultaneously can both read the same old value and both write the same " +
+                        "result, losing one increment. Use AtomicInteger for that.\n\n" +
+                        "The classic safe pattern: a stop-flag written by one thread and polled by another."
+                    )
+                    CodeBlock(
+                        "class Worker implements Runnable {\n" +
+                        "    private volatile boolean running = true;\n\n" +
+                        "    @Override\n" +
+                        "    public void run() {\n" +
+                        "        while (running) {    // always reads fresh value — no stale cache\n" +
+                        "            doWork();\n" +
+                        "        }\n" +
+                        "    }\n\n" +
+                        "    public void stop() { running = false; }  // visible to run() immediately\n" +
+                        "}\n\n" +
+                        "// Without volatile — BROKEN:\n" +
+                        "// The JIT can hoist 'running' into a register once and never re-read it.\n" +
+                        "// The while(running) loop may spin forever even after stop() is called.\n\n" +
+                        "// volatile does NOT fix compound operations:\n" +
+                        "private volatile int count = 0;\n" +
+                        "count++;  // still a race: read-increment-write is NOT atomic\n" +
+                        "          // use AtomicInteger.incrementAndGet() instead\n\n" +
+                        "// volatile reference — the reference switch is visible, not object internals:\n" +
+                        "private volatile Config config;\n" +
+                        "// Writing config = new Config(...) makes the new reference visible atomically.\n" +
+                        "// But fields inside the new Config must be safely published separately."
                     )
                 }
             }
