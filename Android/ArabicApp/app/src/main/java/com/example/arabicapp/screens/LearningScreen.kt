@@ -93,9 +93,15 @@ fun LearningScreen(navController: NavController) {
         }
         Button(
             onClick = { navController.navigate("conditions") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
             Text("Conditions")
+        }
+        Button(
+            onClick = { navController.navigate("letters_for_hebrew") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("The Letters for Hebrew Speakers")
         }
     }
 }
