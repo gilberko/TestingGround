@@ -2,6 +2,7 @@ package com.example.arabicapp.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,89 +26,33 @@ fun LearningScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(
-            onClick = { navController.navigate("the_letters") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("The Letters")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("the_letters") }, modifier = Modifier.weight(1f)) { Text("The Letters") }
+            Button(onClick = { navController.navigate("vowels") }, modifier = Modifier.weight(1f)) { Text("Vowels") }
         }
-        Button(
-            onClick = { navController.navigate("vowels") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Vowels")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("spoken_vs_msa") }, modifier = Modifier.weight(1f)) { Text("Spoken Arabic vs MSA") }
+            Button(onClick = { navController.navigate("negation") }, modifier = Modifier.weight(1f)) { Text("Negation") }
         }
-        Button(
-            onClick = { navController.navigate("spoken_vs_msa") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Spoken Arabic vs MSA")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("questions") }, modifier = Modifier.weight(1f)) { Text("Questions") }
+            Button(onClick = { navController.navigate("subject_pronouns") }, modifier = Modifier.weight(1f)) { Text("Subject Pronouns") }
         }
-        Button(
-            onClick = { navController.navigate("negation") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Negation")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("possessives") }, modifier = Modifier.weight(1f)) { Text("Possessives") }
+            Button(onClick = { navController.navigate("object_pronouns") }, modifier = Modifier.weight(1f)) { Text("Object Pronouns") }
         }
-        Button(
-            onClick = { navController.navigate("questions") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Questions")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("past_tense") }, modifier = Modifier.weight(1f)) { Text("Past Tense") }
+            Button(onClick = { navController.navigate("future_tense") }, modifier = Modifier.weight(1f)) { Text("Future Tense") }
         }
-        Button(
-            onClick = { navController.navigate("subject_pronouns") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Subject Pronouns")
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("adjectives") }, modifier = Modifier.weight(1f)) { Text("Adjectives") }
+            Button(onClick = { navController.navigate("adverbs") }, modifier = Modifier.weight(1f)) { Text("Adverbs") }
         }
-        Button(
-            onClick = { navController.navigate("possessives") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Possessives")
-        }
-        Button(
-            onClick = { navController.navigate("object_pronouns") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Object Pronouns")
-        }
-        Button(
-            onClick = { navController.navigate("past_tense") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Past Tense")
-        }
-        Button(
-            onClick = { navController.navigate("future_tense") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Future Tense")
-        }
-        Button(
-            onClick = { navController.navigate("adjectives") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Adjectives")
-        }
-        Button(
-            onClick = { navController.navigate("adverbs") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Adverbs")
-        }
-        Button(
-            onClick = { navController.navigate("conditions") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) {
-            Text("Conditions")
-        }
-        Button(
-            onClick = { navController.navigate("letters_for_hebrew") },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("The Letters for Hebrew Speakers")
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("conditions") }, modifier = Modifier.weight(1f)) { Text("Conditions") }
+            Button(onClick = { navController.navigate("letters_for_hebrew") }, modifier = Modifier.weight(1f)) { Text("The Letters for Hebrew Speakers") }
         }
     }
 }

@@ -19,45 +19,52 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
-private data class LetterQuestion(
+private data class EnToArQuestion(
     val letter: ArabicLetter,
     val formLabel: String,
-    val displayChar: String,
-    val options: List<ArabicLetter>,
+    val correctForm: String,
+    val options: List<Pair<String, ArabicLetter>>,
     val correctIndex: Int
 )
 
-private fun generateQuiz(): List<LetterQuestion> {
+private fun generateEnToArQuiz(): List<EnToArQuestion> {
     val selected = ALL_LETTERS.shuffled().take(10)
     return selected.map { letter ->
-        val forms = if (letter.isNonConnector) {
+        val positions = if (letter.isNonConnector) {
             listOf(
-                Triple("Middle of word", letter.medialForm, "MEDIAL"),
-                Triple("End of word", letter.finalForm, "FINAL")
+                Pair("Middle of word", letter.medialForm),
+                Pair("End of word", letter.finalForm)
             )
         } else {
             listOf(
-                Triple("Beginning of word", letter.initialForm, "INITIAL"),
-                Triple("Middle of word", letter.medialForm, "MEDIAL"),
-                Triple("End of word", letter.finalForm, "FINAL")
+                Pair("Beginning of word", letter.initialForm),
+                Pair("Middle of word", letter.medialForm),
+                Pair("End of word", letter.finalForm)
             )
         }
-        val (formLabel, displayChar, _) = forms.random()
+        val (formLabel, correctForm) = positions.random()
         val distractors = ALL_LETTERS.filter { it.name != letter.name }.shuffled().take(3)
-        val allOptions = (listOf(letter) + distractors).shuffled()
-        val correctIndex = allOptions.indexOf(letter)
-        LetterQuestion(letter, formLabel, displayChar, allOptions, correctIndex)
+        val distractorForms = distractors.map { d ->
+            val form = when (formLabel) {
+                "Beginning of word" -> d.initialForm
+                "Middle of word" -> d.medialForm
+                else -> d.finalForm
+            }
+            Pair(form, d)
+        }
+        val allOptions = (listOf(Pair(correctForm, letter)) + distractorForms).shuffled()
+        val correctIndex = allOptions.indexOfFirst { it.second.name == letter.name }
+        EnToArQuestion(letter, formLabel, correctForm, allOptions, correctIndex)
     }
 }
 
 @Composable
-fun PracticeLettersScreen() {
-    var questions by remember { mutableStateOf(generateQuiz()) }
+fun PracticeLettersEnToArScreen() {
+    var questions by remember { mutableStateOf(generateEnToArQuiz()) }
     var currentIndex by remember { mutableStateOf(0) }
     var selectedAnswer by remember { mutableStateOf(-1) }
     var score by remember { mutableStateOf(0) }
@@ -96,7 +103,7 @@ fun PracticeLettersScreen() {
             Spacer(modifier = Modifier.height(32.dp))
             Button(
                 onClick = {
-                    questions = generateQuiz()
+                    questions = generateEnToArQuiz()
                     currentIndex = 0
                     selectedAnswer = -1
                     score = 0
@@ -128,19 +135,20 @@ fun PracticeLettersScreen() {
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = question.displayChar,
-            style = MaterialTheme.typography.displayLarge,
+            text = question.letter.name,
+            style = MaterialTheme.typography.displaySmall,
+            fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = question.formLabel,
-            style = MaterialTheme.typography.bodyMedium,
-            fontStyle = FontStyle.Italic,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(32.dp))
-        question.options.forEachIndexed { index, letter ->
+        question.options.forEachIndexed { index, (form, _) ->
             val containerColor = when {
                 !answered -> MaterialTheme.colorScheme.primary
                 index == question.correctIndex -> green
@@ -160,7 +168,11 @@ fun PracticeLettersScreen() {
                 colors = ButtonDefaults.buttonColors(containerColor = containerColor),
                 enabled = !answered || index == question.correctIndex || index == selectedAnswer
             ) {
-                Text("${letter.name} (${letter.sound})")
+                Text(
+                    text = form,
+                    style = MaterialTheme.typography.displayLarge,
+                    textAlign = TextAlign.Center
+                )
             }
         }
         if (answered) {

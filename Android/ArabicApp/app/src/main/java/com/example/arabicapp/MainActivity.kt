@@ -45,6 +45,7 @@ import com.example.arabicapp.screens.QuestionsScreen
 import com.example.arabicapp.screens.SpokenVsMSAScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
 import com.example.arabicapp.screens.LettersForHebrewSpeakersScreen
+import com.example.arabicapp.screens.PracticeLettersEnToArScreen
 import com.example.arabicapp.screens.PracticeLettersScreen
 import com.example.arabicapp.screens.VowelsScreen
 import com.example.arabicapp.screens.TheLettersScreen
@@ -179,6 +180,11 @@ fun AppNavigation() {
                 VowelsScreen()
             }
         }
+        composable("practice_letters_en_to_ar") {
+            ScreenWithBackButton(title = "Practice Letters — English to Arabic", onBack = { navController.popBackStack() }) {
+                PracticeLettersEnToArScreen()
+            }
+        }
     }
 }
 
@@ -228,9 +234,15 @@ fun HomeScreen(navController: NavController) {
             }
             Button(
                 onClick = { navController.navigate("practice_letters") },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
             ) {
                 Text("Practice Letters")
+            }
+            Button(
+                onClick = { navController.navigate("practice_letters_en_to_ar") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Practice Letters — English to Arabic")
             }
         }
     }
