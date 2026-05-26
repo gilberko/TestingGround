@@ -49,6 +49,7 @@ fun KotlinHubScreen(
     onCollections: () -> Unit,
     onExceptions: () -> Unit,
     onThreadingSync: () -> Unit,
+    onAndroid101: () -> Unit,
     onIO: () -> Unit
 ) {
     HubBackground {
@@ -57,7 +58,7 @@ fun KotlinHubScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Kotlin",
+                        text       = "Kotlin And Android",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -104,7 +105,8 @@ fun KotlinHubScreen(
             KotlinButtonRow("Exceptions",      onExceptions,
                             "Threading & Sync", onThreadingSync)
             Spacer(Modifier.height(8.dp))
-            KotlinSingleButton("I/O", onIO)
+            KotlinButtonRow("Android 101", onAndroid101,
+                            "I/O",         onIO)
             Spacer(Modifier.height(24.dp))
         }
     }

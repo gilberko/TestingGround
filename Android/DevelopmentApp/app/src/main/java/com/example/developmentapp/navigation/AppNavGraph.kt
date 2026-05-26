@@ -127,6 +127,7 @@ import com.example.developmentapp.screens.ai.AnomalyDetectionScreen
 import com.example.developmentapp.screens.python.PythonGeneratorsScreen
 import com.example.developmentapp.screens.python.PythonBuiltInVariablesScreen
 import com.example.developmentapp.screens.python.PythonUsefulPackagesScreen
+import com.example.developmentapp.screens.python.PythonAiFrameworksScreen
 import com.example.developmentapp.screens.cpp.CppExpressionTypesCastingScreen
 import com.example.developmentapp.screens.DatabasesHubScreen
 import com.example.developmentapp.screens.database.DbHistoryScreen
@@ -149,6 +150,7 @@ import com.example.developmentapp.screens.kotlin.KotlinCollectionsScreen
 import com.example.developmentapp.screens.kotlin.KotlinExceptionsScreen
 import com.example.developmentapp.screens.kotlin.KotlinThreadingSyncScreen
 import com.example.developmentapp.screens.kotlin.KotlinIOScreen
+import com.example.developmentapp.screens.kotlin.KotlinAndroid101Screen
 import com.example.developmentapp.screens.java.JavaAboutScreen
 import com.example.developmentapp.screens.java.JavaHelloWorldScreen
 import com.example.developmentapp.screens.java.JavaBasicTypesScreen
@@ -232,6 +234,7 @@ sealed class Screen(val route: String) {
     object PythonGenerators       : Screen("python_generators")
     object PythonBuiltInVariables : Screen("python_built_in_variables")
     object PythonUsefulPackages   : Screen("python_useful_packages")
+    object PythonAiFrameworks     : Screen("python_ai_frameworks")
     // C/C++
     object CppHub                    : Screen("cpp_hub")
     object CppSyntax                 : Screen("cpp_syntax")
@@ -348,6 +351,7 @@ sealed class Screen(val route: String) {
     object KotlinExceptions    : Screen("kotlin_exceptions")
     object KotlinThreadingSync : Screen("kotlin_threading_sync")
     object KotlinIO            : Screen("kotlin_io")
+    object KotlinAndroid101    : Screen("kotlin_android_101")
     // Java
     object JavaHub        : Screen("java_hub")
     object JavaAbout      : Screen("java_about")
@@ -450,6 +454,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onCollections    = { navController.navigate(Screen.KotlinCollections.route) },
                 onExceptions     = { navController.navigate(Screen.KotlinExceptions.route) },
                 onThreadingSync  = { navController.navigate(Screen.KotlinThreadingSync.route) },
+                onAndroid101     = { navController.navigate(Screen.KotlinAndroid101.route) },
                 onIO             = { navController.navigate(Screen.KotlinIO.route) }
             )
         }
@@ -466,6 +471,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.KotlinExceptions.route)    { KotlinExceptionsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinThreadingSync.route) { KotlinThreadingSyncScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinIO.route)            { KotlinIOScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinAndroid101.route)    { KotlinAndroid101Screen(onBack = { navController.popBackStack() }) }
 
         // ── Java ─────────────────────────────────────────────────────────
         composable(Screen.JavaHub.route) {
@@ -727,6 +733,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onSwitchCase        = { navController.navigate(Screen.PythonSwitchCase.route) },
                 onBuiltInVariables  = { navController.navigate(Screen.PythonBuiltInVariables.route) },
                 onUsefulPackages    = { navController.navigate(Screen.PythonUsefulPackages.route) },
+                onAiFrameworks      = { navController.navigate(Screen.PythonAiFrameworks.route) },
                 onGenerators        = { navController.navigate(Screen.PythonGenerators.route) }
             )
         }
@@ -747,6 +754,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.PythonGenerators.route)       { PythonGeneratorsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonBuiltInVariables.route) { PythonBuiltInVariablesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.PythonUsefulPackages.route)   { PythonUsefulPackagesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.PythonAiFrameworks.route)     { PythonAiFrameworksScreen(onBack = { navController.popBackStack() }) }
 
         // ── Algorithms ────────────────────────────────────────────────
         composable(Screen.AlgorithmsHub.route) {

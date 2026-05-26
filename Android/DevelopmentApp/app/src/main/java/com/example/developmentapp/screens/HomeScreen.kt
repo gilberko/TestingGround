@@ -63,7 +63,7 @@ fun HomeScreen(
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Java", onJava, "Databases", onDatabases)
         Spacer(Modifier.height(12.dp))
-        HomeSingleButton("Kotlin", onKotlin)
+        HomeSingleButton("Kotlin And Android", onKotlin)
     }
     }
 }

@@ -52,6 +52,7 @@ fun PythonHubScreen(
     onSwitchCase: () -> Unit,
     onBuiltInVariables: () -> Unit,
     onUsefulPackages: () -> Unit,
+    onAiFrameworks: () -> Unit,
     onGenerators: () -> Unit
 ) {
     HubBackground {
@@ -112,6 +113,8 @@ fun PythonHubScreen(
             Spacer(Modifier.height(12.dp))
             ButtonRow("Built-In Variables", onBuiltInVariables,
                       "Useful Packages",   onUsefulPackages)
+            Spacer(Modifier.height(12.dp))
+            HubButton("AI Frameworks in Python", onAiFrameworks, Modifier.fillMaxWidth())
             Spacer(Modifier.height(12.dp))
             HubButton("Generator Functions", onGenerators, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
