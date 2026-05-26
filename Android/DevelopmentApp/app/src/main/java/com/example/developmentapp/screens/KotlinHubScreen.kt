@@ -50,7 +50,13 @@ fun KotlinHubScreen(
     onExceptions: () -> Unit,
     onThreadingSync: () -> Unit,
     onAndroid101: () -> Unit,
-    onIO: () -> Unit
+    onIO: () -> Unit,
+    onNullSafety: () -> Unit,
+    onCoroutines: () -> Unit,
+    onDataClasses: () -> Unit,
+    onEnums: () -> Unit,
+    onReflections: () -> Unit,
+    onMoreFunctions: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -107,6 +113,15 @@ fun KotlinHubScreen(
             Spacer(Modifier.height(8.dp))
             KotlinButtonRow("Android 101", onAndroid101,
                             "I/O",         onIO)
+            Spacer(Modifier.height(8.dp))
+            KotlinButtonRow("Null Safety", onNullSafety,
+                            "Coroutines",  onCoroutines)
+            Spacer(Modifier.height(8.dp))
+            KotlinButtonRow("Data Classes", onDataClasses,
+                            "Enums",        onEnums)
+            Spacer(Modifier.height(8.dp))
+            KotlinButtonRow("Reflections",       onReflections,
+                            "More About Functions", onMoreFunctions)
             Spacer(Modifier.height(24.dp))
         }
     }

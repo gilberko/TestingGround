@@ -151,6 +151,12 @@ import com.example.developmentapp.screens.kotlin.KotlinExceptionsScreen
 import com.example.developmentapp.screens.kotlin.KotlinThreadingSyncScreen
 import com.example.developmentapp.screens.kotlin.KotlinIOScreen
 import com.example.developmentapp.screens.kotlin.KotlinAndroid101Screen
+import com.example.developmentapp.screens.kotlin.KotlinNullSafetyScreen
+import com.example.developmentapp.screens.kotlin.KotlinCoroutinesScreen
+import com.example.developmentapp.screens.kotlin.KotlinDataClassesScreen
+import com.example.developmentapp.screens.kotlin.KotlinEnumsScreen
+import com.example.developmentapp.screens.kotlin.KotlinReflectionsScreen
+import com.example.developmentapp.screens.kotlin.KotlinFunctionsScreen
 import com.example.developmentapp.screens.java.JavaAboutScreen
 import com.example.developmentapp.screens.java.JavaHelloWorldScreen
 import com.example.developmentapp.screens.java.JavaBasicTypesScreen
@@ -352,6 +358,12 @@ sealed class Screen(val route: String) {
     object KotlinThreadingSync : Screen("kotlin_threading_sync")
     object KotlinIO            : Screen("kotlin_io")
     object KotlinAndroid101    : Screen("kotlin_android_101")
+    object KotlinNullSafety    : Screen("kotlin_null_safety")
+    object KotlinCoroutines    : Screen("kotlin_coroutines")
+    object KotlinDataClasses   : Screen("kotlin_data_classes")
+    object KotlinEnums         : Screen("kotlin_enums")
+    object KotlinReflections   : Screen("kotlin_reflections")
+    object KotlinMoreFunctions : Screen("kotlin_more_functions")
     // Java
     object JavaHub        : Screen("java_hub")
     object JavaAbout      : Screen("java_about")
@@ -455,7 +467,13 @@ fun AppNavGraph(navController: NavHostController) {
                 onExceptions     = { navController.navigate(Screen.KotlinExceptions.route) },
                 onThreadingSync  = { navController.navigate(Screen.KotlinThreadingSync.route) },
                 onAndroid101     = { navController.navigate(Screen.KotlinAndroid101.route) },
-                onIO             = { navController.navigate(Screen.KotlinIO.route) }
+                onIO             = { navController.navigate(Screen.KotlinIO.route) },
+                onNullSafety     = { navController.navigate(Screen.KotlinNullSafety.route) },
+                onCoroutines     = { navController.navigate(Screen.KotlinCoroutines.route) },
+                onDataClasses    = { navController.navigate(Screen.KotlinDataClasses.route) },
+                onEnums          = { navController.navigate(Screen.KotlinEnums.route) },
+                onReflections    = { navController.navigate(Screen.KotlinReflections.route) },
+                onMoreFunctions  = { navController.navigate(Screen.KotlinMoreFunctions.route) }
             )
         }
         composable(Screen.KotlinAbout.route)         { KotlinAboutScreen(onBack = { navController.popBackStack() }) }
@@ -472,6 +490,12 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.KotlinThreadingSync.route) { KotlinThreadingSyncScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinIO.route)            { KotlinIOScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinAndroid101.route)    { KotlinAndroid101Screen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinNullSafety.route)    { KotlinNullSafetyScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinCoroutines.route)    { KotlinCoroutinesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinDataClasses.route)   { KotlinDataClassesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinEnums.route)         { KotlinEnumsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinReflections.route)   { KotlinReflectionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinMoreFunctions.route) { KotlinFunctionsScreen(onBack = { navController.popBackStack() }) }
 
         // ── Java ─────────────────────────────────────────────────────────
         composable(Screen.JavaHub.route) {
