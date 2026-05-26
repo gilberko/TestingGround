@@ -159,6 +159,172 @@ fun AdjectivesScreen(navController: NavController) {
             )
             AJNote("Soft adjectives: masc/neuter → jarním; feminine → jarní; plural → jarními.")
 
+            // ── Full Declension Tables ────────────────────────────────────
+            AJSection("Full Declension Tables")
+            AJNote("All 7 cases for hard (dobrý) and soft (cizí) adjectives across all genders and numbers. Vocative equals Nominative for all adjective forms. Rows marked (anim) / (inan) show the animate / inanimate split where forms differ.")
+
+            AJSection("Masculine Singular")
+            AJDeclTable(
+                label = "Hard — dobrý (good)",
+                rows = listOf(
+                    "Nominative"        to "dobrý",
+                    "Genitive"          to "dobrého",
+                    "Dative"            to "dobrému",
+                    "Accusative (anim)" to "dobrého",
+                    "Accusative (inan)" to "dobrý",
+                    "Vocative"          to "dobrý",
+                    "Locative"          to "dobrém",
+                    "Instrumental"      to "dobrým"
+                )
+            )
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"        to "cizí",
+                    "Genitive"          to "cizího",
+                    "Dative"            to "cizímu",
+                    "Accusative (anim)" to "cizího",
+                    "Accusative (inan)" to "cizí",
+                    "Vocative"          to "cizí",
+                    "Locative"          to "cizím",
+                    "Instrumental"      to "cizím"
+                )
+            )
+
+            AJSection("Feminine Singular")
+            AJDeclTable(
+                label = "Hard — dobrá (good)",
+                rows = listOf(
+                    "Nominative"   to "dobrá",
+                    "Genitive"     to "dobré",
+                    "Dative"       to "dobré",
+                    "Accusative"   to "dobrou",
+                    "Vocative"     to "dobrá",
+                    "Locative"     to "dobré",
+                    "Instrumental" to "dobrou"
+                )
+            )
+            AJNote("Soft feminine singular: all 7 cases are identical — cizí throughout. This is the simplest pattern in Czech adjective declension.")
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"   to "cizí",
+                    "Genitive"     to "cizí",
+                    "Dative"       to "cizí",
+                    "Accusative"   to "cizí",
+                    "Vocative"     to "cizí",
+                    "Locative"     to "cizí",
+                    "Instrumental" to "cizí"
+                )
+            )
+
+            AJSection("Neuter Singular")
+            AJDeclTable(
+                label = "Hard — dobré (good)",
+                rows = listOf(
+                    "Nominative"   to "dobré",
+                    "Genitive"     to "dobrého",
+                    "Dative"       to "dobrému",
+                    "Accusative"   to "dobré",
+                    "Vocative"     to "dobré",
+                    "Locative"     to "dobrém",
+                    "Instrumental" to "dobrým"
+                )
+            )
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"   to "cizí",
+                    "Genitive"     to "cizího",
+                    "Dative"       to "cizímu",
+                    "Accusative"   to "cizí",
+                    "Vocative"     to "cizí",
+                    "Locative"     to "cizím",
+                    "Instrumental" to "cizím"
+                )
+            )
+
+            AJSection("Masculine Plural")
+            AJNote("Nominative and Vocative differ by animacy: animate → dobří, inanimate → dobré. Accusative is dobré for both.")
+            AJDeclTable(
+                label = "Hard — dobří / dobré (good)",
+                rows = listOf(
+                    "Nominative (anim)" to "dobří",
+                    "Nominative (inan)" to "dobré",
+                    "Genitive"          to "dobrých",
+                    "Dative"            to "dobrým",
+                    "Accusative"        to "dobré",
+                    "Vocative (anim)"   to "dobří",
+                    "Vocative (inan)"   to "dobré",
+                    "Locative"          to "dobrých",
+                    "Instrumental"      to "dobrými"
+                )
+            )
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"   to "cizí",
+                    "Genitive"     to "cizích",
+                    "Dative"       to "cizím",
+                    "Accusative"   to "cizí",
+                    "Vocative"     to "cizí",
+                    "Locative"     to "cizích",
+                    "Instrumental" to "cizími"
+                )
+            )
+
+            AJSection("Feminine Plural")
+            AJDeclTable(
+                label = "Hard — dobré (good)",
+                rows = listOf(
+                    "Nominative"   to "dobré",
+                    "Genitive"     to "dobrých",
+                    "Dative"       to "dobrým",
+                    "Accusative"   to "dobré",
+                    "Vocative"     to "dobré",
+                    "Locative"     to "dobrých",
+                    "Instrumental" to "dobrými"
+                )
+            )
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"   to "cizí",
+                    "Genitive"     to "cizích",
+                    "Dative"       to "cizím",
+                    "Accusative"   to "cizí",
+                    "Vocative"     to "cizí",
+                    "Locative"     to "cizích",
+                    "Instrumental" to "cizími"
+                )
+            )
+
+            AJSection("Neuter Plural")
+            AJDeclTable(
+                label = "Hard — dobrá (good)",
+                rows = listOf(
+                    "Nominative"   to "dobrá",
+                    "Genitive"     to "dobrých",
+                    "Dative"       to "dobrým",
+                    "Accusative"   to "dobrá",
+                    "Vocative"     to "dobrá",
+                    "Locative"     to "dobrých",
+                    "Instrumental" to "dobrými"
+                )
+            )
+            AJDeclTable(
+                label = "Soft — cizí (foreign)",
+                rows = listOf(
+                    "Nominative"   to "cizí",
+                    "Genitive"     to "cizích",
+                    "Dative"       to "cizím",
+                    "Accusative"   to "cizí",
+                    "Vocative"     to "cizí",
+                    "Locative"     to "cizích",
+                    "Instrumental" to "cizími"
+                )
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -238,6 +404,69 @@ private fun AJTable(label: String, rows: List<Pair<String, String>>) {
                         fontWeight = FontWeight.Bold,
                         color = Color.Black,
                         modifier = Modifier.weight(1.8f)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AJDeclTable(label: String, rows: List<Pair<String, String>>) {
+    Text(
+        text = label,
+        fontSize = 13.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color.DarkGray,
+        modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(6.dp))
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+    ) {
+        Column {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = "Case",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray,
+                    modifier = Modifier.weight(1.2f)
+                )
+                Text(
+                    text = "Form",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 4.dp),
+                color = Color.LightGray,
+                thickness = 0.5.dp
+            )
+            rows.forEach { (case, form) ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 3.dp)
+                ) {
+                    Text(
+                        text = case,
+                        fontSize = 13.sp,
+                        color = Color.DarkGray,
+                        modifier = Modifier.weight(1.2f)
+                    )
+                    Text(
+                        text = form,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier.weight(1f)
                     )
                 }
             }

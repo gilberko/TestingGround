@@ -65,7 +65,8 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Recurse -Directory -Filter \"src\" | Select-Object -First 5 | ForEach-Object { $_.FullName })",
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Directory)",
       "Bash(Select-Object -First 20)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "Bash(Get-ChildItem *)"
     ]
   }
 }
