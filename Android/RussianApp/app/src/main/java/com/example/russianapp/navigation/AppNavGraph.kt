@@ -55,6 +55,7 @@ import com.example.russianapp.screens.TypesOfAnyScreen
 import com.example.russianapp.screens.VerbQuizScreen
 import com.example.russianapp.screens.VerbsScreen
 import com.example.russianapp.screens.VocabularyEngToRusScreen
+import com.example.russianapp.screens.VerbPrefixesScreen
 import com.example.russianapp.screens.VocabularyRusToEngScreen
 import com.example.russianapp.viewmodel.ConfigViewModel
 
@@ -110,6 +111,7 @@ sealed class Screen(val route: String) {
     object ConversationTechMeeting    : Screen("conversation_tech_meeting")
     object ConversationCafeJob        : Screen("conversation_cafe_job")
     object ConversationAirport        : Screen("conversation_airport")
+    object VerbPrefixes               : Screen("verb_prefixes")
 }
 
 @Composable
@@ -149,7 +151,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onMisc                  = { navController.navigate(Screen.Misc.route) },
                 onThisAndThat           = { navController.navigate(Screen.ThisAndThat.route) },
                 onQuestions             = { navController.navigate(Screen.Questions.route) },
-                onNiVsNe                = { navController.navigate(Screen.NiVsNe.route) }
+                onNiVsNe                = { navController.navigate(Screen.NiVsNe.route) },
+                onVerbPrefixes          = { navController.navigate(Screen.VerbPrefixes.route) }
             )
         }
         composable(Screen.Dictionary.route) {
@@ -341,6 +344,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ConversationAirport.route) {
             AirportConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.VerbPrefixes.route) {
+            VerbPrefixesScreen(onBack = { navController.popBackStack() })
         }
     }
 }
