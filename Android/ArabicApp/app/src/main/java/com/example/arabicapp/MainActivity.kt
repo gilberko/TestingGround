@@ -46,6 +46,7 @@ import com.example.arabicapp.screens.SpokenVsMSAScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
 import com.example.arabicapp.screens.LettersForHebrewSpeakersScreen
 import com.example.arabicapp.screens.PracticeLettersScreen
+import com.example.arabicapp.screens.VowelsScreen
 import com.example.arabicapp.screens.TheLettersScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
@@ -171,6 +172,11 @@ fun AppNavigation() {
         composable("letters_for_hebrew") {
             ScreenWithBackButton(title = "The Letters for Hebrew Speakers", onBack = { navController.popBackStack() }) {
                 LettersForHebrewSpeakersScreen()
+            }
+        }
+        composable("vowels") {
+            ScreenWithBackButton(title = "Vowels", onBack = { navController.popBackStack() }) {
+                VowelsScreen()
             }
         }
     }

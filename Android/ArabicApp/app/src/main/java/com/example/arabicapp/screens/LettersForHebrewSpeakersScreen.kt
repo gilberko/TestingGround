@@ -264,7 +264,7 @@ private fun HEBTableHeader() {
         Text("Letter", modifier = Modifier.weight(0.6f), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
         Text("Name", modifier = Modifier.weight(1.2f), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
         Text("Hebrew", modifier = Modifier.weight(1.0f), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
-        Text("Isolated · Start · Mid · End", modifier = Modifier.weight(2.8f), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
+        Text("End · Mid · Start · Isolated", modifier = Modifier.weight(2.8f), style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
     }
 }
 

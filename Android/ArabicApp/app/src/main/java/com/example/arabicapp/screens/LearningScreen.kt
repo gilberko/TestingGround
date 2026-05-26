@@ -32,6 +32,12 @@ fun LearningScreen(navController: NavController) {
             Text("The Letters")
         }
         Button(
+            onClick = { navController.navigate("vowels") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) {
+            Text("Vowels")
+        }
+        Button(
             onClick = { navController.navigate("spoken_vs_msa") },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
