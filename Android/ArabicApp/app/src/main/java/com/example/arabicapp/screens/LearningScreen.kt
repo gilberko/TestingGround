@@ -50,9 +50,19 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("adjectives") }, modifier = Modifier.weight(1f)) { Text("Adjectives") }
             Button(onClick = { navController.navigate("adverbs") }, modifier = Modifier.weight(1f)) { Text("Adverbs") }
         }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("conditions") }, modifier = Modifier.weight(1f)) { Text("Conditions") }
             Button(onClick = { navController.navigate("letters_for_hebrew") }, modifier = Modifier.weight(1f)) { Text("The Letters for Hebrew Speakers") }
+        }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("prepositions") }, modifier = Modifier.weight(1f)) { Text("Prepositions") }
+            Button(onClick = { navController.navigate("passive_voice") }, modifier = Modifier.weight(1f)) { Text("Passive Voice") }
+        }
+        Button(
+            onClick = { navController.navigate("continuous") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Continuous")
         }
     }
 }

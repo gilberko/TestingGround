@@ -21,6 +21,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -33,16 +34,21 @@ import com.example.arabicapp.screens.CommonAdverbsScreen
 import com.example.arabicapp.screens.CommonVerbsScreen
 import com.example.arabicapp.screens.CommonWordsScreen
 import com.example.arabicapp.screens.ConditionsScreen
+import com.example.arabicapp.screens.ContinuousScreen
 import com.example.arabicapp.screens.DictionaryScreen
 import com.example.arabicapp.screens.FutureTenseScreen
+import com.example.arabicapp.screens.HubBackground
 import com.example.arabicapp.screens.LearningScreen
 import com.example.arabicapp.screens.NegationScreen
 import com.example.arabicapp.screens.NumbersScreen
 import com.example.arabicapp.screens.ObjectPronounsScreen
+import com.example.arabicapp.screens.PassiveVoiceScreen
 import com.example.arabicapp.screens.PastTenseScreen
 import com.example.arabicapp.screens.PossessivesScreen
+import com.example.arabicapp.screens.PrepositionsScreen
 import com.example.arabicapp.screens.QuestionsScreen
 import com.example.arabicapp.screens.SpokenVsMSAScreen
+import com.example.arabicapp.screens.SplashScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
 import com.example.arabicapp.screens.ColorsScreen
 import com.example.arabicapp.screens.FoodsScreen
@@ -74,18 +80,29 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = "splash") {
+        composable("splash") {
+            SplashScreen(onFinished = {
+                navController.navigate("home") {
+                    popUpTo("splash") { inclusive = true }
+                }
+            })
+        }
         composable("home") {
             HomeScreen(navController)
         }
         composable("learning") {
             ScreenWithBackButton(title = "Learning The Language", onBack = { navController.popBackStack() }) {
-                LearningScreen(navController)
+                HubBackground {
+                    LearningScreen(navController)
+                }
             }
         }
         composable("dictionary") {
             ScreenWithBackButton(title = "Simple Dictionary", onBack = { navController.popBackStack() }) {
-                DictionaryScreen(navController)
+                HubBackground {
+                    DictionaryScreen(navController)
+                }
             }
         }
         composable("practice_letters") {
@@ -233,6 +250,21 @@ fun AppNavigation() {
                 TransportationScreen()
             }
         }
+        composable("prepositions") {
+            ScreenWithBackButton(title = "Prepositions and Conjunctions", onBack = { navController.popBackStack() }) {
+                PrepositionsScreen()
+            }
+        }
+        composable("passive_voice") {
+            ScreenWithBackButton(title = "Passive Voice", onBack = { navController.popBackStack() }) {
+                PassiveVoiceScreen()
+            }
+        }
+        composable("continuous") {
+            ScreenWithBackButton(title = "Continuous", onBack = { navController.popBackStack() }) {
+                ContinuousScreen()
+            }
+        }
     }
 }
 
@@ -259,38 +291,40 @@ fun ScreenWithBackButton(title: String, onBack: () -> Unit, content: @Composable
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Scaffold { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .padding(32.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Button(
-                onClick = { navController.navigate("learning") },
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+    HubBackground {
+        Scaffold(containerColor = Color.Transparent) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .padding(32.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("Learning The Language")
-            }
-            Button(
-                onClick = { navController.navigate("dictionary") },
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-            ) {
-                Text("Simple Dictionary")
-            }
-            Button(
-                onClick = { navController.navigate("practice_letters") },
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-            ) {
-                Text("Practice Letters")
-            }
-            Button(
-                onClick = { navController.navigate("practice_letters_en_to_ar") },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Practice Letters — English to Arabic")
+                Button(
+                    onClick = { navController.navigate("learning") },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                ) {
+                    Text("Learning The Language")
+                }
+                Button(
+                    onClick = { navController.navigate("dictionary") },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                ) {
+                    Text("Simple Dictionary")
+                }
+                Button(
+                    onClick = { navController.navigate("practice_letters") },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                ) {
+                    Text("Practice Letters")
+                }
+                Button(
+                    onClick = { navController.navigate("practice_letters_en_to_ar") },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Practice Letters — English to Arabic")
+                }
             }
         }
     }
