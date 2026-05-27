@@ -11,8 +11,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -30,20 +32,30 @@ fun VowelsScreen() {
         VowBodyText("Hebrew speakers already know this system: it is identical in principle to Hebrew nikud (נקוד) being absent in everyday Hebrew text. You learned to read without vowel marks — Arabic works the same way.")
 
         VowSectionHeader("The Three Short Vowels")
-        VowBodyText("Three marks cover the core short vowel sounds:")
+        VowBodyText("Three marks cover the core short vowel sounds.")
+        Spacer(modifier = Modifier.height(8.dp))
+        VowBodyText("About the notation: when you see a symbol like ـَ, the horizontal stroke ـ is a kashida (tatweel) — just a placeholder representing any consonant. The small mark above or below it is the actual vowel sign.")
+        Spacer(modifier = Modifier.height(8.dp))
+        VowBodyText("┄ Side note: What is the kashida (كشيدة / tatweel)?")
+        VowBodyText("The kashida is an elongation stroke — a horizontal line that stretches a letter wider. In normal Arabic text it is used for visual emphasis or typographic justification, similar to how a designer might stretch a word to fill a line. You will see it in calligraphy, decorative text, and occasionally in informal writing for emphasis (like stretching a word to express excitement — بِالضَّبْطـ = \"exactlyyyy\").")
+        VowBodyText("Is it common? In print and formal writing: no — it is considered informal or decorative and most text avoids it. In handwritten notes and social media: yes, occasionally. In language-learning notation (like this app): it appears specifically as a stand-in letter to show a vowel mark in isolation, because the mark needs something to sit on.")
+        VowBodyText("The short answer: you will recognize it when you see it, but you won't need to type it in most contexts.")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Fatha (فتحة) — written: ـَ")
         VowBodyText("Sound: short \"a\" (like \"a\" in \"cat\"). The mark sits above the letter.")
+        VowLargeDisplay("بَ")
         VowBodyText("Example: بَ = \"ba\"")
         VowBodyText("Hebrew parallel: patah (פַּתַח) — the פַ mark")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Kasra (كسرة) — written: ـِ")
         VowBodyText("Sound: short \"i\" (like \"i\" in \"bit\"). The mark sits below the letter.")
+        VowLargeDisplay("بِ")
         VowBodyText("Example: بِ = \"bi\"")
         VowBodyText("Hebrew parallel: hiriq (חִירִיק) — the dot under the letter")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Damma (ضمة) — written: ـُ")
         VowBodyText("Sound: short \"u\" (like \"oo\" in \"book\"). The mark sits above the letter.")
+        VowLargeDisplay("بُ")
         VowBodyText("Example: بُ = \"bu\"")
         VowBodyText("Hebrew parallel: kibbutz / shuruk (קֻ / קוּ)")
         Spacer(modifier = Modifier.height(8.dp))
@@ -51,6 +63,7 @@ fun VowelsScreen() {
 
         VowSectionHeader("No Vowel: Sukun")
         VowBodyText("Sukun (سكون, \"silence\") — written: ـْ")
+        VowLargeDisplay("نْ")
         VowBodyText("Placed on a consonant to show it has NO following vowel — the consonant is \"bare.\" This occurs at the end of closed syllables or in consonant clusters.")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Example: بِنْت (bint = girl) — the nun ن carries a sukun, so it is pronounced \"n\" with no vowel after it, creating the cluster \"nt\".")
@@ -59,6 +72,7 @@ fun VowelsScreen() {
 
         VowSectionHeader("Doubled Consonant: Shadda")
         VowBodyText("Shadda (شدة, \"intensity\") — written: ـّ")
+        VowLargeDisplay("رّ")
         VowBodyText("Placed on a consonant to geminate it — the consonant is written once but pronounced twice (doubled). You hold the consonant slightly longer.")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Example: مَرَّ (marra = he passed) — the ra ر with shadda is pronounced \"rr\".")
@@ -151,4 +165,16 @@ private fun VowBodyText(text: String) {
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
+}
+
+@Composable
+private fun VowLargeDisplay(text: String) {
+    Spacer(modifier = Modifier.height(4.dp))
+    Text(
+        text = text,
+        style = MaterialTheme.typography.displayLarge,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
+    Spacer(modifier = Modifier.height(4.dp))
 }

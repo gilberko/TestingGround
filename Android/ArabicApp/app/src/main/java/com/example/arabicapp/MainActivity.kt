@@ -44,9 +44,14 @@ import com.example.arabicapp.screens.PossessivesScreen
 import com.example.arabicapp.screens.QuestionsScreen
 import com.example.arabicapp.screens.SpokenVsMSAScreen
 import com.example.arabicapp.screens.SubjectPronounsScreen
+import com.example.arabicapp.screens.ColorsScreen
+import com.example.arabicapp.screens.FoodsScreen
+import com.example.arabicapp.screens.GreetingsScreen
 import com.example.arabicapp.screens.LettersForHebrewSpeakersScreen
+import com.example.arabicapp.screens.LocationScreen
 import com.example.arabicapp.screens.PracticeLettersEnToArScreen
 import com.example.arabicapp.screens.PracticeLettersScreen
+import com.example.arabicapp.screens.TimeScreen
 import com.example.arabicapp.screens.VowelsScreen
 import com.example.arabicapp.screens.TheLettersScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
@@ -183,6 +188,31 @@ fun AppNavigation() {
         composable("practice_letters_en_to_ar") {
             ScreenWithBackButton(title = "Practice Letters — English to Arabic", onBack = { navController.popBackStack() }) {
                 PracticeLettersEnToArScreen()
+            }
+        }
+        composable("colors") {
+            ScreenWithBackButton(title = "Colors", onBack = { navController.popBackStack() }) {
+                ColorsScreen()
+            }
+        }
+        composable("greetings") {
+            ScreenWithBackButton(title = "Common Greetings and Expressions", onBack = { navController.popBackStack() }) {
+                GreetingsScreen()
+            }
+        }
+        composable("foods_eating") {
+            ScreenWithBackButton(title = "Foods and Eating", onBack = { navController.popBackStack() }) {
+                FoodsScreen()
+            }
+        }
+        composable("time_words") {
+            ScreenWithBackButton(title = "Time", onBack = { navController.popBackStack() }) {
+                TimeScreen()
+            }
+        }
+        composable("location_movement") {
+            ScreenWithBackButton(title = "Location and Movement", onBack = { navController.popBackStack() }) {
+                LocationScreen()
             }
         }
     }
