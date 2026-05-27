@@ -63,6 +63,9 @@ import com.example.arabicapp.screens.TheLettersScreen
 import com.example.arabicapp.screens.JobsAndOccupationsScreen
 import com.example.arabicapp.screens.CityAndNatureScreen
 import com.example.arabicapp.screens.TransportationScreen
+import com.example.arabicapp.screens.DialoguesScreen
+import com.example.arabicapp.screens.MarketMeetingScreen
+import com.example.arabicapp.screens.RestaurantDialogueScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -265,6 +268,23 @@ fun AppNavigation() {
                 ContinuousScreen()
             }
         }
+        composable("dialogues") {
+            ScreenWithBackButton(title = "Simple Dialogues", onBack = { navController.popBackStack() }) {
+                HubBackground {
+                    DialoguesScreen(navController)
+                }
+            }
+        }
+        composable("market_meeting") {
+            ScreenWithBackButton(title = "Meeting in the Market", onBack = { navController.popBackStack() }) {
+                MarketMeetingScreen()
+            }
+        }
+        composable("restaurant_dialogue") {
+            ScreenWithBackButton(title = "At the Restaurant", onBack = { navController.popBackStack() }) {
+                RestaurantDialogueScreen()
+            }
+        }
     }
 }
 
@@ -321,9 +341,15 @@ fun HomeScreen(navController: NavController) {
                 }
                 Button(
                     onClick = { navController.navigate("practice_letters_en_to_ar") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 ) {
                     Text("Practice Letters — English to Arabic")
+                }
+                Button(
+                    onClick = { navController.navigate("dialogues") },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Simple Dialogues")
                 }
             }
         }
