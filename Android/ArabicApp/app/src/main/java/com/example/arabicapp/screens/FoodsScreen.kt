@@ -34,6 +34,7 @@ fun FoodsScreen() {
         FdBodyText("hummus — حمّص — hummus  (also the name of the chickpea itself)")
         FdBodyText("falafel — فلافل — falafel")
         FdBodyText("meatballs — كفتة — kafta  (in Levantine, kafta is spiced ground meat, often grilled or baked)")
+        FdBodyText("minced meat — لحمة مفرومة — lahme mafrume")
 
         FdSectionHeader("Vegetables")
         FdBodyText("cucumber — خيار — khiyar")
@@ -46,6 +47,8 @@ fun FoodsScreen() {
         FdBodyText("eggplant / aubergine — باذنجان — batinjan  (very common in Levantine cooking)")
         FdBodyText("zucchini — كوسا — kusa  (a Levantine staple — stuffed with rice and meat)")
         FdBodyText("lentils — عدس — adas  (used in soups and mujaddara)")
+        FdBodyText("corn — ذرة — dhura  (also: ذرة حلوة dhura hilwe = sweet corn)")
+        FdBodyText("fried onions — بصل محمر — basal muhammar  (caramelized / browned onions)")
 
         FdSectionHeader("Fruit and Sweets")
         FdBodyText("strawberries — فراولة — farawle")
@@ -81,6 +84,8 @@ fun FoodsScreen() {
         FdBodyText("olive oil — زيت زيتون — zeit zeitun  (a staple of Levantine cooking)")
         FdBodyText("vinegar — خل — khall")
         FdBodyText("lemon juice — عصير ليمون — 'asir lemon")
+        FdBodyText("olives — زيتون — zeitun")
+        FdBodyText("pickles — مخللات — mukhallalat (pl) / مخلل — mukhalal (sg)")
 
         FdSectionHeader("Grains and Carbs")
         FdBodyText("bread — خبز — khubz")
@@ -93,6 +98,7 @@ fun FoodsScreen() {
         FdBodyText("ravioli — رافيولي — ravioli  (borrowed word)")
         FdBodyText("mujaddara — مجدرة — mujaddara  (lentils cooked with rice or bulgur and topped with caramelized onions — a classic Levantine comfort food)")
         FdBodyText("bulgur — برغل — burghul  (cracked wheat — used in tabbouleh and kibbeh)")
+        FdBodyText("bun / bread roll — خبزة صغيرة — khubze sghire  (small bread roll; burger bun: خبز الهمبرغر)")
 
         FdSectionHeader("Drinks")
         FdBodyText("coffee — قهوة — 'ahwe  (qaf → glottal stop; Arabic coffee/espresso culture is very strong)")
@@ -103,6 +109,10 @@ fun FoodsScreen() {
         FdBodyText("labneh — لبنة — labne  (strained yoghurt, thicker than yoghurt — a Levantine staple eaten with olive oil and za'atar)")
         FdBodyText("juice — عصير — 'asir")
         FdBodyText("lemonade — عصير ليمون — 'asir lemon")
+        Spacer(modifier = Modifier.height(8.dp))
+        FdBodyText("to drink — يشرب — yishrab  (present: he drinks; I drink = بشرب bshrab)")
+        FdBodyText("beverage / drink — مشروب — mashreb  (pl: مشروبات mashrubbat)")
+        FdBodyText("light beverage — مشروب خفيف — mashreb khafif  (soft drink; fizzy: مشروب غازي mashreb ghazi)")
 
         FdSectionHeader("Kitchenware")
         FdBodyText("knife — سكين — sikkin")
@@ -129,6 +139,7 @@ fun FoodsScreen() {
         FdBodyText("waiter — نادل — nadil  (m); نادلة (nadile) f")
         FdBodyText("reservation — حجز — hajz")
         FdBodyText("takeaway — تيك أوي / سفري — take away / safari")
+        FdBodyText("dessert — حلو — hilu  (lit: sweet; the colloquial word for the dessert course); also: حلويات — halawiyyat")
 
         FdSectionHeader("Cooking Methods (adjectives describing how food is prepared)")
         FdBodyText("fried — مقلي — ma'li  (shallow fried)")
@@ -142,6 +153,7 @@ fun FoodsScreen() {
         FdBodyText("frozen — مجمّد — mujammad")
         FdBodyText("melted — مذاب / مسيّل — mzab / msayyil")
         FdBodyText("raw — نيّ — nayy")
+        FdBodyText("minced / ground — مفروم — mafrum  (past participle of فرم = to mince; e.g. توم مفروم = minced garlic)")
         FdBodyText("well done — مطبوخ كتير — matbukh ktir  (for meat: well cooked)")
         FdBodyText("medium — وسط — wasat")
         FdBodyText("rare — أحمر — ahmar  (literally: red)")
@@ -179,6 +191,9 @@ fun FoodsScreen() {
         FdBodyText("bland — تافه — tafeh  (m) / تافهة (tafhe) f")
         FdBodyText("bitter — مرّ — murr  (m) / مرّة (murre) f")
         FdBodyText("fresh — طازج — tazij  (m) / طازجة (tazije) f")
+        Spacer(modifier = Modifier.height(8.dp))
+        FdBodyText("I don't like it — ما بحبه — ma bhibbe (m object) / ما بحبها — ma bhibba (f object)")
+        FdBodyText("it's very good — كتير لذيذ — ktir laziz  (very delicious); كتير حلو — ktir hilu (very tasty)")
 
         FdSectionHeader("Dietary and Allergens")
         FdBodyText("allergy — حساسية — hassasiyye")
@@ -191,6 +206,9 @@ fun FoodsScreen() {
         FdBodyText("vegetarian — نباتي — nabati  (m) / نباتية (nabatiyye) f")
         FdBodyText("vegan — نباتي صارم — nabati sarim  (strict vegetarian)")
         FdBodyText("halal — حلال — halal")
+        FdBodyText("kosher — كوشير — koshir  (used in Israeli context; not a native Arabic word)")
+        FdBodyText("diabetic — سكري — sukari (m) / سكرية — sukariyye (f)  (a person with diabetes)")
+        FdBodyText("  suitable for diabetics: مناسب لمرضى السكري — munasib l-marda es-sukari")
 
         Spacer(modifier = Modifier.height(24.dp))
     }

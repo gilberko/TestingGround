@@ -54,6 +54,9 @@ import com.example.arabicapp.screens.PracticeLettersScreen
 import com.example.arabicapp.screens.TimeScreen
 import com.example.arabicapp.screens.VowelsScreen
 import com.example.arabicapp.screens.TheLettersScreen
+import com.example.arabicapp.screens.JobsAndOccupationsScreen
+import com.example.arabicapp.screens.CityAndNatureScreen
+import com.example.arabicapp.screens.TransportationScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -213,6 +216,21 @@ fun AppNavigation() {
         composable("location_movement") {
             ScreenWithBackButton(title = "Location and Movement", onBack = { navController.popBackStack() }) {
                 LocationScreen()
+            }
+        }
+        composable("jobs_occupations") {
+            ScreenWithBackButton(title = "Jobs and Occupations", onBack = { navController.popBackStack() }) {
+                JobsAndOccupationsScreen()
+            }
+        }
+        composable("city_nature") {
+            ScreenWithBackButton(title = "City and Nature", onBack = { navController.popBackStack() }) {
+                CityAndNatureScreen()
+            }
+        }
+        composable("transportation") {
+            ScreenWithBackButton(title = "Transportation", onBack = { navController.popBackStack() }) {
+                TransportationScreen()
             }
         }
     }
