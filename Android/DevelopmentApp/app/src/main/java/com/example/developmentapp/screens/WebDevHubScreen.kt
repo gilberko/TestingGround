@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -35,29 +34,18 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KotlinHubScreen(
+fun WebDevHubScreen(
     onBack: () -> Unit,
-    onAboutKotlin: () -> Unit,
-    onHelloWorld: () -> Unit,
-    onVariableTypes: () -> Unit,
-    onBasicSyntax: () -> Unit,
-    onClasses101: () -> Unit,
-    onPackages: () -> Unit,
-    onClasses2: () -> Unit,
-    onLambdas: () -> Unit,
-    onGenerics: () -> Unit,
-    onCollections: () -> Unit,
-    onExceptions: () -> Unit,
-    onThreadingSync: () -> Unit,
-    onAndroid101: () -> Unit,
-    onIO: () -> Unit,
-    onNullSafety: () -> Unit,
-    onCoroutines: () -> Unit,
-    onDataClasses: () -> Unit,
-    onEnums: () -> Unit,
-    onReflections: () -> Unit,
-    onMoreFunctions: () -> Unit,
-    onAndroidPuttingTogether: () -> Unit
+    onAboutWebDev: () -> Unit,
+    onDom: () -> Unit,
+    onHtml: () -> Unit,
+    onJavascript: () -> Unit,
+    onCss: () -> Unit,
+    onPhp: () -> Unit,
+    onNodeJsTypeScript: () -> Unit,
+    onWebServices: () -> Unit,
+    onRestApi: () -> Unit,
+    onMicroservices: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -65,7 +53,7 @@ fun KotlinHubScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text       = "Kotlin And Android",
+                        text       = "Web Development",
                         color      = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize   = 16.sp
@@ -94,37 +82,20 @@ fun KotlinHubScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            KotlinButtonRow("About Kotlin",    onAboutKotlin,
-                            "Hello, World!",   onHelloWorld)
+            WebDevButtonRow("About Web Development", onAboutWebDev,
+                            "DOM",                   onDom)
             Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Variable Types",  onVariableTypes,
-                            "Basic Syntax",    onBasicSyntax)
+            WebDevButtonRow("HTML",       onHtml,
+                            "JavaScript", onJavascript)
             Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Classes 101",     onClasses101,
-                            "Packages",        onPackages)
+            WebDevButtonRow("CSS", onCss,
+                            "PHP", onPhp)
             Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Classes - Part 2", onClasses2,
-                            "Lambdas",          onLambdas)
+            WebDevButtonRow("Node.js and TypeScript", onNodeJsTypeScript,
+                            "Web Services",           onWebServices)
             Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Generics",        onGenerics,
-                            "Collections",     onCollections)
-            Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Exceptions",      onExceptions,
-                            "Threading & Sync", onThreadingSync)
-            Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Android 101", onAndroid101,
-                            "I/O",         onIO)
-            Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Null Safety", onNullSafety,
-                            "Coroutines",  onCoroutines)
-            Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Data Classes", onDataClasses,
-                            "Enums",        onEnums)
-            Spacer(Modifier.height(8.dp))
-            KotlinButtonRow("Reflections",       onReflections,
-                            "More About Functions", onMoreFunctions)
-            Spacer(Modifier.height(8.dp))
-            KotlinSingleButton("Android — Putting It All Together", onAndroidPuttingTogether)
+            WebDevButtonRow("REST API",       onRestApi,
+                            "Microservices",  onMicroservices)
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -132,7 +103,7 @@ fun KotlinHubScreen(
 }
 
 @Composable
-private fun KotlinButtonRow(
+private fun WebDevButtonRow(
     label1: String, onClick1: () -> Unit,
     label2: String, onClick2: () -> Unit
 ) {
@@ -140,35 +111,13 @@ private fun KotlinButtonRow(
         modifier              = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        KotlinHubButton(label1, onClick1, Modifier.weight(1f))
-        KotlinHubButton(label2, onClick2, Modifier.weight(1f))
+        WebDevHubButton(label1, onClick1, Modifier.weight(1f))
+        WebDevHubButton(label2, onClick2, Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun KotlinSingleButton(label: String, onClick: () -> Unit) {
-    OutlinedButton(
-        onClick  = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
-        border = BorderStroke(1.dp, Color(0xFF00FF41)),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = Color.Black,
-            contentColor   = Color(0xFF00FF41)
-        )
-    ) {
-        Text(
-            text       = label,
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Medium,
-            color      = Color(0xFF00FF41),
-            textAlign  = TextAlign.Center,
-            fontSize   = 11.sp
-        )
-    }
-}
-
-@Composable
-private fun KotlinHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+private fun WebDevHubButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
         onClick  = onClick,
         modifier = modifier.height(52.dp),

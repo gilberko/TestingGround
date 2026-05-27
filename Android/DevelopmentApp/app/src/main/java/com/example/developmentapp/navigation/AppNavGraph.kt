@@ -137,6 +137,19 @@ import com.example.developmentapp.screens.database.GraphDbScreen
 import com.example.developmentapp.screens.database.KeyValueStoresScreen
 import com.example.developmentapp.screens.JavaHubScreen
 import com.example.developmentapp.screens.KotlinHubScreen
+import com.example.developmentapp.screens.WebDevHubScreen
+import com.example.developmentapp.screens.java.JavaObjectAndNullScreen
+import com.example.developmentapp.screens.kotlin.KotlinAndroidPuttingTogetherScreen
+import com.example.developmentapp.screens.webdev.AboutWebDevScreen
+import com.example.developmentapp.screens.webdev.DomScreen
+import com.example.developmentapp.screens.webdev.HtmlScreen
+import com.example.developmentapp.screens.webdev.JavascriptScreen
+import com.example.developmentapp.screens.webdev.CssScreen
+import com.example.developmentapp.screens.webdev.PhpScreen
+import com.example.developmentapp.screens.webdev.NodeJsTypeScriptScreen
+import com.example.developmentapp.screens.webdev.WebServicesScreen
+import com.example.developmentapp.screens.webdev.RestApiScreen
+import com.example.developmentapp.screens.webdev.MicroservicesScreen
 import com.example.developmentapp.screens.kotlin.KotlinAboutScreen
 import com.example.developmentapp.screens.kotlin.KotlinHelloWorldScreen
 import com.example.developmentapp.screens.kotlin.KotlinVariableTypesScreen
@@ -405,6 +418,22 @@ sealed class Screen(val route: String) {
     object DbGraphDb        : Screen("db_graph_db")
     object DbKeyValueStores : Screen("db_key_value_stores")
     object DbWideColumn     : Screen("db_wide_column")
+    // Web Development
+    object WebDevHub            : Screen("webdev_hub")
+    object AboutWebDev          : Screen("about_webdev")
+    object Dom                  : Screen("dom")
+    object Html                 : Screen("html")
+    object Javascript           : Screen("javascript")
+    object Css                  : Screen("css")
+    object Php                  : Screen("php")
+    object NodeJsTypeScript     : Screen("nodejs_typescript")
+    object WebServices          : Screen("web_services")
+    object RestApi              : Screen("rest_api")
+    object Microservices        : Screen("microservices")
+    // Java additions
+    object JavaObjectAndNull    : Screen("java_object_and_null")
+    // Kotlin additions
+    object KotlinAndroidPuttingTogether : Screen("kotlin_android_putting_together")
 }
 
 @Composable
@@ -435,7 +464,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAiNeuralNetworks           = { navController.navigate(Screen.AiHub.route) },
                 onJava                       = { navController.navigate(Screen.JavaHub.route) },
                 onDatabases                  = { navController.navigate(Screen.DatabasesHub.route) },
-                onKotlin                     = { navController.navigate(Screen.KotlinHub.route) }
+                onKotlin                     = { navController.navigate(Screen.KotlinHub.route) },
+                onWebDevelopment             = { navController.navigate(Screen.WebDevHub.route) }
             )
         }
 
@@ -473,7 +503,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onDataClasses    = { navController.navigate(Screen.KotlinDataClasses.route) },
                 onEnums          = { navController.navigate(Screen.KotlinEnums.route) },
                 onReflections    = { navController.navigate(Screen.KotlinReflections.route) },
-                onMoreFunctions  = { navController.navigate(Screen.KotlinMoreFunctions.route) }
+                onMoreFunctions  = { navController.navigate(Screen.KotlinMoreFunctions.route) },
+                onAndroidPuttingTogether = { navController.navigate(Screen.KotlinAndroidPuttingTogether.route) }
             )
         }
         composable(Screen.KotlinAbout.route)         { KotlinAboutScreen(onBack = { navController.popBackStack() }) }
@@ -495,7 +526,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.KotlinDataClasses.route)   { KotlinDataClassesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinEnums.route)         { KotlinEnumsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.KotlinReflections.route)   { KotlinReflectionsScreen(onBack = { navController.popBackStack() }) }
-        composable(Screen.KotlinMoreFunctions.route) { KotlinFunctionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinMoreFunctions.route)            { KotlinFunctionsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.KotlinAndroidPuttingTogether.route)   { KotlinAndroidPuttingTogetherScreen(onBack = { navController.popBackStack() }) }
 
         // ── Java ─────────────────────────────────────────────────────────
         composable(Screen.JavaHub.route) {
@@ -522,7 +554,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAwt                 = { navController.navigate(Screen.JavaAwt.route) },
                 onSwing               = { navController.navigate(Screen.JavaSwing.route) },
                 onReflections         = { navController.navigate(Screen.JavaReflections.route) },
-                onLargeProject        = { navController.navigate(Screen.JavaLargeProject.route) }
+                onLargeProject        = { navController.navigate(Screen.JavaLargeProject.route) },
+                onObjectAndNull       = { navController.navigate(Screen.JavaObjectAndNull.route) }
             )
         }
         composable(Screen.JavaAbout.route)      { JavaAboutScreen(onBack = { navController.popBackStack() }) }
@@ -547,6 +580,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.JavaSwing.route)             { JavaSwingScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaReflections.route)       { JavaReflectionsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.JavaLargeProject.route)      { JavaLargeProjectScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.JavaObjectAndNull.route)     { JavaObjectAndNullScreen(onBack = { navController.popBackStack() }) }
 
         // ── Go ────────────────────────────────────────────────────────────
         composable(Screen.GoHub.route) {
@@ -885,5 +919,32 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.DbGraphDb.route)        { GraphDbScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.DbKeyValueStores.route) { KeyValueStoresScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.DbWideColumn.route)     { WideColumnDbScreen(onBack = { navController.popBackStack() }) }
+
+        // ── Web Development ───────────────────────────────────────────────
+        composable(Screen.WebDevHub.route) {
+            WebDevHubScreen(
+                onBack              = { navController.popBackStack() },
+                onAboutWebDev       = { navController.navigate(Screen.AboutWebDev.route) },
+                onDom               = { navController.navigate(Screen.Dom.route) },
+                onHtml              = { navController.navigate(Screen.Html.route) },
+                onJavascript        = { navController.navigate(Screen.Javascript.route) },
+                onCss               = { navController.navigate(Screen.Css.route) },
+                onPhp               = { navController.navigate(Screen.Php.route) },
+                onNodeJsTypeScript  = { navController.navigate(Screen.NodeJsTypeScript.route) },
+                onWebServices       = { navController.navigate(Screen.WebServices.route) },
+                onRestApi           = { navController.navigate(Screen.RestApi.route) },
+                onMicroservices     = { navController.navigate(Screen.Microservices.route) }
+            )
+        }
+        composable(Screen.AboutWebDev.route)      { AboutWebDevScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Dom.route)              { DomScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Html.route)             { HtmlScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Javascript.route)       { JavascriptScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Css.route)              { CssScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Php.route)              { PhpScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.NodeJsTypeScript.route) { NodeJsTypeScriptScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.WebServices.route)      { WebServicesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.RestApi.route)          { RestApiScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.Microservices.route)    { MicroservicesScreen(onBack = { navController.popBackStack() }) }
     }
 }

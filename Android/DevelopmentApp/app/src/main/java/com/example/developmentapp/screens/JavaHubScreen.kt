@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -57,7 +58,8 @@ fun JavaHubScreen(
     onAwt: () -> Unit,
     onSwing: () -> Unit,
     onReflections: () -> Unit,
-    onLargeProject: () -> Unit
+    onLargeProject: () -> Unit,
+    onObjectAndNull: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -126,9 +128,33 @@ fun JavaHubScreen(
             Spacer(Modifier.height(8.dp))
             JavaButtonRow("Reflections and more . . .", onReflections,
                           "Large Project",               onLargeProject)
+            Spacer(Modifier.height(8.dp))
+            JavaSingleButton("Object and Null", onObjectAndNull)
             Spacer(Modifier.height(24.dp))
         }
     }
+    }
+}
+
+@Composable
+private fun JavaSingleButton(label: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick  = onClick,
+        modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp),
+        border = BorderStroke(1.dp, Color(0xFF00FF41)),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = Color.Black,
+            contentColor   = Color(0xFF00FF41)
+        )
+    ) {
+        Text(
+            text       = label,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Medium,
+            color      = Color(0xFF00FF41),
+            textAlign  = TextAlign.Center,
+            fontSize   = 11.sp
+        )
     }
 }
 

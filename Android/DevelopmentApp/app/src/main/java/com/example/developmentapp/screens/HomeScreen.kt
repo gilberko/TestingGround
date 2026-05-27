@@ -39,7 +39,8 @@ fun HomeScreen(
     onAiNeuralNetworks: () -> Unit,
     onJava: () -> Unit,
     onDatabases: () -> Unit,
-    onKotlin: () -> Unit
+    onKotlin: () -> Unit,
+    onWebDevelopment: () -> Unit
 ) {
     HubBackground {
     Column(
@@ -63,7 +64,7 @@ fun HomeScreen(
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Java", onJava, "Databases", onDatabases)
         Spacer(Modifier.height(12.dp))
-        HomeSingleButton("Kotlin And Android", onKotlin)
+        HomeButtonRow("Kotlin And Android", onKotlin, "Web Development", onWebDevelopment)
     }
     }
 }
