@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -86,6 +87,7 @@ class MainActivity : ComponentActivity() {
                     composable("pondering_hub") { PonderingHubScreen(navController) }
                     composable("boredom") { BoredomScreen(navController) }
                     composable("religion_evolving") { ReligionEvolvingScreen(navController) }
+                    composable("violence") { ViolenceScreen(navController) }
                 }
             }
         }
@@ -107,7 +109,8 @@ fun MainScreen(navController: NavController) {
         "Motivation" to "motivation",
         "About Music" to "about_music_hub",
         "Avoidance" to "avoidance",
-        "Pondering" to "pondering_hub"
+        "Pondering" to "pondering_hub",
+        "Violence" to "violence"
     )
     HubBackground {
     Column(
@@ -126,17 +129,27 @@ fun MainScreen(navController: NavController) {
             color = Color.Black,
             modifier = Modifier.padding(bottom = 40.dp)
         )
-        buttons.forEach { (label, route) ->
-            Button(
-                onClick = { navController.navigate(route) },
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+        buttons.chunked(2).forEach { row ->
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .height(56.dp)
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = label, color = Color.White, fontSize = 18.sp)
+                row.forEach { (label, route) ->
+                    Button(
+                        onClick = { navController.navigate(route) },
+                        shape = RoundedCornerShape(12.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(min = 56.dp)
+                    ) {
+                        Text(text = label, color = Color.White, fontSize = 16.sp,
+                            textAlign = TextAlign.Center)
+                    }
+                }
+                if (row.size == 1) Spacer(modifier = Modifier.weight(1f))
             }
         }
         Spacer(modifier = Modifier.height(24.dp))
