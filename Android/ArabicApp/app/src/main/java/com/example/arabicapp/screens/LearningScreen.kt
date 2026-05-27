@@ -58,11 +58,15 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("prepositions") }, modifier = Modifier.weight(1f)) { Text("Prepositions") }
             Button(onClick = { navController.navigate("passive_voice") }, modifier = Modifier.weight(1f)) { Text("Passive Voice") }
         }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("present_tense") }, modifier = Modifier.weight(1f)) { Text("Present Tense") }
+            Button(onClick = { navController.navigate("continuous") }, modifier = Modifier.weight(1f)) { Text("Continuous") }
+        }
         Button(
-            onClick = { navController.navigate("continuous") },
+            onClick = { navController.navigate("imperative") },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Continuous")
+            Text("Imperative")
         }
     }
 }

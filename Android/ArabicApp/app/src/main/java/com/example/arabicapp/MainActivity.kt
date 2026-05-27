@@ -66,6 +66,10 @@ import com.example.arabicapp.screens.TransportationScreen
 import com.example.arabicapp.screens.DialoguesScreen
 import com.example.arabicapp.screens.MarketMeetingScreen
 import com.example.arabicapp.screens.RestaurantDialogueScreen
+import com.example.arabicapp.screens.PresentTenseScreen
+import com.example.arabicapp.screens.SimpleConjugatedVerbsScreen
+import com.example.arabicapp.screens.DirectionsDialogueScreen
+import com.example.arabicapp.screens.ImperativeScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -283,6 +287,26 @@ fun AppNavigation() {
         composable("restaurant_dialogue") {
             ScreenWithBackButton(title = "At the Restaurant", onBack = { navController.popBackStack() }) {
                 RestaurantDialogueScreen()
+            }
+        }
+        composable("present_tense") {
+            ScreenWithBackButton(title = "Present Tense", onBack = { navController.popBackStack() }) {
+                PresentTenseScreen()
+            }
+        }
+        composable("simple_conj_verbs") {
+            ScreenWithBackButton(title = "Simple Conjugated Verbs", onBack = { navController.popBackStack() }) {
+                SimpleConjugatedVerbsScreen()
+            }
+        }
+        composable("directions_dialogue") {
+            ScreenWithBackButton(title = "Asking For Directions", onBack = { navController.popBackStack() }) {
+                DirectionsDialogueScreen()
+            }
+        }
+        composable("imperative") {
+            ScreenWithBackButton(title = "Imperative", onBack = { navController.popBackStack() }) {
+                ImperativeScreen()
             }
         }
     }

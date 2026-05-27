@@ -101,11 +101,18 @@ fun DictionaryScreen(navController: NavController) {
                 modifier = Modifier.weight(1f)
             ) { Text("City and Nature") }
         }
-        Button(
-            onClick = { navController.navigate("transportation") },
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text("Transportation")
+            Button(
+                onClick = { navController.navigate("transportation") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Transportation") }
+            Button(
+                onClick = { navController.navigate("simple_conj_verbs") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Simple Conjugated Verbs") }
         }
     }
 }

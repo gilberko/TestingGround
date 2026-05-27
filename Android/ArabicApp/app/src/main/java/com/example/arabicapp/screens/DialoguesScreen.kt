@@ -39,5 +39,11 @@ fun DialoguesScreen(navController: NavController) {
                 modifier = Modifier.weight(1f)
             ) { Text("At the Restaurant") }
         }
+        Button(
+            onClick = { navController.navigate("directions_dialogue") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Asking For Directions")
+        }
     }
 }
