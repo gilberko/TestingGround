@@ -25,7 +25,8 @@ import com.example.frenchproject.R
 @Composable
 fun HomeScreen(
     onLearning: () -> Unit,
-    onDictionary: () -> Unit
+    onDictionary: () -> Unit,
+    onDialogues: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -65,6 +66,21 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "Simple Dictionary",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(vertical = 6.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedButton(
+                onClick = onDialogues,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Black.copy(alpha = 0.35f),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Simple Dialogues",
                     fontSize = 16.sp,
                     modifier = Modifier.padding(vertical = 6.dp)
                 )

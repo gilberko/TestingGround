@@ -37,25 +37,15 @@ import com.example.frenchproject.ui.theme.FrenchNavy
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LearningHubScreen(
+fun SimpleDialoguesHubScreen(
     onBack: () -> Unit,
-    onSubjectPronouns: () -> Unit,
-    onArticles: () -> Unit,
-    onEtreAvoir: () -> Unit,
-    onTenses: () -> Unit,
-    onReflexiveVerbs: () -> Unit,
-    onAskingQuestions: () -> Unit,
-    onDemonstratives: () -> Unit,
-    onNegation: () -> Unit,
-    onPrepositions: () -> Unit,
-    onPassive: () -> Unit,
-    onConditionals: () -> Unit,
-    onObjectPronouns: () -> Unit,
-    onPossessive: () -> Unit,
-    onComparisons: () -> Unit,
-    onEveryoneNoone: () -> Unit,
-    onALotOrALittle: () -> Unit,
-    onTenses2: () -> Unit
+    onDirections: () -> Unit,
+    onIntroduction: () -> Unit,
+    onRestaurant: () -> Unit,
+    onAirport: () -> Unit,
+    onJobInterview: () -> Unit,
+    onCoffee: () -> Unit,
+    onSchool: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -68,7 +58,7 @@ fun LearningHubScreen(
             containerColor = Color.Transparent,
             topBar = {
                 TopAppBar(
-                    title = { Text("Learning The Language", color = Color.White) },
+                    title = { Text("Simple Dialogues", color = Color.White) },
                     navigationIcon = {
                         IconButton(onClick = onBack) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
@@ -79,23 +69,13 @@ fun LearningHubScreen(
             }
         ) { innerPadding ->
             val buttons = listOf(
-                "Subject Pronouns" to onSubjectPronouns,
-                "Articles" to onArticles,
-                "Être et Avoir" to onEtreAvoir,
-                "Tenses" to onTenses,
-                "Reflexive Verbs" to onReflexiveVerbs,
-                "Asking Questions" to onAskingQuestions,
-                "This and That,\nHere and There" to onDemonstratives,
-                "Negation" to onNegation,
-                "Prepositions" to onPrepositions,
-                "Passive Voice" to onPassive,
-                "Conditionals" to onConditionals,
-                "Object Pronouns" to onObjectPronouns,
-                "Possessive" to onPossessive,
-                "Comparisons" to onComparisons,
-                "Everybody and\nNo One" to onEveryoneNoone,
-                "A Lot Or\nA Little" to onALotOrALittle,
-                "Tenses - 2" to onTenses2
+                "Asking For Directions" to onDirections,
+                "Simple Introduction" to onIntroduction,
+                "At The Restaurant" to onRestaurant,
+                "At The Airport" to onAirport,
+                "Job Interview" to onJobInterview,
+                "Coffee" to onCoffee,
+                "How Was School Today" to onSchool
             )
             val pairs = buttons.chunked(2)
             Column(

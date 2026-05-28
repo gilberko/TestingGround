@@ -1,5 +1,6 @@
 package com.example.frenchproject.screens.learning
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -44,6 +46,7 @@ private data class PassiveExample(
 private data class PassiveTenseRow(val tense: String, val example: String, val english: String)
 
 private data class PassiveAgreementRow(val subject: String, val form: String, val english: String)
+private data class PassiveConjRow(val subject: String, val form: String)
 
 private val tenseRows = listOf(
     PassiveTenseRow("Présent", "La lettre est écrite.", "The letter is being written."),
@@ -111,6 +114,50 @@ private val workedExamples = listOf(
         passiveEnglish = "My car was stolen.",
         note = "French strongly prefers the on construction: On a volé ma voiture."
     )
+)
+
+private val presentPassiveEr = listOf(
+    PassiveConjRow("je", "suis chanté / chantée  (m. / f.)"),
+    PassiveConjRow("tu", "es chanté / chantée  (m. / f.)"),
+    PassiveConjRow("il", "est chanté"),
+    PassiveConjRow("elle", "est chantée"),
+    PassiveConjRow("nous", "sommes chantés / chantées  (m. / f.)"),
+    PassiveConjRow("vous", "êtes chanté(e)(s)"),
+    PassiveConjRow("ils", "sont chantés"),
+    PassiveConjRow("elles", "sont chantées")
+)
+
+private val presentPassiveIr = listOf(
+    PassiveConjRow("je", "suis fini / finie  (m. / f.)"),
+    PassiveConjRow("tu", "es fini / finie  (m. / f.)"),
+    PassiveConjRow("il", "est fini"),
+    PassiveConjRow("elle", "est finie"),
+    PassiveConjRow("nous", "sommes finis / finies  (m. / f.)"),
+    PassiveConjRow("vous", "êtes fini(e)(s)"),
+    PassiveConjRow("ils", "sont finis"),
+    PassiveConjRow("elles", "sont finies")
+)
+
+private val passeComposePassive = listOf(
+    PassiveConjRow("je", "ai été chanté / chantée  (m. / f.)"),
+    PassiveConjRow("tu", "as été chanté / chantée  (m. / f.)"),
+    PassiveConjRow("il", "a été chanté"),
+    PassiveConjRow("elle", "a été chantée"),
+    PassiveConjRow("nous", "avons été chantés / chantées  (m. / f.)"),
+    PassiveConjRow("vous", "avez été chanté(e)(s)"),
+    PassiveConjRow("ils", "ont été chantés"),
+    PassiveConjRow("elles", "ont été chantées")
+)
+
+private val futurPassive = listOf(
+    PassiveConjRow("je", "serai chanté / chantée  (m. / f.)"),
+    PassiveConjRow("tu", "seras chanté / chantée  (m. / f.)"),
+    PassiveConjRow("il", "sera chanté"),
+    PassiveConjRow("elle", "sera chantée"),
+    PassiveConjRow("nous", "serons chantés / chantées  (m. / f.)"),
+    PassiveConjRow("vous", "serez chanté(e)(s)"),
+    PassiveConjRow("ils", "seront chantés"),
+    PassiveConjRow("elles", "seront chantées")
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -346,7 +393,167 @@ fun PassiveScreen(onBack: () -> Unit) {
             }
             items(workedExamples.size) { i -> PassiveExampleCard(workedExamples[i]) }
 
+            // Present passive — ER verbs
+            item {
+                Spacer(modifier = Modifier.height(12.dp))
+                PassiveSectionHeader("Conjugation Tables — Présent Passif")
+            }
+            item {
+                PassiveRuleCard(
+                    body = "Formation: être (présent) + past participle\n" +
+                        "The past participle agrees with the subject in gender and number.\n\n" +
+                        "-ER verb example: chanter → chanté"
+                )
+            }
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(2.dp)
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text("chanter (to sing) — présent passif", fontWeight = FontWeight.SemiBold, color = FrenchNavy, fontSize = 13.sp)
+                        Spacer(modifier = Modifier.height(6.dp))
+                        PassiveConjTable(presentPassiveEr)
+                    }
+                }
+            }
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(2.dp)
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text("-IR verb example: finir → fini", fontWeight = FontWeight.SemiBold, color = FrenchNavy, fontSize = 13.sp)
+                        Spacer(modifier = Modifier.height(6.dp))
+                        PassiveConjTable(presentPassiveIr)
+                    }
+                }
+            }
+
+            // Passé composé passive
+            item {
+                Spacer(modifier = Modifier.height(12.dp))
+                PassiveSectionHeader("Conjugation Tables — Passé Composé Passif")
+            }
+            item {
+                PassiveRuleCard(
+                    body = "Formation: avoir (présent) + été + past participle\n" +
+                        "Note: avoir is always the auxiliary here — not être.\n\n" +
+                        "Example: chanter → a été chanté"
+                )
+            }
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(2.dp)
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text("chanter (to sing) — passé composé passif", fontWeight = FontWeight.SemiBold, color = FrenchNavy, fontSize = 13.sp)
+                        Spacer(modifier = Modifier.height(6.dp))
+                        PassiveConjTable(passeComposePassive)
+                    }
+                }
+            }
+
+            // Futur simple passive
+            item {
+                Spacer(modifier = Modifier.height(12.dp))
+                PassiveSectionHeader("Conjugation Tables — Futur Simple Passif")
+            }
+            item {
+                PassiveRuleCard(
+                    body = "Formation: être (futur simple) + past participle\n\n" +
+                        "Example: chanter → sera chanté"
+                )
+            }
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(2.dp)
+                ) {
+                    Column(modifier = Modifier.padding(12.dp)) {
+                        Text("chanter (to sing) — futur simple passif", fontWeight = FontWeight.SemiBold, color = FrenchNavy, fontSize = 13.sp)
+                        Spacer(modifier = Modifier.height(6.dp))
+                        PassiveConjTable(futurPassive)
+                    }
+                }
+            }
+
+            // Irregular past participles
+            item {
+                Spacer(modifier = Modifier.height(12.dp))
+                PassiveSectionHeader("Common Irregular Past Participles")
+            }
+            item {
+                PassiveRuleCard(body = "These forms frequently appear in passive constructions. Memorise them — they have no pattern.")
+            }
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(2.dp)
+                ) {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        val irregulars = listOf(
+                            Triple("faire", "fait", "done / made"),
+                            Triple("prendre", "pris", "taken"),
+                            Triple("voir", "vu", "seen"),
+                            Triple("lire", "lu", "read"),
+                            Triple("écrire", "écrit", "written"),
+                            Triple("ouvrir", "ouvert", "opened"),
+                            Triple("conduire", "conduit", "driven"),
+                            Triple("mettre", "mis", "put / placed"),
+                            Triple("naître", "né", "born"),
+                            Triple("dire", "dit", "said"),
+                            Triple("boire", "bu", "drunk"),
+                            Triple("recevoir", "reçu", "received")
+                        )
+                        irregulars.forEachIndexed { index, (inf, pp, meaning) ->
+                            if (index > 0) HorizontalDivider(color = FrenchBlue.copy(alpha = 0.12f), modifier = Modifier.padding(vertical = 5.dp))
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Text(inf, color = FrenchNavy, fontSize = 13.sp, modifier = Modifier.width(100.dp))
+                                Text("→ $pp", fontWeight = FontWeight.Bold, color = FrenchBlue, fontSize = 13.sp, modifier = Modifier.width(80.dp))
+                                Text(meaning, fontSize = 12.sp, color = FrenchNavy.copy(alpha = 0.75f), modifier = Modifier.weight(1f))
+                            }
+                        }
+                    }
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(24.dp)) }
+        }
+    }
+}
+
+@Composable
+private fun PassiveConjTable(rows: List<PassiveConjRow>) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFF0F3FA), RoundedCornerShape(6.dp))
+            .padding(8.dp)
+    ) {
+        rows.forEachIndexed { index, row ->
+            if (index > 0) HorizontalDivider(color = Color(0xFFD0D8E8), modifier = Modifier.padding(vertical = 2.dp))
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = row.subject,
+                    color = FrenchNavy,
+                    fontSize = 13.sp,
+                    modifier = Modifier.width(52.dp)
+                )
+                Text(
+                    text = row.form,
+                    fontWeight = FontWeight.Bold,
+                    color = FrenchBlue,
+                    fontSize = 12.sp
+                )
+            }
         }
     }
 }
