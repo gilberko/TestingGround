@@ -40,7 +40,8 @@ fun HomeScreen(
     onJava: () -> Unit,
     onDatabases: () -> Unit,
     onKotlin: () -> Unit,
-    onWebDevelopment: () -> Unit
+    onWebDevelopment: () -> Unit,
+    onUnityTutorial: () -> Unit
 ) {
     HubBackground {
     Column(
@@ -65,6 +66,8 @@ fun HomeScreen(
         HomeButtonRow("Java", onJava, "Databases", onDatabases)
         Spacer(Modifier.height(12.dp))
         HomeButtonRow("Kotlin And Android", onKotlin, "Web Development", onWebDevelopment)
+        Spacer(Modifier.height(12.dp))
+        HomeSingleButton("Unity Tutorial", onUnityTutorial)
     }
     }
 }

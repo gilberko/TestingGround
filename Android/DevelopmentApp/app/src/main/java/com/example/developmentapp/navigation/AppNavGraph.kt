@@ -193,6 +193,32 @@ import com.example.developmentapp.screens.java.JavaSwingScreen
 import com.example.developmentapp.screens.java.JavaReflectionsScreen
 import com.example.developmentapp.screens.java.JavaLargeProjectScreen
 import com.example.developmentapp.screens.RustHubScreen
+import com.example.developmentapp.screens.UnityHubScreen
+import com.example.developmentapp.screens.unity.UnityPhase1HubScreen
+import com.example.developmentapp.screens.unity.UnityPhase2HubScreen
+import com.example.developmentapp.screens.unity.UnityPhase3HubScreen
+import com.example.developmentapp.screens.unity.UnityPhase4HubScreen
+import com.example.developmentapp.screens.unity.UnityPhase5HubScreen
+import com.example.developmentapp.screens.unity.Lesson01WhatIsUnityScreen
+import com.example.developmentapp.screens.unity.Lesson02EditorBasicsScreen
+import com.example.developmentapp.screens.unity.Lesson03CSharpBasicsScreen
+import com.example.developmentapp.screens.unity.Lesson04UnityScriptingScreen
+import com.example.developmentapp.screens.unity.Lesson05Sprites2DScenesScreen
+import com.example.developmentapp.screens.unity.Lesson06Physics2DScreen
+import com.example.developmentapp.screens.unity.Lesson07CharacterController2DScreen
+import com.example.developmentapp.screens.unity.Lesson08AnimationScreen
+import com.example.developmentapp.screens.unity.Lesson09UISystemScreen
+import com.example.developmentapp.screens.unity.Lesson10AudioScreen
+import com.example.developmentapp.screens.unity.Lesson11World3DBasicsScreen
+import com.example.developmentapp.screens.unity.Lesson12Physics3DScreen
+import com.example.developmentapp.screens.unity.Lesson13CharacterController3DScreen
+import com.example.developmentapp.screens.unity.Lesson14CamerasScreen
+import com.example.developmentapp.screens.unity.Lesson15AIBasicsScreen
+import com.example.developmentapp.screens.unity.Lesson16WeaponsInteractionScreen
+import com.example.developmentapp.screens.unity.Lesson17GameArchitectureScreen
+import com.example.developmentapp.screens.unity.Lesson18SavingSystemsScreen
+import com.example.developmentapp.screens.unity.Lesson19OptimizationScreen
+import com.example.developmentapp.screens.unity.Lesson20BuildPublishScreen
 import com.example.developmentapp.screens.rust.RustAboutScreen
 import com.example.developmentapp.screens.rust.RustHelloWorldScreen
 import com.example.developmentapp.screens.rust.RustVariablesScreen
@@ -434,6 +460,33 @@ sealed class Screen(val route: String) {
     object JavaObjectAndNull    : Screen("java_object_and_null")
     // Kotlin additions
     object KotlinAndroidPuttingTogether : Screen("kotlin_android_putting_together")
+    // Unity Tutorial
+    object UnityHub        : Screen("unity_hub")
+    object UnityPhase1Hub  : Screen("unity_phase1_hub")
+    object UnityPhase2Hub  : Screen("unity_phase2_hub")
+    object UnityPhase3Hub  : Screen("unity_phase3_hub")
+    object UnityPhase4Hub  : Screen("unity_phase4_hub")
+    object UnityPhase5Hub  : Screen("unity_phase5_hub")
+    object UnityLesson01   : Screen("unity_lesson_01")
+    object UnityLesson02   : Screen("unity_lesson_02")
+    object UnityLesson03   : Screen("unity_lesson_03")
+    object UnityLesson04   : Screen("unity_lesson_04")
+    object UnityLesson05   : Screen("unity_lesson_05")
+    object UnityLesson06   : Screen("unity_lesson_06")
+    object UnityLesson07   : Screen("unity_lesson_07")
+    object UnityLesson08   : Screen("unity_lesson_08")
+    object UnityLesson09   : Screen("unity_lesson_09")
+    object UnityLesson10   : Screen("unity_lesson_10")
+    object UnityLesson11   : Screen("unity_lesson_11")
+    object UnityLesson12   : Screen("unity_lesson_12")
+    object UnityLesson13   : Screen("unity_lesson_13")
+    object UnityLesson14   : Screen("unity_lesson_14")
+    object UnityLesson15   : Screen("unity_lesson_15")
+    object UnityLesson16   : Screen("unity_lesson_16")
+    object UnityLesson17   : Screen("unity_lesson_17")
+    object UnityLesson18   : Screen("unity_lesson_18")
+    object UnityLesson19   : Screen("unity_lesson_19")
+    object UnityLesson20   : Screen("unity_lesson_20")
 }
 
 @Composable
@@ -465,7 +518,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onJava                       = { navController.navigate(Screen.JavaHub.route) },
                 onDatabases                  = { navController.navigate(Screen.DatabasesHub.route) },
                 onKotlin                     = { navController.navigate(Screen.KotlinHub.route) },
-                onWebDevelopment             = { navController.navigate(Screen.WebDevHub.route) }
+                onWebDevelopment             = { navController.navigate(Screen.WebDevHub.route) },
+                onUnityTutorial              = { navController.navigate(Screen.UnityHub.route) }
             )
         }
 
@@ -946,5 +1000,82 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.WebServices.route)      { WebServicesScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.RestApi.route)          { RestApiScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.Microservices.route)    { MicroservicesScreen(onBack = { navController.popBackStack() }) }
+
+        // ── Unity Tutorial ────────────────────────────────────────────────
+        composable(Screen.UnityHub.route) {
+            UnityHubScreen(
+                onBack   = { navController.popBackStack() },
+                onPhase1 = { navController.navigate(Screen.UnityPhase1Hub.route) },
+                onPhase2 = { navController.navigate(Screen.UnityPhase2Hub.route) },
+                onPhase3 = { navController.navigate(Screen.UnityPhase3Hub.route) },
+                onPhase4 = { navController.navigate(Screen.UnityPhase4Hub.route) },
+                onPhase5 = { navController.navigate(Screen.UnityPhase5Hub.route) }
+            )
+        }
+        composable(Screen.UnityPhase1Hub.route) {
+            UnityPhase1HubScreen(
+                onBack    = { navController.popBackStack() },
+                onLesson1 = { navController.navigate(Screen.UnityLesson01.route) },
+                onLesson2 = { navController.navigate(Screen.UnityLesson02.route) }
+            )
+        }
+        composable(Screen.UnityPhase2Hub.route) {
+            UnityPhase2HubScreen(
+                onBack    = { navController.popBackStack() },
+                onLesson3 = { navController.navigate(Screen.UnityLesson03.route) },
+                onLesson4 = { navController.navigate(Screen.UnityLesson04.route) }
+            )
+        }
+        composable(Screen.UnityPhase3Hub.route) {
+            UnityPhase3HubScreen(
+                onBack     = { navController.popBackStack() },
+                onLesson5  = { navController.navigate(Screen.UnityLesson05.route) },
+                onLesson6  = { navController.navigate(Screen.UnityLesson06.route) },
+                onLesson7  = { navController.navigate(Screen.UnityLesson07.route) },
+                onLesson8  = { navController.navigate(Screen.UnityLesson08.route) },
+                onLesson9  = { navController.navigate(Screen.UnityLesson09.route) },
+                onLesson10 = { navController.navigate(Screen.UnityLesson10.route) }
+            )
+        }
+        composable(Screen.UnityPhase4Hub.route) {
+            UnityPhase4HubScreen(
+                onBack     = { navController.popBackStack() },
+                onLesson11 = { navController.navigate(Screen.UnityLesson11.route) },
+                onLesson12 = { navController.navigate(Screen.UnityLesson12.route) },
+                onLesson13 = { navController.navigate(Screen.UnityLesson13.route) },
+                onLesson14 = { navController.navigate(Screen.UnityLesson14.route) },
+                onLesson15 = { navController.navigate(Screen.UnityLesson15.route) },
+                onLesson16 = { navController.navigate(Screen.UnityLesson16.route) }
+            )
+        }
+        composable(Screen.UnityPhase5Hub.route) {
+            UnityPhase5HubScreen(
+                onBack     = { navController.popBackStack() },
+                onLesson17 = { navController.navigate(Screen.UnityLesson17.route) },
+                onLesson18 = { navController.navigate(Screen.UnityLesson18.route) },
+                onLesson19 = { navController.navigate(Screen.UnityLesson19.route) },
+                onLesson20 = { navController.navigate(Screen.UnityLesson20.route) }
+            )
+        }
+        composable(Screen.UnityLesson01.route) { Lesson01WhatIsUnityScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson02.route) { Lesson02EditorBasicsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson03.route) { Lesson03CSharpBasicsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson04.route) { Lesson04UnityScriptingScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson05.route) { Lesson05Sprites2DScenesScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson06.route) { Lesson06Physics2DScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson07.route) { Lesson07CharacterController2DScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson08.route) { Lesson08AnimationScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson09.route) { Lesson09UISystemScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson10.route) { Lesson10AudioScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson11.route) { Lesson11World3DBasicsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson12.route) { Lesson12Physics3DScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson13.route) { Lesson13CharacterController3DScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson14.route) { Lesson14CamerasScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson15.route) { Lesson15AIBasicsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson16.route) { Lesson16WeaponsInteractionScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson17.route) { Lesson17GameArchitectureScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson18.route) { Lesson18SavingSystemsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson19.route) { Lesson19OptimizationScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.UnityLesson20.route) { Lesson20BuildPublishScreen(onBack = { navController.popBackStack() }) }
     }
 }
