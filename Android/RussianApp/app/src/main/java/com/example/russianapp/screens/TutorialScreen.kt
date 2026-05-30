@@ -51,7 +51,8 @@ fun TutorialScreen(
     onThisAndThat: () -> Unit,
     onQuestions: () -> Unit,
     onNiVsNe: () -> Unit,
-    onVerbPrefixes: () -> Unit
+    onVerbPrefixes: () -> Unit,
+    onAndAboutI: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -94,7 +95,8 @@ fun TutorialScreen(
                 "This and That"                    to onThisAndThat,
                 "Questions"                        to onQuestions,
                 "не- vs ни-"                       to onNiVsNe,
-                "Prefixes For Verbs"               to onVerbPrefixes
+                "Prefixes For Verbs"               to onVerbPrefixes,
+                "And About и"                      to onAndAboutI
             )
             val buttonPairs = buttons.chunked(2)
             LazyColumn(
