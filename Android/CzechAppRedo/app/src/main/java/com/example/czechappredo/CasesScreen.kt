@@ -73,13 +73,19 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "Masc. animate, hard" to "pán  (lord / sir)",
                     "Masc. animate, soft" to "muž  (man)",
+                    "Masc. animate, -ce stem" to "soudce  (judge)",
+                    "Masc. animate, A-stem (-a)" to "předseda  (chairman)",
+                    "Masc. animate, adjectival" to "mluvčí  (spokesman)",
                     "Masc. inanimate, hard" to "hrad  (castle)",
                     "Masc. inanimate, soft" to "stroj  (machine)",
                     "Feminine, hard (-a)" to "žena  (woman)",
                     "Feminine, soft (-e)" to "růže  (rose)",
-                    "Feminine, consonant stem" to "místnost  (room)",
+                    "Feminine, soft consonant stem" to "píseň  (song)",
+                    "Feminine, hard consonant stem" to "kost  (bone)",
                     "Neuter, hard (-o)" to "město  (city)",
-                    "Neuter, soft (-e)" to "moře  (sea)"
+                    "Neuter, soft (-e)" to "moře  (sea)",
+                    "Neuter, young-animal (-e)" to "kuře  (chick)",
+                    "Neuter, adjectival (-í)" to "stavení  (building)"
                 )
             )
             CaseNote("hrad vs. stroj — both masculine inanimate, but different patterns. hrad has a hard stem (ends in -d): Gen. hradu · Loc. hradě · Ins. hradem. stroj has a soft stem (ends in -j): Gen. stroje · Loc. stroji · Ins. strojem.")
@@ -120,9 +126,9 @@ fun CasesScreen(navController: NavController) {
             )
             CaseMiniTable(
                 rows = listOf(
-                    "Masc. inanimate (hard)" to "hrad → hradu",
+                    "Masc. inanimate (hard)" to "hrad → hradu;  les → lesa",
                     "Masc. inanimate (soft)" to "nůž → nože;  stroj → stroje",
-                    "Masc. animate (hard)" to "pán → pána;  tatínek → tatínka;  dědeček → dědečka",
+                    "Masc. animate (hard)" to "pán → pána;  tatínek → tatínka",
                     "Masc. animate (soft)" to "muž → muže",
                     "Feminine -a" to "žena → ženy",
                     "Feminine -e (soft)" to "růže → růže  (no change)",
@@ -131,8 +137,8 @@ fun CasesScreen(navController: NavController) {
                     "Fem. consonant stem" to "místnost → místnosti"
                 )
             )
-
-            CaseNote("Fleeting e (pohybné e): Some masculine animate nouns ending in -ek or -eček drop the -e- before their final consonant whenever a case ending is added. Examples: tatínek (daddy) → tatínka (not tatíneka); dědeček (grandpa) → dědečka (not dědečeka). The underlying pattern (hard animate → -a) is unchanged — only the spelling shifts.")
+            CaseNote("Fleeting e (pohybné e): Some masculine animate nouns ending in -ek or -eček drop the -e- before their final consonant whenever a case ending is added. Examples: tatínek (daddy) → tatínka (not tatíneka); dědeček (grandpa) → dědečka (not dědečeka).")
+            CaseNote("Masculine inanimate hard genitive — -u or -a: Most nouns take -u (hradu, stolu, vlaku). Some nouns — especially natural and place words — take -a instead: les (forest) → lesa (do lesa, z lesa). When in doubt, -u is the safe default; check dictionary entries for nouns that commonly appear in genitive phrases.")
 
             CaseBlock(
                 number = "3",
@@ -146,8 +152,8 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "Masc. inanimate (hard)" to "hrad → hradu",
                     "Masc. inanimate (soft)" to "nůž → noži;  stroj → stroji",
-                    "Masc. animate (hard)" to "pán → pánovi",
-                    "Masc. animate (soft)" to "muž → muži",
+                    "Masc. animate (hard)" to "pán → pánovi / pánu",
+                    "Masc. animate (soft)" to "muž → muži / mužovi",
                     "Feminine -a" to "žena → ženě; matka → matce",
                     "Feminine -e (soft)" to "růže → růži",
                     "Neuter -o" to "město → městu",
@@ -155,6 +161,7 @@ fun CasesScreen(navController: NavController) {
                     "Fem. consonant stem" to "místnost → místnosti"
                 )
             )
+            CaseNote("Dual dative forms for masculine animate: Hard nouns have pánovi (standard modern Czech) and pánu (older/colloquial, survives in fixed phrases like pánu Bohu — to the Lord God). Soft nouns have muži (traditional ending) and mužovi (modern, emphasises the individual). Both forms are correct; -ovi is the safer choice for people's names and titles.")
 
             CaseBlock(
                 number = "4",
@@ -168,7 +175,7 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "Masc. inanimate (hard)" to "hrad → hrad  (= Nom)",
                     "Masc. inanimate (soft)" to "stroj → stroj  (= Nom)",
-                    "Masc. animate (hard)" to "pán → pána; tatínek → tatínka; dědeček → dědečka  (= Gen)",
+                    "Masc. animate (hard)" to "pán → pána; tatínek → tatínka  (= Gen)",
                     "Masc. animate (soft)" to "muž → muže  (= Gen)",
                     "Feminine -a" to "žena → ženu; matka → matku",
                     "Feminine -e (soft)" to "růže → růži",
@@ -177,8 +184,7 @@ fun CasesScreen(navController: NavController) {
                     "Fem. consonant stem" to "místnost → místnost  (= Nom)"
                 )
             )
-
-            CaseNote("Masculine animate accusative = genitive, so the same fleeting-e rule applies: tatínka, dědečka.")
+            CaseNote("Masculine animate accusative = genitive, so the fleeting-e rule applies: tatínka, dědečka.")
 
             CaseBlock(
                 number = "5",
@@ -210,18 +216,20 @@ fun CasesScreen(navController: NavController) {
             )
             CaseMiniTable(
                 rows = listOf(
-                    "Masc. inanimate (hard)" to "hrad → hradě;  byt → bytě",
-                    "Masc. inan. (hard, ends in k/g/h/ch)" to "park → parku;  vrch → vrchu",
+                    "Masc. inanimate (hard)" to "hrad → hradě;  byt → bytě;  les → lese",
+                    "Masc. inan. (hard, k/g/h/ch)" to "park → parku;  vrch → vrchu",
                     "Masc. inanimate (soft)" to "nůž → noži;  stroj → stroji",
                     "Masc. animate (hard)" to "pán → pánovi",
                     "Masc. animate (soft)" to "muž → muži",
                     "Feminine -a" to "žena → ženě; matka → matce",
                     "Feminine -e (soft)" to "růže → růži",
                     "Neuter -o" to "město → městě",
+                    "Neuter -o (ends in k/g/h/ch)" to "jablko → jablku;  oko → oku",
                     "Neuter -e (soft)" to "moře → moři",
                     "Fem. consonant stem" to "místnost → místnosti"
                 )
             )
+            CaseNote("The same velar rule that applies to masculine inanimate nouns also applies to neuter -o nouns: if the stem ends in k, g, h, or ch, the locative uses -u instead of -ě to avoid an awkward consonant mutation. Compare: město → městě (no velar) vs. jablko → jablku (ends in k). Note that dative is always -u for neuter -o nouns regardless of stem: městu / jablku — so for velar-stem neuters, dative and locative are identical (both -u).")
 
             CaseBlock(
                 number = "7",
@@ -245,9 +253,9 @@ fun CasesScreen(navController: NavController) {
                 )
             )
 
-            // ── Declension Tables ────────────────────────────────────────
+            // ── Declension Tables — Singular ─────────────────────────────
             CaseSectionHeader("Declension Tables — Singular")
-            CaseNote("The singular tables below cover hard and soft patterns for all three genders. Irregular and consonant-stem nouns are noted at the end.")
+            CaseNote("The singular tables below cover the main hard and soft patterns. Additional patterns (soudce, předseda, mluvčí, píseň, kost, kuře, stavení) follow in later sections.")
 
             Spacer(modifier = Modifier.height(12.dp))
             DeclensionTable(
@@ -256,10 +264,10 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "1. Nominativ" to "pán",
                     "2. Genitiv" to "pána",
-                    "3. Dativ" to "pánovi",
+                    "3. Dativ" to "pánovi / pánu",
                     "4. Akuzativ" to "pána",
                     "5. Vokativ" to "pane",
-                    "6. Lokál" to "pánovi",
+                    "6. Lokál" to "pánovi / pánu",
                     "7. Instrumentál" to "pánem"
                 )
             )
@@ -270,10 +278,10 @@ fun CasesScreen(navController: NavController) {
                 rows = listOf(
                     "1. Nominativ" to "muž",
                     "2. Genitiv" to "muže",
-                    "3. Dativ" to "muži",
+                    "3. Dativ" to "muži / mužovi",
                     "4. Akuzativ" to "muže",
                     "5. Vokativ" to "muži",
-                    "6. Lokál" to "muži",
+                    "6. Lokál" to "muži / mužovi",
                     "7. Instrumentál" to "mužem"
                 )
             )
@@ -356,10 +364,84 @@ fun CasesScreen(navController: NavController) {
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "les  (forest)",
+                label = "Masculine inanimate, hard  — Genitive = -a (not -u)",
+                rows = listOf(
+                    "1. Nominativ" to "les",
+                    "2. Genitiv" to "lesa",
+                    "3. Dativ" to "lesu",
+                    "4. Akuzativ" to "les",
+                    "5. Vokativ" to "lese",
+                    "6. Lokál" to "lese",
+                    "7. Instrumentál" to "lesem"
+                )
+            )
+            CaseNote("Compare hrad (Gen: hradu, Loc: hradě) — same hard masculine inanimate class, but les takes -a in the Genitive and -e in both Vocative and Locative. The choice of -u vs. -a is determined by the individual noun, not by a predictable rule.")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // ── Masculine Animate Additional Patterns ─────────────────────
+            CaseSectionHeader("Masculine Animate — Additional Patterns")
+            CaseNote("Beyond pán (hard) and muž (soft), Czech has three more masculine animate patterns: the -ce stem (soudce), the A-stem (předseda), and the adjectival type (mluvčí).")
+
+            Spacer(modifier = Modifier.height(12.dp))
+            CaseNote("soudce (judge) — the -ce stem pattern. Its Nominative, Genitive, Accusative, and Vocative all look the same. Unlike pán/muž, the animate rule (Acc = Gen) happens to produce the same form as the Nominative here, since both are soudce.")
+            DeclensionTable(
+                noun = "soudce  (judge)",
+                label = "Masculine animate, -ce stem  — Nom = Gen = Acc = Voc",
+                rows = listOf(
+                    "1. Nominativ" to "soudce",
+                    "2. Genitiv" to "soudce",
+                    "3. Dativ" to "soudci",
+                    "4. Akuzativ" to "soudce",
+                    "5. Vokativ" to "soudce",
+                    "6. Lokál" to "soudci",
+                    "7. Instrumentál" to "soudcem"
+                )
+            )
+            CaseNote("Dativ and Lokál share the same -ci ending. Other -ce stem nouns: průvodce (guide / tour leader), zástupce (representative), správce (administrator), vůdce (leader).")
+
+            Spacer(modifier = Modifier.height(16.dp))
+            CaseNote("předseda (chairman) — the A-stem pattern. These are grammatically masculine nouns that end in -a, so they look feminine. They take masculine adjective agreement (dobrý předseda) but decline with the žena endings. Important exception: their Accusative uses the feminine -u ending (předsedu), NOT the usual masculine animate acc = gen rule.")
+            DeclensionTable(
+                noun = "předseda  (chairman / president)",
+                label = "Masculine animate, A-stem  — Acc = -u (follows žena, not Gen)",
+                rows = listOf(
+                    "1. Nominativ" to "předseda",
+                    "2. Genitiv" to "předsedy",
+                    "3. Dativ" to "předsedovi / předsedě",
+                    "4. Akuzativ" to "předsedu",
+                    "5. Vokativ" to "předsedo",
+                    "6. Lokál" to "předsedovi / předsedě",
+                    "7. Instrumentál" to "předsedou"
+                )
+            )
+            CaseNote("Dativ/Lokál have both a -ovi form (modern standard) and a short -ě form (follows žena: předsedě). Other A-stem masculines: kolega (colleague → Acc: kolegu), táta (dad → Acc: tátu), turista (tourist → Acc: turistu).")
+            CaseNote("Special sub-group — nouns ending in -ista: cyklista (cyclist), turista (tourist), pianista (pianist), komunista (communist). Their singular follows předseda exactly. Their nominative plural has two accepted forms: -é (cyklisté, turisté — standard/literary) and -i (cyklisti, turisti — common in everyday speech). Both are correct. By contrast, -da/-ga nouns like předseda and kolega only take -ové (předsedové, kolegové).")
+
+            Spacer(modifier = Modifier.height(16.dp))
+            CaseNote("mluvčí (spokesman) — the adjectival pattern. These nouns end in -í and decline exactly like soft adjectives. Their endings are adjectival throughout: -ího for Genitive and animate Accusative, -ímu for Dative, -ím for both Locative and Instrumental.")
+            DeclensionTable(
+                noun = "mluvčí  (spokesman / spokesperson)",
+                label = "Masculine animate, adjectival  — declines like a soft adjective",
+                rows = listOf(
+                    "1. Nominativ" to "mluvčí",
+                    "2. Genitiv" to "mluvčího",
+                    "3. Dativ" to "mluvčímu",
+                    "4. Akuzativ" to "mluvčího",
+                    "5. Vokativ" to "mluvčí",
+                    "6. Lokál" to "mluvčím",
+                    "7. Instrumentál" to "mluvčím"
+                )
+            )
+            CaseNote("Lokál and Instrumentál are identical (-ím) — just like in adjective declension. Other adjectival nouns: průvodčí (conductor / train attendant), rozhodčí (referee).")
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             // ── Feminine Soft ─────────────────────────────────────────────
             CaseSectionHeader("Feminine Soft Pattern  (-e)")
-            CaseNote("Feminine nouns can also end in -e (not just -a). They follow the soft declension pattern. Notice that Nominative, Genitive, and Vocative share the -e form; Dative, Accusative, and Locative use -i; and the Instrumental ends in -í (long vowel).")
+            CaseNote("Feminine nouns can also end in -e (not just -a). They follow the soft declension pattern. Nominative, Genitive, and Vocative share the -e form; Dative, Accusative, and Locative use -i; and the Instrumental ends in -í (long vowel).")
             Spacer(modifier = Modifier.height(12.dp))
             DeclensionTable(
                 noun = "růže  (rose)",
@@ -391,6 +473,86 @@ fun CasesScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // ── Feminine All Four Patterns ────────────────────────────────
+            CaseSectionHeader("Feminine — All Four Patterns")
+            CaseNote("Czech grammar recognises four feminine vzory: žena (hard -a), růže (soft -e), píseň (soft consonant stem), and kost (hard consonant stem). The žena and růže tables appear above; here are the remaining two.")
+
+            Spacer(modifier = Modifier.height(12.dp))
+            CaseNote("píseň (song) — soft consonant stem. The stem ends in a soft consonant (ň here). Accusative = Nominative (inanimate). Dative, Vocative, and Locative all share the -i ending. Instrumental ends in long -í.")
+            DeclensionTable(
+                noun = "píseň  (song)",
+                label = "Feminine, soft consonant stem",
+                rows = listOf(
+                    "1. Nominativ" to "píseň",
+                    "2. Genitiv" to "písně",
+                    "3. Dativ" to "písni",
+                    "4. Akuzativ" to "píseň",
+                    "5. Vokativ" to "písni",
+                    "6. Lokál" to "písni",
+                    "7. Instrumentál" to "písní"
+                )
+            )
+            CaseNote("Other píseň-pattern nouns: věž (tower), přízeň (favour), lež (lie). The defining feature is a soft final consonant on the stem. Compare místnost below: same shape but hard final consonant.")
+
+            Spacer(modifier = Modifier.height(16.dp))
+            CaseNote("kost (bone) — hard consonant stem. The Nominative has no vowel ending; the stem ends in a hard consonant. Accusative = Nominative. Genitive, Dative, Vocative, and Locative all share -i. Instrumental ends in long -í. The already-shown místnost (room) follows this exact pattern.")
+            DeclensionTable(
+                noun = "kost  (bone)",
+                label = "Feminine, hard consonant stem  — místnost follows this pattern",
+                rows = listOf(
+                    "1. Nominativ" to "kost",
+                    "2. Genitiv" to "kosti",
+                    "3. Dativ" to "kosti",
+                    "4. Akuzativ" to "kost",
+                    "5. Vokativ" to "kosti",
+                    "6. Lokál" to "kosti",
+                    "7. Instrumentál" to "kostí"
+                )
+            )
+            CaseNote("Other kost-pattern nouns: radost (joy), nemoc (illness), věc (thing), noc (night), moc (power). Four cases share -i; only Nom/Acc (bare stem) and Instrumental (-í) differ.")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // ── Neuter All Four Patterns ──────────────────────────────────
+            CaseSectionHeader("Neuter — All Four Patterns")
+            CaseNote("Czech grammar recognises four neuter vzory: město (hard -o), moře (soft -e), kuře (young-animal type), and stavení (adjectival/indeclinable). The město and moře tables appear above; here are the remaining two.")
+
+            Spacer(modifier = Modifier.height(12.dp))
+            CaseNote("kuře (chick) — young-animal pattern. These nouns end in -e in the Nominative, but in all oblique cases a -t- is inserted before the ending: Gen. kuřete, Dat. kuřeti. This -t- insertion is the defining feature of the whole pattern.")
+            DeclensionTable(
+                noun = "kuře  (chick / young chicken)",
+                label = "Neuter, young-animal pattern  — -t- inserted in oblique cases",
+                rows = listOf(
+                    "1. Nominativ" to "kuře",
+                    "2. Genitiv" to "kuřete",
+                    "3. Dativ" to "kuřeti",
+                    "4. Akuzativ" to "kuře",
+                    "5. Vokativ" to "kuře",
+                    "6. Lokál" to "kuřeti",
+                    "7. Instrumentál" to "kuřetem"
+                )
+            )
+            CaseNote("Other young-animal nouns: kotě (kitten), štěně (puppy), tele (calf), hříbě (foal), jehně (lamb), kůzle (kid / baby goat). The plural Nominative always ends in -ata (kuřata, koťata, štěňata) — see the plural table below.")
+
+            Spacer(modifier = Modifier.height(16.dp))
+            CaseNote("stavení (building) — adjectival / -í pattern. These nouns end in -í and are largely indeclinable: the same form covers Nominative through Locative. Only the Instrumental adds -m (stavením). This makes them the easiest Czech nouns to use once you recognise the pattern.")
+            DeclensionTable(
+                noun = "stavení  (building)",
+                label = "Neuter, adjectival / -í pattern  — indeclinable except Instrumental",
+                rows = listOf(
+                    "1. Nominativ" to "stavení",
+                    "2. Genitiv" to "stavení",
+                    "3. Dativ" to "stavení",
+                    "4. Akuzativ" to "stavení",
+                    "5. Vokativ" to "stavení",
+                    "6. Lokál" to "stavení",
+                    "7. Instrumentál" to "stavením"
+                )
+            )
+            CaseNote("Other -í neuter nouns: nádraží (train station), přísloví (proverb), náměstí (town square), zátiší (still life), průčelí (façade). In the plural, all cases except Instrumental are also stavení; Instrumental plural = staveními.")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             // ── Irregular / Exceptional ───────────────────────────────────
             CaseSectionHeader("Irregular and Exceptional Nouns")
             CaseNote("Some nouns do not follow the hard or soft patterns above. Three important types to be aware of:")
@@ -398,23 +560,69 @@ fun CasesScreen(navController: NavController) {
             CaseNote("Stem-changing masculine:  den (day) loses its -e- in most forms. Gen: dne, Dat: dni / dnu, Loc: dni / dnu, Ins: dnem. The same pattern appears in týden (week) and kámen (stone).")
             CaseNote("Highly irregular:  dítě (child) is neuter but uses unique endings unlike any standard pattern — Gen: dítěte, Dat: dítěti, Acc: dítě, Loc: dítěti, Ins: dítětem. Its plural is also completely different: děti (children). Best memorised individually.")
 
-            // ── Plural Tables ─────────────────────────────────────────────
-            CaseSectionHeader("Declension Tables — Plural")
-            CaseNote("Plural endings vary by gender, animacy, and hard/soft stem. Masculine animate nouns soften the final consonant in the Nominative/Vocative plural (muž → muži, not *mužy). Note that for masculine animate, the Accusative plural equals the Genitive singular — not the Genitive plural.")
+            Spacer(modifier = Modifier.height(12.dp))
+            CaseNote("kůň (horse) — another important irregular. The ů shortens to o in all oblique forms (kůň → koň-), and its dative plural is koním (with -ím, not the expected -ům of the regular soft animate pattern). The forms koňu (dat.sg) and koňům (dat.pl) do NOT exist in the literary standard.")
+            DeclensionTable(
+                noun = "kůň  (horse)",
+                label = "Masculine animate — irregular  (ů → o stem change)",
+                rows = listOf(
+                    "1. Nominativ" to "kůň",
+                    "2. Genitiv" to "koně",
+                    "3. Dativ" to "koni",
+                    "4. Akuzativ" to "koně",
+                    "5. Vokativ" to "koni",
+                    "6. Lokál" to "koni",
+                    "7. Instrumentál" to "koněm"
+                )
+            )
             Spacer(modifier = Modifier.height(12.dp))
             DeclensionTable(
-                noun = "muži  (men)",
+                noun = "koně  (horses — plural)",
+                label = "Masculine animate — irregular plural  (Dat = koním, not koňům)",
+                rows = listOf(
+                    "1. Nominativ" to "koně",
+                    "2. Genitiv" to "koní",
+                    "3. Dativ" to "koním",
+                    "4. Akuzativ" to "koně",
+                    "5. Vokativ" to "koně",
+                    "6. Lokál" to "koních",
+                    "7. Instrumentál" to "koňmi"
+                )
+            )
+
+            // ── Plural Tables ─────────────────────────────────────────────
+            CaseSectionHeader("Declension Tables — Plural")
+            CaseNote("Plural endings vary by gender, animacy, and hard/soft stem. Masculine animate nouns soften the final consonant in the Nominative/Vocative plural (muž → muži). Masculine animate plural Accusative uses the same ending as the non-animate plural (pány, muže) — not the Genitive plural (pánů, mužů).")
+            CaseNote("Plural Locative note: hard-stem nouns normally take -ech (hradech, městech). When the stem ends in k however, Czech avoids the awkward k→c mutation in two ways: apply the mutation and use -ích (jablcích), or borrow the -ách ending from the feminine hard pattern to skip the mutation entirely (jablkách). Both jablkách and jablcích are standard; -ách is often preferred in everyday speech.")
+            Spacer(modifier = Modifier.height(12.dp))
+            DeclensionTable(
+                noun = "páni / pánové  (lords / gentlemen)",
                 label = "Masculine animate, hard — plural",
                 rows = listOf(
-                    "1. Nominativ" to "muži",
+                    "1. Nominativ" to "páni / pánové",
+                    "2. Genitiv" to "pánů",
+                    "3. Dativ" to "pánům",
+                    "4. Akuzativ" to "pány",
+                    "5. Vokativ" to "páni / pánové",
+                    "6. Lokál" to "pánech",
+                    "7. Instrumentál" to "pány"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "muži  (men)",
+                label = "Masculine animate, soft — plural",
+                rows = listOf(
+                    "1. Nominativ" to "muži / mužové",
                     "2. Genitiv" to "mužů",
                     "3. Dativ" to "mužům",
                     "4. Akuzativ" to "muže",
-                    "5. Vokativ" to "muži",
+                    "5. Vokativ" to "muži / mužové",
                     "6. Lokál" to "mužích",
                     "7. Instrumentál" to "muži"
                 )
             )
+            CaseNote("The -ové form (mužové) exists as a formal/literary alternative — the same phenomenon as páni / pánové for hard nouns. In everyday speech muži is standard; mužové sounds more ceremonial.")
             Spacer(modifier = Modifier.height(16.dp))
             DeclensionTable(
                 noun = "hrady  (castles)",
@@ -427,6 +635,20 @@ fun CasesScreen(navController: NavController) {
                     "5. Vokativ" to "hrady",
                     "6. Lokál" to "hradech",
                     "7. Instrumentál" to "hrady"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "stroje  (machines)",
+                label = "Masculine inanimate, soft — plural",
+                rows = listOf(
+                    "1. Nominativ" to "stroje",
+                    "2. Genitiv" to "strojů",
+                    "3. Dativ" to "strojům",
+                    "4. Akuzativ" to "stroje",
+                    "5. Vokativ" to "stroje",
+                    "6. Lokál" to "strojích",
+                    "7. Instrumentál" to "stroji"
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -473,34 +695,6 @@ fun CasesScreen(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             DeclensionTable(
-                noun = "páni / pánové  (lords / gentlemen)",
-                label = "Masculine animate, hard — plural",
-                rows = listOf(
-                    "1. Nominativ" to "páni / pánové",
-                    "2. Genitiv" to "pánů",
-                    "3. Dativ" to "pánům",
-                    "4. Akuzativ" to "pány",
-                    "5. Vokativ" to "páni / pánové",
-                    "6. Lokál" to "pánech",
-                    "7. Instrumentál" to "pány"
-                )
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            DeclensionTable(
-                noun = "stroje  (machines)",
-                label = "Masculine inanimate, soft — plural",
-                rows = listOf(
-                    "1. Nominativ" to "stroje",
-                    "2. Genitiv" to "strojů",
-                    "3. Dativ" to "strojům",
-                    "4. Akuzativ" to "stroje",
-                    "5. Vokativ" to "stroje",
-                    "6. Lokál" to "strojích",
-                    "7. Instrumentál" to "stroji"
-                )
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            DeclensionTable(
                 noun = "moře  (seas)",
                 label = "Neuter, soft — plural",
                 rows = listOf(
@@ -525,6 +719,91 @@ fun CasesScreen(navController: NavController) {
                     "5. Vokativ" to "místnosti",
                     "6. Lokál" to "místnostech",
                     "7. Instrumentál" to "místnostmi"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "soudci  (judges — plural)",
+                label = "Masculine animate, -ce stem — plural",
+                rows = listOf(
+                    "1. Nominativ" to "soudci",
+                    "2. Genitiv" to "soudců",
+                    "3. Dativ" to "soudcům",
+                    "4. Akuzativ" to "soudce",
+                    "5. Vokativ" to "soudci",
+                    "6. Lokál" to "soudcích",
+                    "7. Instrumentál" to "soudci"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "předsedové  (chairmen — plural)",
+                label = "Masculine animate, A-stem (-da/-ga nouns) — plural",
+                rows = listOf(
+                    "1. Nominativ" to "předsedové",
+                    "2. Genitiv" to "předsedů",
+                    "3. Dativ" to "předsedům",
+                    "4. Akuzativ" to "předsedy",
+                    "5. Vokativ" to "předsedové",
+                    "6. Lokál" to "předsedech",
+                    "7. Instrumentál" to "předsedy"
+                )
+            )
+            CaseNote("For -ista nouns (cyklista, turista) the nominative/vocative plural is cyklisté / cyklisti (turisté / turisti). The rest of the plural is regular: Gen. cyklistů, Dat. cyklistům, Acc. cyklisty, Loc. cyklistech, Ins. cyklisty.")
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "mluvčí  (spokespeople — plural)",
+                label = "Masculine animate, adjectival — plural",
+                rows = listOf(
+                    "1. Nominativ" to "mluvčí",
+                    "2. Genitiv" to "mluvčích",
+                    "3. Dativ" to "mluvčím",
+                    "4. Akuzativ" to "mluvčí",
+                    "5. Vokativ" to "mluvčí",
+                    "6. Lokál" to "mluvčích",
+                    "7. Instrumentál" to "mluvčími"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "písně  (songs — plural)",
+                label = "Feminine, soft consonant stem — plural",
+                rows = listOf(
+                    "1. Nominativ" to "písně",
+                    "2. Genitiv" to "písní",
+                    "3. Dativ" to "písním",
+                    "4. Akuzativ" to "písně",
+                    "5. Vokativ" to "písně",
+                    "6. Lokál" to "písních",
+                    "7. Instrumentál" to "písněmi"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "kosti  (bones — plural)",
+                label = "Feminine, hard consonant stem — plural",
+                rows = listOf(
+                    "1. Nominativ" to "kosti",
+                    "2. Genitiv" to "kostí",
+                    "3. Dativ" to "kostem",
+                    "4. Akuzativ" to "kosti",
+                    "5. Vokativ" to "kosti",
+                    "6. Lokál" to "kostech",
+                    "7. Instrumentál" to "kostmi"
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            DeclensionTable(
+                noun = "kuřata  (chicks — plural)",
+                label = "Neuter, young-animal pattern — plural",
+                rows = listOf(
+                    "1. Nominativ" to "kuřata",
+                    "2. Genitiv" to "kuřat",
+                    "3. Dativ" to "kuřatům",
+                    "4. Akuzativ" to "kuřata",
+                    "5. Vokativ" to "kuřata",
+                    "6. Lokál" to "kuřatech",
+                    "7. Instrumentál" to "kuřaty"
                 )
             )
 
@@ -636,7 +915,7 @@ private fun DeclensionTable(noun: String, label: String, rows: List<Pair<String,
         )
         Text(
             text = "Form",
-            modifier = Modifier.weight(0.6f),
+            modifier = Modifier.weight(0.8f),
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = ButtonBlue
@@ -652,7 +931,7 @@ private fun DeclensionTable(noun: String, label: String, rows: List<Pair<String,
             Text(text = caseName, modifier = Modifier.weight(1f), fontSize = 15.sp, color = Color.DarkGray)
             Text(
                 text = form,
-                modifier = Modifier.weight(0.6f),
+                modifier = Modifier.weight(0.8f),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
