@@ -94,7 +94,46 @@ fun ConditionsScreen(navController: NavController) {
             ConRow("koupili by", "they would buy")
             ConNote("Word order: the by-form sits in the second position of the clause — the same clitic rule as jsem/jsi in the past tense. 'Koupil bych auto.' is correct. Never start a sentence with the by-form: 'Bych koupil auto.' is wrong.")
 
-            // ── Section 3: Hypothetical Conditions ────────────────────────
+            // ── Section 3: Mohl Bych ──────────────────────────────────────
+            ConSection("Mohl Bych — A Common Conditional")
+            ConNote("One of the most useful conditional phrases in Czech is 'mohl bych' — meaning 'I could' or 'I would be able to'.")
+            ConNote("'mohl' is the past l-participle (masculine singular) of the verb moct = 'to be able to / can'. Combined with the by-form, it forms the conditional mood of moct — used for hypothetical ability and polite requests.")
+            ConNote("Past tense of moct — full paradigm:")
+            ConTable(
+                headers = listOf("Person", "Past (masc.)", "Past (fem.)"),
+                rows = listOf(
+                    listOf("já", "jsem mohl", "jsem mohla"),
+                    listOf("ty", "jsi mohl", "jsi mohla"),
+                    listOf("on / ona / ono", "mohl / mohla / mohlo", ""),
+                    listOf("my", "jsme mohli", "jsme mohly"),
+                    listOf("vy", "jste mohli", "jste mohly"),
+                    listOf("oni / ony", "mohli", "mohly")
+                ),
+                weights = listOf(0.9f, 1.1f, 1.1f)
+            )
+            ConNote("Conditional of moct — mohl bych (all persons):")
+            ConTable(
+                headers = listOf("Person", "Conditional (masc.)", "Conditional (fem.)"),
+                rows = listOf(
+                    listOf("já", "mohl bych", "mohla bych"),
+                    listOf("ty", "mohl bys", "mohla bys"),
+                    listOf("on / ona / ono", "mohl by / mohla by / mohlo by", ""),
+                    listOf("my", "mohli bychom", "mohly bychom"),
+                    listOf("vy", "mohli byste", "mohly byste"),
+                    listOf("oni / ony", "mohli by", "mohly by")
+                ),
+                weights = listOf(0.9f, 1.15f, 1.05f)
+            )
+            ConNote("Key distinction:")
+            ConNote("  mohl jsem = 'I was able to / I could' — PAST INDICATIVE. It actually happened or was possible.")
+            ConNote("  mohl bych = 'I could / I would be able to' — CONDITIONAL. Hypothetical or polite.")
+            ConRow("Mohl bych ti pomoci, kdybych měl čas.", "I could help you if I had time. (hypothetical)")
+            ConRow("Mohl bych se zeptat?", "Could I ask a question? (polite request)")
+            ConRow("Mohla bych dostat sklenici vody?", "Could I have a glass of water? (polite request, woman speaking)")
+            ConRow("Mohli bychom to udělat zítra.", "We could do it tomorrow. (possibility)")
+            ConRow("Mohl jsem to udělat sám.", "I was able to do it myself. (actual past ability — contrast with conditional)")
+
+            // ── Section 5: Hypothetical Conditions ────────────────────────
             ConSection("Hypothetical Conditions — Kdybych, Kdybys, Kdyby...")
             ConNote("For hypothetical conditions ('If I won the lottery...', 'If I were you...'), Czech uses kdybych/kdybys/kdyby... in the if-clause. This is the direct equivalent of Russian 'если бы'. The difference: Russian keeps 'если' and 'бы' as two separate words; Czech fuses them into one word.")
             ConNote("Russian: если бы + past tense → Czech: kdyby-form + l-form. The l-form is the same past participle used in ordinary past tense sentences — just like Russian's past tense doubles as the conditional form.")
@@ -124,7 +163,7 @@ fun ConditionsScreen(navController: NavController) {
             ConNote("'If I were you' — Czech uses 'kdybych byl/a na tvém místě' (lit. if I were in your place). Czech has no subjunctive 'were' — it uses the same l-form as the past tense: byl (man) / byla (woman). The hypothetical meaning comes from kdybych, not from a special verb form.")
             ConNote("Confirmed: Yes, Czech combines если бы into kdybych/kdybys/kdyby... Just as you observed. And the standalone bych/bys/by... forms appear in the result clause — those are the same system just used separately.")
 
-            // ── Section 4: Past / Counterfactual Conditions ───────────────
+            // ── Section 6: Past / Counterfactual Conditions ───────────────
             ConSection("Past / Counterfactual Conditions")
             ConNote("Counterfactual conditions talk about things that did NOT happen — a road not taken: 'If I had bought that stock 7 years ago...' Czech handles these in two ways.")
             ConNote("1. Past condition with a present result (most common in practice):")
@@ -142,7 +181,7 @@ fun ConditionsScreen(navController: NavController) {
             ConNote("  Result:     byl/a + by-form + l-form of main verb")
             ConNote("Russian comparison: Russian если бы + past tense covers BOTH Type 2 and Type 3 without structural difference — Russian doesn't distinguish them. Czech can distinguish: Type 2 = simple l-form only; Type 3 = byl/a + l-form. In informal spoken Czech, the simpler Type 2 form is frequently used even for past counterfactuals — both are understood from context.")
 
-            // ── Section 5: Summary ─────────────────────────────────────────
+            // ── Section 7: Summary ─────────────────────────────────────────
             ConSection("Summary — All Three Types")
             ConNote("Quick reference for all three conditional types:")
             ConTable(

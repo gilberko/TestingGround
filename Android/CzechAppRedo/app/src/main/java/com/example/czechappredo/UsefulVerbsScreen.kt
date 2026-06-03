@@ -114,6 +114,7 @@ fun UsefulVerbsScreen(navController: NavController) {
                 translation = "Can you help me?"
             )
             UVAspect("Imperfective. No perfective counterpart (modal verb).")
+            UVAspect("Also written: moci — an archaic/formal variant of the same infinitive. moct is the modern standard; moci appears in literary or formal contexts. Both are listed in Czech dictionaries. The present tense has two registers: můžu / můžou (colloquial, everyday speech) and mohu / mohou (formal, written Czech) — both are correct; the table shows both.")
             UVTable(
                 verb = "moct", label = "irregular",
                 rows = listOf(

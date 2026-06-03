@@ -135,6 +135,52 @@ fun IndefinitePronounsScreen(navController: NavController) {
             IPNote("Nikdy nejím maso. (I never eat meat.)")
             IPNote("Nikde ho nenajdu. (I can't find him anywhere / I find him nowhere.)")
 
+            IPSection("Anyone, Wherever — The -si and -koli Variants")
+            IPNote("The basic někdo / něco / někde... series covers everyday speech. Czech has two additional series built on the same roots:")
+            IPNote("• -si suffix (kdosi, cosi, kdesi...): literary and archaic — conveys vagueness or mystery. You will encounter it in books and older texts, but native speakers rarely use it in modern conversation.")
+            IPNote("• -koli / -koliv suffix (kdokoli, cokoli, kdekoli...): modern and standard — expresses free choice, meaning 'any... at all' or 'whoever / whatever / wherever'. Used in conditionals, futures, and imperatives.")
+            IPNote("Note: -koli and -koliv are fully interchangeable — same meaning, just stylistic variants (kdokoli = kdokoliv, cokoli = cokoliv, etc.).")
+            IPNote("There is no Czech word 'nekto' — that is the Russian word некто. The Czech equivalent is někdo, covered above.")
+            IPTable4(
+                headers = listOf("Category", "Some- (basic)", "-si (literary)", "-koli (free-choice)"),
+                rows = listOf(
+                    listOf("Person", "někdo", "kdosi", "kdokoli"),
+                    listOf("Thing", "něco", "cosi", "cokoli"),
+                    listOf("Place (static)", "někde", "kdesi", "kdekoli"),
+                    listOf("Place (motion)", "někam", "kamsi", "kamkoli"),
+                    listOf("Time", "někdy", "kdysi *", "kdykoli"),
+                    listOf("Manner", "nějak", "jaksi", "jakkoli")
+                )
+            )
+            IPNote("* kdysi ≠ někdy — kdysi specifically means 'once (in the past) / once upon a time'. It always refers to past time with a nostalgic tone, not just 'sometime' in general.")
+
+            IPSection("Three-Way Contrast — Examples")
+            IPNote("PERSON")
+            IPNote("Někdo zavolal. — Someone called. (a real but unspecified person)")
+            IPNote("Kdosi zaklepal na dveře. — A certain someone knocked on the door. (mysterious, literary)")
+            IPNote("Kdokoli může přijít. — Anyone can come. (no restriction)")
+            IPNote("THING")
+            IPNote("Řekl mi něco důležitého. — He told me something important.")
+            IPNote("Cosi se stalo. — A certain something happened. (literary, vague atmosphere)")
+            IPNote("Sněz cokoli chceš. — Eat whatever you want.")
+            IPNote("PLACE (static)")
+            IPNote("Klíče jsou někde v bytě. — The keys are somewhere in the apartment.")
+            IPNote("Kdesi v dálce slyšel zvony. — Somewhere far away he heard bells. (literary)")
+            IPNote("Kdekoli bydlíš, jsi vítán. — Wherever you live, you're welcome.")
+            IPNote("TIME")
+            IPNote("Někdy ho navštívím. — I'll visit him sometime.")
+            IPNote("Kdysi jsme byli přátelé. — Once (in the past) we were friends. (specifically past, nostalgic)")
+            IPNote("Zavolej kdykoli. — Call anytime. (any time at all)")
+            IPNote("MANNER")
+            IPNote("Nějak to zvládneme. — We'll manage it somehow.")
+            IPNote("Vypadá jaksi unaveně. — He looks kind of/somewhat tired. (informal, colloquial)")
+            IPNote("Jakkoli to uděláš, bude to dobře. — However you do it, it will be fine.")
+
+            IPSection("Usage Notes")
+            IPNote("The -koli series works best in conditionals, futures, and imperatives. In a simple past statement with no conditional meaning it can sound unnatural.")
+            IPNote("The -si series appears mainly in literature and formal writing. Learners should be able to recognise it in texts but do not need to actively use it in speech.")
+            IPNote("jaksi carries a slightly informal, colloquial undertone — it implies approximation or mild uncertainty: 'kind of', 'sort of', 'somehow'.")
+
             IPSection("What about Vocative?")
             IPNote("Indefinite pronouns and adverbs have no vocative. The vocative case is for directly addressing someone by name or title. You would not address 'someone' (you don't know who they are) or 'something' in the vocative. Not applicable here.")
 
@@ -158,6 +204,58 @@ private fun IPNote(text: String) {
         color = Color.DarkGray,
         modifier = Modifier.padding(vertical = 4.dp)
     )
+}
+
+@Composable
+private fun IPTable4(
+    headers: List<String>,
+    rows: List<List<String>>,
+    weights: List<Float> = listOf(0.75f, 0.65f, 0.65f, 0.85f)
+) {
+    Spacer(modifier = Modifier.height(6.dp))
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(6.dp))
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+    ) {
+        Column {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                headers.forEachIndexed { i, h ->
+                    Text(
+                        text = h,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = ButtonBlue,
+                        modifier = Modifier.weight(weights[i])
+                    )
+                }
+            }
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 4.dp),
+                color = Color.LightGray,
+                thickness = 0.5.dp
+            )
+            rows.forEach { row ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 3.dp)
+                ) {
+                    row.forEachIndexed { i, cell ->
+                        Text(
+                            text = cell,
+                            fontSize = if (i == 0) 13.sp else 12.sp,
+                            fontWeight = if (i == 0) FontWeight.Normal else FontWeight.Bold,
+                            color = if (i == 0) Color.DarkGray else Color.Black,
+                            modifier = Modifier.weight(weights[i])
+                        )
+                    }
+                }
+            }
+        }
+    }
+    Spacer(modifier = Modifier.height(4.dp))
 }
 
 @Composable
