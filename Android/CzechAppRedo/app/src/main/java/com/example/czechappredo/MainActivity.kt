@@ -94,6 +94,8 @@ class MainActivity : ComponentActivity() {
                 composable("conditions") { ConditionsScreen(navController) }
                 composable("dialogue_park") { AtTheParkDialogueScreen(navController) }
                 composable("dialogue_school") { HowWasSchoolDialogueScreen(navController) }
+                composable("connecting_sentences") { ConnectingSentencesScreen(navController) }
+                composable("comparisons") { ComparisonsScreen(navController) }
             }
         }
     }
@@ -238,7 +240,9 @@ fun LearningHubScreen(navController: NavController) {
             "Someone, Somewhere..." to "someone_somewhere",
             "Many and Few" to "many_and_few",
             "Imperative" to "imperative",
-            "Conditions" to "conditions"
+            "Conditions" to "conditions",
+            "Connecting Sentences" to "connecting_sentences",
+            "Comparisons" to "comparisons"
         )
         Column(
             modifier = Modifier

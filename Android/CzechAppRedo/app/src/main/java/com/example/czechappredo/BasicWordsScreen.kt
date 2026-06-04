@@ -57,6 +57,7 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("a", "and")
             BWRow("nebo", "or")
             BWRow("ale", "but")
+            BWRow("taky / také", "also / too", "taky is the colloquial spoken form; také is the formal/written form. Já taky. = Me too.")
             BWRow("tak", "so / well / then")
             BWRow("i", "and / also / even", "literary variant of 'a'; i...i = both...and; e.g. i já = me too")
             BWRow("znovu / znova", "again", "znovu is the standard written form; znova is a colloquial variant — more common in Moravia and in spoken Czech. Both are fully correct and interchangeable.")
