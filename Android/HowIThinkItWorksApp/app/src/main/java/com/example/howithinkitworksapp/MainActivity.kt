@@ -88,6 +88,8 @@ class MainActivity : ComponentActivity() {
                     composable("boredom") { BoredomScreen(navController) }
                     composable("religion_evolving") { ReligionEvolvingScreen(navController) }
                     composable("violence") { ViolenceScreen(navController) }
+                    composable("about_thinking") { AboutThinkingScreen(navController) }
+                    composable("about_rules") { AboutRulesScreen(navController) }
                 }
             }
         }
@@ -110,7 +112,9 @@ fun MainScreen(navController: NavController) {
         "About Music" to "about_music_hub",
         "Avoidance" to "avoidance",
         "Pondering" to "pondering_hub",
-        "Violence" to "violence"
+        "Violence" to "violence",
+        "About Thinking" to "about_thinking",
+        "About Rules" to "about_rules"
     )
     HubBackground {
     Column(
