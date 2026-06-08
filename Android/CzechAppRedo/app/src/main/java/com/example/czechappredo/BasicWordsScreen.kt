@@ -69,6 +69,18 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("potom", "then / afterwards", "neutral variant; pak and potom are largely interchangeable")
             BWNote("More formal alternatives: nato = right after that; poté = after that (written/formal). Example: Nejdřív jsem pracoval, pak jsem šel domů. — First I worked, then I went home.")
 
+            // ── Aby — So That / In Order To ──────────────────────────────
+            BWSection("Aby — So That / In Order To")
+            BWNote("aby is the Czech equivalent of Russian чтобы — a conjunction that introduces a purpose or goal clause ('so that' / 'in order to'). Like Russian чтобы, it pairs with a verb in a past-tense-shaped form: aby conjugates for person and number, and the verb that follows takes its L-participle (the same form used to build the past tense, e.g. dělal, pomohl, mohla), agreeing in gender and number with the subject of that clause.")
+            BWRow("abych", "so that I…", "1st person singular: Přišel jsem, abych ti pomohl. = I came so that I could help you.")
+            BWRow("abys", "so that you…", "2nd person singular, informal: Volám ti, abys nezapomněl. = I'm calling you so you won't forget.")
+            BWRow("aby", "so that he/she/it…", "3rd person singular: Naučila se česky, aby mohla číst knihy v originále. = She learned Czech so she could read books in the original.")
+            BWRow("abychom", "so that we…", "1st person plural: Sešli jsme se, abychom to probrali. = We met up so that we could discuss it.")
+            BWRow("abyste", "so that you…", "2nd person plural / formal: Pospěšte si, abyste nepřišli pozdě. = Hurry up so you won't be late.")
+            BWRow("aby", "so that they…", "3rd person plural — same form as 3rd person singular: Zavřeli okno, aby jim nebyla zima. = They closed the window so they wouldn't be cold.")
+            BWNote("More examples: Zavřel okno, aby mu nebyla zima. = He closed the window so he wouldn't be cold (mu = dative 'to him', nebyla agrees with the neuter-feeling 'zima' as feminine). Chci, abys byl šťastný. = I want you to be happy (lit. 'I want, so-that-you were happy' — Czech often uses aby where English uses an infinitive after verbs like chtít).")
+            BWNote("See also: Connecting Words → Connecting Sentences (Learning hub) for the full conjugation table and more sentence patterns.")
+
             // ── Greetings ─────────────────────────────────────────────────
             BWSection("Greetings")
             BWRow("Dobré ráno", "Good morning")
@@ -308,7 +320,12 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("ještě jednou", "one more time / once more", "Zopakuj to ještě jednou. = Repeat it one more time.")
             BWRow("ještě nikdy", "never yet / never before", "double negative with a negated verb: Ještě nikdy jsem tam nebyl. = I've never been there before.")
             BWRow("už nikdy", "never again", "Už nikdy to neudělám. = I'll never do it again.")
-            BWNote("Mental model: ještě = the situation hasn't changed yet (or there's more to come). už = the situation has changed — something started, or with ne- something stopped.")
+            BWNote("Emphatic negation: combine už with vůbec (at all / in general) to intensify a negative statement into 'not at all' / 'absolutely not'. Here už doesn't mean 'already' — it acts as an intensifying particle that sharpens the negation, much like English 'at all' sharpens 'not'.")
+            BWRow("vůbec", "at all / in general", "the actual carrier of the 'at all' meaning; už only intensifies it. Vůbec nerozumím. = I don't understand at all.")
+            BWRow("už vůbec ne", "not at all / absolutely not", "Líbí se ti to? — Už vůbec ne! = Do you like it? — Not at all! Stronger and more dismissive than a plain 'ne'.")
+            BWRow("už vůbec nerozumím", "I don't understand at all", "Už vůbec nerozumím, co tím myslíš. = I have no idea at all what you mean by that.")
+            BWRow("to se mi už vůbec nelíbí", "I don't like that at all", "už vůbec strengthens nelíbí (don't like) into a much stronger rejection than nelíbí se mi alone.")
+            BWNote("Mental model: ještě = the situation hasn't changed yet (or there's more to come). už = the situation has changed — something started, or with ne- something stopped. už vůbec ne = a separate, emphatic pattern: už here intensifies vůbec's negation rather than marking a change of state.")
 
             // ── Only, Just, Nothing But ──────────────────────────────────
             BWSection("Only, Just, Nothing But")

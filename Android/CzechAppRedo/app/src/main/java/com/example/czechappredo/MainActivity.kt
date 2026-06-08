@@ -90,6 +90,7 @@ class MainActivity : ComponentActivity() {
                 composable("someone_somewhere") { IndefinitePronounsScreen(navController) }
                 composable("many_and_few") { ManyAndFewScreen(navController) }
                 composable("common_verbs") { CommonVerbsListScreen(navController) }
+                composable("case_conjugation_examples") { CaseConjugationExamplesScreen(navController) }
                 composable("imperative") { ImperativeScreen(navController) }
                 composable("conditions") { ConditionsScreen(navController) }
                 composable("dialogue_park") { AtTheParkDialogueScreen(navController) }
@@ -314,7 +315,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "Shopping" to "shopping",
             "Connecting Words" to "connecting_words",
             "Adverbs" to "adverb_list",
-            "Common Verbs List" to "common_verbs"
+            "Common Verbs List" to "common_verbs",
+            "Examples of Conjugation of Cases" to "case_conjugation_examples"
         )
         Column(
             modifier = Modifier
