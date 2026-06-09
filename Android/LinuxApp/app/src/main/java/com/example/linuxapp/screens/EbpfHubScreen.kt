@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ButtonDefaults
@@ -49,7 +51,13 @@ fun EbpfHubScreen(
     onEbpfKptrs: () -> Unit,
     onEbpfHelpersKfuncs: () -> Unit,
     onEbpfSleepable: () -> Unit,
-    onEbpfModifyReturn: () -> Unit
+    onEbpfModifyReturn: () -> Unit,
+    onBpftrace: () -> Unit,
+    onEbpfPersistency: () -> Unit,
+    onEbpfLsm: () -> Unit,
+    onEbpfSamplePrograms: () -> Unit,
+    onEbpfManaging: () -> Unit,
+    onAboutCilium: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -77,6 +85,7 @@ fun EbpfHubScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(horizontal = 16.dp, vertical = 8.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -124,6 +133,30 @@ fun EbpfHubScreen(
             ) {
                 EbpfButton(label = "Sleepable\neBPF Programs", onClick = onEbpfSleepable, modifier = Modifier.weight(1f))
                 EbpfButton(label = "Modify Return\nValue", onClick = onEbpfModifyReturn, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "bpftrace", onClick = onBpftrace, modifier = Modifier.weight(1f))
+                EbpfButton(label = "Persistency", onClick = onEbpfPersistency, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "eBPF LSM", onClick = onEbpfLsm, modifier = Modifier.weight(1f))
+                EbpfButton(label = "Sample\nPrograms", onClick = onEbpfSamplePrograms, modifier = Modifier.weight(1f))
+            }
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                EbpfButton(label = "Managing &\nMonitoring", onClick = onEbpfManaging, modifier = Modifier.weight(1f))
+                EbpfButton(label = "About Cilium", onClick = onAboutCilium, modifier = Modifier.weight(1f))
             }
         }
         }

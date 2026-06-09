@@ -38,7 +38,8 @@ fun HomeScreen(
     onUserMode: () -> Unit,
     onKernelMode: () -> Unit,
     onEbpf: () -> Unit,
-    onPermissions: () -> Unit
+    onPermissions: () -> Unit,
+    onLicensing: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -69,6 +70,8 @@ fun HomeScreen(
             HomeButton(label = "eBPF", onClick = onEbpf)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Advanced Topics", onClick = onPermissions)
+            Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Licensing", onClick = onLicensing)
             Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
@@ -77,7 +80,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v4.6",
+                    text = "v5.0",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace

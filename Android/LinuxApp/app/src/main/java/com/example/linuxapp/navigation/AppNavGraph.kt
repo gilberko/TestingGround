@@ -125,6 +125,13 @@ import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
 import com.example.linuxapp.screens.permissions.IoUringScreen
 import com.example.linuxapp.screens.permissions.DaemonsScreen
 import com.example.linuxapp.screens.permissions.NatVpnScreen
+import com.example.linuxapp.screens.ebpf.BpftraceScreen
+import com.example.linuxapp.screens.ebpf.EbpfPersistencyScreen
+import com.example.linuxapp.screens.ebpf.EbpfLsmScreen
+import com.example.linuxapp.screens.ebpf.EbpfSampleProgramsScreen
+import com.example.linuxapp.screens.ebpf.EbpfManagingScreen
+import com.example.linuxapp.screens.ebpf.AboutCiliumScreen
+import com.example.linuxapp.screens.LicensingScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -232,6 +239,13 @@ sealed class Screen(val route: String) {
     object AdvancedIoUring             : Screen("advanced_io_uring")
     object AdvancedDaemons             : Screen("advanced_daemons")
     object AdvancedNatVpn              : Screen("advanced_nat_vpn")
+    object EbpfBpftrace                : Screen("ebpf_bpftrace")
+    object EbpfPersistency             : Screen("ebpf_persistency")
+    object EbpfLsm                     : Screen("ebpf_lsm")
+    object EbpfSamplePrograms          : Screen("ebpf_sample_programs")
+    object EbpfManaging                : Screen("ebpf_managing")
+    object EbpfAboutCilium             : Screen("ebpf_about_cilium")
+    object Licensing                   : Screen("licensing")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -256,7 +270,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
                 onEbpf = { navController.navigate(Screen.EbpfHub.route) },
-                onPermissions = { navController.navigate(Screen.PermissionsHub.route) }
+                onPermissions = { navController.navigate(Screen.PermissionsHub.route) },
+                onLicensing = { navController.navigate(Screen.Licensing.route) }
             )
         }
 
@@ -418,7 +433,13 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
                 onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) },
                 onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) },
-                onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) }
+                onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) },
+                onBpftrace = { navController.navigate(Screen.EbpfBpftrace.route) },
+                onEbpfPersistency = { navController.navigate(Screen.EbpfPersistency.route) },
+                onEbpfLsm = { navController.navigate(Screen.EbpfLsm.route) },
+                onEbpfSamplePrograms = { navController.navigate(Screen.EbpfSamplePrograms.route) },
+                onEbpfManaging = { navController.navigate(Screen.EbpfManaging.route) },
+                onAboutCilium = { navController.navigate(Screen.EbpfAboutCilium.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -700,6 +721,27 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfModifyReturn.route) {
             EbpfModifyReturnScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfBpftrace.route) {
+            BpftraceScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfPersistency.route) {
+            EbpfPersistencyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfLsm.route) {
+            EbpfLsmScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfSamplePrograms.route) {
+            EbpfSampleProgramsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfManaging.route) {
+            EbpfManagingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfAboutCilium.route) {
+            AboutCiliumScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Licensing.route) {
+            LicensingScreen(onBack = { navController.popBackStack() })
         }
     }
 }
