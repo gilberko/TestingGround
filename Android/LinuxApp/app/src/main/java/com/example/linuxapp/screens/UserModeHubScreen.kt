@@ -55,7 +55,10 @@ fun UserModeHubScreen(
     onGraphicalInterface: () -> Unit,
     onInlineAssembly: () -> Unit,
     onFanotify: () -> Unit,
-    onCommunicatingWithKernel: () -> Unit
+    onCommunicatingWithKernel: () -> Unit,
+    onMemAlloc: () -> Unit,
+    onMemAlloc2: () -> Unit,
+    onGlibc: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -141,6 +144,18 @@ fun UserModeHubScreen(
             ) {
                 UserModeButton(label = "fanotify /\ninotify", modifier = Modifier.weight(1f), onClick = onFanotify)
                 UserModeButton(label = "Communicating\nWith Kernel", modifier = Modifier.weight(1f), onClick = onCommunicatingWithKernel)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                UserModeButton(label = "Memory\nAllocation", modifier = Modifier.weight(1f), onClick = onMemAlloc)
+                UserModeButton(label = "Memory\nAllocation 2", modifier = Modifier.weight(1f), onClick = onMemAlloc2)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(modifier = Modifier.fillMaxWidth()) {
+                UserModeButton(label = "glibc", modifier = Modifier.fillMaxWidth(), onClick = onGlibc)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

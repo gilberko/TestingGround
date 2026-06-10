@@ -35,6 +35,8 @@ fun HomeScreen(
     onLinuxUsage2: () -> Unit,
     onShellScripting: () -> Unit,
     onLinuxHistory: () -> Unit,
+    onIdes: () -> Unit,
+    onPackageManagers: () -> Unit,
     onUserMode: () -> Unit,
     onKernelMode: () -> Unit,
     onEbpf: () -> Unit,
@@ -63,6 +65,10 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux History", onClick = onLinuxHistory)
             Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Recommended Development IDEs", onClick = onIdes)
+            Spacer(modifier = Modifier.height(12.dp))
+            HomeButton(label = "Working with Package Managers", onClick = onPackageManagers)
+            Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux User Mode Programming", onClick = onUserMode)
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode)
@@ -80,7 +86,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v5.0",
+                    text = "v5.1",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace

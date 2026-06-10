@@ -132,6 +132,11 @@ import com.example.linuxapp.screens.ebpf.EbpfSampleProgramsScreen
 import com.example.linuxapp.screens.ebpf.EbpfManagingScreen
 import com.example.linuxapp.screens.ebpf.AboutCiliumScreen
 import com.example.linuxapp.screens.LicensingScreen
+import com.example.linuxapp.screens.usermode.UserModeMemAllocScreen
+import com.example.linuxapp.screens.usermode.UserModeMemAlloc2Screen
+import com.example.linuxapp.screens.usermode.UserModeGlibcScreen
+import com.example.linuxapp.screens.LinuxIdesScreen
+import com.example.linuxapp.screens.LinuxPackageManagersScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -246,6 +251,11 @@ sealed class Screen(val route: String) {
     object EbpfManaging                : Screen("ebpf_managing")
     object EbpfAboutCilium             : Screen("ebpf_about_cilium")
     object Licensing                   : Screen("licensing")
+    object UserModeMemAlloc            : Screen("user_mode_mem_alloc")
+    object UserModeMemAlloc2           : Screen("user_mode_mem_alloc_2")
+    object UserModeGlibc               : Screen("user_mode_glibc")
+    object LinuxIdes                   : Screen("linux_ides")
+    object LinuxPackageManagers        : Screen("linux_package_managers")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -267,6 +277,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onLinuxUsage2 = { navController.navigate(Screen.LinuxUsage2.route) },
                 onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
                 onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
+                onIdes = { navController.navigate(Screen.LinuxIdes.route) },
+                onPackageManagers = { navController.navigate(Screen.LinuxPackageManagers.route) },
                 onUserMode = { navController.navigate(Screen.UserModeHub.route) },
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
                 onEbpf = { navController.navigate(Screen.EbpfHub.route) },
@@ -365,7 +377,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onGraphicalInterface = { navController.navigate(Screen.UserModeGraphical.route) },
                 onInlineAssembly = { navController.navigate(Screen.UserModeInlineAssembly.route) },
                 onFanotify = { navController.navigate(Screen.UserModeFanotify.route) },
-                onCommunicatingWithKernel = { navController.navigate(Screen.UsermodeCommunicatingWithKernel.route) }
+                onCommunicatingWithKernel = { navController.navigate(Screen.UsermodeCommunicatingWithKernel.route) },
+                onMemAlloc = { navController.navigate(Screen.UserModeMemAlloc.route) },
+                onMemAlloc2 = { navController.navigate(Screen.UserModeMemAlloc2.route) },
+                onGlibc = { navController.navigate(Screen.UserModeGlibc.route) }
             )
         }
         composable(Screen.UserModeSync.route) {
@@ -418,6 +433,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.LinuxHistory.route) {
             LinuxHistoryScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxIdes.route) {
+            LinuxIdesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxPackageManagers.route) {
+            LinuxPackageManagersScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfHub.route) {
             EbpfHubScreen(
@@ -568,6 +589,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.UserModeFanotify.route) {
             UserModeFanotifyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeMemAlloc.route) {
+            UserModeMemAllocScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeMemAlloc2.route) {
+            UserModeMemAlloc2Screen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UserModeGlibc.route) {
+            UserModeGlibcScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.CallingConventions.route) {
             CallingConventionsScreen(onBack = { navController.popBackStack() })
