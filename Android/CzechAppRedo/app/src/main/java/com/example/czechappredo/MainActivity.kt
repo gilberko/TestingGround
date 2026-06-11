@@ -68,6 +68,7 @@ class MainActivity : ComponentActivity() {
                 composable("days_of_week") { DaysOfWeekScreen(navController) }
                 composable("quiz_eng_czech") { QuizScreen(navController, engToCzech = true) }
                 composable("quiz_czech_eng") { QuizScreen(navController, engToCzech = false) }
+                composable("quiz_verb_conjugation") { VerbConjugationQuizScreen(navController) }
                 composable("dialogues") { DialoguesHubScreen(navController) }
                 composable("dialogue_restaurant") { RestaurantDialogueScreen(navController) }
                 composable("dialogue_directions") { DirectionsDialogueScreen(navController) }
@@ -165,6 +166,8 @@ fun HomeScreen(navController: NavController) {
             NavButton(label = "Quiz — English to Czech") { navController.navigate("quiz_eng_czech") }
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Quiz — Czech to English") { navController.navigate("quiz_czech_eng") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Verb Conjugation Quiz") { navController.navigate("quiz_verb_conjugation") }
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
             Spacer(modifier = Modifier.height(48.dp))
