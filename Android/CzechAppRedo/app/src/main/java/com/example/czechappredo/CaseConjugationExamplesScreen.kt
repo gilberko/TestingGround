@@ -145,6 +145,82 @@ fun CaseConjugationExamplesScreen(navController: NavController) {
             CCCase("6. Lokál", "Plavali jsme v modrém moři.", "We swam in the blue sea.", "modrém moři")
             CCCase("7. Instrumentál", "Loď pluje nad modrým mořem.", "The ship sails over the blue sea.", "modrým mořem")
 
+            // ── červený hrad ──────────────────────────────────────────────
+            CCPhrase("červený hrad", "a red castle", "masc. inanimate · hard noun + hard adj · singular")
+            CCCase("1. Nominativ", "Červený hrad je starý.", "The red castle is old.", "červený hrad")
+            CCCase("2. Genitiv", "Fotografie červeného hradu je krásná.", "A photo of the red castle is beautiful.", "červeného hradu")
+            CCCase("3. Dativ", "Jdu k červenému hradu.", "I'm going to the red castle.", "červenému hradu")
+            CCCase("4. Akuzativ", "Vidím červený hrad.", "I see the red castle.", "červený hrad")
+            CCCaseNote("5. Vokativ", "Inanimate objects are not addressed directly in Czech; the vocative form exists but is archaic/poetic.", "červený hrade")
+            CCCase("6. Lokál", "Mluvím o červeném hradě.", "I'm talking about the red castle.", "červeném hradě")
+            CCCase("7. Instrumentál", "Jsem za červeným hradem.", "I am behind the red castle.", "červeným hradem")
+
+            CCPhrase("červené hrady", "red castles", "masc. inanimate · plural — adjective uses -é (červené hrady); inanimate acc pl = nom pl")
+            CCCase("1. Nominativ", "Červené hrady jsou staré.", "Red castles are old.", "červené hrady")
+            CCCase("2. Genitiv", "Fotografie červených hradů jsou krásné.", "Photos of red castles are beautiful.", "červených hradů")
+            CCCase("3. Dativ", "Jdu k červeným hradům.", "I'm going to the red castles.", "červeným hradům")
+            CCCase("4. Akuzativ", "Vidím červené hrady.", "I see the red castles.", "červené hrady")
+            CCCaseNote("5. Vokativ", "Inanimate object — identical to the nominative plural.", "červené hrady")
+            CCCase("6. Lokál", "Mluvím o červených hradech.", "I'm talking about the red castles.", "červených hradech")
+            CCCase("7. Instrumentál", "Jsem za červenými hrady.", "I am behind the red castles.", "červenými hrady")
+
+            // ── bílá kočka ────────────────────────────────────────────────
+            CCPhrase("bílá kočka", "a white cat", "feminine · hard noun + hard adj · singular")
+            CCCase("1. Nominativ", "Bílá kočka spí.", "The white cat is sleeping.", "bílá kočka")
+            CCCase("2. Genitiv", "Barva bílé kočky je krásná.", "The colour of the white cat is beautiful.", "bílé kočky")
+            CCCase("3. Dativ", "Dávám mléko bílé kočce.", "I give milk to the white cat.", "bílé kočce")
+            CCCase("4. Akuzativ", "Vidím bílou kočku.", "I see the white cat.", "bílou kočku")
+            CCCase("5. Vokativ", "Bílá kočko, pojď sem!", "White cat, come here!", "bílá kočko")
+            CCCase("6. Lokál", "Mluvím o bílé kočce.", "I'm talking about the white cat.", "bílé kočce")
+            CCCase("7. Instrumentál", "Hraju si s bílou kočkou.", "I'm playing with the white cat.", "bílou kočkou")
+
+            CCPhrase("bílé kočky", "white cats", "feminine · plural — gen sg and nom pl are both bílé kočky; gen pl = bílých koček (zero ending with inserted vowel)")
+            CCCase("1. Nominativ", "Bílé kočky jsou roztomilé.", "White cats are cute.", "bílé kočky")
+            CCCase("2. Genitiv", "Mám pět bílých koček.", "I have five white cats.", "bílých koček")
+            CCCase("3. Dativ", "Dávám mléko bílým kočkám.", "I give milk to the white cats.", "bílým kočkám")
+            CCCase("4. Akuzativ", "Vidím bílé kočky.", "I see the white cats.", "bílé kočky")
+            CCCase("5. Vokativ", "Bílé kočky, pojďte sem!", "White cats, come here!", "bílé kočky")
+            CCCase("6. Lokál", "Mluvím o bílých kočkách.", "I'm talking about the white cats.", "bílých kočkách")
+            CCCase("7. Instrumentál", "Hraju si s bílými kočkami.", "I'm playing with the white cats.", "bílými kočkami")
+
+            // ── nový dům ──────────────────────────────────────────────────
+            CCPhrase("nový dům", "a new house", "masc. inanimate · hard noun + hard adj · singular — dům has an irregular ů→o stem change in all oblique forms")
+            CCCase("1. Nominativ", "Nový dům je velký.", "The new house is big.", "nový dům")
+            CCCase("2. Genitiv", "Cena nového domu je vysoká.", "The price of the new house is high.", "nového domu")
+            CCCase("3. Dativ", "Jdu k novému domu.", "I'm going to the new house.", "novému domu")
+            CCCase("4. Akuzativ", "Vidím nový dům.", "I see the new house.", "nový dům")
+            CCCaseNote("5. Vokativ", "Inanimate objects are not addressed directly in Czech; the vocative form exists but is archaic/poetic.", "nový dome")
+            CCCase("6. Lokál", "Mluvím o novém domě.", "I'm talking about the new house.", "novém domě")
+            CCCase("7. Instrumentál", "Jsem před novým domem.", "I am in front of the new house.", "novým domem")
+
+            CCPhrase("nové domy", "new houses", "masc. inanimate · plural — ů→o in all plural forms too except gen pl which keeps domů")
+            CCCase("1. Nominativ", "Nové domy jsou drahé.", "New houses are expensive.", "nové domy")
+            CCCase("2. Genitiv", "Cena nových domů je vysoká.", "The price of new houses is high.", "nových domů")
+            CCCase("3. Dativ", "Jdu k novým domům.", "I'm going to the new houses.", "novým domům")
+            CCCase("4. Akuzativ", "Vidím nové domy.", "I see the new houses.", "nové domy")
+            CCCaseNote("5. Vokativ", "Inanimate object — identical to the nominative plural.", "nové domy")
+            CCCase("6. Lokál", "Mluvím o nových domech.", "I'm talking about the new houses.", "nových domech")
+            CCCase("7. Instrumentál", "Jsem před novými domy.", "I am in front of the new houses.", "novými domy")
+
+            // ── drahý byt ─────────────────────────────────────────────────
+            CCPhrase("drahý byt", "an expensive apartment", "masc. inanimate · hard noun + hard adj · singular")
+            CCCase("1. Nominativ", "Drahý byt je v centru.", "The expensive apartment is in the centre.", "drahý byt")
+            CCCase("2. Genitiv", "Cena drahého bytu je vysoká.", "The price of the expensive apartment is high.", "drahého bytu")
+            CCCase("3. Dativ", "Jdu k drahému bytu.", "I'm going to the expensive apartment.", "drahému bytu")
+            CCCase("4. Akuzativ", "Kupuji drahý byt.", "I'm buying the expensive apartment.", "drahý byt")
+            CCCaseNote("5. Vokativ", "Inanimate objects are not addressed directly in Czech; the vocative form exists but is archaic/poetic.", "drahý byte")
+            CCCase("6. Lokál", "Mluvím o drahém bytě.", "I'm talking about the expensive apartment.", "drahém bytě")
+            CCCase("7. Instrumentál", "Jsem spokojen s drahým bytem.", "I'm happy with the expensive apartment.", "drahým bytem")
+
+            CCPhrase("drahé byty", "expensive apartments", "masc. inanimate · plural")
+            CCCase("1. Nominativ", "Drahé byty jsou v centru.", "Expensive apartments are in the centre.", "drahé byty")
+            CCCase("2. Genitiv", "Cena drahých bytů je vysoká.", "The price of expensive apartments is high.", "drahých bytů")
+            CCCase("3. Dativ", "Jdu k drahým bytům.", "I'm going to the expensive apartments.", "drahým bytům")
+            CCCase("4. Akuzativ", "Kupuji drahé byty.", "I'm buying the expensive apartments.", "drahé byty")
+            CCCaseNote("5. Vokativ", "Inanimate object — identical to the nominative plural.", "drahé byty")
+            CCCase("6. Lokál", "Mluvím o drahých bytech.", "I'm talking about the expensive apartments.", "drahých bytech")
+            CCCase("7. Instrumentál", "Jsem spokojen s drahými byty.", "I'm happy with the expensive apartments.", "drahými byty")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

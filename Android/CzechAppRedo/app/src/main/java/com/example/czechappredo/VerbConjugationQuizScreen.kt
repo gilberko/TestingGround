@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import androidx.navigation.NavController
 
 private data class VerbConjData(
     val infinitive: String,
+    val english: String,
     val presJa: String, val presTy: String, val presOnOna: String,
     val presMy: String, val presVy: String, val presOniOny: String,
     val pastJa: String, val pastTy: String, val pastOnOna: String,
@@ -29,96 +31,97 @@ private data class VerbConjData(
 
 private data class VCQEntry(
     val infinitive: String,
+    val english: String,
     val pronoun: String,
     val tense: String,
     val form: String
 )
 
 private val vcqBank: List<VerbConjData> = listOf(
-    VerbConjData("dělat",
+    VerbConjData("dělat", "to do / make",
         "dělám", "děláš", "dělá", "děláme", "děláte", "dělají",
         "dělal/a jsem", "dělal/a jsi", "dělal/dělala", "dělali/y jsme", "dělali/y jste", "dělali/y"),
-    VerbConjData("pracovat",
+    VerbConjData("pracovat", "to work",
         "pracuji/pracuju", "pracuješ", "pracuje", "pracujeme", "pracujete", "pracují/pracujou",
         "pracoval/a jsem", "pracoval/a jsi", "pracoval/pracovala", "pracovali/y jsme", "pracovali/y jste", "pracovali/y"),
-    VerbConjData("mluvit",
+    VerbConjData("mluvit", "to speak",
         "mluvím", "mluvíš", "mluví", "mluvíme", "mluvíte", "mluví",
         "mluvil/a jsem", "mluvil/a jsi", "mluvil/mluvila", "mluvili/y jsme", "mluvili/y jste", "mluvili/y"),
-    VerbConjData("být",
+    VerbConjData("být", "to be",
         "jsem", "jsi", "je", "jsme", "jste", "jsou",
         "byl/a jsem", "byl/a jsi", "byl/byla", "byli/y jsme", "byli/y jste", "byli/y"),
-    VerbConjData("jít",
+    VerbConjData("jít", "to go",
         "jdu", "jdeš", "jde", "jdeme", "jdete", "jdou",
         "šel/šla jsem", "šel/šla jsi", "šel/šla", "šli/šly jsme", "šli/šly jste", "šli/šly"),
-    VerbConjData("mít",
+    VerbConjData("mít", "to have",
         "mám", "máš", "má", "máme", "máte", "mají",
         "měl/a jsem", "měl/a jsi", "měl/měla", "měli/y jsme", "měli/y jste", "měli/y"),
-    VerbConjData("chtít",
+    VerbConjData("chtít", "to want",
         "chci", "chceš", "chce", "chceme", "chcete", "chtějí",
         "chtěl/a jsem", "chtěl/a jsi", "chtěl/chtěla", "chtěli/y jsme", "chtěli/y jste", "chtěli/y"),
-    VerbConjData("vědět",
+    VerbConjData("vědět", "to know",
         "vím", "víš", "ví", "víme", "víte", "vědí",
         "věděl/a jsem", "věděl/a jsi", "věděl/věděla", "věděli/y jsme", "věděli/y jste", "věděli/y"),
-    VerbConjData("jíst",
+    VerbConjData("jíst", "to eat",
         "jím", "jíš", "jí", "jíme", "jíte", "jedí",
         "jedl/a jsem", "jedl/a jsi", "jedl/jedla", "jedli/y jsme", "jedli/y jste", "jedli/y"),
-    VerbConjData("psát",
+    VerbConjData("psát", "to write",
         "píšu/píši", "píšeš", "píše", "píšeme", "píšete", "píšou/píší",
         "psal/a jsem", "psal/a jsi", "psal/psala", "psali/y jsme", "psali/y jste", "psali/y"),
-    VerbConjData("číst",
+    VerbConjData("číst", "to read",
         "čtu", "čteš", "čte", "čteme", "čtete", "čtou",
         "četl/a jsem", "četl/a jsi", "četl/četla", "četli/y jsme", "četli/y jste", "četli/y"),
-    VerbConjData("vařit",
+    VerbConjData("vařit", "to cook",
         "vařím", "vaříš", "vaří", "vaříme", "vaříte", "vaří",
         "vařil/a jsem", "vařil/a jsi", "vařil/vařila", "vařili/y jsme", "vařili/y jste", "vařili/y"),
-    VerbConjData("spát",
+    VerbConjData("spát", "to sleep",
         "spím", "spíš", "spí", "spíme", "spíte", "spí",
         "spal/a jsem", "spal/a jsi", "spal/spala", "spali/y jsme", "spali/y jste", "spali/y"),
-    VerbConjData("moci/moct",
+    VerbConjData("moci/moct", "can / to be able",
         "mohu/můžu", "můžeš", "může", "můžeme", "můžete", "mohou/můžou",
         "mohl/a jsem", "mohl/a jsi", "mohl/mohla", "mohli/y jsme", "mohli/y jste", "mohli/y"),
-    VerbConjData("studovat",
+    VerbConjData("studovat", "to study",
         "studuji/studuju", "studuješ", "studuje", "studujeme", "studujete", "studují/studujou",
         "studoval/a jsem", "studoval/a jsi", "studoval/studovala", "studovali/y jsme", "studovali/y jste", "studovali/y"),
-    VerbConjData("vidět",
+    VerbConjData("vidět", "to see",
         "vidím", "vidíš", "vidí", "vidíme", "vidíte", "vidí",
         "viděl/a jsem", "viděl/a jsi", "viděl/viděla", "viděli/y jsme", "viděli/y jste", "viděli/y"),
-    VerbConjData("rozumět",
+    VerbConjData("rozumět", "to understand",
         "rozumím", "rozumíš", "rozumí", "rozumíme", "rozumíte", "rozumí",
         "rozuměl/a jsem", "rozuměl/a jsi", "rozuměl/rozuměla", "rozuměli/y jsme", "rozuměli/y jste", "rozuměli/y"),
-    VerbConjData("brát",
+    VerbConjData("brát", "to take",
         "beru", "bereš", "bere", "bereme", "berete", "berou",
         "bral/a jsem", "bral/a jsi", "bral/brala", "brali/y jsme", "brali/y jste", "brali/y"),
-    VerbConjData("říkat",
+    VerbConjData("říkat", "to say",
         "říkám", "říkáš", "říká", "říkáme", "říkáte", "říkají",
         "říkal/a jsem", "říkal/a jsi", "říkal/říkala", "říkali/y jsme", "říkali/y jste", "říkali/y"),
-    VerbConjData("chodit",
+    VerbConjData("chodit", "to go / walk",
         "chodím", "chodíš", "chodí", "chodíme", "chodíte", "chodí",
         "chodil/a jsem", "chodil/a jsi", "chodil/chodila", "chodili/y jsme", "chodili/y jste", "chodili/y"),
-    VerbConjData("volat",
+    VerbConjData("volat", "to call",
         "volám", "voláš", "volá", "voláme", "voláte", "volají",
         "volal/a jsem", "volal/a jsi", "volal/volala", "volali/y jsme", "volali/y jste", "volali/y"),
-    VerbConjData("kupovat",
+    VerbConjData("kupovat", "to buy",
         "kupuji/kupuju", "kupuješ", "kupuje", "kupujeme", "kupujete", "kupují/kupujou",
         "kupoval/a jsem", "kupoval/a jsi", "kupoval/kupovala", "kupovali/y jsme", "kupovali/y jste", "kupovali/y"),
-    VerbConjData("pomáhat",
+    VerbConjData("pomáhat", "to help",
         "pomáhám", "pomáháš", "pomáhá", "pomáháme", "pomáháte", "pomáhají",
         "pomáhal/a jsem", "pomáhal/a jsi", "pomáhal/pomáhala", "pomáhali/y jsme", "pomáhali/y jste", "pomáhali/y"),
     // Reflexive — se
-    VerbConjData("učit se",
+    VerbConjData("učit se", "to learn",
         "učím se", "učíš se", "učí se", "učíme se", "učíte se", "učí se",
         "učil/a jsem se", "učil/a jsi se", "učil/učila se", "učili/y jsme se", "učili/y jste se", "učili/y se"),
-    VerbConjData("ptát se",
+    VerbConjData("ptát se", "to ask",
         "ptám se", "ptáš se", "ptá se", "ptáme se", "ptáte se", "ptají se",
         "ptal/a jsem se", "ptal/a jsi se", "ptal/ptala se", "ptali/y jsme se", "ptali/y jste se", "ptali/y se"),
-    VerbConjData("bát se",
+    VerbConjData("bát se", "to be afraid",
         "bojím se", "bojíš se", "bojí se", "bojíme se", "bojíte se", "bojí se",
         "bál/a jsem se", "bál/a jsi se", "bál/bála se", "báli/y jsme se", "báli/y jste se", "báli/y se"),
-    VerbConjData("mýt se",
+    VerbConjData("mýt se", "to wash",
         "myji/myju se", "myješ se", "myje se", "myjeme se", "myjete se", "myjí/myjou se",
         "myl/a jsem se", "myl/a jsi se", "myl/myla se", "myli/y jsme se", "myli/y jste se", "myli/y se"),
     // Reflexive — si
-    VerbConjData("pamatovat si",
+    VerbConjData("pamatovat si", "to remember",
         "pamatuji/pamatuju si", "pamatuješ si", "pamatuje si", "pamatujeme si", "pamatujete si", "pamatují/pamatujou si",
         "pamatoval/a jsem si", "pamatoval/a jsi si", "pamatoval/pamatovala si", "pamatovali/y jsme si", "pamatovali/y jste si", "pamatovali/y si")
 )
@@ -126,18 +129,18 @@ private val vcqBank: List<VerbConjData> = listOf(
 private val vcqEntries: List<VCQEntry> by lazy {
     vcqBank.flatMap { v ->
         listOf(
-            VCQEntry(v.infinitive, "já", "present", v.presJa),
-            VCQEntry(v.infinitive, "ty", "present", v.presTy),
-            VCQEntry(v.infinitive, "on/ona", "present", v.presOnOna),
-            VCQEntry(v.infinitive, "my", "present", v.presMy),
-            VCQEntry(v.infinitive, "vy", "present", v.presVy),
-            VCQEntry(v.infinitive, "oni/ony", "present", v.presOniOny),
-            VCQEntry(v.infinitive, "já", "past", v.pastJa),
-            VCQEntry(v.infinitive, "ty", "past", v.pastTy),
-            VCQEntry(v.infinitive, "on/ona", "past", v.pastOnOna),
-            VCQEntry(v.infinitive, "my", "past", v.pastMy),
-            VCQEntry(v.infinitive, "vy", "past", v.pastVy),
-            VCQEntry(v.infinitive, "oni/ony", "past", v.pastOniOny)
+            VCQEntry(v.infinitive, v.english, "já", "present", v.presJa),
+            VCQEntry(v.infinitive, v.english, "ty", "present", v.presTy),
+            VCQEntry(v.infinitive, v.english, "on/ona", "present", v.presOnOna),
+            VCQEntry(v.infinitive, v.english, "my", "present", v.presMy),
+            VCQEntry(v.infinitive, v.english, "vy", "present", v.presVy),
+            VCQEntry(v.infinitive, v.english, "oni/ony", "present", v.presOniOny),
+            VCQEntry(v.infinitive, v.english, "já", "past", v.pastJa),
+            VCQEntry(v.infinitive, v.english, "ty", "past", v.pastTy),
+            VCQEntry(v.infinitive, v.english, "on/ona", "past", v.pastOnOna),
+            VCQEntry(v.infinitive, v.english, "my", "past", v.pastMy),
+            VCQEntry(v.infinitive, v.english, "vy", "past", v.pastVy),
+            VCQEntry(v.infinitive, v.english, "oni/ony", "past", v.pastOniOny)
         )
     }
 }
@@ -145,7 +148,7 @@ private val vcqEntries: List<VCQEntry> by lazy {
 private fun generateVerbConjQuestions(): List<QuizQuestion> {
     val selected = vcqEntries.shuffled().take(10)
     return selected.map { entry ->
-        val prompt = "${entry.infinitive}  —  ${entry.pronoun}  —  ${entry.tense}"
+        val prompt = "${entry.infinitive}  —  ${entry.pronoun}  —  ${entry.tense}  —  ${entry.english}"
         val correct = entry.form
         val sameVerbSameTense = vcqEntries.filter {
             it.infinitive == entry.infinitive && it.tense == entry.tense && it.form != correct
@@ -269,6 +272,17 @@ private fun VCQQuestionCard(
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 textAlign = TextAlign.Center
+            )
+        }
+        // English gloss
+        if (parts.size >= 4) {
+            Text(
+                text = parts[3],
+                fontSize = 13.sp,
+                fontStyle = FontStyle.Italic,
+                color = Color.Gray,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
             )
         }
         // Pronoun + tense on one line
