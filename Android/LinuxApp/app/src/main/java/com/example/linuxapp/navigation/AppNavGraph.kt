@@ -125,7 +125,9 @@ import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
 import com.example.linuxapp.screens.permissions.IoUringScreen
 import com.example.linuxapp.screens.permissions.DaemonsScreen
 import com.example.linuxapp.screens.permissions.NatVpnScreen
+import com.example.linuxapp.screens.ebpf.AboutEbpfHubScreen
 import com.example.linuxapp.screens.ebpf.BpftraceScreen
+import com.example.linuxapp.screens.ebpf.BpftraceScriptSyntaxScreen
 import com.example.linuxapp.screens.ebpf.EbpfPersistencyScreen
 import com.example.linuxapp.screens.ebpf.EbpfLsmScreen
 import com.example.linuxapp.screens.ebpf.EbpfSampleProgramsScreen
@@ -250,6 +252,8 @@ sealed class Screen(val route: String) {
     object EbpfSamplePrograms          : Screen("ebpf_sample_programs")
     object EbpfManaging                : Screen("ebpf_managing")
     object EbpfAboutCilium             : Screen("ebpf_about_cilium")
+    object EbpfBpftraceScriptSyntax    : Screen("ebpf_bpftrace_script_syntax")
+    object AboutEbpfHub                : Screen("about_ebpf_hub")
     object Licensing                   : Screen("licensing")
     object UserModeMemAlloc            : Screen("user_mode_mem_alloc")
     object UserModeMemAlloc2           : Screen("user_mode_mem_alloc_2")
@@ -443,8 +447,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.EbpfHub.route) {
             EbpfHubScreen(
                 onBack = { navController.popBackStack() },
-                onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
-                onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) },
+                onAboutEbpf = { navController.navigate(Screen.AboutEbpfHub.route) },
                 onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) },
                 onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) },
                 onBtf = { navController.navigate(Screen.EbpfBtf.route) },
@@ -455,12 +458,20 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) },
                 onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) },
                 onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) },
-                onBpftrace = { navController.navigate(Screen.EbpfBpftrace.route) },
+                onAboutCilium = { navController.navigate(Screen.EbpfAboutCilium.route) },
                 onEbpfPersistency = { navController.navigate(Screen.EbpfPersistency.route) },
                 onEbpfLsm = { navController.navigate(Screen.EbpfLsm.route) },
                 onEbpfSamplePrograms = { navController.navigate(Screen.EbpfSamplePrograms.route) },
                 onEbpfManaging = { navController.navigate(Screen.EbpfManaging.route) },
-                onAboutCilium = { navController.navigate(Screen.EbpfAboutCilium.route) }
+                onBpftrace = { navController.navigate(Screen.EbpfBpftrace.route) },
+                onBpftraceScriptSyntax = { navController.navigate(Screen.EbpfBpftraceScriptSyntax.route) }
+            )
+        }
+        composable(Screen.AboutEbpfHub.route) {
+            AboutEbpfHubScreen(
+                onBack = { navController.popBackStack() },
+                onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
+                onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) }
             )
         }
         composable(Screen.EbpfHistory.route) {
@@ -769,6 +780,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.EbpfAboutCilium.route) {
             AboutCiliumScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfBpftraceScriptSyntax.route) {
+            BpftraceScriptSyntaxScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Licensing.route) {
             LicensingScreen(onBack = { navController.popBackStack() })

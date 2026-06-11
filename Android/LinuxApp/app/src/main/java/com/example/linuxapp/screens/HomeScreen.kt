@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -57,25 +58,30 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            HomeButton(label = "Linux Usage", onClick = onLinuxUsage)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Linux Usage", onClick = onLinuxUsage, modifier = Modifier.weight(1f))
+                HomeButton(label = "Linux Usage 2", onClick = onLinuxUsage2, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Linux Usage 2", onClick = onLinuxUsage2)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Linux Shell Scripting", onClick = onShellScripting, modifier = Modifier.weight(1f))
+                HomeButton(label = "Linux History", onClick = onLinuxHistory, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Linux Shell Scripting", onClick = onShellScripting)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Recommended Development IDEs", onClick = onIdes, modifier = Modifier.weight(1f))
+                HomeButton(label = "Working with Package Managers", onClick = onPackageManagers, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Linux History", onClick = onLinuxHistory)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Linux User Mode Programming", onClick = onUserMode, modifier = Modifier.weight(1f))
+                HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Recommended Development IDEs", onClick = onIdes)
-            Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Working with Package Managers", onClick = onPackageManagers)
-            Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Linux User Mode Programming", onClick = onUserMode)
-            Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Linux Kernel Mode Programming", onClick = onKernelMode)
-            Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "eBPF", onClick = onEbpf)
-            Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Advanced Topics", onClick = onPermissions)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "eBPF", onClick = onEbpf, modifier = Modifier.weight(1f))
+                HomeButton(label = "Advanced Topics", onClick = onPermissions, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Licensing", onClick = onLicensing)
             Spacer(modifier = Modifier.height(20.dp))
@@ -86,7 +92,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v5.1",
+                    text = "v5.2",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace
@@ -97,12 +103,14 @@ fun HomeScreen(
 }
 
 @Composable
-private fun HomeButton(label: String, onClick: () -> Unit) {
+private fun HomeButton(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier.fillMaxWidth()
+) {
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
+        modifier = modifier.height(52.dp),
         border = BorderStroke(1.dp, Color(0xFF00FF41)),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = Color.Black,
@@ -112,7 +120,9 @@ private fun HomeButton(label: String, onClick: () -> Unit) {
         Text(
             text = label,
             fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center,
+            fontSize = 11.sp
         )
     }
 }
