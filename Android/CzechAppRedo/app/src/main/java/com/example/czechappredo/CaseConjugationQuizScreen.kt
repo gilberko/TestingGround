@@ -65,12 +65,13 @@ private fun generateCaseConjQuestions(): List<QuizQuestion> {
     return selected.map { entry ->
         val prompt = "${entry.nominative}  —  ${entry.english}  —  ${entry.caseName}"
         val correct = entry.form
-        val sameCaseOther = ccqBank.filter {
-            it.caseName == entry.caseName && it.nominative != entry.nominative && it.form != correct
+        val samePhraseOtherCases = ccqBank.filter {
+            it.nominative == entry.nominative && it.caseName != entry.caseName && it.form != correct
+        }.shuffled().distinctBy { it.form }
+        val fallback = ccqBank.filter {
+            it.nominative != entry.nominative && it.form != correct
         }.shuffled()
-        val wrongPool = (sameCaseOther + ccqBank.filter { it.form != correct })
-            .distinctBy { it.form }
-        val wrongs = wrongPool.take(3).map { it.form }
+        val wrongs = (samePhraseOtherCases + fallback).distinctBy { it.form }.take(3).map { it.form }
         QuizQuestion(prompt, correct, (wrongs + correct).shuffled())
     }
 }
