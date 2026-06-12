@@ -99,6 +99,7 @@ class MainActivity : ComponentActivity() {
                 composable("dialogue_school") { HowWasSchoolDialogueScreen(navController) }
                 composable("connecting_sentences") { ConnectingSentencesScreen(navController) }
                 composable("comparisons") { ComparisonsScreen(navController) }
+                composable("tech") { TechScreen(navController) }
             }
         }
     }
@@ -322,7 +323,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "Connecting Words" to "connecting_words",
             "Adverbs" to "adverb_list",
             "Common Verbs List" to "common_verbs",
-            "Examples of Conjugation of Cases" to "case_conjugation_examples"
+            "Examples of Conjugation of Cases" to "case_conjugation_examples",
+            "Tech" to "tech"
         )
         Column(
             modifier = Modifier
