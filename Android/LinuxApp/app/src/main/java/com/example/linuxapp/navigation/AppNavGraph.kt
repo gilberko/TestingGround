@@ -126,6 +126,10 @@ import com.example.linuxapp.screens.permissions.IoUringScreen
 import com.example.linuxapp.screens.permissions.DaemonsScreen
 import com.example.linuxapp.screens.permissions.NatVpnScreen
 import com.example.linuxapp.screens.ebpf.AboutEbpfHubScreen
+import com.example.linuxapp.screens.ebpf.WritingEbpfHubScreen
+import com.example.linuxapp.screens.ebpf.EbpfBasicCSyntaxScreen
+import com.example.linuxapp.screens.ebpf.EbpfCompilingScreen
+import com.example.linuxapp.screens.ebpf.EbpfPythonBccScreen
 import com.example.linuxapp.screens.ebpf.BpftraceScreen
 import com.example.linuxapp.screens.ebpf.BpftraceScriptSyntaxScreen
 import com.example.linuxapp.screens.ebpf.EbpfPersistencyScreen
@@ -254,6 +258,10 @@ sealed class Screen(val route: String) {
     object EbpfAboutCilium             : Screen("ebpf_about_cilium")
     object EbpfBpftraceScriptSyntax    : Screen("ebpf_bpftrace_script_syntax")
     object AboutEbpfHub                : Screen("about_ebpf_hub")
+    object WritingEbpfHub              : Screen("writing_ebpf_hub")
+    object EbpfBasicCSyntax            : Screen("ebpf_basic_c_syntax")
+    object EbpfCompiling               : Screen("ebpf_compiling")
+    object EbpfPythonBcc               : Screen("ebpf_python_bcc")
     object Licensing                   : Screen("licensing")
     object UserModeMemAlloc            : Screen("user_mode_mem_alloc")
     object UserModeMemAlloc2           : Screen("user_mode_mem_alloc_2")
@@ -449,22 +457,15 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onAboutEbpf = { navController.navigate(Screen.AboutEbpfHub.route) },
                 onEbpfProgramTypes = { navController.navigate(Screen.EbpfProgramTypes.route) },
-                onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) },
                 onBtf = { navController.navigate(Screen.EbpfBtf.route) },
-                onEbpfAdvanced = { navController.navigate(Screen.EbpfAdvanced.route) },
                 onEbpfSecurity = { navController.navigate(Screen.EbpfSecurity.route) },
-                onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) },
-                onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
                 onEbpfHelpersKfuncs = { navController.navigate(Screen.EbpfHelpersKfuncs.route) },
                 onEbpfSleepable = { navController.navigate(Screen.EbpfSleepable.route) },
-                onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) },
                 onAboutCilium = { navController.navigate(Screen.EbpfAboutCilium.route) },
                 onEbpfPersistency = { navController.navigate(Screen.EbpfPersistency.route) },
                 onEbpfLsm = { navController.navigate(Screen.EbpfLsm.route) },
-                onEbpfSamplePrograms = { navController.navigate(Screen.EbpfSamplePrograms.route) },
                 onEbpfManaging = { navController.navigate(Screen.EbpfManaging.route) },
-                onBpftrace = { navController.navigate(Screen.EbpfBpftrace.route) },
-                onBpftraceScriptSyntax = { navController.navigate(Screen.EbpfBpftraceScriptSyntax.route) }
+                onWritingEbpf = { navController.navigate(Screen.WritingEbpfHub.route) }
             )
         }
         composable(Screen.AboutEbpfHub.route) {
@@ -473,6 +474,31 @@ fun AppNavGraph(navController: NavHostController) {
                 onEbpfHistory = { navController.navigate(Screen.EbpfHistory.route) },
                 onWhatIsEbpf = { navController.navigate(Screen.EbpfWhatIs.route) }
             )
+        }
+        composable(Screen.WritingEbpfHub.route) {
+            WritingEbpfHubScreen(
+                onBack = { navController.popBackStack() },
+                onEbpfBasicCSyntax = { navController.navigate(Screen.EbpfBasicCSyntax.route) },
+                onEbpfCompiling = { navController.navigate(Screen.EbpfCompiling.route) },
+                onEbpfPythonBcc = { navController.navigate(Screen.EbpfPythonBcc.route) },
+                onEbpfSimpleExample = { navController.navigate(Screen.EbpfSimpleExample.route) },
+                onEbpfAdvanced = { navController.navigate(Screen.EbpfAdvanced.route) },
+                onEbpfSharingData = { navController.navigate(Screen.EbpfSharingData.route) },
+                onEbpfKptrs = { navController.navigate(Screen.EbpfKptrs.route) },
+                onEbpfModifyReturn = { navController.navigate(Screen.EbpfModifyReturn.route) },
+                onEbpfSamplePrograms = { navController.navigate(Screen.EbpfSamplePrograms.route) },
+                onBpftrace = { navController.navigate(Screen.EbpfBpftrace.route) },
+                onBpftraceScriptSyntax = { navController.navigate(Screen.EbpfBpftraceScriptSyntax.route) }
+            )
+        }
+        composable(Screen.EbpfBasicCSyntax.route) {
+            EbpfBasicCSyntaxScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfCompiling.route) {
+            EbpfCompilingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EbpfPythonBcc.route) {
+            EbpfPythonBccScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfHistory.route) {
             EbpfHistoryScreen(onBack = { navController.popBackStack() })

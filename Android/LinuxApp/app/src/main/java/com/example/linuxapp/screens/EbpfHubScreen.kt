@@ -42,22 +42,15 @@ fun EbpfHubScreen(
     onBack: () -> Unit,
     onAboutEbpf: () -> Unit,
     onEbpfProgramTypes: () -> Unit,
-    onEbpfSimpleExample: () -> Unit,
     onBtf: () -> Unit,
-    onEbpfAdvanced: () -> Unit,
     onEbpfSecurity: () -> Unit,
-    onEbpfSharingData: () -> Unit,
-    onEbpfKptrs: () -> Unit,
     onEbpfHelpersKfuncs: () -> Unit,
     onEbpfSleepable: () -> Unit,
-    onEbpfModifyReturn: () -> Unit,
     onAboutCilium: () -> Unit,
     onEbpfPersistency: () -> Unit,
     onEbpfLsm: () -> Unit,
-    onEbpfSamplePrograms: () -> Unit,
     onEbpfManaging: () -> Unit,
-    onBpftrace: () -> Unit,
-    onBpftraceScriptSyntax: () -> Unit
+    onWritingEbpf: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -99,24 +92,8 @@ fun EbpfHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                EbpfButton(label = "A Simple\nExample", onClick = onEbpfSimpleExample, modifier = Modifier.weight(1f))
                 EbpfButton(label = "BTF &\nCO-RE", onClick = onBtf, modifier = Modifier.weight(1f))
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                EbpfButton(label = "A Bit More\nAdvanced", onClick = onEbpfAdvanced, modifier = Modifier.weight(1f))
                 EbpfButton(label = "Security\nPossibilities", onClick = onEbpfSecurity, modifier = Modifier.weight(1f))
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                EbpfButton(label = "Sharing\nData", onClick = onEbpfSharingData, modifier = Modifier.weight(1f))
-                EbpfButton(label = "kptrs", onClick = onEbpfKptrs, modifier = Modifier.weight(1f))
             }
             Spacer(Modifier.height(8.dp))
             Row(
@@ -131,23 +108,15 @@ fun EbpfHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                EbpfButton(label = "Modify Return\nValue", onClick = onEbpfModifyReturn, modifier = Modifier.weight(1f))
                 EbpfButton(label = "About Cilium", onClick = onAboutCilium, modifier = Modifier.weight(1f))
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
                 EbpfButton(label = "Persistency", onClick = onEbpfPersistency, modifier = Modifier.weight(1f))
-                EbpfButton(label = "eBPF LSM", onClick = onEbpfLsm, modifier = Modifier.weight(1f))
             }
             Spacer(Modifier.height(8.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                EbpfButton(label = "Sample\nPrograms", onClick = onEbpfSamplePrograms, modifier = Modifier.weight(1f))
+                EbpfButton(label = "eBPF LSM", onClick = onEbpfLsm, modifier = Modifier.weight(1f))
                 EbpfButton(label = "Managing &\nMonitoring", onClick = onEbpfManaging, modifier = Modifier.weight(1f))
             }
             Spacer(Modifier.height(8.dp))
@@ -155,8 +124,7 @@ fun EbpfHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                EbpfButton(label = "bpftrace", onClick = onBpftrace, modifier = Modifier.weight(1f))
-                EbpfButton(label = "bpftrace\nScript Syntax", onClick = onBpftraceScriptSyntax, modifier = Modifier.weight(1f))
+                EbpfButton(label = "Writing eBPF", onClick = onWritingEbpf, modifier = Modifier.weight(1f))
             }
         }
         }
