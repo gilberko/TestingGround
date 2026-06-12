@@ -30,7 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.russianapp.R
 
-private const val APP_VERSION = "1.0"
+private const val APP_VERSION = "1.1"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +38,7 @@ fun HomeScreen(
     onOpenTutorial: () -> Unit,
     onOpenDictionary: () -> Unit,
     onOpenConfig: () -> Unit,
+    onOpenNounCasesQuiz: () -> Unit,
     onOpenAdjectiveQuiz: () -> Unit,
     onOpenVerbQuiz: () -> Unit,
     onOpenVocabEngToRus: () -> Unit,
@@ -96,6 +97,17 @@ fun HomeScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
+                        onClick = onOpenNounCasesQuiz,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Nouns - Cases Quiz")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
                         onClick = onOpenAdjectiveQuiz,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
@@ -103,7 +115,7 @@ fun HomeScreen(
                             contentColor = Color.White
                         )
                     ) {
-                        Text("Adjective Quiz")
+                        Text("Adjectives - Cases Quiz")
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(

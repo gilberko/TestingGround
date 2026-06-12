@@ -1,0 +1,130 @@
+{
+  "nouns": [
+    {
+      "id": "kniga",
+      "nom_sg": "книга", "english": "book", "gender": "feminine",
+      "gen_sg": "книги", "dat_sg": "книге", "acc_sg": "книгу", "ins_sg": "книгой", "pre_sg": "книге",
+      "nom_pl": "книги", "gen_pl": "книг", "dat_pl": "книгам", "acc_pl": "книги", "ins_pl": "книгами", "pre_pl": "книгах"
+    },
+    {
+      "id": "zhenshchina",
+      "nom_sg": "женщина", "english": "woman", "gender": "feminine",
+      "gen_sg": "женщины", "dat_sg": "женщине", "acc_sg": "женщину", "ins_sg": "женщиной", "pre_sg": "женщине",
+      "nom_pl": "женщины", "gen_pl": "женщин", "dat_pl": "женщинам", "acc_pl": "женщин", "ins_pl": "женщинами", "pre_pl": "женщинах"
+    },
+    {
+      "id": "shkola",
+      "nom_sg": "школа", "english": "school", "gender": "feminine",
+      "gen_sg": "школы", "dat_sg": "школе", "acc_sg": "школу", "ins_sg": "школой", "pre_sg": "школе",
+      "nom_pl": "школы", "gen_pl": "школ", "dat_pl": "школам", "acc_pl": "школы", "ins_pl": "школами", "pre_pl": "школах"
+    },
+    {
+      "id": "strana",
+      "nom_sg": "страна", "english": "country", "gender": "feminine",
+      "gen_sg": "страны", "dat_sg": "стране", "acc_sg": "страну", "ins_sg": "страной", "pre_sg": "стране",
+      "nom_pl": "страны", "gen_pl": "стран", "dat_pl": "странам", "acc_pl": "страны", "ins_pl": "странами", "pre_pl": "странах"
+    },
+    {
+      "id": "voda",
+      "nom_sg": "вода", "english": "water", "gender": "feminine",
+      "gen_sg": "воды", "dat_sg": "воде", "acc_sg": "воду", "ins_sg": "водой", "pre_sg": "воде",
+      "nom_pl": "воды", "gen_pl": "вод", "dat_pl": "водам", "acc_pl": "воды", "ins_pl": "водами", "pre_pl": "водах"
+    },
+    {
+      "id": "ulitsa",
+      "nom_sg": "улица", "english": "street", "gender": "feminine",
+      "gen_sg": "улицы", "dat_sg": "улице", "acc_sg": "улицу", "ins_sg": "улицей", "pre_sg": "улице",
+      "nom_pl": "улицы", "gen_pl": "улиц", "dat_pl": "улицам", "acc_pl": "улицы", "ins_pl": "улицами", "pre_pl": "улицах"
+    },
+    {
+      "id": "nedelya",
+      "nom_sg": "неделя", "english": "week", "gender": "feminine",
+      "gen_sg": "недели", "dat_sg": "неделе", "acc_sg": "неделю", "ins_sg": "неделей", "pre_sg": "неделе",
+      "nom_pl": "недели", "gen_pl": "недель", "dat_pl": "неделям", "acc_pl": "недели", "ins_pl": "неделями", "pre_pl": "неделях"
+    },
+    {
+      "id": "semya",
+      "nom_sg": "семья", "english": "family", "gender": "feminine",
+      "gen_sg": "семьи", "dat_sg": "семье", "acc_sg": "семью", "ins_sg": "семьёй", "pre_sg": "семье",
+      "nom_pl": "семьи", "gen_pl": "семей", "dat_pl": "семьям", "acc_pl": "семьи", "ins_pl": "семьями", "pre_pl": "семьях"
+    },
+    {
+      "id": "kuhnya",
+      "nom_sg": "кухня", "english": "kitchen", "gender": "feminine",
+      "gen_sg": "кухни", "dat_sg": "кухне", "acc_sg": "кухню", "ins_sg": "кухней", "pre_sg": "кухне",
+      "nom_pl": "кухни", "gen_pl": "кухонь", "dat_pl": "кухням", "acc_pl": "кухни", "ins_pl": "кухнями", "pre_pl": "кухнях"
+    },
+    {
+      "id": "stol",
+      "nom_sg": "стол", "english": "table", "gender": "masculine",
+      "gen_sg": "стола", "dat_sg": "столу", "acc_sg": "стол", "ins_sg": "столом", "pre_sg": "столе",
+      "nom_pl": "столы", "gen_pl": "столов", "dat_pl": "столам", "acc_pl": "столы", "ins_pl": "столами", "pre_pl": "столах"
+    },
+    {
+      "id": "gorod",
+      "nom_sg": "город", "english": "city", "gender": "masculine",
+      "gen_sg": "города", "dat_sg": "городу", "acc_sg": "город", "ins_sg": "городом", "pre_sg": "городе",
+      "nom_pl": "города", "gen_pl": "городов", "dat_pl": "городам", "acc_pl": "города", "ins_pl": "городами", "pre_pl": "городах"
+    },
+    {
+      "id": "brat",
+      "nom_sg": "брат", "english": "brother", "gender": "masculine",
+      "gen_sg": "брата", "dat_sg": "брату", "acc_sg": "брата", "ins_sg": "братом", "pre_sg": "брате",
+      "nom_pl": "братья", "gen_pl": "братьев", "dat_pl": "братьям", "acc_pl": "братьев", "ins_pl": "братьями", "pre_pl": "братьях"
+    },
+    {
+      "id": "student",
+      "nom_sg": "студент", "english": "student", "gender": "masculine",
+      "gen_sg": "студента", "dat_sg": "студенту", "acc_sg": "студента", "ins_sg": "студентом", "pre_sg": "студенте",
+      "nom_pl": "студенты", "gen_pl": "студентов", "dat_pl": "студентам", "acc_pl": "студентов", "ins_pl": "студентами", "pre_pl": "студентах"
+    },
+    {
+      "id": "slovar",
+      "nom_sg": "словарь", "english": "dictionary", "gender": "masculine",
+      "gen_sg": "словаря", "dat_sg": "словарю", "acc_sg": "словарь", "ins_sg": "словарём", "pre_sg": "словаре",
+      "nom_pl": "словари", "gen_pl": "словарей", "dat_pl": "словарям", "acc_pl": "словари", "ins_pl": "словарями", "pre_pl": "словарях"
+    },
+    {
+      "id": "uchitel",
+      "nom_sg": "учитель", "english": "teacher", "gender": "masculine",
+      "gen_sg": "учителя", "dat_sg": "учителю", "acc_sg": "учителя", "ins_sg": "учителем", "pre_sg": "учителе",
+      "nom_pl": "учителя", "gen_pl": "учителей", "dat_pl": "учителям", "acc_pl": "учителей", "ins_pl": "учителями", "pre_pl": "учителях"
+    },
+    {
+      "id": "slovo",
+      "nom_sg": "слово", "english": "word", "gender": "neuter",
+      "gen_sg": "слова", "dat_sg": "слову", "acc_sg": "слово", "ins_sg": "словом", "pre_sg": "слове",
+      "nom_pl": "слова", "gen_pl": "слов", "dat_pl": "словам", "acc_pl": "слова", "ins_pl": "словами", "pre_pl": "словах"
+    },
+    {
+      "id": "okno",
+      "nom_sg": "окно", "english": "window", "gender": "neuter",
+      "gen_sg": "окна", "dat_sg": "окну", "acc_sg": "окно", "ins_sg": "окном", "pre_sg": "окне",
+      "nom_pl": "окна", "gen_pl": "окон", "dat_pl": "окнам", "acc_pl": "окна", "ins_pl": "окнами", "pre_pl": "окнах"
+    },
+    {
+      "id": "more",
+      "nom_sg": "море", "english": "sea", "gender": "neuter",
+      "gen_sg": "моря", "dat_sg": "морю", "acc_sg": "море", "ins_sg": "морем", "pre_sg": "море",
+      "nom_pl": "моря", "gen_pl": "морей", "dat_pl": "морям", "acc_pl": "моря", "ins_pl": "морями", "pre_pl": "морях"
+    },
+    {
+      "id": "dver",
+      "nom_sg": "дверь", "english": "door", "gender": "feminine",
+      "gen_sg": "двери", "dat_sg": "двери", "acc_sg": "дверь", "ins_sg": "дверью", "pre_sg": "двери",
+      "nom_pl": "двери", "gen_pl": "дверей", "dat_pl": "дверям", "acc_pl": "двери", "ins_pl": "дверьми", "pre_pl": "дверях"
+    },
+    {
+      "id": "noch",
+      "nom_sg": "ночь", "english": "night", "gender": "feminine",
+      "gen_sg": "ночи", "dat_sg": "ночи", "acc_sg": "ночь", "ins_sg": "ночью", "pre_sg": "ночи",
+      "nom_pl": "ночи", "gen_pl": "ночей", "dat_pl": "ночам", "acc_pl": "ночи", "ins_pl": "ночами", "pre_pl": "ночах"
+    },
+    {
+      "id": "veshch",
+      "nom_sg": "вещь", "english": "thing", "gender": "feminine",
+      "gen_sg": "вещи", "dat_sg": "вещи", "acc_sg": "вещь", "ins_sg": "вещью", "pre_sg": "вещи",
+      "nom_pl": "вещи", "gen_pl": "вещей", "dat_pl": "вещам", "acc_pl": "вещи", "ins_pl": "вещами", "pre_pl": "вещах"
+    }
+  ]
+}

@@ -57,6 +57,7 @@ import com.example.russianapp.screens.VerbsScreen
 import com.example.russianapp.screens.VocabularyEngToRusScreen
 import com.example.russianapp.screens.AndAboutIScreen
 import com.example.russianapp.screens.VerbPrefixesScreen
+import com.example.russianapp.screens.NounCasesQuizScreen
 import com.example.russianapp.screens.VocabularyRusToEngScreen
 import com.example.russianapp.viewmodel.ConfigViewModel
 
@@ -101,6 +102,7 @@ sealed class Screen(val route: String) {
     object AboutAPerson           : Screen("about_a_person")
     object Comparisons            : Screen("comparisons")
     object Misc                   : Screen("misc")
+    object QuizNounCases           : Screen("quiz_noun_cases")
     object QuizAdjective          : Screen("quiz_adjective")
     object QuizVerb               : Screen("quiz_verb")
     object QuizVocabEngToRus      : Screen("quiz_vocab_eng_to_rus")
@@ -126,6 +128,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenTutorial      = { navController.navigate(Screen.Tutorial.route) },
                 onOpenDictionary    = { navController.navigate(Screen.Dictionary.route) },
                 onOpenConfig        = { navController.navigate(Screen.Config.route) },
+                onOpenNounCasesQuiz = { navController.navigate(Screen.QuizNounCases.route) },
                 onOpenAdjectiveQuiz = { navController.navigate(Screen.QuizAdjective.route) },
                 onOpenVerbQuiz          = { navController.navigate(Screen.QuizVerb.route) },
                 onOpenVocabEngToRus     = { navController.navigate(Screen.QuizVocabEngToRus.route) },
@@ -294,6 +297,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.NiVsNe.route) {
             NiVsNeScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.QuizNounCases.route) {
+            NounCasesQuizScreen(
+                configViewModel = configViewModel,
+                onBack = { navController.popBackStack() }
+            )
         }
         composable(Screen.QuizAdjective.route) {
             AdjectiveQuizScreen(

@@ -39,8 +39,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.russianapp.R
-import com.example.russianapp.data.AdjectiveQuizEntry
-import com.example.russianapp.data.AdjectivesQuizFile
+import com.example.russianapp.data.NounQuizEntry
+import com.example.russianapp.data.NounsQuizFile
 import com.example.russianapp.data.QuizQuestion
 import com.example.russianapp.data.QuizState
 import com.example.russianapp.data.allForms
@@ -51,8 +51,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-private fun buildAdjectiveQuestions(
-    entries: List<AdjectiveQuizEntry>,
+private fun buildNounQuestions(
+    entries: List<NounQuizEntry>,
     count: Int,
     rng: Random = Random.Default
 ): List<QuizQuestion> {
@@ -68,7 +68,6 @@ private fun buildAdjectiveQuestions(
             .take(3)
             .map { (_, form) -> form }
             .toMutableList()
-        // Fallback: borrow from another entry if not enough unique distractors
         if (distractors.size < 3) {
             val extra = shuffled
                 .filter { it.id != entry.id }
@@ -78,8 +77,8 @@ private fun buildAdjectiveQuestions(
             distractors.addAll(extra.take(3 - distractors.size))
         }
         QuizQuestion(
-            promptWord = entry.nominativeMasc,
-            promptLabel = entry.english,
+            promptWord = entry.nomSg,
+            promptLabel = "${entry.gender} — ${entry.english}",
             questionText = "What is the $label form?",
             correctAnswer = correct,
             choices = (distractors.take(3) + correct).shuffled(rng)
@@ -89,14 +88,14 @@ private fun buildAdjectiveQuestions(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdjectiveQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
+fun NounCasesQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     val context = LocalContext.current
     val numQuestions by configViewModel.numQuestions.collectAsState()
     val quizMode by configViewModel.quizMode.collectAsState()
 
     val rawJson by produceState<String?>(initialValue = null) {
         value = withContext(Dispatchers.IO) {
-            context.resources.openRawResource(R.raw.adjectives_quiz)
+            context.resources.openRawResource(R.raw.nouns_quiz)
                 .bufferedReader(Charsets.UTF_8).use { it.readText() }
         }
     }
@@ -104,23 +103,22 @@ fun AdjectiveQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
     var quizState by remember { mutableStateOf(QuizState()) }
     var textInput by remember(quizState.currentIndex) { mutableStateOf("") }
 
-    // Build questions once JSON is loaded
     if (rawJson != null && quizState.questions.isEmpty()) {
-        val file = Gson().fromJson(rawJson, AdjectivesQuizFile::class.java)
-        quizState = QuizState(questions = buildAdjectiveQuestions(file.adjectives, numQuestions))
+        val file = Gson().fromJson(rawJson, NounsQuizFile::class.java)
+        quizState = QuizState(questions = buildNounQuestions(file.nouns, numQuestions))
     }
 
     fun rebuild() {
         if (rawJson != null) {
-            val file = Gson().fromJson(rawJson, AdjectivesQuizFile::class.java)
-            quizState = QuizState(questions = buildAdjectiveQuestions(file.adjectives, numQuestions))
+            val file = Gson().fromJson(rawJson, NounsQuizFile::class.java)
+            quizState = QuizState(questions = buildNounQuestions(file.nouns, numQuestions))
         }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Adjectives - Cases Quiz") },
+                title = { Text("Nouns - Cases Quiz") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -139,7 +137,7 @@ fun AdjectiveQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
                 quizState.isFinished -> {
-                    QuizScoreScreen(
+                    NounQuizScoreScreen(
                         score = quizState.score,
                         total = quizState.questions.size,
                         onRetry = { rebuild() },
@@ -295,7 +293,7 @@ fun AdjectiveQuizScreen(configViewModel: ConfigViewModel, onBack: () -> Unit) {
 }
 
 @Composable
-private fun QuizScoreScreen(
+private fun NounQuizScoreScreen(
     score: Int,
     total: Int,
     onRetry: () -> Unit,

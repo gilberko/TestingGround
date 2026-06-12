@@ -67,6 +67,42 @@ fun AdjectiveQuizEntry.allForms(): List<Pair<String, String>> = listOf(
     "Prepositional Plural"       to prePl
 )
 
+// ── Noun data ─────────────────────────────────────────────────────────────────
+
+data class NounQuizEntry(
+    val id: String,
+    @SerializedName("nom_sg")  val nomSg:  String,
+    val english: String,
+    val gender: String,
+    @SerializedName("gen_sg")  val genSg:  String,
+    @SerializedName("dat_sg")  val datSg:  String,
+    @SerializedName("acc_sg")  val accSg:  String,
+    @SerializedName("ins_sg")  val insSg:  String,
+    @SerializedName("pre_sg")  val preSg:  String,
+    @SerializedName("nom_pl")  val nomPl:  String,
+    @SerializedName("gen_pl")  val genPl:  String,
+    @SerializedName("dat_pl")  val datPl:  String,
+    @SerializedName("acc_pl")  val accPl:  String,
+    @SerializedName("ins_pl")  val insPl:  String,
+    @SerializedName("pre_pl")  val prePl:  String
+)
+
+data class NounsQuizFile(val nouns: List<NounQuizEntry>)
+
+fun NounQuizEntry.allForms(): List<Pair<String, String>> = listOf(
+    "Genitive Singular"      to genSg,
+    "Dative Singular"        to datSg,
+    "Accusative Singular"    to accSg,
+    "Instrumental Singular"  to insSg,
+    "Prepositional Singular" to preSg,
+    "Nominative Plural"      to nomPl,
+    "Genitive Plural"        to genPl,
+    "Dative Plural"          to datPl,
+    "Accusative Plural"      to accPl,
+    "Instrumental Plural"    to insPl,
+    "Prepositional Plural"   to prePl
+)
+
 // ── Verb data ─────────────────────────────────────────────────────────────────
 
 data class VerbQuizEntry(
