@@ -180,6 +180,8 @@ fun BpftraceScreen(onBack: () -> Unit) {
                         "clear(@by_proc)              // remove all entries\n" +
                         "print(@by_proc, 10)          // print top-10 entries"
                     )
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Aggregation functions can only appear on the right-hand side of a map (@) assignment — never a local variable (\$). The = in @hist = hist(retval) does not replace the stored value; it accumulates one sample per probe firing. Multiple maps accumulate independently in the same script.")
                 }
                 Spacer(Modifier.height(8.dp))
             }

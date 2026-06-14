@@ -298,6 +298,10 @@ fun BpftraceScriptSyntaxScreen(onBack: () -> Unit) {
                     )
                     Spacer(Modifier.height(8.dp))
                     BodyText("Keys can be combined: @lat[comm, pid] = hist(delta) gives one histogram per (process-name, pid) pair.")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Aggregation functions must be assigned to a map (@name), never to a local variable (\$name). Writing \$x = hist(val) is a bpftrace syntax error.")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("The = in @lat_hist = hist(\$val) does not replace the stored value — it accumulates. Each probe firing adds one sample; bpftrace translates this into a kernel helper call that updates the in-kernel histogram. Think of it as appending to the histogram, not overwriting it. Multiple maps in the same script accumulate independently: @read_lat = hist(delta) and @write_lat = hist(delta) build two separate, unrelated histograms.")
                 }
                 Spacer(Modifier.height(8.dp))
             }
