@@ -74,6 +74,74 @@ fun ThisAndThatScreen(navController: NavController) {
             TATNote("to město — that city    |    ta města — those cities")
             TATNote("tenhle muž — this man (right here)    |    tahle žena — this woman (right here)")
 
+            // ── tento / tato / toto ───────────────────────────────────────
+            TATHeader("tento / tato / toto — This (Formal)")
+            TATNote("tento, tato, toto mean specifically \"this\" (near the speaker). They are the standard choice in written Czech, official documents, and careful speech — more formal and more precise than the neutral ten / ta / to, and formal alternatives to the colloquial tenhle / tahle / tohle.")
+            Spacer(modifier = Modifier.height(8.dp))
+            TATNote("Nominative forms:")
+            TATTable3(
+                headers = Triple("Gender", "Singular", "Plural"),
+                rows = listOf(
+                    Triple("Masculine animate", "tento", "tito"),
+                    Triple("Masculine inanimate", "tento", "tyto"),
+                    Triple("Feminine", "tato", "tyto"),
+                    Triple("Neuter", "toto", "tato")
+                )
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            TATNote("They decline exactly like ten / ta / to but with -to appended to each case form: tohoto, tomuto, tomto, tímto, etc.")
+            TATNote("Examples:")
+            TATNote("tento dům — this house    |    tito muži — these men")
+            TATNote("tato kniha — this book    |    tyto ženy — these women")
+            TATNote("toto auto — this car    |    tato auta — these cars")
+            TATNote("V tomto případě...  —  In this case...  (Locative of toto)")
+            TATNote("Na základě tohoto rozhodnutí...  —  Based on this decision...  (Genitive of toto)")
+
+            // ── tamten / tamta / tamto ────────────────────────────────────
+            TATHeader("tamten / tamta / tamto — That Over There")
+            TATNote("tamten, tamta, tamto mean \"that one over there\" — something far from both the speaker and the listener. They add a sense of physical distance that ten / ta / to does not convey.")
+            Spacer(modifier = Modifier.height(4.dp))
+            TATNote("Three-way contrast:")
+            TATNote("tenhle / tento muž — this man  (near the speaker)")
+            TATNote("ten muž — that man / the man  (neutral pointer)")
+            TATNote("tamten muž — that man over there  (far away)")
+            Spacer(modifier = Modifier.height(8.dp))
+            TATNote("Nominative forms:")
+            TATTable3(
+                headers = Triple("Gender", "Singular", "Plural"),
+                rows = listOf(
+                    Triple("Masculine animate", "tamten", "tamti"),
+                    Triple("Masculine inanimate", "tamten", "tamty"),
+                    Triple("Feminine", "tamta", "tamty"),
+                    Triple("Neuter", "tamto", "tamta")
+                )
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            TATNote("tamten / tamta / tamto decline like ten / ta / to but with the tam- prefix throughout all cases.")
+            TATNote("Examples:")
+            TATNote("Dej mi tamten klíč. — Give me that key over there.")
+            TATNote("Vidíš tamtu budovu? — Do you see that building over there?")
+            TATNote("Chci tamto. — I want that one over there.")
+
+            // ── tak / takto / takhle ─────────────────────────────────────
+            TATHeader("tak / takto / takhle — So, Like This")
+            TATNote("tak is a demonstrative adverb meaning \"so\", \"thus\", or \"in this / that way\". It is one of the most common words in Czech and frequently acts as a filler or transition. It does not decline — it is an adverb with no gender or case forms.")
+            Spacer(modifier = Modifier.height(6.dp))
+            TATNote("tak — so, thus, like that / like this")
+            TATNote("takto — like this, in this way  (formal / written)")
+            TATNote("takhle — like this  (colloquial; same meaning as takto)")
+            TATNote("takže — so, therefore, and so  (very common conjunction)")
+            TATNote("takový / taková / takové — such, like this, of this kind  (adjectival form; declines as a regular hard adjective)")
+            Spacer(modifier = Modifier.height(6.dp))
+            TATNote("Note: takten and takta do not exist. tak is an adverb and has no gender or case forms. Also, také / taky (= also, too) is a different word despite the similar root.")
+            Spacer(modifier = Modifier.height(6.dp))
+            TATNote("Examples:")
+            TATNote("Je to tak. — That's right. / It is so.")
+            TATNote("Tak co? — So? / So, how's it going?")
+            TATNote("Udělej to takto. / Udělej to takhle. — Do it like this.")
+            TATNote("Nemám čas, takže jdu. — I don't have time, so I'm leaving.")
+            TATNote("Takový člověk... — Such a person... / A person like that...")
+
             // ── Feminine endings ──────────────────────────────────────────
             TATHeader("Feminine Nouns: -a vs -e Endings")
             TATNote("Feminine nouns can end in -a (e.g. žena = woman) or in -e / -ě (e.g. růže = rose). The demonstrative form depends only on the gender — not on the specific ending — so both types of feminine noun use the same demonstrative throughout all cases.")
