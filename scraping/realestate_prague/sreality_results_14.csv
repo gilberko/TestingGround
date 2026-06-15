@@ -1,0 +1,101 @@
+link,id,price_czk,size_sqm,floor,rooms,district_num,neighborhood,date_updated,Buy Or Sell,seller_name
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-vinohrady-uruguayska/557159244,557159244,29590000,165,3,4+1,2,Vinohrady,Včera,buy,Sergej Gončarov
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-rubesova/3112395596,3112395596,6900000,26,,1+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-rimska/2651542348,2651542348,9881500,35,,1+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-polska/2027713356,2027713356,1,146,7,4+kk,2,Vinohrady,Včera,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-zahoranskeho/4020908876,4020908876,27000000,128,5,4+kk,2,Nové Město,Včera,buy,Zuzana Štafurová
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-sokolska/2274583372,2274583372,6490000,41,1,1+kk,2,Nové Město,Dnes,buy,Anna Černá
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-polska/1222406988,1222406988,16590000,58,2,2+kk,2,Vinohrady,Dnes,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-vinohrady-uruguayska/557159244,557159244,29990000,165,3,4+1,2,Vinohrady,Včera,buy,Sergej Gončarov
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-polska/3906761548,3906761548,34690000,121,4,3+1,2,Vinohrady,Dnes,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-halkova/1752392268,1752392268,10990000,49,4,2+kk,2,Nové Město,08.04.2026,buy,Pavol Bak
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nusle-oldrichova/793797452,793797452,9290000,97,,3+1,,nusle,,buy,
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-polska/970748748,970748748,25990000,97,6,3+kk,2,Vinohrady,Dnes,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-vinohrady-lublanska/2067034956,2067034956,12000000,66,2,2+1,2,Vinohrady,Dnes,buy,Kacafírková Veronika
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-skretova/60654412,60654412,18499000,120,,4+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-belehradska/2747069260,2747069260,23680000,135,2,4+kk,2,Vinohrady,Včera,buy,Simon Lukavský
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-polska/1507619660,1507619660,16490000,56,7,2+kk,2,Vinohrady,Včera,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-polska/165442380,165442380,27990000,97,7,2+kk,2,Vinohrady,Včera,buy,SATPO klientské centrum
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-rybalkova/2382123852,2382123852,10500000,39,2,2+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-machova/3996513100,3996513100,8983850,67,1,2+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-na-zderaze/2046223180,2046223180,12500000,77,6,2+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-na-zderaze/1761010508,1761010508,10900000,49,6,2+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-halkova/2521248588,2521248588,35500000,229,6,4+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-vinohradska/3054515020,3054515020,25000000,130,6,4+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-vinohrady-jana-masaryka/3477807948,3477807948,47750000,209,6,5+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-zahrebska/1169167180,1169167180,18900000,98,,3+1,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-manesova/1940329292,1940329292,27000000,102,5,4+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-podskalska/2101085004,2101085004,1,126,7,3+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-slezska/2159543116,2159543116,22900000,110,,3+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-machova/2627408716,2627408716,6036980,39,1,2+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-francouzska/3323274060,3323274060,17900000,81,,3+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-na-zderaze/701526860,701526860,11100000,60,6,1+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nusle-jaromirova/1865876300,1865876300,11990000,58,5,2+kk,2,Nusle,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-legerova/17785676,17785676,24400000,94,6,3+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-machova/3939529548,3939529548,9282000,45,5,2+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-manesova/4253766476,4253766476,43000000,191,6,4+kk,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-/1629246284,1629246284,11400000,70,6,2+kk,2,Nové Město,13.04.2026,buy,Jana Skvirsky
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-halkova/53375820,53375820,7950000,54,0,2+kk,2,Nové Město,09.04.2026,buy,Ing. Miroslava Pavlíková
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-rejskova/868311884,868311884,13350000,85,2,3+1,2,Vinohrady,08.04.2026,buy,Michal Ambrož
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-plavecka/1283216204,1283216204,14600000,73,5,3+kk,2,Nové Město,Včera,buy,Jan Hrnčíř
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-sazavska/4045562700,4045562700,19900000,75,,3+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-mala-stepanska/1110623052,1110623052,14990000,77,5,2+kk,2,Nové Město,Včera,buy,Daniel Kolman
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-zahrebska/34427724,34427724,13500000,75,,2+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-moravska/2965197644,2965197644,23641097,132,2,3+1,2,Vinohrady,02.04.2026,buy,Romana Thelenová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/219317068,219317068,15649900,64,,2+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-chodska/1534600012,1534600012,19999900,117,6,4+kk,2,Vinohrady,13.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/1694917452,1694917452,13099900,50,,2+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-vinohrady-chodska/1716003660,1716003660,25999900,139,6,5+kk,2,Vinohrady,10.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-chodska/3345683276,3345683276,8399900,28,,1+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/3726009164,3726009164,13099900,51,,2+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/4245848908,4245848908,13699900,54,5,2+kk,2,Vinohrady,13.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-rejskova/1712284492,1712284492,17900000,97,,3+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-na-kleovce/2361357132,2361357132,24500000,98,2,3+1,2,Vinohrady,13.04.2026,buy,Radek Jindřich
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-/3535307596,3535307596,11700000,70,6,2+kk,2,Nové Město,13.04.2026,buy,Bc. Radka Böhmová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha--kubelikova/2483815244,2483815244,13891000,90,5,3+1,2,kubelikova,13.04.2026,buy,Anna Černá
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-perucka/323355468,323355468,7950000,48,1,2+kk,2,Vinohrady,Včera,buy,David Majer
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-/286352716,286352716,37900000,125,6,4+kk,2,Vinohrady,13.04.2026,buy,Karolína Uzdařová – recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-/3222365516,3222365516,25500000,90,1,2+kk,2,Vinohrady,13.04.2026,buy,Karolína Uzdařová – recepce
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-na-bojisti/3344900940,3344900940,12980000,108,,4+kk,,nove,,buy,
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-jana-masaryka/2974286668,2974286668,5640000,49,1,1+kk,2,Vinohrady,13.04.2026,buy,Jan Černík
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-vinohrady-sumavska/1264407372,1264407372,23890000,110,,3+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-anny-letenske/4290929484,4290929484,13990000,71,,2+kk,,vinohrady,,buy,
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-vinohrady-uruguayska/557159244,557159244,29590000,165,3,4+1,2,Vinohrady,Včera,buy,Sergej Gončarov
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-vinohrady-francouzska/3217993804,3217993804,19900000,140,5,4+1,2,Vinohrady,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-na-dekance/3596267596,3596267596,16500000,84,5,3+kk,2,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-plavecka/1283216204,1283216204,13900000,73,5,3+kk,2,Nové Město,Včera,buy,Jan Hrnčíř
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-zahoranskeho/4020908876,4020908876,27000000,128,5,4+kk,2,Nové Město,Včera,buy,Zuzana Štafurová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-belehradska/1759724364,1759724364,11856000,60,3,2+kk,2,Vinohrady,Včera,buy,Simon Lukavský
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-varsavska/2067378252,2067378252,8200000,29,1,1+kk,2,vinohrady,Včera,buy,Lenka Goldscheiderová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-pod-slovany/2098750284,2098750284,18799000,95,4,3+kk,2,Nové Město,13.04.2026,buy,Ing. Jana Škodová
+https://www.sreality.cz/detail/prodej/byt/1+1/praha-nove-mesto-wenzigova/2213130316,2213130316,10999825,47,2,1+1,2,Nové Město,13.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-wenzigova/3773411404,3773411404,9865482,45,1,2+kk,2,Nové Město,13.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-/1629246284,1629246284,11400000,70,6,2+kk,2,Nové Město,13.04.2026,buy,Jana Skvirsky
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-smilovskeho/1656898380,1656898380,14200000,62,5,2+kk,2,Vinohrady,13.04.2026,buy,Bohumír Fiala
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/3876368460,3876368460,13899900,52,2,2+kk,2,Vinohrady,13.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-lipova/232801100,232801100,11990000,77,1,3+kk,2,Nové Město,13.04.2026,buy,Lenka Baráková
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-na-kleovce/2361357132,2361357132,24500000,98,2,3+1,2,Vinohrady,13.04.2026,buy,Radek Jindřich
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-varsavska/2737595212,2737595212,10982000,57,2,2+kk,2,Vinohrady,13.04.2026,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-zitna/1153332044,1153332044,5854000,26,0,1+kk,2,Nové Město,13.04.2026,buy,Tereza Šlezová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-chodska/1534600012,1534600012,19999900,117,6,4+kk,2,Vinohrady,13.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-chodska/4245848908,4245848908,13999900,54,5,2+kk,2,Vinohrady,13.04.2026,buy,Ing. Tomáš Staněk
+https://www.sreality.cz/detail/prodej/byt/3+1/praha--kubelikova/2483815244,2483815244,13891000,90,5,3+1,2,kubelikova,13.04.2026,buy,Anna Černá
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-/286352716,286352716,37900000,125,6,4+kk,2,Vinohrady,13.04.2026,buy,Karolína Uzdařová – recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-/3222365516,3222365516,25500000,90,1,2+kk,2,Vinohrady,13.04.2026,buy,Karolína Uzdařová – recepce
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-vinohrady-jana-masaryka/2974286668,2974286668,4200000,49,1,1+kk,2,Vinohrady,13.04.2026,buy,Jan Černík
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-/3535307596,3535307596,11700000,70,6,2+kk,2,Nové Město,13.04.2026,buy,Bc. Radka Böhmová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-dittrichova/567731020,567731020,1,87,4,3+kk,2,Nové Město,13.04.2026,buy,Bc. Robert Poppl
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-tyrsova/3306189644,3306189644,5850000,23,4,1+kk,2,Nové Město,13.04.2026,buy,Jiří Šottner
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-vinohrady-namesti-miru/1131889484,1131889484,8500000,62,6,3+1,2,Vinohrady,13.04.2026,buy,Antonín  Gold
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-vinohrady-jana-masaryka/2582459212,2582459212,47750000,210,5,5+kk,2,Vinohrady,12.04.2026,buy,Mgr. Karolína Marchlíková
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-melounova/3381949260,3381949260,10999000,71,5,2+1,2,Nové Město,12.04.2026,buy,Daniela Kuzmová
+https://www.sreality.cz/detail/prodej/byt/1+1/praha-vinohrady-moravska/3241825100,3241825100,6850000,46,5,1+1,2,Vinohrady,12.04.2026,buy,Ing. Ivan Wolf
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-vinohrady-balbinova/1696444492,1696444492,17270000,91,2,4+kk,2,Vinohrady,12.04.2026,buy,Miroslav Bernátek
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-vinohrady-rejskova/41791564,41791564,10950000,63,2,2+kk,2,Vinohrady,13.04.2026,buy,Martin Gábor
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-/3921965900,3921965900,19950000,122,6,3+kk,2,Nové Město,11.04.2026,buy,Alexander Koenigstein
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-vinohrady-londynska/2829665100,2829665100,20950000,141,4,4+1,2,Vinohrady,11.04.2026,buy,Alexander Koenigstein
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-wenzigova/3902948172,3902948172,12764858,53,3,2+kk,2,Nové Město,10.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-wenzigova/2845983564,2845983564,9853326,41,3,2+kk,2,Nové Město,10.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-wenzigova/4058624076,4058624076,10377233,51,1,2+kk,2,Nové Město,10.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-wenzigova/3253317708,3253317708,16294875,90,1,3+kk,2,Nové Město,10.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-podskalska/267300940,267300940,18990000,108,2,3+1,2,Nové Město,Včera,buy,Monika Christová

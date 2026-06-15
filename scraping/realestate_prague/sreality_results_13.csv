@@ -1,0 +1,101 @@
+link,id,price_czk,size_sqm,floor,rooms,district_num,neighborhood,date_updated,Buy Or Sell,seller_name
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-soukenicka/1553679180,1553679180,22990000,99,2,3+1,1,Nové Město,13.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-dlazdena/543141964,543141964,32512800,145,3,3+1,1,Nové Město,Dnes,buy,Žáková Jitka
+https://www.sreality.cz/detail/prodej/byt/byt/praha-mala-strana-malostranske-namesti/4029821772,4029821772,39950000,270,4,,1,Malá Strana,Dnes,buy,"Jonáš Wölfl, MBA"
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-petrska/1045234508,1045234508,9781000,56,7,1+kk,1,Nové Město,Dnes,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-soukenicka/2838299468,2838299468,17987000,83,6,2+kk,1,Nové Město,Dnes,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-petrska/3619582796,3619582796,14920000,91,7,3+kk,1,Nové Město,Dnes,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-petrska/2531808076,2531808076,8869000,47,6,1+kk,1,Nové Město,Dnes,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-washingtonova/2111652684,2111652684,7989000,49,0,2+kk,1,Nové Město,Dnes,buy,Ing. Zuzana Sommer
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-mala-strana-ujezd/3406713676,3406713676,21900000,103,3,3+1,1,Malá Strana,Dnes,buy,Dvořák Michal
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-tynska-ulicka/377185100,377185100,11500000,42,4,2+kk,1,stare,Dnes,buy,Wytrzensová Monika
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-truhlarska/239473996,239473996,13000000,62,3,3+kk,1,Nové Město,Včera,buy,Mgr. Karolína Marchlíková
+https://www.sreality.cz/detail/prodej/byt/byt/praha-nove-mesto-havlickova/1590510412,1590510412,39900000,295,5,,1,Nové Město,Včera,buy,Bc. Zuzana Lang DiS
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-bilkova/1326928716,1326928716,15664000,63,1,2+kk,1,Staré Město,Včera,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-/1752941388,1752941388,22200000,135,5,3+1,1,Nové Město,Včera,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-mala-strana-/1132008268,1132008268,32000000,235,4,5+kk,1,Malá Strana,Včera,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/5+1/praha-josefov-parizska/3301114700,3301114700,1,225,6,5+1,1,Josefov,Včera,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-josefov-dusni/2882872140,2882872140,1,94,5,3+kk,1,Josefov,Včera,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/3+1/praha--soukenicka/1141527372,1141527372,22650000,99,4,3+1,1,soukenicka,Včera,buy,Lukáš Hartman
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-mala-strana-ujezd/3124446028,3124446028,11849000,56,2,2+kk,1,Malá Strana,Včera,buy,Václav Růžička
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-u-pujcovny/1825309260,1825309260,12900000,64,1,2+1,1,Nové Město,Včera,buy,Lucie Pilařová
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-ve-smeckach/129942348,129942348,15999000,90,2,2+1,1,Nové Město,Včera,buy,Jan Bažant
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-stare-mesto-havelska/4238585932,4238585932,4436000,12,6,1+kk,1,Staré Město,Dnes,buy,Anna Černá
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-stare-mesto-havelska/3785601100,3785601100,6411000,14,4,1+kk,1,Staré Město,Včera,buy,Anna Černá
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-spalena/265531468,265531468,18900000,69,4,2+1,1,Nové Město,Dnes,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-stare-mesto-liliova/1581192012,1581192012,23890000,127,2,4+kk,1,Staré Město,Včera,buy,Mia Casa
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-pstrossova/1324266060,1324266060,39900000,235,7,3+kk,1,Nové Město,Včera,buy,Helena Haubová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-lannova/2740077388,2740077388,1,192,8,4+kk,1,Nové Město,Včera,buy,Hana Fisherová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-ruzova/255045708,255045708,21800000,143,5,3+kk,1,Nové Město,Včera,buy,Dominik Hayden
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-josefov-valentinska/3523482444,3523482444,23999000,120,6,4+1,1,Josefov,Dnes,buy,Jaroslav Boucník
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-/1999811916,1999811916,39900000,190,7,4+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-bilkova/156128588,156128588,27990000,145,7,3+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-opletalova/345334348,345334348,18900000,86,3,3+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-pstrossova/3810099788,3810099788,39900000,187,6,3+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-na-perstyne/2867417676,2867417676,13950000,71,4,2+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-krocinova/2989265740,2989265740,20000000,95,3,3+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-senovazne-namesti/3665146700,3665146700,39900000,131,2,4+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-veleslavinova/1597539148,1597539148,20490000,86,6,3+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-stare-mesto-v-kolkovne/3539788620,3539788620,33000000,129,6,3+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-na-struze/1216799564,1216799564,20000000,121,2,3+1,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-stare-mesto-jakubska/3378832204,3378832204,26900000,169,2,3+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/byt/praha-stare-mesto-liliova/308294476,308294476,69000000,352,1,,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-stare-mesto-bilkova/640885580,640885580,58720000,194,6,4+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-naprstkova/2232759116,2232759116,24990000,88,3,2+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-dlouha/2998125388,2998125388,18900000,109,3,3+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-stare-mesto-dlouha/3879170892,3879170892,20900000,83,5,2+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-soukenicka/421417804,421417804,7900000,25,2,1+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-mlynarska/1288729420,1288729420,14500000,72,5,3+kk,1,Nové Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/5+1/praha-stare-mesto-valentinska/2993120076,2993120076,55000000,331,7,5+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-stare-mesto-platnerska/1621513036,1621513036,24000000,109,2,3+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-stare-mesto-vejvodova/72565580,72565580,1,213,4,5+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-stare-mesto-28--rijna/2312258380,2312258380,33000000,118,5,3+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-stare-mesto-u-obecniho-dvora/3200954444,3200954444,21690000,113,6,5+kk,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/1+1/praha-stare-mesto-jakubska/3680743500,3680743500,10900000,39,3,1+1,1,Staré Město,Včera,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-ve-smeckach/2114327372,2114327372,13990000,75,2,3+1,1,Nové Město,Včera,buy,Ing. Lenka Chytrová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-spalena/213672780,213672780,20500000,100,3,3+1,1,Nové Město,Včera,buy,Alexandr Protsenko
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-hastalska/3577327692,3577327692,12590000,51,2,3+kk,1,Staré Město,Včera,buy,Petr Dvořák
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-nekazanka/917422924,917422924,39900000,160,7,4+kk,1,nove,Včera,buy,Jan Mahdal
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-mala-strana-tomasska/2872955724,2872955724,28950000,122,2,4+kk,1,Malá Strana,Včera,buy,Pavla Sokolová
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-opletalova/4214960972,4214960972,8666300,27,7,1+kk,1,Nové Město,Včera,buy,Petr Dvořák
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-mala-strana-vlasska/1123017548,1123017548,15890000,54,2,2+kk,1,Malá Strana,13.04.2026,buy,Ing. Denisa J. Přibylová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-mala-strana-mostecka/2750038860,2750038860,23780000,109,2,3+kk,1,Malá Strana,13.04.2026,buy,CREDITAS Real Estate
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-stare-mesto-/2111259468,2111259468,1,241,3,5+kk,1,Staré Město,13.04.2026,buy,Magdalena Gómezová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-soukenicka/3195368268,3195368268,1,113,5,3+kk,1,Nové Město,13.04.2026,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-stare-mesto-bilkova/2884875084,2884875084,13995000,55,3,2+1,1,Staré Město,13.04.2026,buy,Ing. Radislav Babák
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-bilkova/202855244,202855244,16896500,72,1,2+kk,1,Staré Město,13.04.2026,buy,Recepce CoreStone
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-stare-mesto-karlova/1396441676,1396441676,20043000,79,3,2+1,1,Staré Město,13.04.2026,buy,Karolína Uzdařová – recepce
+https://www.sreality.cz/detail/prodej/byt/5+1/praha-nove-mesto-/3368690508,3368690508,1,184,2,5+1,1,Nové Město,13.04.2026,buy,Emmanuel Gluntz
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-mala-strana-mostecka/170804044,170804044,17990000,93,3,2+kk,1,Malá Strana,Včera,buy,Emmanuel Gluntz
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-ve-smeckach/3525460812,3525460812,15999000,89,2,2+1,1,Nové Město,13.04.2026,buy,"Marcela Špetová, MBA"
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-rybna/248357708,248357708,13600000,50,2,2+kk,1,Staré Město,13.04.2026,buy,Zuzana Pejková
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-stepanska/727917388,727917388,7890000,39,1,1+kk,1,Nové Město,13.04.2026,buy,Jan Vesecký
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-josefov-maiselova/3600461900,3600461900,14990000,54,1,2+1,1,Josefov,13.04.2026,buy,Prague Properties
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-mala-strana-vsehrdova/1991787340,1991787340,12990000,56,1,2+1,1,Malá Strana,12.04.2026,buy,
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha--skolska/1539265356,1539265356,7512543,29,3,1+kk,1,skolska,12.04.2026,buy,Radoslav Mihalka
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha--skolska/2059359052,2059359052,13541500,51,5,2+kk,1,skolska,12.04.2026,buy,Radoslav Mihalka
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha--skolska/3297727308,3297727308,15205801,59,7,2+kk,1,skolska,12.04.2026,buy,Radoslav Mihalka
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha--skolska/2542752588,2542752588,33206581,119,7,3+kk,1,skolska,12.04.2026,buy,Radoslav Mihalka
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-josefov-maiselova/820686924,820686924,14990000,97,1,2+kk,1,Josefov,12.04.2026,buy,Martin Hinšt
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-stare-mesto-na-perstyne/3495908172,3495908172,27990000,169,3,5+kk,1,Staré Město,12.04.2026,buy,Artem Saykin
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-mala-strana-letenska/2760909644,2760909644,22300000,108,3,4+kk,1,Malá Strana,12.04.2026,buy,Mgr. Karolína Marchlíková
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-stare-mesto-bilkova/684331852,684331852,58720000,194,6,4+kk,1,Staré Město,12.04.2026,buy,Jan Kolář
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-stare-mesto-u-milosrdnych/3742516044,3742516044,13490000,73,1,3+kk,1,Staré Město,10.04.2026,buy,Zdeněk Molcar MBA
+https://www.sreality.cz/detail/prodej/byt/1+kk/praha-nove-mesto-na-struze/1804002124,1804002124,9237120,46,1,1+kk,1,Nové Město,10.04.2026,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-na-struze/2139546444,2139546444,23000000,120,6,3+1,1,Nové Město,10.04.2026,buy,Michaela Koudelová
+https://www.sreality.cz/detail/prodej/byt/3+kk/praha-nove-mesto-ruzova/3888730956,3888730956,14900000,80,4,3+kk,1,Nové Město,10.04.2026,buy,Ondřej Lopata
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-stare-mesto-/3242111052,3242111052,1,168,2,4+kk,1,Staré Město,13.04.2026,buy,Akvizice Reallocate
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-stare-mesto-rybna/4126671436,4126671436,25499000,123,5,4+1,1,Staré Město,10.04.2026,buy,Bc. Aleš Doubek
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-opatovicka/2991473484,2991473484,21990000,136,3,4+kk,1,Nové Město,10.04.2026,buy,Jan Hloušek
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-/3049694028,3049694028,1,44,3,2+kk,1,Staré Město,10.04.2026,buy,Adéla Zábojníková
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-josefov-/1250399052,1250399052,1,160,4,4+kk,1,Josefov,10.04.2026,buy,Adéla Zábojníková
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-praha-1-/1559610188,1559610188,1,195,6,4+1,1,,10.04.2026,buy,Adéla Zábojníková
+https://www.sreality.cz/detail/prodej/byt/5+kk/praha-stare-mesto-/3122414412,3122414412,1,213,3,5+kk,1,Staré Město,10.04.2026,buy,Adéla Zábojníková
+https://www.sreality.cz/detail/prodej/byt/2+1/praha-nove-mesto-karlovo-namesti/1972372300,1972372300,12999000,84,3,2+1,1,Nové Město,10.04.2026,buy,Jana Markvartová
+https://www.sreality.cz/detail/prodej/byt/4+kk/praha-nove-mesto-senovazne-namesti/1782739788,1782739788,1,94,6,4+kk,1,Nové Město,10.04.2026,buy,Hana Hlavatá
+https://www.sreality.cz/detail/prodej/byt/4+1/praha-stare-mesto-betlemska/895243084,895243084,27390000,144,2,4+1,1,Staré Město,Včera,buy,Lucie Celba
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-soukenicka/1553679180,1553679180,22990000,99,2,3+1,1,Nové Město,13.04.2026,buy,Adéla Bukovská - recepce
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-u-dobrenskych/140488780,140488780,13300000,64,6,2+kk,1,Staré Město,Včera,buy,Mgr. Simona Laštůvka
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-stare-mesto-dlouha/10208076,10208076,16900000,72,6,2+kk,1,Staré Město,09.04.2026,buy,Miroslav Vospálek
+https://www.sreality.cz/detail/prodej/byt/2+kk/praha-nove-mesto-navratilova/230847308,230847308,15490000,102,5,2+kk,1,Nové Město,09.04.2026,buy,Daniel Kvíz
+https://www.sreality.cz/detail/prodej/byt/3+1/praha-nove-mesto-jungmannovo-namesti/3317158732,3317158732,33000000,129,3,3+1,1,Nové Město,09.04.2026,buy,Radka Mandarano

@@ -1,0 +1,61 @@
+[Version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %ProviderName%
+DriverVer = 05/07/2026,22.1.15.821
+CatalogFile = NdisTun.cat
+PnpLockdown = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%NdisTun.DeviceDesc% = NdisTun.Inst, *NDIS_TUN
+
+[NdisTun.Inst.NT]
+Characteristics = 0x1 ; NCF_VIRTUAL
+AddReg          = NdisTun.Reg
+CopyFiles       = NdisTun.CopyFiles
+
+[NdisTun.Inst.NT.Services]
+AddService = NdisTun, 2, NdisTun.Service, NdisTun.EventLog
+
+[NdisTun.Reg]
+HKR, Ndi,            Service,    0, "NdisTun"
+HKR, Ndi\Interfaces, UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces, LowerRange, 0, "ethernet"
+
+[NdisTun.CopyFiles]
+NdisTun.sys,,,2
+
+[NdisTun.Service]
+DisplayName    = %NdisTun.Service.DispName%
+ServiceType    = 1 ; SERVICE_KERNEL_DRIVER
+StartType      = 3 ; SERVICE_DEMAND_START
+ErrorControl   = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\NdisTun.sys
+LoadOrderGroup = NDIS
+
+[NdisTun.EventLog]
+AddReg = NdisTun.EventLog.Reg
+
+[NdisTun.EventLog.Reg]
+HKR,, EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR,, TypesSupported,   0x00010001, 7
+
+[DestinationDirs]
+NdisTun.CopyFiles = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,
+
+[SourceDisksFiles]
+NdisTun.sys = 1,,
+
+[Strings]
+ProviderName            = "Gemini CLI"
+ManufacturerName        = "Gemini CLI"
+DiskName                = "NdisTun Installation Disk"
+NdisTun.DeviceDesc      = "NdisTun Virtual Network Adapter"
+NdisTun.Service.DispName = "NdisTun Miniport Driver"
