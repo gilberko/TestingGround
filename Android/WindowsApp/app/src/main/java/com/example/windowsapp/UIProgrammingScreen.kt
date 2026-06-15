@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -198,6 +198,6 @@ fun UIProgrammingScreen(navController: NavController) {
         BodyText("WinMain: registers the window class, creates the main window, then enters the message loop.\n\nWM_CREATE: fired once when CreateWindowEx is called. The ideal place to create child controls — the two button windows are created here.\n\nWM_COMMAND: fires when a child control is activated. LOWORD(wParam) gives the control ID so we dispatch to the right handler.\n\nMessageBox: a blocking call that shows a modal dialog. The message loop runs inside it (Windows pumps messages internally), so the UI stays responsive.\n\nPostQuitMessage(0): posts WM_QUIT to the thread's message queue. The next GetMessage returns 0, the while loop exits, and the process terminates.\n\nWM_DESTROY: fired after the window is destroyed (after WM_CLOSE → DestroyWindow). We call PostQuitMessage here so closing the window ends the application.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

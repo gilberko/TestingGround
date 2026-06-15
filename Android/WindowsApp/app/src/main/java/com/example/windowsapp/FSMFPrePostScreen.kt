@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -158,6 +158,6 @@ fun FSMFPrePostScreen(navController: NavController) {
         BodyText("Key fields in FLT_CALLBACK_DATA:\n• Iopb->MajorFunction — which IRP_MJ_* this is\n• Iopb->Parameters — union of per-op params (e.g. Create.DesiredAccess, Read.Length)\n• IoStatus — status/information returned to caller (writable in both callbacks)\n• RequestorMode — KernelMode or UserMode\n• Thread — the requestor thread (may differ in post-op)\n\nKey fields in FLT_RELATED_OBJECTS:\n• Filter — your PFLT_FILTER\n• Volume — the volume this operation is on\n• Instance — which instance (volume attachment)\n• FileObject — the file being operated on")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

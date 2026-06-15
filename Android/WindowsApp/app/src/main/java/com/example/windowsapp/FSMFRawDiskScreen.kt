@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -104,6 +104,6 @@ fun FSMFRawDiskScreen(navController: NavController) {
         BodyText("Raw disk I/O is intentionally used to bypass minifilters:\n\n• Disk forensics tools read raw sectors to recover deleted files\n• Partition managers and disk editors use raw access\n• Some malware writes to raw disk to hide data from AV minifilters\n\nTo monitor raw disk access you need a different driver type:\n\n• Storage filter driver (class filter) — stacks above disk.sys in the storage stack\n• Volume filter driver — stacks above the volume device\n\nMinifilters are the right tool only for file-system-level I/O. If you need to catch all low-level disk activity, combine a minifilter (for FS-level I/O) with a storage filter (for raw disk I/O).")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

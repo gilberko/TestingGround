@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -222,6 +222,6 @@ fun CallingConventionsScreen(navController: NavController) {
         BodyText("32-bit (x86): __stdcall\n  WINAPI is #defined as __stdcall\n  WIN32 functions use \"_FuncName@N\" mangling\n  Callee cleans the stack\n\n64-bit (x64): Microsoft x64 ABI\n  All __cdecl/__stdcall modifiers are ignored\n  One universal convention — no annotation needed\n  RCX/RDX/R8/R9 + 32-byte shadow space\n\nWindows on ARM64: AAPCS64 with minor Microsoft extensions\n  x0-x7 for integer args (Microsoft follows the standard)\n\nImplication: a DLL compiled for Win32 (__stdcall) cannot be called directly from a 64-bit process — it must be in a 32-bit host process or accessed via COM/out-of-process activation.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -122,6 +122,6 @@ fun FSMFAltitudeScreen(navController: NavController) {
         BodyText("Can you issue I/O that goes through every filter, including those above you?\n\nYes — use ZwCreateFile (or IoCreateFile). It goes to the top of the filter stack, so every minifilter including yours will see it.\n\nRisk: your own pre-op fires again → potential infinite recursion.\n\nGuard against recursion by:\n• Setting a thread-local flag (e.g. KeGetCurrentThread() → TLS slot) and checking it in pre-op\n• Attaching an ECP to the IRP and checking for it in pre-op\n\nRecommendation: always prefer FltCreateFile unless you explicitly need upper-filter processing. ZwCreateFile from a minifilter is a footgun — use it only with a recursion guard in place.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

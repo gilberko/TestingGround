@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -169,6 +169,6 @@ fun OpportunisticLocksScreen(navController: NavController) {
         BodyText("The typical pattern: open the file with FILE_FLAG_OVERLAPPED, call DeviceIoControl with FSCTL_REQUEST_OPLOCK asynchronously, then do normal I/O. When the async DeviceIoControl completes, it means the break has been requested — flush, then call DeviceIoControl again with FSCTL_OPLOCK_BREAK_ACKNOWLEDGE.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

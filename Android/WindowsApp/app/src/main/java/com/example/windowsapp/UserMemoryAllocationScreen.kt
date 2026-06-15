@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -139,7 +139,40 @@ fun UserMemoryAllocationScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
         BodyText("HeapAlloc is efficient for small, frequent allocations — it sub-allocates from large VirtualAlloc regions and maintains free-lists.\n\nVirtualAlloc is appropriate for:\n• Large buffers (>= ~1 MB)\n• Executable memory (PAGE_EXECUTE_READ)\n• Guard pages and custom memory regions\n• When you need MEM_RESERVE without committing")
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionHeader("WHAT IS NUMA")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("NUMA (Non-Uniform Memory Access) describes a memory architecture used in multi-socket machines. Each CPU socket (NUMA node) has its own bank of local RAM. Accessing local RAM is fast; accessing RAM on a different socket (remote node) is slower — typically 20–50% higher latency and lower bandwidth, depending on the platform.\n\nOn a 2-socket server, node 0 owns the first 128 GB and node 1 owns the next 128 GB. A thread running on node 0's CPUs that allocates from node 1's RAM pays the cross-socket penalty on every access.\n\nWindows exposes NUMA topology through APIs. By pinning a thread to a node's CPUs and allocating buffers from the same node, you eliminate remote memory traffic. Useful for: databases, in-memory caches, high-frequency trading engines, network packet processing — any workload that is latency-sensitive or memory-bandwidth-bound on multi-socket hardware.")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionHeader("NUMA-AWARE MEMORY ALLOCATION")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("GetNumaHighestNodeNumber: query the number of NUMA nodes — returns the highest node index (zero-based), so add 1 to get the count.\n\nGetNumaNodeProcessorMaskEx: returns a GROUP_AFFINITY describing which CPUs belong to a given node. Use this to build a thread affinity mask.\n\nVirtualAllocExNuma: like VirtualAllocEx but with an nndPreferred node parameter — the OS satisfies the allocation from that node's RAM where possible. If the node is full it falls back to any available memory.\n\nGetNumaAvailableMemoryNodeEx: query how much free RAM a node has before deciding where to allocate.")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "ULONG highestNode;\n" +
+            "GetNumaHighestNodeNumber(&highestNode);\n" +
+            "// highestNode == 1  →  2 nodes: 0 and 1\n\n" +
+            "// Allocate 64 MB preferring node 0\n" +
+            "void* buf = VirtualAllocExNuma(\n" +
+            "    GetCurrentProcess(),\n" +
+            "    NULL,\n" +
+            "    64 * 1024 * 1024,\n" +
+            "    MEM_RESERVE | MEM_COMMIT,\n" +
+            "    PAGE_READWRITE,\n" +
+            "    0);          // preferred NUMA node\n\n" +
+            "// Pin the processing thread to node 0's CPUs\n" +
+            "GROUP_AFFINITY aff = {};\n" +
+            "GetNumaNodeProcessorMaskEx(0, &aff);\n" +
+            "SetThreadGroupAffinity(\n" +
+            "    GetCurrentThread(), &aff, NULL);\n\n" +
+            "// All accesses are now node-local\n\n" +
+            "VirtualFree(buf, 0, MEM_RELEASE);"
+        )
+
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

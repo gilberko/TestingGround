@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -137,6 +137,6 @@ fun IOCompletionPortScreen(navController: NavController) {
         BodyText("Compatible (must use FILE_FLAG_OVERLAPPED or WSA_FLAG_OVERLAPPED):\n• Files (FILE_FLAG_OVERLAPPED)\n• Sockets (WSASocket with WSA_FLAG_OVERLAPPED)\n• Named pipes — server-side\n• Serial communication ports\n• Mailslots\n\nNOT compatible:\n• Console handles\n• Process / thread handles\n• Synchronization objects (use waitable timers via CreateThreadpoolTimer instead)")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

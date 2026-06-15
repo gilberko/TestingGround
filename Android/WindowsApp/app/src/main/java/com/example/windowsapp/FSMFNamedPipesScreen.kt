@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -89,6 +89,6 @@ fun FSMFNamedPipesScreen(navController: NavController) {
         BodyText("Security products that monitor IPC (e.g. detecting C2 communication over named pipes) must explicitly handle FLT_FSTYPE_NPFS and opt in.\n\nMost file-activity audit tools filter out NPFS because:\n• Named pipe reads/writes are not disk I/O — logging them inflates audit volume\n• Recursion risk: the filter itself may use a named pipe for user-kernel communication, which would re-trigger its own callbacks\n\nAlso applies to mailslots:\n• Implemented by msfs.sys (Mailslot File System)\n• FLT_FSTYPE_MSFS in InstanceSetupCallback\n• Same pattern: opt in or out explicitly\n\nOther non-disk file systems the Filter Manager attaches to:\n• FLT_FSTYPE_NTFS — standard NTFS\n• FLT_FSTYPE_FAT — FAT / exFAT\n• FLT_FSTYPE_CDFS — CD-ROM\n• FLT_FSTYPE_UDF — DVD\n• FLT_FSTYPE_LANMAN — SMB redirector")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

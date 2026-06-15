@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -180,6 +180,6 @@ fun FSMFReparsePointScreen(navController: NavController) {
         BodyText("Cloud storage (OneDrive, Dropbox): files appear present as placeholders tagged with IO_REPARSE_TAG_CLOUD. When opened, the provider's filter driver intercepts the STATUS_REPARSE in post-op and downloads the data before completing the create.\n\nSymbolic links: entirely OS-handled via IO_REPARSE_TAG_SYMLINK — no driver needed.\n\nVolume mount points: mount D:\\ inside C:\\Mounted\\ — NTFS uses a mount-point reparse tag on the directory. The I/O Manager redirects the path to the mounted volume.\n\nDFS (Distributed File System): the DFS client driver handles IO_REPARSE_TAG_DFS, redirecting the client to the correct server transparently.\n\nHSM (Hierarchical Storage Management): files migrated to tape are replaced with reparse-point stubs. A filter driver recalls the data on demand when the stub is opened.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

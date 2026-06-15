@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -121,6 +121,6 @@ fun FSMFMupScreen(navController: NavController) {
         BodyText("A minifilter that logs file opens will log every UNC open twice — once on the MUP instance, once on the redirector instance.\n\nDeduplication strategies:\n• Skip MUP-instance callbacks: detect FLT_FSTYPE_MUP in InstanceSetupCallback and return STATUS_FLT_DO_NOT_ATTACH — see only the redirector instance\n• Skip redirector callbacks: attach only to MUP — see the path before routing but not the actual data\n• Most security products skip MUP and attach only to the redirector (FLT_FSTYPE_LANMAN etc.) where actual file content flows\n\nNote: the redirector instance is where file data and metadata are accessible. The MUP instance only sees the initial path routing request.")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

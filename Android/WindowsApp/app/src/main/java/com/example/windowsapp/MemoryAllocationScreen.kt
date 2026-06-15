@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -227,8 +227,41 @@ fun MemoryAllocationScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
         BodyText("MEM_PRIVATE: process-private allocation. MEM_MAPPED: memory-mapped file. MEM_IMAGE: mapped from a PE image (DLL or EXE). By walking consecutive addresses with ZwQueryVirtualMemory you can enumerate the entire virtual address space of any accessible process.")
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionHeader("WHAT IS NUMA")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("NUMA (Non-Uniform Memory Access): multi-socket machines give each CPU socket its own local RAM bank. Accessing remote RAM (another socket's bank) costs more latency and bandwidth — typically 20–50% higher latency on a 2-socket server.\n\nThe Windows kernel is NUMA-aware and uses this topology when managing pool memory. Regular pool allocations (ExAllocatePool2) are automatically NUMA-local: the memory manager prefers to satisfy an allocation from the NUMA node the calling CPU belongs to. You get good locality for free as long as your worker thread stays on the right node.\n\nFor physically contiguous memory (DMA buffers), explicit node targeting is available via MmAllocateContiguousNodeMemory. Use KeSetSystemGroupAffinityThread to keep a thread bound to a specific node's CPUs.")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionHeader("NUMA KERNEL APIs")
+        Spacer(modifier = Modifier.height(8.dp))
+        BodyText("KeQueryHighestNodeNumber: returns the highest NUMA node index (zero-based). Add 1 for the total count.\n\nKeGetCurrentNodeNumber: returns the NUMA node of the CPU currently executing the calling thread. Use this to allocate from the same node as your thread.\n\nKeQueryGroupAffinity: given a NUMA node number, returns a GROUP_AFFINITY mask of the CPUs on that node.\n\nKeSetSystemGroupAffinityThread: bind a kernel thread to a group/CPU mask. Pass the affinity from KeQueryGroupAffinity to pin a thread to a specific node.\n\nMmAllocateContiguousNodeMemory (Windows 8+): allocate physically contiguous non-paged memory from a specific NUMA node — the kernel equivalent of VirtualAllocExNuma, primarily for DMA buffers. Pass MM_ANY_NODE_OK as the node to skip NUMA preference. Free with MmFreeContiguousMemory.")
+        Spacer(modifier = Modifier.height(8.dp))
+        CodeBlock(
+            "ULONG nodeCount = KeQueryHighestNodeNumber() + 1;\n" +
+            "ULONG currentNode = KeGetCurrentNodeNumber();\n\n" +
+            "// Allocate a 2 MB DMA buffer from the current node\n" +
+            "PHYSICAL_ADDRESS low  = { 0 };\n" +
+            "PHYSICAL_ADDRESS high = { .QuadPart = 0xFFFFFFFF };\n" +
+            "PHYSICAL_ADDRESS zero = { 0 };\n\n" +
+            "PVOID dmaBuf = MmAllocateContiguousNodeMemory(\n" +
+            "    2 * 1024 * 1024,\n" +
+            "    low, high, zero,\n" +
+            "    PAGE_READWRITE,\n" +
+            "    currentNode);  // or MM_ANY_NODE_OK\n\n" +
+            "// ... use dmaBuf for DMA transfers ...\n\n" +
+            "MmFreeContiguousMemory(dmaBuf);\n\n" +
+            "// Bind a worker thread to the same node's CPUs\n" +
+            "GROUP_AFFINITY aff;\n" +
+            "KeQueryGroupAffinity(currentNode, &aff);\n" +
+            "KeSetSystemGroupAffinityThread(\n" +
+            "    KeGetCurrentThread(), &aff, NULL);"
+        )
+
         Spacer(modifier = Modifier.height(32.dp))
 
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }

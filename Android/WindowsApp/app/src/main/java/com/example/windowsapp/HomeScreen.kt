@@ -68,7 +68,7 @@ fun HomeScreen(navController: NavController) {
 }
 
 @Composable
-fun HackerButton(text: String, fontSize: TextUnit = 15.sp, onClick: () -> Unit) {
+fun HackerButton(text: String, fontSize: TextUnit = 13.sp, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
         border = BorderStroke(1.dp, HackerGreen),
@@ -81,7 +81,7 @@ fun HackerButton(text: String, fontSize: TextUnit = 15.sp, onClick: () -> Unit) 
             .heightIn(min = 56.dp)
     ) {
         Text(
-            text = "> $text",
+            text = text,
             fontFamily = FontFamily.Monospace,
             fontSize = fontSize,
             fontWeight = FontWeight.Medium,

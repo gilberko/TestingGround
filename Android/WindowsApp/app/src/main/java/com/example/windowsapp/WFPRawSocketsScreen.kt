@@ -1,4 +1,4 @@
-package com.example.windowsapp
+﻿package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -145,6 +145,6 @@ fun WFPRawSocketsScreen(navController: NavController) {
         BodyText("If your callout blocks traffic based on port numbers, raw sockets can evade those filters — they have no ports. Your port-based rules at OUTBOUND_TRANSPORT simply never match a raw ICMP packet because the port fields are 0 or ICMP type/code.\n\nIf your callout only registers at ALE_AUTH_CONNECT, it misses raw sockets that use sendto() without calling connect() — these never trigger ALE_AUTH_CONNECT.\n\nRecommended strategy for comprehensive raw socket monitoring:\n\n1. Register at OUTBOUND_TRANSPORT and INBOUND_TRANSPORT (these always fire)\n2. Check FWP_CONDITION_FLAG_IS_RAW_ENDPOINT in the FLAGS field\n3. Use the IP_PROTOCOL field to determine what kind of raw socket it is\n4. Do not rely on port fields for raw sockets — use IP_LOCAL_ADDRESS and IP_REMOTE_ADDRESS instead\n5. For raw ICMP: interpret IP_LOCAL_PORT as ICMP type and IP_REMOTE_PORT as ICMP code\n6. Register at ALE_AUTH_CONNECT as well — it fires when connect() is called, giving you process identity and destination address before any packet is sent")
 
         Spacer(modifier = Modifier.height(32.dp))
-        HackerButton("< BACK") { navController.popBackStack() }
+        HackerButton("BACK") { navController.popBackStack() }
     }
 }
