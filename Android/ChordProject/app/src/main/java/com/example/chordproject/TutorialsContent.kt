@@ -40,6 +40,7 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.activity.compose.BackHandler
 import kotlin.math.cos
@@ -1812,23 +1813,24 @@ private fun GuitarTuningContent() {
 @Composable
 private fun TutorialsHub(onSelect: (String) -> Unit) {
     val topics = listOf(
-        "scales"              to "Scales",
-        "a_major_patterns"    to "A Major Scale - 7 Patterns",
+        "scales"               to "Scales",
+        "a_major_patterns"     to "A Major Scale - 7 Patterns",
         "fsharp_minor_patterns" to "F# Minor - 7 Patterns",
-        "cycle"        to "Cycle of Fifths",
-        "improv"       to "Improvisation",
-        "arpeggios"    to "Arpeggios",
-        "caged"        to "CAGED Chord Shapes",
-        "chord_shapes" to "Chord Shapes",
-        "harmonics"    to "Harmonics",
-        "guitar_tuning" to "Guitar Tuning",
-        "ideas"        to "Ideas"
+        "cycle"                to "Cycle of Fifths",
+        "improv"               to "Improvisation",
+        "arpeggios"            to "Arpeggios",
+        "caged"                to "CAGED Chord Shapes",
+        "chord_shapes"         to "Chord Shapes",
+        "harmonics"            to "Harmonics",
+        "guitar_tuning"        to "Guitar Tuning",
+        "triads"               to "Triads",
+        "ideas"                to "Ideas"
     )
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -1837,13 +1839,25 @@ private fun TutorialsHub(onSelect: (String) -> Unit) {
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(bottom = 8.dp)
         )
-        topics.forEach { (key, label) ->
-            Button(
-                onClick  = { onSelect(key) },
+        topics.chunked(2).forEach { pair ->
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                colors   = ButtonDefaults.buttonColors(containerColor = Color(0xFF1F3A5F))
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(label, style = MaterialTheme.typography.titleSmall)
+                pair.forEach { (key, label) ->
+                    Button(
+                        onClick  = { onSelect(key) },
+                        modifier = Modifier.weight(1f),
+                        colors   = ButtonDefaults.buttonColors(containerColor = Color(0xFF1F3A5F))
+                    ) {
+                        Text(
+                            label,
+                            style     = MaterialTheme.typography.titleSmall,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+                if (pair.size < 2) Spacer(modifier = Modifier.weight(1f))
             }
         }
     }
@@ -1866,6 +1880,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
         "chord_shapes" -> "Chord Shapes"
         "harmonics"    -> "Harmonics"
         "guitar_tuning" -> "Guitar Tuning"
+        "triads"       -> "Triads"
         "ideas"        -> "Ideas"
         else           -> "Learning"
     }
@@ -1910,6 +1925,7 @@ fun TutorialsScreen(onDismiss: () -> Unit) {
                 "chord_shapes" -> ChordShapesContent()
                 "harmonics"    -> HarmonicsContent()
                 "guitar_tuning" -> GuitarTuningContent()
+                "triads"       -> TriadsContent()
                 "ideas"        -> IdeasContent()
                 else           -> TutorialsHub(onSelect = { selectedTopic = it })
             }
@@ -2105,6 +2121,169 @@ private fun FSharpMinorPatternsContent() {
             )
         }
 
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
+
+// ── Triads ───────────────────────────────────────────────────────────────────
+
+@Composable
+private fun TriadPatternRow(
+    patternName: String,
+    majDots: List<NeckDot>, majStart: Int, majFrets: Int, majLabel: String,
+    minDots: List<NeckDot>, minStart: Int, minFrets: Int, minLabel: String,
+) {
+    Text(
+        patternName,
+        color    = Color(0xFF888888),
+        style    = MaterialTheme.typography.labelSmall,
+        modifier = Modifier.padding(top = 10.dp, bottom = 2.dp)
+    )
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                "C Major",
+                color    = Color(0xFF81C784),
+                style    = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+            NeckDiagram(majDots, majFrets, majStart, majLabel, Modifier.fillMaxWidth())
+        }
+        Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                "C Minor",
+                color    = Color(0xFF64B5F6),
+                style    = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(bottom = 2.dp)
+            )
+            NeckDiagram(minDots, minFrets, minStart, minLabel, Modifier.fillMaxWidth())
+        }
+    }
+}
+
+@Composable
+private fun TriadsContent() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        BodyText("Triads are the building blocks of all chords — three notes stacked in thirds: the root, the 3rd, and the 5th.")
+        BodyText("C Major = C · E · G   (major 3rd + perfect 5th)")
+        BodyText("C Minor = C · Eb · G  (minor 3rd + perfect 5th — the 3rd is one semitone lower)")
+        BodyText("Each set of three adjacent strings hosts exactly three tight voicings (inversions) that tile the neck without gaps. They let you target chord tones directly — ideal for soloing over chord changes or adding colour while comping.")
+        ItalicNote("Green = root (C).  Blue = chord tone.")
+
+        // ── Strings 3-2-1 (G · B · e) ────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Strings 3-2-1  (G · B · e)")
+        BodyText("The three treble strings. High and bright — ideal for melodic fills and lead runs over a full band.")
+
+        TriadPatternRow(
+            patternName = "Root Position",
+            majDots  = listOf(NeckDot(2,2,true),  NeckDot(1,2,false), NeckDot(0,0,false)),
+            majStart = 3, majFrets = 5, majLabel = "C · E · G",
+            minDots  = listOf(NeckDot(2,2,true),  NeckDot(1,1,false), NeckDot(0,0,false)),
+            minStart = 3, minFrets = 5, minLabel = "C · Eb · G"
+        )
+        TriadPatternRow(
+            patternName = "1st Inversion",
+            majDots  = listOf(NeckDot(2,1,false), NeckDot(1,0,false), NeckDot(0,0,true)),
+            majStart = 8, majFrets = 5, majLabel = "E · G · C",
+            minDots  = listOf(NeckDot(2,0,false), NeckDot(1,0,false), NeckDot(0,0,true)),
+            minStart = 8, minFrets = 5, minLabel = "Eb · G · C"
+        )
+        TriadPatternRow(
+            patternName = "2nd Inversion",
+            majDots  = listOf(NeckDot(2,0,false), NeckDot(1,1,true),  NeckDot(0,0,false)),
+            majStart = 12, majFrets = 4, majLabel = "G · C · E",
+            minDots  = listOf(NeckDot(2,1,false), NeckDot(1,2,true),  NeckDot(0,0,false)),
+            minStart = 11, minFrets = 4, minLabel = "G · C · Eb"
+        )
+
+        // ── Strings 4-3-2 (D · G · B) ────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Strings 4-3-2  (D · G · B)")
+        BodyText("The middle string set. Balanced in tone — sits between the warmth of the bass strings and the brightness of the treble strings.")
+
+        TriadPatternRow(
+            patternName = "2nd Inversion",
+            majDots  = listOf(NeckDot(3,0,false), NeckDot(2,0,true),  NeckDot(1,0,false)),
+            majStart = 5, majFrets = 5, majLabel = "G · C · E",
+            minDots  = listOf(NeckDot(3,1,false), NeckDot(2,1,true),  NeckDot(1,0,false)),
+            minStart = 4, minFrets = 5, minLabel = "G · C · Eb"
+        )
+        TriadPatternRow(
+            patternName = "Root Position",
+            majDots  = listOf(NeckDot(3,2,true),  NeckDot(2,1,false), NeckDot(1,0,false)),
+            majStart = 8, majFrets = 5, majLabel = "C · E · G",
+            minDots  = listOf(NeckDot(3,2,true),  NeckDot(2,0,false), NeckDot(1,0,false)),
+            minStart = 8, minFrets = 5, minLabel = "C · Eb · G"
+        )
+        TriadPatternRow(
+            patternName = "1st Inversion",
+            majDots  = listOf(NeckDot(3,2,false), NeckDot(2,0,false), NeckDot(1,1,true)),
+            majStart = 12, majFrets = 4, majLabel = "E · G · C",
+            minDots  = listOf(NeckDot(3,1,false), NeckDot(2,0,false), NeckDot(1,1,true)),
+            minStart = 12, minFrets = 4, minLabel = "Eb · G · C"
+        )
+
+        // ── Strings 5-4-3 (A · D · G) ────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Strings 5-4-3  (A · D · G)")
+        BodyText("The mid-range set. Rich and full-bodied — great for jazz comping and chord-tone soloing.")
+
+        TriadPatternRow(
+            patternName = "1st Inversion",
+            majDots  = listOf(NeckDot(4,2,false), NeckDot(3,0,false), NeckDot(2,0,true)),
+            majStart = 5, majFrets = 5, majLabel = "E · G · C",
+            minDots  = listOf(NeckDot(4,1,false), NeckDot(3,0,false), NeckDot(2,0,true)),
+            minStart = 5, minFrets = 5, minLabel = "Eb · G · C"
+        )
+        TriadPatternRow(
+            patternName = "2nd Inversion",
+            majDots  = listOf(NeckDot(4,1,false), NeckDot(3,1,true),  NeckDot(2,0,false)),
+            majStart = 9, majFrets = 5, majLabel = "G · C · E",
+            minDots  = listOf(NeckDot(4,2,false), NeckDot(3,2,true),  NeckDot(2,0,false)),
+            minStart = 8, minFrets = 5, minLabel = "G · C · Eb"
+        )
+        TriadPatternRow(
+            patternName = "Root Position",
+            majDots  = listOf(NeckDot(4,3,true),  NeckDot(3,2,false), NeckDot(2,0,false)),
+            majStart = 12, majFrets = 5, majLabel = "C · E · G",
+            minDots  = listOf(NeckDot(4,3,true),  NeckDot(3,1,false), NeckDot(2,0,false)),
+            minStart = 12, minFrets = 5, minLabel = "C · Eb · G"
+        )
+
+        // ── Strings 6-5-4 (E · A · D) ────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Strings 6-5-4  (E · A · D)")
+        BodyText("The three bass strings. Deep and powerful — useful for bass-note chord stabs and low-register rhythm textures.")
+
+        TriadPatternRow(
+            patternName = "2nd Inversion",
+            majDots  = listOf(NeckDot(5,1,false), NeckDot(4,1,true),  NeckDot(3,0,false)),
+            majStart = 2, majFrets = 5, majLabel = "G · C · E",
+            minDots  = listOf(NeckDot(5,2,false), NeckDot(4,2,true),  NeckDot(3,0,false)),
+            minStart = 1, minFrets = 5, minLabel = "G · C · Eb"
+        )
+        TriadPatternRow(
+            patternName = "Root Position",
+            majDots  = listOf(NeckDot(5,3,true),  NeckDot(4,2,false), NeckDot(3,0,false)),
+            majStart = 5, majFrets = 5, majLabel = "C · E · G",
+            minDots  = listOf(NeckDot(5,3,true),  NeckDot(4,1,false), NeckDot(3,0,false)),
+            minStart = 5, minFrets = 5, minLabel = "C · Eb · G"
+        )
+        TriadPatternRow(
+            patternName = "1st Inversion",
+            majDots  = listOf(NeckDot(5,2,false), NeckDot(4,0,false), NeckDot(3,0,true)),
+            majStart = 10, majFrets = 5, majLabel = "E · G · C",
+            minDots  = listOf(NeckDot(5,1,false), NeckDot(4,0,false), NeckDot(3,0,true)),
+            minStart = 10, minFrets = 5, minLabel = "Eb · G · C"
+        )
+
+        BodyText("These shapes tile the neck — once you know all three inversions on one string set, shift to the next and the same shapes reappear at different frets.")
         Spacer(modifier = Modifier.height(24.dp))
     }
 }
