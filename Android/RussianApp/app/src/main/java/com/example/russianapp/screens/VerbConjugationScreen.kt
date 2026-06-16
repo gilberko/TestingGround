@@ -65,6 +65,69 @@ private val perfectiveFutureNapisatRows = listOf(
     ConjugationRow("они",    "напишут")
 )
 
+private val drawOvatRows = listOf(
+    ConjugationRow("я",      "рисую"),
+    ConjugationRow("ты",     "рисуешь"),
+    ConjugationRow("он/она", "рисует"),
+    ConjugationRow("мы",     "рисуем"),
+    ConjugationRow("вы",     "рисуете"),
+    ConjugationRow("они",    "рисуют")
+)
+
+private val giveImpfRows = listOf(
+    ConjugationRow("я",      "даю"),
+    ConjugationRow("ты",     "даёшь"),
+    ConjugationRow("он/она", "даёт"),
+    ConjugationRow("мы",     "даём"),
+    ConjugationRow("вы",     "даёте"),
+    ConjugationRow("они",    "дают")
+)
+
+private val writePresentRows = listOf(
+    ConjugationRow("я",      "пишу"),
+    ConjugationRow("ты",     "пишешь"),
+    ConjugationRow("он/она", "пишет"),
+    ConjugationRow("мы",     "пишем"),
+    ConjugationRow("вы",     "пишете"),
+    ConjugationRow("они",    "пишут")
+)
+
+private val solvePfRows = listOf(
+    ConjugationRow("я",      "решу"),
+    ConjugationRow("ты",     "решишь"),
+    ConjugationRow("он/она", "решит"),
+    ConjugationRow("мы",     "решим"),
+    ConjugationRow("вы",     "решите"),
+    ConjugationRow("они",    "решат")
+)
+
+private val drinkRows = listOf(
+    ConjugationRow("я",      "пью"),
+    ConjugationRow("ты",     "пьёшь"),
+    ConjugationRow("он/она", "пьёт"),
+    ConjugationRow("мы",     "пьём"),
+    ConjugationRow("вы",     "пьёте"),
+    ConjugationRow("они",    "пьют")
+)
+
+private val eatRows = listOf(
+    ConjugationRow("я",      "ем"),
+    ConjugationRow("ты",     "ешь"),
+    ConjugationRow("он/она", "ест"),
+    ConjugationRow("мы",     "едим"),
+    ConjugationRow("вы",     "едите"),
+    ConjugationRow("они",    "едят")
+)
+
+private val givePfRows = listOf(
+    ConjugationRow("я",      "дам"),
+    ConjugationRow("ты",     "дашь"),
+    ConjugationRow("он/она", "даст"),
+    ConjugationRow("мы",     "дадим"),
+    ConjugationRow("вы",     "дадите"),
+    ConjugationRow("они",    "дадут")
+)
+
 private val reflexivePresentRows = listOf(
     ConjugationRow("я",      "моюсь"),
     ConjugationRow("ты",     "моешься"),
@@ -653,6 +716,204 @@ private fun PassiveVoiceCard() {
     }
 }
 
+@Composable
+private fun VerbEndingsCard() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+
+            // ── -овать ──────────────────────────────────────────────────────
+            Text(
+                text = "-овать  →  -ую  (always regular)",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Drop -овать and replace the -ов- with -у-, then add Type 1 endings. Every -овать verb follows this rule.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("рисовать — to draw (imperfective)", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            drawOvatRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(row.pronoun, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.form,    style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(2f))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── -вать ───────────────────────────────────────────────────────
+            Text(
+                text = "-вать  →  drop -ва- from the stem",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Drop the entire -вать suffix and also remove the -ва- syllable from the stem. Then add regular Type 1 endings. This pattern applies to many common verbs: вставать (встаю), узнавать (узнаю), признавать (признаю).",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("давать — to give (imperfective)", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            giveImpfRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(row.pronoun, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.form,    style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(2f))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── -ать ────────────────────────────────────────────────────────
+            Text(
+                text = "-ать  →  Type 1, but watch for consonant mutations",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Most -ать verbs are regular Type 1 (like читать). However, when the stem ends in certain consonants, a mutation occurs across ALL conjugated forms — not just the first person. Common mutations: с→ш (писать), з→ж (сказать→скажу), ск→щ (искать→ищу).",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("писать — to write (imperfective)  [с → ш throughout]", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            writePresentRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(row.pronoun, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.form,    style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(2f))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── -ить ────────────────────────────────────────────────────────
+            Text(
+                text = "-ить  →  Type 2  (and a common trap)",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Most -ить verbs are regular Type 2. Because решить is perfective, its present-style conjugation means future (\"will decide\") — perfective verbs have no true present tense.\n\nTrap: monosyllabic -ить verbs (пить, бить, вить, лить) use Type 1 endings, not Type 2. See the irregular section below.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("решить — to decide / solve (perfective → future meaning)", style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            solvePfRows.forEach { row ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                    Text(row.pronoun, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(row.form,    style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(2f))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // ── Irregulars ──────────────────────────────────────────────────
+            Text(
+                text = "Irregular verbs — must memorize",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+
+                    Text(
+                        text = "пить — to drink",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        text = "Ends in -ить but is monosyllabic → uses Type 1 endings. A soft sign (ь) is inserted before each vowel ending.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(top = 2.dp, bottom = 4.dp)
+                    )
+                    drinkRows.forEach { row ->
+                        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
+                            Text(row.pronoun, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text(row.form,    style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    HorizontalDivider(color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.3f))
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "есть — to eat",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        text = "Archaic athematic verb — unique endings inherited from Old Slavic. No rule applies; memorize the forms.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(top = 2.dp, bottom = 4.dp)
+                    )
+                    eatRows.forEach { row ->
+                        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
+                            Text(row.pronoun, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text(row.form,    style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    HorizontalDivider(color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.3f))
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "дать — to give (perfective → future meaning)",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        text = "Also an archaic athematic verb. Note дадут (not *дают) — the stem doubles the д in the мы/вы/они forms. Imperfective pair is давать (above).",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(top = 2.dp, bottom = 4.dp)
+                    )
+                    givePfRows.forEach { row ->
+                        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp)) {
+                            Text(row.pronoun, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text(row.form,    style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f), color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VerbConjugationScreen(onBack: () -> Unit) {
@@ -685,6 +946,8 @@ fun VerbConjugationScreen(onBack: () -> Unit) {
             }
             item { ConjugationTable("Type 1 (-ать/-ять): читать (to read)", readType1Rows) }
             item { ConjugationTable("Type 2 (-ить/-еть): говорить (to speak)", speakType2Rows) }
+            item { SectionHeader("Examples — Conjugating by Ending") }
+            item { VerbEndingsCard() }
             item { SectionHeader("Past Tense") }
             item { PastTenseCard() }
             item { SectionHeader("Imperative") }
