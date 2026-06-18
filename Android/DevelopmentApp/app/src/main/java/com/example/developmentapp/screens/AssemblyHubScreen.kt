@@ -48,7 +48,8 @@ fun AssemblyHubScreen(
     onNumberRepresentation: () -> Unit,
     onMemorySections: () -> Unit,
     onLabels: () -> Unit,
-    onSpecialCommands: () -> Unit
+    onSpecialCommands: () -> Unit,
+    onSynchronization: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -97,7 +98,7 @@ fun AssemblyHubScreen(
             Spacer(Modifier.height(12.dp))
             AsmButtonRow("Memory Sections", onMemorySections, "Labels", onLabels)
             Spacer(Modifier.height(12.dp))
-            AsmHubButton("Special Commands", onSpecialCommands, Modifier.fillMaxWidth())
+            AsmButtonRow("Special Commands", onSpecialCommands, "Synchronization", onSynchronization)
             Spacer(Modifier.height(24.dp))
         }
     }

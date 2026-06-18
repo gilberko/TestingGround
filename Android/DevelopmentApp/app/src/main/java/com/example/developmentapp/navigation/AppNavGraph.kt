@@ -56,6 +56,7 @@ import com.example.developmentapp.screens.tcpip.VpnScreen
 import com.example.developmentapp.screens.assembly.AsmLabelsScreen
 import com.example.developmentapp.screens.assembly.AsmMemorySectionsScreen
 import com.example.developmentapp.screens.assembly.AsmSpecialCommandsScreen
+import com.example.developmentapp.screens.assembly.SynchronizationScreen
 import com.example.developmentapp.screens.assembly.BasicArithmeticScreen
 import com.example.developmentapp.screens.assembly.ComparisonsLoopsScreen
 import com.example.developmentapp.screens.assembly.FunctionCallsScreen
@@ -258,6 +259,7 @@ sealed class Screen(val route: String) {
     object AsmMemorySections   : Screen("asm_memory_sections")
     object AsmLabels           : Screen("asm_labels")
     object AsmSpecialCommands  : Screen("asm_special_commands")
+    object AsmSynchronization  : Screen("asm_synchronization")
     // Data Structures
     object DataStructures      : Screen("data_structures")
     // Python
@@ -803,7 +805,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onNumberRepresentation = { navController.navigate(Screen.NumberRepresentation.route) },
                 onMemorySections       = { navController.navigate(Screen.AsmMemorySections.route) },
                 onLabels               = { navController.navigate(Screen.AsmLabels.route) },
-                onSpecialCommands      = { navController.navigate(Screen.AsmSpecialCommands.route) }
+                onSpecialCommands      = { navController.navigate(Screen.AsmSpecialCommands.route) },
+                onSynchronization      = { navController.navigate(Screen.AsmSynchronization.route) }
             )
         }
         composable(Screen.X86Environment.route)       { X86EnvironmentScreen(onBack = { navController.popBackStack() }) }
@@ -819,6 +822,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AsmMemorySections.route)   { AsmMemorySectionsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AsmLabels.route)           { AsmLabelsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AsmSpecialCommands.route)  { AsmSpecialCommandsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AsmSynchronization.route) { SynchronizationScreen(onBack = { navController.popBackStack() }) }
 
         // ── Data Structures ───────────────────────────────────────────────
         composable(Screen.DataStructures.route) {
