@@ -50,6 +50,8 @@ fun GreetingsScreen(onBack: () -> Unit) {
         ) {
             item { BasicWordsCard() }
             item { EssentialPhrasesCard() }
+            item { AskingForClarificationCard() }
+            item { MakingSuggestionsCard() }
             item { GreetingsCard() }
         }
     }
@@ -110,6 +112,16 @@ private fun GreetingsCard() {
                     "Olá! Entra, entra." to "Hello! Come in, come in."
                 )
             )
+            GreetingEntry(
+                term = "Olá, pessoal! / Boas, pessoal!",
+                meaning = "Hi, everyone! / Hey, guys!",
+                description = "Pessoal literally means \"people / staff\" as a collective noun, but in greetings it's used informally to address a group — like saying \"folks\", \"guys\", or \"everyone\" in English. Very common when walking into a room with several people, starting a video, or posting in a group chat.",
+                examples = listOf(
+                    "Olá, pessoal! Como estão todos?" to "Hi, everyone! How is everyone?",
+                    "Boas, pessoal! Já chegámos." to "Hey, guys! We've arrived."
+                ),
+                note = "Pessoal itself is grammatically singular (like English \"everyone\"), but it's only ever used to address a group — you wouldn't say \"olá, pessoal\" to a single person, you'd just say \"olá\"."
+            )
 
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
@@ -162,6 +174,38 @@ private fun GreetingsCard() {
                     "Até já!" to "See you in a sec!"
                 )
             )
+            GreetingEntry(
+                term = "Até amanhã à noite / Até à noite / Até segunda / Até para a semana",
+                meaning = "See you tomorrow evening / See you tonight / See you Monday / See you next week",
+                description = "Até (\"until\") combines productively with almost any time expression to make a farewell — até + [when]. \"Amanhã à noite\" = tomorrow evening/night; \"à noite\" alone = tonight/this evening; weekday names (segunda, terça...) work directly; \"para a semana\" is the everyday EP way of saying \"next week\" (also seen in \"para o ano\" = next year).",
+                examples = listOf(
+                    "Até amanhã à noite!" to "See you tomorrow evening!",
+                    "Tenho de ir, até à noite." to "I have to go, see you tonight.",
+                    "Até segunda!" to "See you Monday!",
+                    "Até para a semana!" to "See you next week!"
+                ),
+                note = "\"Até à próxima semana\" is also correct and a little more formal/neutral than \"até para a semana\", which is the everyday colloquial choice."
+            )
+            GreetingEntry(
+                term = "Vejo-te quando voltares. / Liga-me quando voltares.",
+                meaning = "See you when you get back. / Call me when you get back.",
+                description = "Quando (\"when\") referring to a future, not-yet-certain event triggers the future subjunctive — voltares, not the indicative voltas. This is a key EP grammar pattern: any future quando/se clause about something not yet realized uses this subjunctive form. Ligar is the standard EP verb for \"to call\" on the phone.",
+                examples = listOf(
+                    "Vejo-te quando voltares." to "I'll see you when you get back.",
+                    "Liga-me quando voltares." to "Call me when you get back.",
+                    "Ligo-te quando chegar." to "I'll call you when I arrive."
+                ),
+                note = "Avoid \"até quando voltares\" as a farewell — até quando on its own usually reads as a question (\"until when?\"). \"Vejo-te quando...\" sidesteps that ambiguity."
+            )
+            GreetingEntry(
+                term = "Está a ficar tarde, tenho de ir.",
+                meaning = "It's getting late, I have to go.",
+                description = "Está a ficar tarde uses the EP continuous (estar a + infinitive), not the Brazilian gerund (ficando). Tenho de + infinitive is the prescriptively standard way to say \"I have to\"; tenho que is also extremely common in everyday speech.",
+                examples = listOf(
+                    "Está a ficar tarde, tenho de ir." to "It's getting late, I have to go.",
+                    "Tenho mesmo de ir, já é tarde." to "I really have to go, it's already late."
+                )
+            )
         }
     }
 }
@@ -184,6 +228,17 @@ private fun BasicWordsCard() {
                     "Claro que sim, com prazer." to "Of course, with pleasure.",
                     "Pois, tens razão." to "Yeah, you're right. (casual EP)"
                 )
+            )
+            GreetingEntry(
+                term = "Pois",
+                meaning = "yeah / right / well... (filler, agreement, or \"because\")",
+                description = "Pois is one of the most distinctively Portuguese words, and it shifts meaning with context. As a casual filler it means \"yeah\" or \"right\" (see Sim above). \"Pois é\" intensifies this into \"that's right / that's how it is\", often with a touch of resignation. \"Pois claro\" means \"of course\". In more formal or written Portuguese, pois can also act as a conjunction meaning \"because / since\".",
+                examples = listOf(
+                    "Pois é, não há nada a fazer." to "That's right, there's nothing to be done.",
+                    "Pois claro que sim!" to "Of course!",
+                    "Não saí, pois estava a chover." to "I didn't go out, because it was raining."
+                ),
+                note = "In shops or restaurants, staff often greet you with \"Pois não?\" to mean \"Can I help you?\" — despite containing não (no), it's a polite, affirmative-sounding phrase, not a negative one."
             )
             GreetingEntry(
                 term = "Não",
@@ -364,6 +419,110 @@ private fun EssentialPhrasesCard() {
                     "Obrigado!" to "Thank you! (male speaker)",
                     "Obrigada!" to "Thank you! (female speaker)"
                 )
+            )
+        }
+    }
+}
+
+@Composable
+private fun AskingForClarificationCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text("Asking For Clarification", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            GreetingEntry(
+                term = "Como?",
+                meaning = "What? / Sorry? / Come again?",
+                description = "The simplest, most common way to ask someone to repeat what they said, used constantly in casual conversation. Said with a questioning tone — not rude, just an automatic reflex when you don't catch something.",
+                examples = listOf(
+                    "Como? Não ouvi bem." to "What? I didn't hear that properly.",
+                    "— Vou chegar tarde. — Como?" to "— I'll be late. — Sorry, what?"
+                )
+            )
+            GreetingEntry(
+                term = "Pode repetir? / Podes repetir? / Podia repetir? / Podias repetir?",
+                meaning = "Can you repeat? / Could you repeat?",
+                description = "Pode (formal, você) and podes (informal, tu) ask directly in the present. Podia and podias use the imperfect to soften the request into something more polite — much like English shifts from \"can\" to \"could\".",
+                examples = listOf(
+                    "Pode repetir, por favor?" to "Can you repeat, please? (formal)",
+                    "Podes repetir? Não percebi." to "Can you repeat? I didn't understand. (informal)",
+                    "Podia repetir mais devagar?" to "Could you repeat more slowly? (polite, formal)"
+                ),
+                note = "Within each register, the imperfect form (podia/podias) sounds softer and more polite than the present (pode/podes)."
+            )
+            GreetingEntry(
+                term = "O que disse? / O que disseste?",
+                meaning = "What did you say?",
+                description = "Disse is the preterite (simple past) of dizer. O que disse? uses the formal/você verb form; o que disseste? uses the informal tu form.",
+                examples = listOf(
+                    "O que disse? Não ouvi bem." to "What did you say? I didn't hear well. (formal)",
+                    "O que disseste? Repete, por favor." to "What did you say? Repeat, please. (informal)"
+                )
+            )
+            GreetingEntry(
+                term = "Não percebi. / Não entendi.",
+                meaning = "I didn't understand.",
+                description = "Percebi and entendi are both preterite (\"didn't understand\", a one-time past event), as opposed to não percebo (\"I don't understand\", an ongoing state — see the Não entry above). Percebi is the everyday EP-preferred choice; entendi is also correct and slightly more neutral/formal.",
+                examples = listOf(
+                    "Desculpe, não percebi." to "Sorry, I didn't understand. (everyday EP)",
+                    "Não entendi a pergunta." to "I didn't understand the question."
+                )
+            )
+        }
+    }
+}
+
+@Composable
+private fun MakingSuggestionsCard() {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text("Making Suggestions", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            GreetingEntry(
+                term = "Que tal?",
+                meaning = "how about? / what do you think?",
+                description = "Used to make suggestions or ask for someone's opinion. Can be followed by a noun, an infinitive, or the personal infinitive construction (e.g. irmos = us going).",
+                examples = listOf(
+                    "Que tal um café?" to "How about a coffee?",
+                    "Que tal irmos ao cinema?" to "How about we go to the cinema?",
+                    "Que tal o jantar?" to "How was the dinner?"
+                ),
+                note = "\"Que tal irmos\" uses the EP personal infinitive — irmos (we go). Very natural in everyday speech."
+            )
+            GreetingEntry(
+                term = "Vamos...",
+                meaning = "Let's... / We're going to...",
+                description = "Vamos is the nós (we) form of ir (to go), used productively as \"let's\" before another verb in the infinitive — exactly like English \"let's\". Without a following verb, vamos alone can also just mean \"let's go! / come on!\".",
+                examples = listOf(
+                    "Vamos comer." to "Let's eat.",
+                    "Vamos ver." to "Let's see.",
+                    "Vamos!" to "Let's go! / Come on!"
+                )
+            )
+            GreetingEntry(
+                term = "Vamos a algum lado?",
+                meaning = "Let's go somewhere? / Shall we go somewhere?",
+                description = "Algum lado literally means \"some side\" but idiomatically means \"somewhere\". Used with ir (a) to suggest going out without specifying a destination yet.",
+                examples = listOf(
+                    "Vamos a algum lado este fim de semana?" to "Shall we go somewhere this weekend?",
+                    "Não me apetece ficar em casa, vamos a algum lado." to "I don't feel like staying home, let's go somewhere."
+                )
+            )
+            GreetingEntry(
+                term = "Vamos comer alguma coisa? / Vamos petiscar?",
+                meaning = "Wanna grab a bite? / Wanna get some snacks?",
+                description = "Vamos comer alguma coisa? is the direct, neutral way to suggest grabbing food. Petiscar (from petiscos, Portugal's tapas-style small dishes) is a more colloquial, culturally EP-specific option, evoking a casual snack-and-drinks outing rather than a full meal.",
+                examples = listOf(
+                    "Vamos comer alguma coisa, estou cheio de fome." to "Let's grab a bite, I'm starving.",
+                    "Apetece-te petiscar?" to "Feel like grabbing some snacks/tapas?"
+                ),
+                note = "Apetece-te...? (\"do you feel like...?\") is a very EP construction — apetecer works like gostar, with the person who feels the urge marked by an indirect object pronoun (apetece-me, apetece-te, apetece-lhe)."
             )
         }
     }
