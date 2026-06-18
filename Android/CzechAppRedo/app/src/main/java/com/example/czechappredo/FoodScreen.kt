@@ -51,6 +51,16 @@ fun FoodScreen(navController: NavController) {
             FORow("svačina", "snack", "f.")
             FORow("jídlo", "food / meal", "n.")
 
+            FOSection("Meal Verbs")
+            FORow("snídat", "to eat breakfast (habitual)",
+                "já snídám · ty snídáš · on/ona snídá · my snídáme · vy snídáte · oni snídají")
+            FORow("obědvat", "to eat lunch (habitual)",
+                "já obědvám · ty obědváš · on/ona obědvá · my obědváme · vy obědváte · oni obědvají")
+            FORow("večeřet", "to eat dinner (habitual)",
+                "já večeřím · ty večeříš · on/ona večeří · my večeříme · vy večeříte · oni večeří")
+            FONote("These are dedicated meal verbs — not 'jíst snídani'. snídat/obědvat = Type 1 (-at/-ávat, theme vowel á); večeřet = Type 2 (theme vowel í).")
+            FONote("Past tense: snídat → sníd-al/a; obědvat → obědv-al/a; večeřet → večeř-el/a. Example: Obědval jsem s kolegy. — I had lunch with colleagues.")
+
             FOSection("Bread & Bakery")
             FORow("chléb", "bread", "m. — colloquial: chleba")
             FORow("houska / rohlík", "bun", "f. / m. — houska is a round roll; rohlík is a crescent roll")

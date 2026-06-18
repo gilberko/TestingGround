@@ -24,44 +24,54 @@ private data class CCQEntry(
     val nominative: String,
     val english: String,
     val caseName: String,
-    val form: String
+    val form: String,
+    val gender: String,   // "Masculine", "Feminine", "Neuter"
+    val number: String    // "Singular", "Plural"
 )
 
 private fun phrase(
     nom: String, eng: String,
-    gen: String, dat: String, acc: String, voc: String, lok: String, ins: String
+    gen: String, dat: String, acc: String, voc: String, lok: String, ins: String,
+    gender: String, number: String
 ): List<CCQEntry> = listOf(
-    CCQEntry(nom, eng, "Genitiv (of / without)", gen),
-    CCQEntry(nom, eng, "Dativ (to / for)", dat),
-    CCQEntry(nom, eng, "Akuzativ (direct object)", acc),
-    CCQEntry(nom, eng, "Vokativ (calling out)", voc),
-    CCQEntry(nom, eng, "Lokál (about / in)", lok),
-    CCQEntry(nom, eng, "Instrumentál (with / by)", ins)
+    CCQEntry(nom, eng, "Genitiv (of / without)", gen, gender, number),
+    CCQEntry(nom, eng, "Dativ (to / for)", dat, gender, number),
+    CCQEntry(nom, eng, "Akuzativ (direct object)", acc, gender, number),
+    CCQEntry(nom, eng, "Vokativ (calling out)", voc, gender, number),
+    CCQEntry(nom, eng, "Lokál (about / in)", lok, gender, number),
+    CCQEntry(nom, eng, "Instrumentál (with / by)", ins, gender, number)
 )
 
 private val ccqBank: List<CCQEntry> = listOf(
-    phrase("chytrý muž",    "a smart man",           "chytrého muže",   "chytrému muži",     "chytrého muže",  "chytrý muži",    "chytrém muži",     "chytrým mužem"),
-    phrase("chytří muži",   "smart men",             "chytrých mužů",   "chytrým mužům",     "chytré muže",    "chytří muži",    "chytrých mužích",  "chytrými muži"),
-    phrase("krásná žena",   "a beautiful woman",     "krásné ženy",     "krásné ženě",       "krásnou ženu",   "krásná ženo",    "krásné ženě",      "krásnou ženou"),
-    phrase("krásné ženy",   "beautiful women",       "krásných žen",    "krásným ženám",     "krásné ženy",    "krásné ženy",    "krásných ženách",  "krásnými ženami"),
-    phrase("červené auto",  "a red car",             "červeného auta",  "červenému autu",    "červené auto",   "červené auto",   "červeném autě",    "červeným autem"),
-    phrase("červená auta",  "red cars",              "červených aut",   "červeným autům",    "červená auta",   "červená auta",   "červených autech", "červenými auty"),
-    phrase("nový telefon",  "a new telephone",       "nového telefonu", "novému telefonu",   "nový telefon",   "nový telefon",   "novém telefonu",   "novým telefonem"),
-    phrase("cizí student",  "a foreign student",     "cizího studenta", "cizímu studentovi", "cizího studenta","cizí studente",  "cizím studentovi", "cizím studentem"),
-    phrase("moderní kuchyně","a modern kitchen",     "moderní kuchyně", "moderní kuchyni",   "moderní kuchyni","moderní kuchyně","moderní kuchyni",  "moderní kuchyní"),
-    phrase("modré moře",    "a blue sea",            "modrého moře",    "modrému moři",      "modré moře",     "modré moře",     "modrém moři",      "modrým mořem"),
-    phrase("červený hrad",  "a red castle",          "červeného hradu", "červenému hradu",   "červený hrad",   "červený hrade",  "červeném hradě",   "červeným hradem"),
-    phrase("červené hrady", "red castles",           "červených hradů", "červeným hradům",   "červené hrady",  "červené hrady",  "červených hradech","červenými hrady"),
-    phrase("bílá kočka",    "a white cat",           "bílé kočky",      "bílé kočce",        "bílou kočku",    "bílá kočko",     "bílé kočce",       "bílou kočkou"),
-    phrase("bílé kočky",    "white cats",            "bílých koček",    "bílým kočkám",      "bílé kočky",     "bílé kočky",     "bílých kočkách",   "bílými kočkami"),
-    phrase("nový dům",      "a new house",           "nového domu",     "novému domu",       "nový dům",       "nový dome",      "novém domě",       "novým domem"),
-    phrase("nové domy",     "new houses",            "nových domů",     "novým domům",       "nové domy",      "nové domy",      "nových domech",    "novými domy"),
-    phrase("drahý byt",     "an expensive apartment","drahého bytu",    "drahému bytu",      "drahý byt",      "drahý byte",     "drahém bytě",      "drahým bytem"),
-    phrase("drahé byty",    "expensive apartments",  "drahých bytů",    "drahým bytům",      "drahé byty",     "drahé byty",     "drahých bytech",   "drahými byty")
+    phrase("chytrý muž",    "a smart man",            "chytrého muže",   "chytrému muži",     "chytrého muže",  "chytrý muži",    "chytrém muži",     "chytrým mužem",    "Masculine", "Singular"),
+    phrase("chytří muži",   "smart men",              "chytrých mužů",   "chytrým mužům",     "chytré muže",    "chytří muži",    "chytrých mužích",  "chytrými muži",    "Masculine", "Plural"),
+    phrase("krásná žena",   "a beautiful woman",      "krásné ženy",     "krásné ženě",       "krásnou ženu",   "krásná ženo",    "krásné ženě",      "krásnou ženou",    "Feminine",  "Singular"),
+    phrase("krásné ženy",   "beautiful women",        "krásných žen",    "krásným ženám",     "krásné ženy",    "krásné ženy",    "krásných ženách",  "krásnými ženami",  "Feminine",  "Plural"),
+    phrase("červené auto",  "a red car",              "červeného auta",  "červenému autu",    "červené auto",   "červené auto",   "červeném autě",    "červeným autem",   "Neuter",    "Singular"),
+    phrase("červená auta",  "red cars",               "červených aut",   "červeným autům",    "červená auta",   "červená auta",   "červených autech", "červenými auty",   "Neuter",    "Plural"),
+    phrase("nový telefon",  "a new telephone",        "nového telefonu", "novému telefonu",   "nový telefon",   "nový telefon",   "novém telefonu",   "novým telefonem",  "Masculine", "Singular"),
+    phrase("cizí student",  "a foreign student",      "cizího studenta", "cizímu studentovi", "cizího studenta","cizí studente",  "cizím studentovi", "cizím studentem",  "Masculine", "Singular"),
+    phrase("moderní kuchyně","a modern kitchen",      "moderní kuchyně", "moderní kuchyni",   "moderní kuchyni","moderní kuchyně","moderní kuchyni",  "moderní kuchyní",  "Feminine",  "Singular"),
+    phrase("modré moře",    "a blue sea",             "modrého moře",    "modrému moři",      "modré moře",     "modré moře",     "modrém moři",      "modrým mořem",     "Neuter",    "Singular"),
+    phrase("červený hrad",  "a red castle",           "červeného hradu", "červenému hradu",   "červený hrad",   "červený hrade",  "červeném hradě",   "červeným hradem",  "Masculine", "Singular"),
+    phrase("červené hrady", "red castles",            "červených hradů", "červeným hradům",   "červené hrady",  "červené hrady",  "červených hradech","červenými hrady",  "Masculine", "Plural"),
+    phrase("bílá kočka",    "a white cat",            "bílé kočky",      "bílé kočce",        "bílou kočku",    "bílá kočko",     "bílé kočce",       "bílou kočkou",     "Feminine",  "Singular"),
+    phrase("bílé kočky",    "white cats",             "bílých koček",    "bílým kočkám",      "bílé kočky",     "bílé kočky",     "bílých kočkách",   "bílými kočkami",   "Feminine",  "Plural"),
+    phrase("nový dům",      "a new house",            "nového domu",     "novému domu",       "nový dům",       "nový dome",      "novém domě",       "novým domem",      "Masculine", "Singular"),
+    phrase("nové domy",     "new houses",             "nových domů",     "novým domům",       "nové domy",      "nové domy",      "nových domech",    "novými domy",      "Masculine", "Plural"),
+    phrase("drahý byt",     "an expensive apartment", "drahého bytu",    "drahému bytu",      "drahý byt",      "drahý byte",     "drahém bytě",      "drahým bytem",     "Masculine", "Singular"),
+    phrase("drahé byty",    "expensive apartments",   "drahých bytů",    "drahým bytům",      "drahé byty",     "drahé byty",     "drahých bytech",   "drahými byty",     "Masculine", "Plural")
 ).flatten()
 
-private fun generateCaseConjQuestions(): List<QuizQuestion> {
-    val selected = ccqBank.shuffled().take(10)
+private fun generateCaseConjQuestions(
+    selectedCases: Set<String>,
+    selectedCombos: Set<Pair<String, String>>,
+    questionCount: Int
+): List<QuizQuestion> {
+    val filtered = ccqBank.filter { entry ->
+        entry.caseName in selectedCases && (entry.number to entry.gender) in selectedCombos
+    }
+    val selected = filtered.shuffled().take(questionCount.coerceAtMost(filtered.size))
     return selected.map { entry ->
         val prompt = "${entry.nominative}  —  ${entry.english}  —  ${entry.caseName}"
         val correct = entry.form
@@ -81,16 +91,233 @@ private fun generateCaseConjQuestions(): List<QuizQuestion> {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CaseConjugationQuizScreen(navController: NavController) {
+    val allCases = remember {
+        setOf(
+            "Genitiv (of / without)",
+            "Dativ (to / for)",
+            "Akuzativ (direct object)",
+            "Vokativ (calling out)",
+            "Lokál (about / in)",
+            "Instrumentál (with / by)"
+        )
+    }
+    val allCombos = remember {
+        setOf(
+            "Singular" to "Masculine",
+            "Singular" to "Feminine",
+            "Singular" to "Neuter",
+            "Plural" to "Masculine",
+            "Plural" to "Feminine",
+            "Plural" to "Neuter"
+        )
+    }
+    var showSettings by remember { mutableStateOf(true) }
+    var selectedCases by remember { mutableStateOf(allCases) }
+    var selectedCombos by remember { mutableStateOf(allCombos) }
+    var questionCount by remember { mutableStateOf(10) }
     var quizKey by remember { mutableStateOf(0) }
-    key(quizKey) {
-        CCQContent(navController = navController, onPlayAgain = { quizKey++ })
+
+    if (showSettings) {
+        CCQSettingsScreen(
+            navController = navController,
+            allCases = allCases,
+            selectedCases = selectedCases,
+            onCasesChanged = { selectedCases = it },
+            allCombos = allCombos,
+            selectedCombos = selectedCombos,
+            onCombosChanged = { selectedCombos = it },
+            questionCount = questionCount,
+            onQuestionCountChanged = { questionCount = it },
+            onStart = { showSettings = false; quizKey++ }
+        )
+    } else {
+        key(quizKey) {
+            CCQContent(
+                navController = navController,
+                selectedCases = selectedCases,
+                selectedCombos = selectedCombos,
+                questionCount = questionCount,
+                onPlayAgain = { showSettings = true }
+            )
+        }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CCQContent(navController: NavController, onPlayAgain: () -> Unit) {
-    val questions = remember { generateCaseConjQuestions() }
+private fun CCQSettingsScreen(
+    navController: NavController,
+    allCases: Set<String>,
+    selectedCases: Set<String>,
+    onCasesChanged: (Set<String>) -> Unit,
+    allCombos: Set<Pair<String, String>>,
+    selectedCombos: Set<Pair<String, String>>,
+    onCombosChanged: (Set<Pair<String, String>>) -> Unit,
+    questionCount: Int,
+    onQuestionCountChanged: (Int) -> Unit,
+    onStart: () -> Unit
+) {
+    val canStart = selectedCases.isNotEmpty() && selectedCombos.isNotEmpty()
+
+    val caseDisplayLabels = mapOf(
+        "Genitiv (of / without)" to "Genitiv",
+        "Dativ (to / for)" to "Dativ",
+        "Akuzativ (direct object)" to "Akuzativ",
+        "Vokativ (calling out)" to "Vokativ",
+        "Lokál (about / in)" to "Lokál",
+        "Instrumentál (with / by)" to "Instrumentál"
+    )
+
+    val orderedCombos = listOf(
+        "Singular" to "Masculine",
+        "Singular" to "Feminine",
+        "Singular" to "Neuter",
+        "Plural" to "Masculine",
+        "Plural" to "Feminine",
+        "Plural" to "Neuter"
+    )
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Case Conjugation Quiz", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 20.dp, vertical = 16.dp)
+        ) {
+            Text("Cases to Include", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
+            Spacer(modifier = Modifier.height(4.dp))
+
+            allCases.forEach { caseName ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Checkbox(
+                        checked = caseName in selectedCases,
+                        onCheckedChange = { checked ->
+                            onCasesChanged(if (checked) selectedCases + caseName else selectedCases - caseName)
+                        }
+                    )
+                    Text(
+                        text = caseDisplayLabels[caseName] ?: caseName,
+                        fontSize = 15.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text("Gender & Number", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
+            Spacer(modifier = Modifier.height(4.dp))
+
+            orderedCombos.forEach { combo ->
+                val (number, gender) = combo
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Checkbox(
+                        checked = combo in selectedCombos,
+                        onCheckedChange = { checked ->
+                            onCombosChanged(if (checked) selectedCombos + combo else selectedCombos - combo)
+                        }
+                    )
+                    Text(
+                        text = "$number — $gender",
+                        fontSize = 15.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text("Number of Questions", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Button(
+                    onClick = { onQuestionCountChanged(questionCount - 1) },
+                    enabled = questionCount > 5,
+                    modifier = Modifier.size(48.dp),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text("−", fontSize = 20.sp, color = Color.White)
+                }
+                Text(
+                    text = questionCount.toString(),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    textAlign = TextAlign.Center
+                )
+                Button(
+                    onClick = { onQuestionCountChanged(questionCount + 1) },
+                    enabled = questionCount < 50,
+                    modifier = Modifier.size(48.dp),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue),
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text("+", fontSize = 20.sp, color = Color.White)
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Button(
+                onClick = onStart,
+                enabled = canStart,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 56.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = ButtonBlue)
+            ) {
+                Text("Start Quiz", fontSize = 18.sp, color = Color.White)
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CCQContent(
+    navController: NavController,
+    selectedCases: Set<String>,
+    selectedCombos: Set<Pair<String, String>>,
+    questionCount: Int,
+    onPlayAgain: () -> Unit
+) {
+    val questions = remember { generateCaseConjQuestions(selectedCases, selectedCombos, questionCount) }
     var currentIndex by remember { mutableStateOf(0) }
     var selectedAnswer by remember { mutableStateOf<String?>(null) }
     var score by remember { mutableStateOf(0) }
@@ -178,7 +405,6 @@ private fun CCQQuestionCard(
             color = Color.Gray
         )
         Spacer(modifier = Modifier.height(20.dp))
-        // Czech nominative phrase
         if (parts.isNotEmpty()) {
             Text(
                 text = parts[0],
@@ -188,7 +414,6 @@ private fun CCQQuestionCard(
                 textAlign = TextAlign.Center
             )
         }
-        // English meaning
         if (parts.size >= 2) {
             Text(
                 text = parts[1],
@@ -200,7 +425,6 @@ private fun CCQQuestionCard(
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
-        // Case asked
         if (parts.size >= 3) {
             Text(
                 text = "→ ${parts[2]}",

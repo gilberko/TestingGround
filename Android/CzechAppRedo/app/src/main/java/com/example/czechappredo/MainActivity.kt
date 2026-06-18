@@ -100,6 +100,10 @@ class MainActivity : ComponentActivity() {
                 composable("connecting_sentences") { ConnectingSentencesScreen(navController) }
                 composable("comparisons") { ComparisonsScreen(navController) }
                 composable("tech") { TechScreen(navController) }
+                composable("telling_time") { TellingTheTimeScreen(navController) }
+                composable("sports") { SportsScreen(navController) }
+                composable("school_university") { SchoolAndUniversityScreen(navController) }
+                composable("dialogue_soccer") { WatchingSoccerDialogueScreen(navController) }
             }
         }
     }
@@ -324,7 +328,10 @@ fun DictionaryHubScreen(navController: NavController) {
             "Adverbs" to "adverb_list",
             "Common Verbs List" to "common_verbs",
             "Examples of Conjugation of Cases" to "case_conjugation_examples",
-            "Tech" to "tech"
+            "Tech" to "tech",
+            "Telling The Time" to "telling_time",
+            "Sports" to "sports",
+            "School and University" to "school_university"
         )
         Column(
             modifier = Modifier

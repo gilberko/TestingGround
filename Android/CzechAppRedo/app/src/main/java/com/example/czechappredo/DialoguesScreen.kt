@@ -72,7 +72,8 @@ fun DialoguesHubScreen(navController: NavController) {
             "At the Supermarket" to "dialogue_supermarket",
             "At the Train Station" to "dialogue_train_station",
             "At the Park" to "dialogue_park",
-            "How Was School Today" to "dialogue_school"
+            "How Was School Today" to "dialogue_school",
+            "Watching a Soccer Game" to "dialogue_soccer"
         )
         Column(
             modifier = Modifier
@@ -487,6 +488,68 @@ fun AtTheParkDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("At the Park", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun WatchingSoccerDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Tomáš", "Tak co, připraven? Dnes hraje Sparta doma proti Slavii — tenhle šlágr nesmíme zmeškat."),
+        DialogueLine("Martin", "Jasně! Jsem fanoušek Slavie, takže dnes vyhráváme my. Sparta nemá šanci."),
+        DialogueLine("Tomáš", "Haha, to uvidíme. Sparta je letos silná. Chceš pivo?"),
+        DialogueLine("Martin", "Určitě. Ale dej pozor — nechci prásknout od stolu, když dáme gól."),
+        DialogueLine("Tomáš", "Koukej! Novák má míč! Obchází prvního obránce... a druhého! Vynikající dribling!"),
+        DialogueLine("Martin", "Přihrává do vápna — Jakub tam je — STŘELÍ — GÓL! GÓÓÓL!"),
+        DialogueLine("Tomáš", "Jéé! Gól Sparty! Jaká krásná akce — Novák obešel dva hráče a přihrál Jakubovi, který to uklidil do sítě!"),
+        DialogueLine("Martin", "No... krásný gól, to musím uznat. Ale počkej — rozhodčí hvízdá. Proč hvízdá?"),
+        DialogueLine("Tomáš", "Co? Bylo to přece čisté! Proč zastavuje hru?"),
+        DialogueLine("Martin", "Kontrolují VAR... video... tohle může trvat chvíli."),
+        DialogueLine("Tomáš", "No tak... co říká VAR? Ofsajd? To nemůže být pravda."),
+        DialogueLine("Martin", "Po kontrole videozáznamu — ofsajd! Gól není platný."),
+        DialogueLine("Tomáš", "Cože?! Vážně?! O kolik byl v ofsajdu?"),
+        DialogueLine("Martin", "Bohužel o pár centimetrů. Taková krásná akce a kvůli centimetrům nic. Tak to je fotbal.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Tomáš", "So, ready? Today Sparta plays at home against Slavia — we can't miss this derby."),
+        DialogueLine("Martin", "Of course! I'm a Slavia fan, so we're winning today. Sparta doesn't have a chance."),
+        DialogueLine("Tomáš", "Haha, we'll see. Sparta is strong this year. Do you want a beer?"),
+        DialogueLine("Martin", "Definitely. But pay attention — I don't want to spill from the table when we score."),
+        DialogueLine("Tomáš", "Look! Novák has the ball! He's getting past the first defender... and the second! Excellent dribbling!"),
+        DialogueLine("Martin", "He passes into the box — Jakub is there — HE SHOOTS — GOAL! GOAAAL!"),
+        DialogueLine("Tomáš", "Yes! Sparta's goal! What a beautiful move — Novák got past two players and passed to Jakub, who put it in the net!"),
+        DialogueLine("Martin", "Well... a beautiful goal, I have to admit. But wait — the referee is whistling. Why is he whistling?"),
+        DialogueLine("Tomáš", "What? It was clean! Why is he stopping play?"),
+        DialogueLine("Martin", "They're checking VAR... video... this could take a moment."),
+        DialogueLine("Tomáš", "Come on... what does VAR say? Offside? That can't be true."),
+        DialogueLine("Martin", "After checking the video recording — offside! The goal is not valid."),
+        DialogueLine("Tomáš", "What?! Really?! By how much was he offside?"),
+        DialogueLine("Martin", "Unfortunately by a few centimetres. Such a beautiful move and nothing because of centimetres. That's football.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Watching a Soccer Game", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

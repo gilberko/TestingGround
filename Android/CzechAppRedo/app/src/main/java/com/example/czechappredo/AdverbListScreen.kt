@@ -92,7 +92,9 @@ fun AdverbListScreen(navController: NavController) {
             AVLRow("dolů", "downward / down")
 
             AVLSection("Degree — Jak moc? (How much?)")
-            AVLRow("velmi / moc", "very / a lot")
+            AVLRow("velmi", "very", "formal intensifier — used ONLY before adjectives or adverbs: velmi dobrý (very good), velmi rychle (very fast); NOT used before nouns")
+            AVLRow("hodně", "a lot / much", "informal, everyday spoken Czech; before nouns (hodně peněz = a lot of money, hodně lidí = a lot of people) and as intensifier (hodně unavený = very tired); nearly interchangeable with moc but slightly more neutral")
+            AVLRow("moc", "a lot / very", "very informal; same uses as hodně — before nouns and as intensifier; can also mean 'too much': Nemluv moc! = Don't talk too much!; in formal writing use hodně or velmi instead")
             AVLRow("trochu / trošku", "a little / a bit")
             AVLRow("dost / dosti", "enough / quite")
             AVLRow("příliš", "too / too much")

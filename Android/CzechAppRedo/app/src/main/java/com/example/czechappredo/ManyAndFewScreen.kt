@@ -85,6 +85,74 @@ fun ManyAndFewScreen(navController: NavController) {
             MFRow("a few years", "několik let", "gen. pl. of rok — irregular: let")
             MFNote("Verb: Několik lidí odešlo. (A few people left.)")
 
+            MFSection("Counting Nouns — 1 / 2–4 / 5+")
+            MFNote("Czech, like Russian, changes the noun form depending on the number. Unlike Russian (which uses genitive singular for 2–4), Czech uses nominative plural for 2–4.")
+            MFNote("1  →  nominative singular:  jeden (masc) · jedna (fem) · jedno (neut)")
+            MFNote("2, 3, 4  →  nominative plural:  dva (masc) · dvě (fem + neut) · tři · čtyři")
+            MFNote("5 and above  →  genitive plural — same as hodně/mnoho/málo/několik")
+            MFNote("Russian uses genitive singular for 2–4 (два замка = two castles, gen.sg.). Czech uses nominative plural (dva hrady). For 5+, both languages use genitive plural.")
+            Spacer(modifier = Modifier.height(6.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(6.dp))
+                    .padding(horizontal = 8.dp, vertical = 6.dp)
+            ) {
+                Column {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text("Noun", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ButtonBlue, modifier = Modifier.weight(1.2f))
+                        Text("1", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ButtonBlue, modifier = Modifier.weight(1.1f))
+                        Text("2–4", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ButtonBlue, modifier = Modifier.weight(1.1f))
+                        Text("5+", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = ButtonBlue, modifier = Modifier.weight(1.1f))
+                    }
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp), color = Color.LightGray, thickness = 0.5.dp)
+                    listOf(
+                        listOf("hrad (castle, m.inan.)", "jeden hrad", "dva hrady", "pět hradů"),
+                        listOf("auto (car, neut.)", "jedno auto", "dvě auta", "pět aut"),
+                        listOf("muž (man, m.anim.)", "jeden muž", "dva muži", "pět mužů"),
+                        listOf("žena (woman, fem.)", "jedna žena", "dvě ženy", "pět žen"),
+                        listOf("lampa (lamp, fem.)", "jedna lampa", "dvě lampy", "pět lamp")
+                    ).forEach { cols ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 3.dp)
+                        ) {
+                            Text(text = cols[0], fontSize = 12.sp, color = Color.DarkGray, modifier = Modifier.weight(1.2f))
+                            Text(text = cols[1], fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.weight(1.1f))
+                            Text(text = cols[2], fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.weight(1.1f))
+                            Text(text = cols[3], fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.weight(1.1f))
+                        }
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(6.dp))
+            MFRow("1 castle", "jeden hrad", "nom.sg.")
+            MFRow("2 castles", "dva hrady", "nom.pl. — NOT dvě hrady")
+            MFRow("4 castles", "čtyři hrady", "nom.pl.")
+            MFRow("5 castles", "pět hradů", "gen.pl.")
+            MFRow("10 men", "deset mužů", "gen.pl.")
+            MFRow("many women", "hodně žen", "gen.pl.")
+            MFRow("a few cars", "několik aut", "gen.pl.")
+            MFRow("a lot of lamps", "hodně lamp", "gen.pl.")
+            MFNote("'dva' is masculine; 'dvě' is feminine AND neuter:  dva hrady / muži  but  dvě ženy / lampy / auta.")
+            MFNote("For masculine animate nouns (men, animals), the nominative plural ends in -i/-é:  dva muži,  dva koně. Same 1/2-4/5+ rule applies.")
+
+            MFSection("Mass Nouns — Quantities of Money, Water, Air")
+            MFNote("Mass/uncountable nouns and plurale tantum nouns cannot be counted with 1/2/5. They use quantifiers + genitive.")
+            MFNote("peníze (money) — always plural in Czech (plurale tantum, like 'scissors' in English). Genitive plural: peněz.")
+            MFRow("a lot of money", "hodně peněz", "gen.pl.")
+            MFRow("not too much money", "ne příliš peněz", "ne příliš = not too much")
+            MFRow("little money", "málo peněz", "gen.pl.")
+            MFNote("voda (water) — mass noun. Genitive singular: vody.")
+            MFRow("a lot of water", "hodně vody", "gen.sg.")
+            MFRow("not too much water", "ne příliš vody", "")
+            MFRow("a little water", "trochu vody", "trochu = a little bit")
+            MFNote("vzduch (air) — mass noun. Genitive singular: vzduchu.")
+            MFRow("a lot of air", "hodně vzduchu", "gen.sg.")
+            MFRow("fresh air", "čerstvý vzduch", "no quantifier — just adjective + noun")
+            MFNote("For mass nouns: use genitive singular. For peníze: use genitive plural. You cannot say '2 vody' or '5 vzduchů' — use a container: dvě sklenice vody (two glasses of water).")
+
             MFSection("Celý — The Whole / All")
             MFNote("celý is an adjective, not a quantifier. It AGREES with the noun in gender and case — it does NOT govern the genitive.")
             MFNote("Hard adjective forms:  celý (masc) · celá (fem) · celé (neut)")
