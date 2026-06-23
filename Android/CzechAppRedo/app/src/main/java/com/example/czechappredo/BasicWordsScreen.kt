@@ -91,6 +91,10 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("Ahoj", "Hi / Bye", "informal — used among friends")
             BWRow("Čau", "Hi / Bye", "very informal, from Italian ciao")
             BWRow("Nashledanou", "Goodbye", "formal farewell")
+            BWRow("Uvidíme se později", "See you later", "lit. \"we'll see each other later\"; colloquial alternative: Tak zatím / Zatím")
+            BWRow("Uvidíme se v pondělí", "See you on Monday", "v + day name = \"on [day]\"")
+            BWRow("Uvidíme se příště", "See you next time", "příště = next time")
+            BWRow("Uvidíme se brzy", "See you soon", "more common alternative in everyday speech: Na shledanou / Ahoj")
 
             // ── Special Occasion Greetings ────────────────────────────────
             BWSection("Special Occasion Greetings")

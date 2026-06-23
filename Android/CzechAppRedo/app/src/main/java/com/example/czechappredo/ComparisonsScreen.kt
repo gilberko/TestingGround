@@ -142,6 +142,27 @@ fun ComparisonsScreen(navController: NavController) {
             COMRow("Je nejlevnější ze všech možností.", "It is the least expensive of all options. (lit. the cheapest)")
             COMNote("Standalone words for quantity comparisons: více = more, méně / míň = less / fewer. Mám více peněz. = I have more money. Mám méně peněz. = I have less money.")
 
+            // ── Quick Reference ──────────────────────────────────────────
+            COMSection("Quick Reference — More / Most / Less / Least")
+            COMNote("A compact summary of all four comparison degrees for a few common adjectives, using the patterns explained above.")
+            COMTable(
+                headers = listOf("Adjective", "More", "Most", "Less", "Least"),
+                rows = listOf(
+                    listOf("silný (strong)", "silnější", "nejsilnější", "méně silný", "nejméně silný"),
+                    listOf("chytrý (smart)", "chytřejší", "nejchytřejší", "méně chytrý", "nejméně chytrý"),
+                    listOf("vysoký (tall)", "vyšší", "nejvyšší", "méně vysoký", "nejméně vysoký"),
+                    listOf("dlouhý (long)", "delší", "nejdelší", "méně dlouhý", "nejméně dlouhý"),
+                    listOf("široký (wide)", "širší", "nejširší", "méně široký", "nejméně široký"),
+                    listOf("rychlý (fast)", "rychlejší", "nejrychlejší", "méně rychlý", "nejméně rychlý"),
+                    listOf("pomalý (slow)", "pomalejší", "nejpomalejší", "méně pomalý", "nejméně pomalý"),
+                    listOf("tenký (thin)", "tenčí", "nejtenčí", "méně tenký", "nejméně tenký"),
+                    listOf("mocný (powerful)", "mocnější", "nejmocnější", "méně mocný", "nejméně mocný"),
+                    listOf("strašidelný (scary)", "strašidelnější", "nejstrašidelnější", "méně strašidelný", "nejméně strašidelný"),
+                    listOf("vtipný (funny)", "vtipnější", "nejvtipnější", "méně vtipný", "nejméně vtipný")
+                ),
+                weights = listOf(1.3f, 0.9f, 1.1f, 1.1f, 1.2f)
+            )
+
             // ── As…As ─────────────────────────────────────────────────────
             COMSection("As…As — stejně…jako / tak…jako")
             COMNote("For equality comparisons use stejně + adjective + jako (as...as). In negative sentences tak + adjective + jako is also very common.")

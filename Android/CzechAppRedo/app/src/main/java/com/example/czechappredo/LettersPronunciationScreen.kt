@@ -115,6 +115,17 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPRow("ď", "\"dy\" — soft d, like \"dew\" said quickly", name = "ďé")
             LPRow("ť", "\"ty\" — soft t, like \"tune\" said quickly", name = "ťé")
 
+            // ── 6b. Why Does r Sometimes Become ř? ────────────────────────
+            LPSectionHeader("Why Does r Sometimes Become ř?")
+            LPNote("This isn't random — it's a fossilized sound change. In Proto-Slavic (the common ancestor of all Slavic languages, roughly the 6th–9th centuries), a \"soft\" r existed whenever r was followed by a front vowel (e, ě, i) or the sound j — contrasting with plain, \"hard\" r elsewhere. Most Slavic languages later let this soft r merge back into plain r (Russian still keeps it as a palatalized рь, e.g. буря — storm). Czech took it further: between roughly the 12th and 14th centuries (Old Czech), that soft r evolved into an entirely new sound — a simultaneous trill and fricative, written ř. Polish underwent the same split but resolved it differently, merging its soft r into ž to create the digraph rz. So ř and Polish rz are historical siblings — two different outcomes of the same old sound.")
+            LPNote("The same softening happened to other consonants before front vowels around the same time (a stage called the second palatalization), each getting its own permanent \"soft\" replacement:")
+            LPRow("k → c", "", note = "ruka (hand) → v ruce (in the hand)")
+            LPRow("h → z", "", note = "noha (leg) → v noze (in the leg); Praha → v Praze (in Prague)")
+            LPRow("ch → š", "", note = "moucha (fly) → na mouše (on the fly)")
+            LPRow("r → ř", "", note = "sestra (sister) → sestře (to/about sister); díra (hole) → díře (in the hole)")
+            LPNote("You'll meet r → ř most often in three places: feminine dative/locative singular (sestra → sestře, díra → díře); masculine vocative singular — the form used to call out to someone (bratr → bratře!, Petr → Petře!); and the comparative of adjectives ending in -r (ostrý 'sharp' → ostřejší 'sharper').")
+            LPNote("It does NOT happen every time r is followed by e or i, because this is no longer a live pronunciation rule — it's frozen into specific old grammatical endings. Loanwords borrowed after the change stopped being productive skip it entirely: profesor (professor) → vocative pane profesore! (not profesoře), doktor → doktore. Different endings also skip it: the verb brát (to take) has berete (you take) and ber! (take!), both with a plain r, because those endings come from a different historical layer than the one that caused softening.")
+
             // ── 7. Letters That Surprise English Speakers ────────────────
             LPSectionHeader("Letters That Surprise English Speakers")
             LPRow("c", "\"ts\" in cats  (never \"k\" or \"s\" alone)", name = "cé")
