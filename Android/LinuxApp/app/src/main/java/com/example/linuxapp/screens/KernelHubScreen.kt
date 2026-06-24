@@ -140,7 +140,7 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "kallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
+                KernelButton(label = "Symbols and\nkallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
                 KernelButton(label = "Adding Files\nto the Kernel", modifier = Modifier.weight(1f), onClick = onAddingFiles)
             }
             Spacer(modifier = Modifier.height(12.dp))

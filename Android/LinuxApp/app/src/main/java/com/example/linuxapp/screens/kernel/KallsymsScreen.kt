@@ -30,7 +30,7 @@ fun KallsymsScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "kallsyms",
+                        "Symbols and kallsyms",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp
@@ -251,9 +251,115 @@ ffffffffc0403000 r my_config_table [my_module]"""
                     Spacer(modifier = Modifier.height(8.dp))
                     BodyText(
                         "EXPORT_SYMBOL and EXPORT_SYMBOL_GPL mark symbols as available for " +
-                        "other modules to use. These exported symbols appear in /proc/kallsyms " +
-                        "regardless of kptr_restrict type (because they must be findable by " +
-                        "the module loader). You can correlate with lsmod and /proc/modules."
+                        "other modules to use (see the dedicated section below). Note that " +
+                        "kptr_restrict and EXPORT_SYMBOL are unrelated mechanisms: kptr_restrict " +
+                        "only gates what a userspace reader sees when it reads /proc/kallsyms — " +
+                        "it never affects the kernel's own in-kernel symbol resolution. That's why " +
+                        "insmod/modprobe can always resolve EXPORT_SYMBOL'd dependencies at load " +
+                        "time no matter how kptr_restrict is set; the module loader runs entirely " +
+                        "in kernel space and never goes through the restricted read path. You can " +
+                        "correlate exported symbols with lsmod and /proc/modules."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "EXPORT_SYMBOL — What Gets Exported") {
+                    BodyText(
+                        "EXPORT_SYMBOL(name) and EXPORT_SYMBOL_GPL(name) are macros placed at " +
+                        "file scope, immediately after the function or variable they apply to. " +
+                        "They add an entry to a special symbol table (ksymtab) that the module " +
+                        "loader consults when resolving symbols other modules reference."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """int my_global = 42;
+EXPORT_SYMBOL(my_global);
+
+void my_function(void) { ... }
+EXPORT_SYMBOL_GPL(my_function);"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "What CAN be exported: anything with a real linker symbol and external " +
+                        "(non-static) linkage — functions, and global data objects: plain global " +
+                        "variables, arrays, structs/struct instances, function pointers, even " +
+                        "const globals placed in .rodata."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "What CANNOT be exported: static (file-local) functions or variables — " +
+                        "they have no external symbol to point at; #define macros and typedefs — " +
+                        "purely compile-time constructs, no runtime symbol exists for them at " +
+                        "all. The macro itself must also sit at file/global scope, not inside a " +
+                        "function body."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "EXPORT_SYMBOL vs EXPORT_SYMBOL_GPL: mechanically identical. The GPL " +
+                        "variant additionally requires the importing module to declare a " +
+                        "GPL-compatible MODULE_LICENSE — enforced at build time by modpost, not " +
+                        "at runtime."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Important: EXPORT_SYMBOL only controls whether OTHER modules can " +
+                        "resolve the symbol via the normal load-time linking mechanism. It does " +
+                        "NOT control whether the symbol shows up in /proc/kallsyms — see the " +
+                        "previous section: insmod adds every symbol from a module, exported or " +
+                        "not (that's why lowercase t/d/r module-local symbols show up too). " +
+                        "Exporting is about cross-module linkability, not kallsyms visibility."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Two Modules Exporting the Same Symbol") {
+                    BodyText(
+                        "What if special_a.ko and special_b.ko each define and " +
+                        "EXPORT_SYMBOL() a function called special_func? Only the first one to " +
+                        "load wins — the second insmod is rejected outright."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """$ insmod special_a.ko
+$ insmod special_b.ko
+insmod: ERROR: could not insert module
+  special_b.ko: Exec format error
+
+$ dmesg | tail -1
+special_b: exports duplicate symbol
+  special_func (owned by special_a)"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Under the hood, load_module() calls verify_exported_symbols(), which " +
+                        "walks every symbol the loading module exports and calls find_symbol() " +
+                        "to see if a symbol with that name is already visible — owned by the " +
+                        "core kernel or by any currently loaded module. If it finds one, the " +
+                        "load fails immediately with -ENOEXEC (\"Exec format error\"), before " +
+                        "special_b's module_init() ever runs. special_a keeps the symbol; " +
+                        "special_b never gets linked into the kernel at all."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "find_symbol()'s search order — core kernel ksymtab first, then loaded " +
+                        "modules from most-recently-loaded to least-recently-loaded (new modules " +
+                        "are added to the head of the modules list) — is what would decide a " +
+                        "'winner' if a collision were ever allowed to resolve. In practice it " +
+                        "never gets that far: the duplicate-export check above fires first, so " +
+                        "two modules can never actually coexist while both claiming the same " +
+                        "exported name."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Build time vs load time: if both modules are built together as part of " +
+                        "the same kernel source tree (sharing Module.symvers), modpost catches " +
+                        "the collision even earlier, at link time. Independent out-of-tree " +
+                        "modules built separately have no shared Module.symvers, so this is only " +
+                        "ever caught when you actually insmod both into the same running kernel."
                     )
                 }
             }
@@ -309,6 +415,145 @@ static int __init mymod_init(void) {
                         "Alternative: if you only need to probe a function (not get its address " +
                         "as a pointer), set .symbol_name directly on the kprobe and let the " +
                         "kernel resolve it for you — no kptr workaround needed."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "kallsyms_lookup() — Lookup by Address") {
+                    BodyText(
+                        "kallsyms_lookup() is the mirror image of kallsyms_lookup_name() — " +
+                        "given an address, it returns the symbol name plus its size, offset " +
+                        "within the symbol, and owning module name (if any):"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """const char *kallsyms_lookup(
+    unsigned long addr,
+    unsigned long *symbolsize,
+    unsigned long *offset,
+    char **modname,
+    char *namebuf);"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Like kallsyms_lookup_name(), it is NOT exported — an LKM cannot call " +
+                        "it directly. Resolving it requires the same kprobe-capture trick shown " +
+                        "above (register_kprobe with .symbol_name = \"kallsyms_lookup\", read " +
+                        "kp.addr, then unregister_kprobe)."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "In practice you rarely need to do this yourself. The kernel already " +
+                        "exports thin wrappers around kallsyms_lookup() for the common case of " +
+                        "formatting an address for printing:"
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """sprint_symbol(buf, addr)            EXPORT_SYMBOL_GPL
+  -> "function_name+0x1a/0x40 [module]"
+
+sprint_symbol_no_offset(buf, addr)  EXPORT_SYMBOL_GPL
+  -> "function_name [module]"
+
+sprint_symbol_build_id(buf, addr)   EXPORT_SYMBOL_GPL
+  -> like sprint_symbol, plus build ID"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "So: name -> address has no exported path at all (kprobe trick " +
+                        "mandatory). Address -> name has an exported, ready-made formatter — " +
+                        "only reach for raw kallsyms_lookup() + the kprobe trick if you need " +
+                        "the size/offset/modname as separate fields rather than one formatted " +
+                        "string."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "symbol_get() and symbol_put()") {
+                    BodyText(
+                        "symbol_get(name) and symbol_put(name) are a safer alternative to " +
+                        "kallsyms_lookup_name() for one specific case: getting a pointer to a " +
+                        "symbol exported by a module that may or may not currently be loaded, " +
+                        "without creating a hard build-time dependency."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    CodeBlock(
+                        """typeof(&some_gpl_function) fn =
+    symbol_get(some_gpl_function);
+
+if (fn) {
+    fn(...);
+    symbol_put(some_gpl_function);
+}"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Under the hood, symbol_get(x) expands to __symbol_get(\"x\"), which " +
+                        "calls find_symbol() to locate the symbol and its owning module, then " +
+                        "pins that module by calling strong_try_module_get() on it — " +
+                        "incrementing its reference count so it cannot be rmmod'd while you " +
+                        "hold the reference. symbol_put(x) calls module_put() to release that " +
+                        "pin."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Restriction (since Linux 6.5, 2023): symbol_get() only works on " +
+                        "EXPORT_SYMBOL_GPL symbols — it explicitly rejects plain EXPORT_SYMBOL " +
+                        "ones with a \"failing symbol_get of non-GPLONLY symbol\" warning. This " +
+                        "was tightened specifically to stop proprietary modules from " +
+                        "re-exporting GPL-only kernel internals through a thin GPL wrapper " +
+                        "module. Before 6.5, it worked on any exported symbol."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Yes — symbol_get() always references the owning module. That " +
+                        "reference is the entire point of the API: it's the difference between " +
+                        "this and a raw kallsyms-style lookup (see next section)."
+                    )
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                SectionCard(title = "Why Unpinned Lookups Are Dangerous") {
+                    BodyText(
+                        "kallsyms_lookup_name(), kallsyms_lookup(), and reading /proc/kallsyms " +
+                        "all hand you a bare address. None of them take a reference on the " +
+                        "owning module — there is no refcount increment anywhere in that path."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "That is dangerous if the symbol belongs to a loadable module rather " +
+                        "than the core kernel: if you resolve the address once and call through " +
+                        "it later, nothing stops that module from being rmmod'd in between. The " +
+                        "memory backing that address can be freed and reused, so the call " +
+                        "becomes a jump into freed memory — a textbook use-after-free, and a " +
+                        "reliable way to crash the kernel."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "symbol_get() exists precisely to close this gap: it locates the " +
+                        "symbol AND pins the module in the same step, so the address it hands " +
+                        "you is guaranteed valid until you call symbol_put(). The tradeoff is " +
+                        "the EXPORT_SYMBOL_GPL-only restriction, and that it only searches " +
+                        "symbols currently registered in the kernel/module symbol tables — it " +
+                        "cannot find static/internal symbols, only exported ones."
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText(
+                        "Rule of thumb: if the symbol is EXPORT_SYMBOL_GPL'd and you're calling " +
+                        "it more than once or holding the pointer beyond a single immediate " +
+                        "use, prefer symbol_get()/symbol_put(). Reach for the " +
+                        "kallsyms_lookup_name() + kprobe trick only when there is no other way " +
+                        "to get the address (the symbol isn't exported, or you only need a " +
+                        "one-shot read of a symbol you know lives in the core kernel image, " +
+                        "which can never be unloaded) — and even then, treat it as a " +
+                        "debugging/research technique rather than something to ship in a " +
+                        "production driver."
                     )
                 }
             }
