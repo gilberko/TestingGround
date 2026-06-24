@@ -116,6 +116,7 @@ class MainActivity : ComponentActivity() {
                     composable("kernel_net_adapter_cx") { NetAdapterCxScreen(navController) }
                     composable("kernel_wdf_kmdf") { WdfKmdfScreen(navController) }
                     composable("user_wdf_umdf") { UmdfScreen(navController) }
+                    composable("kernel_drivers_objects") { DriversAndObjectsScreen(navController) }
                 }
             }
         }

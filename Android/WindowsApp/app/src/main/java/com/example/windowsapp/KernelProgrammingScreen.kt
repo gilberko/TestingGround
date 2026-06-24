@@ -110,6 +110,8 @@ fun KernelProgrammingScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("WDF / KMDF", fontSize = 12.sp) { navController.navigate("kernel_wdf_kmdf") } }
             Box(modifier = Modifier.weight(1f)) { HackerButton("TRY / CATCH", fontSize = 12.sp) { navController.navigate("kernel_seh") } }
         }
+        Spacer(modifier = Modifier.height(8.dp))
+        HackerButton("WORKING WITH DRIVERS AND OBJECTS", fontSize = 12.sp) { navController.navigate("kernel_drivers_objects") }
 
         Spacer(modifier = Modifier.height(32.dp))
 
