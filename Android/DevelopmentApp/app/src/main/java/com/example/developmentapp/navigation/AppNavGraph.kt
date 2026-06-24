@@ -57,6 +57,7 @@ import com.example.developmentapp.screens.assembly.AsmLabelsScreen
 import com.example.developmentapp.screens.assembly.AsmMemorySectionsScreen
 import com.example.developmentapp.screens.assembly.AsmSpecialCommandsScreen
 import com.example.developmentapp.screens.assembly.SynchronizationScreen
+import com.example.developmentapp.screens.assembly.PatternsFromCppScreen
 import com.example.developmentapp.screens.assembly.BasicArithmeticScreen
 import com.example.developmentapp.screens.assembly.ComparisonsLoopsScreen
 import com.example.developmentapp.screens.assembly.FunctionCallsScreen
@@ -260,6 +261,7 @@ sealed class Screen(val route: String) {
     object AsmLabels           : Screen("asm_labels")
     object AsmSpecialCommands  : Screen("asm_special_commands")
     object AsmSynchronization  : Screen("asm_synchronization")
+    object AsmPatternsFromCpp  : Screen("asm_patterns_from_cpp")
     // Data Structures
     object DataStructures      : Screen("data_structures")
     // Python
@@ -806,7 +808,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onMemorySections       = { navController.navigate(Screen.AsmMemorySections.route) },
                 onLabels               = { navController.navigate(Screen.AsmLabels.route) },
                 onSpecialCommands      = { navController.navigate(Screen.AsmSpecialCommands.route) },
-                onSynchronization      = { navController.navigate(Screen.AsmSynchronization.route) }
+                onSynchronization      = { navController.navigate(Screen.AsmSynchronization.route) },
+                onPatternsFromCpp      = { navController.navigate(Screen.AsmPatternsFromCpp.route) }
             )
         }
         composable(Screen.X86Environment.route)       { X86EnvironmentScreen(onBack = { navController.popBackStack() }) }
@@ -823,6 +826,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AsmLabels.route)           { AsmLabelsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AsmSpecialCommands.route)  { AsmSpecialCommandsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.AsmSynchronization.route) { SynchronizationScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.AsmPatternsFromCpp.route) { PatternsFromCppScreen(onBack = { navController.popBackStack() }) }
 
         // ── Data Structures ───────────────────────────────────────────────
         composable(Screen.DataStructures.route) {

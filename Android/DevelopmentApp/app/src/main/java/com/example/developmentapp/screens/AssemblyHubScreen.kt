@@ -49,7 +49,8 @@ fun AssemblyHubScreen(
     onMemorySections: () -> Unit,
     onLabels: () -> Unit,
     onSpecialCommands: () -> Unit,
-    onSynchronization: () -> Unit
+    onSynchronization: () -> Unit,
+    onPatternsFromCpp: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -99,6 +100,8 @@ fun AssemblyHubScreen(
             AsmButtonRow("Memory Sections", onMemorySections, "Labels", onLabels)
             Spacer(Modifier.height(12.dp))
             AsmButtonRow("Special Commands", onSpecialCommands, "Synchronization", onSynchronization)
+            Spacer(Modifier.height(12.dp))
+            AsmHubButton("Patterns from C\\C++", onPatternsFromCpp, Modifier.fillMaxWidth())
             Spacer(Modifier.height(24.dp))
         }
     }
