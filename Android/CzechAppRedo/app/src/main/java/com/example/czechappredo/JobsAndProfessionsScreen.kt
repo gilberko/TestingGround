@@ -59,7 +59,7 @@ fun JobsAndProfessionsScreen(navController: NavController) {
             JPRow("barista", "baristka", "barista")
             JPRow("barman", "barmanka", "bartender")
             JPRow("šéfkuchař", "šéfkuchařka", "chef")
-            JPRow("číšník", "číšnice", "waiter")
+            JPRow("číšník", "číšnice", "waiter", "servírka is at least as common as číšnice for 'waitress' in everyday speech — číšník/servírka (not číšník/číšnice) is actually the standard official pairing, e.g. the national qualification 'Číšník/servírka'. A masculine 'servír' is unconfirmed/disputed — missing from the official Czech dictionary, only turning up in a crowdsourced slang source — so číšník remains the safe, standard word for a male waiter.")
             JPRow("kuchař", "kuchařka", "cook", "šéfkuchař / šéfkuchařka = chef (head cook)")
             JPRow("gastronomický kritik", "gastronomická kritička", "food critic")
 
