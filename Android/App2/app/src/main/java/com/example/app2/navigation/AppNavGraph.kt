@@ -70,6 +70,7 @@ import com.example.app2.screens.WorkMeetingConversationScreen
 import com.example.app2.screens.CasualExpressionsScreen
 import com.example.app2.screens.CasualMeetingConversationScreen
 import com.example.app2.screens.RealEstateConversationScreen
+import com.example.app2.screens.AdjectivesAdverbsScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -138,6 +139,7 @@ sealed class Screen(val route: String) {
     object DictCasualExpressions : Screen("dict_casual_expressions")
     object ConversationCasualMeeting : Screen("conversation_casual_meeting")
     object ConversationRealEstate : Screen("conversation_real_estate")
+    object TutorialAdjectivesAdverbs : Screen("tutorial_adjectives_adverbs")
 }
 
 @Composable
@@ -214,8 +216,12 @@ fun AppNavGraph(navController: NavHostController) {
                 onNegation = { navController.navigate(Screen.TutorialNegation.route) },
                 onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConnectors = { navController.navigate(Screen.DictConnectors.route) },
-                onAuthorsThoughts = { navController.navigate(Screen.TutorialAuthorsThoughts.route) }
+                onAuthorsThoughts = { navController.navigate(Screen.TutorialAuthorsThoughts.route) },
+                onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) }
             )
+        }
+        composable(Screen.TutorialAdjectivesAdverbs.route) {
+            AdjectivesAdverbsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.TutorialNegation.route) {
             NegationScreen(onBack = { navController.popBackStack() })

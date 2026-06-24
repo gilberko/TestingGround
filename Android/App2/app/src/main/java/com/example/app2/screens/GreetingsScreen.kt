@@ -268,6 +268,111 @@ private fun BasicWordsCard() {
                     "Ou vais tu, ou fico eu." to "Either you go, or I stay."
                 )
             )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            // ── Suddenness, Degree & Frequency ────────────────────────────
+            Text("Suddenness, Degree & Frequency", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            GreetingEntry(
+                term = "De repente / Subitamente",
+                meaning = "Suddenly / All of a sudden",
+                description = "\"De repente\" is the everyday EP choice for both \"suddenly\" and \"all of a sudden\". \"Subitamente\" is a more formal/written synonym. \"De um momento para o outro\" (\"from one moment to the other\") is an idiomatic variant that emphasizes how abrupt the change was.",
+                examples = listOf(
+                    "De repente, começou a chover." to "Suddenly, it started to rain.",
+                    "De um momento para o outro, tudo mudou." to "All of a sudden, everything changed."
+                )
+            )
+            GreetingEntry(
+                term = "Imediatamente",
+                meaning = "Immediately",
+                description = "Used for \"right away\" — often after an urgent request or command.",
+                examples = listOf(
+                    "Preciso da resposta imediatamente." to "I need the answer immediately.",
+                    "Vem aqui imediatamente!" to "Come here immediately!"
+                )
+            )
+            GreetingEntry(
+                term = "Nada / De modo nenhum",
+                meaning = "Not at all",
+                description = "\"Nada\" softly reinforces a negative you've already started with não — the everyday, casual way to say \"not at all\". \"De modo nenhum\" / \"de maneira nenhuma\" is stronger and more formal, and can even open the sentence for emphasis.",
+                examples = listOf(
+                    "Não gosto nada disto." to "I don't like this at all.",
+                    "De modo nenhum vou aceitar isso." to "I will not accept that at all / no way."
+                ),
+                note = "Difference: nada reinforces a não you already said; de modo nenhum/de maneira nenhuma is stronger and stands on its own."
+            )
+            GreetingEntry(
+                term = "Totalmente / Completamente",
+                meaning = "Totally / Completely",
+                description = "Near-synonyms, used interchangeably to mean \"fully, entirely\".",
+                examples = listOf(
+                    "Estou totalmente de acordo." to "I totally agree.",
+                    "A loja está completamente vazia." to "The shop is completely empty."
+                )
+            )
+            GreetingEntry(
+                term = "Normalmente / Costumar + infinitive",
+                meaning = "Usually",
+                description = "\"Normalmente\" (also geralmente, habitualmente) is the standard adverb for \"usually\". A very common everyday alternative is the verb costumar + infinitive, which conjugates with the subject (costumo, costumas, costuma...) to express a habitual action directly.",
+                examples = listOf(
+                    "Normalmente levanto-me às 7h." to "I usually get up at 7.",
+                    "Costumo levantar-me às 7h." to "I usually get up at 7. (lit. \"I'm accustomed to getting up at 7\")"
+                )
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            // ── Before, After, During, Between & Against ──────────────────
+            Text("Before, After, During, Between & Against", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            GreetingEntry(
+                term = "Antes (de)",
+                meaning = "Before",
+                description = "Antes alone means \"before/earlier\"; antes de + noun/infinitive specifies before what.",
+                examples = listOf(
+                    "Antes do jantar." to "Before dinner.",
+                    "Chegou antes de mim." to "He/she arrived before me."
+                )
+            )
+            GreetingEntry(
+                term = "Depois (de) / Após",
+                meaning = "After",
+                description = "Depois is the everyday, all-purpose word for \"after\", used in any register — followed by de before a noun or infinitive (depois do jogo, depois de comer). Após is the more formal/written equivalent, used mainly in journalism, literature, and formal speech, and goes directly before the noun WITHOUT de.",
+                examples = listOf(
+                    "Depois do jogo, fomos comer." to "After the game, we went to eat. (everyday)",
+                    "Após o jogo, foram comer." to "After the game, they went to eat. (formal, no de)",
+                    "Depois de comer, vou trabalhar." to "After eating, I'm going to work."
+                ),
+                note = "Spelling: it's após, with the accent — \"apos\" without the accent isn't a word. Rule of thumb: depois + de + [noun/infinitive] in everyday speech; após + [noun] directly (never após de) in formal writing."
+            )
+            GreetingEntry(
+                term = "Durante",
+                meaning = "During",
+                description = "Used for the duration of an action or event.",
+                examples = listOf(
+                    "Durante a viagem, dormi." to "During the trip, I slept.",
+                    "Não fales durante o filme." to "Don't talk during the movie."
+                )
+            )
+            GreetingEntry(
+                term = "Entre",
+                meaning = "Between",
+                description = "Used for position or relationship between two or more things.",
+                examples = listOf(
+                    "O banco fica entre a farmácia e o café." to "The bank is between the pharmacy and the café.",
+                    "Entre nós." to "Between us."
+                )
+            )
+            GreetingEntry(
+                term = "Contra",
+                meaning = "Against",
+                description = "Used for opposition — physical, competitive, or about an idea/opinion.",
+                examples = listOf(
+                    "Jogamos contra o Benfica." to "We're playing against Benfica.",
+                    "Estou contra essa ideia." to "I'm against that idea."
+                )
+            )
         }
     }
 }
