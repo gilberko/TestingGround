@@ -120,6 +120,16 @@ fun AdverbsScreen(navController: NavController) {
             ADVRow("rychle", "fast", "→ rychleji (faster) → nejrychleji (fastest)")
             ADVRow("pomalu", "slowly", "→ pomaleji (more slowly) → nejpomaleji (most slowly)")
 
+            ADVSection("Adverb Position & Adding \"Very\" / \"A Bit\"")
+            ADVNote("The neutral position for a manner adverb is right after the verb it modifies.")
+            ADVExample("Mluví dobře.", "He speaks well.")
+            ADVExample("Jede rychle.", "He drives fast.")
+            ADVNote("Moving the adverb before the verb is also grammatical — it shifts emphasis onto the adverb itself, following the same flexible, emphasis-driven word order that governs the rest of a Czech sentence (see the Word Order In A Sentence screen). Compare the neutral Mluví dobře česky. with the emphatic Dobře mluví česky. — both mean 'He speaks Czech well,' but the second highlights 'well'.")
+            ADVNote("The same degree words used with adjectives — velmi / moc / hodně (very), dost (quite), trochu / málo (a bit), příliš (too) — also intensify adverbs, and they go directly before the adverb, not before the verb: [verb] + [degree word] + [adverb].")
+            ADVExample("Mluví velmi dobře.", "He speaks very well.")
+            ADVExample("Jede dost rychle.", "He's driving quite fast.")
+            ADVExample("Pracuje trochu pomalu.", "He works a bit slowly.")
+
             ADVSection("Examples")
             ADVExample("Mluví dobře česky.", "He speaks Czech well.")
             ADVExample("Přijdeme brzy.", "We will come soon.")

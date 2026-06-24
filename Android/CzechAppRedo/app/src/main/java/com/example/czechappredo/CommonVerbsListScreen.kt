@@ -139,6 +139,12 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("odhadnout", "Perf.", "to estimate (once)", "→ odhadovat (Imperf.)", "odhadnu", "odhadnul/a jsem")
             CVLRow("určovat", "Imperf.", "to determine", "→ určit (Perf.)", "určuji/určuju", "určoval/a jsem")
             CVLRow("určit", "Perf.", "to determine (complete)", "→ určovat (Imperf.)", "určím", "určil/a jsem")
+            CVLRow("kontrolovat", "Imperf.", "to check", "→ zkontrolovat (Perf.)", "kontroluji/kontroluju", "kontroloval/a jsem")
+            CVLRow("zkontrolovat", "Perf.", "to check (complete)", "→ kontrolovat (Imperf.)", "zkontroluji/zkontroluju", "zkontroloval/a jsem")
+            CVLRow("ověřovat", "Imperf.", "to verify", "→ ověřit (Perf.)", "ověřuji/ověřuju", "ověřoval/a jsem")
+            CVLRow("ověřit", "Perf.", "to verify (complete)", "→ ověřovat (Imperf.)", "ověřím", "ověřil/a jsem")
+            CVLRow("uvědomovat si", "Imperf.", "to realize (ongoing)", "→ uvědomit si (Perf.)", "uvědomuji/uvědomuju si", "uvědomoval/a jsem si")
+            CVLRow("uvědomit si", "Perf.", "to realize", "→ uvědomovat si (Imperf.)", "uvědomím si", "uvědomil/a jsem si")
 
             // ── 5. Emotions & Feelings ────────────────────────────────────
             CVLSection("Emotions & Feelings")
@@ -160,6 +166,8 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLSection("Work & Study")
             CVLRow("studovat", "Imperf.", "to study", jaPresent = "studuji/studuju", jaPast = "studoval/a jsem")
             CVLRow("pracovat", "Imperf.", "to work", jaPresent = "pracuji/pracuju", jaPast = "pracoval/a jsem")
+            CVLRow("trénovat", "Imperf.", "to train (sports / practice)", "→ vytrénovat (Perf.)", "trénuji/trénuju", "trénoval/a jsem")
+            CVLRow("vytrénovat", "Perf.", "to train (get into shape)", "→ trénovat (Imperf.)", "vytrénuji/vytrénuju", "vytrénoval/a jsem")
             CVLRow("učit se", "Imperf.", "to learn", "→ naučit se (Perf.)", "učím se", "učil/a jsem se")
             CVLRow("naučit se", "Perf.", "to learn (master)", "→ učit se (Imperf.)", "naučím se", "naučil/a jsem se")
             CVLRow("přednášet", "Imperf.", "to lecture", "→ přednést (Perf.)", "přednáším", "přednášel/a jsem")
@@ -384,6 +392,12 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("čichat", "Imperf.", "to smell", jaPresent = "čichám", jaPast = "čichal/a jsem")
             CVLRow("hledět", "Imperf.", "to gaze", jaPresent = "hledím", jaPast = "hleděl/a jsem")
             CVLRow("zírat", "Imperf.", "to stare", jaPresent = "zírám", jaPast = "zíral/a jsem")
+            CVLRow("hledat", "Imperf.", "to look for / to search", "no direct perfective from the same root — the result is expressed by najít (to find)", "hledám", "hledal/a jsem")
+            CVLRow("nacházet", "Imperf.", "to find (ongoing) / to be located", "→ najít (Perf.)", "nacházím", "nacházel/a jsem")
+            CVLRow("najít", "Perf.", "to find", "→ nacházet / hledat (Imperf.)", "najdu", "našel/našla jsem")
+            CVLRow("pátrat", "Imperf.", "to search (investigate)", "→ vypátrat (Perf.) — more intensive than hledat. Policie pátrá po pachateli. = The police are searching for the perpetrator.", "pátrám", "pátral/a jsem")
+            CVLRow("vypátrat", "Perf.", "to track down / find through searching", "→ pátrat (Imperf.)", "vypátrám", "vypátral/a jsem")
+            CVLRow("pozorovat", "Imperf.", "to observe", "careful, attentive watching — distinct from sledovat (to follow / track) and dívat se (to watch / look at)", "pozoruji/pozoruju", "pozoroval/a jsem")
 
             // ── 15. Reading, Writing & Language ──────────────────────────
             CVLSection("Reading, Writing & Language")
@@ -427,6 +441,11 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLRow("podvádět", "Imperf.", "to trick / deceive", "→ oklamat (Perf.)", "podvádím", "podváděl/a jsem")
             CVLRow("oklamat", "Perf.", "to trick (complete)", "→ podvádět (Imperf.)", "oklamám", "oklamal/a jsem")
             CVLRow("hypnotizovat", "Imperf.", "to hypnotize", jaPresent = "hypnotizuji/hypnotizuju", jaPast = "hypnotizoval/a jsem")
+            CVLRow("ignorovat", "Imperf.", "to ignore", jaPresent = "ignoruji/ignoruju", jaPast = "ignoroval/a jsem")
+            CVLRow("přijímat", "Imperf.", "to accept", "→ přijmout (Perf.)", "přijímám", "přijímal/a jsem")
+            CVLRow("přijmout", "Perf.", "to accept (complete)", "→ přijímat (Imperf.)", "přijmu", "přijal/a jsem")
+            CVLRow("odmítat", "Imperf.", "to reject / refuse", "→ odmítnout (Perf.)", "odmítám", "odmítal/a jsem")
+            CVLRow("odmítnout", "Perf.", "to reject (once)", "→ odmítat (Imperf.)", "odmítnu", "odmítl/a jsem")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

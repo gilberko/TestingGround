@@ -50,6 +50,13 @@ fun AdjectivesScreen(navController: NavController) {
             AJNote("Adjectives agree with their noun in gender, number, and case. The ending changes every time the noun's grammatical role changes.")
             AJNote("Examples: dobrý muž (good man, m.) · dobrá žena (good woman, f.) · dobré víno (good wine, n.)")
 
+            // ── Adjective Position & Adding "Very" / "A Bit" ──────────────
+            AJSection("Adjective Position & Adding \"Very\" / \"A Bit\"")
+            AJNote("Just like in English, a Czech adjective normally comes right before the noun it describes: dobrý muž (a good man), rychlé auto (a fast car), stará kniha (an old book).")
+            AJNote("To intensify the adjective, put a degree word directly in front of it — the adjective still goes right before the noun. Common degree words: velmi / moc / hodně (very), dost (quite / fairly), trochu / málo (a bit / a little), příliš (too).")
+            AJNote("Pattern: [degree word] + [adjective] + [noun]. Examples: velmi dobrý muž (a very good man), dost rychlé auto (a fairly fast car), trochu stará kniha (a slightly old book), příliš drahý byt (too expensive an apartment).")
+            AJNote("Exception: in chemistry, biology, and other technical or legal terminology, the adjective follows the noun instead, as a fixed naming convention — kyselina sírová (sulfuric acid), oxid uhličitý (carbon dioxide). This reversed order is reserved for these fixed technical terms, not a general option for everyday descriptions.")
+
             // ── Hard and Soft Adjective Types ─────────────────────────────
             AJSection("Hard and Soft Adjective Types")
             AJNote("Czech adjectives come in two types — hard and soft. The type is a fixed property of the adjective itself; it does not depend on which noun the adjective modifies.")

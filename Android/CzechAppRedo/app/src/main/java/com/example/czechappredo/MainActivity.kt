@@ -104,6 +104,7 @@ class MainActivity : ComponentActivity() {
                 composable("sports") { SportsScreen(navController) }
                 composable("school_university") { SchoolAndUniversityScreen(navController) }
                 composable("dialogue_soccer") { WatchingSoccerDialogueScreen(navController) }
+                composable("word_order") { WordOrderScreen(navController) }
             }
         }
     }
@@ -254,7 +255,8 @@ fun LearningHubScreen(navController: NavController) {
             "Imperative" to "imperative",
             "Conditions" to "conditions",
             "Connecting Sentences" to "connecting_sentences",
-            "Comparisons" to "comparisons"
+            "Comparisons" to "comparisons",
+            "Word Order In A Sentence" to "word_order"
         )
         Column(
             modifier = Modifier

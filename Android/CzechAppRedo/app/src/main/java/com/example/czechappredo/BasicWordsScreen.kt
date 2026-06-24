@@ -305,13 +305,23 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("zítra", "tomorrow")
             BWNote("Czech has no articles. Time words go directly into the sentence: Jdu tam dnes. = I'm going there today. Přijdeš zítra? = Will you come tomorrow?")
 
-            // ── Just, Right Now, Right Here ──────────────────────────────
-            BWSection("Just, Right Now, Right Here")
+            // ── Before, After, Previously & In The Future ────────────────
+            BWSection("Before, After, Previously & In The Future")
+            BWRow("dříve", "before / previously / earlier", "Dříve jsem bydlel v Brně. = I used to live in Brno before / I lived in Brno earlier.")
+            BWRow("předtím", "before that / beforehand", "Předtím jsem o tom nevěděl. = Before that, I didn't know about it. See also Connecting Sentences for než / dříve než / předtím než (\"before\" + a full clause).")
+            BWRow("před + instr.", "before (preposition — time or place)", "před obědem = before lunch; před domem = in front of the house. před takes the Instrumental case.")
+            BWRow("po + loc.", "after (preposition)", "po obědě = after lunch. po takes the Locative case. The adverb 'then / afterwards' is already covered by pak / potom above.")
+            BWRow("v budoucnu / v budoucnosti", "in the future", "V budoucnu se to změní. = In the future, this will change.")
+
+            // ── Here, There & Right Now ───────────────────────────────────
+            BWSection("Here, There & Right Now")
+            BWRow("tady", "here / right here", "also: tu (slightly more formal); tady is preferred in everyday speech")
+            BWRow("tam", "there", "Bydlím tam. = I live there. Jdi tam. = Go there. Pairs with tady the way 'here / there' do in English.")
+            BWRow("teď", "now", "also: nyní (more formal / written). Teď nemám čas. = I don't have time now.")
             BWRow("právě", "just / right now", "Právě jsem přišel domů. = I just came home. Also means 'exactly': Právě proto. = Exactly because of that.")
             BWRow("právě teď", "just now / right now", "combines právě (just/exactly) + teď (now)")
             BWRow("hned", "right away / immediately", "implies immediacy: Přijdu hned. = I'll come right away.")
             BWRow("hned teď", "right now (this very moment)", "slightly stronger than právě teď — right this instant")
-            BWRow("tady", "here / right here", "also: tu (slightly more formal); tady is preferred in everyday speech")
             BWRow("přímo tady", "right here", "přímo = directly / exactly; emphasizes the specific location")
 
             // ── Still, Already, Yet ──────────────────────────────────────
@@ -330,6 +340,12 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("už vůbec nerozumím", "I don't understand at all", "Už vůbec nerozumím, co tím myslíš. = I have no idea at all what you mean by that.")
             BWRow("to se mi už vůbec nelíbí", "I don't like that at all", "už vůbec strengthens nelíbí (don't like) into a much stronger rejection than nelíbí se mi alone.")
             BWNote("Mental model: ještě = the situation hasn't changed yet (or there's more to come). už = the situation has changed — something started, or with ne- something stopped. už vůbec ne = a separate, emphatic pattern: už here intensifies vůbec's negation rather than marking a change of state.")
+
+            // ── Suddenly, All Of A Sudden & Totally ───────────────────────
+            BWSection("Suddenly, All Of A Sudden & Totally")
+            BWRow("náhle", "suddenly", "more formal / written. Náhle přestalo pršet. = It suddenly stopped raining.")
+            BWRow("najednou", "suddenly / all of a sudden", "the most common, colloquial word. Najednou začal křičet. = All of a sudden he started shouting. Also means 'all at once / in one go': Udělej to najednou. = Do it all at once.")
+            BWRow("úplně", "totally / completely", "a different word from vůbec (at all) — also appears in Adverbs. Souhlasím úplně. = I totally agree.")
 
             // ── Only, Just, Nothing But ──────────────────────────────────
             BWSection("Only, Just, Nothing But")
@@ -362,6 +378,12 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("ani … ani …", "neither … nor …", "Nechci ani kávu, ani čaj. = I want neither coffee nor tea. Always used with a negative verb.")
             BWRow("dokonce", "even (additive / emphatic)", "Dokonce přišel včas. = He even came on time. Works in positive sentences — adds a sense of surprise or extra emphasis.")
             BWNote("ani = 'not even' (requires a negated verb). dokonce = 'even' in the sense of 'surprisingly also' — works in positive sentences without any negation.")
+
+            // ── While, Between & Against ──────────────────────────────────
+            BWSection("While, Between & Against")
+            BWRow("zatímco", "while / whereas", "introduces simultaneity or contrast. Zatímco já vařím, ty prostíráš stůl. = While I cook, you set the table. Note: 'for a while' is a different word — chvilku / na chvíli.")
+            BWRow("mezi + instr.", "between / among", "static location, Instrumental case. Sedím mezi kamarády. = I'm sitting among friends. Motion 'to a spot between' uses the Accusative instead.")
+            BWRow("proti + dat.", "against", "Dative case. Jsem proti tomu. = I'm against that. Hraje proti nám. = He's playing against us.")
 
             // ── Odd and Even (Numbers) ────────────────────────────────────
             BWSection("Odd and Even (Numbers)")
