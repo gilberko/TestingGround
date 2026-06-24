@@ -121,6 +121,19 @@ private fun JaAindaCard() {
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
             ConnectorEntry(
+                term = "já agora",
+                meaning = "by the way / while we're at it / now that I think of it",
+                description = "A very common colloquial discourse marker used to introduce an additional thought, a related question, or a request that occurs to you mid-conversation. Can open a sentence or be tacked onto the end.",
+                examples = listOf(
+                    "Já agora, sabes se o Pedro também vai?" to "By the way, do you know if Pedro is going too?",
+                    "Podes trazer-me um café, já agora?" to "Can you bring me a coffee, while you're at it?"
+                ),
+                note = "Compare with a propósito (also \"by the way\", more neutral/formal) — já agora feels more casual and often implies \"since we're on the subject\"."
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            ConnectorEntry(
                 term = "tão",
                 meaning = "so / such (before adjectives & adverbs)",
                 description = "Tão intensifies an adjective or adverb — equivalent to English \"so\" or \"such\". It always comes directly before the word it modifies.",
@@ -479,13 +492,27 @@ private fun TalCard() {
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
             ConnectorEntry(
+                term = "como tal",
+                meaning = "as such / therefore / in that capacity",
+                description = "Refers back to something in its stated role or quality, often introducing a consequence — \"being that, ...\". Easy to confuse with tal como (below), which means something different.",
+                examples = listOf(
+                    "A solução é tóxica e deve ser tratada como tal." to "The solution is toxic and must be treated as such.",
+                    "É o chefe; como tal, decide ele." to "He's the boss; as such, he decides."
+                ),
+                note = "Don't confuse with tal como (just as / such as, for examples and comparisons) — see below."
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            ConnectorEntry(
                 term = "tal como",
                 meaning = "just as / such as / like",
                 description = "Introduces a comparison or example — meaning \"in the same way as\" or \"such as\". Goes at the start of a clause or in the middle of a sentence.",
                 examples = listOf(
                     "Fiz tal como me pediste." to "I did it just as you asked me.",
                     "Tal como eu disse, precisamos de ajuda." to "Just as I said, we need help."
-                )
+                ),
+                note = "Don't confuse with como tal (as such / therefore, above) — tal como introduces an example or comparison."
             )
         }
     }

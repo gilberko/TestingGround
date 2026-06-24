@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
-private data class MovementEntry(val pt: String, val en: String)
+private data class MovementEntry(val pt: String, val en: String, val note: String = "")
 private data class MovementCategory(val title: String, val entries: List<MovementEntry>)
 
 private val movementCategories = listOf(
@@ -82,6 +82,52 @@ private val movementCategories = listOf(
             MovementEntry("parar", "to stop"),
             MovementEntry("continuar", "to continue / go on")
         )
+    ),
+    MovementCategory(
+        "Giving Directions",
+        listOf(
+            MovementEntry("virar à esquerda", "turn left"),
+            MovementEntry("virar à direita", "turn right"),
+            MovementEntry("voltar atrás", "turn back"),
+            MovementEntry("dar a volta / virar-se", "turn around"),
+            MovementEntry("continuar em frente", "continue straight"),
+            MovementEntry("seguir os sinais / seguir as placas", "follow the signs"),
+            MovementEntry("siga-me", "follow me"),
+            MovementEntry("siga-o", "follow him"),
+            MovementEntry("siga-a", "follow her"),
+            MovementEntry("consultar o mapa", "check the map"),
+            MovementEntry("usar o GPS", "use GPS"),
+            MovementEntry("usar o Google Maps", "use Google Maps"),
+            MovementEntry("usar o Waze", "use Waze")
+        )
+    ),
+    MovementCategory(
+        "Inside Buildings",
+        listOf(
+            MovementEntry("apanhar o elevador", "take the elevator"),
+            MovementEntry("apanhar as escadas rolantes", "take the escalators"),
+            MovementEntry("apanhar as escadas", "take the stairs"),
+            MovementEntry(
+                "primeiro andar",
+                "first floor",
+                "EP follows the UK convention: rés-do-chão is the ground floor, primeiro andar is one level above it (≈ US \"2nd floor\")"
+            ),
+            MovementEntry("segundo andar", "second floor"),
+            MovementEntry("cave", "basement"),
+            MovementEntry("sair do edifício", "exit the building"),
+            MovementEntry("entrar no edifício", "enter the building"),
+            MovementEntry("subir ao 3º andar", "climb to the 3rd floor")
+        )
+    ),
+    MovementCategory(
+        "Transport & Traffic",
+        listOf(
+            MovementEntry("apanhar o autocarro", "take a bus"),
+            MovementEntry("apanhar um táxi", "take a taxi / cab"),
+            MovementEntry("ir de carro até / conduzir até", "drive to"),
+            MovementEntry("engarrafamento", "traffic jam"),
+            MovementEntry("estar preso no trânsito / estar preso num engarrafamento", "to be stuck in traffic")
+        )
     )
 )
 
@@ -117,12 +163,21 @@ fun MovementScreen(onBack: () -> Unit) {
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Text(
-                                    text = entry.pt,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontStyle = FontStyle.Italic,
-                                    modifier = Modifier.weight(1f)
-                                )
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = entry.pt,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontStyle = FontStyle.Italic
+                                    )
+                                    if (entry.note.isNotEmpty()) {
+                                        Text(
+                                            text = entry.note,
+                                            style = MaterialTheme.typography.labelSmall,
+                                            fontStyle = FontStyle.Italic,
+                                            color = MaterialTheme.colorScheme.tertiary
+                                        )
+                                    }
+                                }
                                 Text(
                                     text = entry.en,
                                     style = MaterialTheme.typography.bodyMedium,

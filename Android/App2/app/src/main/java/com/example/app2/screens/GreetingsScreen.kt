@@ -373,6 +373,76 @@ private fun BasicWordsCard() {
                     "Estou contra essa ideia." to "I'm against that idea."
                 )
             )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            // ── True, False, Correct & Conversational Fillers ─────────────
+            Text("True, False, Correct & Conversational Fillers", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+
+            GreetingEntry(
+                term = "Verdadeiro/a (Verdade)",
+                meaning = "True",
+                description = "\"É verdade\" (lit. \"it's truth\") is the everyday way to say \"that's true\". \"Verdadeiro/a\" is the adjective form, used to directly describe a noun, and agrees in gender.",
+                examples = listOf(
+                    "É verdade, ele chegou ontem." to "It's true, he arrived yesterday.",
+                    "Essa é uma história verdadeira." to "That's a true story."
+                )
+            )
+            GreetingEntry(
+                term = "Falso/a",
+                meaning = "False",
+                description = "The opposite of verdadeiro — agrees in gender with the noun. Also used colloquially to call someone fake or two-faced.",
+                examples = listOf(
+                    "Essa informação é falsa." to "That information is false.",
+                    "Ele é muito falso." to "He's very fake/two-faced. (colloquial)"
+                )
+            )
+            GreetingEntry(
+                term = "Correto/a",
+                meaning = "Correct / right",
+                description = "Describes something done or stated accurately. \"Certo\" is a common everyday synonym.",
+                examples = listOf(
+                    "A resposta está correta." to "The answer is correct.",
+                    "Está certo." to "That's right. (everyday synonym)"
+                )
+            )
+            GreetingEntry(
+                term = "Incorreto/a",
+                meaning = "Incorrect / wrong",
+                description = "The opposite of correto. \"Errado\" is a very common everyday synonym.",
+                examples = listOf(
+                    "A resposta está incorreta." to "The answer is incorrect.",
+                    "Estás errado." to "You're wrong. (everyday synonym)"
+                )
+            )
+            GreetingEntry(
+                term = "Claro / Com certeza",
+                meaning = "Sure / Of course",
+                description = "The everyday way to respond \"sure\" to a request or question. \"Claro\" is the most common and casual; \"com certeza\" is slightly more emphatic.",
+                examples = listOf(
+                    "Podes ajudar-me? / Claro!" to "Can you help me? / Sure!",
+                    "Queres vir? / Com certeza!" to "Do you want to come? / Sure thing!"
+                )
+            )
+            GreetingEntry(
+                term = "Porque não?",
+                meaning = "Why not?",
+                description = "Used to ask for a reason, or as a casual reply encouraging agreement (\"why not!\" = sure, let's do it).",
+                examples = listOf(
+                    "Porque não vens também?" to "Why don't you come too?",
+                    "Vamos ao cinema? / Porque não!" to "Shall we go to the cinema? / Why not!"
+                )
+            )
+            GreetingEntry(
+                term = "A propósito",
+                meaning = "By the way",
+                description = "The standard, neutral way to introduce a related side comment or shift topic slightly.",
+                examples = listOf(
+                    "A propósito, já viste o email?" to "By the way, have you seen the email?",
+                    "Foi um jantar agradável. A propósito, a comida estava ótima." to "It was a nice dinner. By the way, the food was great."
+                ),
+                note = "Compare with já agora (also \"by the way\", in the Yet, Already & Others screen) — já agora feels more casual."
+            )
         }
     }
 }

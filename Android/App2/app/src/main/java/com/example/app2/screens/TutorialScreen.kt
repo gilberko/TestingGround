@@ -54,7 +54,8 @@ fun TutorialScreen(
     onSomeNoneAll: () -> Unit,
     onConnectors: () -> Unit,
     onAuthorsThoughts: () -> Unit,
-    onAdjectivesAdverbs: () -> Unit
+    onAdjectivesAdverbs: () -> Unit,
+    onMoreTenses: () -> Unit
 ) {
     val buttons = listOf(
         "Prepositions" to onPrepositions,
@@ -75,7 +76,8 @@ fun TutorialScreen(
         "Some, None, All" to onSomeNoneAll,
         "Yet, Already & Others" to onConnectors,
         "Author's Personal Thoughts" to onAuthorsThoughts,
-        "Adjectives and Adverbs" to onAdjectivesAdverbs
+        "Adjectives and Adverbs" to onAdjectivesAdverbs,
+        "More Tenses" to onMoreTenses
     )
 
     Box(modifier = Modifier.fillMaxSize()) {

@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-private data class SportEntry(val pt: String, val en: String)
+private data class SportEntry(val pt: String, val en: String, val note: String = "")
 private data class SportCategory(val title: String, val entries: List<SportEntry>)
 
 private val sportCategories = listOf(
@@ -78,7 +78,9 @@ private val sportCategories = listOf(
             SportEntry("competir", "to compete"),
             SportEntry("marcar (um golo)", "to score (a goal)"),
             SportEntry("arbitrar", "to referee"),
-            SportEntry("lesionar-se", "to get injured")
+            SportEntry("lesionar-se", "to get injured"),
+            SportEntry("jogar futebol", "to play soccer"),
+            SportEntry("jogar golfe", "to play golf")
         )
     ),
     SportCategory(
@@ -97,7 +99,14 @@ private val sportCategories = listOf(
             SportEntry("ciclismo", "cycling"),
             SportEntry("boxe", "boxing"),
             SportEntry("ginástica", "gymnastics"),
-            SportEntry("vela", "sailing")
+            SportEntry("vela", "sailing"),
+            SportEntry("futebol americano", "american football"),
+            SportEntry("curling", "curling"),
+            SportEntry("esqui", "skiing"),
+            SportEntry("patinagem no gelo", "ice skating"),
+            SportEntry("surf", "surfing"),
+            SportEntry("paddle surf / stand-up paddle", "paddle board surfing"),
+            SportEntry("caiaque / canoagem", "kayaking")
         )
     ),
     SportCategory(
@@ -113,7 +122,59 @@ private val sportCategories = listOf(
             SportEntry("recorde", "record"),
             SportEntry("medalha", "medal"),
             SportEntry("troféu", "trophy"),
-            SportEntry("classificação", "standings / ranking")
+            SportEntry("classificação", "standings / ranking"),
+            SportEntry("taça", "cup"),
+            SportEntry("mundial / campeonato do mundo", "world cup"),
+            SportEntry("liga", "league"),
+            SportEntry("vencedor", "winner"),
+            SportEntry("medalha de ouro", "gold medal"),
+            SportEntry("medalha de prata", "silver medal"),
+            SportEntry("medalha de bronze", "bronze medal"),
+            SportEntry("pódio", "podium"),
+            SportEntry("Jogos Olímpicos", "olympics")
+        )
+    ),
+    SportCategory(
+        "Soccer & Officiating",
+        listOf(
+            SportEntry("substituição", "substitution"),
+            SportEntry("suplente", "substitute player"),
+            SportEntry("estar no banco", "sitting on the bench"),
+            SportEntry("fora de jogo", "offside"),
+            SportEntry("grande penalidade / pénalti", "penalty kick"),
+            SportEntry("VAR", "VAR (video assistant referee)"),
+            SportEntry("consultar o VAR", "checking the VAR"),
+            SportEntry("falta", "foul"),
+            SportEntry("driblar", "to dribble"),
+            SportEntry("lesão", "injury")
+        )
+    ),
+    SportCategory(
+        "Basketball & Tennis",
+        listOf(
+            SportEntry("afundanço", "dunk", "European Portuguese; Brazilian Portuguese says \"enterrada\""),
+            SportEntry("cesto", "basket (the score / hoop)"),
+            SportEntry("aro", "hoop / rim"),
+            SportEntry("set", "set"),
+            SportEntry("desempate", "tie breaker"),
+            SportEntry("ponto de jogo", "game point"),
+            SportEntry("ponto / pontos", "point / points"),
+            SportEntry("bola de ténis", "tennis ball"),
+            SportEntry("raquete de ténis", "tennis racket")
+        )
+    ),
+    SportCategory(
+        "Race Day & Equipment",
+        listOf(
+            SportEntry("taco de basebol", "baseball bat"),
+            SportEntry("corrida", "race"),
+            SportEntry("pista de corrida", "racetrack"),
+            SportEntry("tempo morto", "time out"),
+            SportEntry(
+                "Às suas marcas, prontos, já!",
+                "On your marks, get set, go!",
+                "official athletics uses a starting pistol rather than saying \"go\" out loud"
+            )
         )
     )
 )
@@ -172,12 +233,21 @@ private fun SportRow(entry: SportEntry) {
             .padding(vertical = 2.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(
-            text = entry.pt,
-            style = MaterialTheme.typography.bodySmall,
-            fontStyle = FontStyle.Italic,
-            modifier = Modifier.weight(1f)
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = entry.pt,
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic
+            )
+            if (entry.note.isNotEmpty()) {
+                Text(
+                    text = entry.note,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontStyle = FontStyle.Italic,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+            }
+        }
         Text(
             text = entry.en,
             style = MaterialTheme.typography.bodySmall,

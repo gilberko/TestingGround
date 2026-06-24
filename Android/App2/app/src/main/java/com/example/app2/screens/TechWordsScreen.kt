@@ -63,7 +63,12 @@ private val generalTechWords = listOf(
     TechEntry("a máquina virtual", "the virtual machine"),
     TechEntry("o malware", "malware", "used directly in PT"),
     TechEntry("a proteção", "protection"),
-    TechEntry("a linha cronológica / a timeline", "the timeline", "both forms used")
+    TechEntry("a linha cronológica / a timeline", "the timeline", "both forms used"),
+    TechEntry("verdadeiro", "true"),
+    TechEntry("falso", "false"),
+    TechEntry("o processo", "the process"),
+    TechEntry("a thread", "the thread", "formally \"fio de execução\", but developers say \"thread\" directly"),
+    TechEntry("o design", "the design", "used directly, e.g. \"design de interface\"")
 )
 
 private val workWords = listOf(
@@ -144,7 +149,12 @@ private val bugsFixesWords = listOf(
     TechEntry("a corrupção de memória", "memory corruption"),
     TechEntry("uma condição de corrida", "a race condition", "many developers also just say \"race condition\" in English"),
     TechEntry("um buffer overflow", "a buffer overflow", "English term used as-is"),
-    TechEntry("um stack overflow", "a stack overflow", "English term used as-is; also the name of the well-known Q&A site")
+    TechEntry("um stack overflow", "a stack overflow", "English term used as-is; also the name of the well-known Q&A site"),
+    TechEntry("memória livre", "free memory", "noun — available/unused memory"),
+    TechEntry("libertar memória", "to release / free memory", "verb — to deallocate"),
+    TechEntry("anexar ao processo", "to attach to the process", "debugger term"),
+    TechEntry("anexar à thread", "to attach to the thread"),
+    TechEntry("desanexar", "to detach")
 )
 
 private val englishBorrowings = listOf(
