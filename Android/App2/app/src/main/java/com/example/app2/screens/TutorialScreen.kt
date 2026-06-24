@@ -114,7 +114,7 @@ fun TutorialScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
-                Spacer(modifier = Modifier.height(80.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 ButtonGrid(buttons)
             }
         }

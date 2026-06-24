@@ -99,7 +99,9 @@ private val techVerbWords = listOf(
     TechEntry("pesquisar / investigar", "to research"),
     TechEntry("instalar", "to install"),
     TechEntry("remover / desinstalar", "to remove / uninstall"),
-    TechEntry("infecionar", "to infect", "EP spelling")
+    TechEntry("infecionar", "to infect", "EP spelling"),
+    TechEntry("fechar o bug", "to close the bug"),
+    TechEntry("lançar uma nova versão", "to release a new version")
 )
 
 private val techAdjectiveWords = listOf(
@@ -107,6 +109,42 @@ private val techAdjectiveWords = listOf(
     TechEntry("complicado/a", "complicated"),
     TechEntry("difícil", "difficult"),
     TechEntry("fácil", "easy")
+)
+
+private val gitWords = listOf(
+    TechEntry("fazer commit", "to commit", "informally also \"comitar\""),
+    TechEntry("um commit", "a commit"),
+    TechEntry("reverter", "to revert", "e.g. \"reverter um commit\""),
+    TechEntry("fazer push", "to push"),
+    TechEntry("um pull request (PR)", "a pull request", "GitHub term"),
+    TechEntry("um merge request (MR)", "a merge request", "GitLab's equivalent of a pull request"),
+    TechEntry("fazer rebase", "to rebase"),
+    TechEntry("sincronizar / fazer sync", "to sync"),
+    TechEntry("fazer squash", "to squash", "combine multiple commits into one")
+)
+
+private val rolesProcessWords = listOf(
+    TechEntry("a revisão de código", "code review"),
+    TechEntry("o/a investigador/a de segurança", "security researcher", "European Portuguese; Brazilian Portuguese says \"pesquisador\""),
+    TechEntry("a engenharia inversa", "reverse engineering"),
+    TechEntry("a causa raiz", "the root cause"),
+    TechEntry("os testes", "testing"),
+    TechEntry("o controlo de qualidade (QA)", "QA / quality assurance", "the abbreviation \"QA\" is also used directly"),
+    TechEntry("o/a gestor/a de produto", "product manager", "European Portuguese; Brazilian Portuguese says \"gerente de produto\"")
+)
+
+private val bugsFixesWords = listOf(
+    TechEntry("a depuração / o debug", "debugging", "noun form of \"depurar / fazer debug\""),
+    TechEntry("uma correção / um fix", "a fix", "\"fix\" used informally as a noun"),
+    TechEntry("um patch", "a patch", "English term used as-is"),
+    TechEntry("partiu o código / estragou o código", "it broke the code", "colloquial dev speech"),
+    TechEntry("não compila", "doesn't compile"),
+    TechEntry("crasha / está a crashar", "it crashes", "\"crashar\" is a common borrowed slang verb"),
+    TechEntry("a alocação de memória", "memory allocation"),
+    TechEntry("a corrupção de memória", "memory corruption"),
+    TechEntry("uma condição de corrida", "a race condition", "many developers also just say \"race condition\" in English"),
+    TechEntry("um buffer overflow", "a buffer overflow", "English term used as-is"),
+    TechEntry("um stack overflow", "a stack overflow", "English term used as-is; also the name of the well-known Q&A site")
 )
 
 private val englishBorrowings = listOf(
@@ -142,6 +180,9 @@ fun TechWordsScreen(onBack: () -> Unit) {
             item { TechWordCard("Work & Meetings", workWords) }
             item { TechWordCard("Useful Verbs", techVerbWords) }
             item { TechWordCard("Useful Adjectives", techAdjectiveWords) }
+            item { TechWordCard("Git & Version Control", gitWords) }
+            item { TechWordCard("Roles & Process", rolesProcessWords) }
+            item { TechWordCard("Bugs, Fixes & Crashes", bugsFixesWords) }
             item { EnglishBorrowingsCard() }
         }
     }
