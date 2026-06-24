@@ -22,7 +22,7 @@ import com.example.russianapp.screens.CookingScreen
 import com.example.russianapp.screens.OfficeSchoolScreen
 import com.example.russianapp.screens.VacationScreen
 import com.example.russianapp.screens.ComparisonsScreen
-import com.example.russianapp.screens.AdjectiveConjugationScreen
+import com.example.russianapp.screens.AdjectivesAndAdverbsScreen
 import com.example.russianapp.screens.AdjectivesScreen
 import com.example.russianapp.screens.ConditionalsScreen
 import com.example.russianapp.screens.DateTimeScreen
@@ -69,7 +69,7 @@ sealed class Screen(val route: String) {
     object Alphabet               : Screen("alphabet")
     object GrammarCases           : Screen("grammar_cases")
     object VerbConjugation        : Screen("verb_conjugation")
-    object AdjectiveConjugation   : Screen("adjective_conjugation")
+    object AdjectivesAndAdverbs   : Screen("adjectives_and_adverbs")
     object NounDeclension         : Screen("noun_declension")
     object DateTime               : Screen("date_time")
     object Prepositions           : Screen("prepositions")
@@ -142,7 +142,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onAlphabet              = { navController.navigate(Screen.Alphabet.route) },
                 onGrammarCases          = { navController.navigate(Screen.GrammarCases.route) },
                 onVerbConjugation       = { navController.navigate(Screen.VerbConjugation.route) },
-                onAdjectiveConjugation  = { navController.navigate(Screen.AdjectiveConjugation.route) },
+                onAdjectivesAndAdverbs  = { navController.navigate(Screen.AdjectivesAndAdverbs.route) },
                 onNounDeclension        = { navController.navigate(Screen.NounDeclension.route) },
                 onDateTime              = { navController.navigate(Screen.DateTime.route) },
                 onPrepositions          = { navController.navigate(Screen.Prepositions.route) },
@@ -199,8 +199,8 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.VerbConjugation.route) {
             VerbConjugationScreen(onBack = { navController.popBackStack() })
         }
-        composable(Screen.AdjectiveConjugation.route) {
-            AdjectiveConjugationScreen(onBack = { navController.popBackStack() })
+        composable(Screen.AdjectivesAndAdverbs.route) {
+            AdjectivesAndAdverbsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.NounDeclension.route) {
             NounDeclensionScreen(onBack = { navController.popBackStack() })

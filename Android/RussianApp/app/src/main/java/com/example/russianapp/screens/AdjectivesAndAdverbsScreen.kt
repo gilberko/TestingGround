@@ -376,15 +376,265 @@ private fun SummaryCard() {
     }
 }
 
+@Composable
+private fun AdjectiveModifiersCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Degree words (intensifiers) let you dial an adjective up or down. They are invariable — " +
+                        "they never decline, unlike true quantifiers such as много/мало/несколько.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Degree scale — low to high",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            listOf(
+                "совсем не / нисколько не — not at all  →  Это совсем не сложно. (This isn't difficult at all.)",
+                "не очень / не слишком — not very / not too  →  Он не очень высокий. (He isn't very tall.)",
+                "немного / чуть-чуть — a bit / a little  →  Суп немного острый. (The soup is a bit spicy.)",
+                "в какой-то степени / до некоторой степени — to some extent, more formal  →  Это решение в какой-то степени правильное. (This decision is correct to some extent.)",
+                "довольно / достаточно — quite / fairly  →  Фильм довольно интересный. (The movie is quite interesting.)",
+                "очень — very  →  Дом очень большой. (The house is very big.)",
+                "слишком — too / excessively  →  Кофе слишком горячий. (The coffee is too hot.)"
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Word order: [degree word] + [adjective] + [noun]",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Like English, Russian adjectives normally come BEFORE the noun. A degree word simply " +
+                        "slots in front of the adjective, without disturbing that order.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            listOf(
+                "большой дом (a big house) → очень большой дом (a very big house)",
+                "новый телефон (a new phone) → довольно новый телефон (a fairly new phone)"
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+        }
+    }
+}
+
+@Composable
+private fun AdverbFormationCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Yes — manner adverbs are directly related to adjectives. Most are formed by taking the " +
+                        "adjective's stem and replacing its ending with -о.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Regular pattern: stem + -о",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            listOf(
+                "быстрый (fast) → быстро (quickly / fast)",
+                "интересный (interesting) → интересно (interestingly)",
+                "тихий (quiet) → тихо (quietly)"
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "This -о form is identical to the adjective's short neuter form (see Short Form above). " +
+                        "Compare: Это интересно. (This is interesting — short neuter adjective) vs. Он говорит " +
+                        "интересно. (He speaks interestingly — adverb). Same word, different grammatical job.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Spelling twist after ж, ч, ш, щ, ц",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Russian spelling never writes an unstressed -о right after these consonants — only -е. " +
+                        "If the ending is stressed, -о is still correct.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            listOf(
+                "хорошо́ (well) — stressed -о after ш, so -о is kept",
+                "свежо́ (freshly / coolly) — stressed -о after ж, so -о is kept",
+                "блестя́ще (brilliantly) — unstressed ending after щ, so it's written -е"
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Not every adverb works this way — adverbs of place and time (там, здесь, потом, всегда) " +
+                        "are separate words, not built from adjectives. This rule covers manner/quality adverbs only.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun AdverbModifiersCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "The same degree words used with adjectives (очень, слишком, немного, довольно, etc.) " +
+                        "also modify adverbs — placed directly before the adverb, just like with adjectives.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            listOf(
+                "Он очень хорошо танцует. — He dances very well.",
+                "Она говорит слишком быстро. — She speaks too fast.",
+                "Он бежит довольно медленно. — He runs fairly slowly."
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Word order: [degree word] + [adverb] — the same slot the bare adverb would occupy.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
+private fun AdverbWordOrderCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Russian word order is flexible — it's driven by what's already known (theme) versus " +
+                        "what's new or emphasized (rheme), not by a fixed slot for the adverb. Given information " +
+                        "tends to come first; new/focused information tends to come last.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Adverb before the verb — the manner is background, the verb/action is the focus",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Она хорошо поёт. — She sings well.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Adverb after the verb — the manner itself is the new information (answers \"how?\")",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.secondary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Она поёт хорошо. — She sings well. (emphasis lands on \"well\")",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Both sentences are correct — the difference is which word carries the emphasis, not grammar.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Fronting for strong emphasis",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.tertiary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Moving an adverb to the very start of the sentence adds strong emphasis — common with " +
+                        "sentence-level adverbs.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Конечно, он прав. — Of course, he's right.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdjectiveConjugationScreen(onBack: () -> Unit) {
+fun AdjectivesAndAdverbsScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Adjective Declension") },
+                title = { Text("Adjectives and Adverbs") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -417,6 +667,18 @@ fun AdjectiveConjugationScreen(onBack: () -> Unit) {
 
             item { SectionHeader("Summary — Masculine Endings by Case") }
             item { SummaryCard() }
+
+            item { SectionHeader("Modifiers & Word Order (Adjective + Noun)") }
+            item { AdjectiveModifiersCard() }
+
+            item { SectionHeader("What Are Adverbs? Forming Them From Adjectives") }
+            item { AdverbFormationCard() }
+
+            item { SectionHeader("Adverb Modifiers") }
+            item { AdverbModifiersCard() }
+
+            item { SectionHeader("Adverb + Verb Word Order") }
+            item { AdverbWordOrderCard() }
         }
     }
 }
