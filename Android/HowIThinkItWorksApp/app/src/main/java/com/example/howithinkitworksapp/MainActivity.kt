@@ -78,6 +78,7 @@ class MainActivity : ComponentActivity() {
                     composable("about_music_harmony") { AboutMusicHarmonyScreen(navController) }
                     composable("about_music_lyrics") { AboutMusicLyricsScreen(navController) }
                     composable("about_music_song_structure") { AboutMusicSongStructureScreen(navController) }
+                    composable("about_music_power_ballad") { AboutMusicPowerBalladScreen(navController) }
                     composable("grab_attention") { GrabTheirAttentionScreen(navController) }
                     composable("get_them_to_act") { GetThemToActScreen(navController) }
                     composable("storytelling_attention") { StorytellingScreen(navController) }

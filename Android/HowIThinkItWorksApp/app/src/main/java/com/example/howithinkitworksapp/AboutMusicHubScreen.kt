@@ -25,7 +25,8 @@ fun AboutMusicHubScreen(navController: NavController) {
         "Motives" to "about_music_motives",
         "Harmony" to "about_music_harmony",
         "Lyrics" to "about_music_lyrics",
-        "Song Structure" to "about_music_song_structure"
+        "Song Structure" to "about_music_song_structure",
+        "Power Ballads" to "about_music_power_ballad"
     )
     HubBackground {
     Column(

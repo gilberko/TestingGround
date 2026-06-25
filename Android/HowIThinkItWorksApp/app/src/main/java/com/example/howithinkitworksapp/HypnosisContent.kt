@@ -271,6 +271,36 @@ val hypnosisTopics = listOf(
         )
     ),
     HypnosisTopic(
+        key = "guided_imagination",
+        title = "Guided Imagination",
+        sections = listOf(
+            TextSection(
+                heading = "What It Is",
+                body = "Guided imagination is exactly what it sounds like: the guide narrates a journey, and the client follows. The client is taken on a trip through an imagined world — a forest, a beach, a journey into the past or future — and the guide's words are the vehicle. Attention narrows to this invented scene, the thinking mind quiets, and the client follows the narrative without much critical evaluation. It is, in this way, similar to how a skilled author draws you into a novel: you stop editing the prose and start living in the world.\n\nThe guide is, in effect, the author of an internal world. The client accepts this authorship, which is what makes the experience possible."
+            ),
+            TextSection(
+                heading = "How It Resembles Hypnosis",
+                body = "The similarities are real and worth taking seriously. In both states, attention is narrowed — to the story in guided imagination, to the hypnotist's suggestions in hypnosis. In both, the evaluating, critical mind becomes quieter. In both, the client is in a state of cooperative following: they are accepting direction from someone they have chosen to trust.\n\nNarrative absorption — the state of being genuinely drawn into a story — is psychologically close to a hypnotic state. When fully absorbed, the mind is occupied with the imagined world and is not free to stand back and critique. The guide can introduce sensations, feelings, and events into the story and the client will tend to experience them, because the story has created conditions where following feels natural and resistance feels unnecessary."
+            ),
+            TextSection(
+                heading = "The Key Difference — Scope",
+                body = "The most important difference between guided imagination and hypnosis is the scope of what the client will follow.\n\nIn guided imagery, the client's acceptance is bounded by the story world. Suggestions that fit within the narrative are accepted naturally, because they belong to the world the guide has created. The client is inside the story, and the story defines what is real in this space.\n\nIn hypnosis proper, the client is not inside a story. They are in a state of cooperative following that is not tied to any particular frame. A hypnotist can suggest body sensations, behaviors, perceptions of the environment — things that have nothing to do with any narrative — and the client follows. The range of what can be suggested is far wider, because the container is not a story: it is trust and attention themselves."
+            ),
+            TextSection(
+                heading = "The Frame Problem",
+                body = "If a guide in a guided imagery session introduces a suggestion that does not belong to the story — say, \"your right arm is becoming heavy\" when nothing in the narrative involves arms — it can feel incongruent. The client, absorbed in an imagined forest or room, suddenly receives a suggestion from a different reality entirely. This mismatch can break the narrative absorption and trigger exactly the kind of critical thinking that the exercise was suppressing.\n\nThe story has established what is real in this space. Something that does not fit breaks that reality, and the break is experienced as a kind of coming-back-to-ordinary-awareness. This is why skilled practitioners working in guided imagery embed their suggestions within the narrative — sensations and events that belong in the imagined world — rather than introducing things from outside it.\n\nMilton Erickson was known for this: his suggestions were almost always embedded in metaphor or story, not delivered as direct instructions. The indirect approach sidesteps the frame problem."
+            ),
+            TextSection(
+                heading = "Guided Imagery as a Gateway",
+                body = "A skilled hypnotist can use guided imagery deliberately as an entry point. The story gets the client into a focused, relaxed, cooperative state — the conditions of hypnosis, even if not yet full hypnosis. Once the client is there, the scope can be extended gradually.\n\nThe sequence looks something like this: begin with the narrative, build absorption → introduce body sensations that fit within the story (\"as you walk through the forest, you notice a warmth in your feet, your legs feel strong\") → add sensations that are slightly less tied to the story (\"a pleasant heaviness begins to settle through your shoulders\") → eventually introduce suggestions that are not tied to the story at all (\"with every breath, you feel more deeply at ease\").\n\nEach step is small. Each accepted step makes the next one easier to accept, because the pattern of following has been established and maintained."
+            ),
+            TextSection(
+                heading = "Expanding the Circle",
+                body = "Each time the client follows a suggestion that goes slightly beyond the story's original scope, the range of what they will accept quietly expands. The follow-mode that the narrative established carries over. The story is not just an induction tool — it is a trust-building platform.\n\nOnce the client is cooperating within the story, the hypnotist can slowly move the boundaries of what counts as inside it. Body sensations are added. Then sensations less tied to the scene. Then direct suggestions. By the time truly direct suggestions arrive, the client has been following for long enough that following feels like the natural thing to do.\n\nThis is a form of deepening through scope expansion rather than through counting or relaxation sequences. The depth is measured not just by how far under the client has gone, but by how wide the range of suggestions they will accept has become. In this way, a guided imagination session can be the first act of a process that ends somewhere very different from where it began."
+            )
+        )
+    ),
+    HypnosisTopic(
         key = "counting_up_down",
         title = "Counting Up And Down",
         sections = listOf(
