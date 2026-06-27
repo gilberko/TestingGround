@@ -1175,6 +1175,7 @@ private fun CagedChordsContent() {
         HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
         SectionHeader("CAGED Major Open Shapes")
         BodyText("These are the 5 foundational shapes in open position. Each has open strings (○) and should be memorised as a unit.")
+        ItalicNote("Formula: 1 – 3 – 5  (root, major 3rd, perfect 5th)")
         ItalicNote("Slide any shape up the neck with a barre to play that shape in any key.")
 
         val cagedMajorChords = listOf("C", "A", "G", "E", "D")
@@ -1202,9 +1203,9 @@ private fun CagedChordsContent() {
         // ── Section 2: Minor Chords ──────────────────────────────────────────
         HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
         SectionHeader("Minor Chords")
-        BodyText("Common minor chord voicings. Dm is fully open; Cm and Fm use a barre.")
+        BodyText("Formula: 1 – b3 – 5 (root, minor 3rd, perfect 5th). Em and Am are fully open — the two most common minor shapes. Dm is open; Cm uses a C-shape partial barre; Fm uses the E-shape barre at fret 1.")
 
-        val minorChords = listOf("C", "F", "D")
+        val minorChords = listOf("E", "A", "D", "C", "F")
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -1479,6 +1480,17 @@ private fun ChordShapesContent() {
         ChordShapeEntry("Dsus2", ChordVoicing("Open", intArrayOf(-1,-1, 0, 2, 3, 0)), "Dreamy & open"),
     )
 
+    val augChords = listOf(
+        ChordShapeEntry("Eaug", ChordVoicing("Open", intArrayOf( 0, 3, 2, 1, 1, 0)),          "Tense & climbing"),
+        ChordShapeEntry("Aaug", ChordVoicing("Open", intArrayOf(-1, 0, 3, 2, 2, 1)),           "Bright & unstable"),
+        ChordShapeEntry("Daug", ChordVoicing("Open", intArrayOf(-1,-1, 0, 3, 3, 2)),           "Sharp & questioning"),
+    )
+
+    val hendrixChords = listOf(
+        ChordShapeEntry("E7♯9",      ChordVoicing("Classic",  intArrayOf(-1, 7, 6, 7, 8, -1), baseFret = 6), "Tense & electric"),
+        ChordShapeEntry("E7♯9 + 5", ChordVoicing("With 5th", intArrayOf(-1, 7, 6, 7, 8,  7), baseFret = 6), "Full & bluesy"),
+    )
+
     val barreEShape = listOf(
         ChordShapeEntry("F",   ChordVoicing("E Shape", intArrayOf(1, 3, 3, 2, 1, 1)), "Warm & resolved"),
         ChordShapeEntry("Fm",  ChordVoicing("E Shape", intArrayOf(1, 3, 3, 1, 1, 1)), "Dark & heavy"),
@@ -1516,6 +1528,7 @@ private fun ChordShapesContent() {
         HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
         SectionHeader("Open Major Chords")
         BodyText("The five foundational open major chords. Bright, full, and essential in almost every genre.")
+        ItalicNote("Formula: 1 – 3 – 5  (root, major 3rd, perfect 5th)")
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -1528,6 +1541,7 @@ private fun ChordShapesContent() {
         HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
         SectionHeader("Open Minor Chords")
         BodyText("Sadder and darker than their major counterparts. Great for emotional, introspective playing.")
+        ItalicNote("Formula: 1 – b3 – 5  (root, minor 3rd, perfect 5th)")
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -1571,6 +1585,34 @@ private fun ChordShapesContent() {
         ) {
             sus.forEach { ChordShapeCard(it) }
         }
+
+        // ── Augmented Chords ─────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("Augmented Chords")
+        BodyText("Formula: 1 – 3 – ♯5  (root, major 3rd, raised 5th). Raising the perfect 5th by one semitone creates an unstable, climbing chord. The equal temperament of the guitar means the same aug shape repeated every 4 frets (a major 3rd) gives the same chord under a different root name.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            augChords.forEach { ChordShapeCard(it) }
+        }
+        ItalicNote("Hendrix used Eaug voicings in 'Little Wing' and other compositions, briefly raising tension before resolving back to a major or minor chord.")
+
+        // ── The Hendrix Chord ─────────────────────────────────────────────────
+        HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
+        SectionHeader("The Hendrix Chord — E7♯9")
+        BodyText("E7♯9 is dubbed the 'Hendrix chord' from its defining role in 'Purple Haze' (1967) and 'Foxy Lady'. It is NOT an augmented chord — it is a dominant 7th chord with an added ♯9.")
+        BodyText("Formula: 1 – 3 – 5 – b7 – ♯9  (root, major 3rd, perfect 5th, minor 7th, sharp 9th)")
+        BodyText("In the key of E, the ♯9 is G natural — enharmonically the same as the minor 3rd. The chord therefore contains both G♯ (major 3rd) and G (as ♯9) simultaneously. That hair-raising half-step clash defines its raw, electric, blues-rock intensity.")
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            hendrixChords.forEach { ChordShapeCard(it) }
+        }
+        ItalicNote("Compact shape: strings A–D–G–B at frets 7-6-7-8 (baseFret 6) = root(E), major 3rd(G♯), minor 7th(D), ♯9(G). Low E and high e are muted.")
 
         // ── Barre — E Shape ─────────────────────────────────────────────────
         HorizontalDivider(color = Color(0xFF2A2A2A), modifier = Modifier.padding(vertical = 8.dp))
