@@ -50,6 +50,21 @@ private val indicativeTenses = listOf(
         )
     ),
     TenseTopic(
+        name = "Presente Contínuo",
+        subtitle = "Present Continuous / Progressive — estar + a + infinitive",
+        whenToUse = listOf(
+            "Action actively happening right now, at this moment",
+            "Use estar + a + infinitive (European Portuguese pattern)",
+            "Not used for habits, routines, or general truths — use Presente for those"
+        ),
+        examples = listOf(
+            "Estou a comer." to "I am eating.",
+            "Ela está a ouvir música." to "She is listening to music.",
+            "Estamos a aprender português." to "We are learning Portuguese."
+        ),
+        note = "EP uses estar + a + infinitive. Brazilian Portuguese uses the gerund: \"Estou comendo.\" This gerund form is not used in European Portuguese."
+    ),
+    TenseTopic(
         name = "Pretérito Perfeito",
         subtitle = "Simple Past",
         whenToUse = listOf(
@@ -76,6 +91,21 @@ private val indicativeTenses = listOf(
             "O céu estava azul e os pássaros cantavam." to "The sky was blue and the birds were singing.",
             "Queria um café, por favor." to "I would like a coffee, please."
         )
+    ),
+    TenseTopic(
+        name = "Pretérito Imperfeito Contínuo",
+        subtitle = "Past Progressive / Continuous — estava + a + infinitive",
+        whenToUse = listOf(
+            "Action actively in progress at a specific past moment — caught in the act",
+            "More vivid and moment-specific than the plain Imperfeito",
+            "Use estava + a + infinitive (European Portuguese pattern)"
+        ),
+        examples = listOf(
+            "Ele estava a falar ao telefone." to "He was (right in the middle of) talking on the phone.",
+            "Quando entrei, ela estava a dormir." to "When I came in, she was sleeping.",
+            "Estávamos a jantar quando tocou o telefone." to "We were having dinner when the phone rang."
+        ),
+        note = "Why not just use the Imperfeito? \"Ele falava ao telefone\" also means \"he was talking on the phone\" — but it feels like a background detail or habit. \"Estava a falar\" is more vivid: it emphasises the action was actively in progress at that exact moment. Think of it as the difference between scene-setting and catching someone in the act."
     ),
     TenseTopic(
         name = "Pretérito Mais-que-Perfeito",

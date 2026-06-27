@@ -329,6 +329,98 @@ private fun SerEstarExplanationSection() {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp)
             )
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            Text(
+                text = "A Way to Think About It",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(bottom = 6.dp)
+            )
+            Text(
+                text = "Imagine a secret agent on a mission. Before the mission he receives a dossier about the target — permanent facts. This is Ser:",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            listOf(
+                "É rico." to "He is rich.",
+                "É advogado." to "He is a lawyer.",
+                "É americano." to "He is American."
+            ).forEach { (pt, en) ->
+                Text(
+                    text = pt,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+                Text(
+                    text = en,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 20.dp, bottom = 2.dp)
+                )
+            }
+            Text(
+                text = "On the day of the mission he receives a live status update — the target's current state. This is Estar:",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 6.dp, bottom = 4.dp)
+            )
+            listOf(
+                "Está cansado." to "He is tired.",
+                "Está a descansar." to "He is resting."
+            ).forEach { (pt, en) ->
+                Text(
+                    text = pt,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+                Text(
+                    text = en,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 20.dp, bottom = 2.dp)
+                )
+            }
+            Text(
+                text = "Think of Ser as \"to be\" (identity) and Estar as \"to be in a state of.\" This is why estar + a + infinitive means \"to be in the state of doing something.\"",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 6.dp, bottom = 8.dp)
+            )
+            Text(
+                text = "This also explains a subtle rule about the past progressive. You wouldn't say:",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
+            Text(
+                text = "✗  Ele estava a estar simpático.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+            Text(
+                text = "That would mean \"he was being in the state of being in the state of nice\" — a double \"state of\" that is redundant. Instead:",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 4.dp, bottom = 4.dp)
+            )
+            Text(
+                text = "✓  Ele estava a ser simpático.",
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+            Text(
+                text = "He was being a nice person.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 20.dp, top = 2.dp)
+            )
+            Text(
+                text = "Ser is used here because \"being nice\" refers to a character quality — an identity trait — even though it is temporary in that moment.",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 6.dp)
+            )
         }
     }
 }
