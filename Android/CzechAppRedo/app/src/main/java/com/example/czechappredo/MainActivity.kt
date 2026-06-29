@@ -105,6 +105,7 @@ class MainActivity : ComponentActivity() {
                 composable("school_university") { SchoolAndUniversityScreen(navController) }
                 composable("dialogue_soccer") { WatchingSoccerDialogueScreen(navController) }
                 composable("word_order") { WordOrderScreen(navController) }
+                composable("quiz_pronoun_cases") { PronounCasesQuizScreen(navController) }
             }
         }
     }
@@ -177,6 +178,8 @@ fun HomeScreen(navController: NavController) {
             NavButton(label = "Verb Conjugation Quiz") { navController.navigate("quiz_verb_conjugation") }
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Case Conjugation Quiz") { navController.navigate("quiz_case_conjugation") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Personal & Possessive Pronouns Cases Quiz") { navController.navigate("quiz_pronoun_cases") }
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
             Spacer(modifier = Modifier.height(48.dp))
@@ -331,7 +334,7 @@ fun DictionaryHubScreen(navController: NavController) {
             "Common Verbs List" to "common_verbs",
             "Examples of Conjugation of Cases" to "case_conjugation_examples",
             "Tech" to "tech",
-            "Telling The Time" to "telling_time",
+            "Telling The Time and Date" to "telling_time",
             "Sports" to "sports",
             "School and University" to "school_university"
         )

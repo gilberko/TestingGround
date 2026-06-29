@@ -347,6 +347,15 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("najednou", "suddenly / all of a sudden", "the most common, colloquial word. Najednou začal křičet. = All of a sudden he started shouting. Also means 'all at once / in one go': Udělej to najednou. = Do it all at once.")
             BWRow("úplně", "totally / completely", "a different word from vůbec (at all) — also appears in Adverbs. Souhlasím úplně. = I totally agree.")
 
+            // ── Very — Velmi / Hodně / Moc ───────────────────────────────
+            BWSection("Very — Velmi / Hodně / Moc")
+            BWNote("Czech has three common words for 'very / a lot', each with a different register:")
+            BWRow("velmi", "very", "formal/literary — most natural before adjectives and adverbs: velmi dobrý (very good), velmi rychle (very fast). Rarely used with verbs.")
+            BWRow("hodně", "a lot / very", "neutral/colloquial — works before adjectives, adverbs, and also with verbs: hodně dobrý (very good), hodně se usmívá (smiles a lot), studuju hodně (I study a lot).")
+            BWRow("moc", "very much / a lot", "familiar/casual — most frequent in everyday speech; often interchangeable with hodně: moc dobrý, moc děkuji (thanks a lot). Also a noun: moc = power.")
+            BWNote("Quick rule: very + adjective/adverb → velmi in formal contexts, hodně/moc informally. With verbs meaning 'a lot' → hodně or moc, not velmi.")
+            BWNote("Examples: Je velmi inteligentní. (formal) / Je hodně chytrý. (neutral) / Je moc hodný. (warm/casual)")
+
             // ── Only, Just, Nothing But ──────────────────────────────────
             BWSection("Only, Just, Nothing But")
             BWRow("jen / jenom", "only / just", "interchangeable; jen is slightly shorter, jenom slightly more emphatic")
@@ -381,9 +390,22 @@ fun BasicWordsScreen(navController: NavController) {
 
             // ── While, Between & Against ──────────────────────────────────
             BWSection("While, Between & Against")
-            BWRow("zatímco", "while / whereas", "introduces simultaneity or contrast. Zatímco já vařím, ty prostíráš stůl. = While I cook, you set the table. Note: 'for a while' is a different word — chvilku / na chvíli.")
+            BWRow("zatímco", "while / whereas", "introduces simultaneity or contrast. Zatímco já vařím, ty prostíráš stůl. = While I cook, you set the table.")
             BWRow("mezi + instr.", "between / among", "static location, Instrumental case. Sedím mezi kamarády. = I'm sitting among friends. Motion 'to a spot between' uses the Accusative instead.")
             BWRow("proti + dat.", "against", "Dative case. Jsem proti tomu. = I'm against that. Hraje proti nám. = He's playing against us.")
+            BWRow("chvíle / chvilka", "a moment / a while", "chvíle = a while (f. noun); chvilka = diminutive, a little while")
+            BWRow("na chvíli / chvilku", "for a while / for a moment", "accusative after na: Odskočím na chvíli. = I'll step away for a moment.")
+            BWRow("za chvíli", "in a moment / in a little while", "near future. Přijdu za chvíli. = I'll come in a moment.")
+            BWRow("před chvílí", "a moment ago / just now", "Byl tady před chvílí. = He was here a moment ago.")
+            BWRow("chvíli počkej", "wait a moment", "casual imperative. Chvíli počkej, hned jsem. = Wait a moment, I'll be right there.")
+
+            // ── For A Long Time — Dlouho ──────────────────────────────────
+            BWSection("For A Long Time — Dlouho")
+            BWRow("dlouho", "for a long time / long", "adverb of time. Čekal jsem dlouho. = I waited a long time.")
+            BWRow("příliš dlouho", "too long", "Nečekal jsem příliš dlouho. = I didn't wait too long.")
+            BWRow("Dlouho jsme se neviděli.", "It's been a while. / Long time no see.", "lit. 'We haven't seen each other for a long time' — the standard Czech way to say 'it's been a while' between people meeting again.")
+            BWRow("Je to dlouho, co jsme se neviděli.", "It's been a long time since we've seen each other.", "more explicit form of the same idea")
+            BWNote("'Dlouho' is an adverb (how long). The closest Czech equivalent to English 'it's been a while' is 'Dlouho jsme se neviděli.' — literally 'We haven't seen each other for a long time.'")
 
             // ── Odd and Even (Numbers) ────────────────────────────────────
             BWSection("Odd and Even (Numbers)")

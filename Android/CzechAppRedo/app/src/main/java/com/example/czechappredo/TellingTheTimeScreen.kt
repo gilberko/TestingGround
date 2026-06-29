@@ -24,7 +24,7 @@ fun TellingTheTimeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Telling The Time", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Telling The Time and Date", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -121,6 +121,68 @@ fun TellingTheTimeScreen(navController: NavController) {
             TTRow("Czech second half — 'za [X minut] [next hour nominative]'", "e.g. za dvě jedenáct = in 2 min, eleven", "refers to the coming hour; za = within/in")
             TTRow("Russian second half — 'без [X] [next hour]'", "e.g. без двух одиннадцать = without two, eleven", "refers to the coming hour; без = minus/without")
             TTNote("Key difference: first half — Czech references the hour just passed ('after the tenth'), Russian references the coming hour ('of the eleventh'). Second half — both refer to the coming hour; Czech says 'in X minutes it will be [hour]', Russian says '[hour] minus X minutes'.")
+
+            TTSection("Saying The Date — How It Works")
+            TTNote("Czech dates use the genitive case for both the ordinal number and the month. You are saying 'of the 5th of May' — both parts answer a 'whose'/'of what' question, so both go into the genitive.")
+            TTNote("Pattern:  Dnes je [ordinal — genitive]  [month — genitive].  — Today is the [Nth] of [Month].")
+            TTNote("The ordinal number in dates is a masculine adjective declined in genitive singular. In written Czech, a period after a numeral signals an ordinal: 5. = pátý (fifth).")
+
+            TTSection("Ordinal Numbers for Dates (Genitive Form)")
+            TTNote("Written form  →  Spoken genitive form  —  English")
+            TTRow("1.  →  prvního", "1st")
+            TTRow("2.  →  druhého", "2nd")
+            TTRow("3.  →  třetího", "3rd")
+            TTRow("4.  →  čtvrtého", "4th")
+            TTRow("5.  →  pátého", "5th")
+            TTRow("6.  →  šestého", "6th")
+            TTRow("7.  →  sedmého", "7th")
+            TTRow("8.  →  osmého", "8th")
+            TTRow("9.  →  devátého", "9th")
+            TTRow("10.  →  desátého", "10th")
+            TTRow("15.  →  patnáctého", "15th")
+            TTRow("20.  →  dvacátého", "20th")
+            TTRow("21.  →  dvacátého prvního", "21st")
+            TTRow("24.  →  dvacátého čtvrtého", "24th")
+            TTRow("30.  →  třicátého", "30th")
+            TTRow("31.  →  třicátého prvního", "31st")
+            TTNote("Compound ordinals (21st, 24th…) put both parts in genitive: dvacátého čtvrtého.")
+
+            TTSection("Months in Genitive (Used in Dates)")
+            TTNote("Nominative  →  Genitive  —  English")
+            TTRow("leden  →  ledna", "January")
+            TTRow("únor  →  února", "February")
+            TTRow("březen  →  března", "March")
+            TTRow("duben  →  dubna", "April")
+            TTRow("květen  →  května", "May")
+            TTRow("červen  →  června", "June")
+            TTRow("červenec  →  července", "July")
+            TTRow("srpen  →  srpna", "August")
+            TTRow("září  →  září", "September", "září does not change in genitive — same form")
+            TTRow("říjen  →  října", "October")
+            TTRow("listopad  →  listopadu", "November")
+            TTRow("prosinec  →  prosince", "December")
+
+            TTSection("Date Examples")
+            TTRow("Dnes je pátého května.", "Today is the 5th of May.")
+            TTRow("Dnes je dvacátého čtvrtého ledna.", "Today is the 24th of January.")
+            TTRow("Dnes je třicátého března.", "Today is the 30th of March.")
+            TTRow("Dnes je čtvrtého června.", "Today is the 4th of June.")
+            TTRow("Narozeniny mám pátého února.", "My birthday is the 5th of February.")
+            TTRow("Kdy máš narozeniny?", "When is your birthday?")
+
+            TTSection("Which Case? — Ordinal and Month Are Both Genitive")
+            TTNote("For '4th of June' (čtvrtého června): the ordinal čtvrtý becomes čtvrtého (genitive masculine singular adjective), and červen becomes června (genitive of a masculine noun). Both are genitive — the ordinal because it describes 'the 4th [day] of...', and the month because it answers 'of which month'.")
+            TTNote("This applies to every Czech date — both the ordinal number and the month name always go into genitive. No exceptions.")
+
+            TTSection("Saying The Year")
+            TTRow("v roce", "in the year", "rok (year, m.) in locative after v: v + roce")
+            TTRow("v roce tisíc devět set osmdesát jedna", "in 1981", "tisíc (1000) + devět set (900) + osmdesát (80) + jedna (1)")
+            TTRow("Narodil jsem se v roce tisíc devět set osmdesát jedna.", "I was born in 1981.", "m. speaker; f. speaker: Narodila jsem se…")
+            TTRow("v roce dva tisíce", "in 2000")
+            TTRow("v roce dva tisíce dvacet čtyři", "in 2024")
+            TTNote("'V roce' uses the locative of rok. The year is then read as a plain cardinal number — no further declension needed after 'v roce'.")
+            TTNote("Colloquial shorthand: Czechs sometimes drop the thousands in speech — 'narodil jsem se v osmdesát jedna' — but the full form is clearer and safer.")
+            TTNote("Decades: v osmdesátých letech = in the eighties.  v devadesátých letech = in the nineties.")
 
             Spacer(modifier = Modifier.height(24.dp))
         }
