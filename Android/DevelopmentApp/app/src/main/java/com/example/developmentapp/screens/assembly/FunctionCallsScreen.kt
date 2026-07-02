@@ -141,7 +141,41 @@ fun FunctionCallsScreen(onBack: () -> Unit) {
                 }
             }
 
-            // 5 — Stack Frame Diagram
+            // 5 — LEAVE
+            item {
+                SectionCard("LEAVE Instruction") {
+                    BodyText(
+                        "LEAVE is a single-byte instruction (opcode 0xC9) that collapses the current stack frame " +
+                        "back to the caller's — the exact reverse of the prologue's MOV RBP, RSP / SUB RSP, N."
+                    )
+                    CodeBlock(
+                        "LEAVE   ; equivalent to:\n" +
+                        "        ;   MOV RSP, RBP    ; discard locals — RSP jumps back up to RBP\n" +
+                        "        ;   POP RBP         ; restore caller's saved RBP   (RSP += 8)"
+                    )
+                    BodyText(
+                        "LEAVE does not touch the return address and does not return — RET is still a separate, " +
+                        "required instruction immediately after it."
+                    )
+                    BodyText(
+                        "RSP vs RBP: RSP always points at the current top of stack and moves on every PUSH/POP/CALL/" +
+                        "RET/SUB RSP,N — it can wobble throughout the function body. RBP is set once at entry " +
+                        "(MOV RBP, RSP) and held fixed for the rest of the function, giving a stable reference point: " +
+                        "locals at negative offsets ([RBP-4]), saved old RBP at [RBP+0], return address at [RBP+8], " +
+                        "further arguments above that — regardless of how RSP moves later on."
+                    )
+                    BodyText(
+                        "You don't need LEAVE — it's shorthand for MOV RSP, RBP + POP RBP, and compilers emit either " +
+                        "one; the manual two-instruction form is functionally identical. LEAVE is smaller (1 byte vs. " +
+                        "~3-4 bytes) and on modern CPUs is a single fast micro-op, so there's no meaningful " +
+                        "performance difference. When the frame pointer is omitted entirely (-fomit-frame-pointer, " +
+                        "see Function Prologue above), there's no saved RBP to restore, so the epilogue skips LEAVE " +
+                        "altogether and just does ADD RSP, N before RET."
+                    )
+                }
+            }
+
+            // 6 — Stack Frame Diagram
             item {
                 SectionCard("Stack Frame Diagram") {
                     CodeBlock(
@@ -216,7 +250,7 @@ fun FunctionCallsScreen(onBack: () -> Unit) {
                 }
             }
 
-            // 8 — Return Values
+            // 9 — Return Values
             item {
                 SectionCard("Return Values") {
                     BodyText("The return value register(s) depend on the value's type and size:")
