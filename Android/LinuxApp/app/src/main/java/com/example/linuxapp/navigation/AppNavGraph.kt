@@ -143,6 +143,9 @@ import com.example.linuxapp.screens.usermode.UserModeMemAlloc2Screen
 import com.example.linuxapp.screens.usermode.UserModeGlibcScreen
 import com.example.linuxapp.screens.LinuxIdesScreen
 import com.example.linuxapp.screens.LinuxPackageManagersScreen
+import com.example.linuxapp.screens.LinuxDistributionsScreen
+import com.example.linuxapp.screens.LinuxOnOtherOsScreen
+import com.example.linuxapp.screens.kernel.KernelPatchingScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -268,6 +271,9 @@ sealed class Screen(val route: String) {
     object UserModeGlibc               : Screen("user_mode_glibc")
     object LinuxIdes                   : Screen("linux_ides")
     object LinuxPackageManagers        : Screen("linux_package_managers")
+    object LinuxDistributions          : Screen("linux_distributions")
+    object LinuxOnOtherOs              : Screen("linux_on_other_os")
+    object KernelPatching              : Screen("kernel_patching")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -295,6 +301,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onKernelMode = { navController.navigate(Screen.KernelHub.route) },
                 onEbpf = { navController.navigate(Screen.EbpfHub.route) },
                 onPermissions = { navController.navigate(Screen.PermissionsHub.route) },
+                onLinuxDistributions = { navController.navigate(Screen.LinuxDistributions.route) },
+                onLinuxOnOtherOs = { navController.navigate(Screen.LinuxOnOtherOs.route) },
                 onLicensing = { navController.navigate(Screen.Licensing.route) }
             )
         }
@@ -346,10 +354,20 @@ fun AppNavGraph(navController: NavHostController) {
                 onSysCalls = { navController.navigate(Screen.SysCalls.route) },
                 onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
                 onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) },
-                onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) }
+                onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) },
+                onPatching = { navController.navigate(Screen.KernelPatching.route) }
             )
         }
 
+        composable(Screen.LinuxDistributions.route) {
+            LinuxDistributionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxOnOtherOs.route) {
+            LinuxOnOtherOsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelPatching.route) {
+            KernelPatchingScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.KernelLkm.route) {
             LoadableKernelModuleScreen(onBack = { navController.popBackStack() })
         }

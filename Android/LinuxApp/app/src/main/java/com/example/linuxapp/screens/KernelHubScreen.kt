@@ -56,7 +56,8 @@ fun KernelHubScreen(
     onSysCalls: () -> Unit,
     onKallsyms: () -> Unit,
     onAddingFiles: () -> Unit,
-    onSecurityFeatures: () -> Unit
+    onSecurityFeatures: () -> Unit,
+    onPatching: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -101,7 +102,7 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "Low Level\nPrinciples", modifier = Modifier.weight(1f), onClick = onLowLevel)
-                KernelButton(label = "Low Level Principles\nPt. 2", modifier = Modifier.weight(1f), onClick = onLowLevel2)
+                KernelButton(label = "Kernel Mode\nSynchronization", modifier = Modifier.weight(1f), onClick = onLowLevel2)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
@@ -149,6 +150,7 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "Security Features", modifier = Modifier.weight(1f), onClick = onSecurityFeatures)
+                KernelButton(label = "Patching The\nKernel", modifier = Modifier.weight(1f), onClick = onPatching)
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

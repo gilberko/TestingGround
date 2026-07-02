@@ -30,7 +30,7 @@ fun LowLevelPrinciplesPart2Screen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "Low Level Principles Pt. 2",
+                        "Kernel Mode Synchronization",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp
@@ -265,8 +265,88 @@ do {
 } while (read_seqretry(&my_seqlock, seq));
 /* Use the local copy — not the shared data directly */"""
                     )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("How the writer works:")
+                    BodyText("seqlock_t embeds both a seqcount_t (the sequence counter) and a spinlock_t (guards writers against each other). write_seqlock() acquires the spinlock first — so only one writer can be active at a time — then increments the counter from even to odd (signalling \"write in progress\"). write_sequnlock() increments it back from odd to even (\"write done\") and releases the spinlock. The spinlock prevents two writers from incrementing simultaneously, keeping the even/odd invariant intact.")
+                    CodeBlock(
+                        """write_seqlock(&sl):
+  spin_lock(&sl->lock);       /* one writer at a time */
+  sl->seqcount.sequence++;    /* even → odd ("writing…") */
+  smp_wmb();                  /* barrier: writes visible before data */
+
+write_sequnlock(&sl):
+  smp_wmb();                  /* barrier: data visible before counter */
+  sl->seqcount.sequence++;    /* odd → even ("done") */
+  spin_unlock(&sl->lock);"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("How the reader works:")
+                    BodyText("read_seqbegin() spins until the sequence counter is even (no write in progress), adds a read memory barrier, and returns the counter value. While spinning it calls cpu_relax() — on x86 this emits the PAUSE instruction (see \"How Spinlocks Work Internally\" for details). read_seqretry() adds another read barrier then checks whether the counter changed. If a write completed during the read the counter moved (e.g. 4→5→6, so 6≠4). If a write is still in progress it is odd (5≠4). Either case returns true → retry.")
+                    CodeBlock(
+                        """read_seqbegin(&sl):
+  do {
+      seq = READ_ONCE(sl->seqcount.sequence);
+      if (seq & 1) cpu_relax(); /* odd: write in progress, spin */
+  } while (seq & 1);
+  smp_rmb();   /* barrier before reading the protected data */
+  return seq;
+
+read_seqretry(&sl, seq):
+  smp_rmb();   /* barrier after reading the protected data */
+  return sl->seqcount.sequence != seq; /* changed or odd → retry */"""
+                    )
                     Spacer(modifier = Modifier.height(4.dp))
                     BodyText("The kernel uses seqlocks for things like the wall clock (jiffies_64) — millions of reads per second, very rare writes.")
+                }
+            }
+            item {
+                SectionCard(title = "Read-Write Semaphore (rw_semaphore)") {
+                    BodyText("A read-write semaphore is the sleeping-lock counterpart to rwlock_t. Multiple readers can hold it simultaneously; a writer gets exclusive access. Because it can sleep, it is usable only in process context — never in atomic or interrupt context.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("API:")
+                    CodeBlock(
+                        """#include <linux/rwsem.h>
+
+/* Static init: */
+DECLARE_RWSEM(my_rwsem);
+
+/* Dynamic init: */
+struct rw_semaphore my_rwsem;
+init_rwsem(&my_rwsem);
+
+/* Multiple readers can hold simultaneously
+   (sleeps if a writer currently holds it): */
+down_read(&my_rwsem);
+/* ... read shared data ... */
+up_read(&my_rwsem);
+
+/* Writer gets exclusive access
+   (sleeps until all current readers/writers finish): */
+down_write(&my_rwsem);
+/* ... modify shared data ... */
+up_write(&my_rwsem);
+
+/* Interruptible variants — return -EINTR on signal: */
+if (down_read_interruptible(&my_rwsem))
+    return -EINTR;
+if (down_write_killable(&my_rwsem))
+    return -EINTR;
+
+/* Downgrade a write lock to a read lock (no unlock needed): */
+downgrade_write(&my_rwsem);"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("rw_semaphore vs rwlock_t — both allow concurrent reads and exclusive writes, but the locking strategy differs:")
+                    CodeBlock(
+                        """                  rwlock_t        rw_semaphore
+Type              Spinlock        Semaphore (sleeping lock)
+Waiting           Busy-spin       Sleep (put on wait queue)
+Atomic/IRQ ctx    YES             NO (may sleep)
+Process ctx       YES             YES
+IRQ-safe variant  _irqsave        none — never use in IRQ context"""
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    BodyText("Use rwlock_t when readers or writers may run in interrupt context, or when the critical section is very short. Use rw_semaphore when the critical section may sleep or take a long time — for example when copying data to/from user space.")
                 }
             }
             item {
@@ -325,6 +405,29 @@ kfree_rcu(old_p, rcu);"""
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     BodyText("RCU is used extensively in the kernel for routing tables, process lists, module lists, and network protocol data structures.")
+                }
+            }
+            item {
+                SectionCard(title = "Quick Reference — Which Primitive to Use?") {
+                    CodeBlock(
+                        """Primitive      Atomic/IRQ   Use when
+──────────────────────────────────────────────────────────
+mutex          NO           Process ctx; long critical sections;
+                            need interruptible/killable wait
+spinlock       YES          Short critical section; any context
+                            including IRQ handlers
+rwlock_t       YES          Many concurrent readers in IRQ/atomic
+                            context; rare writes; short sections
+seqlock        YES          Read-mostly simple values (counters,
+                            timestamps); writers never block readers;
+                            readers retry if a write overlapped
+rw_semaphore   NO           Many concurrent readers in process ctx;
+                            longer sections that may sleep
+RCU            R:YES W:NO*  Read-mostly pointer-based structures;
+                            extreme read scalability; lock-free reads
+                            (*synchronize_rcu sleeps; call_rcu is
+                             async and safe in atomic context)"""
+                    )
                 }
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }

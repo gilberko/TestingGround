@@ -42,6 +42,8 @@ fun HomeScreen(
     onKernelMode: () -> Unit,
     onEbpf: () -> Unit,
     onPermissions: () -> Unit,
+    onLinuxDistributions: () -> Unit,
+    onLinuxOnOtherOs: () -> Unit,
     onLicensing: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -83,6 +85,11 @@ fun HomeScreen(
                 HomeButton(label = "Advanced Topics", onClick = onPermissions, modifier = Modifier.weight(1f))
             }
             Spacer(modifier = Modifier.height(12.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Linux Distributions", onClick = onLinuxDistributions, modifier = Modifier.weight(1f))
+                HomeButton(label = "Linux on Other OSs", onClick = onLinuxOnOtherOs, modifier = Modifier.weight(1f))
+            }
+            Spacer(modifier = Modifier.height(12.dp))
             HomeButton(label = "Licensing", onClick = onLicensing)
             Spacer(modifier = Modifier.height(20.dp))
             Box(
@@ -92,7 +99,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v5.2",
+                    text = "v2.0",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace
