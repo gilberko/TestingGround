@@ -59,6 +59,16 @@ private fun DeclTableHeader() {
 }
 
 @Composable
+private fun GenderTableHeader() {
+    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+        Text("Gender",      style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f))
+        Text("Singular",    style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+        Text("Plural",      style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+    }
+    HorizontalDivider(modifier = Modifier.padding(bottom = 2.dp))
+}
+
+@Composable
 private fun DeclRow(caseName: String, singular: String, plural: String, highlight: Boolean = false) {
     val bg = if (highlight) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
              else MaterialTheme.colorScheme.surface
@@ -76,6 +86,101 @@ private fun DeclRow(caseName: String, singular: String, plural: String, highligh
 }
 
 // ── Cards ─────────────────────────────────────────────────────────────────────
+
+@Composable
+private fun SingularPluralIntroCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Plurals are formed by changing a noun's ending — which ending depends on gender " +
+                        "and whether the stem is hard or soft. This section covers the nominative case; " +
+                        "other cases have their own plural endings, shown in the tables below.",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Masculine nouns",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            listOf(
+                "Singular: usually a bare consonant ending — стол, брат. Soft stems end in -й or -ь — музей, словарь.",
+                "Regular plural: hard stem → -ы (стол → столы); soft stem (-й/-ь) → -и (музей → музеи, словарь → словари).",
+                "Spelling rule: -ы becomes -и after г, к, х, ж, ч, ш, щ (учебник → учебники, not \"учебникы\").",
+                "Exceptions: some common masculine nouns take a stressed -а/-я plural instead — дом → дома, город → города, учитель → учителя, глаз → глаза. These must be memorized individually."
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Neuter nouns",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            listOf(
+                "Singular nominative ends in -о or -е.",
+                "Plural: -о → -а (слово → слова); -е → -я (море → моря). Regular, with very few exceptions."
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "Feminine nouns",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            listOf(
+                "Singular nominative ends in -а/-я, or in -ь.",
+                "Plural: -а → -ы (книга → книги, note г triggers the ы→и spelling rule above); -я → -и (неделя → недели); -ь → -и (дверь → двери)."
+            ).forEach { line ->
+                Text("• $line",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(vertical = 2.dp))
+            }
+
+            Spacer(modifier = Modifier.height(14.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Quick reference",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            GenderTableHeader()
+            DeclRow("Masculine (hard)", "стол",    "столы",    highlight = false)
+            DeclRow("Masculine (soft)", "словарь", "словари",  highlight = true)
+            DeclRow("Neuter (-о)",      "слово",   "слова",    highlight = false)
+            DeclRow("Neuter (-е)",      "море",    "моря",     highlight = true)
+            DeclRow("Feminine (-а)",    "книга",   "книги",    highlight = false)
+            DeclRow("Feminine (-ь)",    "дверь",   "двери",    highlight = true)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "A few nouns are fully irregular: друг → друзья, стул → стулья, брат → братья " +
+                        "(consonant stem + -ья). A handful are suppletive, using a different root entirely: " +
+                        "человек → люди, ребёнок → дети. These are memorized as vocabulary, not derived from a rule.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontStyle = FontStyle.Italic
+            )
+        }
+    }
+}
 
 @Composable
 private fun IntroCard() {
@@ -361,6 +466,9 @@ fun NounDeclensionScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp),
             contentPadding = PaddingValues(bottom = 24.dp)
         ) {
+            item { NounSectionHeader("Singular vs. Plural — Nominative Case") }
+            item { SingularPluralIntroCard() }
+
             item { NounSectionHeader("Overview — Declension Classes") }
             item { IntroCard() }
 
