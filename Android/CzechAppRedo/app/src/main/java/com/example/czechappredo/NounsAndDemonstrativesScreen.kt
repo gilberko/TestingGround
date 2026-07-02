@@ -56,7 +56,37 @@ fun NounsAndDemonstrativesScreen(navController: NavController) {
             NADRow("Ends in -a", "usually feminine  →  žena (woman), kniha (book), Praha (Prague)")
             NADRow("Ends in -o", "usually neuter  →  město (city), okno (window), auto (car)")
             NADRow("Ends in -e", "neuter or feminine — must be learned individually  →  moře (sea, neuter), růže (rose, feminine)")
-            NADNote("Exceptions exist. For example, táta (dad) ends in -a but is masculine. When in doubt, learn the gender together with the word itself.")
+            NADNote("Exceptions exist — and they're common enough to watch for, not just rare oddities:")
+            NADRow("kolega, turista, předseda, táta", "masculine nouns ending in -a (male people/roles)  →  dobrý kolega (a good colleague), not dobrá kolega")
+            NADRow("téma, drama, klima, schéma", "neuter nouns ending in -a (Greek-origin loanwords)  →  to téma (that topic), not ta téma")
+            NADRow("kost, píseň, myš, noc, radost", "feminine nouns ending in a consonant  →  ta kost (that bone), not ten kost")
+            NADNote("When in doubt, learn the gender together with the word itself.")
+
+            // ── Forming The Plural ────────────────────────────────────────
+            NADSectionHeader("Forming The Plural")
+            NADNote("Nouns change their ending in the plural too, and the pattern depends on gender and on the noun's final sound. This is an overview — the full case-by-case plural tables are on the Cases screen.")
+
+            NADNote("Masculine:")
+            NADRow("kluk → kluci, Čech → Češi, voják → vojáci", "animate, hard consonant  →  soften to -i (k→ci, ch→ši)")
+            NADRow("pán → pánové, syn → synové", "animate, hard consonant  →  some nouns take -ové instead")
+            NADRow("muž → muži", "animate, soft consonant  →  -i (no change in sound)")
+            NADRow("hrad → hrady, byt → byty", "inanimate, hard consonant  →  -y")
+            NADRow("stroj → stroje, pokoj → pokoje", "inanimate, soft consonant  →  -e")
+            NADRow("kolega → kolegové, turista → turisté", "-a nouns  →  -ové / -é")
+
+            NADNote("Feminine:")
+            NADRow("žena → ženy, kniha → knihy", "-a → -y")
+            NADRow("růže → růže, ulice → ulice", "-e → -e (no change)")
+            NADRow("kost → kosti, píseň → písně, myš → myši", "consonant → -i")
+
+            NADNote("Neuter:")
+            NADRow("město → města, okno → okna", "-o → -a")
+            NADRow("moře → moře, nádraží → nádraží", "-e / -í → -e / -í (no change)")
+            NADRow("kuře → kuřata, štěně → štěňata", "young-being -e → -ata")
+            NADRow("muzeum → muzea, gymnázium → gymnázia", "-um (Latin loanwords) → -a")
+            NADRow("téma → témata, drama → dramata", "-ma nouns → -mata")
+
+            NADNote("Remember: demonstratives agree with the plural too — ti muži, ty ženy, ta města. See Plural Demonstratives below, and the Cases screen for the complete declension tables.")
 
             // ── Demonstratives: This / That ───────────────────────────────
             NADSectionHeader("Demonstratives: This / That")
