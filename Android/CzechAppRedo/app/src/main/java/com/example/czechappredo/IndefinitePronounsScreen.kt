@@ -23,7 +23,7 @@ fun IndefinitePronounsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Someone, Somewhere...", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Someone, Somewhere, Everyone, Everywhere...", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -134,6 +134,83 @@ fun IndefinitePronounsScreen(navController: NavController) {
             IPNote("Nic neříkám. (I'm not saying anything / I say nothing.)")
             IPNote("Nikdy nejím maso. (I never eat meat.)")
             IPNote("Nikde ho nenajdu. (I can't find him anywhere / I find him nowhere.)")
+
+            IPSection("Everyone, Everything — The Universal Series (Vše- / Každý)")
+            IPNote("Alongside ně- (some-) and ni- (no-), Czech has a third series: vše- / každý (every-), covering everyone, everything, everywhere, and always.")
+            IPTable4(
+                headers = listOf("Category", "Some-", "No-", "Every-"),
+                rows = listOf(
+                    listOf("Person", "někdo", "nikdo", "všichni"),
+                    listOf("Thing", "něco", "nic", "všechno"),
+                    listOf("Place", "někde", "nikde", "všude"),
+                    listOf("Time", "někdy", "nikdy", "vždy")
+                )
+            )
+            IPNote("Note: unlike někde / někam, všude covers both static location and motion toward — there is no separate 'to everywhere' form. 'From everywhere' is odevšad.")
+
+            IPSection("Všichni — Everyone")
+            IPNote("Declines through all cases, like někdo. Plural form of všechen (all).")
+            IPTable(
+                headers = listOf("Case", "Form", "Example"),
+                rows = listOf(
+                    Triple("Nominative", "všichni", "Všichni přišli. (Everyone came.)"),
+                    Triple("Genitive", "všech", "Zeptal se všech. (He asked everyone.)"),
+                    Triple("Dative", "všem", "Dal jsem to všem. (I gave that to everyone.)"),
+                    Triple("Accusative", "všechny", "Pozval všechny. (He invited everyone.)"),
+                    Triple("Locative", "o všech", "Přemýšlel jsem o všech. (I thought about everyone.)"),
+                    Triple("Instrumental", "se všemi", "Šel jsem se všemi. (I went with everyone.)")
+                )
+            )
+            IPNote("Gender: všichni is masculine animate plural. An all-female or mixed non-masculine group uses všechny / všechna in the nominative: Všechny dívky přišly. (All the girls came.)")
+
+            IPSection("Všechno — Everything")
+            IPNote("Declines through all cases, like něco.")
+            IPTable(
+                headers = listOf("Case", "Form", "Example"),
+                rows = listOf(
+                    Triple("Nominative", "všechno", "Všechno je v pořádku. (Everything is fine.)"),
+                    Triple("Genitive", "všeho", "Mám dost všeho. (I've had enough of everything.)"),
+                    Triple("Dative", "všemu", "Věřím všemu, co říká. (I believe everything he says.)"),
+                    Triple("Accusative", "všechno", "Snědl všechno. (He ate everything.)"),
+                    Triple("Locative", "o všem", "Mluvíme o všem. (We talk about everything.)"),
+                    Triple("Instrumental", "se vším", "Souhlasím se vším. (I agree with everything.)")
+                )
+            )
+
+            IPSection("Každý — Each / Every One")
+            IPNote("Každý (each one, individually) contrasts with všichni (everyone, as a group) — both can translate as 'everyone' in English, but Czech distinguishes them.")
+            IPNote("Declines as a hard adjective through all cases.")
+            IPTable(
+                headers = listOf("Case", "Form", "Example"),
+                rows = listOf(
+                    Triple("Nominative", "každý", "Každý to ví. (Everyone / each one knows that.)"),
+                    Triple("Genitive", "každého", "Zeptal se každého. (He asked each one.)"),
+                    Triple("Dative", "každému", "Dal to každému. (He gave it to each one.)"),
+                    Triple("Accusative", "každého", "Vidím každého. (I see each one.)"),
+                    Triple("Locative", "o každém", "Mluvím o každém. (I'm talking about each one.)"),
+                    Triple("Instrumental", "s každým", "Vychází se s každým. (He gets along with everyone / each one.)")
+                )
+            )
+            IPNote("Gender agreement: každý (m) / každá (f) / každé (n) — každý den (every day), každá kniha (every book), každé ráno (every morning).")
+
+            IPSection("Everywhere and Always — Universal Adverbs")
+            IPNote("These are adverbs — they do not decline.")
+            IPNote("všude = everywhere:  Hledal jsem to všude. (I looked for it everywhere.)")
+            IPNote("odevšad = from everywhere:  Přišli odevšad. (They came from everywhere.)")
+            IPNote("vždy / vždycky = always:  Vždycky se usmívá. (She always smiles.)")
+            IPNote("pokaždé = every time:  Pokaždé se směje. (He laughs every time.)")
+
+            IPSection("Someone vs. Everyone — Side by Side")
+            IPNote("The same case rules apply whether you're talking about one unspecified person or everyone — only the pronoun changes.")
+            IPTable(
+                headers = listOf("Case", "Someone", "Everyone"),
+                rows = listOf(
+                    Triple("Dative (give to)", "Dal jsem to někomu.", "Dal jsem to všem."),
+                    Triple("Accusative (see)", "Vidím někoho.", "Vidím všechny."),
+                    Triple("Locative (talk/think about)", "Mluvím o někom.", "Mluvím o všech."),
+                    Triple("Instrumental (go with)", "Šel jsem s někým.", "Šel jsem se všemi.")
+                )
+            )
 
             IPSection("Anyone, Wherever — The -si and -koli Variants")
             IPNote("The basic někdo / něco / někde... series covers everyday speech. Czech has two additional series built on the same roots:")

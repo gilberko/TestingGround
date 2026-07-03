@@ -253,7 +253,7 @@ fun LearningHubScreen(navController: NavController) {
             "Adverbs" to "adverbs",
             "Object Pronouns" to "object_pronouns",
             "Reflexive Verbs" to "reflexive_verbs",
-            "Someone, Somewhere..." to "someone_somewhere",
+            "Someone, Somewhere, Everyone, Everywhere..." to "someone_somewhere",
             "Many and Few" to "many_and_few",
             "Imperative" to "imperative",
             "Conditions" to "conditions",
