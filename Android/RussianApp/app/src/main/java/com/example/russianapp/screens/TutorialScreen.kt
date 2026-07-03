@@ -87,7 +87,7 @@ fun TutorialScreen(
                 "Negation"                  to onNegation,
                 "Conditionals"              to onConditionals,
                 "Participles"               to onParticiples,
-                "Types Of Any"              to onTypesOfAny,
+                "Types Of Any, Types Of Every" to onTypesOfAny,
                 "My, Myself, You, Yourself" to onMyself,
                 "About A Person and About Actions" to onAboutAPerson,
                 "Comparisons"                      to onComparisons,

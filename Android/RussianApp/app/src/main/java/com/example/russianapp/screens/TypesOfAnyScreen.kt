@@ -35,7 +35,7 @@ fun TypesOfAnyScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Types Of Any") },
+                title = { Text("Types Of Any, Types Of Every") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -321,6 +321,227 @@ fun TypesOfAnyScreen(onBack: () -> Unit) {
                             )
                         }
                     }
+                }
+            }
+
+            // ── Everyone, Everything, Everywhere, Always — весь ─────────────────
+            item { AnySectionHeader("Everyone, Everything, Everywhere, Always — весь") }
+            item {
+                AnyCard(title = "весь — the universal pronoun-adjective") {
+                    Text(
+                        text = "весь means \"all / the whole (of) / every-\". It declines like an adjective, agreeing in " +
+                                "gender, number, and case with whatever it modifies — or standing alone to mean " +
+                                "\"everyone\" (все) or \"everything\" (всё).",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Весь день шёл дождь.", "It rained the whole day. (masc., modifying день)")
+                    AnyExampleRow("Вся семья собралась.", "The whole family gathered. (fem., modifying семья)")
+                    AnyExampleRow("Всё готово.", "Everything is ready. (neut., standalone = \"everything\")")
+                    AnyExampleRow("Все пришли.", "Everyone came. (plural, standalone = \"everyone\")")
+                }
+            }
+
+            item {
+                AnyCard(title = "весь — full declension (all 6 cases)") {
+                    Text(
+                        text = "Like any adjective, весь changes for all six cases and all four gender/number forms:",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                        Text("Case", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        Text("Masc", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.1f))
+                        Text("Fem", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.1f))
+                        Text("Neut", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.1f))
+                        Text("Plural", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.3f))
+                    }
+                    HorizontalDivider(modifier = Modifier.padding(bottom = 4.dp))
+                    listOf(
+                        listOf("Nom.",   "весь",          "вся",         "всё",        "все"),
+                        listOf("Gen.",   "всего",         "всей",        "всего",      "всех"),
+                        listOf("Dat.",   "всему",         "всей",        "всему",      "всем"),
+                        listOf("Acc.",   "весь / всего*", "всю",         "всё",        "все / всех*"),
+                        listOf("Instr.", "всем",          "всей (всею)", "всем",       "всеми"),
+                        listOf("Prep.",  "(обо) всём",    "(обо) всей",  "(обо) всём", "(обо) всех")
+                    ).forEachIndexed { i, row ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(
+                                    if (i % 2 == 0) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
+                                    else MaterialTheme.colorScheme.surface
+                                )
+                                .padding(vertical = 5.dp)
+                        ) {
+                            Text(row[0], style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
+                            Text(row[1], style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.1f))
+                            Text(row[2], style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.1f))
+                            Text(row[3], style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.1f))
+                            Text(row[4], style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.3f))
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "* Masc. singular and plural have two accusative forms depending on whether the noun is animate: " +
+                                "inanimate → same as nominative (Я убрал весь снег. — I cleared away all the snow.); " +
+                                "animate → same as genitive (Он позвал всех гостей. — He called all the guests.).",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            item {
+                AnyCard(title = "всех vs всем — the critical contrast") {
+                    Text(
+                        text = "Both всех and всем mean roughly \"everyone\", but they are different cases and answer " +
+                                "different questions — mixing them up is one of the most common learner mistakes.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+                    ) {
+                        Column(modifier = Modifier.padding(12.dp)) {
+                            Text(
+                                text = "всех — genitive / animate-accusative plural (\"of everyone\" / object \"everyone\"):",
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text("У всех есть телефон.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text("Everyone has a phone. (genitive — \"at all [of them] there is…\")", style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text("Он поздравил всех.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text("He congratulated everyone. (accusative — people are animate, so acc. = gen.)", style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Text(
+                                text = "всем — dative plural (\"to / for everyone\"):",
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text("Он раздал подарки всем.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text("He handed out gifts to everyone. (dative — indirect object)", style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text("Спасибо всем за помощь.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text("Thanks to everyone for the help. (спасибо governs dative)", style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Он думает обо всех.", "He thinks about everyone. (prepositional, after о/обо)")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Rule of thumb: всех answers \"of whom / whom\" (genitive, or accusative for an animate object); " +
+                                "всем answers \"to / for whom\" (dative).",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            item {
+                AnyCard(title = "всего vs всему — same logic, for \"everything\"") {
+                    Text(
+                        text = "The same genitive/dative split applies to всё (\"everything\"): всего = genitive, всему = dative.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("У меня всего достаточно.", "I have enough of everything. (genitive)")
+                    AnyExampleRow("Он рад всему.", "He is glad about everything. (dative — рад + dative)")
+                    AnyExampleRow("Он привык ко всему.", "He's used to everything. (dative — к/ко + dative)")
+                }
+            }
+
+            item {
+                AnyCard(title = "всё — everything, in every case") {
+                    Text(
+                        text = "A full run through all six cases of всё in natural sentences:",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Всё хорошо.", "Everything is fine. (nominative)")
+                    AnyExampleRow("Я вижу всё.", "I see everything. (accusative)")
+                    AnyExampleRow("Я боюсь всего.", "I'm afraid of everything. (genitive)")
+                    AnyExampleRow("Он удивляется всему.", "He's amazed by everything. (dative)")
+                    AnyExampleRow("Он доволен всем.", "He's satisfied with everything. (instrumental)")
+                    AnyExampleRow("Он думает обо всём.", "He thinks about everything. (prepositional)")
+                }
+            }
+
+            item {
+                AnyCard(title = "все — everyone, in every case") {
+                    Text(
+                        text = "And the same run through for все (\"everyone\"):",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Здесь собрались все.", "Everyone has gathered here. (nominative)")
+                    AnyExampleRow("Учитель видит всех.", "The teacher sees everyone. (accusative, animate)")
+                    AnyExampleRow("У всех разные мнения.", "Everyone has different opinions. (genitive)")
+                    AnyExampleRow("Всем нравится этот фильм.", "Everyone likes this film. (dative — нравится + dative)")
+                    AnyExampleRow("Он гордится всеми.", "He is proud of everyone. (instrumental — гордиться + instrumental)")
+                    AnyExampleRow("Он заботится обо всех.", "He cares about everyone. (prepositional)")
+                }
+            }
+
+            // ── Everywhere & Always ──────────────────────────────────────────────
+            item { AnySectionHeader("Everywhere & Always — indeclinable adverbs") }
+            item {
+                AnyCard(title = "везде, всюду — everywhere (indeclinable)") {
+                    Text(
+                        text = "Unlike весь, везде and всюду are adverbs — they never change form for case, gender, or number. " +
+                                "Both mean \"everywhere\" and are largely interchangeable; всюду leans slightly more literary/emphatic.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Везде тихо.", "It's quiet everywhere.")
+                    AnyExampleRow("Я искал везде.", "I looked everywhere.")
+                    AnyExampleRow("Всюду был снег.", "There was snow everywhere. (more literary tone)")
+                    AnyExampleRow("Он всюду опаздывает.", "He's late everywhere he goes. (emphatic)")
+                }
+            }
+            item {
+                AnyCard(title = "всегда — always (indeclinable)") {
+                    AnyExampleRow("Он всегда опаздывает.", "He's always late.")
+                    AnyExampleRow("Я всегда рад тебя видеть.", "I'm always glad to see you.")
+                    AnyExampleRow("Это всегда так.", "It's always like that.")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "всегда never changes form — no case, no gender, no number. Unlike весь/все/всё/вся, it's a plain adverb.",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            item {
+                AnyCard(title = "всегда vs каждый раз — always vs every single time") {
+                    Text(
+                        text = "всегда is a fixed adverb (a general habit or truth). каждый раз (\"every [single] time\") is built " +
+                                "from каждый — a declinable adjective agreeing with раз (\"time/occasion\", masc.) — so this phrase can change form.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AnyExampleRow("Он всегда опаздывает.", "He's always late. (general habit, invariant)")
+                    AnyExampleRow("Каждый раз он опаздывает.", "Every time, he's late. (same idea, declinable phrase)")
+                    AnyExampleRow("С каждым разом становится легче.", "With each time, it gets easier. (instrumental — каждым разом)")
+                    AnyExampleRow("Каждый раз, когда я прихожу…", "Every time I come… (nominative каждый раз as a time adverbial)")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Three families, three behaviors: всегда/везде/всюду never decline; каждый declines like an adjective " +
+                                "(каждый/каждая/каждое) agreeing with its noun; весь/все/всё/вся has the fullest declension, covered above.",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
 

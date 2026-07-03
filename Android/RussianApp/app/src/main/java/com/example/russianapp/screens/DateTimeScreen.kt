@@ -492,6 +492,223 @@ private fun FullDateExampleCard() {
     }
 }
 
+// ── Time period cards (ago / in the future) ────────────────────────────────────
+
+@Composable
+private fun TimePeriodAgreementCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Counting time periods: 1 / 2–4 / 5+",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Russian nouns change their ending depending on the number counting them: " +
+                        "1 → nominative singular, 2–4 → genitive singular, 5 and above → genitive plural. " +
+                        "This applies to every noun, including all the time-period words below.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
+                Text("Noun", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.3f))
+                Text("1", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.3f))
+                Text("2–4", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+                Text("5+", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+            }
+            HorizontalDivider(modifier = Modifier.padding(bottom = 2.dp))
+            listOf(
+                listOf("день (day)",          "день",        "дня",         "дней"),
+                listOf("неделя (week)",       "неделя",      "недели",      "недель"),
+                listOf("месяц (month)",       "месяц",       "месяца",      "месяцев"),
+                listOf("год (year)",          "год",         "года",        "лет"),
+                listOf("десятилетие (decade)","десятилетие", "десятилетия", "десятилетий"),
+                listOf("век (century)",       "век",         "века",        "веков")
+            ).forEachIndexed { i, row ->
+                val bg = if (i % 2 == 0) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
+                         else MaterialTheme.colorScheme.surface
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 1.dp),
+                    colors = CardDefaults.cardColors(containerColor = bg),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
+                ) {
+                    Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 2.dp, vertical = 3.dp)) {
+                        Text(row[0], style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1.3f))
+                        Text(row[1], style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.3f))
+                        Text(row[2], style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+                        Text(row[3], style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1.5f))
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "год is irregular: its 5+ form лет isn't built from год at all — it's borrowed from an old form of " +
+                        "лето (summer/year). This is the classic \"один год, два года, пять лет\" pattern every learner trips on.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontStyle = FontStyle.Italic
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "десятилетие (decade) is often replaced in casual speech by десять лет (ten years).",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontStyle = FontStyle.Italic
+            )
+        }
+    }
+}
+
+@Composable
+private fun TimeAgoCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "'Ago' — [time period] + назад",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Put the quantity phrase before назад (\"ago\"). Masculine and neuter nouns look the same as their " +
+                        "counting form; неделя (fem.) is the one exception — its accusative form неделю is used instead of неделя.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(text = "Day — день", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A day ago",                  "День назад",                highlight = false)
+            ExampleRow("Two/Three/Four days ago",    "Два/Три/Четыре дня назад",  highlight = true)
+            ExampleRow("Five/Ten days ago",          "Пять/Десять дней назад",    highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Week — неделя", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A week ago",                 "Неделю назад",              highlight = true)
+            ExampleRow("Two/Three/Four weeks ago",   "Две/Три/Четыре недели назад", highlight = false)
+            ExampleRow("Five/Ten weeks ago",         "Пять/Десять недель назад",  highlight = true)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Month — месяц", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A month ago",                "Месяц назад",               highlight = false)
+            ExampleRow("Two/Three/Four months ago",  "Два/Три/Четыре месяца назад", highlight = true)
+            ExampleRow("Five/Ten months ago",        "Пять/Десять месяцев назад", highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Year — год", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A year ago",                 "Год назад",                 highlight = false)
+            ExampleRow("Two/Three/Four years ago",   "Два/Три/Четыре года назад", highlight = true)
+            ExampleRow("Five/Ten years ago",         "Пять/Десять лет назад",     highlight = true)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Decade — десятилетие", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A decade ago",               "Десятилетие назад",         highlight = false)
+            ExampleRow("Two/Three/Four decades ago", "Два/Три/Четыре десятилетия назад", highlight = true)
+            ExampleRow("Five decades ago",           "Пять десятилетий назад",    highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Century — век", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("A century ago",              "Век назад",                 highlight = false)
+            ExampleRow("Two/Three/Four centuries ago", "Два/Три/Четыре века назад", highlight = true)
+            ExampleRow("Five centuries ago",         "Пять веков назад",          highlight = false)
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "тому назад is an older/more literary equivalent with identical meaning and case use: " +
+                        "год тому назад = год назад.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontStyle = FontStyle.Italic
+            )
+        }
+    }
+}
+
+@Composable
+private fun TimeInFutureCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "'In X time' — через + [time period]",
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "через (\"in / after\") takes the exact same quantity phrase used for назад, just placed before it " +
+                        "instead of after. через неделю ↔ неделю назад — same неделю, different position.",
+                style = MaterialTheme.typography.bodySmall
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(text = "Day — день", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a day",                   "Через день",                highlight = false)
+            ExampleRow("In two/three/four days",     "Через два/три/четыре дня",  highlight = true)
+            ExampleRow("In five/ten days",           "Через пять/десять дней",    highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Week — неделя", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a week",                  "Через неделю",              highlight = true)
+            ExampleRow("In two/three/four weeks",    "Через две/три/четыре недели", highlight = false)
+            ExampleRow("In five/ten weeks",          "Через пять/десять недель",  highlight = true)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Month — месяц", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a month",                 "Через месяц",               highlight = false)
+            ExampleRow("In two/three/four months",   "Через два/три/четыре месяца", highlight = true)
+            ExampleRow("In five/ten months",         "Через пять/десять месяцев", highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Year — год", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a year",                  "Через год",                 highlight = false)
+            ExampleRow("In two/three/four years",    "Через два/три/четыре года", highlight = true)
+            ExampleRow("In five/ten years",          "Через пять/десять лет",     highlight = true)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Decade — десятилетие", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a decade",                "Через десятилетие",         highlight = false)
+            ExampleRow("In two/three/four decades",  "Через два/три/четыре десятилетия", highlight = true)
+            ExampleRow("In five decades",            "Через пять десятилетий",    highlight = false)
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Century — век", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(4.dp))
+            ExampleRow("In a century",               "Через век",                 highlight = false)
+            ExampleRow("In two/three/four centuries", "Через два/три/четыре века", highlight = true)
+            ExampleRow("In five centuries",          "Через пять веков",          highlight = false)
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "через and назад use the same case form of the quantity phrase — only the word and its position " +
+                        "(before vs. after) differ.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontStyle = FontStyle.Italic
+            )
+        }
+    }
+}
+
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -529,6 +746,11 @@ fun DateTimeScreen(onBack: () -> Unit) {
             item { MonthsCard() }
             item { YearCard() }
             item { FullDateExampleCard() }
+
+            item { DtSectionHeader("Time Periods — Ago & In the Future") }
+            item { TimePeriodAgreementCard() }
+            item { TimeAgoCard() }
+            item { TimeInFutureCard() }
         }
     }
 }

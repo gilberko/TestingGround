@@ -348,6 +348,80 @@ fun MiscScreen(onBack: () -> Unit) {
                 }
             }
 
+            // ── же and Other Emphatic Particles ───────────────────────────────
+            item { MiscSectionHeader("же and Other Emphatic Particles") }
+            item {
+                MiscCard(title = "же — the core emphatic particle") {
+                    Text(
+                        text = "же is postpositive (an enclitic) — it attaches directly after the word it emphasizes and " +
+                                "never starts a clause. It adds stress or contrast to that specific word, often implying " +
+                                "\"as I already said\" or \"despite what you might think.\"",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Я же говорил!" to "I DID tell you! (emphasizing that I warned you)",
+                        "Ты же знаешь." to "You know, don't you. (reminding — you of all people know)",
+                        "Он же врач!" to "But he's a doctor! (so of course he'd know / why doubt him)"
+                    ))
+                }
+            }
+            item {
+                MiscCard(title = "же in questions — кто же, что же, где же…") {
+                    Text(
+                        text = "Attached to a question word, же adds impatience or urgency — roughly \"…on earth\" or \"…then\".",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Кто же это сделал?" to "Who on earth did this?",
+                        "Что же нам делать?" to "What on earth should we do?",
+                        "Где же ты был?" to "Where on earth were you?"
+                    ))
+                }
+            }
+            item {
+                MiscCard(title = "же for \"the same\" — тот же, такой же, там же, тогда же, сегодня же") {
+                    Text(
+                        text = "Attached to a demonstrative or adverb, же shifts meaning to \"the same\" or \"that very\":",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Это тот же дом." to "This is the same house.",
+                        "Он купил такой же телефон." to "He bought the same kind of phone.",
+                        "Мы встретились там же." to "We met in that same place.",
+                        "Это случилось тогда же." to "It happened at that very time.",
+                        "Сделай это сегодня же." to "Do it this very day / right today (no delay)."
+                    ))
+                }
+            }
+            item {
+                MiscCard(title = "Other Emphatic Particles — ведь, уж, именно, даже, вот") {
+                    Text(
+                        text = "же has company — each of these adds a different flavor of emphasis:",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Ведь я говорил тебе!" to "ведь — \"after all / you know\" (reminding, justifying)",
+                        "Не так уж плохо." to "уж — colloquial intensifier (\"not really that bad\")",
+                        "Именно ты мне нужен." to "именно — \"exactly / precisely\" (pinpoints identity)",
+                        "Даже он пришёл." to "даже — \"even\" (inclusion-based emphasis)",
+                        "Вот это дом!" to "вот — pointing/emphasis interjection (\"now THAT's a house!\")"
+                    ))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Note: -то can also attach to any word for contrastive emphasis (\"Это-то я знаю…\" — " +
+                                "\"THIS, at least, I know…\"). Don't confuse it with the indefinite -то suffix " +
+                                "(кто-то, что-то) covered in Types Of Any, Types Of Every — same spelling, different job.",
+                        style = MaterialTheme.typography.bodySmall,
+                        fontStyle = FontStyle.Italic,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }
