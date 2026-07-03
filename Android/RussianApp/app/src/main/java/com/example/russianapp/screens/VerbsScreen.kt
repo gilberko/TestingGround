@@ -36,71 +36,141 @@ private data class VerbEntry(
     val perfective: String   // "—" when no true perfective pair exists
 )
 
-private val commonVerbs = listOf(
+private val coreVerbs = listOf(
     VerbEntry("to be",                    "быть",       "—"),
-    VerbEntry("to speak / talk",          "говорить",   "поговорить"),
-    VerbEntry("to say",                   "говорить",   "сказать"),
     VerbEntry("to do / make",             "делать",     "сделать"),
     VerbEntry("to give",                  "давать",     "дать"),
     VerbEntry("to take",                  "брать",      "взять"),
-    VerbEntry("to go (on foot, unidirectional)", "идти", "пойти"),
-    VerbEntry("to go (on foot, habitual)", "ходить",   "—"),
-    VerbEntry("to go (by vehicle, unidirectional)", "ехать", "поехать"),
-    VerbEntry("to go (by vehicle, habitual)", "ездить", "—"),
-    VerbEntry("to listen",                "слушать",    "послушать"),
-    VerbEntry("to hear",                  "слышать",    "услышать"),
-    VerbEntry("to see",                   "видеть",     "увидеть"),
-    VerbEntry("to look / watch",          "смотреть",   "посмотреть"),
-    VerbEntry("to read",                  "читать",     "прочитать"),
-    VerbEntry("to write",                 "писать",     "написать"),
-    VerbEntry("to think",                 "думать",     "подумать"),
+    VerbEntry("to have / possess",        "иметь",      "—"),
     VerbEntry("to know",                  "знать",      "узнать"),
     VerbEntry("to understand",            "понимать",   "понять"),
-    VerbEntry("to love / like",           "любить",     "полюбить"),
     VerbEntry("to want",                  "хотеть",     "захотеть"),
     VerbEntry("to be able to / can",      "мочь",       "смочь"),
-    VerbEntry("to live",                  "жить",       "прожить"),
-    VerbEntry("to work",                  "работать",   "поработать"),
-    VerbEntry("to eat",                   "есть",       "съесть"),
-    VerbEntry("to drink",                 "пить",       "выпить"),
-    VerbEntry("to sleep",                 "спать",          "поспать"),
-    VerbEntry("to wake up",              "просыпаться",    "проснуться"),
-    VerbEntry("to get dressed",          "одеваться",      "одеться"),
-    VerbEntry("to prepare",              "готовить",       "приготовить"),
-    VerbEntry("to have breakfast",       "завтракать",     "позавтракать"),
-    VerbEntry("to have lunch",           "обедать",        "пообедать"),
-    VerbEntry("to have dinner",          "ужинать",        "поужинать"),
-    VerbEntry("to have / possess",       "иметь",          "—"),
-    VerbEntry("to change",               "менять",         "изменить"),
-    VerbEntry("to turn on",              "включать",       "включить"),
-    VerbEntry("to turn off",             "выключать",      "выключить"),
-    VerbEntry("to choose",               "выбирать",       "выбрать"),
-    VerbEntry("to try",                  "пробовать",      "попробовать"),
-    VerbEntry("to hike",                 "ходить в поход", "—"),
-    VerbEntry("to run",                  "бегать",         "пробежать"),
+    VerbEntry("to see",                   "видеть",     "увидеть"),
+    VerbEntry("to look / watch",          "смотреть",   "посмотреть"),
+    VerbEntry("to choose",                "выбирать",   "выбрать"),
+    VerbEntry("to try",                   "пробовать",  "попробовать"),
     VerbEntry("to open",                  "открывать",  "открыть"),
     VerbEntry("to close",                 "закрывать",  "закрыть"),
-    VerbEntry("to buy",                   "покупать",   "купить"),
-    VerbEntry("to sell",                  "продавать",  "продать"),
-    VerbEntry("to help",                  "помогать",   "помочь"),
-    VerbEntry("to ask (a question)",      "спрашивать", "спросить"),
-    VerbEntry("to answer",                "отвечать",   "ответить"),
+    VerbEntry("to turn on",               "включать",   "включить"),
+    VerbEntry("to turn off",              "выключать",  "выключить"),
     VerbEntry("to begin / start",         "начинать",   "начать"),
     VerbEntry("to finish / end",          "заканчивать","закончить"),
-    VerbEntry("to arrive (on foot)",      "приходить",  "прийти"),
-    VerbEntry("to leave (on foot)",       "уходить",    "уйти"),
-    VerbEntry("to arrive (by vehicle)",   "приезжать",  "приехать"),
-    VerbEntry("to leave (by vehicle)",    "уезжать",    "уехать"),
+    VerbEntry("to change",                "менять",     "изменить"),
     VerbEntry("to search / look for",     "искать",     "найти"),
     VerbEntry("to find",                  "находить",   "найти"),
     VerbEntry("to lose",                  "терять",     "потерять"),
-    VerbEntry("to meet",                  "встречать",  "встретить"),
-    VerbEntry("to wait",                  "ждать",      "подождать"),
-    VerbEntry("to receive / get",         "получать",   "получить"),
-    VerbEntry("to pay",                   "платить",    "заплатить"),
-    VerbEntry("to learn / study",         "учить",      "выучить"),
     VerbEntry("to forget",                "забывать",   "забыть"),
-    VerbEntry("to remember / memorize",   "запоминать", "запомнить")
+    VerbEntry("to remember / memorize",   "запоминать", "запомнить"),
+    VerbEntry("to receive / get",         "получать",   "получить"),
+    VerbEntry("to think",                 "думать",     "подумать"),
+    VerbEntry("to live",                  "жить",       "прожить"),
+    VerbEntry("to own",                   "владеть",        "—"),
+    VerbEntry("to replace",               "заменять",       "заменить"),
+    VerbEntry("to use",                   "пользоваться",   "воспользоваться"),
+    VerbEntry("to examine",               "осматривать",    "осмотреть"),
+    VerbEntry("to investigate",           "разбираться",    "разобраться")
+)
+
+private val emotionVerbs = listOf(
+    VerbEntry("to love / like",           "любить",         "полюбить"),
+    VerbEntry("to hope",                  "надеяться",      "понадеяться"),
+    VerbEntry("to dream",                 "мечтать",        "помечтать"),
+    VerbEntry("to believe",               "верить",         "поверить"),
+    VerbEntry("to laugh",                 "смеяться",       "засмеяться"),
+    VerbEntry("to cry",                   "плакать",        "заплакать"),
+    VerbEntry("to fear",                  "бояться",        "испугаться"),
+    VerbEntry("to relax",                 "расслабляться",  "расслабиться")
+)
+
+private val eatingVerbs = listOf(
+    VerbEntry("to eat",                   "есть",       "съесть"),
+    VerbEntry("to drink",                 "пить",       "выпить"),
+    VerbEntry("to have breakfast",        "завтракать", "позавтракать"),
+    VerbEntry("to have lunch",            "обедать",    "пообедать"),
+    VerbEntry("to have dinner",           "ужинать",    "поужинать"),
+    VerbEntry("to prepare / cook",        "готовить",   "приготовить")
+)
+
+private val socialVerbs = listOf(
+    VerbEntry("to speak / talk",          "говорить",   "поговорить"),
+    VerbEntry("to say",                   "говорить",   "сказать"),
+    VerbEntry("to listen",                "слушать",    "послушать"),
+    VerbEntry("to hear",                  "слышать",    "услышать"),
+    VerbEntry("to read",                  "читать",     "прочитать"),
+    VerbEntry("to write",                 "писать",     "написать"),
+    VerbEntry("to ask (a question)",      "спрашивать", "спросить"),
+    VerbEntry("to answer",                "отвечать",   "ответить"),
+    VerbEntry("to meet",                  "встречать",  "встретить"),
+    VerbEntry("to help",                  "помогать",   "помочь"),
+    VerbEntry("to wait",                  "ждать",      "подождать"),
+    VerbEntry("to explain",               "объяснять",  "объяснить"),
+    VerbEntry("to discuss",               "обсуждать",  "обсудить"),
+    VerbEntry("to ask (for something)",   "просить",    "попросить"),
+    VerbEntry("to call (on the phone)",   "звонить",    "позвонить"),
+    VerbEntry("to approve",               "одобрять",   "одобрить"),
+    VerbEntry("to deny",                  "отклонять",  "отклонить"),
+    VerbEntry("to allow",                 "разрешать",  "разрешить"),
+    VerbEntry("to arrange",               "устраивать", "устроить")
+)
+
+private val movementVerbs = listOf(
+    VerbEntry("to go (on foot, unidirectional)",     "идти",    "пойти"),
+    VerbEntry("to go (on foot, habitual)",            "ходить",  "—"),
+    VerbEntry("to go (by vehicle, unidirectional)",   "ехать",   "поехать"),
+    VerbEntry("to go (by vehicle, habitual)",         "ездить",  "—"),
+    VerbEntry("to run",                   "бегать",         "пробежать"),
+    VerbEntry("to hike",                  "ходить в поход", "—"),
+    VerbEntry("to arrive (on foot)",      "приходить",      "прийти"),
+    VerbEntry("to leave (on foot)",       "уходить",        "уйти"),
+    VerbEntry("to arrive (by vehicle)",   "приезжать",      "приехать"),
+    VerbEntry("to leave (by vehicle)",    "уезжать",        "уехать"),
+    VerbEntry("to drive (a vehicle)",     "водить (машину)", "—"),
+    VerbEntry("to park",                  "парковать",      "припарковать"),
+    VerbEntry("to navigate",              "ориентироваться","сориентироваться"),
+    VerbEntry("to bring",                 "приносить",      "принести"),
+    VerbEntry("to move (something)",      "двигать",        "двинуть")
+)
+
+private val houseVerbs = listOf(
+    VerbEntry("to sleep",                 "спать",       "поспать"),
+    VerbEntry("to wake up",               "просыпаться", "проснуться"),
+    VerbEntry("to get dressed",           "одеваться",   "одеться"),
+    VerbEntry("to fix",                   "чинить",      "починить"),
+    VerbEntry("to wash",                  "мыть",        "помыть"),
+    VerbEntry("to clean",                 "убирать",     "убрать"),
+    VerbEntry("to hang (a picture)",      "вешать",      "повесить"),
+    VerbEntry("to pour",                  "наливать",    "налить"),
+    VerbEntry("to rest",                  "отдыхать",    "отдохнуть")
+)
+
+private val workStudyMoneyVerbs = listOf(
+    VerbEntry("to work",                  "работать",       "поработать"),
+    VerbEntry("to learn / memorize",      "учить",          "выучить"),
+    VerbEntry("to buy",                   "покупать",       "купить"),
+    VerbEntry("to sell",                  "продавать",      "продать"),
+    VerbEntry("to pay",                   "платить",        "заплатить"),
+    VerbEntry("to study (attend school)", "учиться",        "поучиться"),
+    VerbEntry("to teach (someone)",       "учить",          "научить"),
+    VerbEntry("to practice",              "тренироваться",  "потренироваться"),
+    VerbEntry("to manage / cope",         "справляться",    "справиться"),
+    VerbEntry("to schedule / plan",       "планировать",    "запланировать"),
+    VerbEntry("to monitor",               "следить",        "проследить"),
+    VerbEntry("to earn",                  "зарабатывать",   "заработать"),
+    VerbEntry("to spend (time)",          "проводить",      "провести"),
+    VerbEntry("to waste (money)",         "тратить",        "потратить"),
+    VerbEntry("to rent",                  "снимать",        "снять"),
+    VerbEntry("to loan (lend)",           "одалживать",     "одолжить"),
+    VerbEntry("to borrow",                "занимать",       "занять"),
+    VerbEntry("to return (something)",    "возвращать",     "вернуть"),
+    VerbEntry("to owe",                   "быть должным",   "задолжать")
+)
+
+private val hobbyVerbs = listOf(
+    VerbEntry("to paint / draw",          "рисовать",   "нарисовать"),
+    VerbEntry("to dance",                 "танцевать",  "потанцевать"),
+    VerbEntry("to sing",                  "петь",       "спеть"),
+    VerbEntry("to act",                   "поступать",  "поступить")
 )
 
 private data class MotionVerbEntry(
@@ -642,9 +712,70 @@ fun VerbsScreen(onBack: () -> Unit) {
             item { SectionHeader("Verb Aspects") }
             item { AspectExplanationCard() }
 
-            item { SectionHeader("Common Verbs") }
+            item { SectionHeader("Core Verbs") }
             item { VerbTableHeader() }
-            items(commonVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+            items(coreVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+
+            item { SectionHeader("Emotions & Feelings") }
+            item { VerbTableHeader() }
+            items(emotionVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+
+            item { SectionHeader("Eating & Drinking") }
+            item { VerbTableHeader() }
+            items(eatingVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+
+            item { SectionHeader("Social & Communication") }
+            item { VerbTableHeader() }
+            items(socialVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+
+            item { SectionHeader("Movement & Travel") }
+            item { VerbTableHeader() }
+            items(movementVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+            item {
+                Text(
+                    text = "Note: водить (машину) has no natural perfective — same dash convention as ходить/ездить.",
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+
+            item { SectionHeader("Around The House") }
+            item { VerbTableHeader() }
+            items(houseVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+
+            item { SectionHeader("Work, Study & Money") }
+            item { VerbTableHeader() }
+            items(workStudyMoneyVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
+                VerbRow(verb, isEven = index % 2 == 0)
+            }
+            item {
+                Text(
+                    text = "Note: учить means \"to learn / memorize\" (→ выучить) when its object is a subject, " +
+                            "but \"to teach someone\" (→ научить) when its object is a person.",
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+
+            item { SectionHeader("Hobbies & Activities") }
+            item { VerbTableHeader() }
+            items(hobbyVerbs.mapIndexed { i, v -> i to v }) { (index, verb) ->
                 VerbRow(verb, isEven = index % 2 == 0)
             }
 
