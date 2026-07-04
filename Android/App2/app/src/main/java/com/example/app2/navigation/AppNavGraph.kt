@@ -70,6 +70,7 @@ import com.example.app2.screens.WorkMeetingConversationScreen
 import com.example.app2.screens.CasualExpressionsScreen
 import com.example.app2.screens.CasualMeetingConversationScreen
 import com.example.app2.screens.RealEstateConversationScreen
+import com.example.app2.screens.LotteryConversationScreen
 import com.example.app2.screens.AdjectivesAdverbsScreen
 import com.example.app2.screens.MoreTensesScreen
 import com.example.app2.data.model.QuizDirection
@@ -140,6 +141,7 @@ sealed class Screen(val route: String) {
     object DictCasualExpressions : Screen("dict_casual_expressions")
     object ConversationCasualMeeting : Screen("conversation_casual_meeting")
     object ConversationRealEstate : Screen("conversation_real_estate")
+    object ConversationLottery : Screen("conversation_lottery")
     object TutorialAdjectivesAdverbs : Screen("tutorial_adjectives_adverbs")
     object TutorialMoreTenses : Screen("tutorial_more_tenses")
 }
@@ -450,7 +452,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSchool = { navController.navigate(Screen.ConversationSchool.route) },
                 onWorkMeeting = { navController.navigate(Screen.ConversationWorkMeeting.route) },
                 onCasualMeeting = { navController.navigate(Screen.ConversationCasualMeeting.route) },
-                onRealEstate = { navController.navigate(Screen.ConversationRealEstate.route) }
+                onRealEstate = { navController.navigate(Screen.ConversationRealEstate.route) },
+                onLottery = { navController.navigate(Screen.ConversationLottery.route) }
             )
         }
         composable(Screen.ConversationDirections.route) {
@@ -479,6 +482,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ConversationRealEstate.route) {
             RealEstateConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConversationLottery.route) {
+            LotteryConversationScreen(onBack = { navController.popBackStack() })
         }
     }
 }

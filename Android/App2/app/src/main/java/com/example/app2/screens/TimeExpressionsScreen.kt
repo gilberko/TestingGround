@@ -115,6 +115,50 @@ private val timeCategories = listOf(
             TimeEntry("Novembro", "November"),
             TimeEntry("Dezembro", "December")
         )
+    ),
+    TimeCategory(
+        "Ago & In... (Há / Daqui a)",
+        listOf(
+            TimeEntry("há alguns minutos / há uns minutos", "a few minutes ago"),
+            TimeEntry("há cinco minutos", "5 minutes ago"),
+            TimeEntry("há um ano", "a year ago"),
+            TimeEntry("daqui a uma hora", "in an hour"),
+            TimeEntry("daqui a meia hora", "in half an hour"),
+            TimeEntry("daqui a quinze minutos", "in 15 minutes"),
+            TimeEntry("daqui a cinco minutos", "in 5 minutes"),
+            TimeEntry("daqui a três dias", "in 3 days")
+        ),
+        headerNote = "Há (\"ago\", literally \"there is/has been\") looks back in time; daqui a (\"from here to...\") looks forward. European Portuguese uses há — not the Brazilian faz."
+    ),
+    TimeCategory(
+        "During, After, Before, While",
+        listOf(
+            TimeEntry("durante o jogo", "during the game", "durante + noun"),
+            TimeEntry(
+                "Depois de ter consertado o telemóvel, recebi uma chamada.",
+                "After I fixed the phone, I got a phone call.",
+                "depois de + personal compound infinitive (ter + past participle) marks the fixing as completed before the call"
+            ),
+            TimeEntry(
+                "Antes de teres ligado, eu estava a fazer os trabalhos de casa.",
+                "Before you called, I was doing my homework.",
+                "antes de + personal infinitive (teres ligado) — the subject changes (tu → eu), so the infinitive is inflected; contrast with antes que + subjunctive"
+            ),
+            TimeEntry(
+                "enquanto via o jogo",
+                "while watching the game",
+                "enquanto introduces a full clause with a conjugated verb, unlike durante which takes a noun"
+            )
+        )
+    ),
+    TimeCategory(
+        "Saying the Full Date",
+        listOf(
+            TimeEntry("Hoje é sábado, quatro de julho de dois mil e vinte e seis.", "Today is Saturday, the 4th of July, 2026."),
+            TimeEntry("Hoje é dia um / primeiro de janeiro.", "Today is the 1st of January."),
+            TimeEntry("Que dia é hoje? — Hoje é [dia da semana], [dia] de [mês].", "What day is it today? — Today is [weekday], [day] of [month].")
+        ),
+        headerNote = "Pattern: [dia da semana], [dia cardinal] de [mês] de [ano]. Portuguese uses cardinal numbers for the day of the month — \"quatro de julho\", not \"quarto de julho\". The 1st can be said as either um or the more formal/traditional primeiro (primeiro de janeiro for New Year's Day is very common)."
     )
 )
 

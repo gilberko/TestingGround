@@ -32,7 +32,8 @@ fun ConversationsScreen(
     onSchool: () -> Unit,
     onWorkMeeting: () -> Unit,
     onCasualMeeting: () -> Unit,
-    onRealEstate: () -> Unit
+    onRealEstate: () -> Unit,
+    onLottery: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -147,6 +148,18 @@ fun ConversationsScreen(
                     )
                 ) {
                     Text("Real Estate")
+                }
+            }
+            item {
+                Button(
+                    onClick = onLottery,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Winning The Lottery")
                 }
             }
         }
