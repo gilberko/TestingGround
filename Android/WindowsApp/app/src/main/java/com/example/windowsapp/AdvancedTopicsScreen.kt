@@ -101,7 +101,10 @@ fun AdvancedTopicsScreen(navController: NavController) {
             Box(modifier = Modifier.weight(1f)) { HackerButton("BEWARE THE\nREGISTRY", fontSize = 11.sp) { navController.navigate("advanced_beware_registry") } }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        HackerButton("CERTIFICATE STORE", fontSize = 12.sp) { navController.navigate("advanced_certificate_store") }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Box(modifier = Modifier.weight(1f)) { HackerButton("CERTIFICATE STORE", fontSize = 12.sp) { navController.navigate("advanced_certificate_store") } }
+            Box(modifier = Modifier.weight(1f)) { HackerButton("TRACING AND\nDEBUGGING", fontSize = 11.sp) { navController.navigate("advanced_tracing_debugging") } }
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
