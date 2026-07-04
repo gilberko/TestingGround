@@ -254,6 +254,82 @@ openat(AT_FDCWD, "missing.txt", O_RDONLY) = -1 ENOENT
                 }
             }
             item {
+                SectionCard(title = "ltrace — Library Call Tracer") {
+                    BodyText("ltrace traces calls a program makes into shared libraries (libc, libssl, etc.) rather than syscalls — useful for seeing malloc/fopen/strcmp-level activity that strace can't show you. Mechanically it's different from strace too: instead of using PTRACE_SYSCALL to stop at the syscall boundary, ltrace plants a breakpoint at the PLT (Procedure Linkage Table) entry for each traced function and uses PTRACE_POKETEXT to intercept the call.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Basic usage:")
+                    CodeBlock(
+                        """# Trace all library calls a program makes:
+ltrace ./myprogram arg1 arg2
+
+# Attach to an already-running process:
+ltrace -p 1234
+
+# Trace only specific functions:
+ltrace -e malloc+free+strlen ./myprogram
+
+# Also show system calls alongside library calls (like strace):
+ltrace -S ./myprogram
+
+# Print a summary: call counts and time spent per function:
+ltrace -c ./myprogram"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Reading ltrace output — each line is: function(args) = return_value:")
+                    CodeBlock(
+                        """strcmp("hello", "world")                 = 17
+# Compared the two strings; non-zero means they differ.
+
+malloc(32)                               = 0x55d4a1b2c260
+# Allocated 32 bytes; returned pointer.
+
+fopen("data.txt", "r")                   = 0x55d4a1b2d8a0
+# Opened the file; returned a FILE* handle.
+
+free(0x55d4a1b2c260)                     = <void>
+# Freed the earlier allocation."""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Caveat: on modern hardened distros (PIE binaries with full RELRO/ASLR), PLT-based interception can be unreliable, and several recent distros ship ltrace as broken or unmaintained. strace remains the dependable day-to-day tool — treat ltrace as a supplementary option when it works on your system.")
+                }
+            }
+            item {
+                SectionCard(title = "uprobes Without eBPF — ftrace & perf") {
+                    BodyText("uprobes and uretprobes are a kernel feature (CONFIG_UPROBE_EVENTS) independent of eBPF — you don't need to write or load an eBPF program to use them. The kernel's built-in ftrace uprobe-tracer exposes them directly through tracefs.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Raw tracefs interface:")
+                    CodeBlock(
+                        """# Add an entry probe (uprobe) at a function's file offset:
+echo 'p:my_probe /bin/bash:0x4245c0' >> /sys/kernel/tracing/uprobe_events
+
+# Add a return probe (uretprobe) - note the 'r:' prefix and ${'$'}retval:
+echo 'r:my_retprobe /bin/bash:0x4245c0 ${'$'}retval' >> /sys/kernel/tracing/uprobe_events
+
+# Enable the events:
+echo 1 > /sys/kernel/tracing/events/uprobes/my_probe/enable
+echo 1 > /sys/kernel/tracing/events/uprobes/my_retprobe/enable
+
+# Read live output:
+cat /sys/kernel/tracing/trace_pipe"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("Unlike kprobes, the uprobe tracer needs a file offset rather than a symbol name — tools like objdump -T or nm help you find it. perf probe is a friendlier frontend that calculates the offset for you:")
+                    CodeBlock(
+                        """# perf resolves the function name to an offset automatically:
+perf probe -x /bin/bash readline
+perf probe -x /bin/bash readline%return    # return probe
+
+# Record and inspect:
+perf record -e probe_bash:readline -e probe_bash:readline__return -a
+perf script"""
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("SystemTap is another non-eBPF option that supports user-space probes, though it compiles scripts into a kernel module rather than using tracefs directly.")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    BodyText("eBPF attaches to these same uprobe/uretprobe points but lets you run arbitrary in-kernel logic — filtering and aggregating events without streaming every sample to user space. See the eBPF hub in this app: \"Types of eBPF Programs\" (Tracing — uprobes & USDT section) and the \"bpftrace\" screen.")
+                }
+            }
+            item {
                 SectionCard(title = "Finding Memory Leaks with Valgrind") {
                     BodyText("Valgrind's Memcheck tool instruments every memory operation at runtime, detecting leaks, use-after-free, and reads of uninitialised memory. It runs your program as-is — no recompile needed — but compile with -g and -O0 for readable output.")
                     Spacer(modifier = Modifier.height(8.dp))

@@ -93,9 +93,15 @@ fun EbpfProgramTypesScreen(onBack: () -> Unit) {
             }
             item {
                 SectionCard(title = "Tracing — uprobes & USDT") {
-                    BodyText("uprobes are the user-space equivalent of kprobes — they attach to any function in any user-space binary, including running processes. You can probe functions in nginx, Python, databases, or your own application without modifying them.")
+                    BodyText("uprobes are the user-space equivalent of kprobes — they attach to any function in any user-space binary, including running processes. You can probe functions in nginx, Python, databases, or your own application without modifying them. A uprobe fires when the function is CALLED, so you only have access to its arguments (arg0, arg1, ...), not a return value.")
                     Spacer(Modifier.height(8.dp))
-                    CodeBlock("# Attach to the readline() function in bash:\nbpftrace -e 'uprobe:/bin/bash:readline\n{ printf(\"command: %s\\n\", str(retval)); }'")
+                    CodeBlock("# Attach to the readline() function in bash - fires on entry:\nbpftrace -e 'uprobe:/bin/bash:readline\n{ printf(\"prompt: %s\\n\", str(arg0)); }'")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("uretprobes are the user-space equivalent of kretprobes — they fire when the probed function RETURNS instead of when it's called. That's the only place retval (the return value) is valid; using retval on a plain uprobe is a common mistake since the function hasn't returned anything yet.")
+                    Spacer(Modifier.height(8.dp))
+                    CodeBlock("# Attach a uretprobe to the same function - fires on return, retval is now valid:\nbpftrace -e 'uretprobe:/bin/bash:readline\n{ printf(\"command typed: %s\\n\", str(retval)); }'")
+                    Spacer(Modifier.height(8.dp))
+                    BodyText("Since Linux 6.11, x86-64 uretprobes are backed internally by a dedicated uretprobe(2) syscall trampoline instead of a breakpoint trap, which is faster — this is a kernel-internal optimization and is transparent to bpftrace users.")
                     Spacer(Modifier.height(8.dp))
                     BodyText("USDT (User Statically-Defined Tracepoints) are static tracepoints embedded in user-space applications — the user-space equivalent of kernel tracepoints. Many runtimes ship with USDT probes built in:")
                     Spacer(Modifier.height(8.dp))
