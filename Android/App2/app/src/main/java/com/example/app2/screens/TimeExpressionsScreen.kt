@@ -161,6 +161,57 @@ private val timeCategories = listOf(
         ),
         headerNote = "Pattern: [dia da semana], [dia cardinal] de [mês] de [ano]. Portuguese uses cardinal numbers for the day of the month — \"quatro de julho\", not \"quarto de julho\". The 1st can be said as either um or the more formal/traditional primeiro (primeiro de janeiro for New Year's Day is very common).",
         stacked = true
+    ),
+    TimeCategory(
+        "Telling Time: Hours",
+        listOf(
+            TimeEntry("São nove horas da manhã.", "It's 9 o'clock in the morning."),
+            TimeEntry(
+                "São quatro horas da tarde. / São dezasseis horas.",
+                "It's 4 o'clock in the afternoon. / It's 16:00.",
+                "Pick one register, don't mix them: 12h + da tarde (informal) OR bare 24h (formal). \"Dezasseis horas da tarde\" is redundant/unnatural — the 24h number already says afternoon."
+            ),
+            TimeEntry(
+                "É uma hora da madrugada.",
+                "It's 1 o'clock in the morning (the small hours).",
+                "Not \"da noite\" — noite covers evening to midnight (~6pm–meia-noite), while madrugada covers midnight to dawn (~meia-noite–6am). 1am falls in madrugada."
+            ),
+            TimeEntry("São dez horas da noite.", "It's 10 o'clock at night."),
+            TimeEntry("É meio-dia.", "It's noon.", "Always é, never são — meio-dia is grammatically singular."),
+            TimeEntry("É meia-noite.", "It's midnight.", "Always é, never são — meia-noite is grammatically singular.")
+        ),
+        headerNote = "É is used only for uma hora (1 o'clock) and for meio-dia/meia-noite; são is used for every other hour (duas horas, três horas...). Portuguese has four day-period words instead of am/pm: da manhã (~6am–noon), da tarde (~noon–6pm), da noite (~6pm–midnight), da madrugada (midnight–~6am). Portugal uses the 24-hour clock often, even semi-formally (schedules, news) — more so than Brazil.",
+        stacked = true
+    ),
+    TimeCategory(
+        "Telling Time: Minutes",
+        listOf(
+            TimeEntry(
+                "São quatro e cinco (da tarde). / São dezasseis e cinco.",
+                "It's 4:05 (pm). / It's 16:05."
+            ),
+            TimeEntry(
+                "São quatro e um quarto. / São quatro e quinze.",
+                "It's quarter past four. / It's 4:15.",
+                "Both um quarto and quinze are used interchangeably for the quarter-hour."
+            ),
+            TimeEntry(
+                "São quatro e meia. / São dezasseis e trinta.",
+                "It's half past four. / It's 4:30."
+            ),
+            TimeEntry(
+                "São quatro e quarenta e cinco. / É um quarto para as cinco. / São cinco menos um quarto.",
+                "It's 4:45. / It's a quarter to five.",
+                "Three valid options, not formal-vs-informal: straight addition (always safe); um quarto/quinze para as (South, incl. Lisbon); menos um quarto/quinze (North). Straight addition is what timetables and formal announcements use."
+            ),
+            TimeEntry(
+                "São quatro e cinquenta e cinco. / São cinco para as cinco. / São cinco menos cinco.",
+                "It's 4:55. / It's five to five.",
+                "Same three-way choice as above: e cinquenta e cinco (straight), para as (South), menos (North)."
+            )
+        ),
+        headerNote = "Past the hour: e + minutes (e dez, e vinte...). Approaching the next hour, there are two competing regional conventions for \"to\" phrasing — para as in the South, menos in the North — both understood nationwide; straight 24h-style addition sidesteps the split entirely and is standard in formal/written contexts.",
+        stacked = true
     )
 )
 
