@@ -24,7 +24,7 @@ fun TellingTheTimeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Telling The Time and Date", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Time And Date", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -183,6 +183,36 @@ fun TellingTheTimeScreen(navController: NavController) {
             TTNote("'V roce' uses the locative of rok. The year is then read as a plain cardinal number — no further declension needed after 'v roce'.")
             TTNote("Colloquial shorthand: Czechs sometimes drop the thousands in speech — 'narodil jsem se v osmdesát jedna' — but the full form is clearer and safer.")
             TTNote("Decades: v osmdesátých letech = in the eighties.  v devadesátých letech = in the nineties.")
+
+            TTSection("Ago (Před + Instrumental)")
+            TTNote("'před' + instrumental case of the time noun = '[X time] ago'. Singular nouns take the instrumental singular; if a number is added, the noun switches to instrumental plural.")
+            TTRow("před chvílí", "a moment ago", "chvíle (f.) → instrumental: chvílí")
+            TTRow("před hodinou", "an hour ago", "hodina (f.) → instrumental: hodinou")
+            TTRow("před týdnem", "a week ago", "týden (m.) → instrumental: týdnem")
+            TTRow("před měsícem", "a month ago", "měsíc (m.) → instrumental: měsícem")
+            TTRow("před rokem", "a year ago", "rok (m.) → instrumental: rokem")
+            TTRow("před dvěma hodinami", "two hours ago", "plural: hodina → instrumental plural hodinami")
+            TTRow("před třemi dny", "three days ago", "den (m.) → instrumental plural: dny")
+            TTRow("před dvěma lety", "two years ago", "rok's plural stem is 'lét-' → instrumental plural: lety")
+            TTRow("Viděl jsem ho před hodinou.", "I saw him an hour ago.")
+            TTRow("Přestěhovali jsme se před rokem.", "We moved a year ago.")
+
+            TTSection("In ___ (Za + Accusative/Genitive, Future Duration)")
+            TTNote("'za' + the time noun = 'in [X time]' (something will happen after that duration passes). This is the same 'za' construction already used above for reading minutes on the clock (e.g. za dvanáct jedenáct).")
+            TTRow("za chvíli", "in a moment")
+            TTRow("za hodinu", "in an hour", "hodina → accusative: hodinu")
+            TTRow("za deset minut", "in 10 minutes", "minut = genitive plural, used after numbers 5 and above")
+            TTRow("za týden", "in a week")
+            TTRow("za měsíc", "in a month")
+            TTRow("za rok", "in a year")
+            TTRow("Vrátím se za hodinu.", "I'll be back in an hour.")
+            TTRow("Sejdeme se za týden.", "We'll meet in a week.")
+
+            TTSection("Before / After / While — In Practice")
+            TTNote("The grammar for než (before), poté co (after), and zatímco (while) is fully covered in Connecting Words / Connecting Sentences. Here are practical example sentences using those same words.")
+            TTRow("Objednal jsem si kávu, než jsem si našel místo k sezení.", "I ordered the coffee before finding a place to sit.", "než + past tense clause")
+            TTRow("Zavolal jsem ti, poté co jsem uklidil dům.", "I called you after I cleaned the house.", "poté, co + past tense clause")
+            TTRow("Zatímco jsi byl(a) ve sprše, někdo volal.", "While you were in the shower, someone called.", "zatímco = simultaneous actions")
 
             Spacer(modifier = Modifier.height(24.dp))
         }

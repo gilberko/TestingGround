@@ -106,6 +106,7 @@ class MainActivity : ComponentActivity() {
                 composable("dialogue_soccer") { WatchingSoccerDialogueScreen(navController) }
                 composable("word_order") { WordOrderScreen(navController) }
                 composable("quiz_pronoun_cases") { PronounCasesQuizScreen(navController) }
+                composable("need_have_allowed") { NeedHaveAllowedScreen(navController) }
             }
         }
     }
@@ -334,9 +335,10 @@ fun DictionaryHubScreen(navController: NavController) {
             "Common Verbs List" to "common_verbs",
             "Examples of Conjugation of Cases" to "case_conjugation_examples",
             "Tech" to "tech",
-            "Telling The Time and Date" to "telling_time",
+            "Time And Date" to "telling_time",
             "Sports" to "sports",
-            "School and University" to "school_university"
+            "School and University" to "school_university",
+            "Need To, Have To, Allowed" to "need_have_allowed"
         )
         Column(
             modifier = Modifier
