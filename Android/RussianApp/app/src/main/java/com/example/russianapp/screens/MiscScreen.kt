@@ -422,6 +422,84 @@ fun MiscScreen(onBack: () -> Unit) {
                 }
             }
 
+            // ── ли — the Question / Doubt Particle ────────────────────────────
+            item { MiscSectionHeader("ли — the Question / Doubt Particle") }
+            item {
+                MiscCard(title = "ли — forming yes/no questions") {
+                    Text(
+                        text = "ли is an enclitic particle used to turn a statement into a yes/no question. " +
+                                "It is a second-position word: it cannot start a clause or stand alone — it always " +
+                                "attaches directly after the word being questioned, and that word moves to the front " +
+                                "of the clause.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Знает ли он об этом?" to "Does he know about this? (questioning the fact of knowing)",
+                        "Он ли это сделал?" to "Was it HE who did this? (questioning the subject specifically)",
+                        "Придёшь ли ты?" to "Will you come?"
+                    ))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Note: whichever word comes right before ли is the word under question-focus. " +
+                                "\"Знает ли он...\" asks about the knowing itself; \"Он ли...\" asks specifically " +
+                                "whether HE (as opposed to someone else) did it.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontStyle = FontStyle.Italic
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "In everyday modern speech, direct questions like these sound literary or a bit old-fashioned — " +
+                                "most spoken yes/no questions just use rising intonation instead: \"Ты придёшь?\" " +
+                                "(Will you come?) is the normal, casual way to ask. ли's main home in living speech is " +
+                                "inside indirect questions — see below.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontStyle = FontStyle.Italic
+                    )
+                }
+            }
+            item {
+                MiscCard(title = "ли in indirect questions — \"whether / if\"") {
+                    Text(
+                        text = "This is where ли is essential and fully standard, even in casual speech: it embeds a " +
+                                "yes/no question inside a larger sentence, working like English \"whether\" or \"if\". " +
+                                "The same word-order rule applies — the focused word comes first, then ли.",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Я не знаю, придёт ли он." to "I don't know whether he will come.",
+                        "Она спросила, знаю ли я ответ." to "She asked whether I know the answer.",
+                        "Он не сказал, согласен ли он." to "He didn't say whether he agrees."
+                    ))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Common mistake: don't use если (\"if\") here — если only introduces real conditionals " +
+                                "(\"if X happens, then Y\"), never an embedded question. \"Я не знаю, если он придёт\" " +
+                                "is wrong for \"I don't know whether he'll come\"; it must be \"Я не знаю, придёт ли он.\"",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontStyle = FontStyle.Italic
+                    )
+                }
+            }
+            item {
+                MiscCard(title = "Set phrases with ли — вряд ли, едва ли, то ли…то ли…") {
+                    Text(
+                        text = "ли also shows up frozen inside a few very common expressions:",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    MiscExampleBlock(listOf(
+                        "Вряд ли он придёт." to "вряд ли — \"hardly / unlikely\": It's doubtful he'll come.",
+                        "Едва ли это правда." to "едва ли — near-synonym of вряд ли, slightly more formal/literary: It's scarcely true.",
+                        "То ли он забыл, то ли не хотел приходить." to "то ли…то ли… — \"either…or…\": Either he forgot, or he didn't want to come."
+                    ))
+                }
+            }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }
