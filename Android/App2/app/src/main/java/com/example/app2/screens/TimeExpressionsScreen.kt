@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
 private data class TimeEntry(val pt: String, val en: String, val note: String = "")
-private data class TimeCategory(val title: String, val entries: List<TimeEntry>, val headerNote: String = "")
+private data class TimeCategory(val title: String, val entries: List<TimeEntry>, val headerNote: String = "", val stacked: Boolean = false)
 
 private val timeCategories = listOf(
     TimeCategory(
@@ -149,7 +149,8 @@ private val timeCategories = listOf(
                 "while watching the game",
                 "enquanto introduces a full clause with a conjugated verb, unlike durante which takes a noun"
             )
-        )
+        ),
+        stacked = true
     ),
     TimeCategory(
         "Saying the Full Date",
@@ -158,7 +159,8 @@ private val timeCategories = listOf(
             TimeEntry("Hoje é dia um / primeiro de janeiro.", "Today is the 1st of January."),
             TimeEntry("Que dia é hoje? — Hoje é [dia da semana], [dia] de [mês].", "What day is it today? — Today is [weekday], [day] of [month].")
         ),
-        headerNote = "Pattern: [dia da semana], [dia cardinal] de [mês] de [ano]. Portuguese uses cardinal numbers for the day of the month — \"quatro de julho\", not \"quarto de julho\". The 1st can be said as either um or the more formal/traditional primeiro (primeiro de janeiro for New Year's Day is very common)."
+        headerNote = "Pattern: [dia da semana], [dia cardinal] de [mês] de [ano]. Portuguese uses cardinal numbers for the day of the month — \"quatro de julho\", not \"quarto de julho\". The 1st can be said as either um or the more formal/traditional primeiro (primeiro de janeiro for New Year's Day is very common).",
+        stacked = true
     )
 )
 
@@ -199,21 +201,36 @@ fun TimeExpressionsScreen(onBack: () -> Unit) {
                         }
                         category.entries.forEach { entry ->
                             Column(modifier = Modifier.fillMaxWidth()) {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
+                                if (category.stacked) {
                                     Text(
                                         text = entry.pt,
                                         style = MaterialTheme.typography.bodyMedium,
                                         fontStyle = FontStyle.Italic,
-                                        modifier = Modifier.weight(1f)
+                                        modifier = Modifier.fillMaxWidth()
                                     )
                                     Text(
                                         text = entry.en,
                                         style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        modifier = Modifier.fillMaxWidth()
                                     )
+                                } else {
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Text(
+                                            text = entry.pt,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            fontStyle = FontStyle.Italic,
+                                            modifier = Modifier.weight(1f)
+                                        )
+                                        Text(
+                                            text = entry.en,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
                                 }
                                 if (entry.note.isNotEmpty()) {
                                     Text(
