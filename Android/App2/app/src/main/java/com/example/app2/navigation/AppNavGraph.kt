@@ -73,6 +73,7 @@ import com.example.app2.screens.RealEstateConversationScreen
 import com.example.app2.screens.LotteryConversationScreen
 import com.example.app2.screens.AdjectivesAdverbsScreen
 import com.example.app2.screens.MoreTensesScreen
+import com.example.app2.screens.BodyAndHealthScreen
 import com.example.app2.data.model.QuizDirection
 
 sealed class Screen(val route: String) {
@@ -125,6 +126,7 @@ sealed class Screen(val route: String) {
     object DictHomeImprovement : Screen("dict_home_improvement")
     object DictSports : Screen("dict_sports")
     object DictCountries : Screen("dict_countries")
+    object DictBodyAndHealth : Screen("dict_body_and_health")
     object VocabQuizEnToPt : Screen("vocab_quiz_en_to_pt")
     object VocabQuizPtToEn : Screen("vocab_quiz_pt_to_en")
     object VocabResultsEnToPt : Screen("vocab_results_en_to_pt")
@@ -260,7 +262,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onHomeImprovement = { navController.navigate(Screen.DictHomeImprovement.route) },
                 onSports = { navController.navigate(Screen.DictSports.route) },
                 onCountries = { navController.navigate(Screen.DictCountries.route) },
-                onCasualExpressions = { navController.navigate(Screen.DictCasualExpressions.route) }
+                onCasualExpressions = { navController.navigate(Screen.DictCasualExpressions.route) },
+                onBodyAndHealth = { navController.navigate(Screen.DictBodyAndHealth.route) }
             )
         }
         composable(Screen.DictColors.route) {
@@ -325,6 +328,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictCountries.route) {
             CountriesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictBodyAndHealth.route) {
+            BodyAndHealthScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EPvsBP.route) {
             EPvsBPScreen(onBack = { navController.popBackStack() })
