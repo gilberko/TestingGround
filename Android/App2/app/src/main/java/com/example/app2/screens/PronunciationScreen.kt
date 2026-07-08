@@ -137,12 +137,36 @@ private val pronunciationEntries = listOf(
         )
     ),
     PronunciationEntry(
+        symbol = "-s (word-final)",
+        rule = "Voiceless 'sh' before a pause or a voiceless consonant; voiced 'zh' before a voiced consonant; links as a 'z' sound when the next word starts with a vowel.",
+        phonetic = "'sh' (pause) / 'zh' (voiced consonant) / 'z' (liaison before vowel)",
+        examples = listOf(
+            Triple("falas", "FAH-lash", "you speak (before a pause = 'sh')"),
+            Triple("falas bem", "FAH-lazh BAYNG", "you speak well (before voiced 'b' = 'zh')"),
+            Triple("mas o", "MA-zoo", "but the (before a vowel = 'z', linked)")
+        )
+    ),
+    PronunciationEntry(
         symbol = "ch",
         rule = "Always produces a 'sh' sound in EP.",
         phonetic = "Like 'sh' in 'shoe'",
         examples = listOf(
             Triple("chave", "SHA-ve", "key"),
             Triple("chuva", "SHOO-va", "rain")
+        )
+    ),
+    PronunciationEntry(
+        symbol = "c / g (before e, i vs a, o, u)",
+        rule = "Both letters are 'hard' before a/o/u and 'soft' before e/i. Some verbs change spelling in certain forms just to preserve the original sound before e.",
+        phonetic = "c → 'k' (a/o/u) or 's' (e/i); g → 'g' (a/o/u) or 'zh' (e/i)",
+        examples = listOf(
+            Triple("casa", "KA-za", "house (c before a = 'k')"),
+            Triple("cinco", "SEEN-koo", "five (c before i = 's')"),
+            Triple("gato", "GA-too", "cat (g before a = 'g')"),
+            Triple("gelo", "ZHEH-loo", "ice (g before e = 'zh')"),
+            Triple("fiquei", "fee-KAY", "I stayed — ficar → fiquei keeps the 'k' sound before e"),
+            Triple("paguei", "pa-GAY", "I paid — pagar → paguei keeps the 'g' sound before e"),
+            Triple("comecei", "koo-me-SAY", "I began — começar → comecei drops the cedilla (c alone is already 's' before e)")
         )
     ),
     PronunciationEntry(
@@ -182,6 +206,18 @@ private val pronunciationEntries = listOf(
             Triple("manhã", "ma-NYAH(n)", "morning"),
             Triple("pão", "POWNG(n)", "bread"),
             Triple("mãe", "MYAH(n)e", "mother")
+        )
+    ),
+    PronunciationEntry(
+        symbol = "o (unstressed) vs ó / ô (accented)",
+        rule = "Unstressed 'o' reduces to an 'oo' sound. An accent marks the stressed syllable and keeps the full vowel: ó is open, ô is closed.",
+        phonetic = "Unstressed → 'oo'; ó → open 'aw'; ô → closed 'oh'",
+        examples = listOf(
+            Triple("falo", "FAH-loo", "I speak (unstressed final o = 'oo')"),
+            Triple("avó", "a-VAW", "grandmother (ó = open, stressed)"),
+            Triple("avô", "a-VOH", "grandfather (ô = closed, stressed)"),
+            Triple("nós", "NAWSH", "we (stressed, open 'ó' sound)"),
+            Triple("nos", "noosh", "us / ourselves (unstressed clitic — reduces to 'oo', NOT the same as nós)")
         )
     )
 )
