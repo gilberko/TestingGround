@@ -89,6 +89,14 @@ fun ReflexiveVerbsScreen(navController: NavController) {
             RVRow("Ins: sebou", "Vezměte sebou průvodce.", "Take a guide along.  (mít/vzít sebou = with you)")
             RVNote("se / si are short/clitic forms (always in second clause position). sebe / sobě / sebou are full forms used after prepositions or for emphasis.")
 
+            RVSection("jsi + se/si in the Past Tense — Contraction")
+            RVNote("In the past tense, when the helper jsi lands right next to a verb's own se or si, standard Czech fuses them into one word — this is called a contracted form (kontrakce): jsi + se → ses, jsi + si → sis. It is the correct, prescribed written form, not just spoken shorthand.")
+            RVRow("Ty ses díval na film.", "You were watching a film.", "jsi + se → ses  (dívat se)")
+            RVRow("Zapamatoval sis to?", "Did you remember it?", "jsi + si → sis  (zapamatovat si)")
+            RVRow("Bál ses tmy?", "Were you afraid of the dark?", "jsi + se → ses  (bát se)")
+            RVNote("Exception: only the reflexive particle se contracts this way — the preposition se ('with', a variant of s) never does. Jsi se mnou spokojený. (You are satisfied with me.) always stays as-is.")
+            RVNote("See Past Tense for the full jsi second-position word-order rule this builds on.")
+
             RVSection("Inherently Reflexive Verbs — se")
             RVNote("These verbs require se as a fixed part of their identity. The se does not mean 'oneself' as a grammatical direct object — it is simply how the verb is expressed in Czech.")
             RVRow("smát se", "to laugh", "Směji se. (I laugh.)  Směješ se mi. (You're laughing at me.)")

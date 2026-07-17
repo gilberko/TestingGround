@@ -103,6 +103,14 @@ fun PastTenseScreen(navController: NavController) {
             PASNote("Ráno jsem dokončil projekt.  (In the morning, I finished the project.) — Ráno is first; jsem is second, before dokončil. The clitic does not move after the verb — it always sits in second position, whatever comes first.")
             PASNote("on / ona / ono / oni / ony never use a helper verb in the past tense, so no reordering applies to them.")
 
+            PASSection("Reflexive Past Tense — jsi + se/si = ses/sis")
+            PASNote("When jsi lands right next to the reflexive particle se or si of the verb being conjugated, standard Czech fuses them into one word — this is called a contracted form (kontrakce): jsi + se → ses, jsi + si → sis. It is not just colloquial shorthand — ses/sis is the correct, prescribed written form.")
+            PASNote("Ty jsi se díval.  →  Ty ses díval.  (You were looking.)")
+            PASNote("Všiml jsi si toho?  →  Všiml sis toho?  (Did you notice that?)")
+            PASNote("Exception: this only fuses with the reflexive particle se, not the preposition se (a variant of s, meaning 'with'). Jsi se mnou. (You are with me.) never contracts — it stays jsi se mnou.")
+            PASNote("The same fusion happens in the conditional mood, fully lexicalized: by + jsi → bys, aby + jsi → abys, kdyby + jsi → kdybys. Jsi is the one person that always fuses with what follows it — jsem / jsme / jste never do.")
+            PASNote("See Reflexive Verbs for the full se/si system.")
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
