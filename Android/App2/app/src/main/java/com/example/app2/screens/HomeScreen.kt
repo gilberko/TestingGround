@@ -47,7 +47,8 @@ fun HomeScreen(
     onStartMemorizeEnToPt: () -> Unit,
     onStartMemorizePtToEn: () -> Unit,
     onOpenEPvsBP: () -> Unit,
-    onOpenConversations: () -> Unit
+    onOpenConversations: () -> Unit,
+    onOpenConjugationTables: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -208,6 +209,17 @@ fun HomeScreen(
                         )
                     ) {
                         Text("EP vs. Brazilian PT")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(
+                        onClick = onOpenConjugationTables,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.Black,
+                            contentColor = Color.White
+                        )
+                    ) {
+                        Text("Conjugation Tables")
                     }
                 }
                 Text(

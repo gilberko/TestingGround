@@ -74,7 +74,12 @@ import com.example.app2.screens.LotteryConversationScreen
 import com.example.app2.screens.AdjectivesAdverbsScreen
 import com.example.app2.screens.MoreTensesScreen
 import com.example.app2.screens.BodyAndHealthScreen
+import com.example.app2.screens.ConjugationTablesScreen
+import com.example.app2.screens.VerbConjugationTableScreen
+import com.example.app2.screens.RegularSampleVerbs
+import com.example.app2.screens.IrregularSampleVerbs
 import com.example.app2.data.model.QuizDirection
+import com.example.app2.data.model.Tense
 
 sealed class Screen(val route: String) {
     object Home : Screen("home")
@@ -146,6 +151,16 @@ sealed class Screen(val route: String) {
     object ConversationLottery : Screen("conversation_lottery")
     object TutorialAdjectivesAdverbs : Screen("tutorial_adjectives_adverbs")
     object TutorialMoreTenses : Screen("tutorial_more_tenses")
+    object ConjugationTables : Screen("conjugation_tables")
+    object ConjTablePresentIndicative : Screen("conj_table_present_indicative")
+    object ConjTablePastIndicative : Screen("conj_table_past_indicative")
+    object ConjTableFutureIndicative : Screen("conj_table_future_indicative")
+    object ConjTableConjunctive : Screen("conj_table_conjunctive")
+    object ConjTableConditional : Screen("conj_table_conditional")
+    object ConjTableImperative : Screen("conj_table_imperative")
+    object ConjTableMaisQuePerfeito : Screen("conj_table_mais_que_perfeito")
+    object ConjTablePersonalInfinitive : Screen("conj_table_personal_infinitive")
+    object ConjTableIrregularVerbs : Screen("conj_table_irregular_verbs")
 }
 
 @Composable
@@ -166,7 +181,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onStartMemorizeEnToPt = { navController.navigate(Screen.MemorizeVocabEnToPt.route) },
                 onStartMemorizePtToEn = { navController.navigate(Screen.MemorizeVocabPtToEn.route) },
                 onOpenEPvsBP = { navController.navigate(Screen.EPvsBP.route) },
-                onOpenConversations = { navController.navigate(Screen.Conversations.route) }
+                onOpenConversations = { navController.navigate(Screen.Conversations.route) },
+                onOpenConjugationTables = { navController.navigate(Screen.ConjugationTables.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -491,6 +507,112 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.ConversationLottery.route) {
             LotteryConversationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.ConjugationTables.route) {
+            ConjugationTablesScreen(
+                onBack = { navController.popBackStack() },
+                onPresentIndicative = { navController.navigate(Screen.ConjTablePresentIndicative.route) },
+                onPastIndicative = { navController.navigate(Screen.ConjTablePastIndicative.route) },
+                onFutureIndicative = { navController.navigate(Screen.ConjTableFutureIndicative.route) },
+                onConjunctive = { navController.navigate(Screen.ConjTableConjunctive.route) },
+                onConditional = { navController.navigate(Screen.ConjTableConditional.route) },
+                onImperative = { navController.navigate(Screen.ConjTableImperative.route) },
+                onMaisQuePerfeito = { navController.navigate(Screen.ConjTableMaisQuePerfeito.route) },
+                onPersonalInfinitive = { navController.navigate(Screen.ConjTablePersonalInfinitive.route) },
+                onIrregularVerbs = { navController.navigate(Screen.ConjTableIrregularVerbs.route) }
+            )
+        }
+        composable(Screen.ConjTablePresentIndicative.route) {
+            VerbConjugationTableScreen(
+                title = "Present Indicative",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.INDICATIVO_PRESENTE),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTablePastIndicative.route) {
+            VerbConjugationTableScreen(
+                title = "Past Indicative",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(
+                    Tense.INDICATIVO_PRETERITO_PERFEITO,
+                    Tense.INDICATIVO_PRETERITO_IMPERFEITO
+                ),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableFutureIndicative.route) {
+            VerbConjugationTableScreen(
+                title = "Future Indicative",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.INDICATIVO_FUTURO),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableConjunctive.route) {
+            VerbConjugationTableScreen(
+                title = "Conjunctive",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(
+                    Tense.CONJUNTIVO_PRETERITO_IMPERFEITO,
+                    Tense.CONJUNTIVO_PRESENTE,
+                    Tense.CONJUNTIVO_FUTURO
+                ),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableConditional.route) {
+            VerbConjugationTableScreen(
+                title = "Conditional",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.INDICATIVO_CONDICIONAL),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableImperative.route) {
+            VerbConjugationTableScreen(
+                title = "Imperative",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.IMPERATIVO_AFIRMATIVO, Tense.IMPERATIVO_NEGATIVO),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableMaisQuePerfeito.route) {
+            VerbConjugationTableScreen(
+                title = "Mais Que Perfeito",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.INDICATIVO_PRETERITO_MAIS_QUE_PERFEITO),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTablePersonalInfinitive.route) {
+            VerbConjugationTableScreen(
+                title = "Personal Infinitive",
+                verbInfinitives = RegularSampleVerbs,
+                tenses = listOf(Tense.INFINITIVO_PESSOAL),
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.ConjTableIrregularVerbs.route) {
+            VerbConjugationTableScreen(
+                title = "Irregular Verbs",
+                verbInfinitives = IrregularSampleVerbs,
+                tenses = listOf(
+                    Tense.INDICATIVO_PRESENTE,
+                    Tense.INDICATIVO_PRETERITO_PERFEITO,
+                    Tense.INDICATIVO_PRETERITO_IMPERFEITO,
+                    Tense.INDICATIVO_PRETERITO_MAIS_QUE_PERFEITO,
+                    Tense.INDICATIVO_FUTURO,
+                    Tense.CONJUNTIVO_PRETERITO_IMPERFEITO,
+                    Tense.CONJUNTIVO_PRESENTE,
+                    Tense.CONJUNTIVO_FUTURO,
+                    Tense.INDICATIVO_CONDICIONAL,
+                    Tense.IMPERATIVO_AFIRMATIVO,
+                    Tense.IMPERATIVO_NEGATIVO,
+                    Tense.INFINITIVO_PESSOAL
+                ),
+                onBack = { navController.popBackStack() }
+            )
         }
     }
 }
