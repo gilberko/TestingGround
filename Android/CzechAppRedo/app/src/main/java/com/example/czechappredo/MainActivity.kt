@@ -107,6 +107,12 @@ class MainActivity : ComponentActivity() {
                 composable("word_order") { WordOrderScreen(navController) }
                 composable("quiz_pronoun_cases") { PronounCasesQuizScreen(navController) }
                 composable("need_have_allowed") { NeedHaveAllowedScreen(navController) }
+                composable("conjugation_examples") { ConjugationExamplesHubScreen(navController) }
+                composable("noun_conjugation") { NounConjugationHubScreen(navController) }
+                composable("noun_conjugation_masc_animate") { MasculineAnimateConjugationScreen(navController) }
+                composable("noun_conjugation_masc_inanimate") { MasculineInanimateConjugationScreen(navController) }
+                composable("noun_conjugation_feminine") { FeminineConjugationScreen(navController) }
+                composable("noun_conjugation_neuter") { NeuterConjugationScreen(navController) }
             }
         }
     }
@@ -183,6 +189,8 @@ fun HomeScreen(navController: NavController) {
             NavButton(label = "Personal & Possessive Pronouns Cases Quiz") { navController.navigate("quiz_pronoun_cases") }
             Spacer(modifier = Modifier.height(20.dp))
             NavButton(label = "Sample Dialogues") { navController.navigate("dialogues") }
+            Spacer(modifier = Modifier.height(20.dp))
+            NavButton(label = "Conjugation Examples") { navController.navigate("conjugation_examples") }
             Spacer(modifier = Modifier.height(48.dp))
         }
     }
