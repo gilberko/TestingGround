@@ -34,6 +34,7 @@ import com.example.linuxapp.R
 fun HomeScreen(
     onLinuxUsage: () -> Unit,
     onLinuxUsage2: () -> Unit,
+    onLinuxUsage3: () -> Unit,
     onShellScripting: () -> Unit,
     onLinuxHistory: () -> Unit,
     onIdes: () -> Unit,
@@ -90,7 +91,10 @@ fun HomeScreen(
                 HomeButton(label = "Linux on Other OSs", onClick = onLinuxOnOtherOs, modifier = Modifier.weight(1f))
             }
             Spacer(modifier = Modifier.height(12.dp))
-            HomeButton(label = "Licensing", onClick = onLicensing)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                HomeButton(label = "Licensing", onClick = onLicensing, modifier = Modifier.weight(1f))
+                HomeButton(label = "Linux Usage 3", onClick = onLinuxUsage3, modifier = Modifier.weight(1f))
+            }
             Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
@@ -99,7 +103,7 @@ fun HomeScreen(
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             ) {
                 Text(
-                    text = "v2.0",
+                    text = "v2.2",
                     color = Color.White,
                     fontSize = 12.sp,
                     fontFamily = FontFamily.Monospace

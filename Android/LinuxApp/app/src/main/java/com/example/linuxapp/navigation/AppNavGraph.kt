@@ -87,6 +87,7 @@ import com.example.linuxapp.screens.ebpf.EbpfKptrsScreen
 import com.example.linuxapp.screens.ebpf.EbpfHelpersKfuncsScreen
 import com.example.linuxapp.screens.ebpf.EbpfSleepableScreen
 import com.example.linuxapp.screens.LinuxUsage2Screen
+import com.example.linuxapp.screens.LinuxUsage3Screen
 import com.example.linuxapp.screens.kernel.DeviceTypesHubScreen
 import com.example.linuxapp.screens.kernel.KernelMemoryAccessScreen
 import com.example.linuxapp.screens.kernel.KernelThreadingScreen
@@ -217,6 +218,7 @@ sealed class Screen(val route: String) {
     object KernelMemoryAccess        : Screen("kernel_memory_access")
     object KernelThreading           : Screen("kernel_threading")
     object LinuxUsage2               : Screen("linux_usage_2")
+    object LinuxUsage3               : Screen("linux_usage_3")
     object KernelForkClone                 : Screen("kernel_fork_clone")
     object KernelDkms                      : Screen("kernel_dkms")
     object KernelProcessSchedulingWhole    : Screen("kernel_process_scheduling_whole")
@@ -293,6 +295,7 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
                 onLinuxUsage2 = { navController.navigate(Screen.LinuxUsage2.route) },
+                onLinuxUsage3 = { navController.navigate(Screen.LinuxUsage3.route) },
                 onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
                 onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
                 onIdes = { navController.navigate(Screen.LinuxIdes.route) },
@@ -735,6 +738,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.LinuxUsage2.route) {
             LinuxUsage2Screen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.LinuxUsage3.route) {
+            LinuxUsage3Screen(onBack = { navController.popBackStack() })
         }
         composable(Screen.KernelForkClone.route) {
             ForkCloneScreen(onBack = { navController.popBackStack() })
