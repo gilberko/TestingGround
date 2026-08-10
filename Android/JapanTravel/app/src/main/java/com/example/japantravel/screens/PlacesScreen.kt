@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-val PLACE_NAMES = listOf("Tokyo", "Osaka", "Kyoto", "Kawaguchiko", "Hakone", "Nara")
+val PLACE_NAMES = listOf("Tokyo", "Osaka", "Kyoto", "Kawaguchiko", "Hakone", "Nara", "Ghibli Park")
 
 @Composable
 fun PlacesScreen(

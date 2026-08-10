@@ -55,22 +55,65 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "expanded to Tokyo, Osaka, and internationally. Other well-known Japan-founded " +
                     "coffee chains include Doutor, Komeda's Coffee, and Tully's."
             )
+            BodyText(
+                "Drip vs. espresso, chain by chain: % Arabica is espresso-based - its whole " +
+                    "identity is built around a signature latte pulled on high-end espresso " +
+                    "machines, not filter coffee. Doutor is drip/siphon-brewed at its core (the " +
+                    "classic \"Doutor Blend\"), but also serves espresso-based drinks like " +
+                    "cappuccino and cafe au lait. Komeda's Coffee, a Nagoya-style kissaten chain, " +
+                    "centers on siphon-brewed \"Komeda Blend\" drip coffee, with espresso drinks as " +
+                    "a smaller part of the menu. Tully's is a full Seattle-style espresso bar " +
+                    "chain (closer to Starbucks) - espresso-based through and through."
+            )
+            BodyText(
+                "Quaro, a striking new specialty coffee space on Cat Street in Jingumae/Harajuku " +
+                    "(Shibuya), is worth calling out separately: a four-floor concept combining " +
+                    "coffee, design, art, and music, with an in-house roasting room in the " +
+                    "basement. It serves both hand-drip/pour-over and espresso (on La Marzocco " +
+                    "Strada X and Linea Classic S machines), and offers a reservation-only tasting " +
+                    "course pairing drip, espresso, latte, and cold brew from the same beans."
+            )
 
             SectionHeader("Recommended independent roasteries and cafes (not chains)")
             BodyText(
-                "Tokyo: Fuglen Tokyo (Nordic-style light roasts and filter coffee) and Koffee " +
-                    "Mameya Kakeru (a tasting-course format, ranked among the World's 100 Best " +
-                    "Coffee Shops)."
+                "Tokyo: Fuglen Tokyo (Nordic-style light roasts, filter/drip-forward but also " +
+                    "serves espresso drinks) and Koffee Mameya Kakeru (a pour-over/drip tasting-" +
+                    "course format, ranked among the World's 100 Best Coffee Shops)."
             )
             BodyText(
                 "Osaka: Ult Coffee (also ranked among the World's 100 Best, founded by 2023 World " +
                     "Barista Champion Boram Um) and Spot Coffee, a small-batch roastery in the " +
-                    "Nakazakinishi neighborhood."
+                    "Nakazakinishi neighborhood - both, like most high-end Japanese specialty " +
+                    "roasteries, typically offer espresso-based drinks alongside pour-over/drip."
             )
             BodyText(
                 "Kyoto: Weekenders Coffee (Tomikoji) is a long-standing favorite among specialty " +
-                    "coffee fans; the % Arabica Arashiyama location is also worth a stop for the " +
-                    "riverside view alone, even though it's a chain."
+                    "coffee fans, known primarily for pour-over/drip; the % Arabica Arashiyama " +
+                    "location is also worth a stop for the riverside view alone, even though it's " +
+                    "a chain (and espresso-based, as above)."
+            )
+
+            SectionHeader("Matcha")
+            BodyText(
+                "Matcha is finely ground, shade-grown green tea powder, whisked directly into hot " +
+                    "water rather than steeped like regular tea - the basis of the traditional " +
+                    "tea ceremony (see Classical Japanese Culture), but just as common in " +
+                    "everyday lattes, ice cream, and sweets. Quality varies widely, from " +
+                    "ceremonial-grade (smoother, made for drinking on its own) down to culinary-" +
+                    "grade (more bitter, meant for baking/lattes)."
+            )
+            BodyText(
+                "Kyoto/Uji: Uji, about 35 minutes south of Kyoto by train, is matcha's historic " +
+                    "heartland. Nakamura Tokichi and Tsujiri both have flagship stores there, and " +
+                    "Tsujiri and Itoh Kyuemon also run branches in central Kyoto, including Gion."
+            )
+            BodyText(
+                "Tokyo: Gion Kitagawa Hanbei runs a specialty tea counter at the Marunouchi " +
+                    "Building near Tokyo Station."
+            )
+            BodyText(
+                "Osaka: Gion Kitagawa Hanbei also has a counter at Takashimaya Osaka, and the " +
+                    "Hankyu Umeda department store carries specialty matcha as well."
             )
 
             SectionHeader("Celiac-friendly dining")

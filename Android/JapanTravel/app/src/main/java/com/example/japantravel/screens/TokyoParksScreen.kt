@@ -21,7 +21,8 @@ fun TokyoParksScreen(
     onOpenJoypolis: () -> Unit,
     onOpenTokyoDomeCity: () -> Unit,
     onOpenTeamLabPlanets: () -> Unit,
-    onOpenTeamLabBorderless: () -> Unit
+    onOpenTeamLabBorderless: () -> Unit,
+    onOpenGhibliMuseum: () -> Unit
 ) {
     ScreenScaffold(title = "Parks and Attractions", onBack = onBack) {
         Column(
@@ -54,6 +55,11 @@ fun TokyoParksScreen(
                 onClick = onOpenTeamLabBorderless,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("teamLab Borderless") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenGhibliMuseum,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Ghibli Museum") }
         }
     }
 }

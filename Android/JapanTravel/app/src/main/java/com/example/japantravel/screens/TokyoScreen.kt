@@ -17,8 +17,8 @@ fun TokyoScreen(
     onBack: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
     onOpenCityRegions: () -> Unit,
-    onOpenAboutFood: () -> Unit,
-    onOpenSpecialCafes: () -> Unit
+    onOpenSpecialCafes: () -> Unit,
+    onOpenOutsideTokyo: () -> Unit
 ) {
     ScreenScaffold(title = "Tokyo", onBack = onBack) {
         Column(
@@ -37,14 +37,14 @@ fun TokyoScreen(
             ) { Text("City Regions") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenAboutFood,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("About Food") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
                 onClick = onOpenSpecialCafes,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Special Cafes") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenOutsideTokyo,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Outside Tokyo") }
         }
     }
 }

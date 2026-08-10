@@ -48,6 +48,32 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
                     "guides can be rented to follow along."
             )
 
+            SectionHeader("Tea Ceremony (Chado / Sado)")
+            BodyText(
+                "A ritualized way of preparing and serving matcha (see Food and Cafes for what " +
+                    "matcha is), rooted in Zen Buddhism and the idea of ichigo ichie - \"one time, " +
+                    "one meeting\" - treating each gathering as unrepeatable. Every movement, from " +
+                    "whisking the tea to handling the bowl, is precise and unhurried, and a " +
+                    "seasonal wagashi sweet is usually eaten just before drinking to balance the " +
+                    "tea's bitterness."
+            )
+            BodyText(
+                "Length and ages: casual, tourist-oriented sessions typically run 45 minutes to " +
+                    "1 hour; more traditional sessions, especially in Kyoto, can run 1-2.5 hours. " +
+                    "It's suitable for all ages including kids, though sitting seiza (kneeling) " +
+                    "through a full traditional session can be tiring for young children - most " +
+                    "tourist-oriented venues let you sit normally instead."
+            )
+            BodyText(
+                "Where to try it: Kyoto, especially around Gion, has the deepest and most " +
+                    "traditional options. Tokyo has several English-guided studios (some bundled " +
+                    "with kimono rental) plus a low-cost 20-minute, ¥500 option at the Kyoto City " +
+                    "Information Center inside Tokyo Station, offered Friday-Sunday afternoons. " +
+                    "Osaka has shorter, casual English-guided sessions aimed at visitors. Prices " +
+                    "generally range from around ¥500 for a very short intro up to ¥6,000-7,000 " +
+                    "for a full kimono-plus-tea-ceremony experience."
+            )
+
             SectionHeader("Sumo")
             BodyText(
                 "Japan's national sport: two wrestlers (rikishi) try to force each other out of a " +

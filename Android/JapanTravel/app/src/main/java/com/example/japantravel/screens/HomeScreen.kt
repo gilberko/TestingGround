@@ -30,7 +30,8 @@ fun HomeScreen(
     onOpenClassicalCulture: () -> Unit,
     onOpenMedicalIssues: () -> Unit,
     onOpenFoodAndCafes: () -> Unit,
-    onOpenSpecialAnimalPlaces: () -> Unit
+    onOpenSpecialAnimalPlaces: () -> Unit,
+    onOpenAboutFood: () -> Unit
 ) {
     Scaffold { innerPadding ->
         Column(
@@ -89,6 +90,11 @@ fun HomeScreen(
                 onClick = onOpenFoodAndCafes,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Food and Cafes") }
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedButton(
+                onClick = onOpenAboutFood,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("About Food") }
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedButton(
                 onClick = onOpenSpecialAnimalPlaces,
