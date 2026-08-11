@@ -164,8 +164,10 @@ private val conjuntivoTenses = listOf(
         examples = listOf(
             "Espero que venhas." to "I hope you will come.",
             "Quero que ele estude mais." to "I want him to study more.",
-            "Embora esteja cansado, vou continuar." to "Although I'm tired, I'll continue."
-        )
+            "Embora esteja cansado, vou continuar." to "Although I'm tired, I'll continue.",
+            "Vou pedir que ele traga o recibo." to "I will ask that he bring the receipt."
+        ),
+        note = "Sequence of tenses: the main (trigger) verb's tense decides which subjunctive tense follows in the que-clause. Present or future main verb → Conjuntivo Presente (traga). Past main verb → Conjuntivo Pretérito Imperfeito (trouxesse) — see the card below. So \"I will ask that he bring the receipt\" = \"Vou pedir que ele traga o recibo,\" but \"I asked that he bring the receipt\" = \"Pedi que ele trouxesse o recibo.\" The Conjuntivo Futuro is never used after pedir que — it's reserved for adverbial clauses (quando, se, quem), not for reported requests."
     ),
     TenseTopic(
         name = "Conjuntivo Pretérito Imperfeito",
@@ -178,8 +180,10 @@ private val conjuntivoTenses = listOf(
         examples = listOf(
             "Se eu tivesse dinheiro, compraria uma casa." to "If I had money, I would buy a house.",
             "Gostaria que viesses connosco." to "I would like you to come with us.",
-            "Era necessário que todos soubessem." to "It was necessary that everyone know."
-        )
+            "Era necessário que todos soubessem." to "It was necessary that everyone know.",
+            "Pedi que ele trouxesse o recibo." to "I asked that he bring the receipt."
+        ),
+        note = "Used whenever the main (trigger) verb is in a past tense — pretérito perfeito, imperfeito, and condicional all count as \"past\" for this rule. Compare with the Conjuntivo Presente card above: it's the trigger verb's tense, not the meaning, that decides the subjunctive tense."
     ),
     TenseTopic(
         name = "Conjuntivo Futuro",
@@ -192,9 +196,10 @@ private val conjuntivoTenses = listOf(
         examples = listOf(
             "Quando chegares, liga-me." to "When you arrive, call me. (NOT 'quando chegas')",
             "Se fizeres o trabalho, podes sair." to "If you do the work, you may leave.",
-            "Quem vier primeiro, receberá o prémio." to "Whoever arrives first will receive the prize."
+            "Quem vier primeiro, receberá o prémio." to "Whoever arrives first will receive the prize.",
+            "Quando chegas a casa, ligas-me sempre." to "When you get home, you always call me. (habitual — Indicativo, not Conjuntivo Futuro)"
         ),
-        note = "English 'when you arrive' = 'quando chegares' (Conjuntivo Futuro). Using the present indicative here is a common learner mistake."
+        note = "English 'when you arrive' = 'quando chegares' (Conjuntivo Futuro). Using the present indicative here is a common learner mistake. But for habitual, repeated, or general-rule statements (anywhere you could add 'always'/'every time'), Portuguese switches back to the Indicativo — the event is an established pattern, not a single unrealized future occurrence. The same logic applies to generic statements with 'quem': the proverb \"Quem não arrisca, não petisca\" (nothing ventured, nothing gained) uses the Indicativo because it states a general truth about a real class of people. Contrast that with \"Preciso de alguém que saiba conduzir\" (I need someone who can drive), which uses the Conjuntivo Presente because 'alguém' is an unknown, indefinite person — not a general truth."
     )
 )
 
