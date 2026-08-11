@@ -89,6 +89,7 @@ fun LettersPronunciationScreen(navController: NavController) {
 
             // ── 4. ě — The Softening Vowel ───────────────────────────────
             LPSectionHeader("ě — The Softening Vowel")
+            LPNote("This section and the next one are both examples of softening (also called palatalization) — a consonant shifting toward a softer, \"y\"-like articulation under the influence of a neighboring vowel like i, í, or ě.")
             LPNote("ě is not simply a longer e — it changes the consonant that comes before it:")
             LPRow("dě", "→ \"dye\"")
             LPRow("tě", "→ \"tye\"")
@@ -126,6 +127,15 @@ fun LettersPronunciationScreen(navController: NavController) {
             LPNote("You'll meet r → ř most often in three places: feminine dative/locative singular (sestra → sestře, díra → díře); masculine vocative singular — the form used to call out to someone (bratr → bratře!, Petr → Petře!); and the comparative of adjectives ending in -r (ostrý 'sharp' → ostřejší 'sharper').")
             LPNote("It does NOT happen every time r is followed by e or i, because this is no longer a live pronunciation rule — it's frozen into specific old grammatical endings. Loanwords borrowed after the change stopped being productive skip it entirely: profesor (professor) → vocative pane profesore! (not profesoře), doktor → doktore. Different endings also skip it: the verb brát (to take) has berete (you take) and ber! (take!), both with a plain r, because those endings come from a different historical layer than the one that caused softening.")
 
+            // ── 6c. Hard, Soft, and Ambiguous Consonants ──────────────────
+            LPSectionHeader("Hard, Soft, and Ambiguous Consonants")
+            LPNote("Czech school grammar sorts every consonant into one of three groups — tvrdé (hard), měkké (soft), and obojetné (ambiguous). This grouping isn't about how the letters sound; it's about which vowel, i/í or y/ý, is allowed to follow them in spelling.")
+            LPRow("Hard (tvrdé)", "h, ch, k, r, d, t, n, g")
+            LPRow("Soft (měkké)", "ž, š, č, ř, c, j, ď, ť, ň", note = "Exactly the háček consonants from above, plus c and j.")
+            LPRow("Ambiguous (obojetné)", "b, f, l, m, p, s, v, z")
+            LPNote("The effect: after a hard consonant, Czech always writes y/ý (\"tvrdé y\"). After a soft consonant, Czech always writes i/í (\"měkké i\"). After an ambiguous consonant, either can appear — which one is used depends on the specific word or grammatical ending and simply has to be learned/memorized. This is a spelling distinction only: i/y and í/ý are pronounced identically in modern Czech.")
+            LPNote("This same hard/soft split reappears in noun declension: Czech noun patterns (vzory) are grouped into hard-stem and soft-stem types, each with their own case endings — see the Noun Conjugation and Cases screens.")
+
             // ── 7. Letters That Surprise English Speakers ────────────────
             LPSectionHeader("Letters That Surprise English Speakers")
             LPRow("c", "\"ts\" in cats  (never \"k\" or \"s\" alone)", name = "cé")
@@ -144,14 +154,18 @@ fun LettersPronunciationScreen(navController: NavController) {
 
             // ── 9. Final Devoicing ───────────────────────────────────────
             LPSectionHeader("Final Devoicing")
+            LPNote("Voicing assimilation is when neighboring consonants harmonize so they share the same voiced/voiceless status. Czech consonants come in voiced/voiceless pairs, and the language applies this harmonizing in two situations: at the end of a word (devoicing, below) and inside consonant clusters (see Voice Assimilation in Consonant Clusters further down).")
             LPNote("At the end of a word, voiced consonants automatically become their voiceless counterpart. The spelling does not change — only the pronunciation does.")
             LPRow("b → p", "")
             LPRow("d → t", "")
+            LPRow("ď → ť", "")
             LPRow("g → k", "")
+            LPRow("h → ch", "")
             LPRow("v → f", "")
             LPRow("z → s", "")
             LPRow("ž → š", "")
-            LPNote("Example: hrad (castle) is spelled with d but pronounced \"hrat\".")
+            LPRow("dž → č", "")
+            LPNote("Example: hrad (castle) is spelled with d but pronounced \"hrat\". Another: sníh (snow) is spelled with h but pronounced \"sních\".")
 
             // ── 10. Voice Assimilation in Clusters ────────────────────────
             LPSectionHeader("Voice Assimilation in Consonant Clusters")

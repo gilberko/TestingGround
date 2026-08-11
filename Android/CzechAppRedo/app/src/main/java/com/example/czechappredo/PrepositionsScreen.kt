@@ -113,6 +113,50 @@ fun PrepositionsScreen(navController: NavController) {
                 example = "Sedím mezi přáteli.", translation = "I'm sitting among friends.")
             PPNote("za with Accusative = motion (za roh = around the corner); za with Instrumental = position (za domem = behind the house).")
 
+            // ── Na vs. Do ──────────────────────────────────────────────
+            PPSection("Na vs. Do")
+            PPNote("Both mean roughly \"to,\" but they split Czech destinations into two groups. do (+ genitive) is for enclosed spaces and most general destinations. na (+ accusative) is for open spaces, surfaces, events, and a set of institutions/geographic names that are simply conventional exceptions.")
+            PPRow("do", "into / to — enclosed spaces, most destinations",
+                example = "do školy · do práce · do obchodu · do kina · do Prahy · do parku · do zahraničí",
+                translation = "to school · to work · to the shop · to the cinema · to Prague · to the park · abroad")
+            PPRow("na", "onto / to — open spaces, events, fixed exceptions",
+                example = "na poštu · na nádraží · na letiště · na univerzitu · na koncert · na oběd · na Slovensko · na hory",
+                translation = "to the post office · to the station · to the airport · to university · to a concert · to lunch · to Slovakia · to the mountains")
+            PPNote("Mnemonic for the matching position preposition: do pairs with v/ve (do školy → jsem ve škole), na pairs with na (na poštu → jsem na poště).")
+            PPNote("There isn't a fully reliable semantic rule for which nouns take na — it's largely idiomatic and gets learned together with the noun, though open spaces, events, and islands/mountains lean toward na.")
+
+            // ── All Prepositions at a Glance ──────────────────────────
+            PPSection("All Prepositions at a Glance")
+            PPNote("Every preposition from above, in one place, sorted alphabetically. Not grouped by case — see the sections above for grammar and examples.")
+            PPMasterTable(
+                listOf(
+                    Triple("bez", "Genitive", "without"),
+                    Triple("díky", "Dative", "thanks to"),
+                    Triple("do", "Genitive", "to / into (a destination)"),
+                    Triple("k / ke", "Dative", "toward / to (a person)"),
+                    Triple("kolem", "Genitive", "around / approximately"),
+                    Triple("kvůli", "Dative", "because of"),
+                    Triple("mezi", "Instrumental", "between / among"),
+                    Triple("na", "Accusative", "onto / to (direction)"),
+                    Triple("na", "Locative", "on / at (a place)"),
+                    Triple("nad", "Instrumental", "above / over"),
+                    Triple("o", "Locative", "about"),
+                    Triple("od", "Genitive", "from (a person or time)"),
+                    Triple("po", "Locative", "after / around (a place)"),
+                    Triple("pod", "Instrumental", "under"),
+                    Triple("pro", "Accusative", "for (fetching or purpose)"),
+                    Triple("před", "Instrumental", "in front of / before"),
+                    Triple("přes", "Accusative", "through / across / via"),
+                    Triple("s / se", "Instrumental", "with"),
+                    Triple("u", "Genitive", "at / by (someone's place)"),
+                    Triple("v / ve", "Locative", "in (a place)"),
+                    Triple("vedle", "Genitive", "next to / beside"),
+                    Triple("z / ze", "Genitive", "from (a place)"),
+                    Triple("za", "Accusative", "around / behind (motion) / in (time)"),
+                    Triple("za", "Instrumental", "behind (position)")
+                )
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -160,4 +204,28 @@ private fun PPNote(text: String) {
         color = Color.Gray,
         modifier = Modifier.padding(vertical = 3.dp)
     )
+}
+
+@Composable
+private fun PPMasterTable(entries: List<Triple<String, String, String>>) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp)
+    ) {
+        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+            Text("Prep.", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = ButtonBlue, modifier = Modifier.weight(0.8f))
+            Text("Case", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = ButtonBlue, modifier = Modifier.weight(1f))
+            Text("Meaning", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = ButtonBlue, modifier = Modifier.weight(1.8f))
+        }
+        HorizontalDivider(color = Color.LightGray)
+        entries.forEach { (prep, case, meaning) ->
+            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp)) {
+                Text(prep, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black, modifier = Modifier.weight(0.8f))
+                Text(case, fontSize = 13.sp, color = Color.DarkGray, modifier = Modifier.weight(1f))
+                Text(meaning, fontSize = 13.sp, color = Color.DarkGray, modifier = Modifier.weight(1.8f))
+            }
+            HorizontalDivider(color = Color(0xFFEEEEEE))
+        }
+    }
 }
