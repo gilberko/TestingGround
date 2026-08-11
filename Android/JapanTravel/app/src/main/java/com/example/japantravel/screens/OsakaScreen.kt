@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.dp
 fun OsakaScreen(
     onBack: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
-    onOpenOverview: () -> Unit
+    onOpenOverview: () -> Unit,
+    onOpenTeamLabBotanicalGarden: () -> Unit
 ) {
     ScreenScaffold(title = "Osaka", onBack = onBack) {
         Column(
@@ -33,6 +34,11 @@ fun OsakaScreen(
                 onClick = onOpenParksAndAttractions,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Parks and Attractions") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenTeamLabBotanicalGarden,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("teamLab Botanical Garden Osaka") }
         }
     }
 }

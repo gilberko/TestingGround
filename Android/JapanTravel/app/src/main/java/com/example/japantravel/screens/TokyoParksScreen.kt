@@ -22,7 +22,9 @@ fun TokyoParksScreen(
     onOpenTokyoDomeCity: () -> Unit,
     onOpenTeamLabPlanets: () -> Unit,
     onOpenTeamLabBorderless: () -> Unit,
-    onOpenGhibliMuseum: () -> Unit
+    onOpenGhibliMuseum: () -> Unit,
+    onOpenYomiuriland: () -> Unit,
+    onOpenSummerland: () -> Unit
 ) {
     ScreenScaffold(title = "Parks and Attractions", onBack = onBack) {
         Column(
@@ -60,6 +62,16 @@ fun TokyoParksScreen(
                 onClick = onOpenGhibliMuseum,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Ghibli Museum") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenYomiuriland,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Yomiuriland") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenSummerland,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Tokyo Summerland") }
         }
     }
 }

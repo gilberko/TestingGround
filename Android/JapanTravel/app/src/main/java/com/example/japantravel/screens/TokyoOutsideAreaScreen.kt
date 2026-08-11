@@ -54,6 +54,47 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
                     "Reitaisai festival, held every year September 14-16, with the yabusame ritual " +
                     "itself on the final day (September 16)."
             )
+
+            SectionHeader("Meiji Jingu")
+            BodyText(
+                "Unlike Nikko and Kamakura above, Meiji Jingu is actually inside central Tokyo, " +
+                    "right by Harajuku Station (see Tokyo - City Regions - Harajuku) - it's " +
+                    "included here because it's a genuine forest walk you can do without leaving " +
+                    "the city. The shrine sits inside a dense, deliberately planted forest of " +
+                    "around 100,000 trees donated from across Japan, bordering Yoyogi Park. " +
+                    "Entry to the forest and shrine grounds is free."
+            )
+
+            SectionHeader("Mount Takao")
+            BodyText(
+                "The easiest proper hike near Tokyo: Mount Takao (599m) is in Hachioji, about 50 " +
+                    "minutes from Shinjuku on the Keio Line to Takaosanguchi Station. Trail 1, the " +
+                    "main route to the summit, is broad and mostly paved, and a cable car or " +
+                    "chairlift cuts the roughly 90-minute hike about in half - a good option for " +
+                    "families or anyone with less stamina."
+            )
+            BodyText(
+                "Partway up is the Takao Monkey Park & Wildflower Garden, home to around 90 " +
+                    "Japanese macaques viewable safely through glass, which makes this one of the " +
+                    "more kid-friendly hikes near Tokyo. Takaosanguchi Station itself has " +
+                    "restaurants, souvenir shops, and even an onsen for after the hike."
+            )
+
+            SectionHeader("Mount Mitake")
+            BodyText(
+                "A quieter, more remote alternative to Takao, in Okutama - about 90 minutes from " +
+                    "Shinjuku (JR Chuo Line to Ome, then the Ome Line to Mitake Station, followed " +
+                    "by a short bus ride and a cable car up to Mitakesan Station). At the summit " +
+                    "is Musashi Mitake Shrine, said to be over 2,000 years old, reached by a " +
+                    "20-30 minute walk from the cable car's upper station through Mitake village - " +
+                    "traditional lodges, a 1,000-year-old sacred tree, and mountain scenery along " +
+                    "the way."
+            )
+            BodyText(
+                "The fuller loop with side trails to waterfalls and lookout points runs about " +
+                    "6-8km and takes 3-4 hours - more of a real hike than Takao, and noticeably " +
+                    "less crowded."
+            )
             Spacer(Modifier.height(16.dp))
         }
     }

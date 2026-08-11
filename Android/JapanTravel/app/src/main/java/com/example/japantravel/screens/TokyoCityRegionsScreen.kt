@@ -69,6 +69,17 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
                     "Fukurou, one of the largest owl cafes in Japan, is here (see the Tokyo - " +
                     "Special Cafes screen for details and other animal cafes)."
             )
+            BodyText(
+                "Video game arcades: GiGO (formerly Sega's arcades) and Taito Station are the two " +
+                    "big chains, with multi-floor locations across Akihabara, Ikebukuro, and " +
+                    "Shinjuku. Most games are around 100 yen a play - claw/UFO catcher machines, " +
+                    "photo booths (purikura), rhythm games like Taiko no Tatsujin, and racing/" +
+                    "shooting cabinets. These are generally fine for kids during the day; some " +
+                    "locations even split floors by audience (Taito Station Shibuya, for example, " +
+                    "puts kid-oriented games on one floor and more mature games on another), so " +
+                    "it's worth a quick look at the floor guide near the entrance rather than " +
+                    "assuming every floor suits children."
+            )
 
             SectionHeader("Harajuku")
             BodyText(
@@ -93,6 +104,36 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
             BodyText(
                 "Home to Ueno Park, several major museums (Tokyo National Museum among them), " +
                     "Ueno Zoo, and Ameyoko, a lively market street."
+            )
+
+            SectionHeader("Recommended shopping")
+            BodyText(
+                "Ginza: upscale, polished luxury - flagship department stores and designer " +
+                    "boutiques (see above). Shibuya: trendy streetwear and youth fashion, malls " +
+                    "like PARCO, and Shibuya 109. Shinjuku: a one-stop shopping hub with " +
+                    "department stores covering every budget plus discount electronics. Harajuku " +
+                    "(Takeshita Street): kawaii, vintage, and playful DIY fashion. Akihabara: " +
+                    "electronics and anime/manga goods. A good one-day route is to start the " +
+                    "morning on Takeshita Street in Harajuku, spend the afternoon in nearby " +
+                    "Shibuya, and finish the evening in Shinjuku - all connected by a short walk " +
+                    "or train ride."
+            )
+
+            SectionHeader("Fish markets (Tsukiji & Toyosu)")
+            BodyText(
+                "Toyosu Market opened in 2018 and took over the wholesale tuna auction from the " +
+                    "old Tsukiji Market. Yes, an early start is genuinely needed to see the " +
+                    "auction itself - it runs roughly 5:30-6:30am and is viewed from a public " +
+                    "observation deck overlooking the auction floor. Toyosu is reachable via the " +
+                    "Yurikamome Line to Shijomae Station."
+            )
+            BodyText(
+                "The old Tsukiji site is still very much alive as the Tsukiji Outer Market - rows " +
+                    "of retail food stalls, knife shops, and sushi breakfast counters that keep " +
+                    "normal daytime hours (roughly 9am-2pm), so there's no need for a pre-dawn " +
+                    "visit for this part. A good plan is Toyosu first thing in the morning for the " +
+                    "auction viewing, then the Tsukiji Outer Market afterward for a relaxed sushi " +
+                    "breakfast and browsing."
             )
 
             SectionHeader("Just outside these core regions")

@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.dp
 fun KyotoScreen(
     onBack: () -> Unit,
     onOpenCityRegions: () -> Unit,
-    onOpenParksAndAttractions: () -> Unit
+    onOpenParksAndAttractions: () -> Unit,
+    onOpenTeamLabBiovortex: () -> Unit
 ) {
     ScreenScaffold(title = "Kyoto", onBack = onBack) {
         Column(
@@ -33,6 +34,11 @@ fun KyotoScreen(
                 onClick = onOpenParksAndAttractions,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Parks and Attractions") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenTeamLabBiovortex,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("teamLab Biovortex Kyoto") }
         }
     }
 }

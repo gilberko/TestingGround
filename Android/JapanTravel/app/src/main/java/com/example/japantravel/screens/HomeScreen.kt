@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 fun HomeScreen(
     onOpenPlaces: () -> Unit,
     onOpenGeneralInfo: () -> Unit,
-    onOpenCeliacInfo: () -> Unit,
+    onOpenSimAndEsim: () -> Unit,
     onOpenUsefulApps: () -> Unit,
     onOpenStoresAndChains: () -> Unit,
     onOpenClassicalCulture: () -> Unit,
@@ -62,9 +62,9 @@ fun HomeScreen(
             ) { Text("General Information") }
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedButton(
-                onClick = onOpenCeliacInfo,
+                onClick = onOpenSimAndEsim,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Specific Celiac Information") }
+            ) { Text("Sim and eSim") }
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedButton(
                 onClick = onOpenUsefulApps,

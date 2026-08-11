@@ -1,14 +1,25 @@
 package com.example.japantravel.screens
 
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
+private const val CELIAC_CARD_JAPANESE =
+    "私はセリアック病(グルテン不耐症)です。\n\n" +
+        "小麦・大麦・ライ麦などグルテンを含む食品を食べることができません。\n\n" +
+        "パン、麺類、天ぷらの衣、醤油(小麦を含むことが多いです)にもご注意ください。\n\n" +
+        "グルテンを含まない食材で調理していただけますか?\n\n" +
+        "ご協力よろしくお願いいたします。"
 
 @Composable
 fun AboutFoodScreen(onBack: () -> Unit) {
@@ -134,8 +145,25 @@ fun AboutFoodScreen(onBack: () -> Unit) {
                 "Two common hidden risks for travelers with dietary restrictions: soy sauce often " +
                     "contains wheat, and dashi (the base stock used in many soups and sauces) is " +
                     "often fish-based even when a dish otherwise looks vegetarian. Restaurant staff " +
-                    "may not proactively mention either. See the Specific Celiac Information " +
-                    "section for a printable Japanese explanation card covering gluten specifically."
+                    "may not proactively mention either. See the Celiac Card section below for a " +
+                    "printable Japanese explanation card covering gluten specifically."
+            )
+
+            SectionHeader("Celiac Card")
+            BodyText("Show this card to restaurant or hotel staff.")
+            Spacer(Modifier.height(8.dp))
+            Card(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = CELIAC_CARD_JAPANESE,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(20.dp)
+                )
+            }
+            Spacer(Modifier.height(8.dp))
+            BodyText(
+                "For a professionally vetted, printable Japanese celiac/gluten-free card, " +
+                    "see Celiac Travel (celiactravel.com), Equal Eats (equaleats.com), or " +
+                    "OpenKyoto's free downloadable PDF (openkyoto.com)."
             )
             Spacer(Modifier.height(16.dp))
         }

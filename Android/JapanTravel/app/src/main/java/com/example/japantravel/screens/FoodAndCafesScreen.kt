@@ -123,8 +123,8 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "Gluten Intolerance Group - the first such certification in Asia. The menu " +
                     "covers Japanese comfort food (gyoza, okonomiyaki, ramen, tempura) as well as " +
                     "Western dishes, all prepared gluten-free; reservations are recommended due to " +
-                    "limited seating. See the Specific Celiac Information section for a printable " +
-                    "Japanese explanation card to use elsewhere."
+                    "limited seating. See the About Food section for a printable Japanese " +
+                    "explanation card to use elsewhere."
             )
             Spacer(Modifier.height(16.dp))
         }
