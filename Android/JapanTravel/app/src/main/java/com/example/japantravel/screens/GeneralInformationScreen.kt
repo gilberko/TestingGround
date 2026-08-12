@@ -41,6 +41,45 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "follows the same 160cm / 25kg size and weight limit."
             )
 
+            SectionHeader("Visit Japan Web (arrival registration for visa-exempt visitors)")
+            BodyText(
+                "Visit Japan Web (vjw.digital.go.jp) is a free government web service - no app to " +
+                    "install - that lets you fill in your immigration arrival card and customs " +
+                    "declaration online in advance and generates QR codes to show at the airport. " +
+                    "It's for visa-exempt travelers registering their arrival details, not a visa " +
+                    "itself - if your nationality requires a visa, you still need to obtain that " +
+                    "separately before flying."
+            )
+            BodyText(
+                "Where and when: register any time after booking your flight, at vjw.digital.go.jp. " +
+                    "Aim to finish at least about 6 hours before landing so your QR code is active " +
+                    "in time - the whole process takes roughly 15 minutes."
+            )
+            BodyText(
+                "Can I still fill in paperwork on arrival? Yes - registering in advance is " +
+                    "optional. Paper arrival cards and customs declaration forms are still handed " +
+                    "out on the plane and accepted at every Japanese airport if you didn't " +
+                    "register beforehand."
+            )
+            BodyText(
+                "The QR code: registering generates two QR codes, one for immigration and one for " +
+                    "customs. Screenshot or download them before you land, since airport Wi-Fi " +
+                    "right after arrival can be patchy. At major airports (Narita, Haneda, Kansai, " +
+                    "Chubu, Fukuoka) these are scanned at automated \"Joint Kiosks\" that handle " +
+                    "immigration and customs together in one step, rather than queueing for each " +
+                    "separately."
+            )
+            BodyText(
+                "Is it related to tax-free shopping? Not directly, at least for now - tax-free " +
+                    "(consumption tax exempt) shopping is currently its own separate process, done " +
+                    "in-store by showing your passport at each participating shop. That said, this " +
+                    "is actively changing: from November 1, 2026, Japan is switching tax-free " +
+                    "shopping to a refund-based system, where you pay the tax at purchase and then " +
+                    "claim a refund before departure - a different procedure from Visit Japan " +
+                    "Web's QR codes. Since this is a live change, it's worth checking the current " +
+                    "process closer to your travel date."
+            )
+
             SectionHeader("The Yen (¥)")
             BodyText(
                 "Japan's currency is the yen (¥). Cash is still widely used alongside cards and " +

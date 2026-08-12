@@ -15,15 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun KyotoScreen(
+fun TokyoDayTripsScreen(
     onBack: () -> Unit,
-    onOpenCityRegions: () -> Unit,
-    onOpenParksAndAttractions: () -> Unit,
-    onOpenTeamLabBiovortex: () -> Unit,
-    onOpenGlutenFreeAndKeto: () -> Unit,
-    onOpenGettingAround: () -> Unit
+    onOpenHakone: () -> Unit,
+    onOpenNikko: () -> Unit,
+    onOpenLakesKawaguchiko: () -> Unit,
+    onOpenMountTakao: () -> Unit,
+    onOpenGhibliPark: () -> Unit,
+    onOpenYokohama: () -> Unit,
+    onOpenKawagoe: () -> Unit,
+    onOpenOkutamaMitake: () -> Unit
 ) {
-    ScreenScaffold(title = "Kyoto", onBack = onBack) {
+    ScreenScaffold(title = "Recommended Day Trips", onBack = onBack) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -31,29 +34,44 @@ fun KyotoScreen(
                 .padding(24.dp)
         ) {
             Button(
-                onClick = onOpenCityRegions,
+                onClick = onOpenHakone,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("City Regions") }
+            ) { Text("Hakone") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenParksAndAttractions,
+                onClick = onOpenNikko,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Parks and Attractions") }
+            ) { Text("Nikko") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenTeamLabBiovortex,
+                onClick = onOpenLakesKawaguchiko,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("teamLab Biovortex Kyoto") }
+            ) { Text("Lakes Region and Kawaguchiko") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenGlutenFreeAndKeto,
+                onClick = onOpenMountTakao,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Gluten Free and Keto Friendly") }
+            ) { Text("Mount Takao") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenGettingAround,
+                onClick = onOpenGhibliPark,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Getting Around") }
+            ) { Text("Ghibli Park") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenYokohama,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Yokohama") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenKawagoe,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Kawagoe") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenOkutamaMitake,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Okutama / Mount Mitake") }
         }
     }
 }

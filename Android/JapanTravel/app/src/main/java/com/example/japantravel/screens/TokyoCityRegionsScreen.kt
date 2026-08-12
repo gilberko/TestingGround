@@ -20,6 +20,10 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Shibuya")
             BodyText(
+                "Nearest station: Shibuya Station (JR Yamanote Line; Tokyo Metro Ginza, " +
+                    "Hanzomon, and Fukutoshin lines; Tokyu and Keio Inokashira lines)."
+            )
+            BodyText(
                 "Famous for Shibuya Scramble Crossing, one of the world's busiest pedestrian " +
                     "crossings, and the Hachiko statue nearby. This is the crossing you've " +
                     "probably seen on screen - it's the one famously filmed in Lost in " +
@@ -31,17 +35,28 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
 
             SectionHeader("Shinjuku")
             BodyText(
+                "Nearest station: Shinjuku Station (JR lines; Odakyu; Keio; Tokyo Metro Marunouchi " +
+                    "Line; Toei Shinjuku and Oedo lines) - one of the busiest train stations in " +
+                    "the world."
+            )
+            BodyText(
                 "A major transit hub with excellent train/subway links, skyscraper observation " +
                     "decks (the Tokyo Metropolitan Government Building's observatory is free), " +
                     "endless dining, and Kabukicho nightlife. Golden Gai and Omoide Yokocho are " +
                     "tiny, atmospheric alleys packed with miniature bars and food stalls. Often " +
                     "recommended as the best base for first-time visitors. Just north of Shinjuku " +
-                    "Station on the Yamanote Line is Shin-Okubo, Tokyo's Koreatown - a dense strip " +
-                    "of K-pop merchandise shops, Korean cosmetics stores, and Korean BBQ and " +
-                    "street food, technically its own neighborhood but an easy walk from Shinjuku."
+                    "Station on the Yamanote Line is Shin-Okubo Station, for Shin-Okubo, Tokyo's " +
+                    "Koreatown - a dense strip of K-pop merchandise shops, Korean cosmetics stores, " +
+                    "and Korean BBQ and street food, technically its own neighborhood but an easy " +
+                    "walk from Shinjuku (see Places of Interest for more on Shin-Okubo's K-pop " +
+                    "scene)."
             )
 
             SectionHeader("Asakusa")
+            BodyText(
+                "Nearest station: Asakusa Station (Tokyo Metro Ginza Line; Toei Asakusa Line; " +
+                    "Tobu Skytree Line)."
+            )
             BodyText(
                 "Tokyo's old town feel: Sensoji, the city's oldest temple, reached via the " +
                     "Nakamise shopping street. Nearby is Hoppy Street, a retro alley of izakayas, " +
@@ -52,18 +67,26 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
 
             SectionHeader("Ginza")
             BodyText(
+                "Nearest station: Ginza Station (Tokyo Metro Ginza, Marunouchi, and Hibiya lines)."
+            )
+            BodyText(
                 "Upscale shopping and fine dining - flagship department stores, luxury brand " +
                     "boutiques, art galleries, and the landmark Ginza Wako clock tower."
             )
 
             SectionHeader("Akihabara")
             BodyText(
+                "Nearest station: Akihabara Station (JR Yamanote and Chuo-Sobu lines; Tokyo Metro " +
+                    "Hibiya Line; Tsukuba Express)."
+            )
+            BodyText(
                 "This is the region for all things anime, manga, and otaku culture in Tokyo - " +
                     "multi-floor stores like Mandarake stacked with manga, anime figures, and " +
                     "trading cards, retro and modern video game shops, arcades, and maid cafes, " +
                     "alongside its original identity as an electronics district. If Akihabara " +
-                    "feels too touristy, Nakano Broadway - a shopping arcade near Nakano Station, " +
-                    "a few stops west of Shinjuku on the JR Chuo Line - is a second, more " +
+                    "feels too touristy, Nakano Broadway - a shopping arcade right by Nakano Station " +
+                    "(JR Chuo Line; Tokyo Metro Tozai Line), a few stops west of Shinjuku - is a " +
+                    "second, more " +
                     "local-feeling otaku shopping hub worth knowing about. Akihabara is also one " +
                     "of the two main concentration points for Tokyo's animal cafes: Akiba " +
                     "Fukurou, one of the largest owl cafes in Japan, is here (see the Tokyo - " +
@@ -83,6 +106,11 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
 
             SectionHeader("Harajuku")
             BodyText(
+                "Nearest station: Harajuku Station (JR Yamanote Line) or Meiji-jingumae Station " +
+                    "(Tokyo Metro Chiyoda and Fukutoshin lines) - both sit right at the entrance " +
+                    "to Takeshita Street and Meiji Jingu."
+            )
+            BodyText(
                 "Youth fashion and street style along Takeshita Street, right next to the calm, " +
                     "forested grounds of Meiji Jingu (Meiji Shrine). Meiji Jingu is a major Shinto " +
                     "shrine dedicated to Emperor Meiji and Empress Shoken, set inside a dense, " +
@@ -96,11 +124,19 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
 
             SectionHeader("Odaiba")
             BodyText(
+                "Nearest station: Daiba or Odaiba-Kaihinkoen Station (Yurikamome Line) or Tokyo " +
+                    "Teleport Station (Rinkai Line)."
+            )
+            BodyText(
                 "A waterfront, man-made island with digital-art attractions (teamLab Planets), " +
                     "shopping malls, Joypolis, and views of the Rainbow Bridge and Tokyo skyline."
             )
 
             SectionHeader("Ueno")
+            BodyText(
+                "Nearest station: Ueno Station (JR Yamanote Line; Tokyo Metro Ginza and Hibiya " +
+                    "lines; Keisei)."
+            )
             BodyText(
                 "Home to Ueno Park, several major museums (Tokyo National Museum among them), " +
                     "Ueno Zoo, and Ameyoko, a lively market street."
@@ -128,7 +164,8 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
                     "Yurikamome Line to Shijomae Station."
             )
             BodyText(
-                "The old Tsukiji site is still very much alive as the Tsukiji Outer Market - rows " +
+                "The old Tsukiji site (nearest station: Tsukiji Station on the Toei Oedo Line) " +
+                    "is still very much alive as the Tsukiji Outer Market - rows " +
                     "of retail food stalls, knife shops, and sushi breakfast counters that keep " +
                     "normal daytime hours (roughly 9am-2pm), so there's no need for a pre-dawn " +
                     "visit for this part. A good plan is Toyosu first thing in the morning for the " +
@@ -140,9 +177,12 @@ fun TokyoCityRegionsScreen(onBack: () -> Unit) {
             BodyText(
                 "A few well-known spots sit outside the 7 central regions above but are covered " +
                     "elsewhere in this app: Tokyo Dome City is actually in Bunkyo City near " +
-                    "Suidobashi Station, a bit north of Ueno/Akihabara (see Tokyo - Parks and " +
-                    "Attractions). Ghibli Museum is further out in Mitaka, western Tokyo (also " +
-                    "under Tokyo - Parks and Attractions). And if you were looking for Nintendo " +
+                    "Suidobashi Station (JR Chuo-Sobu Line; Toei Mita Line) or Korakuen Station " +
+                    "(Tokyo Metro Marunouchi and Namboku lines), a bit north of Ueno/Akihabara " +
+                    "(see Tokyo - Parks and Attractions). Ghibli Museum is further out near " +
+                    "Mitaka Station (JR Chuo Line) plus a short community bus ride, in Mitaka, " +
+                    "western Tokyo (also under Tokyo - Parks and Attractions). And if you were " +
+                    "looking for Nintendo " +
                     "Museum here - it's not actually in Tokyo at all, it's in Uji, Kyoto " +
                     "Prefecture (see Kyoto - Parks and Attractions)."
             )
