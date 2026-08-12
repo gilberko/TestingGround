@@ -113,6 +113,13 @@ class MainActivity : ComponentActivity() {
                 composable("noun_conjugation_masc_inanimate") { MasculineInanimateConjugationScreen(navController) }
                 composable("noun_conjugation_feminine") { FeminineConjugationScreen(navController) }
                 composable("noun_conjugation_neuter") { NeuterConjugationScreen(navController) }
+                composable("adjective_conjugation_examples") { AdjectiveConjugationExamplesHubScreen(navController) }
+                composable("adj_conj_strong") { AdjectiveConjugationStrongScreen(navController) }
+                composable("adj_conj_smart") { AdjectiveConjugationSmartScreen(navController) }
+                composable("adj_conj_wrong") { AdjectiveConjugationWrongScreen(navController) }
+                composable("adj_conj_interesting") { AdjectiveConjugationInterestingScreen(navController) }
+                composable("possessive_pronoun_conjugation_examples") { PossessivePronounConjugationExamplesScreen(navController) }
+                composable("object_pronoun_conjugation_examples") { ObjectPronounConjugationExamplesScreen(navController) }
             }
         }
     }

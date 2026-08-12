@@ -66,7 +66,16 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Code\\\\TestingGround\\\\Android\\\\CzechAppRedo\" -Directory)",
       "Bash(Select-Object -First 20)",
       "Bash(Format-Table -AutoSize)",
-      "Bash(Get-ChildItem *)"
+      "Bash(Get-ChildItem *)",
+      "WebSearch",
+      "WebFetch(domain:en.wiktionary.org)",
+      "WebFetch(domain:cs.wiktionary.org)",
+      "WebFetch(domain:prirucka.ujc.cas.cz)",
+      "WebFetch(domain:ssjc.ujc.cas.cz)",
+      "WebFetch(domain:www.nechybujte.cz)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

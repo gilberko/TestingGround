@@ -16,12 +16,12 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConjugationExamplesHubScreen(navController: NavController) {
+fun AdjectiveConjugationExamplesHubScreen(navController: NavController) {
     HubBackground {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Conjugation Examples", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Adjective Conjugations", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -36,10 +36,10 @@ fun ConjugationExamplesHubScreen(navController: NavController) {
         containerColor = Color.Transparent
     ) { innerPadding ->
         val items = listOf(
-            "Noun Conjugation" to "noun_conjugation",
-            "Adjective Conjugations" to "adjective_conjugation_examples",
-            "Possessive Pronouns" to "possessive_pronoun_conjugation_examples",
-            "Object Pronouns" to "object_pronoun_conjugation_examples"
+            "Strong (silný)" to "adj_conj_strong",
+            "Smart (chytrý)" to "adj_conj_smart",
+            "Wrong (špatný)" to "adj_conj_wrong",
+            "Interesting (zajímavý)" to "adj_conj_interesting"
         )
         Column(
             modifier = Modifier
