@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 fun HomeScreen(
     onOpenPlaces: () -> Unit,
     onOpenGeneralInfo: () -> Unit,
-    onOpenSimAndEsim: () -> Unit,
     onOpenUsefulApps: () -> Unit,
     onOpenStoresAndChains: () -> Unit,
     onOpenClassicalCulture: () -> Unit,
@@ -53,57 +52,52 @@ fun HomeScreen(
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(32.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenPlaces,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Places") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenGeneralInfo,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("General Information") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
-                onClick = onOpenSimAndEsim,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("Sim and eSim") }
-            Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenUsefulApps,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Useful Apps") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenStoresAndChains,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Stores and Chains") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenClassicalCulture,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Classical Japanese Culture") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenMedicalIssues,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Medical Issues") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenFoodAndCafes,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Food and Cafes") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenAboutFood,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("About Food") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenSpecialAnimalPlaces,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Special Places with Animals") }
             Spacer(modifier = Modifier.height(12.dp))
-            OutlinedButton(
+            Button(
                 onClick = onOpenWeather,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Weather") }

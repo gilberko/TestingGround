@@ -48,7 +48,6 @@ import com.example.japantravel.screens.OsakaTeamLabBotanicalGardenScreen
 import com.example.japantravel.screens.PlaceDetailScreen
 import com.example.japantravel.screens.PlacesScreen
 import com.example.japantravel.screens.SamuraiNinjaTeaCeremonyScreen
-import com.example.japantravel.screens.SimAndEsimScreen
 import com.example.japantravel.screens.SpecialAnimalPlacesScreen
 import com.example.japantravel.screens.SplashScreen
 import com.example.japantravel.screens.StoresAndChainsScreen
@@ -78,7 +77,6 @@ sealed class Screen(val route: String) {
     object Places                  : Screen("places")
     object PlaceDetail             : Screen("place/{placeName}")
     object GeneralInfo             : Screen("general_info")
-    object SimAndEsim              : Screen("sim_and_esim")
     object UsefulApps              : Screen("useful_apps")
     object StoresAndChains         : Screen("stores_and_chains")
     object ClassicalCulture        : Screen("classical_culture")
@@ -165,7 +163,6 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onOpenPlaces            = { navController.navigate(Screen.Places.route) },
                 onOpenGeneralInfo       = { navController.navigate(Screen.GeneralInfo.route) },
-                onOpenSimAndEsim        = { navController.navigate(Screen.SimAndEsim.route) },
                 onOpenUsefulApps        = { navController.navigate(Screen.UsefulApps.route) },
                 onOpenStoresAndChains   = { navController.navigate(Screen.StoresAndChains.route) },
                 onOpenClassicalCulture  = { navController.navigate(Screen.ClassicalCulture.route) },
@@ -205,9 +202,6 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.GeneralInfo.route) {
             GeneralInformationScreen(onBack = { navController.popBackStack() })
-        }
-        composable(Screen.SimAndEsim.route) {
-            SimAndEsimScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.UsefulApps.route) {
             UsefulAppsScreen(onBack = { navController.popBackStack() })

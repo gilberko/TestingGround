@@ -73,24 +73,60 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "Strada X and Linea Classic S machines), and offers a reservation-only tasting " +
                     "course pairing drip, espresso, latte, and cold brew from the same beans."
             )
+            BodyText(
+                "More multi-branch specialty chains worth knowing: **Blue Bottle Coffee** now has " +
+                    "around 28 Japan cafes, including several in **Tokyo** (**Shibuya**/**Hiroo**, " +
+                    "**Nakameguro**, **Shinagawa** Station, **Shinjuku**, and more), two in **Kyoto** " +
+                    "(**Higashiyama**, by **Nanzen-ji**; and **Rokkaku**, near **Karasuma Oike**), and one in " +
+                    "**Osaka** (**Umeda Chayamachi**). **Higuma Doughnuts & Coffee** pairs specialty coffee " +
+                    "with doughnuts, with locations in **Kyoto** (**Nakagyo**, at Rissei Garden Hulic near " +
+                    "**Kawaramachi** Station) and **Tokyo** (**Omotesando**, a collaboration with **Coffee " +
+                    "Wrights**). **Glitch Coffee & Roasters**, a widely praised light-roast specialty " +
+                    "chain, has its flagship in **Jimbocho** (**Tokyo**), plus branches in **Ginza**, " +
+                    "**Nihonbashi**, and **Akasaka**, as well as an **Osaka** location. **Lilo Coffee " +
+                    "Roasters** has its flagship in **Shinsaibashi** (**Osaka**) and a **Kyoto** branch " +
+                    "called \"In The Coffee\", near **Karasuma** Station."
+            )
 
             SectionHeader("Recommended independent roasteries and cafes (not chains)")
             BodyText(
                 "**Tokyo**: **Fuglen Tokyo** (Nordic-style light roasts, filter/drip-forward but also " +
-                    "serves espresso drinks) and **Koffee Mameya Kakeru** (a pour-over/drip tasting-" +
-                    "course format, ranked among the World's 100 Best Coffee Shops)."
+                    "serves espresso drinks; a second branch, **Fuglen Asakusa**, opened in 2018) and " +
+                    "**Koffee Mameya** - the original stand-only bar in **Omotesando**, plus **Koffee " +
+                    "Mameya Kakeru** in **Kiyosumi-Shirakawa** (a pour-over/drip tasting-course format, " +
+                    "ranked among the World's 100 Best Coffee Shops)."
+            )
+            BodyText(
+                "More **Tokyo** picks: **Onibus Coffee**, a well-loved local roaster with branches in " +
+                    "**Okusawa** (the original), **Nakameguro**, and **Jiyugaoka**; **The Roastery by Nozy " +
+                    "Coffee**, on Cat Street in **Harajuku**; **Allpress Espresso Tokyo Roastery & Cafe**, " +
+                    "the New Zealand roaster's first overseas cafe, in a converted warehouse in " +
+                    "**Kiyosumi-Shirakawa**; **Unlimited Coffee Bar**, a two-story cafe right by **Tokyo " +
+                    "Skytree** in **Sumida**; and **Bongen Coffee**, with **Ginza** and **Nihonbashi** locations."
             )
             BodyText(
                 "**Osaka**: **Ult Coffee** (also ranked among the World's 100 Best, founded by 2023 World " +
                     "Barista Champion Boram Um) and **Spot Coffee**, a small-batch roastery in the " +
                     "**Nakazakinishi** neighborhood - both, like most high-end Japanese specialty " +
-                    "roasteries, typically offer espresso-based drinks alongside pour-over/drip."
+                    "roasteries, typically offer espresso-based drinks alongside pour-over/drip. Also " +
+                    "worth seeking out: **Mill Pour**, in **Shinsaibashi**, and **Granknot Coffee**, in the " +
+                    "**Yotsubashi** area near **Shinsaibashi**."
             )
             BodyText(
                 "**Kyoto**: **Weekenders Coffee** (Tomikoji) is a long-standing favorite among specialty " +
                     "coffee fans, known primarily for pour-over/drip; the **% Arabica** **Arashiyama** " +
                     "location is also worth a stop for the riverside view alone, even though it's " +
-                    "a chain (and espresso-based, as above)."
+                    "a chain (and espresso-based, as above). **Kurasu** has a shop near **Kyoto** Station " +
+                    "and a roastery cafe a short walk from **Fushimi Inari**. **Drip & Drop Coffee " +
+                    "Supply** has several **Kyoto** branches, including **Teramachi** and near **Ginkakuji**. " +
+                    "**Walden Woods Kyoto**, in a renovated Taisho-era building in **Shimogyo** near " +
+                    "**Gojo**, home-roasts on a Probat roaster. **Clamp Coffee Sarasa** and **Nijo Koya** " +
+                    "are both tucked into quiet alleys near **Nijo Castle** in **Nakagyo**. **Wife & " +
+                    "Husband**, in **Kitaoji** by the **Kamo River**, roasts its own beans in an " +
+                    "antique-filled old house. **Le Labo**'s only cafe (as opposed to its perfume " +
+                    "stores) is in **Kyoto**, inside a renovated machiya in **Nakagyo**. And **Here Cafe** " +
+                    "has two **Kyoto** locations - one near **Nijo Castle**, another on the **Sannenzaka** " +
+                    "slope by **Kiyomizu-dera** - plus a smaller outpost in **Tokyo**."
             )
 
             SectionHeader("Matcha")
