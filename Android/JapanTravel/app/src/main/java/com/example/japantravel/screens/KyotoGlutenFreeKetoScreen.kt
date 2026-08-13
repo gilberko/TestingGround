@@ -25,22 +25,22 @@ fun KyotoGlutenFreeKetoScreen(onBack: () -> Unit) {
 
             SectionHeader("Gluten-free")
             BodyText(
-                "Gion Soy Milk Ramen, in Higashiyama, is Japan's only dedicated 100% gluten-free " +
+                "**Gion Soy Milk Ramen**, in **Higashiyama**, is Japan's only dedicated 100% gluten-free " +
                     "(and vegan) ramen shop - a rare find in a category that's normally very hard " +
                     "for celiac travelers."
             )
             BodyText(
-                "Toshoan is a fully gluten-free bakery and pancake cafe - a good stop for bread " +
+                "**Toshoan** is a fully gluten-free bakery and pancake cafe - a good stop for bread " +
                     "and baked goods when most bakeries around it aren't an option."
             )
 
             SectionHeader("Keto-friendly")
             BodyText(
-                "Hyoto Shijo Karasuma is a well-regarded shabu-shabu spot with premium meat and " +
+                "**Hyoto Shijo Karasuma** is a well-regarded shabu-shabu spot with premium meat and " +
                     "seafood sets - naturally low-carb once you skip the rice/noodle add-ons."
             )
             BodyText(
-                "Nishiki Market's grilled skewer and sashimi stalls (see Parks and Attractions - " +
+                "**Nishiki Market**'s grilled skewer and sashimi stalls (see Parks and Attractions - " +
                     "Overview) make for an easy low-carb graze while sightseeing. Kaiseki " +
                     "restaurants more broadly are worth considering too - many courses in a " +
                     "kaiseki meal are naturally low-carb protein and vegetable dishes, so asking " +

@@ -29,7 +29,7 @@ fun NintendoMuseumScreen(onBack: () -> Unit) {
 
             SectionHeader("Location")
             BodyText(
-                "Uji, Kyoto Prefecture - not Tokyo. (If you were looking for this under Tokyo, " +
+                "**Uji**, **Kyoto Prefecture** - not **Tokyo**. (If you were looking for this under **Tokyo**, " +
                     "this is the correct place: it's about 20-30 minutes from Kyoto Station via " +
                     "the JR Nara Line plus a short walk/bus.)"
             )
@@ -42,7 +42,7 @@ fun NintendoMuseumScreen(onBack: () -> Unit) {
 
             SectionHeader("How to get there")
             BodyText(
-                "From Kyoto Station, take the JR Nara Line to Uji or Rokujizo Station, then a " +
+                "From Kyoto Station, take the JR Nara Line to **Uji** or Rokujizo Station, then a " +
                     "short walk or local bus to the museum."
             )
 

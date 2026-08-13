@@ -19,7 +19,7 @@ fun KyotoParksScreen(
     onOpenNintendoMuseum: () -> Unit,
     onOpenOverview: () -> Unit
 ) {
-    ScreenScaffold(title = "Parks and Attractions", onBack = onBack) {
+    ScreenScaffold(title = "Parks and Attractions", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

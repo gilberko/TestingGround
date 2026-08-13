@@ -32,7 +32,7 @@ fun GhibliMuseumScreen(onBack: () -> Unit) {
 
             SectionHeader("Location")
             BodyText(
-                "Mitaka, in western Tokyo, on the edge of Inokashira Park."
+                "**Mitaka**, in western **Tokyo**, on the edge of **Inokashira Park**."
             )
 
             SectionHeader("Ages")
@@ -46,7 +46,7 @@ fun GhibliMuseumScreen(onBack: () -> Unit) {
             BodyText(
                 "Take the JR Chuo Line to Mitaka Station, then either a short ride on the " +
                     "community \"Ghibli bus\" that runs directly to the museum, or a pleasant " +
-                    "15-20 minute walk through Inokashira Park."
+                    "15-20 minute walk through **Inokashira Park**."
             )
 
             SectionHeader("How to buy tickets")

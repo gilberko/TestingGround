@@ -18,7 +18,7 @@ fun KawaguchikoScreen(
     onOpenFujiQ: () -> Unit,
     onOpenOverview: () -> Unit
 ) {
-    ScreenScaffold(title = "Kawaguchiko", onBack = onBack) {
+    ScreenScaffold(title = "Kawaguchiko", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

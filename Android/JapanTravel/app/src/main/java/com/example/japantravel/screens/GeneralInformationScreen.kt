@@ -28,7 +28,7 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                 "Luggage size limit: bags up to 160cm (length + width + height combined) travel " +
                     "with no reservation needed. Bags between 160cm and 250cm require a free " +
                     "oversized-baggage seat reservation on the Tokaido, Sanyo, and Kyushu " +
-                    "Shinkansen lines (this covers the Tokyo-Kyoto-Osaka route). Bags over 250cm " +
+                    "Shinkansen lines (this covers the **Tokyo**-**Kyoto**-**Osaka** route). Bags over 250cm " +
                     "are not allowed on board at all. Boarding with an oversized bag without a " +
                     "reservation can incur a ¥1,000 handling fee."
             )
@@ -64,8 +64,8 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
             BodyText(
                 "The QR code: registering generates two QR codes, one for immigration and one for " +
                     "customs. Screenshot or download them before you land, since airport Wi-Fi " +
-                    "right after arrival can be patchy. At major airports (Narita, Haneda, Kansai, " +
-                    "Chubu, Fukuoka) these are scanned at automated \"Joint Kiosks\" that handle " +
+                    "right after arrival can be patchy. At major airports (**Narita**, **Haneda**, **Kansai**, " +
+                    "**Chubu**, **Fukuoka**) these are scanned at automated \"Joint Kiosks\" that handle " +
                     "immigration and customs together in one step, rather than queueing for each " +
                     "separately."
             )
@@ -107,20 +107,20 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
             BodyText(
                 "These are rechargeable tap-to-pay cards for trains, subways, buses, vending " +
                     "machines, and many convenience stores. Suica is issued by JR East for the " +
-                    "Tokyo region; Pasmo is issued by Tokyo's private railway and bus operators; " +
-                    "ICOCA is issued by JR West for the Kansai region (Osaka, Kyoto, Kobe)."
+                    "**Tokyo** region; Pasmo is issued by **Tokyo**'s private railway and bus operators; " +
+                    "ICOCA is issued by JR West for the **Kansai** region (**Osaka**, **Kyoto**, **Kobe**)."
             )
             BodyText(
                 "Since 2013, these cards (and several others) are mutually usable nationwide, so " +
-                    "any one of Suica, Pasmo, or ICOCA works for transit in Tokyo, Kyoto, and " +
-                    "Osaka alike. A card can only be refunded at a station in its home region " +
-                    "(e.g. a Suica must be refunded at a JR East station in Tokyo)."
+                    "any one of Suica, Pasmo, or ICOCA works for transit in **Tokyo**, **Kyoto**, and " +
+                    "**Osaka** alike. A card can only be refunded at a station in its home region " +
+                    "(e.g. a Suica must be refunded at a JR East station in **Tokyo**)."
             )
 
             SectionHeader("Public Transportation")
             BodyText(
                 "Trains are the backbone of getting around: JR lines, private railways, and " +
-                    "subways (Tokyo Metro and Toei in Tokyo, Osaka Metro in Osaka) cover almost " +
+                    "subways (Tokyo Metro and Toei in **Tokyo**, Osaka Metro in **Osaka**) cover almost " +
                     "everywhere you'll want to go. They're frequent, punctual, and reasonably " +
                     "priced for city and regional hops - see the Shinkansen section above for " +
                     "longer intercity trips, and the IC Cards section above for how to pay."
@@ -141,12 +141,12 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "a backup, and tipping is not expected."
             )
             BodyText(
-                "Getting to/from the airport with luggage: from Narita, the Narita Express, the " +
-                    "Skyliner, or an airport limousine bus all reach central Tokyo in roughly " +
-                    "60-90 minutes. From Haneda, the Keikyu Line or the Tokyo Monorail get you " +
-                    "into central Tokyo in about 30-40 minutes - Haneda is much closer to the " +
-                    "city than Narita. From Kansai Airport, the Haruka express connects to Kyoto " +
-                    "and Osaka. Remember that the Shinkansen has limited onboard luggage space " +
+                "Getting to/from the airport with luggage: from **Narita**, the Narita Express, the " +
+                    "Skyliner, or an airport limousine bus all reach central **Tokyo** in roughly " +
+                    "60-90 minutes. From **Haneda**, the Keikyu Line or the Tokyo Monorail get you " +
+                    "into central **Tokyo** in about 30-40 minutes - **Haneda** is much closer to the " +
+                    "city than **Narita**. From **Kansai** Airport, the Haruka express connects to **Kyoto** " +
+                    "and **Osaka**. Remember that the Shinkansen has limited onboard luggage space " +
                     "(see the oversized-baggage reservation rule in the Shinkansen section above) " +
                     "- for large suitcases, a limousine bus is usually the least stressful option, " +
                     "and takkyubin luggage-forwarding (also covered above) can save you from " +

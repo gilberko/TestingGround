@@ -20,13 +20,13 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Umeda Sky Building")
             BodyText(
-                "A striking twin-tower skyscraper in Umeda, north Osaka, connected near the top " +
-                    "by the circular Floating Garden Observatory. You can view the city from " +
+                "A striking twin-tower skyscraper in **Umeda**, north **Osaka**, connected near the top " +
+                    "by the circular **Floating Garden Observatory**. You can view the city from " +
                     "behind glass or step outside onto the open-air rooftop deck for unobstructed " +
-                    "360-degree views. The \"Sky Walk\" is a glass-floored escalator bridge " +
+                    "360-degree views. The \"**Sky Walk**\" is a glass-floored escalator bridge " +
                     "connecting the two towers at the top - a memorable, slightly vertigo-inducing " +
                     "walk on its own. Other things to do while you're up there: attach an engraved " +
-                    "\"Heart Lock\" padlock (popular with couples), grab a coffee at cafe SKY 40, " +
+                    "\"**Heart Lock**\" padlock (popular with couples), grab a coffee at cafe **SKY 40**, " +
                     "or head to the basement, which is styled like a nostalgic early-Showa-era " +
                     "town street lined with retro eateries. It's especially popular at sunset and " +
                     "after dark for the night skyline. Open 9:30-22:30 (last admission 22:00), " +
@@ -46,37 +46,37 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             BodyText(
                 "The large park grounds around the castle are worth a couple of hours on their " +
                     "own: wide lawns for walking, a plum grove (best in Feb-Mar) and cherry " +
-                    "blossom groves (best late Mar-early Apr), Nishinomaru Garden (a paid inner " +
+                    "blossom groves (best late Mar-early Apr), **Nishinomaru Garden** (a paid inner " +
                     "garden with some of the best castle-and-blossom photo spots), and a moat " +
                     "where you can ride a rental rowboat."
             )
 
             SectionHeader("Dotonbori")
             BodyText(
-                "Osaka's most famous nightlife and street food district, centered on a canal " +
-                    "lined with glowing signage - most iconically the Glico \"Running Man\" " +
-                    "billboard, a must-photo spot. This is the place to try Osaka's signature " +
+                "**Osaka**'s most famous nightlife and street food district, centered on a canal " +
+                    "lined with glowing signage - most iconically the **Glico \"Running Man\"** " +
+                    "billboard, a must-photo spot. This is the place to try **Osaka**'s signature " +
                     "street food: takoyaki (octopus balls) and okonomiyaki (savory pancake), both " +
-                    "believed to have originated in the Osaka area. Expect crowds, especially at " +
+                    "believed to have originated in the **Osaka** area. Expect crowds, especially at " +
                     "night."
             )
 
             SectionHeader("Namba")
             BodyText(
-                "Namba is the big entertainment and shopping district immediately south of " +
-                    "Dotonbori, built around Namba Station - one of Osaka's two major transit " +
-                    "hubs (along with Umeda to the north) and the southern terminus of the Nankai " +
-                    "line to Kansai Airport. Namba Parks (a terraced, garden-topped shopping mall), " +
-                    "Namba City, and countless arcades and shops make it a full day of shopping and " +
-                    "dining on its own, and it flows directly into Dotonbori on foot."
+                "**Namba** is the big entertainment and shopping district immediately south of " +
+                    "**Dotonbori**, built around Namba Station - one of **Osaka**'s two major transit " +
+                    "hubs (along with **Umeda** to the north) and the southern terminus of the Nankai " +
+                    "line to Kansai Airport. **Namba Parks** (a terraced, garden-topped shopping mall), " +
+                    "**Namba City**, and countless arcades and shops make it a full day of shopping and " +
+                    "dining on its own, and it flows directly into **Dotonbori** on foot."
             )
 
             SectionHeader("Famous temples and shrines nearby")
             BodyText(
-                "Shitennoji Temple, a short subway ride south of Namba, is one of Japan's oldest " +
+                "**Shitennoji Temple**, a short subway ride south of **Namba**, is one of Japan's oldest " +
                     "officially administered Buddhist temples, founded in 593 CE - notably older " +
-                    "in institutional history than many temples in Kyoto, even though Kyoto gets " +
-                    "more attention for temples overall. Sumiyoshi Taisha, a bit further south, is " +
+                    "in institutional history than many temples in **Kyoto**, even though **Kyoto** gets " +
+                    "more attention for temples overall. **Sumiyoshi Taisha**, a bit further south, is " +
                     "one of Japan's oldest and most important Shinto shrines, known for its " +
                     "distinctive pre-Buddhist architectural style and an iconic arched drum bridge."
             )

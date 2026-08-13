@@ -18,7 +18,7 @@ fun HakoneScreen(
     onOpenRopeway: () -> Unit,
     onOpenGettingThere: () -> Unit
 ) {
-    ScreenScaffold(title = "Hakone", onBack = onBack) {
+    ScreenScaffold(title = "Hakone", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

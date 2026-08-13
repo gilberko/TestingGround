@@ -20,26 +20,26 @@ fun LakesKawaguchikoDayTripScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Getting there")
             BodyText(
-                "The JR Chuo Line limited express \"Fuji Excursion\" runs direct from Shinjuku to " +
-                    "Kawaguchiko with no transfer. Alternatively, a direct highway bus from " +
+                "The JR Chuo Line limited express \"Fuji Excursion\" runs direct from **Shinjuku** to " +
+                    "**Kawaguchiko** with no transfer. Alternatively, a direct highway bus from " +
                     "Shinjuku Station's bus terminal is cheaper and more frequent, though slower."
             )
 
             SectionHeader("What to see")
             BodyText(
-                "Lake Kawaguchiko is one of the Fuji Five Lakes, at the base of Mount Fuji - one " +
-                    "of the most popular short trips out of Tokyo. The Mt. Fuji Panoramic Ropeway " +
-                    "(Kachi Kachi Yama Ropeway) climbs a nearby peak for a sweeping view over the " +
-                    "lake with Fuji behind it; Oishi Park on the north shore combines a classic " +
-                    "Fuji view with seasonal flower fields; lake cruises and shoreline cycling are " +
-                    "also popular. Kawaguchiko is especially famous for shots where Fuji is " +
+                "**Lake Kawaguchiko** is one of the **Fuji Five Lakes**, at the base of **Mount Fuji** - one " +
+                    "of the most popular short trips out of **Tokyo**. The **Mt. Fuji Panoramic Ropeway** " +
+                    "(**Kachi Kachi Yama Ropeway**) climbs a nearby peak for a sweeping view over the " +
+                    "lake with **Fuji** behind it; **Oishi Park** on the north shore combines a classic " +
+                    "**Fuji** view with seasonal flower fields; lake cruises and shoreline cycling are " +
+                    "also popular. **Kawaguchiko** is especially famous for shots where **Fuji** is " +
                     "mirrored in still lake water - most reliable on clear, calm mornings, since " +
                     "the mountain is often shy behind cloud cover later in the day."
             )
 
             SectionHeader("When to head back")
             BodyText(
-                "Front-load lake-view activities for the morning if a clear Fuji photo matters to " +
+                "Front-load lake-view activities for the morning if a clear **Fuji** photo matters to " +
                     "you. The Fuji Excursion limited express has only a handful of direct return " +
                     "departures per day, so it's worth reserving the return leg in advance rather " +
                     "than assuming walk-up availability; the highway bus runs more frequently and " +

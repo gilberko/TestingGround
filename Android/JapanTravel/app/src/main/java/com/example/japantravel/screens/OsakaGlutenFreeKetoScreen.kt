@@ -25,23 +25,23 @@ fun OsakaGlutenFreeKetoScreen(onBack: () -> Unit) {
 
             SectionHeader("Gluten-free")
             BodyText(
-                "OKO - Fun Okonomiyaki Bar, in the Shinsaibashi-suji shopping arcade, makes its " +
+                "**OKO - Fun Okonomiyaki Bar**, in the **Shinsaibashi-suji** shopping arcade, makes its " +
                     "signature okonomiyaki with soybean flour instead of wheat, and also offers " +
                     "gluten-free dumplings and fries. The menu marks gluten-free items clearly and " +
                     "posts its cross-contamination precautions - a rare place where a celiac " +
-                    "traveler can actually eat this Osaka specialty. It's popular, so expect waits " +
+                    "traveler can actually eat this **Osaka** specialty. It's popular, so expect waits " +
                     "of around 45 minutes at peak times."
             )
 
             SectionHeader("Keto-friendly")
             BodyText(
-                "Osaka has branches of the same nationwide yakiniku and shabu-shabu chains " +
-                    "covered under Tokyo's Gluten Free and Keto Friendly screen - Gyu-Kaku " +
-                    "(all-you-can-eat yakiniku) and Mo Mo Paradise (shabu-shabu) both work well " +
+                "**Osaka** has branches of the same nationwide yakiniku and shabu-shabu chains " +
+                    "covered under **Tokyo**'s Gluten Free and Keto Friendly screen - **Gyu-Kaku** " +
+                    "(all-you-can-eat yakiniku) and **Mo Mo Paradise** (shabu-shabu) both work well " +
                     "for a low-carb, meat-and-vegetables meal."
             )
             BodyText(
-                "Kuromon Ichiba Market's grilled seafood and skewer stalls are an easy low-carb " +
+                "**Kuromon Ichiba Market**'s grilled seafood and skewer stalls are an easy low-carb " +
                     "option while wandering the market - point-and-eat seafood, wagyu skewers, and " +
                     "sashimi without needing a sit-down restaurant."
             )

@@ -65,7 +65,7 @@ fun MedicalIssuesScreen(onBack: () -> Unit) {
             BodyText(
                 "To find a clinic or hospital, especially one with English support: the AMDA " +
                     "International Medical Information Center offers free multilingual phone " +
-                    "interpretation and can help locate an appropriate facility; Tokyo's Himawari " +
+                    "interpretation and can help locate an appropriate facility; **Tokyo**'s Himawari " +
                     "service lets you search facilities by area, department, language support, " +
                     "and hours (including holidays/nights); the Japan Visitor Hotline (JNTO, " +
                     "050-3816-2787) is a 24/7 multilingual line useful for accidents, illness, or " +

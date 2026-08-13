@@ -20,7 +20,7 @@ fun TeamLabPlanetsScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "An immersive digital-art museum in Toyosu (Koto Ward), right by Shin-Toyosu " +
+                "An immersive digital-art museum in **Toyosu** (**Koto Ward**), right by Shin-Toyosu " +
                     "Station. It's not a ride park but a walk-through art experience: you go " +
                     "barefoot through knee-deep water rooms with projected digital art beneath " +
                     "your feet, plus a garden dome where you walk among flowers. Four large " +

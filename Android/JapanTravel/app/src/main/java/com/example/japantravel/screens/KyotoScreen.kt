@@ -23,7 +23,7 @@ fun KyotoScreen(
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit
 ) {
-    ScreenScaffold(title = "Kyoto", onBack = onBack) {
+    ScreenScaffold(title = "Kyoto", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

@@ -20,11 +20,11 @@ fun TeamLabBorderlessScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "The MORI Building DIGITAL ART MUSEUM: teamLab's flagship \"borderless\" digital " +
+                "The **MORI Building DIGITAL ART MUSEUM**: teamLab's flagship \"borderless\" digital " +
                     "art museum, where the artworks move between rooms and react to visitors. It " +
-                    "originally opened in Odaiba in 2018 and closed in 2022; it reopened in " +
-                    "February 2024 at Azabudai Hills (Minato Ward, about a 15-minute walk from " +
-                    "Roppongi or Azabu-juban Station) - larger and with new works, but the same " +
+                    "originally opened in **Odaiba** in 2018 and closed in 2022; it reopened in " +
+                    "February 2024 at **Azabudai Hills** (**Minato Ward**, about a 15-minute walk from " +
+                    "**Roppongi** or Azabu-juban Station) - larger and with new works, but the same " +
                     "museum, not a separate \"part 2\"."
             )
 

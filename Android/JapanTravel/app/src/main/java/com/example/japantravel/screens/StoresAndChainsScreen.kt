@@ -20,7 +20,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Convenience stores")
             BodyText(
-                "7-Eleven, Lawson, and FamilyMart are the three big \"konbini\" chains, found " +
+                "**7-Eleven**, **Lawson**, and **FamilyMart** are the three big \"konbini\" chains, found " +
                     "on nearly every block. Open 24/7, they sell fresh food (onigiri, sandwiches, " +
                     "bento), drinks, and everyday items, and most have an ATM and let you pay " +
                     "bills, print, or ship packages."
@@ -30,27 +30,27 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             BodyText(
                 "A huge, maze-like discount variety store chain selling everything from snacks and " +
                     "cosmetics to electronics and souvenirs, often open 24 hours. Larger branches " +
-                    "are called MEGA Don Quijote. Most locations have a tax-free counter for " +
+                    "are called **MEGA Don Quijote**. Most locations have a tax-free counter for " +
                     "eligible tourist purchases."
             )
 
             SectionHeader("Clothing")
             BodyText(
-                "Uniqlo is Japan's best-known casual clothing chain; its budget sister brand is GU. " +
-                    "Muji sells minimalist clothing and household goods, and Shimamura is another " +
+                "**Uniqlo** is Japan's best-known casual clothing chain; its budget sister brand is **GU**. " +
+                    "**Muji** sells minimalist clothing and household goods, and **Shimamura** is another " +
                     "affordable clothing chain worth knowing."
             )
 
             SectionHeader("Electronics")
             BodyText(
-                "Bic Camera, Yodobashi Camera, and Yamada Denki (LABI) are the major electronics " +
+                "**Bic Camera**, **Yodobashi Camera**, and **Yamada Denki** (**LABI**) are the major electronics " +
                     "chains, selling cameras, appliances, and gadgets - many also offer tax-free " +
                     "shopping for tourists."
             )
 
             SectionHeader("100-yen shops")
             BodyText(
-                "Daiso, Seria, and Can Do sell household goods, stationery, and souvenirs at " +
+                "**Daiso**, **Seria**, and **Can Do** sell household goods, stationery, and souvenirs at " +
                     "flat, low prices (despite the name, some items cost more than ¥100) - good " +
                     "for cheap gifts and travel essentials."
             )

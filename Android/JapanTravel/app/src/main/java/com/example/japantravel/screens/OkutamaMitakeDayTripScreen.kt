@@ -20,26 +20,26 @@ fun OkutamaMitakeDayTripScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Getting there")
             BodyText(
-                "Take the JR Chuo Line from Shinjuku to Ome, then transfer to the Ome Line to " +
+                "Take the JR Chuo Line from **Shinjuku** to **Ome**, then transfer to the Ome Line to " +
                     "Mitake Station, then a short bus ride and a cable car up to Mitakesan Station " +
-                    "- about 90 minutes total from Shinjuku."
+                    "- about 90 minutes total from **Shinjuku**."
             )
 
             SectionHeader("What to see")
             BodyText(
-                "Mount Mitake, in Okutama, is a quieter, more remote alternative to Mount Takao. " +
-                    "At the summit is Musashi Mitake Shrine, said to be over 2,000 years old, " +
+                "**Mount Mitake**, in **Okutama**, is a quieter, more remote alternative to **Mount Takao**. " +
+                    "At the summit is **Musashi Mitake Shrine**, said to be over 2,000 years old, " +
                     "reached by a 20-30 minute walk from the cable car's upper station through " +
-                    "Mitake village - traditional lodges, a 1,000-year-old sacred tree, and " +
+                    "**Mitake** village - traditional lodges, a 1,000-year-old sacred tree, and " +
                     "mountain scenery along the way. The fuller loop with side trails to " +
                     "waterfalls and lookout points runs about 6-8km and takes 3-4 hours - more of " +
-                    "a real hike than Takao, and noticeably less crowded."
+                    "a real hike than **Takao**, and noticeably less crowded."
             )
 
             SectionHeader("When to head back")
             BodyText(
                 "The Ome Line and the Mitake cable car both run less frequently than central-" +
-                    "Tokyo lines, especially in the late afternoon - check the cable car's last " +
+                    "**Tokyo** lines, especially in the late afternoon - check the cable car's last " +
                     "descent time before committing to the longer waterfall loop, and budget for " +
                     "an early sunset if you're visiting in winter, since the return trip has " +
                     "several connections."
@@ -47,7 +47,7 @@ fun OkutamaMitakeDayTripScreen(onBack: () -> Unit) {
 
             SectionHeader("How long is the train")
             BodyText(
-                "About 90 minutes each way from Shinjuku, including the Chuo Line, the Ome Line " +
+                "About 90 minutes each way from **Shinjuku**, including the Chuo Line, the Ome Line " +
                     "transfer, and the cable car."
             )
             Spacer(Modifier.height(16.dp))

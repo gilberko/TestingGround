@@ -20,7 +20,7 @@ fun NinjaMuseumScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "The Samurai & Ninja Museum Kyoto (with Experience) - a museum plus hands-on " +
+                "The **Samurai & Ninja Museum Kyoto** (with Experience) - a museum plus hands-on " +
                     "activity venue where you can try on samurai armor and learn basic ninja " +
                     "skills such as shuriken (throwing star) throwing, guided by staff."
             )

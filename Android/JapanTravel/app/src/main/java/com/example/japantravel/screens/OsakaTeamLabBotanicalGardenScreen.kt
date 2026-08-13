@@ -28,8 +28,8 @@ fun OsakaTeamLabBotanicalGardenScreen(onBack: () -> Unit) {
 
             SectionHeader("Where")
             BodyText(
-                "Inside Nagai Park in southern Osaka. Take the Osaka Metro Midosuji Line to Nagai " +
-                    "Station (about 25 minutes from Namba), then it's roughly a 10-minute walk " +
+                "Inside **Nagai Park** in southern **Osaka**. Take the Osaka Metro Midosuji Line to Nagai " +
+                    "Station (about 25 minutes from **Namba**), then it's roughly a 10-minute walk " +
                     "from Exit 3."
             )
 
@@ -37,7 +37,7 @@ fun OsakaTeamLabBotanicalGardenScreen(onBack: () -> Unit) {
             BodyText(
                 "It's an evening/night outdoor walk - doors open around 7:30pm, which can be late " +
                     "for very young children, but the garden paths are flat and stroller-friendly, " +
-                    "and it's a calmer, more relaxed experience than teamLab's indoor Tokyo venues."
+                    "and it's a calmer, more relaxed experience than teamLab's indoor **Tokyo** venues."
             )
 
             SectionHeader("Prices")

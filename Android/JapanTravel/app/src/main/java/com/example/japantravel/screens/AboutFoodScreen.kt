@@ -62,11 +62,11 @@ fun AboutFoodScreen(onBack: () -> Unit) {
                     "outside, like a California roll). Temaki is a hand-rolled cone you eat " +
                     "immediately before the nori softens. Chirashi is a bowl of rice topped with " +
                     "an assortment of sashimi, and oshizushi is pressed into a block shape, " +
-                    "sliced, and served (a specialty of the Kansai/Osaka region)."
+                    "sliced, and served (a specialty of the **Kansai**/**Osaka** region)."
             )
             BodyText(
                 "Quality and price span a wide range - from the conveyor-belt chains already " +
-                    "covered under Food and Cafes (Sushiro, Kura Sushi), up to high-end omakase " +
+                    "covered under Food and Cafes (**Sushiro**, **Kura Sushi**), up to high-end omakase " +
                     "counters where the chef serves a fixed, curated sequence of pieces one at a " +
                     "time."
             )
@@ -85,11 +85,11 @@ fun AboutFoodScreen(onBack: () -> Unit) {
             SectionHeader("Ramen")
             BodyText(
                 "Ramen is defined mainly by its broth: shoyu (soy sauce based, clear brown), miso " +
-                    "(hearty, savory, associated with Sapporo), shio (salt based, the lightest/" +
-                    "clearest), and tonkotsu (pork bone, rich and cloudy, associated with Hakata/" +
-                    "Fukuoka). Regional styles are worth seeking out: Hakata tonkotsu (thin " +
-                    "noodles, order extra noodles as \"kaedama\"), Sapporo miso (thick noodles, " +
-                    "butter and corn toppings common), and Kitakata (thin, curly noodles in a " +
+                    "(hearty, savory, associated with **Sapporo**), shio (salt based, the lightest/" +
+                    "clearest), and tonkotsu (pork bone, rich and cloudy, associated with **Hakata**/" +
+                    "**Fukuoka**). Regional styles are worth seeking out: **Hakata** tonkotsu (thin " +
+                    "noodles, order extra noodles as \"kaedama\"), **Sapporo** miso (thick noodles, " +
+                    "butter and corn toppings common), and **Kitakata** (thin, curly noodles in a " +
                     "light shoyu broth)."
             )
 
@@ -102,7 +102,7 @@ fun AboutFoodScreen(onBack: () -> Unit) {
                     "broth at the table until just cooked, then dipped in ponzu or sesame sauce. " +
                     "For a splurge, wagyu steak restaurants (teppanyaki counters or dedicated " +
                     "steakhouses) showcase Japan's famously marbled beef, often graded and priced " +
-                    "by region (Kobe, Omi, Matsusaka among the best known)."
+                    "by region (**Kobe**, **Omi**, **Matsusaka** among the best known)."
             )
 
             SectionHeader("Fish dishes")
@@ -124,7 +124,7 @@ fun AboutFoodScreen(onBack: () -> Unit) {
                     "marinated in soy/ginger/garlic, then double-fried for a crisp crust. Oyakodon " +
                     "(\"parent and child bowl\") is chicken and egg simmered together over rice. " +
                     "Chicken nanban is fried chicken served with a tangy vinegar sauce and tartar " +
-                    "sauce, a specialty from Miyazaki that's now found nationwide."
+                    "sauce, a specialty from **Miyazaki** that's now found nationwide."
             )
 
             SectionHeader("What is an izakaya?")

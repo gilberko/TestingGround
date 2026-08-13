@@ -15,7 +15,7 @@ fun NaraScreen(
     onBack: () -> Unit,
     onOpenTemplesAndDeer: () -> Unit
 ) {
-    ScreenScaffold(title = "Nara", onBack = onBack) {
+    ScreenScaffold(title = "Nara", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

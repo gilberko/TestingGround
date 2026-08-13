@@ -20,24 +20,58 @@ fun GhibliParkScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "Ghibli Park, opened in November 2022, is a Studio Ghibli theme park built inside " +
+                "**Ghibli Park**, opened in November 2022, is a Studio Ghibli theme park built inside " +
                     "an existing public park rather than a standalone ride-based park. It's " +
-                    "designed as a walk-through experience across themed areas - Ghibli's Grand " +
-                    "Warehouse (indoor exhibits, a cinema, and a recreation of a Ghibli film set), " +
-                    "Hill of Youth, Dondoko Forest, Witch's Valley, and Mononoke Village - so " +
+                    "designed as a walk-through experience across themed areas - **Ghibli's Grand " +
+                    "Warehouse** (indoor exhibits, a cinema, and a recreation of a Ghibli film set), " +
+                    "**Hill of Youth**, **Dondoko Forest**, **Witch's Valley**, and **Mononoke Village** - so " +
                     "expect strolling and exploring rather than queuing for rides. Note this is a " +
-                    "completely different place from the Ghibli Museum in Mitaka, Tokyo."
+                    "completely different place from the **Ghibli Museum** in **Mitaka**, **Tokyo**."
+            )
+
+            SectionHeader("Which movies you'll find where")
+            BodyText(
+                "**Ghibli's Grand Warehouse** is the most film-dense area: the climbable Catbus " +
+                    "(**My Neighbor Totoro**), a life-size train car recreation with No-Face riding " +
+                    "along (**Spirited Away**), a recreation of Yubaba's office (**Spirited Away**), " +
+                    "the House Below and Little People's Garden built at tiny scale (**The Secret " +
+                    "World of Arrietty**), and a large model of the Savoia S-21 seaplane (**Porco " +
+                    "Rosso**)."
+            )
+            BodyText(
+                "**Hill of Youth** has the World Emporium antique shop and violin workroom " +
+                    "(**Whisper of the Heart**), and the cat-sized Cat Bureau where Baron and Muta " +
+                    "can be seen relaxing (**The Cat Returns**)."
+            )
+            BodyText(
+                "**Dondoko Forest** has Satsuki and Mei's House and the Totoro-shaped Dondoko-do " +
+                    "climbing structure (**My Neighbor Totoro**)."
+            )
+            BodyText(
+                "**Mononoke Village** recreates Irontown and Emishi Village, with figures of the " +
+                    "Demon Spirit and Lord Okkoto (**Princess Mononoke**)."
+            )
+            BodyText(
+                "**Witch's Valley** covers three witch-themed films: the Okino family home and " +
+                    "Gutiokipanja Bakery (**Kiki's Delivery Service**), Howl's Castle and the " +
+                    "Hatter's Hat Shop (**Howl's Moving Castle**), and the House of Witches " +
+                    "(**Earwig and the Witch**)."
+            )
+            BodyText(
+                "Not currently featured: **Nausicaa of the Valley of the Wind** doesn't have a " +
+                    "confirmed dedicated area or exhibit in the park as of this writing - worth " +
+                    "checking closer to your visit in case that changes."
             )
 
             SectionHeader("Where it is")
             BodyText(
-                "Inside Aichi Expo Memorial Park in Nagakute City, Aichi Prefecture, about 40 " +
-                    "minutes east of central Nagoya."
+                "Inside **Aichi Expo Memorial Park** in **Nagakute City**, **Aichi Prefecture**, about 40 " +
+                    "minutes east of central **Nagoya**."
             )
 
             SectionHeader("How to get there from Tokyo")
             BodyText(
-                "Take the Shinkansen from Tokyo Station to Nagoya (about 1h40m), then the Nagoya " +
+                "Take the Shinkansen from Tokyo Station to **Nagoya** (about 1h40m), then the **Nagoya** " +
                     "subway Higashiyama Line to Fujigaoka Station (about 30 min), then the Linimo " +
                     "line to Expo Memorial Park Station (about 15 min) - roughly 2.5 hours door to " +
                     "door."
@@ -45,10 +79,10 @@ fun GhibliParkScreen(onBack: () -> Unit) {
 
             SectionHeader("How to get there from Kyoto")
             BodyText(
-                "Take the Tokaido Shinkansen to Nagoya (about 35-45 min, since the line passes " +
-                    "directly through Nagoya on the way to Tokyo), then the same local Nagoya " +
+                "Take the Tokaido Shinkansen to **Nagoya** (about 35-45 min, since the line passes " +
+                    "directly through **Nagoya** on the way to **Tokyo**), then the same local **Nagoya** " +
                     "subway + Linimo connection above. All told it's about 1.5 hours from Kyoto " +
-                    "Station, making Ghibli Park an easy detour on a Kyoto/Osaka to Tokyo trip."
+                    "Station, making **Ghibli Park** an easy detour on a **Kyoto**/**Osaka** to **Tokyo** trip."
             )
 
             SectionHeader("Costs")
@@ -56,8 +90,8 @@ fun GhibliParkScreen(onBack: () -> Unit) {
                 "There are several different area passes rather than one all-access ticket - only " +
                     "the Premium Pass covers everything. Prices generally range from around " +
                     "¥1,000 to ¥7,000 depending on which areas a pass includes. Shinkansen+ticket " +
-                    "bundle packages are also sold for visitors traveling in from Tokyo, Kyoto, or " +
-                    "Osaka."
+                    "bundle packages are also sold for visitors traveling in from **Tokyo**, **Kyoto**, or " +
+                    "**Osaka**."
             )
 
             SectionHeader("When to book tickets")

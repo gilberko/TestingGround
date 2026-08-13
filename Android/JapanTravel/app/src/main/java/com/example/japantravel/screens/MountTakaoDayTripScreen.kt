@@ -20,17 +20,17 @@ fun MountTakaoDayTripScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("Getting there")
             BodyText(
-                "The Keio Line runs direct from Shinjuku to Takaosanguchi Station, about 50 " +
+                "The Keio Line runs direct from **Shinjuku** to Takaosanguchi Station, about 50 " +
                     "minutes, with frequent service all day."
             )
 
             SectionHeader("What to see")
             BodyText(
-                "Mount Takao (599m) is the easiest proper hike near Tokyo. Trail 1, the main " +
+                "**Mount Takao** (599m) is the easiest proper hike near **Tokyo**. Trail 1, the main " +
                     "route to the summit, is broad and mostly paved, and a cable car or chairlift " +
                     "cuts the roughly 90-minute hike about in half - a good option for families or " +
-                    "anyone with less stamina. Partway up is the Takao Monkey Park & Wildflower " +
-                    "Garden, home to around 90 Japanese macaques viewable safely through glass. " +
+                    "anyone with less stamina. Partway up is the **Takao Monkey Park & Wildflower** " +
+                    "**Garden**, home to around 90 Japanese macaques viewable safely through glass. " +
                     "Takaosanguchi Station itself has restaurants, souvenir shops, and even an " +
                     "onsen for after the hike."
             )
@@ -45,7 +45,7 @@ fun MountTakaoDayTripScreen(onBack: () -> Unit) {
 
             SectionHeader("How long is the train")
             BodyText(
-                "About 50 minutes each way on the direct Keio Line from Shinjuku - one of the " +
+                "About 50 minutes each way on the direct Keio Line from **Shinjuku** - one of the " +
                     "shortest rides on this list, making it an easy half-day or relaxed full-day " +
                     "trip."
             )

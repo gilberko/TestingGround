@@ -35,6 +35,7 @@ fun HomeScreen(
     onOpenWeather: () -> Unit
 ) {
     Scaffold { innerPadding ->
+        HubBackground {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -106,6 +107,7 @@ fun HomeScreen(
                 onClick = onOpenWeather,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Weather") }
+        }
         }
     }
 }

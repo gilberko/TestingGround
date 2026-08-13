@@ -19,7 +19,7 @@ fun PlacesScreen(
     onBack: () -> Unit,
     onOpenPlace: (String) -> Unit
 ) {
-    ScreenScaffold(title = "Places", onBack = onBack) {
+    ScreenScaffold(title = "Places", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

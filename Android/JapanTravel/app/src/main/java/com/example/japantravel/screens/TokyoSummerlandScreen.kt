@@ -20,16 +20,16 @@ fun TokyoSummerlandScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "A water park in Akiruno, western Tokyo, split into two parts: the indoor " +
-                    "\"Adventure Dome\" with a large wave pool and water slides, and the outdoor " +
-                    "\"Adventure Lagoon\" with thrill slides and a lazy river."
+                "A water park in **Akiruno**, western **Tokyo**, split into two parts: the indoor " +
+                    "\"**Adventure Dome**\" with a large wave pool and water slides, and the outdoor " +
+                    "\"**Adventure Lagoon**\" with thrill slides and a lazy river."
             )
 
             SectionHeader("When it's open, indoor vs. outdoor, rainy days")
             BodyText(
-                "The indoor Adventure Dome is open year-round, typically 10:00am-7:00pm, so it's " +
+                "The indoor **Adventure Dome** is open year-round, typically 10:00am-7:00pm, so it's " +
                     "a good rainy-day or off-season option regardless of weather. The outdoor " +
-                    "Adventure Lagoon only opens for summer, roughly July through September, " +
+                    "**Adventure Lagoon** only opens for summer, roughly July through September, " +
                     "typically 9:30am-6:00pm."
             )
 
@@ -49,8 +49,8 @@ fun TokyoSummerlandScreen(onBack: () -> Unit) {
 
             SectionHeader("Famous rides")
             BodyText(
-                "Monster Stream (opened 2024), the Great Journey - at 650 meters, one of Japan's " +
-                    "longest lazy rivers - and DEKASLA, a slide with a 20-meter drop, are the " +
+                "**Monster Stream** (opened 2024), the **Great Journey** - at 650 meters, one of Japan's " +
+                    "longest lazy rivers - and **DEKASLA**, a slide with a 20-meter drop, are the " +
                     "park's headline attractions."
             )
             Spacer(Modifier.height(16.dp))

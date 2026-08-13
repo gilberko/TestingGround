@@ -26,7 +26,7 @@ fun TokyoDayTripsScreen(
     onOpenKawagoe: () -> Unit,
     onOpenOkutamaMitake: () -> Unit
 ) {
-    ScreenScaffold(title = "Recommended Day Trips", onBack = onBack) {
+    ScreenScaffold(title = "Recommended Day Trips", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

@@ -37,8 +37,8 @@ fun WeatherScreen(onBack: () -> Unit) {
                     "mild, with good autumn foliage later in November."
             )
             BodyText(
-                "Winter (December-February): cold, especially January - inland cities like Kyoto " +
-                    "get noticeably colder than coastal Tokyo, and occasional snow is possible in " +
+                "Winter (December-February): cold, especially January - inland cities like **Kyoto** " +
+                    "get noticeably colder than coastal **Tokyo**, and occasional snow is possible in " +
                     "both."
             )
 

@@ -20,16 +20,16 @@ fun TokyoDomeCityScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("What it is")
             BodyText(
-                "An attractions complex next to Tokyo Dome (the baseball stadium) in Bunkyo. " +
+                "An attractions complex next to **Tokyo Dome** (the baseball stadium) in **Bunkyo**. " +
                     "Entry to the complex is free - you only pay for the rides you go on."
             )
 
             SectionHeader("Main rides")
             BodyText(
-                "Thunder Dolphin, a roller coaster that loops through the middle of the Big-O " +
-                    "ferris wheel and around nearby buildings (¥1,500 per ride); Big-O itself, a " +
-                    "centerless ferris wheel with views of Tokyo Tower and Skytree (¥850); plus " +
-                    "family-friendly rides in the Attractions Garden area."
+                "**Thunder Dolphin**, a roller coaster that loops through the middle of the **Big-O** " +
+                    "ferris wheel and around nearby buildings (¥1,500 per ride); **Big-O** itself, a " +
+                    "centerless ferris wheel with views of **Tokyo Tower** and **Skytree** (¥850); plus " +
+                    "family-friendly rides in the **Attractions Garden** area."
             )
 
             SectionHeader("The app, costs, and ride reservations")

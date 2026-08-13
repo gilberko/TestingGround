@@ -20,7 +20,7 @@ fun NaraTemplesAndDeerScreen(onBack: () -> Unit) {
         ) {
             SectionHeader("The deer")
             BodyText(
-                "Yes - Nara Park is home to around 1,200 free-roaming sika deer, considered " +
+                "Yes - **Nara Park** is home to around 1,200 free-roaming sika deer, considered " +
                     "sacred messengers of the gods in Shinto belief. They wander freely among " +
                     "visitors and will bow for food. Official shika-senbei deer crackers are sold " +
                     "by licensed vendors around the park for about ¥200 a pack - keep crackers " +
@@ -30,8 +30,8 @@ fun NaraTemplesAndDeerScreen(onBack: () -> Unit) {
 
             SectionHeader("Todai-ji")
             BodyText(
-                "Home to Japan's Great Buddha, a roughly 15-metre bronze statue housed inside the " +
-                    "Daibutsuden, the main hall and one of the world's largest wooden buildings. " +
+                "Home to Japan's **Great Buddha**, a roughly 15-metre bronze statue housed inside the " +
+                    "**Daibutsuden**, the main hall and one of the world's largest wooden buildings. " +
                     "Entering the hall costs about ¥800."
             )
 
@@ -44,7 +44,7 @@ fun NaraTemplesAndDeerScreen(onBack: () -> Unit) {
             SectionHeader("Kofuku-ji")
             BodyText(
                 "A temple complex known for its five-story pagoda, one of the tallest wooden " +
-                    "pagodas in Japan and a symbol of Nara."
+                    "pagodas in Japan and a symbol of **Nara**."
             )
 
             SectionHeader("Planning your visit")

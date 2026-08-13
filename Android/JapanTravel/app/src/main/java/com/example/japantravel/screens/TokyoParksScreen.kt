@@ -24,9 +24,11 @@ fun TokyoParksScreen(
     onOpenTeamLabBorderless: () -> Unit,
     onOpenGhibliMuseum: () -> Unit,
     onOpenYomiuriland: () -> Unit,
-    onOpenSummerland: () -> Unit
+    onOpenSummerland: () -> Unit,
+    onOpenSamuraiNinjaTeaCeremony: () -> Unit,
+    onOpenWarnerBrosHarryPotter: () -> Unit
 ) {
-    ScreenScaffold(title = "Parks and Attractions", onBack = onBack) {
+    ScreenScaffold(title = "Parks and Attractions", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -72,6 +74,16 @@ fun TokyoParksScreen(
                 onClick = onOpenSummerland,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Tokyo Summerland") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenSamuraiNinjaTeaCeremony,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Samurai Ninja Museum + Tea Ceremony") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenWarnerBrosHarryPotter,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Warner Bros. The Making Of Harry Potter") }
         }
     }
 }

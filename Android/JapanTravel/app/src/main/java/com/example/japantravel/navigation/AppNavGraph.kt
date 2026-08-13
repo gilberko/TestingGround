@@ -47,8 +47,10 @@ import com.example.japantravel.screens.OsakaScreen
 import com.example.japantravel.screens.OsakaTeamLabBotanicalGardenScreen
 import com.example.japantravel.screens.PlaceDetailScreen
 import com.example.japantravel.screens.PlacesScreen
+import com.example.japantravel.screens.SamuraiNinjaTeaCeremonyScreen
 import com.example.japantravel.screens.SimAndEsimScreen
 import com.example.japantravel.screens.SpecialAnimalPlacesScreen
+import com.example.japantravel.screens.SplashScreen
 import com.example.japantravel.screens.StoresAndChainsScreen
 import com.example.japantravel.screens.TeamLabBorderlessScreen
 import com.example.japantravel.screens.TeamLabPlanetsScreen
@@ -65,11 +67,13 @@ import com.example.japantravel.screens.TokyoSpecialCafesScreen
 import com.example.japantravel.screens.TokyoSummerlandScreen
 import com.example.japantravel.screens.UsefulAppsScreen
 import com.example.japantravel.screens.UsjScreen
+import com.example.japantravel.screens.WarnerBrosHarryPotterScreen
 import com.example.japantravel.screens.WeatherScreen
 import com.example.japantravel.screens.YokohamaDayTripScreen
 import com.example.japantravel.screens.YomiurilandScreen
 
 sealed class Screen(val route: String) {
+    object Splash                  : Screen("splash")
     object Home                    : Screen("home")
     object Places                  : Screen("places")
     object PlaceDetail             : Screen("place/{placeName}")
@@ -96,6 +100,8 @@ sealed class Screen(val route: String) {
     object TokyoYomiuriland        : Screen("tokyo_yomiuriland")
     object TokyoSummerland         : Screen("tokyo_summerland")
     object TokyoPlacesOfInterest   : Screen("tokyo_places_of_interest")
+    object TokyoSamuraiNinjaTeaCeremony : Screen("tokyo_samurai_ninja_tea_ceremony")
+    object TokyoWarnerBrosHarryPotter : Screen("tokyo_warner_bros_harry_potter")
     object TokyoGlutenFreeKeto     : Screen("tokyo_gluten_free_keto")
     object TokyoDayTrips           : Screen("tokyo_day_trips")
     object HakoneDayTrip           : Screen("hakone_day_trip")
@@ -145,7 +151,16 @@ sealed class Screen(val route: String) {
 
 @Composable
 fun AppNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+        composable(Screen.Splash.route) {
+            SplashScreen(
+                onTimeout = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Splash.route) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(Screen.Home.route) {
             HomeScreen(
                 onOpenPlaces            = { navController.navigate(Screen.Places.route) },
@@ -285,7 +300,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenTeamLabBorderless     = { navController.navigate(Screen.TokyoTeamLabBorderless.route) },
                 onOpenGhibliMuseum          = { navController.navigate(Screen.TokyoGhibliMuseum.route) },
                 onOpenYomiuriland           = { navController.navigate(Screen.TokyoYomiuriland.route) },
-                onOpenSummerland            = { navController.navigate(Screen.TokyoSummerland.route) }
+                onOpenSummerland            = { navController.navigate(Screen.TokyoSummerland.route) },
+                onOpenSamuraiNinjaTeaCeremony = { navController.navigate(Screen.TokyoSamuraiNinjaTeaCeremony.route) },
+                onOpenWarnerBrosHarryPotter = { navController.navigate(Screen.TokyoWarnerBrosHarryPotter.route) }
             )
         }
         composable(Screen.TokyoDisney.route) {
@@ -311,6 +328,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TokyoSummerland.route) {
             TokyoSummerlandScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TokyoSamuraiNinjaTeaCeremony.route) {
+            SamuraiNinjaTeaCeremonyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TokyoWarnerBrosHarryPotter.route) {
+            WarnerBrosHarryPotterScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.TokyoCityRegions.route) {
             TokyoCityRegionsScreen(onBack = { navController.popBackStack() })

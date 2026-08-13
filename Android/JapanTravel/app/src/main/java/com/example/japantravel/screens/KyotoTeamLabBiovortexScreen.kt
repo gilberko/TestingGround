@@ -22,8 +22,8 @@ fun KyotoTeamLabBiovortexScreen(onBack: () -> Unit) {
             BodyText(
                 "teamLab's newest and largest museum, opened October 2025 - an indoor immersive " +
                     "digital art space spanning over 10,000 square meters across four floors, with " +
-                    "more than 50 interactive artworks. It's bigger than teamLab Planets or " +
-                    "Borderless in Tokyo, built around blending light, sound, and visitor " +
+                    "more than 50 interactive artworks. It's bigger than **teamLab Planets** or " +
+                    "**Borderless** in **Tokyo**, built around blending light, sound, and visitor " +
                     "interaction into a constantly shifting environment."
             )
 

@@ -25,7 +25,7 @@ fun TokyoScreen(
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenDayTrips: () -> Unit
 ) {
-    ScreenScaffold(title = "Tokyo", onBack = onBack) {
+    ScreenScaffold(title = "Tokyo", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

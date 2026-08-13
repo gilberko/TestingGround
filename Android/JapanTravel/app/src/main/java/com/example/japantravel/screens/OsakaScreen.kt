@@ -23,7 +23,7 @@ fun OsakaScreen(
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit
 ) {
-    ScreenScaffold(title = "Osaka", onBack = onBack) {
+    ScreenScaffold(title = "Osaka", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
