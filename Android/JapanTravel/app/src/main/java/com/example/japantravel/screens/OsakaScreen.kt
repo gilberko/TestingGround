@@ -21,7 +21,8 @@ fun OsakaScreen(
     onOpenOverview: () -> Unit,
     onOpenTeamLabBotanicalGarden: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
-    onOpenGettingAround: () -> Unit
+    onOpenGettingAround: () -> Unit,
+    onOpenAirportTravel: () -> Unit
 ) {
     ScreenScaffold(title = "Osaka", onBack = onBack, showBackground = true) {
         Column(
@@ -54,6 +55,11 @@ fun OsakaScreen(
                 onClick = onOpenGettingAround,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Getting Around") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenAirportTravel,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Airport Travel") }
         }
     }
 }

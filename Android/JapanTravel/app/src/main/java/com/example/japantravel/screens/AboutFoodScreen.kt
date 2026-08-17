@@ -149,6 +149,22 @@ fun AboutFoodScreen(onBack: () -> Unit) {
                     "printable Japanese explanation card covering gluten specifically."
             )
 
+            SectionHeader("Food Scanning Apps")
+            BodyText(
+                "Foodfit Japan (free, Android and iOS) scans Japanese food labels with the camera " +
+                    "and uses AI to translate and flag ingredients against dietary profiles: Vegan, " +
+                    "Vegetarian, Halal, Gluten-Free, and Lactose-Free. Each scanned item gets a " +
+                    "Safe / Caution / Avoid verdict, with ingredient translation in 30 languages - " +
+                    "handy for reading labels at **7-Eleven**, **Lawson**, **FamilyMart**, and supermarkets " +
+                    "like **Aeon** and **Life**, where packaging is Japanese-only."
+            )
+            BodyText(
+                "Note this is a diet-profile scanner, not a medical allergen database - it's built " +
+                    "around dietary philosophies (vegan, halal, etc.) rather than exhaustive allergen " +
+                    "detection. For a specific allergy (especially anything serious), still cross-check " +
+                    "with the allergen list above and use the Celiac Card below for restaurant meals."
+            )
+
             SectionHeader("Celiac Card")
             BodyText("Show this card to restaurant or hotel staff.")
             Spacer(Modifier.height(8.dp))

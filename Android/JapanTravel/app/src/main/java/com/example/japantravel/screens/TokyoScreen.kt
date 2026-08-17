@@ -23,7 +23,8 @@ fun TokyoScreen(
     onOpenOutsideTokyo: () -> Unit,
     onOpenPlacesOfInterest: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
-    onOpenDayTrips: () -> Unit
+    onOpenDayTrips: () -> Unit,
+    onOpenAirportTravel: () -> Unit
 ) {
     ScreenScaffold(title = "Tokyo", onBack = onBack, showBackground = true) {
         Column(
@@ -66,6 +67,11 @@ fun TokyoScreen(
                 onClick = onOpenOutsideTokyo,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Outside Tokyo") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenAirportTravel,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Airport Travel") }
         }
     }
 }

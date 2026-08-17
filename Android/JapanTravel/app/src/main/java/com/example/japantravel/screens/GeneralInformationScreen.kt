@@ -90,6 +90,48 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "changes daily, so check the current rate shortly before and during the trip."
             )
 
+            SectionHeader("Currency Exchange")
+            BodyText(
+                "Where to exchange: banks (SMBC, MUFG, Mizuho), post offices, licensed exchange " +
+                    "counters at airports and near major stations (Travelex, World Currency Shop, " +
+                    "Daikoku, GPA), and some large hotel lobbies."
+            )
+            BodyText(
+                "How to confirm it's legitimate: it should be licensed by Japan's Ministry of " +
+                    "Finance. Look for a permanent storefront, prominently posted rates, and a " +
+                    "printed receipt. Be wary of high-pressure \"this rate is only good right now\" " +
+                    "tactics - legitimate counters don't rush you."
+            )
+            BodyText(
+                "Which currencies are accepted: USD and EUR are the most widely accepted and get " +
+                    "the best rates; many counters also take CNY, KRW, TWD, SGD, HKD, THB, and VND. " +
+                    "**Israeli Shekel (ILS) is generally not accepted** at Japanese exchange counters - " +
+                    "bring USD or EUR cash to convert, or rely on ATM withdrawals or a travel debit " +
+                    "card instead (see below). Foreign currency cannot be used directly as payment " +
+                    "anywhere in Japan - everything must be converted to yen first."
+            )
+
+            SectionHeader("Prepaid Travel Debit Cards (Wise / Revolut)")
+            BodyText(
+                "What they are: multi-currency cards you top up via an app and then spend or " +
+                    "withdraw in yen at (near-)real exchange rates, without needing a Japanese bank " +
+                    "account."
+            )
+            BodyText(
+                "Worth it? Yes - especially useful here since ILS isn't easily exchanged in Japan. " +
+                    "Wise gives the mid-market rate every day including weekends, plus free ATM " +
+                    "withdrawal up to about ¥30,000/month. Revolut is strong for short trips under " +
+                    "its roughly ¥300,000/month fee-free allowance, but its Standard plan adds a " +
+                    "weekend markup on currency conversion."
+            )
+            BodyText(
+                "Practical tips: order and activate the card before departure, since a physical " +
+                    "card takes time to arrive by mail. Check whether it can be funded directly from " +
+                    "ILS or needs an intermediate currency like USD or EUR. **7-Eleven** / Seven Bank " +
+                    "ATMs are the most reliably foreign-card-friendly cash machines nationwide, worth " +
+                    "keeping as a backup."
+            )
+
             SectionHeader("Onsens & Ryokans")
             BodyText(
                 "An onsen is a natural hot spring bath, found as standalone bathhouses or as part " +
@@ -201,6 +243,68 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "before departure, roughly \$4-15 for 5-20GB over about 30 days, no Japanese " +
                     "number included. If you need a Japanese phone number alongside data: Mobal " +
                     "or Sakura Mobile."
+            )
+
+            SectionHeader("Renting a Car / Driving in Japan")
+            BodyText(
+                "Side of the road: Japan drives on the **left**, with right-hand-drive cars - the " +
+                    "opposite of Israel or the US."
+            )
+            BodyText(
+                "International Driving Permit (IDP) validity: an IDP is valid in Japan for one " +
+                    "year from its **issue date**, or one year from your entry into Japan - whichever " +
+                    "is shorter - regardless of any later expiration date printed on the permit " +
+                    "itself. It must also be issued under the 1949 Geneva Convention format."
+            )
+            BodyText(
+                "Why the rule exists: it was introduced to close a loophole where long-term " +
+                    "foreign residents (including students) kept renewing or reissuing an IDP via " +
+                    "brief trips abroad every few months, letting them drive indefinitely without " +
+                    "ever converting to a Japanese license."
+            )
+            BodyText(
+                "Practical tip: get the IDP shortly before departure rather than months ahead, so " +
+                    "the one-year issue-date clock doesn't run out mid-trip."
+            )
+
+            SectionHeader("When Are Stores Open")
+            BodyText(
+                "General hours: most retail and department stores run roughly 10am-8pm."
+            )
+            BodyText(
+                "Restaurants: independently-owned restaurants often close between lunch and " +
+                    "dinner (e.g. 11am-2pm, then 5pm-11pm) - a siesta-like break similar to Italy. " +
+                    "Chain and family restaurants (Gusto, Saizeriya, etc.) usually stay open all day " +
+                    "without a break."
+            )
+            BodyText(
+                "Convenience stores: traditionally open 24/7, though a growing number of locations " +
+                    "(especially in rural areas) now trial shorter hours - don't assume every " +
+                    "**konbini** is open all night."
+            )
+            BodyText(
+                "Alcohol: no nationwide time restriction - convenience stores and supermarkets " +
+                    "sell beer, sake, shochu, wine, and canned cocktails any hour of the day. Some " +
+                    "municipalities restrict late-night off-premise sales locally (for example, " +
+                    "11pm-5am in places)."
+            )
+            BodyText(
+                "Drinking in public: legal nationwide, with no open-container law - drinking a " +
+                    "canned drink in a park or on a sidewalk is normal. Exceptions are growing: some " +
+                    "areas now have local ordinances banning street drinking during set hours (for " +
+                    "example, **Shibuya** bans it 6pm-5am in specific public areas). Being loud, rowdy, " +
+                    "or leaving trash behind is considered rude even where it's legal."
+            )
+            BodyText(
+                "Eating or drinking while walking: legal, but a bit frowned upon - most people eat " +
+                    "standing near where they bought the food rather than walking with it."
+            )
+            BodyText(
+                "Garbage sorting: Japan separates trash into burnable, non-burnable, PET bottles, " +
+                    "cans/glass, and plastic packaging (exact categories vary by municipality), each " +
+                    "collected on its own designated day - mixed bags can be left uncollected. " +
+                    "Hotel and ryokan guests can just use the room bin; convenience-store trash cans " +
+                    "are meant for that store's own purchases, not outside litter."
             )
             Spacer(Modifier.height(16.dp))
         }
