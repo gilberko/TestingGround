@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.japantravel.R
 import com.example.japantravel.screens.AboutFoodScreen
 import com.example.japantravel.screens.ClassicalCultureScreen
 import com.example.japantravel.screens.FoodAndCafesScreen
@@ -24,13 +25,16 @@ import com.example.japantravel.screens.KawagoeDayTripScreen
 import com.example.japantravel.screens.KawaguchikoOverviewScreen
 import com.example.japantravel.screens.KawaguchikoScreen
 import com.example.japantravel.screens.KyotoCityRegionsScreen
+import com.example.japantravel.screens.KyotoDayPlansScreen
 import com.example.japantravel.screens.KyotoGettingAroundScreen
 import com.example.japantravel.screens.KyotoGlutenFreeKetoScreen
+import com.example.japantravel.screens.KyotoMapsScreen
 import com.example.japantravel.screens.KyotoOverviewScreen
 import com.example.japantravel.screens.KyotoParksScreen
 import com.example.japantravel.screens.KyotoScreen
 import com.example.japantravel.screens.KyotoTeamLabBiovortexScreen
 import com.example.japantravel.screens.LakesKawaguchikoDayTripScreen
+import com.example.japantravel.screens.MapImageScreen
 import com.example.japantravel.screens.MedicalIssuesScreen
 import com.example.japantravel.screens.MountTakaoDayTripScreen
 import com.example.japantravel.screens.NaraScreen
@@ -40,8 +44,10 @@ import com.example.japantravel.screens.NinjaMuseumScreen
 import com.example.japantravel.screens.NintendoMuseumScreen
 import com.example.japantravel.screens.OkutamaMitakeDayTripScreen
 import com.example.japantravel.screens.OsakaAirportTravelScreen
+import com.example.japantravel.screens.OsakaDayPlansScreen
 import com.example.japantravel.screens.OsakaGettingAroundScreen
 import com.example.japantravel.screens.OsakaGlutenFreeKetoScreen
+import com.example.japantravel.screens.OsakaMapsScreen
 import com.example.japantravel.screens.OsakaOverviewScreen
 import com.example.japantravel.screens.OsakaParksScreen
 import com.example.japantravel.screens.OsakaScreen
@@ -56,10 +62,12 @@ import com.example.japantravel.screens.TeamLabBorderlessScreen
 import com.example.japantravel.screens.TeamLabPlanetsScreen
 import com.example.japantravel.screens.TokyoAirportTravelScreen
 import com.example.japantravel.screens.TokyoCityRegionsScreen
+import com.example.japantravel.screens.TokyoDayPlansScreen
 import com.example.japantravel.screens.TokyoDayTripsScreen
 import com.example.japantravel.screens.TokyoDisneyScreen
 import com.example.japantravel.screens.TokyoDomeCityScreen
 import com.example.japantravel.screens.TokyoGlutenFreeKetoScreen
+import com.example.japantravel.screens.TokyoMapsScreen
 import com.example.japantravel.screens.TokyoOutsideAreaScreen
 import com.example.japantravel.screens.TokyoParksScreen
 import com.example.japantravel.screens.TokyoPlacesOfInterestScreen
@@ -105,6 +113,10 @@ sealed class Screen(val route: String) {
     object TokyoGlutenFreeKeto     : Screen("tokyo_gluten_free_keto")
     object TokyoDayTrips           : Screen("tokyo_day_trips")
     object TokyoAirportTravel      : Screen("tokyo_airport_travel")
+    object TokyoDayPlans           : Screen("tokyo_day_plans")
+    object TokyoMaps               : Screen("tokyo_maps")
+    object TokyoSubwayMap          : Screen("tokyo_subway_map")
+    object TokyoCityMap            : Screen("tokyo_city_map")
     object HakoneDayTrip           : Screen("hakone_day_trip")
     object NikkoDayTrip            : Screen("nikko_day_trip")
     object LakesKawaguchikoDayTrip : Screen("lakes_kawaguchiko_day_trip")
@@ -122,6 +134,10 @@ sealed class Screen(val route: String) {
     object OsakaGlutenFreeKeto     : Screen("osaka_gluten_free_keto")
     object OsakaGettingAround      : Screen("osaka_getting_around")
     object OsakaAirportTravel      : Screen("osaka_airport_travel")
+    object OsakaDayPlans           : Screen("osaka_day_plans")
+    object OsakaMaps               : Screen("osaka_maps")
+    object OsakaSubwayMap          : Screen("osaka_subway_map")
+    object OsakaCityMap            : Screen("osaka_city_map")
 
     object Kyoto                   : Screen("kyoto")
     object KyotoCityRegions        : Screen("kyoto_city_regions")
@@ -132,6 +148,10 @@ sealed class Screen(val route: String) {
     object KyotoTeamLabBiovortex   : Screen("kyoto_teamlab_biovortex")
     object KyotoGlutenFreeKeto     : Screen("kyoto_gluten_free_keto")
     object KyotoGettingAround      : Screen("kyoto_getting_around")
+    object KyotoDayPlans           : Screen("kyoto_day_plans")
+    object KyotoMaps               : Screen("kyoto_maps")
+    object KyotoSubwayMap          : Screen("kyoto_subway_map")
+    object KyotoCityMap            : Screen("kyoto_city_map")
 
     object Kawaguchiko             : Screen("kawaguchiko")
     object KawaguchikoOverview     : Screen("kawaguchiko_overview")
@@ -240,7 +260,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenPlacesOfInterest      = { navController.navigate(Screen.TokyoPlacesOfInterest.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.TokyoGlutenFreeKeto.route) },
                 onOpenDayTrips              = { navController.navigate(Screen.TokyoDayTrips.route) },
-                onOpenAirportTravel         = { navController.navigate(Screen.TokyoAirportTravel.route) }
+                onOpenAirportTravel         = { navController.navigate(Screen.TokyoAirportTravel.route) },
+                onOpenDayPlans              = { navController.navigate(Screen.TokyoDayPlans.route) },
+                onOpenMaps                  = { navController.navigate(Screen.TokyoMaps.route) }
             )
         }
         composable(Screen.TokyoOutsideArea.route) {
@@ -248,6 +270,32 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TokyoAirportTravel.route) {
             TokyoAirportTravelScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TokyoDayPlans.route) {
+            TokyoDayPlansScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TokyoMaps.route) {
+            TokyoMapsScreen(
+                onBack              = { navController.popBackStack() },
+                onOpenSubwayMap     = { navController.navigate(Screen.TokyoSubwayMap.route) },
+                onOpenCityMap       = { navController.navigate(Screen.TokyoCityMap.route) }
+            )
+        }
+        composable(Screen.TokyoSubwayMap.route) {
+            MapImageScreen(
+                title = "Tokyo Subway Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.tokyo_subway_map,
+                sourceCredit = "Source: Tokyo Subway Linemap (en), Wikimedia Commons, CC BY-SA 4.0"
+            )
+        }
+        composable(Screen.TokyoCityMap.route) {
+            MapImageScreen(
+                title = "Tokyo City Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.tokyo_city_map,
+                sourceCredit = "Source: Tokyo Special Wards map, Wikimedia Commons, CC BY-SA 3.0"
+            )
         }
         composable(Screen.TokyoPlacesOfInterest.route) {
             TokyoPlacesOfInterestScreen(onBack = { navController.popBackStack() })
@@ -353,7 +401,35 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenTeamLabBotanicalGarden = { navController.navigate(Screen.OsakaTeamLabBotanicalGarden.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.OsakaGlutenFreeKeto.route) },
                 onOpenGettingAround         = { navController.navigate(Screen.OsakaGettingAround.route) },
-                onOpenAirportTravel         = { navController.navigate(Screen.OsakaAirportTravel.route) }
+                onOpenAirportTravel         = { navController.navigate(Screen.OsakaAirportTravel.route) },
+                onOpenDayPlans              = { navController.navigate(Screen.OsakaDayPlans.route) },
+                onOpenMaps                  = { navController.navigate(Screen.OsakaMaps.route) }
+            )
+        }
+        composable(Screen.OsakaDayPlans.route) {
+            OsakaDayPlansScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.OsakaMaps.route) {
+            OsakaMapsScreen(
+                onBack              = { navController.popBackStack() },
+                onOpenSubwayMap     = { navController.navigate(Screen.OsakaSubwayMap.route) },
+                onOpenCityMap       = { navController.navigate(Screen.OsakaCityMap.route) }
+            )
+        }
+        composable(Screen.OsakaSubwayMap.route) {
+            MapImageScreen(
+                title = "Osaka Subway Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.osaka_subway_map,
+                sourceCredit = "Source: Wide-Area Map of Osaka City Subway and Newtram, Wikimedia Commons, public domain"
+            )
+        }
+        composable(Screen.OsakaCityMap.route) {
+            MapImageScreen(
+                title = "Osaka City Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.osaka_city_map,
+                sourceCredit = "Source: Osaka Wards map, Wikimedia Commons, CC BY-SA 3.0"
             )
         }
         composable(Screen.OsakaOverview.route) {
@@ -389,7 +465,35 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenParksAndAttractions   = { navController.navigate(Screen.KyotoParks.route) },
                 onOpenTeamLabBiovortex      = { navController.navigate(Screen.KyotoTeamLabBiovortex.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.KyotoGlutenFreeKeto.route) },
-                onOpenGettingAround         = { navController.navigate(Screen.KyotoGettingAround.route) }
+                onOpenGettingAround         = { navController.navigate(Screen.KyotoGettingAround.route) },
+                onOpenDayPlans              = { navController.navigate(Screen.KyotoDayPlans.route) },
+                onOpenMaps                  = { navController.navigate(Screen.KyotoMaps.route) }
+            )
+        }
+        composable(Screen.KyotoDayPlans.route) {
+            KyotoDayPlansScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KyotoMaps.route) {
+            KyotoMapsScreen(
+                onBack              = { navController.popBackStack() },
+                onOpenSubwayMap     = { navController.navigate(Screen.KyotoSubwayMap.route) },
+                onOpenCityMap       = { navController.navigate(Screen.KyotoCityMap.route) }
+            )
+        }
+        composable(Screen.KyotoSubwayMap.route) {
+            MapImageScreen(
+                title = "Kyoto Subway Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.kyoto_subway_map,
+                sourceCredit = "Source: Kyoto Metro Map, Wikimedia Commons, CC BY-SA 3.0"
+            )
+        }
+        composable(Screen.KyotoCityMap.route) {
+            MapImageScreen(
+                title = "Kyoto City Map",
+                onBack = { navController.popBackStack() },
+                imageRes = R.drawable.kyoto_city_map,
+                sourceCredit = "Source: Wards of Kyoto map, Wikimedia Commons, CC BY-SA 3.0"
             )
         }
         composable(Screen.KyotoCityRegions.route) {

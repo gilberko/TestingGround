@@ -22,7 +22,9 @@ fun OsakaScreen(
     onOpenTeamLabBotanicalGarden: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
-    onOpenAirportTravel: () -> Unit
+    onOpenAirportTravel: () -> Unit,
+    onOpenDayPlans: () -> Unit,
+    onOpenMaps: () -> Unit
 ) {
     ScreenScaffold(title = "Osaka", onBack = onBack, showBackground = true) {
         Column(
@@ -60,6 +62,16 @@ fun OsakaScreen(
                 onClick = onOpenAirportTravel,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Airport Travel") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenDayPlans,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Recommended Day Plans") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenMaps,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Maps") }
         }
     }
 }
