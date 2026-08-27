@@ -281,6 +281,8 @@ private fun CVLMindKnowledgeSection() {
         VerbEntry("to imagine", "představovat si", "představuji/představuju si", "představoval/a jsem si", "představit si", "představím si", "představil/a jsem si"),
         VerbEntry("to remember", "pamatovat si", "pamatuji/pamatuju si", "pamatoval/a jsem si", "zapamatovat si", "zapamatuji/zapamatuju si", "zapamatoval/a jsem si"),
         VerbEntry("to forget", "zapomínat", "zapomínám", "zapomínal/a jsem", "zapomenout", "zapomenu", "zapomněl/a jsem"),
+        VerbEntry("to remind", "připomínat", "připomínám", "připomínal/a jsem", "připomenout", "připomenu", "připomněl/a jsem"),
+        VerbEntry("to recall / remember (spontaneously)", "vzpomínat si", "vzpomínám si", "vzpomínal/a jsem si", "vzpomenout si", "vzpomenu si", "vzpomněl/a jsem si"),
         VerbEntry("to practice", "procvičovat", "procvičuji/procvičuju", "procvičoval/a jsem", "procvičit", "procvičím", "procvičil/a jsem"),
         VerbEntry("to understand", "rozumět", "rozumím", "rozuměl/a jsem", "pochopit", "pochopím", "pochopil/a jsem"),
         VerbEntry("to estimate", "odhadovat", "odhaduji/odhaduju", "odhadoval/a jsem", "odhadnout", "odhadnu", "odhadnul/a jsem"),

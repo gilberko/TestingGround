@@ -113,17 +113,44 @@ fun PrepositionsScreen(navController: NavController) {
                 example = "Sedím mezi přáteli.", translation = "I'm sitting among friends.")
             PPNote("za with Accusative = motion (za roh = around the corner); za with Instrumental = position (za domem = behind the house).")
 
-            // ── Na vs. Do ──────────────────────────────────────────────
-            PPSection("Na vs. Do")
-            PPNote("Both mean roughly \"to,\" but they split Czech destinations into two groups. do (+ genitive) is for enclosed spaces and most general destinations. na (+ accusative) is for open spaces, surfaces, events, and a set of institutions/geographic names that are simply conventional exceptions.")
+            // ── Na vs. Do vs. K ────────────────────────────────────────
+            PPSection("Na vs. Do vs. K")
+            PPNote("All three can translate as \"to,\" but they split Czech destinations into three groups. do (+ genitive) is for enclosed spaces and most general destinations. na (+ accusative) is for open spaces, surfaces, events, and a set of institutions/geographic names that are simply conventional exceptions. k/ke (+ dative) is different again — it means motion toward a person or a point, without necessarily arriving inside anything.")
             PPRow("do", "into / to — enclosed spaces, most destinations",
                 example = "do školy · do práce · do obchodu · do kina · do Prahy · do parku · do zahraničí",
                 translation = "to school · to work · to the shop · to the cinema · to Prague · to the park · abroad")
             PPRow("na", "onto / to — open spaces, events, fixed exceptions",
                 example = "na poštu · na nádraží · na letiště · na univerzitu · na koncert · na oběd · na Slovensko · na hory",
                 translation = "to the post office · to the station · to the airport · to university · to a concert · to lunch · to Slovakia · to the mountains")
-            PPNote("Mnemonic for the matching position preposition: do pairs with v/ve (do školy → jsem ve škole), na pairs with na (na poštu → jsem na poště).")
+            PPRow("k / ke", "toward — approaching a person or point, not entering",
+                example = "Jdu k lékaři. · Jedeme k moři. · Jdu k oknu. · Přijeď k nám.",
+                translation = "I'm going to the doctor's. · We're heading to the seaside. · I'm going to the window. · Come to our place.")
+            PPNote("Compare all three on the same kind of target: Jdu do nemocnice. (into the hospital building) vs. Jdu na pohotovost. (to the emergency department — an event/institution exception) vs. Jdu k lékaři. (to see the doctor — approaching a person, not necessarily entering any building).")
+            PPNote("Mnemonic for the matching position preposition, now a 3-way pairing: do pairs with v/ve (do školy → jsem ve škole), na pairs with na (na poštu → jsem na poště), k pairs with u (k babičce → jsem u babičky).")
             PPNote("There isn't a fully reliable semantic rule for which nouns take na — it's largely idiomatic and gets learned together with the noun, though open spaces, events, and islands/mountains lean toward na.")
+
+            // ── Na vs. V/Ve ────────────────────────────────────────────
+            PPSection("Na vs. V/Ve — Which Locative Preposition?")
+            PPNote("Both mean roughly \"in\" or \"at\" for a static location, but the split follows the same shape as the destination prepositions above. v/ve (+ locative) is for inside an enclosed, bounded space. na (+ locative) is for a surface, an open area, an event, or one of the same fixed institutional/geographic exceptions already seen above — just in their static, \"being there\" form instead of the \"going there\" form.")
+            PPRow("v / ve", "in — enclosed, bounded space",
+                example = "V Praze · V restauraci · V kině · V bance · V nemocnici",
+                translation = "In Prague · In the restaurant · In the cinema · In the bank · In the hospital")
+            PPRow("na", "on / at — open space, event, fixed exception",
+                example = "Na Slovensku · Na poště · Na koncertě · Na univerzitě · Na horách",
+                translation = "In Slovakia · At the post office · At the concert · At university · In the mountains")
+            PPNote("Just like the na-destination exceptions, the na-vs-v split for institutions is largely idiomatic and gets learned together with the noun, not derived from a rule — memorize the phrase as one unit rather than translating from English.")
+
+            // ── Z vs. Od ───────────────────────────────────────────────
+            PPSection("Z vs. Od — Two Ways to Say \"From\"")
+            PPNote("Both mean \"from\" and both take the genitive, but they split the same way do/na/k split \"to.\" z/ze is the return trip of do — out of an enclosed space, or the origin something came from within. od is the return trip of k/u — away from a point, a person, or the outside of a place — plus a separate use for \"since\" a point in time.")
+            PPRow("z / ze", "from — out of an enclosed space, origin",
+                example = "Jdu z kina. · Jsem z Prahy. · Sklenice je ze skla.",
+                translation = "I'm coming from inside the cinema. · I'm from Prague. · The glass is made of/from glass.")
+            PPRow("od", "from — away from a point/person, or \"since\"",
+                example = "Jdu od kina. · Jdu od Elišky. · Mám dárek od kamaráda. · Pracuju tu od pondělí.",
+                translation = "I'm coming from outside the cinema. · I'm coming from Eliška's place. · I have a gift from a friend. · I've worked here since Monday.")
+            PPNote("Important rule: od is always used for \"from a person\" — Jdu od Elišky. is correct, Jdu z Elišky. is not, even though z is the more general word for \"from.\"")
+            PPNote("Contrast do vs. k from the section above: Jdu z kina. (I was inside, now I'm out — pairs with do kina) vs. Jdu od kina. (I was near/outside it, now I'm leaving that area — pairs with k/u kina).")
 
             // ── All Prepositions at a Glance ──────────────────────────
             PPSection("All Prepositions at a Glance")

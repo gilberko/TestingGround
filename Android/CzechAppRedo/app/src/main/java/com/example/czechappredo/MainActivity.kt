@@ -120,6 +120,11 @@ class MainActivity : ComponentActivity() {
                 composable("adj_conj_interesting") { AdjectiveConjugationInterestingScreen(navController) }
                 composable("possessive_pronoun_conjugation_examples") { PossessivePronounConjugationExamplesScreen(navController) }
                 composable("object_pronoun_conjugation_examples") { ObjectPronounConjugationExamplesScreen(navController) }
+                composable("prefixes_perfective") { PrefixesAndPerfectiveScreen(navController) }
+                composable("passive_voice") { PassiveVoiceScreen(navController) }
+                composable("traveling") { TravelingScreen(navController) }
+                composable("super_powers_magic") { SuperPowersAndMagicScreen(navController) }
+                composable("dialogue_family_trip") { FamilyTripDialogueScreen(navController) }
             }
         }
     }
@@ -275,7 +280,9 @@ fun LearningHubScreen(navController: NavController) {
             "Conditions" to "conditions",
             "Connecting Sentences" to "connecting_sentences",
             "Comparisons" to "comparisons",
-            "Word Order In A Sentence" to "word_order"
+            "Word Order In A Sentence" to "word_order",
+            "Prefixes and Perfective Verbs" to "prefixes_perfective",
+            "Passive Voice" to "passive_voice"
         )
         Column(
             modifier = Modifier
@@ -353,7 +360,9 @@ fun DictionaryHubScreen(navController: NavController) {
             "Time And Date" to "telling_time",
             "Sports" to "sports",
             "School and University" to "school_university",
-            "Need To, Have To, Allowed" to "need_have_allowed"
+            "Need To, Have To, Allowed" to "need_have_allowed",
+            "Traveling" to "traveling",
+            "Super Powers and Magic" to "super_powers_magic"
         )
         Column(
             modifier = Modifier

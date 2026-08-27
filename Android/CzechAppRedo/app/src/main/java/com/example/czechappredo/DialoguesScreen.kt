@@ -73,7 +73,8 @@ fun DialoguesHubScreen(navController: NavController) {
             "At the Train Station" to "dialogue_train_station",
             "At the Park" to "dialogue_park",
             "How Was School Today" to "dialogue_school",
-            "Watching a Soccer Game" to "dialogue_soccer"
+            "Watching a Soccer Game" to "dialogue_soccer",
+            "Family Trip" to "dialogue_family_trip"
         )
         Column(
             modifier = Modifier
@@ -608,6 +609,68 @@ fun HowWasSchoolDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("How Was School Today", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FamilyTripDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Táta", "Petře, Eliško, pojďte sem. Chceme vám něco říct o víkendu."),
+        DialogueLine("Petr", "Co se děje? Pojedeme někam?"),
+        DialogueLine("Máma", "Ano! Uděláme rodinný výlet do blízké vesnice. Je tam moc hezky."),
+        DialogueLine("Eliška", "Jé, opravdu? A co tam budeme dělat?"),
+        DialogueLine("Táta", "Půjčíme si tam kola a projedeme se po vesnici. Je prý moc malebná — staré domy, náměstí, všechno."),
+        DialogueLine("Petr", "Skvělé, mám rád jízdu na kole! A co potom?"),
+        DialogueLine("Máma", "Potom pojedeme dál, do lesa kousek za vesnicí. Bude tam klid a stín."),
+        DialogueLine("Eliška", "V lese si můžeme udělat piknik?"),
+        DialogueLine("Táta", "Přesně tak. Dáme si tam malý oběd — chleba, sýr, ovoce a něco k pití."),
+        DialogueLine("Petr", "A pak pojedeme zase zpátky?"),
+        DialogueLine("Máma", "Ano, ale jinou cestou — přes pole plné květin. Bude to nádherná cesta zpátky."),
+        DialogueLine("Eliška", "To zní úžasně! Kdy vyrazíme?"),
+        DialogueLine("Táta", "V sobotu ráno, hned po snídani. Tak si dobře odpočiňte."),
+        DialogueLine("Petr", "Už se moc těším!")
+    )
+    val englishLines = listOf(
+        DialogueLine("Dad", "Petr, Eliška, come here. We want to tell you something about the weekend."),
+        DialogueLine("Petr", "What's going on? Are we going somewhere?"),
+        DialogueLine("Mom", "Yes! We're going to take a family trip to a nearby village. It's very nice there."),
+        DialogueLine("Eliška", "Oh, really? And what will we do there?"),
+        DialogueLine("Dad", "We'll rent bikes there and ride around the village. It's supposedly very picturesque — old houses, a square, everything."),
+        DialogueLine("Petr", "Great, I love riding a bike! And what then?"),
+        DialogueLine("Mom", "Then we'll continue on into a forest just past the village. It'll be quiet and shady there."),
+        DialogueLine("Eliška", "Can we have a picnic in the forest?"),
+        DialogueLine("Dad", "Exactly. We'll have a small lunch there — bread, cheese, fruit, and something to drink."),
+        DialogueLine("Petr", "And then we'll ride back again?"),
+        DialogueLine("Mom", "Yes, but a different way — through a field full of flowers. It'll be a beautiful way back."),
+        DialogueLine("Eliška", "That sounds amazing! When are we leaving?"),
+        DialogueLine("Dad", "Saturday morning, right after breakfast. So get a good rest."),
+        DialogueLine("Petr", "I'm already really excited!")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Family Trip", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
