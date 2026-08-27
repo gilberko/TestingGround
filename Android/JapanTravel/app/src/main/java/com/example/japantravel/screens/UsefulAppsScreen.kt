@@ -31,6 +31,33 @@ fun UsefulAppsScreen(onBack: () -> Unit) {
                     "other live events. Similar services worth knowing about are e+ (eplus) and " +
                     "Lawson Ticket, which sell overlapping but not identical event listings."
             )
+
+            SectionHeader("GO")
+            BodyText(
+                "Japan's most-used taxi-hailing app, with well over 35 million downloads and by " +
+                    "far the largest share of taxi-app usage in the country. **GO** dispatches " +
+                    "licensed taxis nationwide across all 47 prefectures, so it generally has the " +
+                    "fastest pickup times and the best coverage, including smaller towns where " +
+                    "other apps have little presence. The app supports English, and fares are " +
+                    "metered and paid in-app by credit card, avoiding any language barrier with " +
+                    "the driver."
+            )
+
+            SectionHeader("Uber")
+            BodyText(
+                "**Uber** does operate in Japan, but differently than in most countries: Japanese " +
+                    "law bars private ride-share drivers, so the **Uber** app dispatches the same " +
+                    "kind of licensed, metered taxis as **GO** rather than independent drivers. " +
+                    "Coverage is strongest in central Tokyo (Shinjuku, Shibuya, Ginza, Roppongi), " +
+                    "thinner in Osaka and Kyoto, and expanding to more cities. Its main advantage " +
+                    "is familiarity — travelers who already use **Uber** at home can book with the " +
+                    "same account and app without installing anything new."
+            )
+            BodyText(
+                "**Bolt**, common in Europe, does not operate in Japan. Other apps worth knowing " +
+                    "about are **S.RIDE** and **DiDi**, which work similarly to **GO** but have " +
+                    "smaller coverage."
+            )
             Spacer(Modifier.height(16.dp))
         }
     }
