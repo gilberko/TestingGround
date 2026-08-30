@@ -19,7 +19,6 @@ fun KyotoScreen(
     onBack: () -> Unit,
     onOpenCityRegions: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
-    onOpenTeamLabBiovortex: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
     onOpenDayPlans: () -> Unit,
@@ -41,11 +40,6 @@ fun KyotoScreen(
                 onClick = onOpenParksAndAttractions,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Parks and Attractions") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onOpenTeamLabBiovortex,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("teamLab Biovortex Kyoto") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGlutenFreeAndKeto,

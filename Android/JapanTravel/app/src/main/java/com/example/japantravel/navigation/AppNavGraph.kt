@@ -33,10 +33,12 @@ import com.example.japantravel.screens.KyotoOverviewScreen
 import com.example.japantravel.screens.KyotoParksScreen
 import com.example.japantravel.screens.KyotoScreen
 import com.example.japantravel.screens.KyotoTeamLabBiovortexScreen
+import com.example.japantravel.screens.KyotoToeiStudioParkScreen
 import com.example.japantravel.screens.LakesKawaguchikoDayTripScreen
 import com.example.japantravel.screens.MapImageScreen
 import com.example.japantravel.screens.MedicalIssuesScreen
 import com.example.japantravel.screens.MountTakaoDayTripScreen
+import com.example.japantravel.screens.NaraGettingThereScreen
 import com.example.japantravel.screens.NaraScreen
 import com.example.japantravel.screens.NaraTemplesAndDeerScreen
 import com.example.japantravel.screens.NikkoDayTripScreen
@@ -74,6 +76,7 @@ import com.example.japantravel.screens.TokyoPlacesOfInterestScreen
 import com.example.japantravel.screens.TokyoScreen
 import com.example.japantravel.screens.TokyoSpecialCafesScreen
 import com.example.japantravel.screens.TokyoSummerlandScreen
+import com.example.japantravel.screens.TokyoToeiAnimationMuseumScreen
 import com.example.japantravel.screens.UsefulAppsScreen
 import com.example.japantravel.screens.UsjScreen
 import com.example.japantravel.screens.WarnerBrosHarryPotterScreen
@@ -110,6 +113,7 @@ sealed class Screen(val route: String) {
     object TokyoPlacesOfInterest   : Screen("tokyo_places_of_interest")
     object TokyoSamuraiNinjaTeaCeremony : Screen("tokyo_samurai_ninja_tea_ceremony")
     object TokyoWarnerBrosHarryPotter : Screen("tokyo_warner_bros_harry_potter")
+    object TokyoToeiAnimationMuseum : Screen("tokyo_toei_animation_museum")
     object TokyoGlutenFreeKeto     : Screen("tokyo_gluten_free_keto")
     object TokyoDayTrips           : Screen("tokyo_day_trips")
     object TokyoAirportTravel      : Screen("tokyo_airport_travel")
@@ -146,6 +150,7 @@ sealed class Screen(val route: String) {
     object KyotoNintendoMuseum     : Screen("kyoto_nintendo_museum")
     object KyotoOverview           : Screen("kyoto_overview")
     object KyotoTeamLabBiovortex   : Screen("kyoto_teamlab_biovortex")
+    object KyotoToeiStudioPark     : Screen("kyoto_toei_studio_park")
     object KyotoGlutenFreeKeto     : Screen("kyoto_gluten_free_keto")
     object KyotoGettingAround      : Screen("kyoto_getting_around")
     object KyotoDayPlans           : Screen("kyoto_day_plans")
@@ -162,6 +167,7 @@ sealed class Screen(val route: String) {
     object HakoneRopeway           : Screen("hakone_ropeway")
 
     object Nara                    : Screen("nara")
+    object NaraGettingThere        : Screen("nara_getting_there")
     object NaraTemplesAndDeer      : Screen("nara_temples_and_deer")
 
     object GhibliPark              : Screen("ghibli_park")
@@ -352,8 +358,12 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenYomiuriland           = { navController.navigate(Screen.TokyoYomiuriland.route) },
                 onOpenSummerland            = { navController.navigate(Screen.TokyoSummerland.route) },
                 onOpenSamuraiNinjaTeaCeremony = { navController.navigate(Screen.TokyoSamuraiNinjaTeaCeremony.route) },
-                onOpenWarnerBrosHarryPotter = { navController.navigate(Screen.TokyoWarnerBrosHarryPotter.route) }
+                onOpenWarnerBrosHarryPotter = { navController.navigate(Screen.TokyoWarnerBrosHarryPotter.route) },
+                onOpenToeiAnimationMuseum   = { navController.navigate(Screen.TokyoToeiAnimationMuseum.route) }
             )
+        }
+        composable(Screen.TokyoToeiAnimationMuseum.route) {
+            TokyoToeiAnimationMuseumScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.TokyoDisney.route) {
             TokyoDisneyScreen(onBack = { navController.popBackStack() })
@@ -398,7 +408,6 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                      = { navController.popBackStack() },
                 onOpenParksAndAttractions   = { navController.navigate(Screen.OsakaParks.route) },
                 onOpenOverview              = { navController.navigate(Screen.OsakaOverview.route) },
-                onOpenTeamLabBotanicalGarden = { navController.navigate(Screen.OsakaTeamLabBotanicalGarden.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.OsakaGlutenFreeKeto.route) },
                 onOpenGettingAround         = { navController.navigate(Screen.OsakaGettingAround.route) },
                 onOpenAirportTravel         = { navController.navigate(Screen.OsakaAirportTravel.route) },
@@ -443,8 +452,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.OsakaParks.route) {
             OsakaParksScreen(
-                onBack      = { navController.popBackStack() },
-                onOpenUsj   = { navController.navigate(Screen.Usj.route) }
+                onBack                          = { navController.popBackStack() },
+                onOpenUsj                       = { navController.navigate(Screen.Usj.route) },
+                onOpenTeamLabBotanicalGarden    = { navController.navigate(Screen.OsakaTeamLabBotanicalGarden.route) }
             )
         }
         composable(Screen.Usj.route) {
@@ -463,7 +473,6 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                      = { navController.popBackStack() },
                 onOpenCityRegions           = { navController.navigate(Screen.KyotoCityRegions.route) },
                 onOpenParksAndAttractions   = { navController.navigate(Screen.KyotoParks.route) },
-                onOpenTeamLabBiovortex      = { navController.navigate(Screen.KyotoTeamLabBiovortex.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.KyotoGlutenFreeKeto.route) },
                 onOpenGettingAround         = { navController.navigate(Screen.KyotoGettingAround.route) },
                 onOpenDayPlans              = { navController.navigate(Screen.KyotoDayPlans.route) },
@@ -510,7 +519,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                  = { navController.popBackStack() },
                 onOpenNinjaMuseum       = { navController.navigate(Screen.NinjaMuseum.route) },
                 onOpenNintendoMuseum    = { navController.navigate(Screen.KyotoNintendoMuseum.route) },
-                onOpenOverview          = { navController.navigate(Screen.KyotoOverview.route) }
+                onOpenOverview          = { navController.navigate(Screen.KyotoOverview.route) },
+                onOpenTeamLabBiovortex  = { navController.navigate(Screen.KyotoTeamLabBiovortex.route) },
+                onOpenToeiStudioPark    = { navController.navigate(Screen.KyotoToeiStudioPark.route) }
             )
         }
         composable(Screen.NinjaMuseum.route) {
@@ -524,6 +535,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KyotoTeamLabBiovortex.route) {
             KyotoTeamLabBiovortexScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KyotoToeiStudioPark.route) {
+            KyotoToeiStudioParkScreen(onBack = { navController.popBackStack() })
         }
 
         // Kawaguchiko
@@ -560,8 +574,12 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Nara.route) {
             NaraScreen(
                 onBack                  = { navController.popBackStack() },
+                onOpenGettingThere      = { navController.navigate(Screen.NaraGettingThere.route) },
                 onOpenTemplesAndDeer    = { navController.navigate(Screen.NaraTemplesAndDeer.route) }
             )
+        }
+        composable(Screen.NaraGettingThere.route) {
+            NaraGettingThereScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.NaraTemplesAndDeer.route) {
             NaraTemplesAndDeerScreen(onBack = { navController.popBackStack() })

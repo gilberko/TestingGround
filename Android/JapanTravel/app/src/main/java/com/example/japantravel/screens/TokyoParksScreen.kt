@@ -26,7 +26,8 @@ fun TokyoParksScreen(
     onOpenYomiuriland: () -> Unit,
     onOpenSummerland: () -> Unit,
     onOpenSamuraiNinjaTeaCeremony: () -> Unit,
-    onOpenWarnerBrosHarryPotter: () -> Unit
+    onOpenWarnerBrosHarryPotter: () -> Unit,
+    onOpenToeiAnimationMuseum: () -> Unit
 ) {
     ScreenScaffold(title = "Parks and Attractions", onBack = onBack, showBackground = true) {
         Column(
@@ -84,6 +85,11 @@ fun TokyoParksScreen(
                 onClick = onOpenWarnerBrosHarryPotter,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Warner Bros. The Making Of Harry Potter") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenToeiAnimationMuseum,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("TOEI Animation Museum") }
         }
     }
 }

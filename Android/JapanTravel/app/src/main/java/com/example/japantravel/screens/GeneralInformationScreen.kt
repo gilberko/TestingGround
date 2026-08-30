@@ -32,13 +32,70 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "are not allowed on board at all. Boarding with an oversized bag without a " +
                     "reservation can incur a ¥1,000 handling fee."
             )
+            SectionHeader("Bullet Train Vs. Regular Train")
             BodyText(
-                "Sending luggage ahead: most hotels can arrange \"takkyubin\" (also called " +
-                    "takuhaibin), Japan's luggage-forwarding courier service run by Yamato " +
-                    "Transport (the black cat logo). Ask the front desk, fill out a short form " +
-                    "with the next hotel's name/address and your check-in date, and pay per bag. " +
-                    "Delivery is typically next-day, costs roughly ¥1,650-2,530 per bag, and " +
-                    "follows the same 160cm / 25kg size and weight limit."
+                "Speed: the Shinkansen runs on dedicated high-speed track with few stops, while " +
+                    "regular trains and named limited expresses share conventional track with " +
+                    "far more stops - the Shinkansen is dramatically faster over the same route."
+            )
+            BodyText(
+                "Cost: the Shinkansen is noticeably more expensive per trip than a regular or " +
+                    "limited-express train covering the same cities."
+            )
+            BodyText(
+                "**Osaka - Kyoto** example: the Shinkansen (**Shin-Osaka** to **Kyoto**) takes " +
+                    "about 15 minutes for roughly ¥1,450 unreserved (a reserved seat costs " +
+                    "roughly double). A regular JR Special Rapid train (**Osaka** Station to " +
+                    "**Kyoto** Station) takes about 30 minutes for roughly ¥580, and the Hankyu " +
+                    "limited express (**Umeda** to **Kawaramachi**) takes about 40 minutes for " +
+                    "roughly ¥410."
+            )
+            BodyText(
+                "**Tokyo - Kyoto** example: the Shinkansen (Nozomi) takes about 2 hours 10 " +
+                    "minutes for roughly ¥13,320-14,570. Covering the same route on regular " +
+                    "trains via the Tokaido Main Line, with transfers and no limited-express " +
+                    "charge, takes about 9 hours for roughly ¥8,360."
+            )
+            BodyText(
+                "Do you need to book in advance? Shinkansen reserved seats are recommended, " +
+                    "especially around holidays and peak times, but not mandatory - unreserved " +
+                    "cars exist on most trains, and reservations (free with a Japan Rail Pass) " +
+                    "can be made at a counter, machine, or app as described above. Regular " +
+                    "commuter and rapid trains need no reservation at all; a few named limited " +
+                    "expresses (e.g. Hankyu, the Odakyu Romancecar) do sell reserved seats, but " +
+                    "most limited-express commuter trains don't require one."
+            )
+            BodyText(
+                "Luggage limitations: the Shinkansen's 160cm/250cm oversized-baggage " +
+                    "reservation rule (covered above) applies. Regular commuter trains have no " +
+                    "formal size limit or check, but also no dedicated luggage storage, so large " +
+                    "suitcases are impractical to bring aboard during crowded periods."
+            )
+
+            SectionHeader("Sending Luggage Ahead (Takkyubin)")
+            BodyText(
+                "Most hotels can arrange \"takkyubin\" (also called takuhaibin), Japan's " +
+                    "luggage-forwarding courier service run by Yamato Transport (the black cat " +
+                    "logo). Ask the front desk, fill out a short form with the next hotel's " +
+                    "name/address and your check-in date, and pay per bag - roughly " +
+                    "¥1,650-2,530, following the same 160cm / 25kg size and weight limit as the " +
+                    "Shinkansen."
+            )
+            BodyText(
+                "How long it takes: delivery is typically next-day if the bag is dropped off " +
+                    "before the hotel's cutoff time (this varies by hotel, often somewhere " +
+                    "around 11am-2pm). Dropping off later in the day, or forwarding over a " +
+                    "longer distance (for example Tokyo to Hokkaido or Okinawa), can take 2 days " +
+                    "instead of 1."
+            )
+            BodyText(
+                "What to confirm with the receiving hotel in advance: that they'll accept and " +
+                    "hold a bag sent ahead of your check-in date, whether they charge a holding " +
+                    "fee for early-arriving luggage, and that your chosen delivery date is one " +
+                    "the hotel can actually receive - some smaller inns and ryokans don't accept " +
+                    "parcels on their closed days. Keep medication, chargers, and a change of " +
+                    "clothes with you in a carry bag, since your main suitcase won't arrive " +
+                    "until later that day or the next."
             )
 
             SectionHeader("Visit Japan Web (arrival registration for visa-exempt visitors)")

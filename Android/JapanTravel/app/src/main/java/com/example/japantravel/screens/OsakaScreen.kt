@@ -19,7 +19,6 @@ fun OsakaScreen(
     onBack: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
     onOpenOverview: () -> Unit,
-    onOpenTeamLabBotanicalGarden: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
     onOpenAirportTravel: () -> Unit,
@@ -42,11 +41,6 @@ fun OsakaScreen(
                 onClick = onOpenParksAndAttractions,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Parks and Attractions") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onOpenTeamLabBotanicalGarden,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("teamLab Botanical Garden Osaka") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGlutenFreeAndKeto,
