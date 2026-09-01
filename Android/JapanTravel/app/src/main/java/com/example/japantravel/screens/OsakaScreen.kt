@@ -23,7 +23,8 @@ fun OsakaScreen(
     onOpenGettingAround: () -> Unit,
     onOpenAirportTravel: () -> Unit,
     onOpenDayPlans: () -> Unit,
-    onOpenMaps: () -> Unit
+    onOpenMaps: () -> Unit,
+    onOpenWhereToSleep: () -> Unit
 ) {
     ScreenScaffold(title = "Osaka", onBack = onBack, showBackground = true) {
         Column(
@@ -66,6 +67,11 @@ fun OsakaScreen(
                 onClick = onOpenMaps,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Maps") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenWhereToSleep,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Where To Sleep") }
         }
     }
 }

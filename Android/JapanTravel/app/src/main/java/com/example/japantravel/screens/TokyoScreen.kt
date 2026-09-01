@@ -26,7 +26,8 @@ fun TokyoScreen(
     onOpenDayTrips: () -> Unit,
     onOpenAirportTravel: () -> Unit,
     onOpenDayPlans: () -> Unit,
-    onOpenMaps: () -> Unit
+    onOpenMaps: () -> Unit,
+    onOpenWhereToSleep: () -> Unit
 ) {
     ScreenScaffold(title = "Tokyo", onBack = onBack, showBackground = true) {
         Column(
@@ -84,6 +85,11 @@ fun TokyoScreen(
                 onClick = onOpenMaps,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Maps") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenWhereToSleep,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Where To Sleep") }
         }
     }
 }

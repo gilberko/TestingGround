@@ -22,7 +22,9 @@ fun KyotoScreen(
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
     onOpenDayPlans: () -> Unit,
-    onOpenMaps: () -> Unit
+    onOpenMaps: () -> Unit,
+    onOpenAmanohashidateDayTrip: () -> Unit,
+    onOpenWhereToSleep: () -> Unit
 ) {
     ScreenScaffold(title = "Kyoto", onBack = onBack, showBackground = true) {
         Column(
@@ -60,6 +62,16 @@ fun KyotoScreen(
                 onClick = onOpenMaps,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Maps") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenAmanohashidateDayTrip,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Day Trip To Amanohashidate") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenWhereToSleep,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Where To Sleep") }
         }
     }
 }

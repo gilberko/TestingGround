@@ -58,6 +58,36 @@ fun UsefulAppsScreen(onBack: () -> Unit) {
                     "about are **S.RIDE** and **DiDi**, which work similarly to **GO** but have " +
                     "smaller coverage."
             )
+
+            SectionHeader("Weather Apps")
+            BodyText(
+                "**tenki.jp** and the **Yahoo! Weather Japan** app both give detailed local " +
+                    "forecasts. For official forecasts and typhoon warnings in English, the " +
+                    "**Japan Meteorological Agency** (JMA, jma.go.jp) is the authoritative " +
+                    "source - see the Weather section for more detail on all three."
+            )
+
+            SectionHeader("Public Transportation Apps")
+            BodyText(
+                "**Google Maps** is surprisingly reliable for Japanese public transport - JR " +
+                    "lines, private railways, subways, and buses - with accurate timetables " +
+                    "and clear transfer/platform instructions. **Japan Travel by NAVITIME** " +
+                    "(English) offers door-to-door route search, voice guidance, and offline " +
+                    "maps, and is especially useful for longer, multi-line intercity trips. " +
+                    "**Japan Transit Planner** by Jorudan is a solid alternative to NAVITIME, " +
+                    "with route search, fares, and platform numbers."
+            )
+
+            SectionHeader("Food Allergen Apps")
+            BodyText(
+                "The app's dedicated Japan food-scanning coverage - **Foodfit Japan**, which " +
+                    "gives Safe/Caution/Avoid verdicts against dietary profiles like Vegan, " +
+                    "Halal, and Gluten-Free on Japanese labels - is covered in the About Food " +
+                    "section. General-purpose global barcode scanners such as **Yuka** also " +
+                    "exist, but their coverage of Japanese products is thinner and less " +
+                    "reliable than an app built specifically for Japan, so Foodfit Japan " +
+                    "remains the better choice for reading supermarket labels here."
+            )
             Spacer(Modifier.height(16.dp))
         }
     }
