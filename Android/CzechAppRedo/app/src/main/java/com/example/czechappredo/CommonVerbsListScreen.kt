@@ -64,6 +64,7 @@ fun CommonVerbsListScreen(navController: NavController) {
             CVLArtsEntertainmentSection()
             CVLMathQuantitiesSection()
             CVLConflictInfluenceSection()
+            CVLCivicPoliticalSection()
 
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -186,6 +187,16 @@ private fun CVLDailyLifeSection() {
         VerbEntry("to relax", "relaxovat", "relaxuji/relaxuju", "relaxoval/a jsem",
             note = "biaspectual — the same form serves as both imperfective and perfective. Distinct from odpočívat/odpočinout si (to rest), which implies recovering from tiredness"),
         VerbEntry("to smoke", "kouřit", "kouřím", "kouřil/a jsem"),
+        VerbEntry("to tie (e.g. shoelaces)", "zavazovat", "zavazuji/zavazuju", "zavazoval/a jsem", "zavázat", "zavážu", "zavázal/a jsem",
+            note = "e.g. Zavaž si tkaničky! = Tie your shoelaces!"),
+        VerbEntry("to put on (clothes)", "oblékat si", "oblékám si", "oblékal/a jsem si", "obléknout si", "obléknu si / obleču si", "oblékl/a jsem si"),
+        VerbEntry("to take off (clothes)", "svlékat si", "svlékám si", "svlékal/a jsem si", "svléknout si", "svléknu si / svleču si", "svlékl/a jsem si"),
+        VerbEntry("to shave", "holit se", "holím se", "holil/a jsem se", "oholit se", "oholím se", "oholil/a jsem se"),
+        VerbEntry("to lie down / lay down", "lehat si", "lehám si", "lehal/a jsem si", "lehnout si", "lehnu si", "lehl/a jsem si"),
+        VerbEntry("to stand", "stát", "stojím", "stál/a jsem",
+            note = "no clean perfective partner — postát means 'to stand for a while' (delimitative), not a true aspect pair"),
+        VerbEntry("to sit (down)", "sedět", "sedím", "seděl/a jsem", "sednout si", "sednu si", "sedl/a jsem si",
+            note = "sedět (to be sitting, a state) and sednout si (to sit down, an action) aren't technically the same aspect pair — sedět's own perfective is posedět ('sit for a while') — but sednout si is the practical partner most learners need"),
     ))
 }
 
@@ -227,6 +238,10 @@ private fun CVLMovementTravelSection() {
         VerbEntry("to arrive (by vehicle)", "přijíždět", "přijíždím", "přijížděl/a jsem", "přijet", "přijedu", "přijel/a jsem"),
         VerbEntry("to hurry", "spěchat", "spěchám", "spěchal/a jsem"),
         VerbEntry("to pass by / go through", "procházet", "procházím", "procházel/a jsem", "projít", "projdu", "prošel/prošla jsem"),
+        VerbEntry("to bypass / go around", "obcházet", "obcházím", "obcházel/a jsem", "obejít", "obejdu", "obešel/obešla jsem"),
+        VerbEntry("to climb", "lézt", "lezu", "lezl/a jsem", "vylézt", "vylezu", "vylezl/a jsem"),
+        VerbEntry("to explore", "zkoumat", "zkoumám", "zkoumal/a jsem", "prozkoumat", "prozkoumám", "prozkoumal/a jsem"),
+        VerbEntry("to take off (airplane)", "vzlétat", "vzlétám", "vzlétal/a jsem", "vzlétnout", "vzlétnu", "vzlétl/a jsem"),
     ))
 }
 
@@ -290,6 +305,10 @@ private fun CVLMindKnowledgeSection() {
         VerbEntry("to check", "kontrolovat", "kontroluji/kontroluju", "kontroloval/a jsem", "zkontrolovat", "zkontroluji/zkontroluju", "zkontroloval/a jsem"),
         VerbEntry("to verify", "ověřovat", "ověřuji/ověřuju", "ověřoval/a jsem", "ověřit", "ověřím", "ověřil/a jsem"),
         VerbEntry("to realize", "uvědomovat si", "uvědomuji/uvědomuju si", "uvědomoval/a jsem si", "uvědomit si", "uvědomím si", "uvědomil/a jsem si"),
+        VerbEntry("to inspect", "prohlížet", "prohlížím", "prohlížel/a jsem", "prohlédnout", "prohlédnu", "prohlédl/a jsem",
+            note = "closer visual examination than kontrolovat (to check, above), which leans toward routine verification"),
+        VerbEntry("to contemplate / to ponder", "uvažovat", "uvažuji/uvažuju", "uvažoval/a jsem", "uvážit", "uvážím", "uvážil/a jsem",
+            note = "deeper, more deliberate reflection than myslet (to think, above)"),
     ))
 }
 
@@ -330,6 +349,8 @@ private fun CVLWorkStudySection() {
         VerbEntry("to study", "studovat", "studuji/studuju", "studoval/a jsem"),
         VerbEntry("to work", "pracovat", "pracuji/pracuju", "pracoval/a jsem"),
         VerbEntry("to train (sports / practice)", "trénovat", "trénuji/trénuju", "trénoval/a jsem", "vytrénovat", "vytrénuji/vytrénuju", "vytrénoval/a jsem"),
+        VerbEntry("to practice (sports / physical)", "cvičit", "cvičím", "cvičil/a jsem", "zacvičit si", "zacvičím si", "zacvičil/a jsem si",
+            note = "physical practice/exercise — distinct from procvičovat/procvičit (Mind & Knowledge), which is drilling/rehearsing knowledge, not sport"),
         VerbEntry("to learn", "učit se", "učím se", "učil/a jsem se", "naučit se", "naučím se", "naučil/a jsem se"),
         VerbEntry("to teach", "učit", "učím", "učil/a jsem", "naučit", "naučím", "naučil/a jsem",
             note = "non-reflexive — contrasts with reflexive učit se (to learn)"),
@@ -342,6 +363,12 @@ private fun CVLWorkStudySection() {
         VerbEntry("to promote (career)", "povyšovat", "povyšuji/povyšuju", "povyšoval/a jsem", "povýšit", "povýším", "povýšil/a jsem"),
         VerbEntry("to demote", "degradovat", "degraduji/degraduju", "degradoval/a jsem"),
         VerbEntry("to achieve", "dosahovat", "dosahuji/dosahuju", "dosahoval/a jsem", "dosáhnout", "dosáhnu", "dosáhnul/a jsem"),
+        VerbEntry("to resign", "rezignovat", "rezignuji/rezignuju", "rezignoval/a jsem",
+            note = "biaspectual — the same form serves as both imperfective and perfective. odstoupit ('to step down / withdraw') is a near-synonym with its own separate aspect pair, not this verb's partner"),
+        VerbEntry("to fire (someone from a job)", "propouštět", "propouštím", "propouštěl/a jsem", "propustit", "propustím", "propustil/a jsem"),
+        VerbEntry("to hire", "najímat", "najímám", "najímal/a jsem", "najmout", "najmu", "najal/a jsem",
+            note = "irregular past: najal, not najmul"),
+        VerbEntry("to negotiate", "vyjednávat", "vyjednávám", "vyjednával/a jsem", "vyjednat", "vyjednám", "vyjednal/a jsem"),
     ))
 }
 
@@ -526,6 +553,7 @@ private fun CVLCreationMaintenanceSection() {
         VerbEntry("to separate", "oddělovat", "odděluji/odděluju", "odděloval/a jsem", "oddělit", "oddělím", "oddělil/a jsem"),
         VerbEntry("to invent", "vynalézat", "vynalézám", "vynalézal/a jsem", "vynalést", "vynalezu", "vynalezl/a jsem"),
         VerbEntry("to adjust", "upravovat", "upravuji/upravuju", "upravoval/a jsem", "upravit", "upravím", "upravil/a jsem"),
+        VerbEntry("to preserve", "uchovávat", "uchovávám", "uchovával/a jsem", "uchovat", "uchovám", "uchoval/a jsem"),
     ))
 }
 
@@ -561,6 +589,9 @@ private fun CVLProcessesLifeEventsSection() {
         VerbEntry("to drown", "topit se", "topím se", "topil/a jsem se", "utopit se", "utopím se", "utopil/a jsem se"),
         VerbEntry("to grow (intransitive)", "růst", "rostu", "rostl/a jsem", "vyrůst", "vyrostu", "vyrostl/a jsem"),
         VerbEntry("to grow (plants / raise)", "pěstovat", "pěstuji/pěstuju", "pěstoval/a jsem", "vypěstovat", "vypěstuji/vypěstuju", "vypěstoval/a jsem"),
+        VerbEntry("to become", perfective = "stát se", pfPresent = "stanu se", pfPast = "stal/a jsem se",
+            note = "perfective-only — stávat se exists but means 'tends to happen / occurs' (habitual), not the working aspect partner"),
+        VerbEntry("to stay / remain", "zůstávat", "zůstávám", "zůstával/a jsem", "zůstat", "zůstanu", "zůstal/a jsem"),
     ))
 }
 
@@ -586,6 +617,9 @@ private fun CVLSensesPerceptionSection() {
             note = "more intensive than hledat. Policie pátrá po pachateli. = The police are searching for the perpetrator."),
         VerbEntry("to observe", "pozorovat", "pozoruji/pozoruju", "pozoroval/a jsem",
             note = "careful, attentive watching — distinct from sledovat (to follow / track) and dívat se (to watch / look at)"),
+        VerbEntry("to touch", "dotýkat se", "dotýkám se", "dotýkal/a jsem se", "dotknout se", "dotknu se", "dotkl/a jsem se"),
+        VerbEntry("to feel", "cítit", "cítím", "cítil/a jsem",
+            note = "pocítit/ucítit exist as punctual perfectives for the onset of a specific sensation, not a general aspect partner"),
     ))
 }
 
@@ -658,5 +692,23 @@ private fun CVLConflictInfluenceSection() {
         VerbEntry("to ignore", "ignorovat", "ignoruji/ignoruju", "ignoroval/a jsem"),
         VerbEntry("to accept", "přijímat", "přijímám", "přijímal/a jsem", "přijmout", "přijmu", "přijal/a jsem"),
         VerbEntry("to reject / refuse", "odmítat", "odmítám", "odmítal/a jsem", "odmítnout", "odmítnu", "odmítl/a jsem"),
+        VerbEntry("to order (command someone)", "nařizovat", "nařizuji/nařizuju", "nařizoval/a jsem", "nařídit", "nařídím", "nařídil/a jsem",
+            note = "issuing a command — distinct from objednat (Commerce & Transactions), which is transactional ordering of food/goods/services"),
+    ))
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// 20. Civic & Political Actions
+// ─────────────────────────────────────────────────────────────────────────
+
+@Composable
+private fun CVLCivicPoliticalSection() {
+    CVLSection("Civic & Political Actions")
+    CVLVerbTable(listOf(
+        VerbEntry("to vote", "volit", "volím", "volil/a jsem", "zvolit", "zvolím", "zvolil/a jsem",
+            note = "zvolit also means 'to elect / choose' more broadly"),
+        VerbEntry("to support", "podporovat", "podporuji/podporuju", "podporoval/a jsem", "podpořit", "podpořím", "podpořil/a jsem"),
+        VerbEntry("to protest", "protestovat", "protestuji/protestuju", "protestoval/a jsem",
+            note = "no confirmed perfective partner"),
     ))
 }

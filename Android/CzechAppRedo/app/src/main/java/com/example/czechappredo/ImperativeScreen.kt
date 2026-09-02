@@ -128,6 +128,65 @@ fun ImperativeScreen(navController: NavController) {
             ImpRow("Jdi domů!", "Go home! (impf. — general direction, go)")
             ImpRow("Přijď zítra!", "Come tomorrow! (pf. — arrive, one-time event)")
 
+            ImpSection("Full Conjugation Tables — Common Verbs")
+            ImpNote("Only ty, vy, and my take a direct imperative form — Czech has none for on/ona/ono/oni/ony. Third-person commands use ať + present tense instead: Ať to udělá. = Let him/her do it.")
+
+            ImpConjugationTable(
+                verb = "dělat (to do)",
+                meaning = "imperfective, regular Group I",
+                rows = listOf(
+                    ImpFormRow("ty", "dělej!", "nedělej!"),
+                    ImpFormRow("vy", "dělejte!", "nedělejte!"),
+                    ImpFormRow("my", "dělejme!", "nedělejme!"),
+                )
+            )
+            ImpConjugationTable(
+                verb = "mluvit (to speak)",
+                meaning = "imperfective, regular Group II",
+                rows = listOf(
+                    ImpFormRow("ty", "mluv!", "nemluv!"),
+                    ImpFormRow("vy", "mluvte!", "nemluvte!"),
+                    ImpFormRow("my", "mluvme!", "nemluvme!"),
+                )
+            )
+            ImpConjugationTable(
+                verb = "být (to be)",
+                meaning = "irregular",
+                rows = listOf(
+                    ImpFormRow("ty", "buď!", "nebuď!"),
+                    ImpFormRow("vy", "buďte!", "nebuďte!"),
+                    ImpFormRow("my", "buďme!", "nebuďme!"),
+                )
+            )
+            ImpConjugationTable(
+                verb = "jíst (to eat)",
+                meaning = "irregular",
+                rows = listOf(
+                    ImpFormRow("ty", "jez!", "nejez!"),
+                    ImpFormRow("vy", "jezte!", "nejezte!"),
+                    ImpFormRow("my", "jezme!", "nejezme!"),
+                )
+            )
+            ImpConjugationTable(
+                verb = "pít (to drink)",
+                meaning = "imperfective, Group III",
+                rows = listOf(
+                    ImpFormRow("ty", "pij!", "nepij!"),
+                    ImpFormRow("vy", "pijte!", "nepijte!"),
+                    ImpFormRow("my", "pijme!", "nepijme!"),
+                )
+            )
+            ImpConjugationTable(
+                verb = "vzít (to take)",
+                meaning = "perfective — positive commands use vzít",
+                rows = listOf(
+                    ImpFormRow("ty", "vezmi!", "neber!"),
+                    ImpFormRow("vy", "vezměte!", "neberte!"),
+                    ImpFormRow("my", "vezměme!", "neberme!"),
+                ),
+                note = "Negative commands switch to the imperfective partner brát, per the same rule already covered above (imperfective preferred in negative imperatives) — Neber! (don't take), not *Nevezmi!"
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
@@ -164,4 +223,38 @@ private fun ImpRow(czech: String, english: String) {
         },
         modifier = Modifier.padding(vertical = 3.dp)
     )
+}
+
+private data class ImpFormRow(val pronoun: String, val positive: String, val negative: String)
+
+@Composable
+private fun ImpConjugationTable(verb: String, meaning: String, rows: List<ImpFormRow>, note: String = "") {
+    Spacer(modifier = Modifier.height(8.dp))
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 2.dp, end = 2.dp, bottom = 4.dp)
+    ) {
+        Text(text = verb, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+        Text(text = meaning, fontSize = 13.sp, fontStyle = FontStyle.Italic, color = Color.Gray)
+        Spacer(modifier = Modifier.height(4.dp))
+        Row {
+            Text("Pronoun", modifier = Modifier.weight(0.7f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Positive", modifier = Modifier.weight(1f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text("Negative", modifier = Modifier.weight(1f), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+        }
+        HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
+        rows.forEach { row ->
+            Row(modifier = Modifier.padding(vertical = 3.dp)) {
+                Text(row.pronoun, modifier = Modifier.weight(0.7f), fontSize = 14.sp, color = Color.DarkGray)
+                Text(row.positive, modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                Text(row.negative, modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+            }
+        }
+        if (note.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(text = note, fontSize = 12.sp, fontStyle = FontStyle.Italic, color = Color.Gray)
+        }
+        Spacer(modifier = Modifier.height(4.dp))
+    }
 }
