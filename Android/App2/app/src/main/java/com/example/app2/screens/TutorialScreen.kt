@@ -75,7 +75,7 @@ fun TutorialScreen(
         "Negation" to onNegation,
         "Some, None, All" to onSomeNoneAll,
         "Yet, Already & Others" to onConnectors,
-        "Author's Personal Thoughts" to onAuthorsThoughts,
+        "Author's Understanding Of Conjunctive/Conditional" to onAuthorsThoughts,
         "Adjectives and Adverbs" to onAdjectivesAdverbs,
         "More Tenses" to onMoreTenses
     )
