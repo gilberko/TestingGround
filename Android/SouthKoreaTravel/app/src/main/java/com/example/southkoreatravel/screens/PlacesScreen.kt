@@ -2,6 +2,7 @@ package com.example.southkoreatravel.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,21 +19,40 @@ import androidx.compose.ui.unit.dp
 fun PlacesScreen(
     onBack: () -> Unit,
     onOpenSeoul: () -> Unit,
-    onOpenBusan: () -> Unit
+    onOpenBusan: () -> Unit,
+    onOpenGyeongju: () -> Unit,
+    onOpenJeju: () -> Unit,
+    onOpenJeonju: () -> Unit
 ) {
     ScreenScaffold(title = "Places", onBack = onBack, showBackground = true) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(24.dp)
-        ) {
-            Button(onClick = onOpenSeoul, modifier = Modifier.fillMaxWidth()) {
-                Text("Seoul")
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(onClick = onOpenBusan, modifier = Modifier.fillMaxWidth()) {
-                Text("Busan")
+        Column(modifier = Modifier.fillMaxSize()) {
+            Spacer(modifier = Modifier.fillMaxHeight(0.35f))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .verticalScroll(rememberScrollState())
+                    .padding(24.dp)
+            ) {
+                Button(onClick = onOpenSeoul, modifier = Modifier.fillMaxWidth()) {
+                    Text("Seoul")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenBusan, modifier = Modifier.fillMaxWidth()) {
+                    Text("Busan")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenGyeongju, modifier = Modifier.fillMaxWidth()) {
+                    Text("Gyeongju")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenJeju, modifier = Modifier.fillMaxWidth()) {
+                    Text("Jeju")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenJeonju, modifier = Modifier.fillMaxWidth()) {
+                    Text("Jeonju")
+                }
             }
         }
     }

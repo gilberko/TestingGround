@@ -5,14 +5,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.southkoreatravel.screens.BusanScreen
+import com.example.southkoreatravel.screens.CeliacCardScreen
 import com.example.southkoreatravel.screens.FoodScreen
 import com.example.southkoreatravel.screens.GeneralInformationScreen
+import com.example.southkoreatravel.screens.GyeongjuScreen
+import com.example.southkoreatravel.screens.JejuScreen
+import com.example.southkoreatravel.screens.JeonjuScreen
 import com.example.southkoreatravel.screens.MainScreen
 import com.example.southkoreatravel.screens.MedicalIssuesScreen
 import com.example.southkoreatravel.screens.PlacesScreen
 import com.example.southkoreatravel.screens.SeoulScreen
 import com.example.southkoreatravel.screens.ShoppingScreen
 import com.example.southkoreatravel.screens.SplashScreen
+import com.example.southkoreatravel.screens.UsefulAppsScreen
 
 sealed class Screen(val route: String) {
     object Splash : Screen("splash")
@@ -20,10 +25,15 @@ sealed class Screen(val route: String) {
     object Places : Screen("places")
     object Seoul : Screen("seoul")
     object Busan : Screen("busan")
+    object Gyeongju : Screen("gyeongju")
+    object Jeju : Screen("jeju")
+    object Jeonju : Screen("jeonju")
     object GeneralInfo : Screen("general_info")
     object MedicalIssues : Screen("medical_issues")
     object Shopping : Screen("shopping")
     object Food : Screen("food")
+    object UsefulApps : Screen("useful_apps")
+    object CeliacCard : Screen("celiac_card")
 }
 
 @Composable
@@ -44,14 +54,19 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenGeneralInfo = { navController.navigate(Screen.GeneralInfo.route) },
                 onOpenMedicalIssues = { navController.navigate(Screen.MedicalIssues.route) },
                 onOpenShopping = { navController.navigate(Screen.Shopping.route) },
-                onOpenFood = { navController.navigate(Screen.Food.route) }
+                onOpenFood = { navController.navigate(Screen.Food.route) },
+                onOpenUsefulApps = { navController.navigate(Screen.UsefulApps.route) },
+                onOpenCeliacCard = { navController.navigate(Screen.CeliacCard.route) }
             )
         }
         composable(Screen.Places.route) {
             PlacesScreen(
                 onBack = { navController.popBackStack() },
                 onOpenSeoul = { navController.navigate(Screen.Seoul.route) },
-                onOpenBusan = { navController.navigate(Screen.Busan.route) }
+                onOpenBusan = { navController.navigate(Screen.Busan.route) },
+                onOpenGyeongju = { navController.navigate(Screen.Gyeongju.route) },
+                onOpenJeju = { navController.navigate(Screen.Jeju.route) },
+                onOpenJeonju = { navController.navigate(Screen.Jeonju.route) }
             )
         }
         composable(Screen.Seoul.route) {
@@ -59,6 +74,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Busan.route) {
             BusanScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Gyeongju.route) {
+            GyeongjuScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Jeju.route) {
+            JejuScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Jeonju.route) {
+            JeonjuScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.GeneralInfo.route) {
             GeneralInformationScreen(onBack = { navController.popBackStack() })
@@ -71,6 +95,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Food.route) {
             FoodScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.UsefulApps.route) {
+            UsefulAppsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.CeliacCard.route) {
+            CeliacCardScreen(onBack = { navController.popBackStack() })
         }
     }
 }
