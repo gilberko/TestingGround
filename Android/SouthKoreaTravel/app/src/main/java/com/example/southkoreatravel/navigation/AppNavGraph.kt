@@ -14,6 +14,10 @@ import com.example.southkoreatravel.screens.JeonjuScreen
 import com.example.southkoreatravel.screens.MainScreen
 import com.example.southkoreatravel.screens.MedicalIssuesScreen
 import com.example.southkoreatravel.screens.PlacesScreen
+import com.example.southkoreatravel.screens.SeoulAttractionsScreen
+import com.example.southkoreatravel.screens.SeoulCafesScreen
+import com.example.southkoreatravel.screens.SeoulGlutenFreeKetoScreen
+import com.example.southkoreatravel.screens.SeoulPlacesOfInterestScreen
 import com.example.southkoreatravel.screens.SeoulScreen
 import com.example.southkoreatravel.screens.ShoppingScreen
 import com.example.southkoreatravel.screens.SplashScreen
@@ -24,6 +28,10 @@ sealed class Screen(val route: String) {
     object Main : Screen("main")
     object Places : Screen("places")
     object Seoul : Screen("seoul")
+    object SeoulPlacesOfInterest : Screen("seoul_places_of_interest")
+    object SeoulAttractions : Screen("seoul_attractions")
+    object SeoulCafes : Screen("seoul_cafes")
+    object SeoulGlutenFreeKeto : Screen("seoul_gluten_free_keto")
     object Busan : Screen("busan")
     object Gyeongju : Screen("gyeongju")
     object Jeju : Screen("jeju")
@@ -70,7 +78,25 @@ fun AppNavGraph(navController: NavHostController) {
             )
         }
         composable(Screen.Seoul.route) {
-            SeoulScreen(onBack = { navController.popBackStack() })
+            SeoulScreen(
+                onBack = { navController.popBackStack() },
+                onOpenPlacesOfInterest = { navController.navigate(Screen.SeoulPlacesOfInterest.route) },
+                onOpenAttractions = { navController.navigate(Screen.SeoulAttractions.route) },
+                onOpenCafes = { navController.navigate(Screen.SeoulCafes.route) },
+                onOpenGlutenFreeKeto = { navController.navigate(Screen.SeoulGlutenFreeKeto.route) }
+            )
+        }
+        composable(Screen.SeoulPlacesOfInterest.route) {
+            SeoulPlacesOfInterestScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulAttractions.route) {
+            SeoulAttractionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulCafes.route) {
+            SeoulCafesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulGlutenFreeKeto.route) {
+            SeoulGlutenFreeKetoScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Busan.route) {
             BusanScreen(onBack = { navController.popBackStack() })

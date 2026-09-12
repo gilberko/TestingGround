@@ -1,0 +1,36 @@
+package com.example.southkoreatravel.screens
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun SeoulAttractionsScreen(onBack: () -> Unit) {
+    ScreenScaffold(title = "Attractions", onBack = onBack) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(24.dp)
+        ) {
+            SectionHeader("Lotte World")
+            BodyText("Lotte World is a large entertainment complex in Jamsil, Songpa-gu — nearest station Jamsil (Line 2 or 8), Exit 4. One ticket covers two halves: Lotte World Adventure, an indoor theme park (recognized as the world's largest) with around 40 rides, an ice rink, the Magic Castle photo/play centerpiece, and parades; and Magic Island, an outdoor park on a small island in Seokchon Lake with most of the thrill-ride coasters. A small Lotte World Folk Museum also sits inside the complex. Full-day passes run roughly ₩38,800-59,000 depending on whether you buy at the gate or discounted online through sites like Klook, Trazy, or Trip.com (prices change often, so check current rates before you go); infants under 3 get in free. It suits the whole family — gentle kiddie rides alongside major thrill coasters. Note that the adjacent Lotte World Mall, Lotte World Aquarium, and Lotte World Tower are separate, separately-ticketed attractions in the same complex.")
+
+            SectionHeader("Lotte World Aquarium")
+            BodyText("Lotte World Aquarium sits inside Lotte World Mall in the same Jamsil complex (combo tickets with the theme park exist), with tickets running roughly ₩29,000-35,000. It houses sharks, otters, and an Arctic-themed beluga whale exhibit. Worth knowing: the beluga's situation has been a genuinely unresolved, controversial story — a promised transfer to an open-water sanctuary has been delayed multiple times, so as of the last check she remains on exhibit rather than released; treat this as an ongoing, contested situation rather than a settled one either way.")
+
+            SectionHeader("SEA LIFE Coex Aquarium")
+            BodyText("SEA LIFE Coex Aquarium is inside COEX Mall in Samseong-dong, Gangnam — nearest station Samseong (Line 2) — and is a completely separate aquarium, under different ownership, from Lotte World Aquarium across town in Jamsil. Tickets run roughly ₩28,000-35,000, cheaper booked online in advance. Inside are sharks, penguins, jellyfish, and touch pools, making it well suited to younger children.")
+
+            SectionHeader("Science Museums")
+            BodyText("Seoul has two similarly-named but distinct science museums for kids, worth telling apart: the National Children's Science Museum (국립어린이과학관) in Jongno-gu (nearest station Hyehwa, Line 4) is a national museum built specifically for children, with tickets around ₩1,000-2,000 (closed Mondays); the Seoul Science Center (서울시립과학관) in Nowon-gu (nearest station Hagye, Line 7) is Seoul's own municipal — not national — science museum, in a different part of the city entirely.")
+            BodyText("The Seodaemun Museum of Natural History, in Seodaemun-gu, covers dinosaurs and natural history dioramas for roughly ₩1,000-3,000 depending on age. It has no subway station directly next to it — the closest are Sinchon (Line 2, then local bus 03) or Hongje (Line 3, then bus 7738 or 7739), both requiring a short bus ride up the hill it sits on.")
+            BodyText("The Gwacheon National Science Museum is the big one worth the extra trip — but it's important to know it isn't actually in Seoul; it's in neighboring Gwacheon, Gyeonggi-do, just south of the city. Take Line 4 to Seoul Grand Park Station, then it's roughly a 10-15 minute walk or a short shuttle ride — figure on about 45-60 minutes door-to-door from central Seoul. It's a genuine \"science village\": a natural history hall with large dinosaur skeletons, an outdoor dinosaur park, a planetarium, and an observatory.")
+        }
+    }
+}
