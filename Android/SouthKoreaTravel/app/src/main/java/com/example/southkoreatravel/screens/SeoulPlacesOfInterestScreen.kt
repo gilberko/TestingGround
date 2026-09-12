@@ -33,6 +33,12 @@ fun SeoulPlacesOfInterestScreen(onBack: () -> Unit) {
 
             SectionHeader("Jogyesa Temple")
             BodyText("Jogyesa Temple (조계사), near Insadong in Jongno-gu (nearest station Anguk), is the head temple of the Jogye Order — effectively the center of Korean Buddhism — and is free and open to the public year-round. It's most spectacular around Buddha's Birthday, when it serves as the finishing point of the UNESCO-recognized Lotus Lantern Festival (Yeondeunghoe) parade, with the temple grounds covered in illuminated lotus-shaped lanterns from around 6pm to midnight during the festival period.")
+
+            SectionHeader("Namsan Tower")
+            BodyText("N Seoul Tower (Namsan Seoul Tower, 남산서울타워) sits atop Namsan Mountain in central Seoul and is one of the city's most iconic sights, with 360-degree panoramic views. The easiest approach is from Myeongdong Station (Line 4) or Chungmuro Station (Lines 3/4) — most visitors ride the Namsan Cable Car up from the Myeongdong side, though several hiking trails (roughly 25-40 minutes) also lead to the top. The observatory ticket runs around ₩29,000 at the gate (cheaper through online resellers), with combo tickets that include the cable car running around ₩49,000 — check current prices before you go, as they shift. The tower is known for its \"Locks of Love\" fences covered in padlocks, the N.GRILL revolving restaurant (completing a full rotation roughly every 48 minutes), and night lighting that changes color, including using blue to signal clean air.")
+
+            SectionHeader("K-Pop Square 3D Billboard")
+            BodyText("Seoul's famous 3D billboard is \"WAVE\" at K-Pop Square, outside COEX Mall in Gangnam — nearest station Samseong (Line 2), Exits 5/6. It's a massive curved LED screen, roughly 80 meters wide and 20 meters tall, created by the Seoul studio d'strict, and is widely described as the world's largest anamorphic illusion display — its signature animation makes a giant ocean wave appear to crash right out of the screen. It's completely free to view, runs 24 hours with content rotating throughout the day, and looks most striking after dark, so aim to arrive around sunset.")
         }
     }
 }
