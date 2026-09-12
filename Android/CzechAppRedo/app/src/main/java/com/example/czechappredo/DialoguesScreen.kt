@@ -74,7 +74,8 @@ fun DialoguesHubScreen(navController: NavController) {
             "At the Park" to "dialogue_park",
             "How Was School Today" to "dialogue_school",
             "Watching a Soccer Game" to "dialogue_soccer",
-            "Family Trip" to "dialogue_family_trip"
+            "Family Trip" to "dialogue_family_trip",
+            "Software Engineering Bugs" to "dialogue_swe_bugs"
         )
         Column(
             modifier = Modifier
@@ -671,6 +672,80 @@ fun FamilyTripDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Family Trip", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SoftwareEngineeringBugsDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Petr", "Ahoj Tomáši, máš chvíli? Potřebujeme probrat ty dva bugy, co máme otevřené."),
+        DialogueLine("Tomáš", "Jasně. Co ten první, ten freeze celého stroje?"),
+        DialogueLine("Petr", "Přesně ten. Stroj úplně zamrzne a musíme ho tvrdě restartovat."),
+        DialogueLine("Tomáš", "Čekám na memory dump z virtuálky, kde to naposledy spadlo. Jakmile ho dostanu, projdu zásobníky vláken."),
+        DialogueLine("Petr", "Myslíš, že je to deadlock?"),
+        DialogueLine("Tomáš", "Možná. Nebo nějaké vlákno zapomnělo uvolnit zámek a ostatní na něj čekají donekonečna."),
+        DialogueLine("Petr", "Dá se to poznat z toho dumpu?"),
+        DialogueLine("Tomáš", "Ano. Uvidím, jestli vlákno drží zámek a nikdy ho nepustí, nebo jestli na sebe dvě vlákna čekají navzájem."),
+        DialogueLine("Petr", "Dobře, dej mi vědět, až budeš mít výsledek analýzy."),
+        DialogueLine("Tomáš", "Určitě. A co ten druhý problém, ta pomalost?"),
+        DialogueLine("Petr", "Víme přesně, který flow je pomalý. Problém je jedno volání API — trvá strašně dlouho."),
+        DialogueLine("Tomáš", "Chcete to volání úplně obejít, nebo jen data získat jinak?"),
+        DialogueLine("Petr", "Zvažujeme dvě možnosti. Buď použijeme jinou metodu, kterou už máme, a data získáme lokálně."),
+        DialogueLine("Petr", "Nebo přidáme cache, abychom to API nevolali tak často."),
+        DialogueLine("Tomáš", "Cache mi přijde jednodušší na implementaci."),
+        DialogueLine("Petr", "Není to o jednoduchosti — ta druhá metoda nedává úplně stejná data, takže bychom museli řešit konzistenci."),
+        DialogueLine("Tomáš", "Tak bych šel do cache. Jen musíte vyřešit, jak dlouho ji držet platnou."),
+        DialogueLine("Petr", "Přesně o tom teď diskutujeme — jak nastavit dobu platnosti, aby data nebyla zastaralá."),
+        DialogueLine("Tomáš", "Dobře. Dejte mi vědět, jak jste se rozhodli, a já se ozvu, jakmile budu mít ten dump."),
+        DialogueLine("Petr", "Platí, díky!")
+    )
+    val englishLines = listOf(
+        DialogueLine("Petr", "Hey Tomáš, have you got a minute? We need to go over the two open bugs."),
+        DialogueLine("Tomáš", "Sure. Which one first, the whole machine freezing?"),
+        DialogueLine("Petr", "That one. The machine hangs completely and we have to hard-reboot it."),
+        DialogueLine("Tomáš", "I'm waiting on a memory dump from the VM where it last happened. Once I get it, I'll go through the thread stacks."),
+        DialogueLine("Petr", "Do you think it's a deadlock?"),
+        DialogueLine("Tomáš", "Maybe. Or some thread forgot to release a lock and everything else is waiting on it forever."),
+        DialogueLine("Petr", "Can you tell from the dump?"),
+        DialogueLine("Tomáš", "Yes. I'll see whether a thread is holding a lock and never releasing it, or whether two threads are waiting on each other."),
+        DialogueLine("Petr", "Okay, let me know once you have the analysis results."),
+        DialogueLine("Tomáš", "Will do. And what about the other issue, the slowness?"),
+        DialogueLine("Petr", "We know exactly which flow is slow. The problem is one API call — it takes way too long."),
+        DialogueLine("Tomáš", "Do you want to avoid that call entirely, or just get the data a different way?"),
+        DialogueLine("Petr", "We're weighing two options. Either we use another method we already have and fetch the data locally."),
+        DialogueLine("Petr", "Or we add a cache so we call the API less often."),
+        DialogueLine("Tomáš", "A cache sounds simpler to implement."),
+        DialogueLine("Petr", "It's not about simplicity — the other method doesn't return exactly the same data, so we'd have to deal with consistency."),
+        DialogueLine("Tomáš", "Then I'd go with the cache. You just need to figure out how long to keep it valid."),
+        DialogueLine("Petr", "That's exactly what we're discussing now — how to set the expiration so the data doesn't go stale."),
+        DialogueLine("Tomáš", "Okay. Let me know what you decide, and I'll get back to you once I have the dump."),
+        DialogueLine("Petr", "Deal, thanks!")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Software Engineering Bugs", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

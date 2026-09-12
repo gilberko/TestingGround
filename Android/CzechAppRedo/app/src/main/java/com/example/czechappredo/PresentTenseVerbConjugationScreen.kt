@@ -123,6 +123,192 @@ fun PresentTenseVerbConjugationScreen(navController: NavController) {
             )
             PTNote("pracuji / pracují — formal and written Czech\npracuju / pracujou — colloquial and spoken Czech\nBoth are correct and widely understood.")
 
+            // Type 2b
+            PTSection("Type 2b — Verbs Ending in -et / -ět (also → -ím)")
+            PTNote("Most -et and -ět infinitives conjugate exactly like -it verbs (Type 2), taking -ím in the já form.")
+            VerbTable(
+                verb = "sedět",
+                label = "to sit",
+                rows = listOf(
+                    "já" to "sedím",
+                    "ty" to "sedíš",
+                    "on / ona / to" to "sedí",
+                    "my" to "sedíme",
+                    "vy" to "sedíte",
+                    "oni / ony" to "sedí"
+                )
+            )
+            VerbTable(
+                verb = "vidět",
+                label = "to see",
+                rows = listOf(
+                    "já" to "vidím",
+                    "ty" to "vidíš",
+                    "on / ona / to" to "vidí",
+                    "my" to "vidíme",
+                    "vy" to "vidíte",
+                    "oni / ony" to "vidí"
+                )
+            )
+            VerbTable(
+                verb = "rozumět",
+                label = "to understand",
+                rows = listOf(
+                    "já" to "rozumím",
+                    "ty" to "rozumíš",
+                    "on / ona / to" to "rozumí",
+                    "my" to "rozumíme",
+                    "vy" to "rozumíte",
+                    "oni / ony" to "rozumějí"
+                )
+            )
+            PTNote("A subset of -ět verbs (rozumět, umět, and prefixed verbs of motion) take -ějí in the formal oni / ony form instead of -í. Colloquial speech often uses -í for both, e.g. rozumí instead of rozumějí.")
+
+            // Type 4
+            PTSection("Type 4 — Verbs Ending in -nout (já → -nu)")
+            PTNote("A distinct, predictable pattern: the stem drops -nout and adds the personal endings directly.")
+            VerbTable(
+                verb = "tisknout",
+                label = "to print",
+                rows = listOf(
+                    "já" to "tisknu",
+                    "ty" to "tiskneš",
+                    "on / ona / to" to "tiskne",
+                    "my" to "tiskneme",
+                    "vy" to "tisknete",
+                    "oni / ony" to "tisknou"
+                )
+            )
+
+            // Type 5
+            PTSection("Type 5 — Verbs Ending in -st / -zt / -ct (Consonant-Stem, já → -u)")
+            PTNote("These verbs have unpredictable stem changes between the infinitive and the present tense, so each one must be memorised individually.")
+            VerbTable(
+                verb = "nést",
+                label = "to carry",
+                rows = listOf(
+                    "já" to "nesu",
+                    "ty" to "neseš",
+                    "on / ona / to" to "nese",
+                    "my" to "neseme",
+                    "vy" to "nesete",
+                    "oni / ony" to "nesou"
+                )
+            )
+            VerbTable(
+                verb = "číst",
+                label = "to read — stem shortens číst → čt-",
+                rows = listOf(
+                    "já" to "čtu",
+                    "ty" to "čteš",
+                    "on / ona / to" to "čte",
+                    "my" to "čteme",
+                    "vy" to "čtete",
+                    "oni / ony" to "čtou"
+                )
+            )
+            VerbTable(
+                verb = "moct / moci",
+                label = "can / to be able",
+                rows = listOf(
+                    "já" to "můžu / mohu",
+                    "ty" to "můžeš",
+                    "on / ona / to" to "může",
+                    "my" to "můžeme",
+                    "vy" to "můžete",
+                    "oni / ony" to "můžou / mohou"
+                )
+            )
+
+            // Other irregular verbs
+            PTSection("Other Common Irregular Verbs")
+            PTNote("These verbs don't fit any pattern above and must be memorised on their own.")
+            VerbTable(
+                verb = "chtít",
+                label = "to want",
+                rows = listOf(
+                    "já" to "chci",
+                    "ty" to "chceš",
+                    "on / ona / to" to "chce",
+                    "my" to "chceme",
+                    "vy" to "chcete",
+                    "oni / ony" to "chtějí"
+                )
+            )
+            VerbTable(
+                verb = "vědět",
+                label = "to know (a fact)",
+                rows = listOf(
+                    "já" to "vím",
+                    "ty" to "víš",
+                    "on / ona / to" to "ví",
+                    "my" to "víme",
+                    "vy" to "víte",
+                    "oni / ony" to "vědí"
+                )
+            )
+            PTNote("vědět is irregular in the oni / ony form: vědí does not follow the ví- stem seen in the rest of the paradigm.")
+            VerbTable(
+                verb = "jíst",
+                label = "to eat",
+                rows = listOf(
+                    "já" to "jím",
+                    "ty" to "jíš",
+                    "on / ona / to" to "jí",
+                    "my" to "jíme",
+                    "vy" to "jíte",
+                    "oni / ony" to "jedí"
+                )
+            )
+            VerbTable(
+                verb = "jít",
+                label = "to go (on foot)",
+                rows = listOf(
+                    "já" to "jdu",
+                    "ty" to "jdeš",
+                    "on / ona / to" to "jde",
+                    "my" to "jdeme",
+                    "vy" to "jdete",
+                    "oni / ony" to "jdou"
+                )
+            )
+            VerbTable(
+                verb = "pít",
+                label = "to drink",
+                rows = listOf(
+                    "já" to "piju / piji",
+                    "ty" to "piješ",
+                    "on / ona / to" to "pije",
+                    "my" to "pijeme",
+                    "vy" to "pijete",
+                    "oni / ony" to "pijou / pijí"
+                )
+            )
+            VerbTable(
+                verb = "brát",
+                label = "to take — looks like -at (Type 1), but conjugates irregularly",
+                rows = listOf(
+                    "já" to "beru",
+                    "ty" to "bereš",
+                    "on / ona / to" to "bere",
+                    "my" to "bereme",
+                    "vy" to "berete",
+                    "oni / ony" to "berou"
+                )
+            )
+            VerbTable(
+                verb = "psát",
+                label = "to write — same trap: looks like -at, but is irregular",
+                rows = listOf(
+                    "já" to "píšu / píši",
+                    "ty" to "píšeš",
+                    "on / ona / to" to "píše",
+                    "my" to "píšeme",
+                    "vy" to "píšete",
+                    "oni / ony" to "píšou / píší"
+                )
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
