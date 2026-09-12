@@ -91,6 +91,31 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
                     "reservation needed; other stables allow visits but require contacting them in " +
                     "advance."
             )
+
+            SectionHeader("Martial Arts")
+            BodyText(
+                "**Karate** originated in Okinawa and was popularized in mainland Japan in the " +
+                    "1920s, most notably by Gichin Funakoshi, founder of the Shotokan style. " +
+                    "**Judo**, founded by Jigoro Kano in 1882, is a grappling art built around " +
+                    "throws and pins that later became an Olympic sport. **Aikido**, developed by " +
+                    "Morihei Ueshiba in the early 20th century, focuses on redirecting an " +
+                    "opponent's force through joint locks and throws rather than striking."
+            )
+            BodyText(
+                "A **dojo** is a dedicated training hall for martial arts (the word literally means " +
+                    "\"place of the way\"). Most schools have their own dojo, and the largest styles " +
+                    "maintain a honbu dojo (headquarters) where senior instructors train and teach, " +
+                    "often open to visiting practitioners."
+            )
+            BodyText(
+                "Famous dojos are concentrated in **Tokyo**: the **Kodokan** in Bunkyo ward is the " +
+                    "world headquarters of Judo, founded by Kano Jigoro himself, and runs sessions " +
+                    "open to visitors; the **Aikikai Hombu Dojo** in Shinjuku is the world " +
+                    "headquarters of Aikido, where over 500 students train daily; and the **Japan " +
+                    "Karate Association (JKA) Headquarters Dojo**, also in Bunkyo ward, is one of " +
+                    "the most prominent karate honbu in the world. Osaka and Kyoto have many local " +
+                    "dojos for all three arts, but their world headquarters are all based in Tokyo."
+            )
             Spacer(Modifier.height(16.dp))
         }
     }

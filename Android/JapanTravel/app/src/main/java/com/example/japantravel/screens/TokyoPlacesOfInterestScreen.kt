@@ -253,6 +253,76 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
                     "admission is about ¥1,300 - it's more an immersive nostalgia streetscape than " +
                     "an arcade, but fits the retro-Japan theme here well."
             )
+
+            SectionHeader("Video Games")
+            BodyText(
+                "**Tokyo** is the best place to see Japan's biggest video game companies up close. " +
+                    "**Nintendo**, **Capcom**, **Sega**, and **Taito** all keep an official presence " +
+                    "in the city, mostly through merchandise stores rather than public museums - " +
+                    "none of them run a hands-on exhibit hall in **Tokyo** itself."
+            )
+            BodyText(
+                "**Nintendo TOKYO**, on the 6th floor of **Shibuya Parco**, is Nintendo's first " +
+                    "official store in Japan, opened in 2019. It sells merchandise only - no " +
+                    "consoles or games - but has themed corners for Mario, Zelda, Animal Crossing, " +
+                    "Splatoon, Kirby, and Metroid, from plush toys to apparel and stationery. " +
+                    "Nintendo's own hands-on museum, the **Nintendo Museum**, opened in 2024, but " +
+                    "it's in Uji, near Kyoto, not **Tokyo**."
+            )
+            BodyText(
+                "**Capcom** runs two official merchandise stores in **Tokyo** - one on the same " +
+                    "floor as **Nintendo TOKYO** in **Shibuya Parco**, another in **Parco " +
+                    "Ikebukuro** - both selling character goods from franchises like Street " +
+                    "Fighter, Monster Hunter, and Resident Evil, with slightly different photo " +
+                    "spots at each location."
+            )
+            BodyText(
+                "**Sega** sold off its Japanese arcade business in 2022 (its former arcades are " +
+                    "now branded **GiGO** - see 80s and retro museums above), but its official " +
+                    "merchandise shop for Sonic, Like a Dragon, and Persona goods still sits on the " +
+                    "same **Shibuya Parco** floor as **Nintendo TOKYO**. Sega's bigger footprint is " +
+                    "**Sega Joypolis** in **Odaiba**, an indoor theme park spanning three floors " +
+                    "that opened in 1996, combining arcade games with larger interactive rides - " +
+                    "more of a full amusement park than a games store."
+            )
+            BodyText(
+                "**Taito** still runs its own **Taito Station** arcades around the city; the " +
+                    "best-known location is **HEY** in **Akihabara** (see 80s and retro museums " +
+                    "above), a 6-floor, 300+ cabinet arcade especially deep on shooting and " +
+                    "fighting games."
+            )
+
+            SectionHeader("Anime and Manga")
+            BodyText(
+                "The **Tokyo Polytechnic University Suginami Animation Museum** (the university " +
+                    "holds naming rights; it's actually run by the Association of Japanese " +
+                    "Animations) sits in **Suginami** ward, long nicknamed the \"town of " +
+                    "animation\" for its concentration of animation studios. Admission is free, " +
+                    "covering the history and production process of anime through exhibits, a " +
+                    "small theater, a library, and hands-on workshops."
+            )
+            BodyText(
+                "The **Tokiwaso Manga Museum** in **Toshima** ward is a faithful 2020 " +
+                    "reconstruction of the Tokiwaso apartment building where legendary manga " +
+                    "artists - including **Osamu Tezuka** and **Fujio Akatsuka** - lived and " +
+                    "worked in the 1950s-60s. It's also free, displaying original artwork, " +
+                    "manuscripts, and personal items from the artists who once lived there."
+            )
+            BodyText(
+                "The **Tokyo Anime Center** promotes the wider anime industry through " +
+                    "exhibitions, character goods, and events tied to current and classic series. " +
+                    "It has moved several times - originally in **Akihabara**'s UDX building, then " +
+                    "**DNP Plaza**, and since 2021 inside **Shibuya Modi** near Shibuya Station - " +
+                    "so it's worth confirming its current address before visiting."
+            )
+            BodyText(
+                "For merchandise rather than history, **Tokyo Character Street** in the basement " +
+                    "of **Tokyo Station** packs over 30 official shops for anime and manga " +
+                    "franchises - Pokemon, Studio Ghibli, Chiikawa, Crayon Shin-chan, and more - " +
+                    "into one underground arcade. The city's most famous single-studio anime " +
+                    "museum, the **Ghibli Museum** in Mitaka, is covered separately (see **Tokyo** " +
+                    "- Parks and Attractions)."
+            )
             Spacer(Modifier.height(16.dp))
         }
     }
