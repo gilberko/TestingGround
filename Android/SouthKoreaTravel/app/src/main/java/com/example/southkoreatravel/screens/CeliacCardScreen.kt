@@ -41,7 +41,7 @@ fun CeliacCardScreen(onBack: () -> Unit) {
             BodyText("This covers the main hidden-gluten culprits in Korean cooking (soy sauce, gochujang, and fried batter), but it's a conversation-starter, not a medical-grade guarantee — cross-contamination in a shared kitchen is still a real risk, so use your own judgment on how strict you need to be about where you eat.")
 
             SectionHeader("Getting a Fuller Card")
-            BodyText("For a more complete, professionally translated card — covering things like cross-contamination warnings and a longer list of gluten sources — printable Korean celiac cards are available from resources like Celiac Travel (celiactravel.com) and Equal Eats (equaleats.com), either as a free printable PDF or a durable plastic card you can keep in your wallet.")
+            BodyText(boldNames("For a more complete, professionally translated card — covering things like cross-contamination warnings and a longer list of gluten sources — printable Korean celiac cards are available from resources like Celiac Travel (celiactravel.com) and Equal Eats (equaleats.com), either as a free printable PDF or a durable plastic card you can keep in your wallet.", listOf("Celiac Travel", "Equal Eats")))
         }
     }
 }

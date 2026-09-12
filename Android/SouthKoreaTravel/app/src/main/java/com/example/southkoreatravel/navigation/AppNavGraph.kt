@@ -18,7 +18,9 @@ import com.example.southkoreatravel.screens.SeoulAttractionsScreen
 import com.example.southkoreatravel.screens.SeoulCafesScreen
 import com.example.southkoreatravel.screens.SeoulGlutenFreeKetoScreen
 import com.example.southkoreatravel.screens.SeoulPlacesOfInterestScreen
+import com.example.southkoreatravel.screens.SeoulRegionsScreen
 import com.example.southkoreatravel.screens.SeoulScreen
+import com.example.southkoreatravel.screens.SeoulWhereToStayScreen
 import com.example.southkoreatravel.screens.ShoppingScreen
 import com.example.southkoreatravel.screens.SplashScreen
 import com.example.southkoreatravel.screens.UsefulAppsScreen
@@ -32,6 +34,8 @@ sealed class Screen(val route: String) {
     object SeoulAttractions : Screen("seoul_attractions")
     object SeoulCafes : Screen("seoul_cafes")
     object SeoulGlutenFreeKeto : Screen("seoul_gluten_free_keto")
+    object SeoulRegions : Screen("seoul_regions")
+    object SeoulWhereToStay : Screen("seoul_where_to_stay")
     object Busan : Screen("busan")
     object Gyeongju : Screen("gyeongju")
     object Jeju : Screen("jeju")
@@ -83,7 +87,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenPlacesOfInterest = { navController.navigate(Screen.SeoulPlacesOfInterest.route) },
                 onOpenAttractions = { navController.navigate(Screen.SeoulAttractions.route) },
                 onOpenCafes = { navController.navigate(Screen.SeoulCafes.route) },
-                onOpenGlutenFreeKeto = { navController.navigate(Screen.SeoulGlutenFreeKeto.route) }
+                onOpenGlutenFreeKeto = { navController.navigate(Screen.SeoulGlutenFreeKeto.route) },
+                onOpenRegions = { navController.navigate(Screen.SeoulRegions.route) },
+                onOpenWhereToStay = { navController.navigate(Screen.SeoulWhereToStay.route) }
             )
         }
         composable(Screen.SeoulPlacesOfInterest.route) {
@@ -97,6 +103,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.SeoulGlutenFreeKeto.route) {
             SeoulGlutenFreeKetoScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulRegions.route) {
+            SeoulRegionsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulWhereToStay.route) {
+            SeoulWhereToStayScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Busan.route) {
             BusanScreen(onBack = { navController.popBackStack() })
