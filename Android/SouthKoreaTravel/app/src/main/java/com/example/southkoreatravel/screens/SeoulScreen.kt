@@ -23,7 +23,8 @@ fun SeoulScreen(
     onOpenCafes: () -> Unit,
     onOpenGlutenFreeKeto: () -> Unit,
     onOpenRegions: () -> Unit,
-    onOpenWhereToStay: () -> Unit
+    onOpenWhereToStay: () -> Unit,
+    onOpenAirportTravel: () -> Unit
 ) {
     ScreenScaffold(title = "Seoul", onBack = onBack, showBackground = true) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -57,6 +58,10 @@ fun SeoulScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(onClick = onOpenWhereToStay, modifier = Modifier.fillMaxWidth()) {
                     Text("Where To Stay")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenAirportTravel, modifier = Modifier.fillMaxWidth()) {
+                    Text("Airport Travel")
                 }
             }
         }

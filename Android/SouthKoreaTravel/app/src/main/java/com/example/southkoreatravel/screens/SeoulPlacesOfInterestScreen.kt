@@ -39,6 +39,27 @@ fun SeoulPlacesOfInterestScreen(onBack: () -> Unit) {
 
             SectionHeader("K-Pop Square 3D Billboard")
             BodyText(boldNames("Seoul's famous 3D billboard is \"WAVE\" at K-Pop Square, outside COEX Mall in Gangnam — nearest station Samseong (Line 2), Exits 5/6. It's a massive curved LED screen, roughly 80 meters wide and 20 meters tall, created by the Seoul studio d'strict, and is widely described as the world's largest anamorphic illusion display — its signature animation makes a giant ocean wave appear to crash right out of the screen. It's completely free to view, runs 24 hours with content rotating throughout the day, and looks most striking after dark, so aim to arrive around sunset.", listOf("WAVE", "K-Pop Square", "COEX Mall")))
+
+            SectionHeader("Bukchon Hanok Village")
+            BodyText(boldNames("Bukchon Hanok Village (북촌한옥마을) sits on the hillside between Gyeongbokgung Palace and Changdeokgung Palace in Jongno-gu — nearest station Anguk (Line 3), Exit 2, about a 600m walk. It's a living residential neighborhood of roughly 900 traditional hanok houses, so visiting hours run 10am to sunset and quiet, respectful visiting is encouraged. It's free to walk through, and the Seoul Metropolitan Government has designated 8 official best-view photo spots around the village. Hanbok rental shops nearby charge roughly $8-10 for a couple of hours, and wearing hanbok also gets you free entry to nearby palaces.", listOf("Bukchon Hanok Village", "Gyeongbokgung Palace", "Changdeokgung Palace")))
+
+            SectionHeader("Insadong")
+            BodyText(boldNames("Insadong (인사동), next to Bukchon in Jongno-gu — nearest station Anguk (Line 3), Exit 6, about 100m to the main street — is Seoul's traditional arts and antiques district, home to roughly 90% of the country's traditional stationery shops and about 40% of its antique shops and galleries, along with tea houses and the spiral-shaped Ssamziegil shopping complex. On weekends the main street closes to traffic for market stalls (Saturday 2-10pm, Sunday 10am-10pm).", listOf("Insadong", "Ssamziegil")))
+
+            SectionHeader("Changdeokgung Palace and Secret Garden")
+            BodyText(boldNames("Changdeokgung Palace (창덕궁), in Jongno-gu — nearest station Anguk (Line 3), Exit 3, about a 6-minute walk, or Jongno 3-ga Station (Lines 1/3/5), Exit 7 — is a UNESCO World Heritage Site and general admission runs ₩3,000. Behind the palace is the Secret Garden (Huwon, 후원), a rear royal garden accessible only on a guided tour for an extra ₩5,000, with limited daily capacity (roughly 100 spots per time slot: 50 booked online, 50 same-day). Online reservations open at 10am, six days before the visit date, so plan ahead if you want a Secret Garden slot.", listOf("Changdeokgung Palace", "Secret Garden", "Huwon")))
+
+            SectionHeader("DDP (Dongdaemun Design Plaza)")
+            BodyText(boldNames("DDP (Dongdaemun Design Plaza, 동대문디자인플라자), in Jung-gu — nearest station Dongdaemun History & Culture Park (Lines 2/4/5), Exit 1, directly adjacent — is a neofuturistic building designed by Zaha Hadid, built from over 40,000 uniquely shaped aluminum panels. General admission to the building and outdoor plaza is free (some special exhibitions charge a separate fee), and it houses exhibition halls, a design museum and lab, and several restaurants. Open 10am-8pm daily except January 1st, Lunar New Year, and Chuseok.", listOf("DDP", "Dongdaemun Design Plaza")))
+
+            SectionHeader("\"Gangnam Style\" Statue")
+            BodyText(boldNames("The Gangnam Style statue stands outside COEX Mall in Gangnam-gu — nearest station Samseong (Line 2) — and is a bronze sculpture of two giant crossed hands frozen in PSY's signature horse-riding dance move from his 2012 global hit \"Gangnam Style.\" It's free to visit, and there's an accompanying stage where the song plays so visitors can strike the pose for photos.", listOf("Gangnam Style", "COEX Mall")))
+
+            SectionHeader("Cheonggyecheon Stream")
+            BodyText(boldNames("Cheonggyecheon Stream (청계천), the restored waterway running through central Seoul near Gwanghwamun and City Hall — close to the Gwanghwamun branch of Alegria Coffee Roasters — makes for an easy, scenic riverside walk right in the middle of downtown, below street level and away from traffic noise, with stepping stones, small waterfalls, and seasonal lighting displays along the way. It's free and open at all hours.", listOf("Cheonggyecheon Stream", "Alegria Coffee Roasters")))
+
+            SectionHeader("Seoul Forest")
+            BodyText(boldNames("Seoul Forest (서울숲), in Seongdong-gu right on the Han River — nearest station Seoul Forest (Bundang Line), Exit 3, or Ttukseom (Line 2), about a 15-minute walk — is a large public park that's free and open 24/7. Its Eco Forest area has a deer corral with vending-machine deer feed, a popular draw for families, and the park rents bikes and pedal karts. It's especially scenic during cherry blossom season in spring and for ginkgo trees in autumn, and connects directly to the Han River park paths.", listOf("Seoul Forest")))
         }
     }
 }
