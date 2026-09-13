@@ -24,7 +24,8 @@ fun MainScreen(
     onOpenShopping: () -> Unit,
     onOpenFood: () -> Unit,
     onOpenUsefulApps: () -> Unit,
-    onOpenCeliacCard: () -> Unit
+    onOpenCeliacCard: () -> Unit,
+    onOpenKDramas: () -> Unit
 ) {
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         HubBackground {
@@ -67,6 +68,10 @@ fun MainScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     Button(onClick = onOpenCeliacCard, modifier = Modifier.fillMaxWidth()) {
                         Text("Celiac Card")
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(onClick = onOpenKDramas, modifier = Modifier.fillMaxWidth()) {
+                        Text("K-Dramas")
                     }
                 }
             }

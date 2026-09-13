@@ -24,7 +24,8 @@ fun SeoulScreen(
     onOpenGlutenFreeKeto: () -> Unit,
     onOpenRegions: () -> Unit,
     onOpenWhereToStay: () -> Unit,
-    onOpenAirportTravel: () -> Unit
+    onOpenAirportTravel: () -> Unit,
+    onOpenDmz: () -> Unit
 ) {
     ScreenScaffold(title = "Seoul", onBack = onBack, showBackground = true) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -62,6 +63,10 @@ fun SeoulScreen(
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(onClick = onOpenAirportTravel, modifier = Modifier.fillMaxWidth()) {
                     Text("Airport Travel")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(onClick = onOpenDmz, modifier = Modifier.fillMaxWidth()) {
+                    Text("Visiting The DMZ")
                 }
             }
         }
