@@ -214,8 +214,8 @@ fun NegationScreen(onBack: () -> Unit) {
                         Spacer(modifier = Modifier.height(10.dp))
                         PlacementRule(
                             label = "Spoken French",
-                            rule = "ne is routinely dropped in casual speech",
-                            example = "Je sais pas. / Elle mange plus. / C'est jamais prêt."
+                            rule = "ne is routinely dropped in casual speech, leaving only pas (or another negation word)",
+                            example = "Je sais pas. / C'est pas normal. / Elle mange plus. / C'est jamais prêt.\n\nThis is well documented and completely normal in informal spoken French — not an error. It stays spoken/colloquial only: standard written French always keeps ne. It happens in both France and Quebec, but is markedly more advanced in Quebec French, where studies of casual Montreal French found ne is kept only about 0.5–1% of the time — versus a much higher retention rate in France."
                         )
                     }
                 }

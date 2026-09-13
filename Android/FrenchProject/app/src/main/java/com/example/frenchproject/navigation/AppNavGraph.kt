@@ -11,16 +11,20 @@ import com.example.frenchproject.screens.SimpleDialoguesHubScreen
 import com.example.frenchproject.screens.SplashScreen
 import com.example.frenchproject.screens.dialogues.AskingForDirectionsScreen
 import com.example.frenchproject.screens.dialogues.AtTheAirportScreen
+import com.example.frenchproject.screens.dialogues.AtTheGarageScreen
 import com.example.frenchproject.screens.dialogues.AtTheRestaurantScreen
 import com.example.frenchproject.screens.dialogues.CoffeeScreen
 import com.example.frenchproject.screens.dialogues.HowWasSchoolScreen
 import com.example.frenchproject.screens.dialogues.JobInterviewScreen
+import com.example.frenchproject.screens.dialogues.PlanningAVacationScreen
 import com.example.frenchproject.screens.dialogues.SimpleIntroductionScreen
+import com.example.frenchproject.screens.dialogues.SoftwareEngineeringBugsScreen
 import com.example.frenchproject.screens.dictionary.CountriesScreen
 import com.example.frenchproject.screens.dictionary.HomeImprovementScreen
 import com.example.frenchproject.screens.dictionary.NatureScreen
 import com.example.frenchproject.screens.dictionary.SportsScreen
 import com.example.frenchproject.screens.dictionary.TechScreen
+import com.example.frenchproject.screens.dictionary.TrafficDirectionsGeographyScreen
 import com.example.frenchproject.screens.learning.ALotOrALittleScreen
 import com.example.frenchproject.screens.learning.ComparisonsScreen
 import com.example.frenchproject.screens.learning.ConditionalsScreen
@@ -86,6 +90,7 @@ sealed class Screen(val route: String) {
     object ALotOrALittle     : Screen("a_lot_or_a_little")
     object Countries         : Screen("countries")
     object Tenses2           : Screen("tenses_2")
+    object TrafficDirectionsGeography : Screen("traffic_directions_geography")
     object SimpleDialogues   : Screen("simple_dialogues")
     object Directions        : Screen("directions_dialogue")
     object SimpleIntro       : Screen("simple_intro_dialogue")
@@ -94,6 +99,9 @@ sealed class Screen(val route: String) {
     object JobInterview      : Screen("job_interview_dialogue")
     object Coffee            : Screen("coffee_dialogue")
     object HowWasSchool      : Screen("how_was_school_dialogue")
+    object AtTheGarage       : Screen("at_the_garage_dialogue")
+    object SoftwareBugs      : Screen("software_bugs_dialogue")
+    object PlanningVacation  : Screen("planning_vacation_dialogue")
 }
 
 @Composable
@@ -154,7 +162,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSports           = { navController.navigate(Screen.Sports.route) },
                 onNature           = { navController.navigate(Screen.Nature.route) },
                 onTech             = { navController.navigate(Screen.Tech.route) },
-                onCountries        = { navController.navigate(Screen.Countries.route) }
+                onCountries        = { navController.navigate(Screen.Countries.route) },
+                onTrafficDirectionsGeography = { navController.navigate(Screen.TrafficDirectionsGeography.route) }
             )
         }
         composable(Screen.SubjectPronouns.route) {
@@ -253,6 +262,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Tenses2.route) {
             Tenses2Screen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.TrafficDirectionsGeography.route) {
+            TrafficDirectionsGeographyScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.SimpleDialogues.route) {
             SimpleDialoguesHubScreen(
                 onBack         = { navController.popBackStack() },
@@ -262,7 +274,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onAirport      = { navController.navigate(Screen.AtAirport.route) },
                 onJobInterview = { navController.navigate(Screen.JobInterview.route) },
                 onCoffee       = { navController.navigate(Screen.Coffee.route) },
-                onSchool       = { navController.navigate(Screen.HowWasSchool.route) }
+                onSchool       = { navController.navigate(Screen.HowWasSchool.route) },
+                onGarage       = { navController.navigate(Screen.AtTheGarage.route) },
+                onBugs         = { navController.navigate(Screen.SoftwareBugs.route) },
+                onVacation     = { navController.navigate(Screen.PlanningVacation.route) }
             )
         }
         composable(Screen.Directions.route) {
@@ -285,6 +300,15 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.HowWasSchool.route) {
             HowWasSchoolScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.AtTheGarage.route) {
+            AtTheGarageScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SoftwareBugs.route) {
+            SoftwareEngineeringBugsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.PlanningVacation.route) {
+            PlanningAVacationScreen(onBack = { navController.popBackStack() })
         }
     }
 }

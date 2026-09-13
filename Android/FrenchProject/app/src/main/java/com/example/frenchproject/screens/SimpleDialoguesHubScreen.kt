@@ -45,7 +45,10 @@ fun SimpleDialoguesHubScreen(
     onAirport: () -> Unit,
     onJobInterview: () -> Unit,
     onCoffee: () -> Unit,
-    onSchool: () -> Unit
+    onSchool: () -> Unit,
+    onGarage: () -> Unit,
+    onBugs: () -> Unit,
+    onVacation: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -75,7 +78,10 @@ fun SimpleDialoguesHubScreen(
                 "At The Airport" to onAirport,
                 "Job Interview" to onJobInterview,
                 "Coffee" to onCoffee,
-                "How Was School Today" to onSchool
+                "How Was School Today" to onSchool,
+                "At The Garage" to onGarage,
+                "Software Engineering Bugs" to onBugs,
+                "Planning A Vacation" to onVacation
             )
             val pairs = buttons.chunked(2)
             Column(
