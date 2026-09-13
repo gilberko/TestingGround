@@ -126,6 +126,7 @@ class MainActivity : ComponentActivity() {
                 composable("super_powers_magic") { SuperPowersAndMagicScreen(navController) }
                 composable("dialogue_family_trip") { FamilyTripDialogueScreen(navController) }
                 composable("dialogue_swe_bugs") { SoftwareEngineeringBugsDialogueScreen(navController) }
+                composable("dialogue_car_trouble") { CarTroubleDialogueScreen(navController) }
             }
         }
     }

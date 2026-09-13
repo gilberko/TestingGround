@@ -75,7 +75,8 @@ fun DialoguesHubScreen(navController: NavController) {
             "How Was School Today" to "dialogue_school",
             "Watching a Soccer Game" to "dialogue_soccer",
             "Family Trip" to "dialogue_family_trip",
-            "Software Engineering Bugs" to "dialogue_swe_bugs"
+            "Software Engineering Bugs" to "dialogue_swe_bugs",
+            "Car Trouble" to "dialogue_car_trouble"
         )
         Column(
             modifier = Modifier
@@ -746,6 +747,84 @@ fun SoftwareEngineeringBugsDialogueScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 title = { Text("Software Engineering Bugs", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            DialogueSection(header = "Czech", lines = czechLines)
+            DialogueSection(header = "English", lines = englishLines)
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CarTroubleDialogueScreen(navController: NavController) {
+    val czechLines = listOf(
+        DialogueLine("Zákazník", "Dobrý den, potřeboval bych běžnou prohlídku a výměnu oleje, prosím."),
+        DialogueLine("Mechanik", "Dobrý den, samozřejmě. Je ještě něco, čeho si všímáte?"),
+        DialogueLine("Zákazník", "Vlastně ano — klimatizace fouká studený vzduch jen na jedné straně, na druhé je skoro teplo."),
+        DialogueLine("Mechanik", "Dobře, na to se podíváme společně s naším elektrikářem. Necháte tu auto na pár hodin?"),
+        DialogueLine("Zákazník", "Jasně, žádný problém. Zavolejte mi, až budete vědět víc."),
+        DialogueLine("Mechanik", "Dobrý den, máme výsledky. Olej jsme vyměnili podle plánu, to je hotové."),
+        DialogueLine("Zákazník", "Výborně. A co klimatizace?"),
+        DialogueLine("Mechanik", "Chybí jí chladicí plyn — proto fouká studeně jen na jedné straně. Musíme ho doplnit."),
+        DialogueLine("Zákazník", "Aha, to dává smysl. Kolik to bude trvat?"),
+        DialogueLine("Mechanik", "Asi hodinu. Ale je tu ještě jedna věc, kterou jsme si všimli při kontrole."),
+        DialogueLine("Zákazník", "Co se stalo?"),
+        DialogueLine("Mechanik", "Přední pravá pneumatika je vadná — je hodně opotřebená a má i menší poškození na boku."),
+        DialogueLine("Zákazník", "To jsem vůbec nevěděl. Je to nebezpečné?"),
+        DialogueLine("Mechanik", "Mohla by prasknout, hlavně při vyšší rychlosti. Doporučujeme ji vyměnit."),
+        DialogueLine("Zákazník", "Dobře, tak ji vyměňte. Stačí jen tu jednu?"),
+        DialogueLine("Mechanik", "My bychom doporučili vyměnit obě přední pneumatiky najednou, kvůli rovnoměrnému opotřebení a lepší stabilitě."),
+        DialogueLine("Zákazník", "Rozumím, dává to smysl. Tak prosím vyměňte obě přední."),
+        DialogueLine("Mechanik", "Výborně, hned to zařídíme. Doplníme plyn do klimatizace a vyměníme obě přední pneumatiky."),
+        DialogueLine("Zákazník", "Kdy bude auto hotové?"),
+        DialogueLine("Mechanik", "Do dvou hodin by mělo být všechno hotové — olej, klimatizace i pneumatiky."),
+        DialogueLine("Zákazník", "Skvělé, moc děkuji za kontrolu."),
+        DialogueLine("Mechanik", "Není zač, radši to najít teď než na dálnici.")
+    )
+    val englishLines = listOf(
+        DialogueLine("Customer", "Hello, I'd need a routine check and an oil change, please."),
+        DialogueLine("Mechanic", "Hello, of course. Is there anything else you've noticed?"),
+        DialogueLine("Customer", "Actually yes — the AC only blows cold air on one side, the other side is almost warm."),
+        DialogueLine("Mechanic", "Okay, we'll take a look at that together with our electrician. Can you leave the car for a few hours?"),
+        DialogueLine("Customer", "Sure, no problem. Call me once you know more."),
+        DialogueLine("Mechanic", "Hello, we have the results. We changed the oil as planned, that's done."),
+        DialogueLine("Customer", "Great. And the AC?"),
+        DialogueLine("Mechanic", "It's low on refrigerant gas — that's why it only blows cold on one side. We need to refill it."),
+        DialogueLine("Customer", "Ah, that makes sense. How long will that take?"),
+        DialogueLine("Mechanic", "About an hour. But there's one more thing we noticed during the inspection."),
+        DialogueLine("Customer", "What happened?"),
+        DialogueLine("Mechanic", "The front right tire is faulty — it's quite worn and has some damage on the sidewall too."),
+        DialogueLine("Customer", "I had no idea. Is it dangerous?"),
+        DialogueLine("Mechanic", "It could burst, especially at higher speed. We recommend replacing it."),
+        DialogueLine("Customer", "Okay, go ahead and replace it. Is just the one enough?"),
+        DialogueLine("Mechanic", "We'd actually recommend replacing both front tires at once, for even wear and better stability."),
+        DialogueLine("Customer", "I understand, that makes sense. Please replace both front ones then."),
+        DialogueLine("Mechanic", "Great, we'll take care of it right away. We'll refill the AC gas and replace both front tires."),
+        DialogueLine("Customer", "When will the car be ready?"),
+        DialogueLine("Mechanic", "Everything should be done within two hours — the oil, the AC, and the tires."),
+        DialogueLine("Customer", "Excellent, thank you so much for checking everything."),
+        DialogueLine("Mechanic", "You're welcome, better to find it now than on the highway.")
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Car Trouble", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")

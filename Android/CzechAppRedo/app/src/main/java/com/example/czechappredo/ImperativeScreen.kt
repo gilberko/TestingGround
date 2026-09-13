@@ -186,6 +186,25 @@ fun ImperativeScreen(navController: NavController) {
                 ),
                 note = "Negative commands switch to the imperfective partner brát, per the same rule already covered above (imperfective preferred in negative imperatives) — Neber! (don't take), not *Nevezmi!"
             )
+            ImpConjugationTable(
+                verb = "zvednout (to lift)",
+                meaning = "perfective, -nout verb",
+                rows = listOf(
+                    ImpFormRow("ty", "zvedni!", "nezvedej!"),
+                    ImpFormRow("vy", "zvedněte!", "nezvedejte!"),
+                    ImpFormRow("my", "zvedněme!", "nezvedejme!"),
+                ),
+                note = "Negative commands switch to the imperfective partner zvedat, per the same imperfective-preferred-in-negatives rule above."
+            )
+            ImpConjugationTable(
+                verb = "dívat se (to look / watch)",
+                meaning = "imperfective, reflexive, Group I",
+                rows = listOf(
+                    ImpFormRow("ty", "dívej se!", "nedívej se!"),
+                    ImpFormRow("vy", "dívejte se!", "nedívejte se!"),
+                    ImpFormRow("my", "dívejme se!", "nedívejme se!"),
+                )
+            )
 
             Spacer(modifier = Modifier.height(24.dp))
         }
