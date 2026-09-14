@@ -15,6 +15,7 @@ import com.example.southkoreatravel.screens.BusanWhereToStayScreen
 import com.example.southkoreatravel.screens.CeliacCardScreen
 import com.example.southkoreatravel.screens.FoodScreen
 import com.example.southkoreatravel.screens.GeneralInformationScreen
+import com.example.southkoreatravel.screens.GyeongjuAttractionsScreen
 import com.example.southkoreatravel.screens.GyeongjuCafesScreen
 import com.example.southkoreatravel.screens.GyeongjuGlutenFreeKetoScreen
 import com.example.southkoreatravel.screens.GyeongjuPlacesOfInterestScreen
@@ -38,6 +39,11 @@ import com.example.southkoreatravel.screens.PlacesScreen
 import com.example.southkoreatravel.screens.SeoulAirportTravelScreen
 import com.example.southkoreatravel.screens.SeoulAttractionsScreen
 import com.example.southkoreatravel.screens.SeoulCafesScreen
+import com.example.southkoreatravel.screens.SeoulDayTripGangneungScreen
+import com.example.southkoreatravel.screens.SeoulDayTripKoreanFolkVillageScreen
+import com.example.southkoreatravel.screens.SeoulDayTripNamiIslandScreen
+import com.example.southkoreatravel.screens.SeoulDayTripSuwonScreen
+import com.example.southkoreatravel.screens.SeoulDayTripsScreen
 import com.example.southkoreatravel.screens.SeoulGlutenFreeKetoScreen
 import com.example.southkoreatravel.screens.SeoulPlacesOfInterestScreen
 import com.example.southkoreatravel.screens.SeoulRegionsScreen
@@ -61,6 +67,11 @@ sealed class Screen(val route: String) {
     object SeoulWhereToStay : Screen("seoul_where_to_stay")
     object SeoulAirportTravel : Screen("seoul_airport_travel")
     object SeoulDmz : Screen("seoul_dmz")
+    object SeoulDayTrips : Screen("seoul_day_trips")
+    object SeoulDayTripSuwon : Screen("seoul_day_trip_suwon")
+    object SeoulDayTripKoreanFolkVillage : Screen("seoul_day_trip_korean_folk_village")
+    object SeoulDayTripNamiIsland : Screen("seoul_day_trip_nami_island")
+    object SeoulDayTripGangneung : Screen("seoul_day_trip_gangneung")
     object Busan : Screen("busan")
     object BusanRegions : Screen("busan_regions")
     object BusanPlacesOfInterest : Screen("busan_places_of_interest")
@@ -71,6 +82,7 @@ sealed class Screen(val route: String) {
     object BusanCafes : Screen("busan_cafes")
     object Gyeongju : Screen("gyeongju")
     object GyeongjuPlacesOfInterest : Screen("gyeongju_places_of_interest")
+    object GyeongjuAttractions : Screen("gyeongju_attractions")
     object GyeongjuWhereToStay : Screen("gyeongju_where_to_stay")
     object GyeongjuGlutenFreeKeto : Screen("gyeongju_gluten_free_keto")
     object GyeongjuCafes : Screen("gyeongju_cafes")
@@ -138,7 +150,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onOpenRegions = { navController.navigate(Screen.SeoulRegions.route) },
                 onOpenWhereToStay = { navController.navigate(Screen.SeoulWhereToStay.route) },
                 onOpenAirportTravel = { navController.navigate(Screen.SeoulAirportTravel.route) },
-                onOpenDmz = { navController.navigate(Screen.SeoulDmz.route) }
+                onOpenDmz = { navController.navigate(Screen.SeoulDmz.route) },
+                onOpenDayTrips = { navController.navigate(Screen.SeoulDayTrips.route) }
             )
         }
         composable(Screen.SeoulPlacesOfInterest.route) {
@@ -164,6 +177,28 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.SeoulDmz.route) {
             SeoulVisitingTheDmzScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulDayTrips.route) {
+            SeoulDayTripsScreen(
+                onBack = { navController.popBackStack() },
+                onOpenSuwon = { navController.navigate(Screen.SeoulDayTripSuwon.route) },
+                onOpenDmz = { navController.navigate(Screen.SeoulDmz.route) },
+                onOpenKoreanFolkVillage = { navController.navigate(Screen.SeoulDayTripKoreanFolkVillage.route) },
+                onOpenNamiIsland = { navController.navigate(Screen.SeoulDayTripNamiIsland.route) },
+                onOpenGangneung = { navController.navigate(Screen.SeoulDayTripGangneung.route) }
+            )
+        }
+        composable(Screen.SeoulDayTripSuwon.route) {
+            SeoulDayTripSuwonScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulDayTripKoreanFolkVillage.route) {
+            SeoulDayTripKoreanFolkVillageScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulDayTripNamiIsland.route) {
+            SeoulDayTripNamiIslandScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.SeoulDayTripGangneung.route) {
+            SeoulDayTripGangneungScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Busan.route) {
             BusanScreen(
@@ -202,6 +237,7 @@ fun AppNavGraph(navController: NavHostController) {
             GyeongjuScreen(
                 onBack = { navController.popBackStack() },
                 onOpenPlacesOfInterest = { navController.navigate(Screen.GyeongjuPlacesOfInterest.route) },
+                onOpenAttractions = { navController.navigate(Screen.GyeongjuAttractions.route) },
                 onOpenWhereToStay = { navController.navigate(Screen.GyeongjuWhereToStay.route) },
                 onOpenGlutenFreeKeto = { navController.navigate(Screen.GyeongjuGlutenFreeKeto.route) },
                 onOpenCafes = { navController.navigate(Screen.GyeongjuCafes.route) }
@@ -209,6 +245,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.GyeongjuPlacesOfInterest.route) {
             GyeongjuPlacesOfInterestScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.GyeongjuAttractions.route) {
+            GyeongjuAttractionsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.GyeongjuWhereToStay.route) {
             GyeongjuWhereToStayScreen(onBack = { navController.popBackStack() })

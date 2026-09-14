@@ -16,15 +16,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun GyeongjuScreen(
+fun SeoulDayTripsScreen(
     onBack: () -> Unit,
-    onOpenPlacesOfInterest: () -> Unit,
-    onOpenAttractions: () -> Unit,
-    onOpenWhereToStay: () -> Unit,
-    onOpenGlutenFreeKeto: () -> Unit,
-    onOpenCafes: () -> Unit
+    onOpenSuwon: () -> Unit,
+    onOpenDmz: () -> Unit,
+    onOpenKoreanFolkVillage: () -> Unit,
+    onOpenNamiIsland: () -> Unit,
+    onOpenGangneung: () -> Unit
 ) {
-    ScreenScaffold(title = "Gyeongju", onBack = onBack, showBackground = true) {
+    ScreenScaffold(title = "Day Trips", onBack = onBack, showBackground = true) {
         Column(modifier = Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.fillMaxHeight(0.35f))
             Column(
@@ -34,24 +34,24 @@ fun GyeongjuScreen(
                     .verticalScroll(rememberScrollState())
                     .padding(24.dp)
             ) {
-                Button(onClick = onOpenPlacesOfInterest, modifier = Modifier.fillMaxWidth()) {
-                    Text("Places Of Interest")
+                Button(onClick = onOpenSuwon, modifier = Modifier.fillMaxWidth()) {
+                    Text("Suwon")
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                Button(onClick = onOpenAttractions, modifier = Modifier.fillMaxWidth()) {
-                    Text("Attractions")
+                Button(onClick = onOpenDmz, modifier = Modifier.fillMaxWidth()) {
+                    Text("DMZ")
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                Button(onClick = onOpenWhereToStay, modifier = Modifier.fillMaxWidth()) {
-                    Text("Where To Stay")
+                Button(onClick = onOpenKoreanFolkVillage, modifier = Modifier.fillMaxWidth()) {
+                    Text("Korean Folk Village")
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                Button(onClick = onOpenGlutenFreeKeto, modifier = Modifier.fillMaxWidth()) {
-                    Text("Gluten Free and Keto Friendly")
+                Button(onClick = onOpenNamiIsland, modifier = Modifier.fillMaxWidth()) {
+                    Text("Nami Island / Gapyeong")
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                Button(onClick = onOpenCafes, modifier = Modifier.fillMaxWidth()) {
-                    Text("Cafes")
+                Button(onClick = onOpenGangneung, modifier = Modifier.fillMaxWidth()) {
+                    Text("Gangneung")
                 }
             }
         }
