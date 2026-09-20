@@ -13,7 +13,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.japantravel"
+    namespace = "com.gilberko.japan"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -21,11 +21,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.japantravel"
+        applicationId = "com.gilberko.japan"
         minSdk = 34
         targetSdk = 36
-        versionCode = 15
-        versionName = "1.14"
+        versionCode = 16
+        versionName = "1.15"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
