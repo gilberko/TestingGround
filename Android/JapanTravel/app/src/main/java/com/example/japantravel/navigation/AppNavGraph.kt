@@ -7,9 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.japantravel.R
-import com.example.japantravel.screens.AboutFoodScreen
 import com.example.japantravel.screens.AmanohashidateDayTripScreen
 import com.example.japantravel.screens.ClassicalCultureScreen
+import com.example.japantravel.screens.EatingInJapanScreen
+import com.example.japantravel.screens.FoodAllergenSafetyScreen
 import com.example.japantravel.screens.FoodAndCafesScreen
 import com.example.japantravel.screens.FujiQScreen
 import com.example.japantravel.screens.GeneralInformationScreen
@@ -21,6 +22,7 @@ import com.example.japantravel.screens.HakoneGettingThereScreen
 import com.example.japantravel.screens.HakoneRopewayScreen
 import com.example.japantravel.screens.HakoneScreen
 import com.example.japantravel.screens.HomeScreen
+import com.example.japantravel.screens.HotelsOnsensRyokansScreen
 import com.example.japantravel.screens.JoypolisScreen
 import com.example.japantravel.screens.KawagoeDayTripScreen
 import com.example.japantravel.screens.KawaguchikoOverviewScreen
@@ -37,6 +39,7 @@ import com.example.japantravel.screens.KyotoTeamLabBiovortexScreen
 import com.example.japantravel.screens.KyotoToeiStudioParkScreen
 import com.example.japantravel.screens.KyotoWhereToSleepScreen
 import com.example.japantravel.screens.LakesKawaguchikoDayTripScreen
+import com.example.japantravel.screens.LocalFoodScreen
 import com.example.japantravel.screens.MapImageScreen
 import com.example.japantravel.screens.MedicalIssuesScreen
 import com.example.japantravel.screens.MountTakaoDayTripScreen
@@ -59,6 +62,7 @@ import com.example.japantravel.screens.OsakaTeamLabBotanicalGardenScreen
 import com.example.japantravel.screens.OsakaWhereToSleepScreen
 import com.example.japantravel.screens.PlaceDetailScreen
 import com.example.japantravel.screens.PlacesScreen
+import com.example.japantravel.screens.RentingCarsAndDrivingScreen
 import com.example.japantravel.screens.SamuraiNinjaTeaCeremonyScreen
 import com.example.japantravel.screens.SpecialAnimalPlacesScreen
 import com.example.japantravel.screens.SplashScreen
@@ -84,7 +88,6 @@ import com.example.japantravel.screens.TokyoWhereToSleepScreen
 import com.example.japantravel.screens.UsefulAppsScreen
 import com.example.japantravel.screens.UsjScreen
 import com.example.japantravel.screens.WarnerBrosHarryPotterScreen
-import com.example.japantravel.screens.WeatherScreen
 import com.example.japantravel.screens.YokohamaDayTripScreen
 import com.example.japantravel.screens.YomiurilandScreen
 
@@ -94,12 +97,16 @@ sealed class Screen(val route: String) {
     object Places                  : Screen("places")
     object PlaceDetail             : Screen("place/{placeName}")
     object GeneralInfo             : Screen("general_info")
+    object RentingCarsAndDriving   : Screen("renting_cars_and_driving")
+    object HotelsOnsensRyokans     : Screen("hotels_onsens_ryokans")
     object UsefulApps              : Screen("useful_apps")
     object StoresAndChains         : Screen("stores_and_chains")
     object ClassicalCulture        : Screen("classical_culture")
     object MedicalIssues           : Screen("medical_issues")
+    object EatingInJapan           : Screen("eating_in_japan")
+    object LocalFood               : Screen("local_food")
+    object FoodAllergenSafety      : Screen("food_allergen_safety")
     object FoodAndCafes            : Screen("food_and_cafes")
-    object AboutFood               : Screen("about_food")
     object SpecialAnimalPlaces     : Screen("special_animal_places")
 
     object Tokyo                   : Screen("tokyo")
@@ -181,8 +188,6 @@ sealed class Screen(val route: String) {
     object GhibliPark              : Screen("ghibli_park")
 
     object TokyoOutsideArea        : Screen("tokyo_outside_area")
-
-    object Weather                 : Screen("weather")
 }
 
 @Composable
@@ -199,20 +204,36 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.Home.route) {
             HomeScreen(
-                onOpenPlaces            = { navController.navigate(Screen.Places.route) },
-                onOpenGeneralInfo       = { navController.navigate(Screen.GeneralInfo.route) },
-                onOpenUsefulApps        = { navController.navigate(Screen.UsefulApps.route) },
-                onOpenStoresAndChains   = { navController.navigate(Screen.StoresAndChains.route) },
-                onOpenClassicalCulture  = { navController.navigate(Screen.ClassicalCulture.route) },
-                onOpenMedicalIssues     = { navController.navigate(Screen.MedicalIssues.route) },
-                onOpenFoodAndCafes          = { navController.navigate(Screen.FoodAndCafes.route) },
-                onOpenSpecialAnimalPlaces   = { navController.navigate(Screen.SpecialAnimalPlaces.route) },
-                onOpenAboutFood             = { navController.navigate(Screen.AboutFood.route) },
-                onOpenWeather               = { navController.navigate(Screen.Weather.route) }
+                onOpenPlaces                    = { navController.navigate(Screen.Places.route) },
+                onOpenGeneralInfo               = { navController.navigate(Screen.GeneralInfo.route) },
+                onOpenRentingCarsAndDriving     = { navController.navigate(Screen.RentingCarsAndDriving.route) },
+                onOpenHotelsOnsensRyokans       = { navController.navigate(Screen.HotelsOnsensRyokans.route) },
+                onOpenUsefulApps                = { navController.navigate(Screen.UsefulApps.route) },
+                onOpenStoresAndChains           = { navController.navigate(Screen.StoresAndChains.route) },
+                onOpenClassicalCulture          = { navController.navigate(Screen.ClassicalCulture.route) },
+                onOpenMedicalIssues             = { navController.navigate(Screen.MedicalIssues.route) },
+                onOpenEatingInJapan             = { navController.navigate(Screen.EatingInJapan.route) }
             )
         }
-        composable(Screen.Weather.route) {
-            WeatherScreen(onBack = { navController.popBackStack() })
+        composable(Screen.RentingCarsAndDriving.route) {
+            RentingCarsAndDrivingScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.HotelsOnsensRyokans.route) {
+            HotelsOnsensRyokansScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.EatingInJapan.route) {
+            EatingInJapanScreen(
+                onBack                      = { navController.popBackStack() },
+                onOpenLocalFood             = { navController.navigate(Screen.LocalFood.route) },
+                onOpenFoodAllergenSafety    = { navController.navigate(Screen.FoodAllergenSafety.route) },
+                onOpenFoodAndCafes          = { navController.navigate(Screen.FoodAndCafes.route) }
+            )
+        }
+        composable(Screen.LocalFood.route) {
+            LocalFoodScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.FoodAllergenSafety.route) {
+            FoodAllergenSafetyScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Places.route) {
             PlacesScreen(
@@ -228,7 +249,8 @@ fun AppNavGraph(navController: NavHostController) {
                         "Ghibli Park"   -> navController.navigate(Screen.GhibliPark.route)
                         else            -> navController.navigate("place/$placeName")
                     }
-                }
+                },
+                onOpenSpecialAnimalPlaces = { navController.navigate(Screen.SpecialAnimalPlaces.route) }
             )
         }
         composable(
@@ -255,9 +277,6 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.FoodAndCafes.route) {
             FoodAndCafesScreen(onBack = { navController.popBackStack() })
-        }
-        composable(Screen.AboutFood.route) {
-            AboutFoodScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.SpecialAnimalPlaces.route) {
             SpecialAnimalPlacesScreen(onBack = { navController.popBackStack() })

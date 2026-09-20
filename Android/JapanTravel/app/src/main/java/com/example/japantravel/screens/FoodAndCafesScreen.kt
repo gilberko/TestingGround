@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FoodAndCafesScreen(onBack: () -> Unit) {
-    ScreenScaffold(title = "Food and Cafes", onBack = onBack) {
+    ScreenScaffold(title = "Restaurants, Food Chains and Cafes", onBack = onBack) {
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -45,6 +45,21 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
             )
             BodyText(
                 "Tempura: **Tenya** serves fast, affordable tempura rice bowls."
+            )
+            BodyText(
+                "Shabu-shabu: **Mo Mo Paradise** is an all-you-can-eat shabu-shabu and sukiyaki " +
+                    "chain (thin-sliced beef and pork swished in simmering broth at the table), " +
+                    "popular for its unlimited meat/vegetable refills within a set time limit and " +
+                    "budget-friendly course pricing - found in **Tokyo**, **Osaka**, and other major " +
+                    "cities."
+            )
+            BodyText(
+                "Convenience stores as a meal option: **7-Eleven**, **Lawson**, and **FamilyMart** sell " +
+                    "a huge range of ready-to-eat food - bento boxes, onigiri, fried chicken, pasta, " +
+                    "and more - and every store has a microwave at the counter staff will use to " +
+                    "heat your food for free on request (just say \"atatamete kudasai\" or point at " +
+                    "it). It's a genuinely solid, cheap meal option, not just a snack stop, and " +
+                    "many locations also have a small eat-in counter."
             )
 
             SectionHeader("Cafe chains")

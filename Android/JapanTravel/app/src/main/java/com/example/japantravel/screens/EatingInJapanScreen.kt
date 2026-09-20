@@ -12,31 +12,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-val PLACE_NAMES = listOf("Tokyo", "Osaka", "Kyoto", "Kawaguchiko", "Hakone", "Nara", "Ghibli Park")
-
 @Composable
-fun PlacesScreen(
+fun EatingInJapanScreen(
     onBack: () -> Unit,
-    onOpenPlace: (String) -> Unit,
-    onOpenSpecialAnimalPlaces: () -> Unit
+    onOpenLocalFood: () -> Unit,
+    onOpenFoodAllergenSafety: () -> Unit,
+    onOpenFoodAndCafes: () -> Unit
 ) {
-    ScreenScaffold(title = "Where To Visit", onBack = onBack, showBackground = true) {
+    ScreenScaffold(title = "Eating In Japan", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(24.dp)
         ) {
-            PLACE_NAMES.forEach { place ->
-                Button(
-                    onClick = { onOpenPlace(place) },
-                    modifier = Modifier.fillMaxWidth()
-                ) { Text(place) }
-                Spacer(modifier = Modifier.height(12.dp))
-            }
             Button(
-                onClick = onOpenSpecialAnimalPlaces,
+                onClick = onOpenLocalFood,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Special Places with Animals") }
+            ) { Text("Local Food") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenFoodAllergenSafety,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Food Allergen Safety") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenFoodAndCafes,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Restaurants, Food Chains and Cafes") }
             Spacer(modifier = Modifier.height(12.dp))
         }
     }

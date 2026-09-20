@@ -127,14 +127,43 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "separately."
             )
             BodyText(
-                "Is it related to tax-free shopping? Not directly, at least for now - tax-free " +
-                    "(consumption tax exempt) shopping is currently its own separate process, done " +
-                    "in-store by showing your passport at each participating shop. That said, this " +
-                    "is actively changing: from November 1, 2026, Japan is switching tax-free " +
-                    "shopping to a refund-based system, where you pay the tax at purchase and then " +
-                    "claim a refund before departure - a different procedure from Visit Japan " +
-                    "Web's QR codes. Since this is a live change, it's worth checking the current " +
-                    "process closer to your travel date."
+                "Is it related to tax-free shopping? No - tax-free shopping is a separate, " +
+                    "in-store process. See the Tax Free / Duty Free Shopping section below for " +
+                    "details."
+            )
+
+            SectionHeader("Tax Free / Duty Free Shopping")
+            BodyText(
+                "Can I buy tax free as a tourist? Yes - temporary visitors (not residents) can " +
+                    "shop tax-free by showing their passport at each participating store. The tax " +
+                    "exempted is Japan's consumption tax - 10% on general goods, 8% on food and " +
+                    "drink - and it requires a minimum purchase of ¥5,000 (before tax) at one store " +
+                    "on the same day."
+            )
+            BodyText(
+                "What do I do at the store? Show your passport at checkout or a dedicated " +
+                    "tax-free counter. Consumables (food, drink, cosmetics, medicine, etc.) get " +
+                    "sealed in a special tamper-evident bag that must stay unopened until you " +
+                    "leave Japan; general goods like electronics or clothing have no such sealing " +
+                    "requirement."
+            )
+            BodyText(
+                "Where do I get the tax back - only at the airport? Not under the current system: " +
+                    "through **October 31, 2026**, most modern stores give you an instant discount " +
+                    "right at checkout once your passport is verified - the tax is simply not " +
+                    "charged, no separate airport step needed for most purchases."
+            )
+            BodyText(
+                "This is changing soon: from **November 1, 2026**, Japan is switching to a " +
+                    "refund-based system - a confirmed, on-track policy change. You'll pay the " +
+                    "full tax-inclusive price in-store, then claim the tax back through a refund " +
+                    "procedure before departure, expected to be handled at airport/port departure " +
+                    "refund counters rather than as an instant in-store discount. Purchases will " +
+                    "generally need to be made within 90 days of departure to qualify. Some current " +
+                    "rules (the sealed-bag requirement, the ¥500,000/day cap) are expected to be " +
+                    "dropped under the new system, though exact operational details may still be " +
+                    "finalized closer to the date - worth double-checking if your trip spans this " +
+                    "transition."
             )
 
             SectionHeader("The Yen (¥)")
@@ -187,19 +216,6 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "ILS or needs an intermediate currency like USD or EUR. **7-Eleven** / Seven Bank " +
                     "ATMs are the most reliably foreign-card-friendly cash machines nationwide, worth " +
                     "keeping as a backup."
-            )
-
-            SectionHeader("Onsens & Ryokans")
-            BodyText(
-                "An onsen is a natural hot spring bath, found as standalone bathhouses or as part " +
-                    "of a hotel/ryokan. Bathers wash and rinse thoroughly before entering the " +
-                    "water, then bathe nude (swimsuits are generally not worn). Baths are often " +
-                    "separated by gender, and some onsens restrict guests with visible tattoos."
-            )
-            BodyText(
-                "A ryokan is a traditional Japanese inn, with tatami-mat rooms, futon bedding laid " +
-                    "out on the floor, and often a multi-course kaiseki dinner and breakfast " +
-                    "included. Many ryokans have their own onsen baths for guests."
             )
 
             SectionHeader("IC Cards (Suica / Pasmo / ICOCA)")
@@ -302,28 +318,6 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "or Sakura Mobile."
             )
 
-            SectionHeader("Renting a Car / Driving in Japan")
-            BodyText(
-                "Side of the road: Japan drives on the **left**, with right-hand-drive cars - the " +
-                    "opposite of Israel or the US."
-            )
-            BodyText(
-                "International Driving Permit (IDP) validity: an IDP is valid in Japan for one " +
-                    "year from its **issue date**, or one year from your entry into Japan - whichever " +
-                    "is shorter - regardless of any later expiration date printed on the permit " +
-                    "itself. It must also be issued under the 1949 Geneva Convention format."
-            )
-            BodyText(
-                "Why the rule exists: it was introduced to close a loophole where long-term " +
-                    "foreign residents (including students) kept renewing or reissuing an IDP via " +
-                    "brief trips abroad every few months, letting them drive indefinitely without " +
-                    "ever converting to a Japanese license."
-            )
-            BodyText(
-                "Practical tip: get the IDP shortly before departure rather than months ahead, so " +
-                    "the one-year issue-date clock doesn't run out mid-trip."
-            )
-
             SectionHeader("When Are Stores Open")
             BodyText(
                 "General hours: most retail and department stores run roughly 10am-8pm."
@@ -362,6 +356,59 @@ fun GeneralInformationScreen(onBack: () -> Unit) {
                     "collected on its own designated day - mixed bags can be left uncollected. " +
                     "Hotel and ryokan guests can just use the room bin; convenience-store trash cans " +
                     "are meant for that store's own purchases, not outside litter."
+            )
+
+            SectionHeader("Weather: Month by month")
+            BodyText(
+                "Spring (March-May): generally mild, with April a particularly comfortable " +
+                    "window and cherry blossoms as the big draw."
+            )
+            BodyText(
+                "Rainy season - \"tsuyu\" (June-early July): high humidity and frequent rain " +
+                    "across most of the country."
+            )
+            BodyText(
+                "Summer (July-August): hot and humid, with typhoon risk running roughly August " +
+                    "through October - check forecasts if a typhoon is tracking toward Japan " +
+                    "during your trip, since trains (including the Shinkansen) can suspend service."
+            )
+            BodyText(
+                "Autumn (September-November): October and November are usually comfortable and " +
+                    "mild, with good autumn foliage later in November."
+            )
+            BodyText(
+                "Winter (December-February): cold, especially January - inland cities like **Kyoto** " +
+                    "get noticeably colder than coastal **Tokyo**, and occasional snow is possible in " +
+                    "both."
+            )
+
+            SectionHeader("Recommended Weather Apps")
+            BodyText(
+                "tenki.jp and the Yahoo! Weather Japan app both give detailed local forecasts. " +
+                    "For official forecasts and typhoon warnings in English, the Japan " +
+                    "Meteorological Agency (JMA, jma.go.jp) is the authoritative source."
+            )
+
+            SectionHeader("Weather Tips")
+            BodyText(
+                "Always carry a compact umbrella, or don't bother packing one at all - the clear " +
+                    "plastic umbrellas sold cheaply at any convenience store are sturdy and easy " +
+                    "to pick up on the spot when sudden rain hits, which is common, especially " +
+                    "during tsuyu."
+            )
+            BodyText(
+                "Dress in layers during spring and autumn - mornings and evenings can be " +
+                    "noticeably cooler than the middle of the day."
+            )
+            BodyText(
+                "Summer calls for breathable, moisture-wicking clothing and sun protection (hat, " +
+                    "sunscreen, a folding fan or handheld fan) - the heat and humidity are " +
+                    "intense, and recent summers have seen record-breaking heat."
+            )
+            BodyText(
+                "Winter calls for a proper warm coat plus removable layers underneath - indoor " +
+                    "heating tends to run warm, so you'll want to shed layers once you're inside " +
+                    "shops, trains, and restaurants."
             )
             Spacer(Modifier.height(16.dp))
         }

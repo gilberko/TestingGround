@@ -24,14 +24,13 @@ import androidx.compose.ui.unit.dp
 fun HomeScreen(
     onOpenPlaces: () -> Unit,
     onOpenGeneralInfo: () -> Unit,
+    onOpenRentingCarsAndDriving: () -> Unit,
+    onOpenHotelsOnsensRyokans: () -> Unit,
     onOpenUsefulApps: () -> Unit,
     onOpenStoresAndChains: () -> Unit,
     onOpenClassicalCulture: () -> Unit,
     onOpenMedicalIssues: () -> Unit,
-    onOpenFoodAndCafes: () -> Unit,
-    onOpenSpecialAnimalPlaces: () -> Unit,
-    onOpenAboutFood: () -> Unit,
-    onOpenWeather: () -> Unit
+    onOpenEatingInJapan: () -> Unit
 ) {
     Scaffold { innerPadding ->
         HubBackground {
@@ -55,12 +54,22 @@ fun HomeScreen(
             Button(
                 onClick = onOpenPlaces,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Places") }
+            ) { Text("Where To Visit") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGeneralInfo,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("General Information") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenRentingCarsAndDriving,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Renting Cars And Driving") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenHotelsOnsensRyokans,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("About Hotels, Onsens and Ryokans") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenUsefulApps,
@@ -83,24 +92,9 @@ fun HomeScreen(
             ) { Text("Medical Issues") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onOpenFoodAndCafes,
+                onClick = onOpenEatingInJapan,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Food and Cafes") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onOpenAboutFood,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("About Food") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onOpenSpecialAnimalPlaces,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("Special Places with Animals") }
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onOpenWeather,
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("Weather") }
+            ) { Text("Eating In Japan") }
         }
         }
     }
