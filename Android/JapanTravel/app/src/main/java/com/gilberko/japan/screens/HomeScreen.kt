@@ -94,7 +94,7 @@ fun HomeScreen(
             Button(
                 onClick = onOpenEatingInJapan,
                 modifier = Modifier.fillMaxWidth()
-            ) { Text("Eating In Japan") }
+            ) { Text("Eating and Drinking In Japan") }
         }
         }
     }

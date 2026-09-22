@@ -17,9 +17,10 @@ fun EatingInJapanScreen(
     onBack: () -> Unit,
     onOpenLocalFood: () -> Unit,
     onOpenFoodAllergenSafety: () -> Unit,
-    onOpenFoodAndCafes: () -> Unit
+    onOpenFoodAndCafes: () -> Unit,
+    onOpenAlcohol: () -> Unit
 ) {
-    ScreenScaffold(title = "Eating In Japan", onBack = onBack, showBackground = true) {
+    ScreenScaffold(title = "Eating and Drinking In Japan", onBack = onBack, showBackground = true) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -39,6 +40,11 @@ fun EatingInJapanScreen(
                 onClick = onOpenFoodAndCafes,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Restaurants, Food Chains and Cafes") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenAlcohol,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Alcohol") }
             Spacer(modifier = Modifier.height(12.dp))
         }
     }

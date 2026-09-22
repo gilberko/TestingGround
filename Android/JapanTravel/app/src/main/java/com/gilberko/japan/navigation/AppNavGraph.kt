@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.gilberko.japan.R
 import com.gilberko.japan.screens.AmanohashidateDayTripScreen
 import com.gilberko.japan.screens.ClassicalCultureScreen
+import com.gilberko.japan.screens.AlcoholScreen
 import com.gilberko.japan.screens.EatingInJapanScreen
 import com.gilberko.japan.screens.FoodAllergenSafetyScreen
 import com.gilberko.japan.screens.FoodAndCafesScreen
@@ -107,6 +108,7 @@ sealed class Screen(val route: String) {
     object LocalFood               : Screen("local_food")
     object FoodAllergenSafety      : Screen("food_allergen_safety")
     object FoodAndCafes            : Screen("food_and_cafes")
+    object Alcohol                 : Screen("alcohol")
     object SpecialAnimalPlaces     : Screen("special_animal_places")
 
     object Tokyo                   : Screen("tokyo")
@@ -226,7 +228,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                      = { navController.popBackStack() },
                 onOpenLocalFood             = { navController.navigate(Screen.LocalFood.route) },
                 onOpenFoodAllergenSafety    = { navController.navigate(Screen.FoodAllergenSafety.route) },
-                onOpenFoodAndCafes          = { navController.navigate(Screen.FoodAndCafes.route) }
+                onOpenFoodAndCafes          = { navController.navigate(Screen.FoodAndCafes.route) },
+                onOpenAlcohol               = { navController.navigate(Screen.Alcohol.route) }
             )
         }
         composable(Screen.LocalFood.route) {
@@ -234,6 +237,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.FoodAllergenSafety.route) {
             FoodAllergenSafetyScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.Alcohol.route) {
+            AlcoholScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.Places.route) {
             PlacesScreen(

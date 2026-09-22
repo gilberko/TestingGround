@@ -52,11 +52,38 @@ fun UsjScreen(onBack: () -> Unit) {
             BodyText(
                 "To avoid that scramble entirely, buy an Express Pass in advance that specifically " +
                     "includes a **Super Nintendo World** Area Timed Entry ticket (not all Express " +
-                    "Passes do - check the package details). Express Passes go on sale 60 days " +
-                    "before the visit date, and the ones covering **Super Nintendo World** sell out " +
-                    "quickly, so booking early matters. A qualifying Express Pass both guarantees " +
-                    "your entry window into **Super Nintendo World** and gives priority access to the " +
-                    "rides included in that pass, skipping the standby line."
+                    "Passes do - check the package details). A qualifying Express Pass both " +
+                    "guarantees your entry window into **Super Nintendo World** and gives priority " +
+                    "access to the rides included in that pass, skipping the standby line - see the " +
+                    "**Express Passes** section below for how these work."
+            )
+
+            SectionHeader("Express Passes")
+            BodyText(
+                "Express Passes are bought separately from the official USJ website/app or " +
+                    "authorized resellers, in advance of the visit. They go on sale roughly 60 days " +
+                    "before the target date, and popular passes - especially those covering **Super " +
+                    "Nintendo World** or Harry Potter rides - can sell out well before the visit " +
+                    "date, so booking early matters."
+            )
+            BodyText(
+                "Passes come in different package tiers covering a set number of rides - commonly " +
+                    "4, 5, or 7 rides per pass - and each specific pass defines exactly which rides " +
+                    "it applies to. Not every pass covers every ride, so check the included ride " +
+                    "list carefully before buying, especially if a specific ride (like **Super " +
+                    "Nintendo World**'s attractions) matters."
+            )
+            BodyText(
+                "For some rides included in a pass, the entry time for that ride must be chosen at " +
+                    "the time of purchase rather than decided later in the park."
+            )
+            BodyText(
+                "**Important**: an Express Pass is not a park entry ticket. It only grants priority " +
+                    "access to specific rides - a separate park entry ticket is still required to " +
+                    "get into USJ at all. Unlike Express Passes, entry tickets are far less limited " +
+                    "in quantity, so it's fine to buy the entry ticket later - prioritize securing " +
+                    "the Express Pass first if a specific ride matters, since that's the one that " +
+                    "can run out."
             )
 
             SectionHeader("The app")
