@@ -19,6 +19,7 @@ fun KyotoParksScreen(
     onBack: () -> Unit,
     onOpenNinjaMuseum: () -> Unit,
     onOpenNintendoMuseum: () -> Unit,
+    onOpenMangaMuseum: () -> Unit,
     onOpenOverview: () -> Unit,
     onOpenTeamLabBiovortex: () -> Unit,
     onOpenToeiStudioPark: () -> Unit
@@ -44,6 +45,11 @@ fun KyotoParksScreen(
                 onClick = onOpenNintendoMuseum,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Nintendo Museum") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenMangaMuseum,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Kyoto International Manga Museum") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenTeamLabBiovortex,

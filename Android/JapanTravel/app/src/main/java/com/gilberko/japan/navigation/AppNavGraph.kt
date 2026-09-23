@@ -32,9 +32,11 @@ import com.gilberko.japan.screens.KyotoCityRegionsScreen
 import com.gilberko.japan.screens.KyotoDayPlansScreen
 import com.gilberko.japan.screens.KyotoGettingAroundScreen
 import com.gilberko.japan.screens.KyotoGlutenFreeKetoScreen
+import com.gilberko.japan.screens.KyotoMangaMuseumScreen
 import com.gilberko.japan.screens.KyotoMapsScreen
 import com.gilberko.japan.screens.KyotoOverviewScreen
 import com.gilberko.japan.screens.KyotoParksScreen
+import com.gilberko.japan.screens.KyotoPlacesOfInterestScreen
 import com.gilberko.japan.screens.KyotoScreen
 import com.gilberko.japan.screens.KyotoTeamLabBiovortexScreen
 import com.gilberko.japan.screens.KyotoToeiStudioParkScreen
@@ -58,6 +60,7 @@ import com.gilberko.japan.screens.OsakaGlutenFreeKetoScreen
 import com.gilberko.japan.screens.OsakaMapsScreen
 import com.gilberko.japan.screens.OsakaOverviewScreen
 import com.gilberko.japan.screens.OsakaParksScreen
+import com.gilberko.japan.screens.OsakaPlacesOfInterestScreen
 import com.gilberko.japan.screens.OsakaScreen
 import com.gilberko.japan.screens.OsakaTeamLabBotanicalGardenScreen
 import com.gilberko.japan.screens.OsakaWhereToSleepScreen
@@ -147,6 +150,7 @@ sealed class Screen(val route: String) {
     object Osaka                   : Screen("osaka")
     object OsakaOverview           : Screen("osaka_overview")
     object OsakaParks              : Screen("osaka_parks")
+    object OsakaPlacesOfInterest   : Screen("osaka_places_of_interest")
     object Usj                     : Screen("usj")
     object OsakaTeamLabBotanicalGarden : Screen("osaka_teamlab_botanical_garden")
     object OsakaGlutenFreeKeto     : Screen("osaka_gluten_free_keto")
@@ -161,8 +165,10 @@ sealed class Screen(val route: String) {
     object Kyoto                   : Screen("kyoto")
     object KyotoCityRegions        : Screen("kyoto_city_regions")
     object KyotoParks              : Screen("kyoto_parks")
+    object KyotoPlacesOfInterest   : Screen("kyoto_places_of_interest")
     object NinjaMuseum             : Screen("ninja_museum")
     object KyotoNintendoMuseum     : Screen("kyoto_nintendo_museum")
+    object KyotoMangaMuseum        : Screen("kyoto_manga_museum")
     object KyotoOverview           : Screen("kyoto_overview")
     object KyotoTeamLabBiovortex   : Screen("kyoto_teamlab_biovortex")
     object KyotoToeiStudioPark     : Screen("kyoto_toei_studio_park")
@@ -444,6 +450,7 @@ fun AppNavGraph(navController: NavHostController) {
             OsakaScreen(
                 onBack                      = { navController.popBackStack() },
                 onOpenParksAndAttractions   = { navController.navigate(Screen.OsakaParks.route) },
+                onOpenMorePlacesOfInterest  = { navController.navigate(Screen.OsakaPlacesOfInterest.route) },
                 onOpenOverview              = { navController.navigate(Screen.OsakaOverview.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.OsakaGlutenFreeKeto.route) },
                 onOpenGettingAround         = { navController.navigate(Screen.OsakaGettingAround.route) },
@@ -478,6 +485,9 @@ fun AppNavGraph(navController: NavHostController) {
                 imageRes = R.drawable.osaka_city_map,
                 sourceCredit = "Source: Osaka Wards map, Wikimedia Commons, CC BY-SA 3.0"
             )
+        }
+        composable(Screen.OsakaPlacesOfInterest.route) {
+            OsakaPlacesOfInterestScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.OsakaOverview.route) {
             OsakaOverviewScreen(onBack = { navController.popBackStack() })
@@ -514,6 +524,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                      = { navController.popBackStack() },
                 onOpenCityRegions           = { navController.navigate(Screen.KyotoCityRegions.route) },
                 onOpenParksAndAttractions   = { navController.navigate(Screen.KyotoParks.route) },
+                onOpenPlacesOfInterest      = { navController.navigate(Screen.KyotoPlacesOfInterest.route) },
                 onOpenGlutenFreeAndKeto     = { navController.navigate(Screen.KyotoGlutenFreeKeto.route) },
                 onOpenGettingAround         = { navController.navigate(Screen.KyotoGettingAround.route) },
                 onOpenDayPlans              = { navController.navigate(Screen.KyotoDayPlans.route) },
@@ -548,6 +559,9 @@ fun AppNavGraph(navController: NavHostController) {
                 sourceCredit = "Source: Wards of Kyoto map, Wikimedia Commons, CC BY-SA 3.0"
             )
         }
+        composable(Screen.KyotoPlacesOfInterest.route) {
+            KyotoPlacesOfInterestScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.KyotoCityRegions.route) {
             KyotoCityRegionsScreen(onBack = { navController.popBackStack() })
         }
@@ -562,6 +576,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack                  = { navController.popBackStack() },
                 onOpenNinjaMuseum       = { navController.navigate(Screen.NinjaMuseum.route) },
                 onOpenNintendoMuseum    = { navController.navigate(Screen.KyotoNintendoMuseum.route) },
+                onOpenMangaMuseum       = { navController.navigate(Screen.KyotoMangaMuseum.route) },
                 onOpenOverview          = { navController.navigate(Screen.KyotoOverview.route) },
                 onOpenTeamLabBiovortex  = { navController.navigate(Screen.KyotoTeamLabBiovortex.route) },
                 onOpenToeiStudioPark    = { navController.navigate(Screen.KyotoToeiStudioPark.route) }
@@ -572,6 +587,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KyotoNintendoMuseum.route) {
             NintendoMuseumScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KyotoMangaMuseum.route) {
+            KyotoMangaMuseumScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.KyotoOverview.route) {
             KyotoOverviewScreen(onBack = { navController.popBackStack() })

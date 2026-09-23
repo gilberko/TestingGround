@@ -253,6 +253,23 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
                     "admission is about ¥1,300 - it's more an immersive nostalgia streetscape than " +
                     "an arcade, but fits the retro-Japan theme here well."
             )
+            BodyText(
+                "**Nakano Broadway**, a shopping arcade a few minutes from Nakano Station (JR Chuo " +
+                    "Line; Tokyo Metro Tozai Line), a few stops west of **Shinjuku**, is a second, " +
+                    "more local-feeling otaku shopping hub compared to **Akihabara**. Its upper " +
+                    "floors are packed with **Mandarake** specialty shops spread across many " +
+                    "small units, each focused on a different niche - vintage toys and figures, " +
+                    "retro video games and consoles, old manga, cel art, and idol goods - making it " +
+                    "as much a browsable nostalgia museum as a shopping trip."
+            )
+            BodyText(
+                "**Pixel Lab**, in **Sotokanda** (**Akihabara** area, **Chiyoda**) rather than inside " +
+                    "**Nakano Broadway**, is a hands-on workshop where you build your own custom " +
+                    "**Game Boy**, **Game Boy Advance**, or **Game Boy Advance SP** from parts - " +
+                    "picking your own shell color and buttons and assembling it yourself with a " +
+                    "patient instructor guiding you - and take the finished, fully working handheld " +
+                    "home with you."
+            )
 
             SectionHeader("Video Games")
             BodyText(

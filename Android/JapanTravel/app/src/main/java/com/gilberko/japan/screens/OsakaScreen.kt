@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 fun OsakaScreen(
     onBack: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
+    onOpenMorePlacesOfInterest: () -> Unit,
     onOpenOverview: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
@@ -42,6 +43,11 @@ fun OsakaScreen(
                 onClick = onOpenParksAndAttractions,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Parks and Attractions") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenMorePlacesOfInterest,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("More Places of Interest") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGlutenFreeAndKeto,
