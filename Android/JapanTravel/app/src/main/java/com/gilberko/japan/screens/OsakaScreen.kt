@@ -19,6 +19,7 @@ fun OsakaScreen(
     onBack: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
     onOpenMorePlacesOfInterest: () -> Unit,
+    onOpenNatureTrips: () -> Unit,
     onOpenOverview: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
@@ -48,6 +49,11 @@ fun OsakaScreen(
                 onClick = onOpenMorePlacesOfInterest,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("More Places of Interest") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenNatureTrips,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Nature Trips") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGlutenFreeAndKeto,

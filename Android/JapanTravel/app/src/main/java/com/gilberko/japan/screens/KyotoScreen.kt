@@ -20,6 +20,7 @@ fun KyotoScreen(
     onOpenCityRegions: () -> Unit,
     onOpenParksAndAttractions: () -> Unit,
     onOpenPlacesOfInterest: () -> Unit,
+    onOpenNatureTrips: () -> Unit,
     onOpenGlutenFreeAndKeto: () -> Unit,
     onOpenGettingAround: () -> Unit,
     onOpenDayPlans: () -> Unit,
@@ -48,6 +49,11 @@ fun KyotoScreen(
                 onClick = onOpenPlacesOfInterest,
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Places of Interest") }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onOpenNatureTrips,
+                modifier = Modifier.fillMaxWidth()
+            ) { Text("Nature Trips") }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 onClick = onOpenGlutenFreeAndKeto,
