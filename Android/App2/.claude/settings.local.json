@@ -45,7 +45,8 @@
       "Bash(find:*)",
       "Bash(grep -E \"\\\\.kt$\")",
       "Bash(grep \"\\\\.kt$\")",
-      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")"
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
