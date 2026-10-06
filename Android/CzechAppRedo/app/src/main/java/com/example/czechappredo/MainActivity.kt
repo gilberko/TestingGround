@@ -103,6 +103,7 @@ class MainActivity : ComponentActivity() {
                 composable("comparisons") { ComparisonsScreen(navController) }
                 composable("tech") { TechScreen(navController) }
                 composable("telling_time") { TellingTheTimeScreen(navController) }
+                composable("time_expressions") { TimeRelatedExpressionsScreen(navController) }
                 composable("sports") { SportsScreen(navController) }
                 composable("school_university") { SchoolAndUniversityScreen(navController) }
                 composable("dialogue_soccer") { WatchingSoccerDialogueScreen(navController) }
@@ -369,6 +370,7 @@ fun DictionaryHubScreen(navController: NavController) {
             "Examples of Conjugation of Cases" to "case_conjugation_examples",
             "Tech" to "tech",
             "Time And Date" to "telling_time",
+            "Time Related Expressions" to "time_expressions",
             "Sports" to "sports",
             "School and University" to "school_university",
             "Need To, Have To, Allowed" to "need_have_allowed",
