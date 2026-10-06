@@ -408,6 +408,137 @@ private val dqCategories: List<DQCategory> = listOf(
         WordPair("secretary", "sekretářka"),
         WordPair("activity", "činnost / aktivita"),
         WordPair("discussion", "diskuze")
+    )),
+    DQCategory("Food and Drinks", listOf(
+        // Tableware & kitchen
+        WordPair("knife", "nůž"),
+        WordPair("fork", "vidlička"),
+        WordPair("spoon", "lžíce"),
+        WordPair("teaspoon", "lžička"),
+        WordPair("plate", "talíř"),
+        WordPair("cup", "hrnek / šálek"),
+        WordPair("napkin", "ubrousek"),
+        WordPair("table", "stůl"),
+        WordPair("oven", "trouba"),
+        // General
+        WordPair("food", "jídlo"),
+        WordPair("meal / dish", "pokrm"),
+        WordPair("a drink", "pití"),
+        WordPair("beverage", "nápoj"),
+        WordPair("breakfast", "snídaně"),
+        WordPair("lunch", "oběd"),
+        WordPair("dinner", "večeře"),
+        WordPair("snack", "svačina"),
+        WordPair("first course (starter)", "předkrm"),
+        WordPair("main course", "hlavní chod"),
+        WordPair("dessert", "dezert / moučník"),
+        // Meat & fish
+        WordPair("meat", "maso"),
+        WordPair("fish", "ryba"),
+        WordPair("chicken", "kuře"),
+        WordPair("turkey (the bird / meat)", "krůta / krocan"),
+        WordPair("duck", "kachna"),
+        WordPair("lamb (meat)", "jehněčí"),
+        WordPair("pork", "vepřové"),
+        WordPair("beef", "hovězí"),
+        WordPair("steak", "steak / biftek"),
+        WordPair("fillet", "filé"),
+        WordPair("pastrami", "pastrami"),
+        WordPair("meatballs", "masové kuličky"),
+        WordPair("skewers", "špízy"),
+        WordPair("kebab", "kebab"),
+        WordPair("hamburger", "hamburger"),
+        WordPair("salmon", "losos"),
+        WordPair("cod", "treska"),
+        // Dishes
+        WordPair("french fries", "hranolky"),
+        WordPair("salad", "salát"),
+        WordPair("pizza", "pizza"),
+        WordPair("pasta", "těstoviny"),
+        WordPair("rice", "rýže"),
+        WordPair("sauce", "omáčka"),
+        WordPair("tortilla", "tortilla"),
+        WordPair("taco", "taco"),
+        WordPair("egg", "vejce"),
+        WordPair("cheese", "sýr"),
+        // Bread & baking
+        WordPair("bread", "chléb / chleba"),
+        WordPair("bun / bread roll", "houska / rohlík"),
+        WordPair("dough", "těsto"),
+        WordPair("pastry (baked goods)", "pečivo"),
+        WordPair("pastry (small sweet cake)", "zákusek"),
+        WordPair("cake (layered / cream cake)", "dort"),
+        WordPair("pie / tart", "koláč"),
+        WordPair("bundt cake / marble cake", "bábovka"),
+        WordPair("sweet filled bun", "buchta"),
+        WordPair("gingerbread", "perník"),
+        WordPair("apple strudel", "jablečný závin / štrúdl"),
+        // Vegetables
+        WordPair("tomato", "rajče"),
+        WordPair("cucumber", "okurka"),
+        WordPair("olive", "oliva"),
+        WordPair("onion", "cibule"),
+        WordPair("garlic", "česnek"),
+        WordPair("eggplant", "lilek"),
+        WordPair("zucchini", "cuketa"),
+        WordPair("broccoli", "brokolice"),
+        WordPair("carrot", "mrkev"),
+        WordPair("potato", "brambora"),
+        WordPair("sweet potato", "batát / sladký brambor"),
+        WordPair("avocado", "avokádo"),
+        WordPair("green peas", "hrášek"),
+        WordPair("black beans", "černé fazole"),
+        WordPair("red beans", "červené fazole"),
+        // Fruit
+        WordPair("watermelon", "vodní meloun"),
+        WordPair("melon", "cukrový meloun"),
+        WordPair("orange (fruit)", "pomeranč"),
+        WordPair("lemon", "citron"),
+        WordPair("lime", "limetka"),
+        WordPair("strawberry", "jahoda"),
+        WordPair("cranberry", "brusinka"),
+        WordPair("pear", "hruška"),
+        WordPair("peach", "broskev"),
+        WordPair("apple", "jablko"),
+        WordPair("grapes", "hroznové víno / hrozny"),
+        // Nuts & sweets
+        WordPair("peanut", "arašíd / burský oříšek"),
+        WordPair("walnut", "vlašský ořech"),
+        WordPair("hazelnut", "lískový oříšek"),
+        WordPair("chocolate", "čokoláda"),
+        WordPair("vanilla", "vanilka"),
+        WordPair("ice cream", "zmrzlina"),
+        WordPair("popsicle", "nanuk"),
+        // Seasoning, herbs & fats
+        WordPair("salt", "sůl"),
+        WordPair("pepper (black, spice)", "pepř"),
+        WordPair("paprika (spice)", "mletá paprika"),
+        WordPair("cumin", "římský kmín"),
+        WordPair("parsley", "petržel"),
+        WordPair("dill", "kopr"),
+        WordPair("coriander", "koriandr"),
+        WordPair("oil", "olej"),
+        WordPair("vinegar", "ocet"),
+        WordPair("butter", "máslo"),
+        WordPair("margarine", "margarín"),
+        // Drinks
+        WordPair("water", "voda"),
+        WordPair("milk", "mléko"),
+        WordPair("chocolate milk", "čokoládové mléko"),
+        WordPair("cocoa", "kakao"),
+        WordPair("coffee", "káva"),
+        WordPair("coffee house / café", "kavárna"),
+        WordPair("juice", "džus / šťáva"),
+        WordPair("soda (soft drink)", "limonáda"),
+        WordPair("beer", "pivo"),
+        WordPair("wine", "víno"),
+        // Taste
+        WordPair("tasty", "chutný"),
+        WordPair("sweet", "sladký"),
+        WordPair("salty", "slaný"),
+        WordPair("savory (not sweet)", "pikantní / slaný (ne sladký)"),
+        WordPair("spicy (hot)", "pálivý"),
+        WordPair("bitter", "hořký")
     ))
 )
 
@@ -511,7 +642,14 @@ private fun DQSettingsScreen(
             dqCategories.forEachIndexed { index, category ->
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                     RadioButton(selected = categoryIndex == index, onClick = { onCategoryChanged(index) })
-                    Text(category.title, fontSize = 15.sp)
+                    Text(category.title, fontSize = 15.sp, modifier = Modifier.weight(1f))
+                    OutlinedButton(
+                        onClick = { navController.navigate("dictionary_quiz_words/$index") },
+                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
+                        modifier = Modifier.heightIn(min = 32.dp)
+                    ) {
+                        Text("Show Words", fontSize = 12.sp, color = ButtonBlue)
+                    }
                 }
             }
 
@@ -711,6 +849,52 @@ private fun DQScoreScreen(
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF546E7A))
         ) {
             Text("Home", fontSize = 17.sp, color = Color.White)
+        }
+    }
+}
+
+// ── Show Words ────────────────────────────────────────────────────────────────
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DictionaryQuizWordsScreen(navController: NavController, categoryIndex: Int) {
+    val category = dqCategories[categoryIndex.coerceIn(0, dqCategories.lastIndex)]
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(category.title, fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.White
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            Text("${category.words.size} words", fontSize = 13.sp, color = Color.Gray)
+            Spacer(Modifier.height(8.dp))
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text("English", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Text("Czech", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            category.words.forEach { pair ->
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp)) {
+                    Text(pair.english, modifier = Modifier.weight(1f), fontSize = 15.sp, color = Color.DarkGray)
+                    Text(pair.czech, modifier = Modifier.weight(1f), fontSize = 15.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
+                }
+                HorizontalDivider()
+            }
+            Spacer(Modifier.height(24.dp))
         }
     }
 }

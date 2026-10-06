@@ -39,7 +39,8 @@ fun ConjugationExamplesHubScreen(navController: NavController) {
             "Noun Conjugation" to "noun_conjugation",
             "Adjective Conjugations" to "adjective_conjugation_examples",
             "Possessive Pronouns" to "possessive_pronoun_conjugation_examples",
-            "Object Pronouns" to "object_pronoun_conjugation_examples"
+            "Object Pronouns" to "object_pronoun_conjugation_examples",
+            "All Together" to "all_together"
         )
         Column(
             modifier = Modifier

@@ -69,6 +69,7 @@ class MainActivity : ComponentActivity() {
                 composable("quiz_eng_czech") { QuizScreen(navController, engToCzech = true) }
                 composable("quiz_czech_eng") { QuizScreen(navController, engToCzech = false) }
                 composable("dictionary_quiz") { DictionaryQuizScreen(navController) }
+                composable("dictionary_quiz_words/{index}") { back -> DictionaryQuizWordsScreen(navController, back.arguments?.getString("index")?.toIntOrNull() ?: 0) }
                 composable("quiz_verb_conjugation") { VerbConjugationQuizScreen(navController) }
                 composable("quiz_case_conjugation") { CaseConjugationQuizScreen(navController) }
                 composable("dialogues") { DialoguesHubScreen(navController) }
@@ -121,6 +122,11 @@ class MainActivity : ComponentActivity() {
                 composable("adj_conj_interesting") { AdjectiveConjugationInterestingScreen(navController) }
                 composable("possessive_pronoun_conjugation_examples") { PossessivePronounConjugationExamplesScreen(navController) }
                 composable("object_pronoun_conjugation_examples") { ObjectPronounConjugationExamplesScreen(navController) }
+                composable("all_together") { AllTogetherHubScreen(navController) }
+                composable("all_together_masc_inanimate") { AllTogetherGenderScreen(navController, ATGender.MASC_INANIMATE) }
+                composable("all_together_masc_animate") { AllTogetherGenderScreen(navController, ATGender.MASC_ANIMATE) }
+                composable("all_together_neuter") { AllTogetherGenderScreen(navController, ATGender.NEUTER) }
+                composable("all_together_feminine") { AllTogetherGenderScreen(navController, ATGender.FEMININE) }
                 composable("prefixes_perfective") { PrefixesAndPerfectiveScreen(navController) }
                 composable("passive_voice") { PassiveVoiceScreen(navController) }
                 composable("traveling") { TravelingScreen(navController) }
