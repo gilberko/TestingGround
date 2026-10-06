@@ -58,6 +58,7 @@ private data class FrQuizQuestion(val prompt: String, val correctAnswer: String,
 private fun m(fr: String) = "$fr (m.)"
 private fun f(fr: String) = "$fr (f.)"
 private fun mf(fr: String) = "$fr (m./f.)"
+private fun fpl(fr: String) = "$fr (f. pl.)"
 private fun both(masc: String, fem: String) = "$masc (m.) / $fem (f.)"
 
 private val frQuizCategories: List<FrQuizCategory> = listOf(
@@ -133,7 +134,47 @@ private val frQuizCategories: List<FrQuizCategory> = listOf(
         FrQuizWord("celery", m("le céleri")),
         FrQuizWord("sauce", f("la sauce")),
         FrQuizWord("soup", f("la soupe")),
-        FrQuizWord("salad", f("la salade"))
+        FrQuizWord("salad", f("la salade")),
+        FrQuizWord("breakfast", m("le petit-déjeuner")),
+        FrQuizWord("lunch", m("le déjeuner")),
+        FrQuizWord("dinner", m("le dîner")),
+        FrQuizWord("snack", m("l'en-cas")),
+        FrQuizWord("dessert", m("le dessert")),
+        FrQuizWord("ice cream", f("la glace")),
+        FrQuizWord("milkshake", m("le milk-shake")),
+        FrQuizWord("cookie", m("le biscuit")),
+        FrQuizWord("popsicle", f("la sucette glacée")),
+        FrQuizWord("hamburger", m("le hamburger")),
+        FrQuizWord("pizza", f("la pizza")),
+        FrQuizWord("pasta", fpl("les pâtes")),
+        FrQuizWord("lasagna", fpl("les lasagnes")),
+        FrQuizWord("meatballs", fpl("les boulettes de viande")),
+        FrQuizWord("napkin", f("la serviette")),
+        FrQuizWord("menu", f("la carte")),
+        FrQuizWord("restaurant", m("le restaurant"))
+    )),
+    FrQuizCategory("Time Expressions", listOf(
+        FrQuizWord("a minute", f("une minute")),
+        FrQuizWord("a moment", m("un moment")),
+        FrQuizWord("a second", f("une seconde")),
+        FrQuizWord("an hour", f("une heure")),
+        FrQuizWord("a day", m("un jour")),
+        FrQuizWord("a week", f("une semaine")),
+        FrQuizWord("a month", m("un mois")),
+        FrQuizWord("a year", m("un an")),
+        FrQuizWord("a decade", f("une décennie")),
+        FrQuizWord("weekend", m("le week-end")),
+        // Adverbs — no gender
+        FrQuizWord("yesterday", "hier"),
+        FrQuizWord("tomorrow", "demain"),
+        FrQuizWord("now", "maintenant"),
+        FrQuizWord("morning", m("le matin")),
+        FrQuizWord("noon", m("midi")),
+        FrQuizWord("afternoon", m("l'après-midi")),
+        FrQuizWord("evening", m("le soir")),
+        FrQuizWord("night", f("la nuit")),
+        FrQuizWord("midnight", m("minuit")),
+        FrQuizWord("midday", m("midi"))
     )),
     FrQuizCategory("Professions", listOf(
         FrQuizWord("judge", both("le juge", "la juge")),
@@ -167,7 +208,25 @@ private val frQuizCategories: List<FrQuizCategory> = listOf(
         FrQuizWord("athlete", mf("l'athlète")),
         FrQuizWord("swimming", f("la natation")),
         FrQuizWord("tournament", m("le tournoi")),
-        FrQuizWord("stadium", m("le stade"))
+        FrQuizWord("stadium", m("le stade")),
+        FrQuizWord("goalkeeper", m("le gardien de but")),
+        FrQuizWord("offside", m("le hors-jeu")),
+        FrQuizWord("substitution", m("le remplacement")),
+        FrQuizWord("timeout", m("le temps mort")),
+        FrQuizWord("foul", f("la faute")),
+        FrQuizWord("penalty kick", m("le penalty")),
+        FrQuizWord("kick", m("le coup de pied")),
+        FrQuizWord("horseback riding", f("l'équitation")),
+        FrQuizWord("weight lifting", f("l'haltérophilie")),
+        FrQuizWord("team", f("l'équipe")),
+        FrQuizWord("championship", m("le championnat")),
+        FrQuizWord("champion", both("le champion", "la championne")),
+        FrQuizWord("world cup", f("la Coupe du monde")),
+        FrQuizWord("opponent", mf("l'adversaire")),
+        FrQuizWord("medal", f("la médaille")),
+        FrQuizWord("gold", m("l'or")),
+        FrQuizWord("silver", m("l'argent")),
+        FrQuizWord("bronze", m("le bronze"))
     )),
     FrQuizCategory("Work", listOf(
         FrQuizWord("work", m("le travail")),
