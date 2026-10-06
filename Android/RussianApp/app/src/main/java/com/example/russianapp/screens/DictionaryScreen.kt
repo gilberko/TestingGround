@@ -102,7 +102,9 @@ fun DictionaryScreen(
                     "Cooking"          to onCooking,
                     "Office & School"  to onOfficeSchool,
                     "Countries, Nationalities & Languages" to onCountries,
-                    "Basic Words, Expressions\n& Greetings" to onBasicWords
+                    "Basic Words, Expressions\n& Greetings" to onBasicWords,
+                    "Weekdays and Months" to onWeekdaysMonths,
+                    "Time Related Expressions" to onTimeExpressions
                 )
                 itemsIndexed(buttons.chunked(2)) { rowIndex, pair ->
                     if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))
