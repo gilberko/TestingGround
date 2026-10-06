@@ -2,6 +2,7 @@ package com.example.windowsapp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.windowsapp.ui.theme.HackerGreen
 import com.example.windowsapp.ui.theme.HackerGreenDim
+import com.example.windowsapp.ui.theme.HackerRed
 
 @Composable
 fun SectionHeader(text: String) {
@@ -53,4 +55,72 @@ fun CodeBlock(code: String) {
             .border(1.dp, HackerGreenDim)
             .padding(8.dp)
     )
+}
+
+@Composable
+fun WarningText(text: String) {
+    Text(
+        text = "⚠ WARNING: $text",
+        color = HackerRed,
+        fontFamily = FontFamily.Monospace,
+        fontSize = 13.sp,
+        lineHeight = 20.sp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(1.dp, HackerRed)
+            .padding(8.dp)
+    )
+}
+
+@Composable
+fun ExerciseBlock(title: String, text: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(1.dp, HackerGreen)
+            .padding(8.dp)
+    ) {
+        Text(
+            text = "[ $title ]",
+            color = HackerGreen,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold,
+            fontSize = 13.sp
+        )
+        Text(
+            text = text,
+            color = HackerGreen,
+            fontFamily = FontFamily.Monospace,
+            fontSize = 13.sp,
+            lineHeight = 20.sp,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun OutputBlock(text: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Black)
+            .border(1.dp, Color(0xFF555555))
+            .padding(8.dp)
+    ) {
+        Text(
+            text = "OUTPUT:",
+            color = Color(0xFF888888),
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold,
+            fontSize = 11.sp
+        )
+        Text(
+            text = text,
+            color = Color(0xFFBBBBBB),
+            fontFamily = FontFamily.Monospace,
+            fontSize = 12.sp,
+            lineHeight = 18.sp,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

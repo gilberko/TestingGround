@@ -34,6 +34,33 @@ class MainActivity : ComponentActivity() {
                     composable("kernel") { KernelProgrammingScreen(navController) }
                     composable("user_mode") { UserModeProgrammingScreen(navController) }
                     composable("advanced") { AdvancedTopicsScreen(navController) }
+                    composable("powershell") { PowerShellHubScreen(navController) }
+                    composable("ps_01_about") { PS01AboutScreen(navController) }
+                    composable("ps_02_first_script") { PS02FirstScriptScreen(navController) }
+                    composable("ps_03_cmdlets") { PS03CmdletsPipelineScreen(navController) }
+                    composable("ps_04_variables") { PS04VariablesTypesScreen(navController) }
+                    composable("ps_05_operators") { PS05OperatorsConditionsScreen(navController) }
+                    composable("ps_06_loops") { PS06LoopsScreen(navController) }
+                    composable("ps_07_functions") { PS07FunctionsScreen(navController) }
+                    composable("ps_08_modules") { PS08ModulesScreen(navController) }
+                    composable("ps_09_scope") { PS09ScopeScreen(navController) }
+                    composable("ps_10_errors") { PS10ErrorHandlingScreen(navController) }
+                    composable("ps_11_scriptblocks") { PS11ScriptBlocksScreen(navController) }
+                    composable("ps_12_files") { PS12FilesScreen(navController) }
+                    composable("ps_13_registry") { PS13RegistryScreen(navController) }
+                    composable("ps_14_processes") { PS14ProcessesServicesScreen(navController) }
+                    composable("ps_15_networking") { PS15NetworkingScreen(navController) }
+                    composable("ps_16_objects") { PS16ObjectPipelineScreen(navController) }
+                    composable("ps_17_oop") { PS17OopScreen(navController) }
+                    composable("ps_18_classes") { PS18ClassesEnumsScreen(navController) }
+                    composable("ps_19_regex") { PS19RegexScreen(navController) }
+                    composable("ps_20_com") { PS20ComScreen(navController) }
+                    composable("ps_21_wmi_cim") { PS21WmiCimScreen(navController) }
+                    composable("ps_22_dotnet") { PS22DotNetScreen(navController) }
+                    composable("ps_23_reflection") { PS23ReflectionScreen(navController) }
+                    composable("ps_24_adv_functions") { PS24AdvancedFunctionsScreen(navController) }
+                    composable("ps_25_security") { PS25SecurityScreen(navController) }
+                    composable("ps_26_project") { PS26ProjectScreen(navController) }
                     composable("kernel_data_structures") { InternalDataStructuresScreen(navController) }
                     composable("kernel_driver_object") { DriverObjectScreen(navController) }
                     composable("kernel_device_object") { DeviceObjectScreen(navController) }

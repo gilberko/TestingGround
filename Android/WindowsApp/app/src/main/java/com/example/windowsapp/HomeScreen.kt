@@ -63,6 +63,8 @@ fun HomeScreen(navController: NavController) {
         HackerButton("USER MODE PROGRAMMING") { navController.navigate("user_mode") }
         Spacer(modifier = Modifier.height(16.dp))
         HackerButton("ADVANCED TOPICS") { navController.navigate("advanced") }
+        Spacer(modifier = Modifier.height(16.dp))
+        HackerButton("POWERSHELL") { navController.navigate("powershell") }
     }
     }
 }
