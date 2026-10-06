@@ -3,13 +3,14 @@ package com.example.russianapp.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ButtonDefaults
@@ -50,7 +51,9 @@ fun DictionaryScreen(
     onCooking: () -> Unit,
     onOfficeSchool: () -> Unit,
     onCountries: () -> Unit,
-    onBasicWords: () -> Unit
+    onBasicWords: () -> Unit,
+    onWeekdaysMonths: () -> Unit,
+    onTimeExpressions: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -74,7 +77,7 @@ fun DictionaryScreen(
                 )
             }
         ) { innerPadding ->
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
@@ -101,7 +104,7 @@ fun DictionaryScreen(
                     "Countries, Nationalities & Languages" to onCountries,
                     "Basic Words, Expressions\n& Greetings" to onBasicWords
                 )
-                buttons.chunked(2).forEachIndexed { rowIndex, pair ->
+                itemsIndexed(buttons.chunked(2)) { rowIndex, pair ->
                     if (rowIndex > 0) Spacer(modifier = Modifier.height(12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),

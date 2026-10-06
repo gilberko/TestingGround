@@ -38,6 +38,8 @@ import com.example.russianapp.screens.AlphabetScreen
 import com.example.russianapp.screens.ColorsScreen
 import com.example.russianapp.screens.ConfigScreen
 import com.example.russianapp.screens.DictionaryScreen
+import com.example.russianapp.screens.TimeExpressionsScreen
+import com.example.russianapp.screens.WeekdaysMonthsScreen
 import com.example.russianapp.screens.FoodScreen
 import com.example.russianapp.screens.GrammarCasesScreen
 import com.example.russianapp.screens.HomeScreen
@@ -95,6 +97,8 @@ sealed class Screen(val route: String) {
     object DictOfficeSchool       : Screen("dict_office_school")
     object DictCountries          : Screen("dict_countries")
     object DictBasicWords         : Screen("dict_basic_words")
+    object DictWeekdaysMonths     : Screen("dict_weekdays_months")
+    object DictTimeExpressions    : Screen("dict_time_expressions")
     object ThisAndThat            : Screen("this_and_that")
     object Questions              : Screen("questions")
     object NiVsNe                 : Screen("ni_vs_ne")
@@ -181,7 +185,9 @@ fun AppNavGraph(navController: NavHostController) {
                 onCooking       = { navController.navigate(Screen.DictCooking.route) },
                 onOfficeSchool  = { navController.navigate(Screen.DictOfficeSchool.route) },
                 onCountries     = { navController.navigate(Screen.DictCountries.route) },
-                onBasicWords    = { navController.navigate(Screen.DictBasicWords.route) }
+                onBasicWords    = { navController.navigate(Screen.DictBasicWords.route) },
+                onWeekdaysMonths  = { navController.navigate(Screen.DictWeekdaysMonths.route) },
+                onTimeExpressions = { navController.navigate(Screen.DictTimeExpressions.route) }
             )
         }
         composable(Screen.Config.route) {
@@ -276,6 +282,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.DictBasicWords.route) {
             BasicWordsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictWeekdaysMonths.route) {
+            WeekdaysMonthsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictTimeExpressions.route) {
+            TimeExpressionsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.ThisAndThat.route) {
             ThisAndThatScreen(onBack = { navController.popBackStack() })
