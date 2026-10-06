@@ -1,0 +1,74 @@
+Add a new button - PowerShell - that will be a selection screen with the following buttons:
+
+1. About PowerShell - here will be explanations about the history of PowerShell, what it is and when it is usually used. Compare it to other scripting languages and things like Bash in Linux. Explain the difference between Windows PowerShell 5.1 and modern PowerShell 7+. Explain the fundamental idea that PowerShell works primarily with objects rather than text streams.
+
+2. Your First PowerShell Script - introduce PowerShell scripting with a complete but simple example of a script. Explain .ps1 files, how scripts are executed, comments, statements, commands, parameters and the PowerShell pipeline. Walk through the example line by line.
+
+3. Commands, Cmdlets and the Pipeline - explain PowerShell commands and cmdlets such as Get-Process, Get-Service and Get-ChildItem. Explain the Verb-Noun naming convention, parameters, aliases and how to discover commands using Get-Command and Get-Help. Introduce pipelines and demonstrate that PowerShell passes objects between commands instead of simply passing strings.
+
+4. Variables and Data Types - explain creating and using variables with $variable. Cover strings, integers, floating-point numbers, Boolean values, $null, arrays, hash tables and objects. Explain PowerShell's dynamic typing and how explicit types such as [int], [string] and [bool] can be specified.
+
+5. Operators, Expressions and Conditions - explain arithmetic, comparison and Boolean operators. Teach if, elseif, else and switch. Include practical examples involving files, processes, services and user input.
+
+6. Loops and Iteration - explain for, foreach, while and do/while. Explain break and continue. Compare language-level foreach with the pipeline-oriented ForEach-Object. Include examples of iterating through files, processes and collections.
+
+7. Functions - explain how to create reusable PowerShell functions, pass parameters, return results and use objects as input and output. Introduce parameter validation, pipeline input and advanced functions. Explain why functions are preferable to repeatedly copying script code.
+
+8. Modules - explain what PowerShell modules are before teaching how to use them. Describe a module as a reusable package containing PowerShell functionality such as functions, cmdlets, variables and classes. Explain Import-Module, Get-Module, Get-Command -Module, .psm1 files and module manifests. Show how a small collection of functions can be organized into a custom module.
+
+9. Variable Scope and Lifetime - explain when variables are created and destroyed and where they are visible. Cover global, script, local and private scopes. Explain what happens to variables inside functions, scripts and modules. Introduce $global:, $script: and $local: syntax.
+
+10. Error and Exception Handling - explain the PowerShell error model and the difference between terminating and non-terminating errors. Teach try, catch, finally and throw. Explain $ErrorActionPreference and -ErrorAction. Include realistic examples such as failed file access, registry operations and network requests.
+
+11. Script Blocks and Closures - explain script blocks using { }, how they can be stored in variables and passed to commands, and how they resemble callbacks or anonymous functions in other languages. Explain closures and captured variables with simple examples before progressing to more advanced examples.
+
+12. Working with Files and Directories - teach filesystem I/O. Cover reading, writing, copying, moving and deleting files; enumerating directories; paths; text files; binary files; CSV and JSON. Introduce commands such as Get-Content, Set-Content, Get-ChildItem, Copy-Item, Move-Item and Remove-Item, as well as relevant .NET APIs where useful.
+
+13. The Registry - explain how PowerShell accesses the Windows Registry. Introduce PowerShell providers and the HKLM: and HKCU: drives. Teach reading, creating, changing and deleting registry keys and values. Clearly warn when an example modifies the system.
+
+14. Processes, Services and the Windows System - teach interaction with processes and services. Cover Get-Process, Start-Process, Stop-Process, Get-Service, Start-Service and Stop-Service. Explain process and service objects and demonstrate inspecting their properties and methods.
+
+15. Networking - teach common networking operations from PowerShell. Cover DNS lookup, connectivity testing, TCP connections, HTTP/HTTPS requests and REST APIs. Introduce commands such as Test-Connection, Test-NetConnection, Invoke-WebRequest and Invoke-RestMethod.
+
+16. Objects and the PowerShell Object Pipeline - provide a deeper explanation of PowerShell's object model. Explain properties, methods and types. Teach Get-Member, Select-Object, Where-Object, ForEach-Object, Sort-Object and Group-Object. Demonstrate why object pipelines are fundamentally different from traditional Unix text pipelines.
+
+17. Object-Oriented Programming - explain object-oriented programming in PowerShell. Start with objects and custom objects using [PSCustomObject], then introduce classes, properties, methods, constructors, inheritance and static members. Compare PowerShell's object-oriented capabilities with languages such as C#.
+
+18. Classes and Enums - provide a focused lesson on PowerShell's class and enum syntax. Show how classes can be instantiated, how constructors work, how methods operate and when defining a class is useful compared with simply creating a PSCustomObject.
+
+19. Regular Expressions - teach PowerShell regular-expression support. Explain -match, -replace, -split, capture groups, character classes, quantifiers and anchors. Include practical examples such as parsing logs, validating input and extracting information from strings.
+
+20. COM Automation - explain COM and how PowerShell can interact with COM objects on Windows. First elaborate on what COM (Component Object Model) is, why Microsoft created it, the basic concepts behind COM objects and interfaces, and why COM remains present in modern Windows. Then demonstrate safe examples such as creating COM objects and inspecting their members. Explain why COM remains relevant when automating older Windows applications and APIs.
+
+21. WMI and CIM - before teaching the PowerShell commands, elaborate on what WMI and CIM actually are.
+
+Explain WMI (Windows Management Instrumentation) in detail: what it is, why Microsoft introduced it, what problems it solves, how Windows exposes management information through WMI, WMI classes and instances, namespaces such as root\cimv2, providers, properties and methods. Give examples of the kinds of information and operations exposed through WMI, such as operating-system information, hardware, processes, services, disks and networking.
+
+Explain CIM (Common Information Model) in detail: what CIM is, its relationship to the DMTF standards, how CIM provides a standardized model for describing managed system resources, and how Microsoft's WMI relates to the broader CIM model.
+
+Clearly explain the relationship and differences between WMI and CIM. Explain why PowerShell historically provided commands such as Get-WmiObject, why modern PowerShell uses CIM cmdlets such as Get-CimInstance, and why CIM cmdlets are generally preferred for new scripts. Explain relevant architectural and remoting differences, including the historical use of DCOM by WMI cmdlets and WS-Man or other CIM session mechanisms used by CIM cmdlets.
+
+After the conceptual explanation, introduce Get-CimInstance, Get-CimClass, New-CimSession, Invoke-CimMethod and related commands. Include examples for retrieving operating-system information, computer hardware information, processes, services, disks and network configuration. Demonstrate how to inspect CIM classes, their properties and methods rather than requiring the student to memorize class names.
+
+22. Using .NET from PowerShell - explain that PowerShell can directly use .NET types and libraries. Teach type syntax such as [System.IO.File], static methods, object construction, properties, methods and enums. Show examples involving files, dates, networking, collections and cryptography. Explain how this greatly expands what a PowerShell script can do.
+
+23. Reflection and Runtime Type Inspection - introduce .NET reflection from PowerShell. Explain types, assemblies, methods, properties and attributes. Show how to inspect objects and dynamically discover functionality. Compare .NET reflection with PowerShell's own Get-Member.
+
+24. Advanced Functions and Pipeline Programming - teach functions that behave like native PowerShell cmdlets. Cover [CmdletBinding()], param, parameter attributes, pipeline input, begin, process and end, validation and structured output. Demonstrate how to build reusable commands that compose naturally with other PowerShell commands.
+
+25. PowerShell Security - explain execution policies, script signing, permissions, administrator elevation, credentials, secure handling of secrets and the security implications of downloading or executing scripts. Explain that execution policy is not itself a complete security boundary.
+
+26. Practical PowerShell Project - finish the course by building a larger PowerShell script that combines the concepts learned throughout the lessons. For example, create a Windows system-information and diagnostic tool that gathers OS information, CPU and memory information, disks, network configuration, running processes and services, performs error handling and exports the results to JSON or CSV.
+
+For every lesson, provide:
+- A clear conceptual explanation before introducing syntax.
+- Several small code examples.
+- A detailed explanation of what each example does.
+- At least one interactive exercise for the student.
+- A more difficult challenge at the end.
+- Expected output where appropriate.
+- Important Windows or PowerShell-specific caveats.
+- A warning before commands that modify files, registry values, services, processes or other system state.
+- Connections to concepts the student learned in previous lessons.
+
+The course should teach PowerShell as a real scripting and programming language rather than merely presenting a list of Windows commands. Gradually move from basic scripting to PowerShell's object-oriented pipeline, Windows automation and integration with .NET.
