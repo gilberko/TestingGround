@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.frenchproject.screens.DictionaryHubScreen
+import com.example.frenchproject.screens.DictionaryQuizScreen
 import com.example.frenchproject.screens.HomeScreen
 import com.example.frenchproject.screens.LearningHubScreen
 import com.example.frenchproject.screens.SimpleDialoguesHubScreen
@@ -102,6 +103,7 @@ sealed class Screen(val route: String) {
     object AtTheGarage       : Screen("at_the_garage_dialogue")
     object SoftwareBugs      : Screen("software_bugs_dialogue")
     object PlanningVacation  : Screen("planning_vacation_dialogue")
+    object DictionaryQuiz    : Screen("dictionary_quiz")
 }
 
 @Composable
@@ -120,7 +122,8 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onLearning   = { navController.navigate(Screen.LearningHub.route) },
                 onDictionary = { navController.navigate(Screen.DictionaryHub.route) },
-                onDialogues  = { navController.navigate(Screen.SimpleDialogues.route) }
+                onDialogues  = { navController.navigate(Screen.SimpleDialogues.route) },
+                onDictionaryQuiz = { navController.navigate(Screen.DictionaryQuiz.route) }
             )
         }
         composable(Screen.LearningHub.route) {
@@ -309,6 +312,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.PlanningVacation.route) {
             PlanningAVacationScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictionaryQuiz.route) {
+            DictionaryQuizScreen(
+                onBack = { navController.popBackStack() },
+                onHome = { navController.popBackStack(Screen.Home.route, inclusive = false) }
+            )
         }
     }
 }
