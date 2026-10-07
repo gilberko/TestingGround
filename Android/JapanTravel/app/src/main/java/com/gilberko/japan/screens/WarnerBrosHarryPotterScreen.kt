@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun WarnerBrosHarryPotterScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun WarnerBrosHarryPotterScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_harry_potter, "Warner Bros. Studio Tour Tokyo", "Photo: Asanagi / Wikimedia Commons, CC0")
             SectionHeader("What it is")
             BodyText(
                 "**Warner Bros. Studio Tour Tokyo - The Making of Harry Potter** is a walk-through " +

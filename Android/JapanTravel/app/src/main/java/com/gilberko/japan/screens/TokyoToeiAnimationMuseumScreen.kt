@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoToeiAnimationMuseumScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun TokyoToeiAnimationMuseumScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_toei_animation, "Toei Animation Museum", "Photo: Asanagi / Wikimedia Commons, CC0")
             SectionHeader("What it is")
             BodyText(
                 "Toei Animation's own museum in **Nerima**, Tokyo, showcasing production art, " +

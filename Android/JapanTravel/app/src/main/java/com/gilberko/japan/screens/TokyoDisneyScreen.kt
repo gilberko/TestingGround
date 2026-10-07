@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoDisneyScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun TokyoDisneyScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_disney, "Cinderella Castle at Tokyo Disneyland", "Photo: ELLusKa 86 / Wikimedia Commons, public domain")
             SectionHeader("What it is")
             BodyText(
                 "**Tokyo Disney Resort** (in **Urayasu**, **Chiba**, just outside central **Tokyo**) has two " +

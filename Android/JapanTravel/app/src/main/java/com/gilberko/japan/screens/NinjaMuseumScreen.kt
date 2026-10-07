@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun NinjaMuseumScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun NinjaMuseumScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_kyoto_ninja_museum, "Samurai armor exhibit", "Samurai armor exhibit, Nakagyo, Kyoto. Photo: Ewong17 / Wikimedia Commons, CC BY-SA 4.0")
             SectionHeader("What it is")
             BodyText(
                 "The **Samurai & Ninja Museum Kyoto** (with Experience) - a museum plus hands-on " +

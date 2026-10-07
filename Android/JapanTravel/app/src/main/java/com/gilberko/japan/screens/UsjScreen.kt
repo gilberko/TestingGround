@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun UsjScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun UsjScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_osaka_usj, "Universal Studios Japan", "Photo: Rebirth10 / Wikimedia Commons, CC0")
             SectionHeader("What it is")
             BodyText(
                 "An officially licensed Universal theme park in **Osaka**, open since 2001. Official " +

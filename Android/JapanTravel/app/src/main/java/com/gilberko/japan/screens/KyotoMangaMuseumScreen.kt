@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun KyotoMangaMuseumScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun KyotoMangaMuseumScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_kyoto_manga_museum, "Kyoto International Manga Museum", "Photo: Party Lin / Wikimedia Commons, CC BY 2.0")
             SectionHeader("What it is")
             BodyText(
                 "The **Kyoto International Manga Museum** is a combined museum and library " +

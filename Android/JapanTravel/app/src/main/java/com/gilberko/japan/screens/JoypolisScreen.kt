@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun JoypolisScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun JoypolisScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_joypolis, "Tokyo Joypolis", "Photo: Fallschirmjäger / Wikimedia Commons, CC BY-SA 3.0")
             SectionHeader("What it is")
             BodyText(
                 "**Tokyo Joypolis** is SEGA's indoor arcade and VR entertainment park in **Odaiba**, " +

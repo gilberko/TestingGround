@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoSummerlandScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun TokyoSummerlandScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_summerland, "Tokyo Summerland", "Photo: Syced / Wikimedia Commons, CC0")
             SectionHeader("What it is")
             BodyText(
                 "A water park in **Akiruno**, western **Tokyo**, split into two parts: the indoor " +

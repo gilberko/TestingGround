@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun KyotoToeiStudioParkScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun KyotoToeiStudioParkScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_kyoto_toei_studio_park, "Toei Kyoto Studio Park", "Photo: 663highland / Wikimedia Commons, CC BY-SA 4.0")
             SectionHeader("What it is")
             BodyText(
                 "A working jidaigeki (period-drama) film studio and theme park at **Uzumasa**, " +

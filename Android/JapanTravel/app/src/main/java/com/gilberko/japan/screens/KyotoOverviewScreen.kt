@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun KyotoOverviewScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Fushimi Inari Shrine")
+            PlacePhoto(R.drawable.place_kyoto_ov_fushimi_inari, "Fushimi Inari Shrine", "Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Thousands of vermillion torii gates, donated by businesses over centuries, " +
                     "climb the wooded slopes of **Mt. Inari**. The shrine is dedicated to Inari, the " +
@@ -31,6 +33,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kiyomizudera")
+            PlacePhoto(R.drawable.place_kyoto_ov_kiyomizudera, "Kiyomizudera", "Photo: Martin Falbisoner / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A wooden temple founded in 778 CE, famous for its huge stage that juts out over " +
                     "the hillside on wooden pillars - built entirely without nails - and for " +
@@ -41,6 +44,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Gion")
+            PlacePhoto(R.drawable.place_kyoto_ov_gion, "Gion", "Photo: lumoplank / Wikimedia Commons, CC0")
             BodyText(
                 "**Kyoto**'s most famous geisha (geiko) and apprentice-geisha (maiko) district: " +
                     "traditional wooden machiya townhouses, teahouses, and **Hanamikoji Street**, " +
@@ -50,6 +54,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Arashiyama Bamboo Grove")
+            PlacePhoto(R.drawable.place_kyoto_ov_bamboo_grove, "Arashiyama Bamboo Grove", "Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A towering, glowing corridor of bamboo in western **Kyoto** - one of the most " +
                     "photographed spots in Japan. It's free and always accessible, but go early " +
@@ -58,6 +63,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Tenryu-ji")
+            PlacePhoto(R.drawable.place_kyoto_ov_tenryuji, "Tenryu-ji", "Photo: Celuici / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "A UNESCO World Heritage Zen temple right next to the bamboo grove, founded in " +
                     "1339. Its main draw is the **Sogenchi Garden**, a landscape garden designed to " +
@@ -66,6 +72,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Togetsukyo Bridge")
+            PlacePhoto(R.drawable.place_kyoto_ov_togetsukyo, "Togetsukyo Bridge", "Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Arashiyama**'s iconic wooden-railed bridge spanning the **Katsura River**, a short " +
                     "walk from the bamboo grove and **Tenryu-ji**. It's a classic photo spot year-" +
@@ -73,6 +80,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kinkaku-ji (Golden Pavilion)")
+            PlacePhoto(R.drawable.place_kyoto_ov_kinkakuji, "Kinkaku-ji", "Photo: Nacaru / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A pavilion with its top two floors covered in gold leaf, set beside a reflecting " +
                     "pond - arguably **Kyoto**'s single most photographed sight. Originally a " +
@@ -81,6 +89,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Ginkaku-ji (Silver Pavilion)")
+            PlacePhoto(R.drawable.place_kyoto_ov_ginkakuji, "Ginkaku-ji", "Photo: Laitr Keiows / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "Despite the name, it was never actually covered in silver. A more understated, " +
                     "contemplative counterpart to **Kinkaku-ji**, with a meticulously raked sand " +
@@ -89,6 +98,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Philosopher's Path")
+            PlacePhoto(R.drawable.place_kyoto_ov_philosophers_path, "Philosopher's Path", "Photo: Reggaeman / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "A quiet, canal-side walking path about 2km long, lined with cherry trees, " +
                     "connecting **Ginkaku-ji** in the north to **Nanzen-ji** in the south. It's named " +
@@ -98,6 +108,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Nishiki Market")
+            PlacePhoto(R.drawable.place_kyoto_ov_nishiki_market, "Nishiki Market", "Photo: ignis / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "Nicknamed \"**Kyoto**'s Kitchen\" - a narrow, covered shopping street packed with " +
                     "100+ stalls selling pickles, skewered street food, sweets, tea, and " +
@@ -107,6 +118,7 @@ fun KyotoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Himeji (day trip)")
+            PlacePhoto(R.drawable.place_kyoto_ov_himeji, "Himeji Castle", "Photo: Nikos Kitsakis / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Himeji** isn't geographically close to **Kyoto** (about 124km away), but it's a fast, " +
                     "easy day trip by Shinkansen on the same Tokaido/Sanyo line **Kyoto** already " +

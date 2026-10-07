@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun OsakaTeamLabBotanicalGardenScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun OsakaTeamLabBotanicalGardenScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_osaka_teamlab_botanical, "Nagai Botanical Garden", "Nagai Botanical Garden by day - the garden teamLab lights up at night. Photo: Laitche / Wikimedia Commons, CC BY-SA 4.0")
             SectionHeader("What it is / concept")
             BodyText(
                 "teamLab's permanent nighttime open-air museum, built inside a real botanical " +

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun GhibliMuseumScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun GhibliMuseumScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_ghibli_museum, "Ghibli Museum", "Photo: Rob Young / Wikimedia Commons, CC BY 2.0")
             SectionHeader("What it is")
             BodyText(
                 "A whimsical museum dedicated to Studio Ghibli's art and filmmaking process, " +

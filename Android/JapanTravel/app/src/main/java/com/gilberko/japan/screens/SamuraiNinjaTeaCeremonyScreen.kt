@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun SamuraiNinjaTeaCeremonyScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun SamuraiNinjaTeaCeremonyScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_samurai_ninja, "Samurai armor", "Illustrative photo of samurai armor (not taken at this museum). Photo: Tadeusz Hare / Wikimedia Commons, CC BY-SA 4.0")
             SectionHeader("What it is")
             BodyText(
                 "A hands-on museum where an English-speaking guide walks you through samurai " +

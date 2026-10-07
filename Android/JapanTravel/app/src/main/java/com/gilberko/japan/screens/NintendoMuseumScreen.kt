@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun NintendoMuseumScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun NintendoMuseumScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_kyoto_nintendo_museum, "Nintendo Museum", "Photo: Nagomijirap / Wikimedia Commons, CC BY-SA 4.0")
             SectionHeader("What it is")
             BodyText(
                 "Nintendo's official museum, opened in October 2024 inside a former Nintendo " +

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoDomeCityScreen(onBack: () -> Unit) {
@@ -18,6 +19,7 @@ fun TokyoDomeCityScreen(onBack: () -> Unit) {
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
+            PlacePhoto(R.drawable.place_tokyo_dome_city, "Tokyo Dome City Attractions", "Photo: Lucas Garron / Wikimedia Commons, CC0")
             SectionHeader("What it is")
             BodyText(
                 "An attractions complex next to **Tokyo Dome** (the baseball stadium) in **Bunkyo**. " +
