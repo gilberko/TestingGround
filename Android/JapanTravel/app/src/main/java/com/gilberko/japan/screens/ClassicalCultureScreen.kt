@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun ClassicalCultureScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Bunraku")
+            PlacePhoto(R.drawable.culture_bunraku, "Bunraku puppet", "Photo: 氏子 / Wikimedia Commons, CC0")
             BodyText(
                 "Traditional Japanese puppet theatre: large puppets are each operated in full " +
                     "view of the audience by three visible puppeteers, accompanied by chanted " +
@@ -34,6 +36,7 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kabuki")
+            PlacePhoto(R.drawable.culture_kabuki, "Kabukiza theatre, Ginza", "Photo: Tak1701d / Wikimedia Commons, public domain")
             BodyText(
                 "A classical dance-drama known for stylized acting, elaborate costumes and " +
                     "makeup, and an all-male cast, including male actors trained to play female " +
@@ -49,6 +52,7 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Tea Ceremony (Chado / Sado)")
+            PlacePhoto(R.drawable.culture_tea_ceremony, "Tea ceremony", "Photo: Ermell / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A ritualized way of preparing and serving matcha (see Food and Cafes for what " +
                     "matcha is), rooted in Zen Buddhism and the idea of ichigo ichie - \"one time, " +
@@ -75,6 +79,7 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Sumo")
+            PlacePhoto(R.drawable.culture_sumo, "Sumo tournament at Ryogoku Kokugikan", "Photo: Gregg Tavares / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "Japan's national sport: two wrestlers (rikishi) try to force each other out of a " +
                     "ring or make any part of the opponent besides the soles of their feet touch " +
@@ -93,6 +98,7 @@ fun ClassicalCultureScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Martial Arts")
+            PlacePhoto(R.drawable.culture_martial_arts, "Kodokan judo headquarters, Tokyo", "Photo: Miyuki Meinaka / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Karate** originated in Okinawa and was popularized in mainland Japan in the " +
                     "1920s, most notably by Gichin Funakoshi, founder of the Shotokan style. " +

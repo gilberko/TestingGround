@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun HotelsOnsensRyokansScreen(onBack: () -> Unit) {
@@ -25,11 +26,13 @@ fun HotelsOnsensRyokansScreen(onBack: () -> Unit) {
                     "water, then bathe nude (swimsuits are generally not worn). Baths are often " +
                     "separated by gender, and some onsens restrict guests with visible tattoos."
             )
+            PlacePhoto(R.drawable.hotel_onsen, "Outdoor onsen bath", "Photo: Alpsdake / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A ryokan is a traditional Japanese inn, with tatami-mat rooms, futon bedding laid " +
                     "out on the floor, and often a multi-course kaiseki dinner and breakfast " +
                     "included. Many ryokans have their own onsen baths for guests."
             )
+            PlacePhoto(R.drawable.hotel_ryokan, "Ryokan room with futons on tatami", "Photo: Mx. Granger / Wikimedia Commons, CC0")
 
             SectionHeader("Family Room Bed Configurations")
             BodyText(
