@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Snow Monkey Hot Springs (Jigokudani Monkey Park)")
+            PlacePhoto(R.drawable.animal_jigokudani, "Snow monkeys bathing in the hot spring", "Jigokudani Monkey Park, Nagano. Photo: Kelly Drewett / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "In **Nagano Prefecture** - not **Tokyo**, **Osaka**, or **Kyoto** - wild Japanese macaques " +
                     "(\"snow monkeys\") have been bathing in a natural hot spring here since " +
@@ -29,6 +31,7 @@ fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Wild monkey park in Kyoto (Iwatayama Monkey Park)")
+            PlacePhoto(R.drawable.animal_iwatayama, "Monkeys on the hilltop at Iwatayama", "Iwatayama Monkey Park, Arashiyama, Kyoto. Photo: KimonBerlin / Wikimedia Commons, CC BY-SA 2.0")
             BodyText(
                 "Right in **Arashiyama**, **Kyoto** - about 120 wild Japanese macaques roam freely on a " +
                     "mountain. A roughly 20-minute uphill walk (120 steps) leads to a rest-area " +
@@ -42,6 +45,7 @@ fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Cat Island")
+            PlacePhoto(R.drawable.animal_tashirojima, "Cats resting on a wall on Tashirojima", "Cats on Tashirojima, Miyagi. Photo: Kakei.R / Wikimedia Commons, CC BY-SA 2.0")
             BodyText(
                 "**Tashirojima**, in **Miyagi Prefecture**, is the more accessible of Japan's two " +
                     "\"cat islands\" - free-roaming cats outnumber the human residents, and " +
@@ -53,6 +57,7 @@ fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Zoos")
+            PlacePhoto(R.drawable.animal_ueno_zoo, "A lion at Ueno Zoo", "A lion at Ueno Zoo, Tokyo. Photo: Daniel Ramirez / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Ueno Zoo** (**Tokyo**) is Japan's oldest zoo - note that as of early 2026 it no " +
                     "longer has giant pandas, since its last two were returned to China in " +
@@ -61,6 +66,7 @@ fun SpecialAnimalPlacesScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Nara's deer")
+            PlacePhoto(R.drawable.nara_deer, "Deer at Kasuga Taisha", "A deer among the stone lanterns of Kasuga Taisha. Photo: Zairon / Wikimedia Commons, CC BY 4.0")
             BodyText(
                 "Also worth remembering: Nara Park is home to around 1,200 free-roaming sacred " +
                     "deer that will bow for crackers - see the Nara section under Places for full " +

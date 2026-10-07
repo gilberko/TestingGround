@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun AlcoholScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun AlcoholScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Sake")
+            PlacePhoto(R.drawable.drink_sake, "Straw-wrapped sake barrels", "Komodaru (straw-wrapped sake barrels). Photo: halfrain / Wikimedia Commons, CC BY-SA 2.0")
             BodyText(
                 "**Sake** is a fermented (brewed, not distilled) alcoholic drink made from rice, " +
                     "water, koji mold, and yeast. The koji mold converts the rice's starch into " +
@@ -59,6 +61,7 @@ fun AlcoholScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Japanese Whisky")
+            PlacePhoto(R.drawable.drink_whisky, "Copper pot stills at the Yamazaki Distillery", "Pot stills, Suntory Yamazaki Distillery. Photo: mariemon / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "Japanese whisky follows the Scotch tradition closely - malted and grain whisky " +
                     "distilled in pot stills, then aged in casks and blended. It was brought to " +
@@ -80,6 +83,7 @@ fun AlcoholScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Beer")
+            PlacePhoto(R.drawable.drink_beer, "Shelves of Japanese beer cans", "Beer cans at a Japanese discount store. Photo: 夢の散歩 / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "The Japanese beer market is dominated by four major brands, all pale lagers " +
                     "around 5% ABV: **Asahi Super Dry** (crisp and dry, the best-selling brand), " +
@@ -92,6 +96,7 @@ fun AlcoholScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Shōchū")
+            PlacePhoto(R.drawable.drink_shochu, "Bottles of shōchū", "Satsuma Shuzo shōchū bottles. Photo: Sakaori / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "**Shōchū** is a distilled spirit, typically around 25% ABV - stronger than sake " +
                     "or beer but weaker than full-strength spirits like vodka or whisky (~40%). " +
@@ -114,6 +119,7 @@ fun AlcoholScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Chūhai and Japanese \"sours\"")
+            PlacePhoto(R.drawable.drink_chuhai, "Cans of chūhai", "Chūhai cans. Photo: Pigment-Ink / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Chūhai** (short for \"shochu highball\") is shōchū or a neutral spirit mixed " +
                     "with carbonated water and flavoring; \"sours\" are essentially the same drink " +

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun FoodAndCafesScreen(onBack: () -> Unit) {
@@ -24,28 +25,34 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "cheap rice bowls topped with simmered beef, found at nearly every train " +
                     "station."
             )
+            PlacePhoto(R.drawable.chain_yoshinoya, "Yoshinoya gyudon restaurant", "Yoshinoya, Nagano. Photo: Nakamura kengou / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Ramen: **Ichiran** is known for tonkotsu (pork-bone broth) ramen served in " +
                     "individual booths for solo, no-distraction dining; **Ippudo** is another major " +
                     "tonkotsu ramen chain."
             )
+            PlacePhoto(R.drawable.chain_ichiran, "Ichiran ramen main store", "Ichiran main store, Fukuoka. Photo: Jkr2255 / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "Curry: **CoCo Ichibanya** lets you customize spice level, toppings, and rice amount " +
                     "on a Japanese-style curry rice."
             )
+            PlacePhoto(R.drawable.chain_coco_ichibanya, "CoCo Ichibanya curry restaurant", "CoCo Ichibanya, Namba, Osaka. Photo: Tokumeigakarinoaoshima / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Conveyor-belt sushi: **Sushiro** and **Kura Sushi** are the biggest chains - plates " +
                     "circulate on a belt (or are sent directly to your table via a small track), " +
                     "usually priced per plate."
             )
+            PlacePhoto(R.drawable.chain_sushiro, "Stacked plates at Sushiro", "Sushiro plates - the bill is counted by plate. Photo: Tokumeigakarinoaoshima / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Family restaurants: **Saizeriya** (budget Italian-Japanese fusion) and **Ootoya** " +
                     "(home-style Japanese set meals) are common all-purpose options with picture " +
                     "menus."
             )
+            PlacePhoto(R.drawable.chain_ootoya, "Ootoya set meal", "An Ootoya set meal (teishoku). Photo: 毒島みるく / Wikimedia Commons, CC0")
             BodyText(
                 "Tempura: **Tenya** serves fast, affordable tempura rice bowls."
             )
+            PlacePhoto(R.drawable.chain_tenya, "Tendon at Tenya", "Tendon (tempura rice bowl) at Tenya. Photo: Emran Kassim / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "Shabu-shabu: **Mo Mo Paradise** is an all-you-can-eat shabu-shabu and sukiyaki " +
                     "chain (thin-sliced beef and pork swished in simmering broth at the table), " +
@@ -61,6 +68,7 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "it). It's a genuinely solid, cheap meal option, not just a snack stop, and " +
                     "many locations also have a small eat-in counter."
             )
+            PlacePhoto(R.drawable.chain_konbini_bento, "Bento boxes in a convenience store", "Bento shelf in a Japanese convenience store. Photo: Martin Lewison / Wikimedia Commons, CC BY-SA 2.0")
 
             SectionHeader("Cafe chains")
             BodyText(
@@ -70,6 +78,7 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "expanded to **Tokyo**, **Osaka**, and internationally. Other well-known Japan-founded " +
                     "coffee chains include **Doutor**, **Komeda's Coffee**, and **Tully's**."
             )
+            PlacePhoto(R.drawable.cafe_arabica, "The queue at % Arabica Arashiyama", "% Arabica Arashiyama, Kyoto. Photo: Carla Abanes / Wikimedia Commons, CC BY-SA 2.0")
             BodyText(
                 "Drip vs. espresso, chain by chain: **% Arabica** is espresso-based - its whole " +
                     "identity is built around a signature latte pulled on high-end espresso " +
@@ -80,6 +89,7 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
                     "a smaller part of the menu. **Tully's** is a full Seattle-style espresso bar " +
                     "chain (closer to **Starbucks**) - espresso-based through and through."
             )
+            PlacePhoto(R.drawable.cafe_doutor, "Doutor Coffee Shop", "Doutor Coffee Shop, Gakuenmae, Nara. Photo: Tokumeigakarinoaoshima / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Quaro**, a striking new specialty coffee space on Cat Street in **Jingumae**/**Harajuku** " +
                     "(**Shibuya**), is worth calling out separately: a four-floor concept combining " +
@@ -145,6 +155,7 @@ fun FoodAndCafesScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Matcha")
+            PlacePhoto(R.drawable.cafe_matcha, "A bowl of whisked matcha", "Photo: rumpleteaser / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "Matcha is finely ground, shade-grown green tea powder, whisked directly into hot " +
                     "water rather than steeped like regular tea - the basis of the traditional " +

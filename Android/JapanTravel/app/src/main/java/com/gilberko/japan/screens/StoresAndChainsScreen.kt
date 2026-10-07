@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun StoresAndChainsScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Convenience stores")
+            PlacePhoto(R.drawable.store_konbini, "FamilyMart convenience store", "FamilyMart, Ebisu, Tokyo. Photo: Tokumeigakarinoaoshima / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**7-Eleven**, **Lawson**, and **FamilyMart** are the three big \"konbini\" chains, found " +
                     "on nearly every block. Open 24/7, they sell fresh food (onigiri, sandwiches, " +
@@ -27,6 +29,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Don Quijote (\"Donki\")")
+            PlacePhoto(R.drawable.store_don_quijote, "Don Quijote on Dotonbori with its Ferris wheel", "Don Quijote Dotonbori, Osaka. Photo: DVMG / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "A huge, maze-like discount variety store chain selling everything from snacks and " +
                     "cosmetics to electronics and souvenirs, often open 24 hours. Larger branches " +
@@ -35,6 +38,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Clothing")
+            PlacePhoto(R.drawable.store_muji, "Muji store", "Muji, Grand Front Osaka. Photo: Wing1990hk / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "**Uniqlo** is Japan's best-known casual clothing chain; its budget sister brand is **GU**. " +
                     "**Muji** sells minimalist clothing and household goods, and **Shimamura** is another " +
@@ -44,6 +48,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Electronics")
+            PlacePhoto(R.drawable.store_yodobashi, "Yodobashi Camera Akiba building", "Yodobashi Camera Akiba, Akihabara. Photo: 正和 / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Bic Camera**, **Yodobashi Camera**, and **Yamada Denki** (**LABI**) are the major electronics " +
                     "chains, selling cameras, appliances, and gadgets - many also offer tax-free " +
@@ -51,6 +56,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("100-yen shops")
+            PlacePhoto(R.drawable.store_daiso, "Inside a Daiso store", "Daiso, Furukawabashi, Osaka. Photo: Mr.ちゅらさん / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Daiso**, **Seria**, and **Can Do** sell household goods, stationery, and souvenirs at " +
                     "flat, low prices (despite the name, some items cost more than ¥100) - good " +
@@ -58,6 +64,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Department Stores")
+            PlacePhoto(R.drawable.store_depachika, "Department store basement food floor", "A depachika (basement food floor). Photo: ayustety / Wikimedia Commons, CC BY-SA 2.0")
             BodyText(
                 "Japanese department stores (depaato) are large multi-story retailers combining " +
                     "fashion boutiques, cosmetics counters, household goods, kimono, and gift " +
@@ -83,6 +90,7 @@ fun StoresAndChainsScreen(onBack: () -> Unit) {
                     "floor; **Daimaru** operates major stores in Kyoto, Osaka, and Tokyo (J. Front " +
                     "Retailing)."
             )
+            PlacePhoto(R.drawable.store_isetan, "Isetan Shinjuku building", "Isetan Shinjuku, Tokyo. Photo: Kakidai / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Recommended: in **Osaka**, **Hankyu Umeda** and **Hanshin Umeda** (both right by " +
                     "Osaka Station, with an excellent basement food floor) or **Takashimaya Osaka** " +
