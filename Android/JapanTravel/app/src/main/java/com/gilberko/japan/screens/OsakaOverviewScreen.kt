@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun OsakaOverviewScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Umeda Sky Building")
+            PlacePhoto(R.drawable.osaka_umeda_sky, "Umeda Sky Building escalator", "The escalator tube up to the Floating Garden Observatory. Photo: Martin Falbisoner / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A striking twin-tower skyscraper in **Umeda**, north **Osaka**, connected near the top " +
                     "by the circular **Floating Garden Observatory**. You can view the city from " +
@@ -34,6 +36,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Osaka Castle")
+            PlacePhoto(R.drawable.osaka_castle, "Osaka Castle", "Photo: 663highland / Wikimedia Commons, CC BY 2.5")
             BodyText(
                 "One of Japan's most famous castles, originally built in 1583 by Toyotoshi " +
                     "Hideyoshi. The current keep (rebuilt in concrete in 1931, most recently " +
@@ -43,6 +46,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Osaka Castle Park")
+            PlacePhoto(R.drawable.osaka_castle_park, "Osaka Castle moat", "The inner moat. Photo: Joli Rumi / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "The large park grounds around the castle are worth a couple of hours on their " +
                     "own: wide lawns for walking, a plum grove (best in Feb-Mar) and cherry " +
@@ -52,6 +56,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Dotonbori")
+            PlacePhoto(R.drawable.osaka_dotonbori, "Glico Running Man sign", "The Glico \"Running Man\" sign. Photo: pika1935 / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Osaka**'s most famous nightlife and street food district, centered on a canal " +
                     "lined with glowing signage - most iconically the **Glico \"Running Man\"** " +
@@ -62,6 +67,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Namba")
+            PlacePhoto(R.drawable.osaka_namba_parks, "Namba Parks", "Namba Parks. Photo: 663highland / Wikimedia Commons, CC BY 2.5")
             BodyText(
                 "**Namba** is the big entertainment and shopping district immediately south of " +
                     "**Dotonbori**, built around Namba Station - one of **Osaka**'s two major transit " +
@@ -72,6 +78,7 @@ fun OsakaOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Famous temples and shrines nearby")
+            PlacePhoto(R.drawable.osaka_shitennoji, "Shitennoji Temple", "Shitennoji Temple. Photo: Guilhem Vellut from Annecy, France / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Shitennoji Temple**, a short subway ride south of **Namba**, is one of Japan's oldest " +
                     "officially administered Buddhist temples, founded in 593 CE - notably older " +

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun KawaguchikoOverviewScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun KawaguchikoOverviewScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("The lake and the area")
+            PlacePhoto(R.drawable.kawaguchiko_lake, "Lake Kawaguchi", "Lake Kawaguchi. Photo: DimiTalen / Wikimedia Commons, CC0")
             BodyText(
                 "**Lake Kawaguchiko** is one of the **Fuji Five Lakes**, at the base of **Mount Fuji**, and " +
                     "one of the most popular short trips out of **Tokyo**. Ways to spend time around " +
@@ -31,6 +33,7 @@ fun KawaguchikoOverviewScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("The famous Mount Fuji view")
+            PlacePhoto(R.drawable.kawaguchiko_fuji, "Mount Fuji from Lake Kawaguchi", "Mount Fuji from Lake Kawaguchi. Photo: Alpsdake / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Kawaguchiko** is one of the best-known and most photographed vantage points for " +
                     "**Mount Fuji**, especially the shots where the mountain is mirrored in the still " +

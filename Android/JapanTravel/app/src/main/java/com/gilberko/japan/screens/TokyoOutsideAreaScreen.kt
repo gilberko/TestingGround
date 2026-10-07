@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Nikko")
+            PlacePhoto(R.drawable.outside_nikko, "Three Wise Monkeys carving, Nikko Toshogu", "The Three Wise Monkeys carving, Nikko Toshogu. Photo: Ray in Manila / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Nikko** is the picturesque forest-and-shrine day trip everyone means when they " +
                     "ask about it: **Nikko Toshogu** is a lavishly decorated Shinto shrine set among " +
@@ -42,6 +44,7 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kamakura")
+            PlacePhoto(R.drawable.outside_kamakura, "Great Buddha of Kamakura", "The Great Buddha of Kamakura. Photo: Gilles Desjardins / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A seaside town about an hour from **Shinjuku** via the direct Shonan-Shinjuku Line - " +
                     "home to the **Great Buddha** and **Tsurugaoka Hachimangu**, **Kamakura**'s most important " +
@@ -56,6 +59,7 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Meiji Jingu")
+            PlacePhoto(R.drawable.outside_meiji_jingu, "Meiji Jingu torii", "Photo: Zairon / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Unlike **Nikko** and **Kamakura** above, **Meiji Jingu** is actually inside central **Tokyo**, " +
                     "right by Harajuku Station (see **Tokyo** - City Regions - **Harajuku**) - it's " +
@@ -66,6 +70,7 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Mount Takao")
+            PlacePhoto(R.drawable.outside_takao, "Mount Fuji seen from Mount Takao", "Mount Fuji seen from the top of Mount Takao. Photo: Ximonic (Simo Räsänen) / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "The easiest proper hike near **Tokyo**: **Mount Takao** (599m) is in **Hachioji**, about 50 " +
                     "minutes from **Shinjuku** on the Keio Line to Takaosanguchi Station. Trail 1, the " +
@@ -81,6 +86,7 @@ fun TokyoOutsideAreaScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Mount Mitake")
+            PlacePhoto(R.drawable.outside_mitake, "Musashi Mitake Shrine", "Musashi Mitake Shrine. Photo: 雷太 / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "A quieter, more remote alternative to **Takao**, in **Okutama** - about 90 minutes from " +
                     "**Shinjuku** (JR Chuo Line to **Ome**, then the Ome Line to Mitake Station, followed " +

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun GhibliParkScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun GhibliParkScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("What it is")
+            PlacePhoto(R.drawable.ghibli_park, "Ghibli Park", "Ghibli Park. Photo: lumoplank / Wikimedia Commons, CC0")
             BodyText(
                 "**Ghibli Park**, opened in November 2022, is a Studio Ghibli theme park built inside " +
                     "an existing public park rather than a standalone ride-based park. It's " +
@@ -30,6 +32,7 @@ fun GhibliParkScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Which movies you'll find where")
+            PlacePhoto(R.drawable.ghibli_satsuki_mei_house, "Satsuki and Mei's House", "Satsuki and Mei's House (Dondoko Forest). Photo: Kyu3 / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Ghibli's Grand Warehouse** is the most film-dense area: the climbable Catbus " +
                     "(**My Neighbor Totoro**), a life-size train car recreation with No-Face riding " +

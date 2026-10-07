@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Nature places")
+            PlacePhoto(R.drawable.tpoi_shinjuku_gyoen, "Shinjuku Gyoen", "Shinjuku Gyoen. Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Shinjuku Gyoen National Garden** combines three garden styles in one huge park - " +
                     "a formal French garden, an English landscape garden, and a traditional " +
@@ -47,6 +49,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Places with a view")
+            PlacePhoto(R.drawable.tpoi_skytree, "Tokyo Skytree", "Tokyo Skytree. Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Tokyo Skytree**, at 634m the tallest structure in Japan, has two observation " +
                     "decks - the **Tembo Deck** at 350m and the higher **Tembo Galleria** at 450m, which " +
@@ -75,6 +78,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kids playgrounds")
+            PlacePhoto(R.drawable.tpoi_kasai_rinkai, "Kasai Rinkai Park", "Kasai Rinkai Park. Photo: 荻野目さん / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Kasai Rinkai Park**, out by **Tokyo Bay**, has large playground equipment, wide lawns " +
                     "to run around on, a Ferris wheel, and the **Tokyo Sea Life Park** aquarium all in " +
@@ -96,6 +100,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kids museums")
+            PlacePhoto(R.drawable.tpoi_kidzania, "KidZania Tokyo", "KidZania Tokyo. Photo: しんぎんぐきゃっと / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**KidZania Tokyo**, inside **LaLaport Toyosu**, is a miniature role-play city where kids " +
                     "try out real jobs - firefighter, pilot, chef, TV reporter, and dozens more - " +
@@ -116,6 +121,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Science museums")
+            PlacePhoto(R.drawable.tpoi_miraikan, "Miraikan", "Miraikan. Photo: Kestrel / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Miraikan** (the **National Museum of Emerging Science and Innovation**) on **Odaiba** " +
                     "focuses on cutting-edge technology and robotics, including regular " +
@@ -137,6 +143,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Aquariums")
+            PlacePhoto(R.drawable.tpoi_sunshine_aquarium, "Sunshine Aquarium", "Sunshine Aquarium. Photo: Motokoka / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Sumida Aquarium**, inside the **Tokyo Solamachi** mall at the base of **Skytree**, is known " +
                     "for its open-air, glass-free penguin and fur seal pools and a large jellyfish " +
@@ -170,6 +177,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Korean pop culture (K-pop & K-dramas)")
+            PlacePhoto(R.drawable.tpoi_shin_okubo, "Okubo street near Shin-Okubo", "Okubo, next to Shin-Okubo. Photo: 多摩に暇人 / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "**Shin-Okubo**, **Tokyo**'s Koreatown just north of Shinjuku Station (see City Regions " +
                     "- **Shinjuku**), is the center of K-pop and K-drama fandom in the city. **Hanryu " +
@@ -188,6 +196,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("J-pop")
+            PlacePhoto(R.drawable.tpoi_tower_records, "Tower Records Shibuya", "Tower Records Shibuya. Photo: DeepSkyBlue / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "**Tower Records Shibuya** is the flagship of Japan's still-independent **Tower " +
                     "Records** chain (unrelated to the now-defunct US company) - 9 floors of " +
@@ -209,6 +218,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("80s and retro museums or arcades")
+            PlacePhoto(R.drawable.tpoi_super_potato, "Super Potato, Akihabara", "Super Potato, Akihabara. Photo: Jesusbella / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Super Potato** in **Akihabara** is a multi-floor retro video game specialty store " +
                     "crammed with classic consoles, cartridges, and merchandise from the 80s and " +
@@ -272,6 +282,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Video Games")
+            PlacePhoto(R.drawable.tpoi_nintendo_tokyo, "Nintendo TOKYO", "Nintendo TOKYO, Shibuya Parco. Photo: IagoQnsi / Wikimedia Commons, CC BY 4.0")
             BodyText(
                 "**Tokyo** is the best place to see Japan's biggest video game companies up close. " +
                     "**Nintendo**, **Capcom**, **Sega**, and **Taito** all keep an official presence " +
@@ -310,6 +321,7 @@ fun TokyoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Anime and Manga")
+            PlacePhoto(R.drawable.tpoi_tokiwaso, "Tokiwaso Manga Museum", "Tokiwaso Manga Museum. Photo: KQuhen / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "The **Tokyo Polytechnic University Suginami Animation Museum** (the university " +
                     "holds naming rights; it's actually run by the Association of Japanese " +

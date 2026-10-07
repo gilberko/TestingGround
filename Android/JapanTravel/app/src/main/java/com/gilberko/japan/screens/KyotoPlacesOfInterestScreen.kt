@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Fushimi Inari Taisha")
+            PlacePhoto(R.drawable.place_kyoto_ov_fushimi_inari, "Fushimi Inari Taisha", "Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "The head shrine of **Inari**, god of rice and prosperity, famous for the " +
                     "thousands of vermilion **torii** gates that form tunnels winding up the " +
@@ -34,6 +36,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kiyomizu-dera + Higashiyama")
+            PlacePhoto(R.drawable.place_kyoto_ov_kiyomizudera, "Kiyomizu-dera", "Kiyomizu-dera. Photo: Martin Falbisoner / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Kiyomizu-dera** is a wooden temple built on a hillside without a single nail, " +
                     "best known for its large wooden stage jutting out over the valley, giving " +
@@ -50,6 +53,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Kinkaku-ji (The Golden Pavilion)")
+            PlacePhoto(R.drawable.place_kyoto_ov_kinkakuji, "Kinkaku-ji", "Photo: Nacaru / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A Zen temple pavilion whose top two floors are covered entirely in gold leaf, " +
                     "sitting at the edge of a reflecting pond so that on a calm day its image " +
@@ -64,6 +68,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Arashiyama")
+            PlacePhoto(R.drawable.place_kyoto_ov_bamboo_grove, "Arashiyama Bamboo Grove", "Arashiyama Bamboo Grove. Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "A district in western **Kyoto** built around the **Bamboo Grove** - a short but " +
                     "striking path through towering bamboo stalks - along with the **Togetsukyo " +
@@ -77,6 +82,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Gion")
+            PlacePhoto(R.drawable.place_kyoto_ov_gion, "Gion", "Photo: lumoplank / Wikimedia Commons, CC0")
             BodyText(
                 "**Kyoto**'s best-known geisha (**geiko**) and apprentice geisha (**maiko**) " +
                     "district, with streets of preserved wooden **machiya** townhouses, teahouses, " +
@@ -93,6 +99,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Nijō Castle")
+            PlacePhoto(R.drawable.kyoto_nijo_castle, "Nijo Castle", "Photo: 稲垣啓二 / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Built as the Kyoto residence of the Tokugawa shoguns, its **Ninomaru Palace** is " +
                     "famous for \"nightingale floors\" - floorboards deliberately built to chirp " +
@@ -105,6 +112,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Nishiki Market")
+            PlacePhoto(R.drawable.place_kyoto_ov_nishiki_market, "Nishiki Market", "Photo: ignis / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "A narrow, roofed shopping street nicknamed **\"Kyoto's Kitchen,\"** packed with " +
                     "over a hundred stalls selling fresh seafood, pickles, sweets, knives, tea, " +
@@ -119,6 +127,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Ginkaku-ji + Philosopher's Path")
+            PlacePhoto(R.drawable.place_kyoto_ov_ginkakuji, "Ginkaku-ji", "Ginkaku-ji. Photo: Laitr Keiows / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "**Ginkaku-ji** (\"the Silver Pavilion\") was never actually covered in silver as " +
                     "planned, but its understated wooden design, dry-sand garden shaped into a " +
@@ -134,6 +143,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Sanjūsangen-dō")
+            PlacePhoto(R.drawable.kyoto_sanjusangendo, "Sanjusangen-do", "Photo: 663highland / Wikimedia Commons, CC BY 2.5")
             BodyText(
                 "A long, narrow wooden hall - its name refers to the 33 bays between its " +
                     "supporting pillars - housing 1,001 life-sized statues of the " +
@@ -148,6 +158,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Yasaka Shrine")
+            PlacePhoto(R.drawable.kyoto_yasaka_shrine, "Yasaka Shrine", "Photo: Basile Morin / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "Sitting at the entrance to **Gion**, this vermilion shrine is the historical " +
                     "host of the **Gion Matsuri**, one of Japan's most famous festivals, held " +
@@ -160,6 +171,7 @@ fun KyotoPlacesOfInterestScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Maruyama Park")
+            PlacePhoto(R.drawable.kyoto_maruyama_park, "Maruyama Park in cherry blossom season", "Photo: tanohei / Wikimedia Commons, CC BY 3.0")
             BodyText(
                 "**Kyoto**'s oldest public park, immediately behind **Yasaka Shrine**, centered " +
                     "on a large, iconic weeping cherry tree that's illuminated at night during " +

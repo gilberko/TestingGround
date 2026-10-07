@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun HakoneRopewayScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun HakoneRopewayScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("The route")
+            PlacePhoto(R.drawable.hakone_ropeway, "Hakone Ropeway over Owakudani", "Hakone Ropeway over Owakudani. Photo: Σ64 / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "The **Hakone Ropeway** runs from **Sounzan** to **Togendai**, passing directly over " +
                     "**Owakudani**, an active volcanic valley, on the way. From **Owakudani** to " +
@@ -29,6 +31,7 @@ fun HakoneRopewayScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Owakudani: sulfur vents and black eggs")
+            PlacePhoto(R.drawable.hakone_owakudani, "Owakudani", "Photo: そらみみ / Wikimedia Commons, CC BY-SA 3.0")
             BodyText(
                 "**Owakudani** is a still-active volcanic valley with steaming sulfur vents and a " +
                     "strong smell of sulfur in the air. Its signature food is kuro-tamago " +
@@ -38,6 +41,7 @@ fun HakoneRopewayScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("Lake Ashi and the pirate ship")
+            PlacePhoto(R.drawable.hakone_pirate_ship, "Pirate ship on Lake Ashi", "Photo: Maarten Heerlien / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "From **Togendai**, a **Hakone Pirate Ship** (a retro-style replica sightseeing ship, not " +
                     "a literal antique) sails across **Lake Ashi** (**Ashinoko**), a crater lake formed by " +

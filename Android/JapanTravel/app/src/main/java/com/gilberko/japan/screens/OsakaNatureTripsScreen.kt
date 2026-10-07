@@ -7,6 +7,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun OsakaNatureTripsScreen(onBack: () -> Unit) {
@@ -17,6 +18,7 @@ fun OsakaNatureTripsScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Minoo (Minoh) Park")
+            PlacePhoto(R.drawable.osaka_minoo_falls, "Minoo Falls", "Minoo Falls. Photo: Kanchi1979 / Wikimedia Commons, CC BY-SA 4.0")
             BodyText(
                 "**Minoh or Minoo?** Both - they're the same place. The name (箕面) is romanized " +
                     "several ways: **Minoh**, **Minoo**, or **Minō**. The city government officially " +

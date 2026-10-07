@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun OsakaPlacesOfInterestScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun OsakaPlacesOfInterestScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("Den Den Town")
+            PlacePhoto(R.drawable.osaka_den_den_town, "Den Den Town", "Photo: Clemens Vasters / Wikimedia Commons, CC BY 2.0")
             BodyText(
                 "**Den Den Town** (Nipponbashi) is Osaka's electronics-and-otaku district, similar " +
                     "in spirit to **Akihabara** in **Tokyo**. Its streets are lined with shops " +

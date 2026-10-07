@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gilberko.japan.R
 
 @Composable
 fun AmanohashidateDayTripScreen(onBack: () -> Unit) {
@@ -19,6 +20,7 @@ fun AmanohashidateDayTripScreen(onBack: () -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             SectionHeader("What is Amanohashidate")
+            PlacePhoto(R.drawable.amanohashidate_view, "Amanohashidate sandbar", "Amanohashidate from Kasamatsu Park. Photo: 663highland / Wikimedia Commons, CC BY 2.5")
             BodyText(
                 "A 3.6km pine-covered sandbar across **Miyazu Bay** in northern Kyoto " +
                     "Prefecture. The name means \"bridge in heaven\" - from the right " +
@@ -51,6 +53,7 @@ fun AmanohashidateDayTripScreen(onBack: () -> Unit) {
             )
 
             SectionHeader("What to do there")
+            PlacePhoto(R.drawable.amanohashidate_view_land, "Amanohashidate View Land", "Amanohashidate View Land. Photo: 663highland / Wikimedia Commons, CC BY 2.5")
             BodyText(
                 "**View Land**, on the south side near the station and Chion-ji Temple: a " +
                     "chairlift or monorail up to a matanozoki viewpoint over the sandbar."
