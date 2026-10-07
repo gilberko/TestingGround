@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,27 +20,34 @@ fun JeonjuPlacesOfInterestScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("Jeonju Hanok Village")
+            PlacePhoto(R.drawable.jj_hanok, "Jeonju Hanok Village", "Jeonju Hanok Village — Photo: Bernard Gagnon, CC0, via Wikimedia Commons")
             BodyText(boldNames("The largest hanok (traditional house) village in Korea, with more than 700 traditional houses forming a continuous walkable district — the heart of a visit to Jeonju.", listOf("Jeonju Hanok Village", "hanok")))
 
             SectionHeader("Jeonju Bibimbap")
+            PlacePhoto(R.drawable.jj_bibimbap, "Jeonju bibimbap", "Jeonju bibimbap — Photo: aka_maya, CC BY-SA 2.0, via Wikimedia Commons")
             BodyText(boldNames("Jeonju is considered the birthplace of the most famous regional style of bibimbap in Korea. Gogung is often cited as the place to try it in its most traditional form.", listOf("Jeonju", "bibimbap", "Gogung")))
 
             SectionHeader("Gyeonggijeon Shrine")
+            PlacePhoto(R.drawable.jj_gyeonggijeon, "Gyeonggijeon Shrine", "Gyeonggijeon Shrine — Photo: Bernard Gagnon, CC0, via Wikimedia Commons")
             BodyText(boldNames("Enshrines the portrait of King Taejo, founder of the Joseon Dynasty, and is one of the first sites you reach entering Hanok Village.", listOf("Gyeonggijeon", "King Taejo", "Joseon")))
 
             SectionHeader("Jaman Mural Village")
+            PlacePhoto(R.drawable.jj_jaman, "Jaman Mural Village", "Jaman Mural Village — Photo: lumoplank, CC0, via Wikimedia Commons")
             BodyText(boldNames("A hillside neighborhood about a 10-minute walk from Hanok Village, covered in colorful murals ranging from traditional motifs to contemporary art.", listOf("Jaman Mural Village")))
 
             SectionHeader("Jeondong Catholic Church")
+            PlacePhoto(R.drawable.jj_jeondong, "Jeondong Cathedral", "Jeondong Cathedral — Photo: Jjw, CC BY 4.0, via Wikimedia Commons")
             BodyText(boldNames("A Romanesque-style cathedral built in 1914 on the grounds where Korean Catholics were martyred in the late 19th century, considered one of the most beautiful cathedrals in Korea.", listOf("Jeondong Catholic Church")))
 
             SectionHeader("Nambu Traditional Market")
+            PlacePhoto(R.drawable.jj_nambu, "Youth Mall, Nambu Market", "Youth Mall, Nambu Market — Photo: 고려, CC BY 4.0, via Wikimedia Commons")
             BodyText(boldNames("The largest traditional market in Jeonju, dating back to the Joseon Dynasty, within walking distance of Hanok Village. Its Night Market runs Friday and Saturday evenings, 5pm-11pm, with street food vendors and a small concert stage.", listOf("Nambu Traditional Market", "Night Market")))
 
             SectionHeader("Hanji Paper Craft Experiences")
             BodyText(boldNames("Jeonju is the historic home of hanji, traditional mulberry paper once used for royal records. Studios in and around Hanok Village offer paper-making, fan-making, and calligraphy sessions, and shops sell hanji stationery, fans, and decor.", listOf("hanji")))
 
             SectionHeader("Omokdae and Imokdae")
+            PlacePhoto(R.drawable.jj_omokdae, "Omokdae", "Omokdae — Photo: Mobius6, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("Scenic pavilions overlooking Hanok Village. Omokdae is historically significant as the spot where General Yi Seong-gye, founder of the Joseon Dynasty, celebrated a military victory.", listOf("Omokdae", "Imokdae", "Yi Seong-gye")))
         }
     }
