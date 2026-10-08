@@ -49,7 +49,7 @@ fun PassiveVoiceScreen(navController: NavController) {
             PVNote("Czech has two ways to build a passive sentence. The reflexive se-passive is used for general, habitual statements with no particular agent in mind. The n/t-participle passive (být + a special participle, e.g. napsán) describes a specific action or result, and works in any tense — this is the construction behind forms like \"napsán.\"")
 
             PVSection("The Reflexive (se) Passive")
-            PVNote("Formation: a 3rd-person verb + se. This is the everyday, most common way to make a general or impersonal statement — cross-reference Learning → Reflexive Verbs, which covers se's other, true-reflexive use (an action done to oneself). This section is a different job for the same little word.")
+            PVNote("Formation: a 3rd-person verb + se. This is the everyday, most common way to make a general or impersonal statement — cross-reference Learning → Reflexive Verbs + SE + SI + ..., which covers se's other, true-reflexive use (an action done to oneself). This section is a different job for the same little word.")
             PVRow("To se dělá takto.", "This is done like this.")
             PVRow("Jak se to řekne česky?", "How is that said in Czech?")
             PVRow("Byty se prodávají rychle.", "Apartments sell/are sold quickly.")

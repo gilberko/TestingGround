@@ -135,6 +135,7 @@ class MainActivity : ComponentActivity() {
                 composable("dialogue_family_trip") { FamilyTripDialogueScreen(navController) }
                 composable("dialogue_swe_bugs") { SoftwareEngineeringBugsDialogueScreen(navController) }
                 composable("dialogue_car_trouble") { CarTroubleDialogueScreen(navController) }
+                composable("everyday") { EverydayScreen(navController) }
             }
         }
     }
@@ -285,7 +286,7 @@ fun LearningHubScreen(navController: NavController) {
             "Past Tense" to "past_tense",
             "Adverbs" to "adverbs",
             "Object Pronouns" to "object_pronouns",
-            "Reflexive Verbs" to "reflexive_verbs",
+            "Reflexive Verbs + SE + SI + ..." to "reflexive_verbs",
             "Someone, Somewhere, Everyone, Everywhere..." to "someone_somewhere",
             "Many and Few" to "many_and_few",
             "Imperative" to "imperative",
@@ -375,7 +376,8 @@ fun DictionaryHubScreen(navController: NavController) {
             "School and University" to "school_university",
             "Need To, Have To, Allowed" to "need_have_allowed",
             "Traveling" to "traveling",
-            "Super Powers and Magic" to "super_powers_magic"
+            "Super Powers and Magic" to "super_powers_magic",
+            "Everyday" to "everyday"
         )
         Column(
             modifier = Modifier
