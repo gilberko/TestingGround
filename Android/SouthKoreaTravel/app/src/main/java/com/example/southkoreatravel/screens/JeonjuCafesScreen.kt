@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,9 +22,11 @@ fun JeonjuCafesScreen(onBack: () -> Unit) {
             BodyText(boldNames("Jeonju has an especially large and well-known scene of hanok-style cafes clustered in and around Hanok Village.", listOf("Hanok Village")))
 
             SectionHeader("Cafe Ireuri")
+            PlacePhoto(R.drawable.jj_hanok, "Jeonju Hanok Village", "Jeonju Hanok Village — Photo: Bernard Gagnon, CC0, via Wikimedia Commons")
             BodyText(boldNames("An authentic hanok-style cafe with a traditional pavilion and annex, popular for its photo spots and drinks made with homemade fruit syrups.", listOf("Cafe Ireuri")))
 
             SectionHeader("Jeonmang Cafe and Guesthouse")
+            PlacePhoto(R.drawable.cafe_jj_rooftops, "Hanok rooftops, Jeonju Hanok Village", "Hanok rooftops, Jeonju Hanok Village — Photo: lumoplank, CC0, via Wikimedia Commons")
             BodyText(boldNames("A 5th-floor cafe with panoramic views over the hanok rooftops, especially popular at sunset.", listOf("Jeonmang Cafe and Guesthouse")))
 
             SectionHeader("Postbean Cafe")

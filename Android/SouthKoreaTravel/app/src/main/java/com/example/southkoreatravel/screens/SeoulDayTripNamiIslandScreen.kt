@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ fun SeoulDayTripNamiIslandScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("What's There")
+            PlacePhoto(R.drawable.kd_nami, "Metasequoia Lane, Nami Island", "Metasequoia Lane, Nami Island — Photo: Nami Island, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("Nami Island is known for its tree-lined paths (made famous by the drama Winter Sonata) and is especially popular in autumn foliage and winter snow. The surrounding Gapyeong area has other popular stops often combined with it, like Petite France and the Garden of Morning Calm.", listOf("Nami Island", "Winter Sonata", "Gapyeong", "Petite France", "Garden of Morning Calm")))
 
             SectionHeader("Getting There")

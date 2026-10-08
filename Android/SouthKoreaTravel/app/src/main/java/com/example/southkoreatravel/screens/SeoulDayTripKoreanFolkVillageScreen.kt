@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ fun SeoulDayTripKoreanFolkVillageScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("What's There")
+            PlacePhoto(R.drawable.daytrip_folk, "Korean Folk Village", "Korean Folk Village — Photo: Dag Endresen, CC BY 3.0, via Wikimedia Commons")
             BodyText(boldNames("The Korean Folk Village, in Yongin, is a living-history village recreating everyday life from the Joseon era — traditional houses from different regions and social classes, craft demonstrations, and scheduled performances, with extra seasonal festivals and events running at different times of year.", listOf("Korean Folk Village", "Yongin")))
 
             SectionHeader("Getting There")

@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ fun SeoulDayTripGangneungScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("What's There")
+            PlacePhoto(R.drawable.daytrip_gangneung, "Gyeongpo Beach, Gangneung", "Gyeongpo Beach, Gangneung — Photo: Mobius6, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("Gangneung is an east-coast city known for its beaches, the Anmok Coffee Street (a cluster of seaside cafes), Ojukheon (a preserved historic house and garden), and seafood/fish markets.", listOf("Gangneung", "Anmok Coffee Street", "Ojukheon")))
 
             SectionHeader("Getting There")

@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ fun SeoulDayTripSuwonScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("What's There")
+            PlacePhoto(R.drawable.daytrip_suwon, "Hwaseong Fortress walls, Suwon", "Hwaseong Fortress walls, Suwon — Photo: Bernard Gagnon, CC0, via Wikimedia Commons")
             BodyText(boldNames("Suwon's main draw is Hwaseong Fortress, a UNESCO World Heritage Site — an 18th-century Joseon-era fortress wall about 5.7km long, with gates, command posts, and watchtowers you can walk the full circuit of. Museums covering the fortress's construction and history sit near the wall as well.", listOf("Suwon", "Hwaseong Fortress")))
 
             SectionHeader("Getting There")

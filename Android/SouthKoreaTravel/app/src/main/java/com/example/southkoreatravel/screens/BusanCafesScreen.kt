@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -30,9 +31,11 @@ fun BusanCafesScreen(onBack: () -> Unit) {
             BodyText(boldNames("Jeonpo Cafe Street, near Seomyeon, is a named cafe-hub district worth exploring on foot. It's home to Blackup Coffee, opened in 2006 as one of Busan's first specialty cafes and still known for its low-acidity, cacao-forward house blends (Nero, Mono, and a rotating seasonal Ego blend), and Naive Brewers, a tiny, living-room-like independent space nearby.", listOf("Jeonpo Cafe Street", "Blackup Coffee", "Naive Brewers")))
 
             SectionHeader("Gwangalli Coffee Cluster")
+            PlacePhoto(R.drawable.cafe_busan_gwangalli, "Gwangalli Beach and Gwangan Bridge", "Gwangalli Beach and Gwangan Bridge — Photo: Masterhatch, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("The area around Gwangalli Beach has become a noted specialty-coffee cluster: Hytte Roastery (with a Gwangalli branch among others) is known for a light-roast, single-origin-forward style in cozy, home-like interiors; Oas Roasters is known for a broad bean selection and creative desserts; and Berg Roasters, sometimes called a Gwangalli \"specialty coffee mecca\" in travel coverage, rounds out the area.", listOf("Hytte Roastery", "Oas Roasters", "Berg Roasters")))
 
             SectionHeader("Haeundae")
+            PlacePhoto(R.drawable.busan_haeundae, "Haeundae Beach", "Haeundae Beach — Photo: StephNurnberg, CC BY 2.0, via Wikimedia Commons")
             BodyText(boldNames("RBH Coffee, in Haeundae, roasts its own beans on-site and is active in Busan's local coffee community, including running its own barista classes and seminars.", listOf("RBH Coffee")))
         }
     }

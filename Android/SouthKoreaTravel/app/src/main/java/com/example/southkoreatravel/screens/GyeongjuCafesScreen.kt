@@ -1,5 +1,6 @@
 package com.example.southkoreatravel.screens
 
+import com.example.southkoreatravel.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,9 +20,11 @@ fun GyeongjuCafesScreen(onBack: () -> Unit) {
                 .padding(24.dp)
         ) {
             SectionHeader("Cheongsudang")
+            PlacePhoto(R.drawable.cafe_gj_hwangnidan, "Hwangnidan-gil street, Gyeongju", "Hwangnidan-gil street, Gyeongju — Photo: Seefooddiet, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("Often called the prettiest hanok cafe in Gyeongju, known for its fluffy souffle castella.", listOf("Cheongsudang")))
 
             SectionHeader("Cafe Sabaha")
+            PlacePhoto(R.drawable.cafe_gj_woljeonggyo, "Woljeonggyo Bridge at blue hour", "Woljeonggyo Bridge at blue hour — Photo: Basile Morin, CC BY-SA 4.0, via Wikimedia Commons")
             BodyText(boldNames("Overlooks Woljeonggyo Bridge with modern decor and indoor and outdoor seating — one of the most photogenic spots in the city.", listOf("Cafe Sabaha", "Woljeonggyo Bridge")))
 
             SectionHeader("Gabaehyangju")
