@@ -52,40 +52,40 @@ fun ReflexiveVerbsScreen(navController: NavController) {
             RVSection("Summary — The Many Jobs of SE and SI")
             RVNote("The same two little words do several different jobs. A quick map of all of them:")
 
-            RVNote("a. Always present — se/si is a fixed part of the verb. Without it the verb does not exist (or sounds wrong).")
+            RVNote("A. Always present — se/si is a fixed part of the verb. Without it the verb does not exist (or sounds wrong).", bold = true)
             RVRow("zeptat se", "to ask", "Zeptám se učitele. (I'll ask the teacher.)  Never *zeptám učitele.")
             RVRow("zvyknout si (na + acc.)", "to get used to", "Zvykl jsem si na Prahu. (I got used to Prague.)  Imperfective: zvykat si.")
             RVRow("bát se", "to be afraid", "Bojím se psů. (I'm afraid of dogs.)")
             RVRow("smát se", "to laugh", "Proč se směješ? (Why are you laughing?)")
             RVRow("všimnout si", "to notice", "Všiml sis toho? (Did you notice that?)")
 
-            RVNote("b. se/si changes the meaning — the verb exists with and without it, but means something different.")
+            RVNote("B. se/si changes the meaning — the verb exists with and without it, but means something different.", bold = true)
             RVRow("vrátit / vrátit se", "to give back / to come back", "Vrátím ti knihu. (I'll give you back the book.)  Vrátím se v pět. (I'll be back at five.)")
             RVRow("učit / učit se", "to teach / to learn", "Učím děti. (I teach children.)  Učím se česky. (I'm learning Czech.)")
             RVRow("mít / mít se", "to have / to be doing", "Mám auto. (I have a car.)  Mám se dobře. (I'm doing well.)")
             RVRow("dát / dát si", "to give / to have (order)", "Dám ti to. (I'll give it to you.)  Dám si pivo. (I'll have a beer.)")
 
-            RVNote("c. se = the action falls back on the SUBJECT itself (se is the Accusative 'myself / himself / herself...'). It refers to whoever the subject of the sentence is — not necessarily the speaker.")
+            RVNote("C. se = the action falls back on the SUBJECT itself (se is the Accusative 'myself / himself / herself...'). It refers to whoever the subject of the sentence is — not necessarily the speaker.", bold = true)
             RVRow("Myju se.", "I'm washing myself.", "subject = já → se = myself")
             RVRow("On se myje.", "He is washing himself.", "subject = on → se = himself")
             RVRow("Dívá se do zrcadla.", "She's looking at herself in the mirror.", "")
             RVRow("Oblékáme se.", "We're getting dressed.", "subject = my → se = ourselves")
 
-            RVNote("d. si + body part = the body part belongs to the SUBJECT (again the subject, not necessarily the speaker). Czech uses si (Dative) here instead of a possessive like můj — *Myju moje ruce sounds wrong.")
+            RVNote("D. si + body part = the body part belongs to the SUBJECT (again the subject, not necessarily the speaker). Czech uses si (Dative) here instead of a possessive like můj — *Myju moje ruce sounds wrong.", bold = true)
             RVRow("Oholil jsem si vousy.", "I shaved my beard.", "subject = já → my beard")
             RVRow("Myju si ruce.", "I'm washing my hands.", "compare: Myju se. = I'm washing myself (all of me)")
             RVRow("Čistí si zuby.", "He's brushing his teeth.", "subject = on → his teeth")
             RVRow("Zlomila si nohu.", "She broke her leg.", "")
             RVRow("Česám si vlasy.", "I'm combing my hair.", "")
 
-            RVNote("e. si = for oneself — the subject does something for their own benefit (Dative 'for myself / for himself').")
+            RVNote("E. si = for oneself — the subject does something for their own benefit (Dative 'for myself / for himself').", bold = true)
             RVRow("Koupil si nové auto.", "He bought himself a new car.", "")
             RVRow("Objednám si kávu.", "I'll order a coffee (for myself).", "")
             RVRow("Udělám si čaj.", "I'll make myself some tea.", "")
             RVRow("Uvařila si oběd.", "She cooked herself lunch.", "")
             RVRow("Půjčil jsem si knihu.", "I borrowed a book.", "lit. 'lent a book to myself'")
 
-            RVNote("f. Reciprocal — se/si = 'each other' when the subject is plural. Which one you use follows the verb: verbs that take an Accusative object use se; verbs that take a Dative object use si. Add navzájem ('mutually') to make it unambiguous.")
+            RVNote("F. Reciprocal — se/si = 'each other' when the subject is plural. Which one you use follows the verb: verbs that take an Accusative object use se; verbs that take a Dative object use si. Add navzájem ('mutually') to make it unambiguous.", bold = true)
             RVRow("Líbají se.", "They're kissing (each other).", "líbat + acc → se")
             RVRow("Milují se.", "They love each other.", "milovat + acc → se")
             RVRow("Potkali jsme se v Brně.", "We met (each other) in Brno.", "potkat + acc → se")
@@ -94,7 +94,7 @@ fun ReflexiveVerbsScreen(navController: NavController) {
             RVRow("Dobře si rozumíme.", "We understand each other well / we get along.", "rozumět + dat → si")
             RVRow("Pomáhají si navzájem.", "They help one another.", "navzájem removes any ambiguity")
 
-            RVNote("g. Passive — se with a 3rd-person verb makes a general/impersonal passive, with no doer mentioned. See Learning → Passive Voice.")
+            RVNote("G. Passive — se with a 3rd-person verb makes a general/impersonal passive, with no doer mentioned. See Learning → Passive Voice.", bold = true)
             RVRow("Tento výrobek se vyrábí v Česku.", "This product is made in Czechia.", "")
             RVRow("Tady se mluví česky.", "Czech is spoken here.", "")
             RVRow("Jak se to píše?", "How is that spelled?", "")
@@ -199,10 +199,11 @@ private fun RVSection(text: String) {
 }
 
 @Composable
-private fun RVNote(text: String) {
+private fun RVNote(text: String, bold: Boolean = false) {
     Text(
         text = text,
         fontSize = 14.sp,
+        fontWeight = if (bold) FontWeight.Bold else FontWeight.Normal,
         color = Color.DarkGray,
         modifier = Modifier.padding(vertical = 4.dp)
     )
