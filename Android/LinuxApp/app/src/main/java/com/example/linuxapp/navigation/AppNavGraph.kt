@@ -121,11 +121,13 @@ import com.example.linuxapp.screens.kernel.AlternativeModuleCommScreen
 import com.example.linuxapp.screens.kernel.NotifierChainsScreen
 import com.example.linuxapp.screens.kernel.ErrorInjectionScreen
 import com.example.linuxapp.screens.kernel.KprobesScreen
+import com.example.linuxapp.screens.kernel.TracepointsScreen
 import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
 import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
 import com.example.linuxapp.screens.permissions.IoUringScreen
 import com.example.linuxapp.screens.permissions.DaemonsScreen
 import com.example.linuxapp.screens.permissions.NatVpnScreen
+import com.example.linuxapp.screens.permissions.LinuxSubsystemsScreen
 import com.example.linuxapp.screens.ebpf.AboutEbpfHubScreen
 import com.example.linuxapp.screens.ebpf.WritingEbpfHubScreen
 import com.example.linuxapp.screens.ebpf.EbpfBasicCSyntaxScreen
@@ -250,11 +252,13 @@ sealed class Screen(val route: String) {
     object NotifierChains              : Screen("notifier_chains")
     object KernelErrorInjection        : Screen("kernel_error_injection")
     object KernelKprobes               : Screen("kernel_kprobes")
+    object KernelTracepoints           : Screen("kernel_tracepoints")
     object EbpfModifyReturn            : Screen("ebpf_modify_return")
     object AdvancedElfFileFormat       : Screen("advanced_elf_file_format")
     object AdvancedIoUring             : Screen("advanced_io_uring")
     object AdvancedDaemons             : Screen("advanced_daemons")
     object AdvancedNatVpn              : Screen("advanced_nat_vpn")
+    object AdvancedLinuxSubsystems     : Screen("advanced_linux_subsystems")
     object EbpfBpftrace                : Screen("ebpf_bpftrace")
     object EbpfPersistency             : Screen("ebpf_persistency")
     object EbpfLsm                     : Screen("ebpf_lsm")
@@ -564,7 +568,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onElfFileFormat = { navController.navigate(Screen.AdvancedElfFileFormat.route) },
                 onIoUring = { navController.navigate(Screen.AdvancedIoUring.route) },
                 onDaemons = { navController.navigate(Screen.AdvancedDaemons.route) },
-                onNatVpn = { navController.navigate(Screen.AdvancedNatVpn.route) }
+                onNatVpn = { navController.navigate(Screen.AdvancedNatVpn.route) },
+                onLinuxSubsystems = { navController.navigate(Screen.AdvancedLinuxSubsystems.route) }
             )
         }
         composable(Screen.NamespacesHub.route) {
@@ -710,6 +715,9 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.AdvancedNatVpn.route) {
             NatVpnScreen(onBack = { navController.popBackStack() })
         }
+        composable(Screen.AdvancedLinuxSubsystems.route) {
+            LinuxSubsystemsScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.EbpfSharingData.route) {
             EbpfSharingDataScreen(onBack = { navController.popBackStack() })
         }
@@ -765,7 +773,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onAltModuleComm      = { navController.navigate(Screen.AlternativeModuleComm.route) },
                 onNotifierChains     = { navController.navigate(Screen.NotifierChains.route) },
                 onErrorInjection     = { navController.navigate(Screen.KernelErrorInjection.route) },
-                onKprobes            = { navController.navigate(Screen.KernelKprobes.route) }
+                onKprobes            = { navController.navigate(Screen.KernelKprobes.route) },
+                onTracepoints        = { navController.navigate(Screen.KernelTracepoints.route) }
             )
         }
         composable(Screen.SysCalls.route) {
@@ -809,6 +818,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.KernelKprobes.route) {
             KprobesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.KernelTracepoints.route) {
+            TracepointsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.EbpfModifyReturn.route) {
             EbpfModifyReturnScreen(onBack = { navController.popBackStack() })

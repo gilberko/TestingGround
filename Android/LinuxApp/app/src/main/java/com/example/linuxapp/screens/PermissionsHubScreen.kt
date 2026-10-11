@@ -60,7 +60,8 @@ fun PermissionsHubScreen(
     onElfFileFormat: () -> Unit,
     onIoUring: () -> Unit,
     onDaemons: () -> Unit,
-    onNatVpn: () -> Unit
+    onNatVpn: () -> Unit,
+    onLinuxSubsystems: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -246,6 +247,17 @@ fun PermissionsHubScreen(
                     PermissionsHubButton(
                         label = "NAT & VPN",
                         onClick = onNatVpn,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    PermissionsHubButton(
+                        label = "Linux Subsystems",
+                        onClick = onLinuxSubsystems,
                         modifier = Modifier.weight(1f)
                     )
                 }

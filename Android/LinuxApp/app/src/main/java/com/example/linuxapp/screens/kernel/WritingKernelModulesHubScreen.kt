@@ -55,7 +55,8 @@ fun WritingKernelModulesHubScreen(
     onAltModuleComm: () -> Unit,
     onNotifierChains: () -> Unit,
     onErrorInjection: () -> Unit,
-    onKprobes: () -> Unit
+    onKprobes: () -> Unit,
+    onTracepoints: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -148,6 +149,7 @@ fun WritingKernelModulesHubScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     WritingKernelModulesButton(label = "kprobes", modifier = Modifier.weight(1f), onClick = onKprobes)
+                    WritingKernelModulesButton(label = "Tracepoints", modifier = Modifier.weight(1f), onClick = onTracepoints)
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
