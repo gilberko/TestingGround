@@ -115,6 +115,7 @@ import com.example.developmentapp.screens.go.GoTypesInterfacesScreen
 import com.example.developmentapp.screens.go.GoStandardLibraryScreen
 import com.example.developmentapp.screens.stl.StlAtomicMemoryBarriersScreen
 import com.example.developmentapp.screens.stl.StlChronoScreen
+import com.example.developmentapp.screens.stl.StlOptionalScreen
 import com.example.developmentapp.screens.stl.StlFilesystemScreen
 import com.example.developmentapp.screens.stl.StlMemoryStringsScreen
 import com.example.developmentapp.screens.stl.StlAlgorithmsScreen
@@ -314,6 +315,7 @@ sealed class Screen(val route: String) {
     object StlFilesystem                 : Screen("stl_filesystem")
     object StlMemoryStrings              : Screen("stl_memory_strings")
     object StlAlgorithms                 : Screen("stl_algorithms")
+    object StlOptional                   : Screen("stl_optional")
     // Algorithms
     object AlgorithmsHub        : Screen("algorithms_hub")
     object BasicGraphAlgorithms : Screen("basic_graph_algorithms")
@@ -781,7 +783,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onChrono               = { navController.navigate(Screen.StlChrono.route) },
                 onFilesystem           = { navController.navigate(Screen.StlFilesystem.route) },
                 onMemoryStrings        = { navController.navigate(Screen.StlMemoryStrings.route) },
-                onAlgorithms           = { navController.navigate(Screen.StlAlgorithms.route) }
+                onAlgorithms           = { navController.navigate(Screen.StlAlgorithms.route) },
+                onOptional             = { navController.navigate(Screen.StlOptional.route) }
             )
         }
         composable(Screen.StlAsyncPromiseFuture.route)     { StlAsyncPromiseFutureScreen(onBack = { navController.popBackStack() }) }
@@ -790,6 +793,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.StlFilesystem.route)             { StlFilesystemScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.StlMemoryStrings.route)          { StlMemoryStringsScreen(onBack = { navController.popBackStack() }) }
         composable(Screen.StlAlgorithms.route)             { StlAlgorithmsScreen(onBack = { navController.popBackStack() }) }
+        composable(Screen.StlOptional.route)               { StlOptionalScreen(onBack = { navController.popBackStack() }) }
 
         // ── Assembly ──────────────────────────────────────────────────────
         composable(Screen.AssemblyHub.route) {

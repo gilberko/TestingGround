@@ -43,7 +43,8 @@ fun StlHubScreen(
     onChrono: () -> Unit,
     onFilesystem: () -> Unit,
     onMemoryStrings: () -> Unit,
-    onAlgorithms: () -> Unit
+    onAlgorithms: () -> Unit,
+    onOptional: () -> Unit
 ) {
     HubBackground {
     Scaffold(
@@ -87,6 +88,8 @@ fun StlHubScreen(
             StlButtonRow("STL Chrono", onChrono, "STL Filesystem", onFilesystem)
             Spacer(Modifier.height(12.dp))
             StlButtonRow("Memory and Strings", onMemoryStrings, "Algorithms", onAlgorithms)
+            Spacer(Modifier.height(12.dp))
+            StlSingleButton("STL Optional", onOptional)
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -105,6 +108,11 @@ private fun StlButtonRow(
         StlHubButton(label1, onClick1, Modifier.weight(1f))
         StlHubButton(label2, onClick2, Modifier.weight(1f))
     }
+}
+
+@Composable
+private fun StlSingleButton(label: String, onClick: () -> Unit) {
+    StlHubButton(label, onClick, Modifier.fillMaxWidth())
 }
 
 @Composable
