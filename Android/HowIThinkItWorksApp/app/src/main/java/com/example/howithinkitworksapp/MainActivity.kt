@@ -71,7 +71,10 @@ class MainActivity : ComponentActivity() {
                     composable("meditation_breathing") { MeditationBreathingScreen(navController) }
                     composable("meditation_body_scanning") { MeditationBodyScanningScreen(navController) }
                     composable("meditation_emotions") { MeditationEmotionsScreen(navController) }
-                    composable("motivation") { MotivationScreen(navController) }
+                    composable("motivation") { MotivationHubScreen(navController) }
+                    composable("motivation_about") { AboutMotivationScreen(navController) }
+                    composable("motivation_strategies") { MotivationStrategiesScreen(navController) }
+                    composable("motivation_mental_block") { MotivationMentalBlockScreen(navController) }
                     composable("about_music_hub") { AboutMusicHubScreen(navController) }
                     composable("about_music_rhythm") { AboutMusicRhythmScreen(navController) }
                     composable("about_music_motives") { AboutMusicMotivesScreen(navController) }

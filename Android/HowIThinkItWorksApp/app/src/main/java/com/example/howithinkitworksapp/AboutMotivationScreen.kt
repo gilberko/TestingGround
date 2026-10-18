@@ -17,10 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
-private val MotivationBg = Color(0xFF2D2D2D)
-private val MotivationHeading = Color(0xFFDDDDDD)
+private val AboutMotivationBg = Color(0xFF2D2D2D)
+private val AboutMotivationHeading = Color(0xFFDDDDDD)
 
-private val motivationSections = listOf(
+private val aboutMotivationSections = listOf(
     "The Logical Case Doesn't Land" to
         "We instinctively try to motivate others — or ourselves — by building a case: here are the reasons, here are the benefits, here is the evidence. It's logical. It's reasonable. And it very often doesn't work. The problem is that people already know what's good for them. They know they should exercise, save money, have the difficult conversation. The information was never the obstacle. Daniel Kahneman's distinction between System 1 (fast, emotional, automatic) and System 2 (slow, deliberate, rational) helps explain why: decisions are mostly driven by System 1, and System 2 is recruited mainly to justify and explain afterward. Telling someone the reasons may feel like persuasion, but you are usually talking to the justification layer — not the decision layer.",
 
@@ -44,11 +44,11 @@ private val motivationSections = listOf(
 )
 
 @Composable
-fun MotivationScreen(navController: NavController) {
+fun AboutMotivationScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MotivationBg)
+            .background(AboutMotivationBg)
             .padding(24.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,18 +56,18 @@ fun MotivationScreen(navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = "Motivation",
+            text = "About Motivation",
             fontSize = 26.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
             modifier = Modifier.padding(bottom = 24.dp)
         )
-        motivationSections.forEach { (heading, body) ->
+        aboutMotivationSections.forEach { (heading, body) ->
             Text(
                 text = heading,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = MotivationHeading,
+                color = AboutMotivationHeading,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
