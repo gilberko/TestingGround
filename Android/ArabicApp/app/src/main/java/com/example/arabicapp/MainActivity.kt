@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.arabicapp.screens.AdjectivesScreen
 import com.example.arabicapp.screens.AdverbsScreen
 import com.example.arabicapp.screens.LettersTransliterationScreen
+import com.example.arabicapp.screens.NounsSingularPluralScreen
 import com.example.arabicapp.screens.VerbConjugationOverviewScreen
 import com.example.arabicapp.screens.CommonAdjectivesScreen
 import com.example.arabicapp.screens.CommonAdverbsScreen
@@ -319,6 +320,11 @@ fun AppNavigation() {
         composable("verb_conjugation_overview") {
             ScreenWithBackButton(title = "Verb Conjugation Overview", onBack = { navController.popBackStack() }) {
                 VerbConjugationOverviewScreen()
+            }
+        }
+        composable("nouns_singular_plural") {
+            ScreenWithBackButton(title = "Nouns - Singular and Plural", onBack = { navController.popBackStack() }) {
+                NounsSingularPluralScreen()
             }
         }
     }

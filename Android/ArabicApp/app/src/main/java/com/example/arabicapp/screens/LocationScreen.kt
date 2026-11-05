@@ -24,6 +24,7 @@ fun LocationScreen() {
     ) {
         LcSectionHeader("Cardinal Directions")
         LcBodyText("north — شمال — shamal")
+        LcBodyText("    m — all compass directions are m and not normally counted (formal pl: جهات jihaat = directions)")
         LcBodyText("south — جنوب — junub")
         LcBodyText("west — غرب — gharb")
         LcBodyText("east — شرق — shar2")
@@ -53,6 +54,7 @@ fun LocationScreen() {
         LcBodyText("between — بين — bein  (e.g. بين البيتين = between the two houses)")
         LcBodyText("across from / opposite — قبالة — 2ibale  (e.g. قبالة المطعم = across from the restaurant)")
         LcBodyText("at the corner — على الزاوية — 3ala el-zawiyye")
+        LcBodyText("    zawiyye: f · 2: زاويتين zawytein · pl: زوايا zawaaya")
         LcBodyText("at the end of — على آخر — 3ala akhir  (e.g. على آخر الشارع = at the end of the street)")
 
         LcSectionHeader("Near and Far")
@@ -73,7 +75,9 @@ fun LocationScreen() {
         LcBodyText("on the left — على الشمال — 3ala el-shmal")
         LcBodyText("on the right — على اليمين — 3ala el-ymin")
         LcBodyText("at the traffic light — عند الإشارة — 3and el-ishara")
+        LcBodyText("    ishara: f · 2: إشارتين ishartein · pl: إشارات isharaat")
         LcBodyText("at the roundabout — عند الدوار — 3and el-dawar")
+        LcBodyText("    dawwar: m · 2: دوارين dawwarein · pl: دوارات dawwaraat")
         LcBodyText("after the — بعد — ba3d  (e.g. بعد الإشارة = after the traffic light)")
         LcBodyText("before the — قبل — 2abl  (e.g. قبل الجسر = before the bridge)")
         LcBodyText("continue — كمّل — kammil  (keep going)")
