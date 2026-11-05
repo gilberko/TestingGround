@@ -24,23 +24,23 @@ import androidx.compose.ui.unit.dp
 private data class MarketMeetingLine(val speaker: String, val ar: String, val translit: String, val en: String)
 
 private val marketMeetingDialogue = listOf(
-    MarketMeetingLine("T", "مرحبا!", "Marhaba!", "Hello!"),
+    MarketMeetingLine("T", "مرحبا!", "Mar7aba!", "Hello!"),
     MarketMeetingLine("L", "هلا، أهلاً!", "Hala, ahlan!", "Hi, welcome!"),
     MarketMeetingLine("T", "شو اسمك؟", "Shu ismak?", "What's your name?"),
-    MarketMeetingLine("L", "اسمي أحمد. وإنتا، شو اسمك؟", "Ismi Ahmad. W inta, shu ismak?", "My name is Ahmad. And you, what's your name?"),
+    MarketMeetingLine("L", "اسمي أحمد. وإنتا، شو اسمك؟", "Ismi A7mad. W inta, shu ismak?", "My name is Ahmad. And you, what's your name?"),
     MarketMeetingLine("T", "اسمي ماركو. تشرّفنا.", "Ismi Marco. Tsharrafna.", "My name is Marco. Nice to meet you."),
     MarketMeetingLine("L", "تشرّفنا! من وين إنتا؟", "Tsharrafna! Min wein inta?", "Nice to meet you! Where are you from?"),
     MarketMeetingLine("T", "أنا من إيطاليا. وإنتا؟", "Ana min Italia. W inta?", "I'm from Italy. And you?"),
     MarketMeetingLine("L", "أنا من هون، من البلد.", "Ana min hon, min el-balad.", "I'm from here, from the city."),
-    MarketMeetingLine("T", "الشوق كتير حلو! هاي أول مرة بيجي هون.", "El-shuk ktir hilu! Hayi awwal marra biji hon.", "The market is very beautiful! This is my first time here."),
+    MarketMeetingLine("T", "الشوق كتير حلو! هاي أول مرة بيجي هون.", "Is-suu2 ktir 7ilu! Hayi awwal marra biji hon.", "The market is very beautiful! This is my first time here."),
     MarketMeetingLine("L", "أهلاً فيك! بدك تشتري شي؟", "Ahlan fik! Biddak tishtiri shi?", "Welcome! Do you want to buy something?"),
-    MarketMeetingLine("T", "أيوا، بس ما بعرف من وين أبدأ.", "Aywa, bas ma ba'rif min wein abda.", "Yes, but I don't know where to start."),
-    MarketMeetingLine("L", "لازم تشتري زعتر — هون أحسن زعتر بالمنطقة.", "Lazem tishtiri za'tar — hon ahsan za'tar bi-el-mantika.", "You must buy za'atar — here is the best za'atar in the region."),
+    MarketMeetingLine("T", "أيوا، بس ما بعرف من وين أبدأ.", "Aywa, bas ma ba3rif min wein abda.", "Yes, but I don't know where to start."),
+    MarketMeetingLine("L", "لازم تشتري زعتر — هون أحسن زعتر بالمنطقة.", "Lazem tishtiri za3tar — hon a7san za3tar bil-mante2a.", "You must buy za'atar — here is the best za'atar in the region."),
     MarketMeetingLine("T", "والزيتون؟", "W el-zeitun?", "And olives?"),
-    MarketMeetingLine("L", "أيوا! الزيتون والزيت هون أحلى شي.", "Aywa! El-zeitun w el-zeit hon ahla shi.", "Yes! Olives and olive oil here are the best thing."),
+    MarketMeetingLine("L", "أيوا! الزيتون والزيت هون أحلى شي.", "Aywa! El-zeitun w el-zeit hon a7la shi.", "Yes! Olives and olive oil here are the best thing."),
     MarketMeetingLine("T", "ووين بشتري كنافة؟ بدي أجرب.", "W wein bishtiri knafe? Biddi ujrib.", "And where do I buy knafeh? I want to try it."),
-    MarketMeetingLine("L", "روح عالمحل اللي قدام البوابة — أحسن كنافة بالبلد.", "Ruh 'al-mahall illi 'uddam el-bawwabe — ahsan knafe bi-el-balad.", "Go to the shop in front of the gate — the best knafeh in town."),
-    MarketMeetingLine("T", "شكراً كتير، أحمد! إنتا كتير لطيف.", "Shukran ktir, Ahmad! Inta ktir latif.", "Thank you very much, Ahmad! You are very kind."),
+    MarketMeetingLine("L", "روح عالمحل اللي قدام البوابة — أحسن كنافة بالبلد.", "Ru7 3al-ma7all illi 2uddam el-bawwabe — a7san knafe bi-el-balad.", "Go to the shop in front of the gate — the best knafeh in town."),
+    MarketMeetingLine("T", "شكراً كتير، أحمد! إنتا كتير لطيف.", "Shukran ktir, A7mad! Inta ktir latif.", "Thank you very much, Ahmad! You are very kind."),
     MarketMeetingLine("L", "أهلاً فيك! تشرّفنا.", "Ahlan fik! Tsharrafna.", "You're welcome! Nice meeting you.")
 )
 

@@ -25,7 +25,7 @@ fun VowelsScreen() {
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         VowSectionHeader("Arabic Is an Abjad — No Vowel Letters")
-        VowBodyText("Arabic, like Hebrew, is an abjad: all 28 letters are consonants. There are no dedicated vowel letters. Short vowel sounds are indicated by small diacritical marks called حَرَكَات (harakat, \"movements\") placed above or below letters.")
+        VowBodyText("Arabic, like Hebrew, is an abjad: all 28 letters are consonants. There are no dedicated vowel letters. Short vowel sounds are indicated by small diacritical marks called حَرَكَات (7arakat, \"movements\") placed above or below letters.")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("In everyday writing — newspapers, books, street signs, social media — these marks are entirely omitted. Fluent readers infer the vowels from context and familiarity with the language.")
         Spacer(modifier = Modifier.height(8.dp))
@@ -36,7 +36,7 @@ fun VowelsScreen() {
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("About the notation: when you see a symbol like ـَ, the horizontal stroke ـ is a kashida (tatweel) — just a placeholder representing any consonant. The small mark above or below it is the actual vowel sign.")
         Spacer(modifier = Modifier.height(8.dp))
-        VowBodyText("┄ Side note: What is the kashida (كشيدة / tatweel)?")
+        VowBodyText("┄ Side note: What is the kashida (كشيدة kashiide / tatweel)?")
         VowBodyText("The kashida is an elongation stroke — a horizontal line that stretches a letter wider. In normal Arabic text it is used for visual emphasis or typographic justification, similar to how a designer might stretch a word to fill a line. You will see it in calligraphy, decorative text, and occasionally in informal writing for emphasis (like stretching a word to express excitement — بِالضَّبْطـ = \"exactlyyyy\").")
         VowBodyText("Is it common? In print and formal writing: no — it is considered informal or decorative and most text avoids it. In handwritten notes and social media: yes, occasionally. In language-learning notation (like this app): it appears specifically as a stand-in letter to show a vowel mark in isolation, because the mark needs something to sit on.")
         VowBodyText("The short answer: you will recognize it when you see it, but you won't need to type it in most contexts.")
@@ -62,7 +62,7 @@ fun VowelsScreen() {
         VowBodyText("These three marks, combined with the 28 consonants, produce the full range of basic Arabic syllables.")
 
         VowSectionHeader("No Vowel: Sukun")
-        VowBodyText("Sukun (سكون, \"silence\") — written: ـْ")
+        VowBodyText("Sukun (سكون sukuun, \"silence\") — written: ـْ")
         VowLargeDisplay("نْ")
         VowBodyText("Placed on a consonant to show it has NO following vowel — the consonant is \"bare.\" This occurs at the end of closed syllables or in consonant clusters.")
         Spacer(modifier = Modifier.height(8.dp))
@@ -71,7 +71,7 @@ fun VowelsScreen() {
         VowBodyText("Hebrew parallel: shva nach (שְׁוָא נָח) — the two dots under a letter indicating a silent/reduced vowel.")
 
         VowSectionHeader("Doubled Consonant: Shadda")
-        VowBodyText("Shadda (شدة, \"intensity\") — written: ـّ")
+        VowBodyText("Shadda (شدة shadde, \"intensity\") — written: ـّ")
         VowLargeDisplay("رّ")
         VowBodyText("Placed on a consonant to geminate it — the consonant is written once but pronounced twice (doubled). You hold the consonant slightly longer.")
         Spacer(modifier = Modifier.height(8.dp))
@@ -84,7 +84,7 @@ fun VowelsScreen() {
         VowBodyText("Hebrew parallel: dagesh chazak (דָּגֵשׁ חָזָק) — the dot inside a letter that doubles it, as in כַּלָּה (kalla = bride) vs כָּלָה (kala = she finished).")
 
         VowSectionHeader("Tanwin — Adding an \"n\" Sound")
-        VowBodyText("Tanwin (تنوين, \"nunation\") is formed by doubling a vowel mark. This adds an \"n\" sound at the end of the word. Your instinct was right: the \"i\" (or \"ee\") sound gains an \"n\" suffix and becomes \"in\" (or \"een\").")
+        VowBodyText("Tanwin (تنوين tanwiin, \"nunation\") is formed by doubling a vowel mark. This adds an \"n\" sound at the end of the word. Your instinct was right: the \"i\" (or \"ee\") sound gains an \"n\" suffix and becomes \"in\" (or \"een\").")
         Spacer(modifier = Modifier.height(8.dp))
         VowBodyText("Fathatan — written: ـً (two fathas)")
         VowBodyText("Sound: \"an\" at the end of the word.")

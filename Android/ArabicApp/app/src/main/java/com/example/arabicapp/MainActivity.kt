@@ -29,6 +29,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.arabicapp.screens.AdjectivesScreen
 import com.example.arabicapp.screens.AdverbsScreen
+import com.example.arabicapp.screens.LettersTransliterationScreen
+import com.example.arabicapp.screens.VerbConjugationOverviewScreen
 import com.example.arabicapp.screens.CommonAdjectivesScreen
 import com.example.arabicapp.screens.CommonAdverbsScreen
 import com.example.arabicapp.screens.CommonVerbsScreen
@@ -307,6 +309,16 @@ fun AppNavigation() {
         composable("imperative") {
             ScreenWithBackButton(title = "Imperative", onBack = { navController.popBackStack() }) {
                 ImperativeScreen()
+            }
+        }
+        composable("letters_transliteration") {
+            ScreenWithBackButton(title = "Letters Transliteration", onBack = { navController.popBackStack() }) {
+                LettersTransliterationScreen()
+            }
+        }
+        composable("verb_conjugation_overview") {
+            ScreenWithBackButton(title = "Verb Conjugation Overview", onBack = { navController.popBackStack() }) {
+                VerbConjugationOverviewScreen()
             }
         }
     }

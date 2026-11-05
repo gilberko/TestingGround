@@ -62,11 +62,15 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("present_tense") }, modifier = Modifier.weight(1f)) { Text("Present Tense") }
             Button(onClick = { navController.navigate("continuous") }, modifier = Modifier.weight(1f)) { Text("Continuous") }
         }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("imperative") }, modifier = Modifier.weight(1f)) { Text("Imperative") }
+            Button(onClick = { navController.navigate("letters_transliteration") }, modifier = Modifier.weight(1f)) { Text("Letters Transliteration") }
+        }
         Button(
-            onClick = { navController.navigate("imperative") },
+            onClick = { navController.navigate("verb_conjugation_overview") },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Imperative")
+            Text("Verb Conjugation Overview")
         }
     }
 }

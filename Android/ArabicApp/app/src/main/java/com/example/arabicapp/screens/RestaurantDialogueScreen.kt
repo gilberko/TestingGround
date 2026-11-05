@@ -25,23 +25,23 @@ private data class RestaurantDLine(val speaker: String, val ar: String, val tran
 
 private val restaurantDDialogue = listOf(
     RestaurantDLine("W", "مسا الخير! أهلاً وسهلاً.", "Masa el-khir! Ahlan w sahlan.", "Good evening! Welcome."),
-    RestaurantDLine("A", "مسا النور! منيح، شكراً.", "Masa el-nur! Mnih, shukran.", "Good evening! Fine, thank you."),
+    RestaurantDLine("A", "مسا النور! منيح، شكراً.", "Masa el-nur! Mni7, shukran.", "Good evening! Fine, thank you."),
     RestaurantDLine("W", "بدكم تشوفوا المنيو؟", "Biddkum tshufu el-minyu?", "Would you like to see the menu?"),
     RestaurantDLine("B", "أيوا، من فضلك.", "Aywa, min fadlak.", "Yes, please."),
-    RestaurantDLine("W", "تفضّلوا. اليوم عنّا منسف، مقلوبة، وفرّوج مشوي.", "Tfaddalu. El-yom indna mansaf, maqlube, w farrouj mashwi.", "Here you go. Today we have mansaf, maqluba, and grilled chicken."),
+    RestaurantDLine("W", "تفضّلوا. اليوم عنّا منسف، مقلوبة، وفرّوج مشوي.", "Tfaddalu. El-yom 3inna mansaf, ma2lube, w farrouj mashwi.", "Here you go. Today we have mansaf, maqluba, and grilled chicken."),
     RestaurantDLine("A", "شو هو المنسف؟", "Shu huwwe el-mansaf?", "What is mansaf?"),
-    RestaurantDLine("W", "المنسف طبخة وطنية — لحمة غنم مع رز وصلص الجميد. كتير لذيذ.", "El-mansaf tabkha wataniyye — lahme ghanam ma' ruzz w sals el-jameed. Ktir laziz.", "Mansaf is a national dish — lamb with rice and jameed sauce. Very delicious."),
-    RestaurantDLine("B", "والمقلوبة؟", "W el-maqlube?", "And the maqluba?"),
-    RestaurantDLine("W", "المقلوبة رز مع خضرا ودجاج. بينحبّوها الكل.", "El-maqlube ruzz ma' khudra w djaj. Byinhbbuha el-kull.", "Maqluba is rice with vegetables and chicken. Everyone loves it."),
-    RestaurantDLine("B", "بدي فرّوج مشوي. بكم؟", "Biddi farrouj mashwi. Bi'kam?", "I'd like the grilled chicken. How much is it?"),
+    RestaurantDLine("W", "المنسف طبخة وطنية — لحمة غنم مع رز وصلص الجميد. كتير لذيذ.", "El-mansaf tabkha wataniyye — la7me ghanam ma3 ruzz w sals el-jameed. Ktir laziz.", "Mansaf is a national dish — lamb with rice and jameed sauce. Very delicious."),
+    RestaurantDLine("B", "والمقلوبة؟", "W il-ma2lube?", "And the maqluba?"),
+    RestaurantDLine("W", "المقلوبة رز مع خضرا ودجاج. بينحبّوها الكل.", "El-ma2lube ruzz ma3 khudra w djaj. Bin7ibbuha el-kull.", "Maqluba is rice with vegetables and chicken. Everyone loves it."),
+    RestaurantDLine("B", "بدي فرّوج مشوي. بكم؟", "Biddi farrouj mashwi. Bikam?", "I'd like the grilled chicken. How much is it?"),
     RestaurantDLine("W", "بثمانية وعشرين شيكل.", "Bi tmaniyye w ishrin shekel.", "Twenty-eight shekels."),
-    RestaurantDLine("A", "بدي منسف. بكم؟", "Biddi mansaf. Bi'kam?", "I'd like the mansaf. How much is it?"),
+    RestaurantDLine("A", "بدي منسف. بكم؟", "Biddi mansaf. Bikam?", "I'd like the mansaf. How much is it?"),
     RestaurantDLine("W", "بخمسة وثلاثين شيكل.", "Bi khamse w talatin shekel.", "Thirty-five shekels."),
     RestaurantDLine("A", "كويّس. وشو في للمشرب؟", "Kwayyes. W shu fi lil-mashreb?", "Good. And what do you have to drink?"),
-    RestaurantDLine("W", "عندنا قهوة، شاي، عصير، وماء.", "Indna 'ahwe, shai, 'asir, w mayy.", "We have coffee, tea, juice, and water."),
+    RestaurantDLine("W", "عندنا قهوة، شاي، عصير، وماء.", "Indna 2ahwe, shai, 3asir, w mayy.", "We have coffee, tea, juice, and water."),
     RestaurantDLine("B", "بدي شاي، شكراً.", "Biddi shai, shukran.", "I'd like tea, thank you."),
-    RestaurantDLine("A", "وأنا بدي قهوة، لو سمحت.", "W ana biddi 'ahwe, law samaht.", "And I'd like coffee, please."),
-    RestaurantDLine("W", "تمام! بيجي عالطول.", "Tamam! Byeji 'ala tool.", "Alright! Coming right away.")
+    RestaurantDLine("A", "وأنا بدي قهوة، لو سمحت.", "W ana biddi 2ahwe, law sama7t.", "And I'd like coffee, please."),
+    RestaurantDLine("W", "تمام! بيجي عالطول.", "Tamam! Byeji 3at-tool.", "Alright! Coming right away.")
 )
 
 @Composable
