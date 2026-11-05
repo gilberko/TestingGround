@@ -245,7 +245,8 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("možná", "maybe / perhaps", "the most common word for 'maybe'. Možná přijdu. = Maybe I'll come. Goes at the start of the clause or after the verb. Neutral in tone.")
             BWRow("snad", "perhaps / hopefully", "softer than možná — often carries a hopeful tone. Snad to půjde. = Hopefully it'll work out.")
             BWRow("asi", "probably / approximately", "expresses likelihood. Asi přijde. = He'll probably come. Also used for rough numbers: asi deset = about ten.")
-            BWRow("něco", "something", "Něco vidím. = I see something. Něco k jídlu? = Something to eat?")
+            BWRow("třeba", "maybe / for example", "colloquial: Třeba přijde. = Maybe he'll come. Also 'for example': Vezmi si třeba jablko. = Take an apple, for example. In je třeba it means 'it is necessary': Je třeba to udělat. = It needs to be done.")
+            BWRow("něco", "something","Něco vidím. = I see something. Něco k jídlu? = Something to eat?")
             BWRow("někdo", "someone / somebody", "Někdo zvoní. = Someone is ringing (the bell).")
             BWRow("někde", "somewhere", "Někde jsem to viděl. = I saw it somewhere.")
             BWRow("někdy", "sometimes / sometime", "Někdy chodím do kina. = I sometimes go to the cinema. Also: Přijď někdy. = Come by sometime.")
@@ -338,7 +339,9 @@ fun BasicWordsScreen(navController: NavController) {
             BWNote("These two adverbs are the Czech equivalents of Russian ещё and уже. They mark whether an action is ongoing or has finished — together they cover most uses of English 'still', 'already', 'yet', 'anymore', and 'one more'.")
             BWRow("ještě", "still / yet / more", "ongoing or additional. Ještě pracuju. = I'm still working. Ještě jedno pivo. = One more beer. Ještě ne. = Not yet.")
             BWRow("už", "already / now (with negation: anymore)", "completed or changed state. Už jsem doma. = I'm already home. Už nepracuju. = I don't work anymore.")
-            BWRow("ještě ne", "not yet", "Ještě ne, počkej chvíli. = Not yet, wait a moment.")
+            BWRow("pořád", "still / all the time / constantly", "colloquial and very common: Pořád tu bydlí. = He still lives here. Pořád prší. = It keeps raining (all the time). Can sound slightly annoyed: Pořád si stěžuješ! = You're always complaining!")
+            BWRow("stále", "still / constantly", "more neutral / formal equivalent of pořád: Stále pracuje. = He is still working.")
+            BWRow("ještě ne", "not yet","Ještě ne, počkej chvíli. = Not yet, wait a moment.")
             BWRow("už ano / už jo", "already / yes already", "Už ano. = Yes, already. / Affirmative answer to 'Are you done yet?'")
             BWRow("ještě jednou", "one more time / once more", "Zopakuj to ještě jednou. = Repeat it one more time.")
             BWRow("ještě nikdy", "never yet / never before", "double negative with a negated verb: Ještě nikdy jsem tam nebyl. = I've never been there before.")
@@ -407,6 +410,38 @@ fun BasicWordsScreen(navController: NavController) {
             BWRow("za chvíli", "in a moment / in a little while", "near future. Přijdu za chvíli. = I'll come in a moment.")
             BWRow("před chvílí", "a moment ago / just now", "Byl tady před chvílí. = He was here a moment ago.")
             BWRow("chvíli počkej", "wait a moment", "casual imperative. Chvíli počkej, hned jsem. = Wait a moment, I'll be right there.")
+
+            // ── Because Of — Kvůli ────────────────────────────────────────
+            BWSection("Because Of — Kvůli")
+            BWRow("kvůli + dat.", "because of / for the sake of", "a preposition — always followed by the Dative case")
+            BWRow("Kvůli válce museli odejít.", "Because of the war, they had to leave.", "válka (war) → Dative válce")
+            BWRow("Nejeli jsme kvůli špatnému počasí.", "We didn't go because of the bad weather.", "špatné počasí → Dative špatnému počasí")
+            BWRow("Udělal jsem to kvůli tobě.", "I did it because of you / for your sake.", "ty → Dative tobě")
+            BWNote("kvůli + noun gives the cause; protože + a full clause does the same with a verb: Odešli kvůli válce. = Odešli, protože byla válka. (They left because there was a war.) The genitive (kvůli války) is a regional dialect form — standard Czech uses the Dative.")
+
+            // ── Possible & Not Possible — Lze / Nelze ─────────────────────
+            BWSection("Possible & Not Possible — Lze / Nelze")
+            BWRow("lze", "it is possible / one can", "formal, impersonal + infinitive: Lze platit kartou. = One can pay by card.")
+            BWRow("nelze", "it is not possible / one cannot", "Tady nelze parkovat. = Parking is not possible here. Na to nelze zapomenout. = That can't be forgotten.")
+            BWNote("lze / nelze never change form — no person, no gender, no tense of their own (past: bylo možné / nebylo možné). Very common on signs, in instructions and in official texts. In everyday speech people usually say jde / nejde (To nejde. = That's not possible / It doesn't work.) or je možné / není možné.")
+
+            // ── Allowed, Not Allowed & Forbidden ──────────────────────────
+            BWSection("Allowed, Not Allowed & Forbidden")
+            BWRow("dovoleno / povoleno", "allowed / permitted", "Je to dovoleno? = Is it allowed? Parkování povoleno. = Parking permitted.")
+            BWRow("smí se", "one may / it's allowed", "impersonal form of smět (to be allowed): Smí se tu kouřit? = Is smoking allowed here?")
+            BWRow("nesmí se", "one must not / not allowed", "Tady se nesmí kouřit. = You can't smoke here. Personal: Nesmíš to říct. = You mustn't say it.")
+            BWRow("není dovoleno / není povoleno", "is not allowed / not permitted", "Fotografování není dovoleno. = Photography is not allowed.")
+            BWRow("zakázáno", "forbidden / prohibited", "official and strong: Kouření je zakázáno. = Smoking is forbidden.")
+            BWRow("zákaz + gen.", "ban / prohibition (noun)", "the typical sign wording: Zákaz kouření = No smoking. Zákaz vstupu = No entry. Zákaz vjezdu = No entry for vehicles.")
+            BWNote("dovolen / povolen / zakázán agree with the noun: Vstup zakázán. (m.) · Kouření zakázáno. (n.) · Ta kniha je zakázaná / zakázána. (f.). For must / have to / need to and the verbs dovolit / zakázat, see Simple Dictionary → Need To, Have To, Allowed.")
+
+            // ── Correct, Super & Examples ─────────────────────────────────
+            BWSection("Correct, Super & Examples")
+            BWRow("správný / správná / správné", "correct / right (adj.)", "agrees in gender: správný čas (m.), správná odpověď (f.) = the correct answer, správné řešení (n.)")
+            BWRow("správně", "correctly / That's right!", "adverb: Odpověděl správně. = He answered correctly. On its own as a reply: Správně! = Correct! / Right!")
+            BWRow("super", "super / great", "colloquial loanword — never changes its ending: To je super! = That's great! super film, super den. Standard alternative: skvělý / skvělé (To je skvělé!).")
+            BWRow("příklad", "example", "masculine noun: Dej mi příklad. = Give me an example. Plural: příklady.")
+            BWRow("například (např.)", "for example / e.g.", "Mám rád ovoce, například jablka. = I like fruit, for example apples. Colloquial: třeba. Literary: kupříkladu.")
 
             // ── For A Long Time — Dlouho ──────────────────────────────────
             BWSection("For A Long Time — Dlouho")
