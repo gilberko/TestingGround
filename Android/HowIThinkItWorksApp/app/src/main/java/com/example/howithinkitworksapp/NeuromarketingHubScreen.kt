@@ -27,7 +27,8 @@ fun NeuromarketingHubScreen(navController: NavController) {
         "Get Them To Act" to "get_them_to_act",
         "Storytelling — Keeping the Attention" to "storytelling_attention",
         "Do People Listen?" to "do_people_listen",
-        "What Will They Remember?" to "what_will_they_remember"
+        "What Will They Remember?" to "what_will_they_remember",
+        "Political Activist Groups" to "political_activist_groups"
     )
     HubBackground {
     Column(

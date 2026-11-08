@@ -87,6 +87,7 @@ class MainActivity : ComponentActivity() {
                     composable("storytelling_attention") { StorytellingScreen(navController) }
                     composable("do_people_listen") { DoPeopleListenScreen(navController) }
                     composable("what_will_they_remember") { WhatWillTheyRememberScreen(navController) }
+                    composable("political_activist_groups") { PoliticalActivistGroupsScreen(navController) }
                     composable("avoidance") { AvoidanceScreen(navController) }
                     composable("pondering_hub") { PonderingHubScreen(navController) }
                     composable("boredom") { BoredomScreen(navController) }
