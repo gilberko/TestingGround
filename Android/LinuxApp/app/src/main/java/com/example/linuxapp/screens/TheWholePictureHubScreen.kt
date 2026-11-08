@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ButtonDefaults
@@ -40,7 +42,10 @@ fun TheWholePictureHubScreen(
     onBack: () -> Unit,
     onFileAccessWhole: () -> Unit,
     onMemoryAccessWhole: () -> Unit,
-    onProcessScheduling: () -> Unit
+    onProcessScheduling: () -> Unit,
+    onRcuGracePeriod: () -> Unit,
+    onPreemption: () -> Unit,
+    onInterruptTriggering: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -68,6 +73,7 @@ fun TheWholePictureHubScreen(
                     .fillMaxSize()
                     .padding(innerPadding)
                     .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -92,6 +98,27 @@ fun TheWholePictureHubScreen(
                     WholePictureButton(
                         label = "Process\nScheduling",
                         onClick = onProcessScheduling,
+                        modifier = Modifier.weight(1f)
+                    )
+                    WholePictureButton(
+                        label = "RCU Grace\nPeriod",
+                        onClick = onRcuGracePeriod,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    WholePictureButton(
+                        label = "Preemption",
+                        onClick = onPreemption,
+                        modifier = Modifier.weight(1f)
+                    )
+                    WholePictureButton(
+                        label = "Interrupt\nTriggering",
+                        onClick = onInterruptTriggering,
                         modifier = Modifier.weight(1f)
                     )
                 }

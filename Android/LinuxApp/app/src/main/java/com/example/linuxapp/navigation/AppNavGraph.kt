@@ -122,6 +122,11 @@ import com.example.linuxapp.screens.kernel.NotifierChainsScreen
 import com.example.linuxapp.screens.kernel.ErrorInjectionScreen
 import com.example.linuxapp.screens.kernel.KprobesScreen
 import com.example.linuxapp.screens.kernel.TracepointsScreen
+import com.example.linuxapp.screens.kernel.SymbolsTracingDebuggingHubScreen
+import com.example.linuxapp.screens.kernel.RcuGracePeriodScreen
+import com.example.linuxapp.screens.kernel.PreemptionScreen
+import com.example.linuxapp.screens.kernel.InterruptTriggeringScreen
+import com.example.linuxapp.screens.LinuxCommandsHubScreen
 import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
 import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
 import com.example.linuxapp.screens.permissions.IoUringScreen
@@ -280,6 +285,11 @@ sealed class Screen(val route: String) {
     object LinuxDistributions          : Screen("linux_distributions")
     object LinuxOnOtherOs              : Screen("linux_on_other_os")
     object KernelPatching              : Screen("kernel_patching")
+    object LinuxCommandsHub            : Screen("linux_commands_hub")
+    object SymbolsTracingDebuggingHub  : Screen("symbols_tracing_debugging_hub")
+    object FlowsRcuGracePeriod         : Screen("flows_rcu_grace_period")
+    object FlowsPreemption             : Screen("flows_preemption")
+    object FlowsInterruptTriggering    : Screen("flows_interrupt_triggering")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -297,10 +307,8 @@ fun AppNavGraph(navController: NavHostController) {
 
         composable(Screen.Home.route) {
             HomeScreen(
-                onLinuxUsage = { navController.navigate(Screen.LinuxUsage.route) },
-                onLinuxUsage2 = { navController.navigate(Screen.LinuxUsage2.route) },
-                onLinuxUsage3 = { navController.navigate(Screen.LinuxUsage3.route) },
-                onShellScripting = { navController.navigate(Screen.ShellScripting.route) },
+                onCommandsAndScripting = { navController.navigate(Screen.LinuxCommandsHub.route) },
+                onFlowsUnderTheHood = { navController.navigate(Screen.TheWholePictureHub.route) },
                 onLinuxHistory = { navController.navigate(Screen.LinuxHistory.route) },
                 onIdes = { navController.navigate(Screen.LinuxIdes.route) },
                 onPackageManagers = { navController.navigate(Screen.LinuxPackageManagers.route) },
@@ -348,24 +356,48 @@ fun AppNavGraph(navController: NavHostController) {
             KernelHubScreen(
                 onBack = { navController.popBackStack() },
                 onWritingKernelModules = { navController.navigate(Screen.WritingKernelModulesHub.route) },
+                onSymbolsTracingDebugging = { navController.navigate(Screen.SymbolsTracingDebuggingHub.route) },
                 onLowLevel = { navController.navigate(Screen.KernelLowLevel.route) },
                 onOsStructs = { navController.navigate(Screen.KernelOsStructs.route) },
                 onLowLevel2 = { navController.navigate(Screen.KernelLowLevel2.route) },
-                onDebugging = { navController.navigate(Screen.KernelDebugging.route) },
                 onDataStructures = { navController.navigate(Screen.KernelDataStructures.route) },
                 onVfs = { navController.navigate(Screen.KernelVfs.route) },
-                onTheWholePicture = { navController.navigate(Screen.TheWholePictureHub.route) },
                 onMemoryManagement = { navController.navigate(Screen.KernelMemoryManagement.route) },
                 onForkClone = { navController.navigate(Screen.KernelForkClone.route) },
                 onDkms = { navController.navigate(Screen.KernelDkms.route) },
                 onSysCalls = { navController.navigate(Screen.SysCalls.route) },
-                onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
                 onAddingFiles = { navController.navigate(Screen.KernelAddingFiles.route) },
                 onSecurityFeatures = { navController.navigate(Screen.KernelSecurityFeatures.route) },
                 onPatching = { navController.navigate(Screen.KernelPatching.route) }
             )
         }
 
+        composable(Screen.LinuxCommandsHub.route) {
+            LinuxCommandsHubScreen(
+                onBack = { navController.popBackStack() },
+                onLinuxCommands = { navController.navigate(Screen.LinuxUsage.route) },
+                onMoreLinuxCommands = { navController.navigate(Screen.LinuxUsage2.route) },
+                onYetMoreLinuxCommands = { navController.navigate(Screen.LinuxUsage3.route) },
+                onShellScripting = { navController.navigate(Screen.ShellScripting.route) }
+            )
+        }
+        composable(Screen.SymbolsTracingDebuggingHub.route) {
+            SymbolsTracingDebuggingHubScreen(
+                onBack = { navController.popBackStack() },
+                onKallsyms = { navController.navigate(Screen.Kallsyms.route) },
+                onKernelDebugging = { navController.navigate(Screen.KernelDebugging.route) },
+                onTracepoints = { navController.navigate(Screen.KernelTracepoints.route) }
+            )
+        }
+        composable(Screen.FlowsRcuGracePeriod.route) {
+            RcuGracePeriodScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.FlowsPreemption.route) {
+            PreemptionScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.FlowsInterruptTriggering.route) {
+            InterruptTriggeringScreen(onBack = { navController.popBackStack() })
+        }
         composable(Screen.LinuxDistributions.route) {
             LinuxDistributionsScreen(onBack = { navController.popBackStack() })
         }
@@ -673,7 +705,10 @@ fun AppNavGraph(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onFileAccessWhole = { navController.navigate(Screen.KernelFileAccessWhole.route) },
                 onMemoryAccessWhole = { navController.navigate(Screen.KernelMemoryAccessWhole.route) },
-                onProcessScheduling = { navController.navigate(Screen.KernelProcessSchedulingWhole.route) }
+                onProcessScheduling = { navController.navigate(Screen.KernelProcessSchedulingWhole.route) },
+                onRcuGracePeriod = { navController.navigate(Screen.FlowsRcuGracePeriod.route) },
+                onPreemption = { navController.navigate(Screen.FlowsPreemption.route) },
+                onInterruptTriggering = { navController.navigate(Screen.FlowsInterruptTriggering.route) }
             )
         }
         composable(Screen.KernelProcessSchedulingWhole.route) {
@@ -773,8 +808,7 @@ fun AppNavGraph(navController: NavHostController) {
                 onAltModuleComm      = { navController.navigate(Screen.AlternativeModuleComm.route) },
                 onNotifierChains     = { navController.navigate(Screen.NotifierChains.route) },
                 onErrorInjection     = { navController.navigate(Screen.KernelErrorInjection.route) },
-                onKprobes            = { navController.navigate(Screen.KernelKprobes.route) },
-                onTracepoints        = { navController.navigate(Screen.KernelTracepoints.route) }
+                onKprobes            = { navController.navigate(Screen.KernelKprobes.route) }
             )
         }
         composable(Screen.SysCalls.route) {

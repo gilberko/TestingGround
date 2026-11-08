@@ -33,7 +33,7 @@ fun LinuxUsage3Screen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "Linux Usage 3",
+                        "Yet More Linux Commands",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp

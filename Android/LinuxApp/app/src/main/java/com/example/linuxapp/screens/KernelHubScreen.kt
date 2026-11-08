@@ -43,18 +43,16 @@ import androidx.compose.ui.unit.sp
 fun KernelHubScreen(
     onBack: () -> Unit,
     onWritingKernelModules: () -> Unit,
+    onSymbolsTracingDebugging: () -> Unit,
     onLowLevel: () -> Unit,
     onOsStructs: () -> Unit,
     onLowLevel2: () -> Unit,
-    onDebugging: () -> Unit,
     onDataStructures: () -> Unit,
     onVfs: () -> Unit,
-    onTheWholePicture: () -> Unit,
     onMemoryManagement: () -> Unit,
     onForkClone: () -> Unit,
     onDkms: () -> Unit,
     onSysCalls: () -> Unit,
-    onKallsyms: () -> Unit,
     onAddingFiles: () -> Unit,
     onSecurityFeatures: () -> Unit,
     onPatching: () -> Unit
@@ -109,7 +107,7 @@ fun KernelHubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Kernel Debugging", modifier = Modifier.weight(1f), onClick = onDebugging)
+                KernelButton(label = "Linux Symbols,\nTracing and\nDebugging", modifier = Modifier.weight(1f), onClick = onSymbolsTracingDebugging)
                 KernelButton(label = "Kernel Data\nStructures", modifier = Modifier.weight(1f), onClick = onDataStructures)
             }
             Spacer(modifier = Modifier.height(12.dp))
@@ -118,30 +116,22 @@ fun KernelHubScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 KernelButton(label = "VFS", modifier = Modifier.weight(1f), onClick = onVfs)
-                KernelButton(label = "The Whole\nPicture", modifier = Modifier.weight(1f), onClick = onTheWholePicture)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "Memory\nManagement", modifier = Modifier.weight(1f), onClick = onMemoryManagement)
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 KernelButton(label = "fork() and\nclone()", modifier = Modifier.weight(1f), onClick = onForkClone)
-            }
-            Spacer(modifier = Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
                 KernelButton(label = "DKMS", modifier = Modifier.weight(1f), onClick = onDkms)
-                KernelButton(label = "Sys Calls", modifier = Modifier.weight(1f), onClick = onSysCalls)
             }
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                KernelButton(label = "Symbols and\nkallsyms", modifier = Modifier.weight(1f), onClick = onKallsyms)
+                KernelButton(label = "Sys Calls", modifier = Modifier.weight(1f), onClick = onSysCalls)
                 KernelButton(label = "Adding Files\nto the Kernel", modifier = Modifier.weight(1f), onClick = onAddingFiles)
             }
             Spacer(modifier = Modifier.height(12.dp))
