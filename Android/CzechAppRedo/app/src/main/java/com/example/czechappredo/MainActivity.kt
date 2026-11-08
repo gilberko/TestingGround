@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
                 composable("letters_pronunciation") { LettersPronunciationScreen(navController) }
                 composable("nouns_demonstratives") { NounsAndDemonstrativesScreen(navController) }
                 composable("cases") { CasesScreen(navController) }
+                composable("noun_conjugation_by_endings") { NounConjugationByEndingsScreen(navController) }
                 composable("present_tense") { PresentTenseVerbConjugationScreen(navController) }
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
@@ -274,6 +275,7 @@ fun LearningHubScreen(navController: NavController) {
             "Letters & Pronunciation" to "letters_pronunciation",
             "About Nouns And Basic Demonstratives" to "nouns_demonstratives",
             "Cases" to "cases",
+            "Noun Conjugation By Endings" to "noun_conjugation_by_endings",
             "Present Tense Verb Conjugation" to "present_tense",
             "Verbs Of Movement" to "verbs_of_movement",
             "Prepositions" to "prepositions",
