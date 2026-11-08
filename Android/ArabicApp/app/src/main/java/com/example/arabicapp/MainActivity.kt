@@ -27,6 +27,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.arabicapp.screens.PrepositionsConnectingWordsScreen
+import com.example.arabicapp.screens.ComparisonsScreen
+import com.example.arabicapp.screens.TechInterviewDialogueScreen
 import com.example.arabicapp.screens.AdjectivesScreen
 import com.example.arabicapp.screens.AdverbsScreen
 import com.example.arabicapp.screens.LettersTransliterationScreen
@@ -325,6 +328,21 @@ fun AppNavigation() {
         composable("nouns_singular_plural") {
             ScreenWithBackButton(title = "Nouns - Singular and Plural", onBack = { navController.popBackStack() }) {
                 NounsSingularPluralScreen()
+            }
+        }
+        composable("dict_prepositions_connecting") {
+            ScreenWithBackButton(title = "Prepositions and Connecting Words", onBack = { navController.popBackStack() }) {
+                PrepositionsConnectingWordsScreen()
+            }
+        }
+        composable("comparisons") {
+            ScreenWithBackButton(title = "Comparisons", onBack = { navController.popBackStack() }) {
+                ComparisonsScreen()
+            }
+        }
+        composable("tech_interview_dialogue") {
+            ScreenWithBackButton(title = "Tech Interview", onBack = { navController.popBackStack() }) {
+                TechInterviewDialogueScreen()
             }
         }
     }
