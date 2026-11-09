@@ -77,6 +77,7 @@ import com.example.arabicapp.screens.PresentTenseScreen
 import com.example.arabicapp.screens.SimpleConjugatedVerbsScreen
 import com.example.arabicapp.screens.DirectionsDialogueScreen
 import com.example.arabicapp.screens.ImperativeScreen
+import com.example.arabicapp.screens.PlacesAndEventsScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -339,6 +340,11 @@ fun AppNavigation() {
         composable("dict_prepositions_connecting") {
             ScreenWithBackButton(title = "Prepositions and Connecting Words", onBack = { navController.popBackStack() }) {
                 PrepositionsConnectingWordsScreen()
+            }
+        }
+        composable("dict_places_events") {
+            ScreenWithBackButton(title = "Places and Events", onBack = { navController.popBackStack() }) {
+                PlacesAndEventsScreen()
             }
         }
         composable("comparisons") {

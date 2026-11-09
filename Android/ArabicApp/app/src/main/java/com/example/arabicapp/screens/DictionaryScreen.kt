@@ -118,9 +118,18 @@ fun DictionaryScreen(navController: NavController) {
                 modifier = Modifier.weight(1f)
             ) { Text("Simple Conjugated Verbs") }
         }
-        Button(
-            onClick = { navController.navigate("dict_prepositions_connecting") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
-        ) { Text("Prepositions and Connecting Words") }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_prepositions_connecting") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Prepositions and Connecting Words") }
+            Button(
+                onClick = { navController.navigate("dict_places_events") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Places and Events") }
+        }
     }
 }
