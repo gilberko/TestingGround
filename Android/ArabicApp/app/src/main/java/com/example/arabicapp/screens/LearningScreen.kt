@@ -35,7 +35,7 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("negation") }, modifier = Modifier.weight(1f)) { Text("Negation") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("questions") }, modifier = Modifier.weight(1f)) { Text("Questions") }
+            Button(onClick = { navController.navigate("questions") }, modifier = Modifier.weight(1f)) { Text("Questions and Answers") }
             Button(onClick = { navController.navigate("subject_pronouns") }, modifier = Modifier.weight(1f)) { Text("Subject Pronouns") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {

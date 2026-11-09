@@ -23,6 +23,10 @@ fun DictionaryScreen(navController: NavController) {
             .verticalScroll(rememberScrollState())
             .padding(32.dp)
     ) {
+        Button(
+            onClick = { navController.navigate("dict_first_words") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+        ) { Text("First Words") }
         Row(
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
