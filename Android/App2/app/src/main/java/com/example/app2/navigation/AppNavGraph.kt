@@ -57,6 +57,7 @@ import com.example.app2.screens.CookingScreen
 import com.example.app2.screens.NegationScreen
 import com.example.app2.screens.AuthorsThoughtsScreen
 import com.example.app2.screens.HomeImprovementScreen
+import com.example.app2.screens.VerbsAndTensesScreen
 import com.example.app2.screens.SportsScreen
 import com.example.app2.screens.CountriesScreen
 import com.example.app2.screens.MemorizeVocabScreen
@@ -151,6 +152,7 @@ sealed class Screen(val route: String) {
     object ConversationLottery : Screen("conversation_lottery")
     object TutorialAdjectivesAdverbs : Screen("tutorial_adjectives_adverbs")
     object TutorialMoreTenses : Screen("tutorial_more_tenses")
+    object TutorialVerbsAndTenses : Screen("tutorial_verbs_and_tenses")
     object ConjugationTables : Screen("conjugation_tables")
     object ConjTablePresentIndicative : Screen("conj_table_present_indicative")
     object ConjTablePastIndicative : Screen("conj_table_past_indicative")
@@ -221,26 +223,32 @@ fun AppNavGraph(navController: NavHostController) {
         composable(Screen.Tutorial.route) {
             TutorialScreen(
                 onBack = { navController.popBackStack() },
+                onVerbsAndTenses = { navController.navigate(Screen.TutorialVerbsAndTenses.route) },
                 onPrepositions = { navController.navigate(Screen.TutorialPrepositions.route) },
-                onConjugationBasic = { navController.navigate(Screen.ConjugationBasic.route) },
-                onConjugationAdvanced = { navController.navigate(Screen.ConjugationAdvanced.route) },
                 onPronunciation = { navController.navigate(Screen.TutorialPronunciation.route) },
-                onReflexiveVerbs = { navController.navigate(Screen.TutorialReflexiveVerbs.route) },
                 onMorePrepositions = { navController.navigate(Screen.TutorialMorePrepositions.route) },
                 onCliticPronouns = { navController.navigate(Screen.TutorialCliticPronouns.route) },
-                onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) },
-                onUsefulVerbs = { navController.navigate(Screen.TutorialUsefulVerbs.route) },
-                onTenses = { navController.navigate(Screen.TutorialTenses.route) },
                 onComparisons = { navController.navigate(Screen.TutorialComparisons.route) },
                 onQuestions = { navController.navigate(Screen.TutorialQuestions.route) },
                 onDemonstratives = { navController.navigate(Screen.TutorialDemonstratives.route) },
-                onClarifications = { navController.navigate(Screen.TutorialClarifications.route) },
                 onNegation = { navController.navigate(Screen.TutorialNegation.route) },
                 onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConnectors = { navController.navigate(Screen.DictConnectors.route) },
-                onAuthorsThoughts = { navController.navigate(Screen.TutorialAuthorsThoughts.route) },
-                onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) },
-                onMoreTenses = { navController.navigate(Screen.TutorialMoreTenses.route) }
+                onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) }
+            )
+        }
+        composable(Screen.TutorialVerbsAndTenses.route) {
+            VerbsAndTensesScreen(
+                onBack = { navController.popBackStack() },
+                onConjugationBasic = { navController.navigate(Screen.ConjugationBasic.route) },
+                onConjugationAdvanced = { navController.navigate(Screen.ConjugationAdvanced.route) },
+                onReflexiveVerbs = { navController.navigate(Screen.TutorialReflexiveVerbs.route) },
+                onIrregularVerbs = { navController.navigate(Screen.TutorialIrregularVerbs.route) },
+                onUsefulVerbs = { navController.navigate(Screen.TutorialUsefulVerbs.route) },
+                onTenses = { navController.navigate(Screen.TutorialTenses.route) },
+                onMoreTenses = { navController.navigate(Screen.TutorialMoreTenses.route) },
+                onClarifications = { navController.navigate(Screen.TutorialClarifications.route) },
+                onAuthorsThoughts = { navController.navigate(Screen.TutorialAuthorsThoughts.route) }
             )
         }
         composable(Screen.TutorialAdjectivesAdverbs.route) {

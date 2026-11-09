@@ -79,7 +79,7 @@ fun DictionaryScreen(
         "Clothes" to onClothes,
         "Portuguese Phrases" to onPortuguesePhrases,
         "Cooking" to onCooking,
-        "Home Improvement" to onHomeImprovement,
+        "Home And Home Improvement" to onHomeImprovement,
         "Sports" to onSports,
         "Countries, Nationalities & Languages" to onCountries,
         "Casual Expressions" to onCasualExpressions,

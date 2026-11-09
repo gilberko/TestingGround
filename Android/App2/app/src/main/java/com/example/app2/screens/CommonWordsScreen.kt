@@ -84,6 +84,59 @@ private val wordCategories = listOf(
         )
     ),
     WordCategory(
+        "Yes, No & Uncertainty",
+        listOf(
+            WordEntry("sim", "yes"),
+            WordEntry("não", "no"),
+            WordEntry("claro / com certeza", "sure / of course"),
+            WordEntry("talvez", "maybe (+ conjuntivo)"),
+            WordEntry("se calhar", "perhaps / probably (informal EP)"),
+            WordEntry("não sei", "I don't know"),
+            WordEntry("não tenho a certeza", "I'm not sure")
+        )
+    ),
+    WordCategory(
+        "Questions & Answers",
+        listOf(
+            WordEntry("pergunta", "question", "(f)"),
+            WordEntry("resposta", "answer", "(f)"),
+            WordEntry("porquê? / porque é que…?", "why?"),
+            WordEntry("porque", "because"),
+            WordEntry("quando", "when"),
+            WordEntry("até quando?", "until when?"),
+            WordEntry("desde quando?", "since when?"),
+            WordEntry("onde", "where"),
+            WordEntry("para onde / aonde", "to where"),
+            WordEntry("de onde", "from where"),
+            WordEntry("como", "how"),
+            WordEntry("quanto / quanta", "how much"),
+            WordEntry("quantos / quantas", "how many"),
+            WordEntry("o que / o quê?", "what"),
+            WordEntry("O que é isto?", "What is this?")
+        )
+    ),
+    WordCategory(
+        "Quantity, Frequency & Negatives",
+        listOf(
+            WordEntry("nem ___ nem ___", "neither ___ nor ___"),
+            WordEntry("nenhum destes / nenhuma destas", "neither / none of these"),
+            WordEntry("um destes / uma destas", "one of these"),
+            WordEntry("cada / todos os, todas as", "every"),
+            WordEntry("alguns / algumas", "a few / some"),
+            WordEntry("um pouco / um bocado", "a bit"),
+            WordEntry("muitos / muitas", "many"),
+            WordEntry("raramente", "rarely"),
+            WordEntry("muitas vezes / frequentemente", "often"),
+            WordEntry("sempre que / todas as vezes", "every time"),
+            WordEntry("todos os dias", "every day"),
+            WordEntry("sempre", "always"),
+            WordEntry("nunca", "never"),
+            WordEntry("nada", "nothing"),
+            WordEntry("em lado nenhum", "nowhere"),
+            WordEntry("ninguém", "no one / nobody")
+        )
+    ),
+    WordCategory(
         "Food & Dining",
         listOf(
             WordEntry("comida", "food", "(f)"),

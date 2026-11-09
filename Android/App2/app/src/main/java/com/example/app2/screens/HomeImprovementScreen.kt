@@ -24,10 +24,104 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-private data class HiEntry(val pt: String, val en: String)
+private data class HiEntry(val pt: String, val en: String, val note: String = "")
 private data class HiCategory(val title: String, val entries: List<HiEntry>)
 
 private val hiCategories = listOf(
+    HiCategory(
+        "The House & Rooms",
+        listOf(
+            HiEntry("a casa", "house"),
+            HiEntry("o lar / a casa", "home", "lar = home in the emotional sense; in everyday speech \"casa\" covers both (vou para casa = I'm going home)"),
+            HiEntry("o apartamento", "apartment / flat"),
+            HiEntry("o quarto", "bedroom / room"),
+            HiEntry("a divisão", "room (any room of a house)", "used in listings: \"um T2 com quatro divisões\""),
+            HiEntry("a sala (de estar)", "living room"),
+            HiEntry("a cozinha", "kitchen"),
+            HiEntry("a casa de banho", "bathroom"),
+            HiEntry("o corredor", "corridor / hallway"),
+            HiEntry("as escadas", "stairs"),
+            HiEntry("o elevador", "elevator / lift"),
+            HiEntry("a porta", "door"),
+            HiEntry("a janela", "window"),
+            HiEntry("o chão", "floor (the surface you walk on)"),
+            HiEntry("o andar", "floor / storey (level of a building)"),
+            HiEntry("o rés-do-chão", "ground floor"),
+            HiEntry("o segundo andar", "2nd floor", "EP counts from the rés-do-chão (ground floor), so o segundo andar is two levels above the ground — what Americans call the 3rd floor"),
+            HiEntry("a varanda", "balcony"),
+            HiEntry("o sótão", "attic"),
+            HiEntry("a cave", "basement / cellar"),
+            HiEntry("o estacionamento", "parking"),
+            HiEntry("o lugar de garagem", "parking space (in a building's garage)")
+        )
+    ),
+    HiCategory(
+        "Bathroom",
+        listOf(
+            HiEntry("a sanita", "toilet (the fixture)"),
+            HiEntry("a casa de banho / o WC", "toilets / restroom", "public toilets: as casas de banho; signs often say WC"),
+            HiEntry("o chuveiro", "shower (the fixture / showerhead)"),
+            HiEntry("o duche", "shower (the act)", "tomar um duche = to take a shower"),
+            HiEntry("a banheira", "bathtub"),
+            HiEntry("o lavatório", "bathroom sink / washbasin"),
+            HiEntry("a torneira", "faucet / tap")
+        )
+    ),
+    HiCategory(
+        "Kitchen & Appliances",
+        listOf(
+            HiEntry("o frigorífico", "refrigerator / fridge", "BP: geladeira"),
+            HiEntry("o congelador", "freezer"),
+            HiEntry("o forno", "oven"),
+            HiEntry("o mini-forno / o forno elétrico", "toaster oven"),
+            HiEntry("o micro-ondas", "microwave"),
+            HiEntry("o lava-loiça", "kitchen sink", "EP spelling loiça; BP pia"),
+            HiEntry("a máquina de lavar loiça", "dishwasher"),
+            HiEntry("o ar condicionado", "air conditioner"),
+            HiEntry("o aquecimento central", "central heating"),
+            HiEntry("a ventoinha", "fan (electric, blows air)", "BP: ventilador"),
+            HiEntry("a tomada", "power outlet / socket")
+        )
+    ),
+    HiCategory(
+        "Furniture",
+        listOf(
+            HiEntry("a cama", "bed"),
+            HiEntry("o sofá", "sofa"),
+            HiEntry("a mesa", "table"),
+            HiEntry("a cadeira", "chair"),
+            HiEntry("o roupeiro / o guarda-roupa", "wardrobe"),
+            HiEntry("o armário", "cabinet / cupboard"),
+            HiEntry("o armário embutido", "closet (built-in)"),
+            HiEntry("a gaveta", "drawer")
+        )
+    ),
+    HiCategory(
+        "Floors, Walls & Decor",
+        listOf(
+            HiEntry("o soalho / o chão de madeira", "wooden floor"),
+            HiEntry("os mosaicos / os ladrilhos", "floor tiles", "azulejo is the glazed (often decorative) wall tile"),
+            HiEntry("o tapete", "carpet / rug"),
+            HiEntry("a alcatifa", "wall-to-wall carpet", "BP: carpete"),
+            HiEntry("a tapeçaria", "tapestry"),
+            HiEntry("o quadro / a pintura", "a painting (artwork)", "pintura also means the act of painting / the paintwork")
+        )
+    ),
+    HiCategory(
+        "Outside",
+        listOf(
+            HiEntry("o jardim", "garden"),
+            HiEntry("o quintal", "yard"),
+            HiEntry("o quintal das traseiras", "back yard", "as traseiras = the back of a building"),
+            HiEntry("a relva", "grass / lawn", "BP: grama"),
+            HiEntry("a flor", "flower"),
+            HiEntry("a árvore", "tree"),
+            HiEntry("o arbusto", "bush / shrub"),
+            HiEntry("a sebe", "hedge"),
+            HiEntry("a vedação / a cerca", "fence"),
+            HiEntry("a areia", "sand")
+        )
+    ),
     HiCategory(
         "Problems in the House",
         listOf(
@@ -106,7 +200,7 @@ fun HomeImprovementScreen(onBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Home Improvement") },
+                title = { Text("Home And Home Improvement") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -148,23 +242,30 @@ private fun HiCategoryCard(category: HiCategory) {
 
 @Composable
 private fun HiRow(entry: HiEntry) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 2.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = entry.pt,
-            style = MaterialTheme.typography.bodySmall,
-            fontStyle = FontStyle.Italic,
-            modifier = Modifier.weight(1f)
-        )
-        Text(
-            text = entry.en,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.weight(1f)
-        )
+    Column(modifier = Modifier.padding(vertical = 2.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = entry.pt,
+                style = MaterialTheme.typography.bodySmall,
+                fontStyle = FontStyle.Italic,
+                modifier = Modifier.weight(1f)
+            )
+            Text(
+                text = entry.en,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.weight(1f)
+            )
+        }
+        if (entry.note.isNotEmpty()) {
+            Text(
+                text = entry.note,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.tertiary
+            )
+        }
     }
 }

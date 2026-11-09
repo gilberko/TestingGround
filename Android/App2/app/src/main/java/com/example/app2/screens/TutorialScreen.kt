@@ -4,12 +4,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
@@ -36,48 +41,32 @@ import com.example.app2.R
 @Composable
 fun TutorialScreen(
     onBack: () -> Unit,
+    onVerbsAndTenses: () -> Unit,
     onPrepositions: () -> Unit,
-    onConjugationBasic: () -> Unit,
-    onConjugationAdvanced: () -> Unit,
     onPronunciation: () -> Unit,
-    onReflexiveVerbs: () -> Unit,
     onMorePrepositions: () -> Unit,
     onCliticPronouns: () -> Unit,
-    onIrregularVerbs: () -> Unit,
-    onUsefulVerbs: () -> Unit,
-    onTenses: () -> Unit,
     onComparisons: () -> Unit,
     onQuestions: () -> Unit,
     onDemonstratives: () -> Unit,
-    onClarifications: () -> Unit,
     onNegation: () -> Unit,
     onSomeNoneAll: () -> Unit,
     onConnectors: () -> Unit,
-    onAuthorsThoughts: () -> Unit,
-    onAdjectivesAdverbs: () -> Unit,
-    onMoreTenses: () -> Unit
+    onAdjectivesAdverbs: () -> Unit
 ) {
     val buttons = listOf(
+        "Verbs And Tenses" to onVerbsAndTenses,
         "Prepositions" to onPrepositions,
-        "Conjugation — Basic" to onConjugationBasic,
-        "Conjugation — Advanced" to onConjugationAdvanced,
         "Pronunciation" to onPronunciation,
-        "Reflexive Verbs" to onReflexiveVerbs,
         "More About Prepositions" to onMorePrepositions,
         "Object Pronouns (Clitics)" to onCliticPronouns,
-        "Irregular Verbs" to onIrregularVerbs,
-        "Useful Verbs" to onUsefulVerbs,
-        "Tenses" to onTenses,
         "Comparisons" to onComparisons,
         "Questions" to onQuestions,
         "This, That, Here & There" to onDemonstratives,
-        "Clarifications & Misc" to onClarifications,
         "Negation" to onNegation,
         "Some, None, All" to onSomeNoneAll,
         "Yet, Already & Others" to onConnectors,
-        "Author's Understanding Of Conjunctive/Conditional" to onAuthorsThoughts,
-        "Adjectives and Adverbs" to onAdjectivesAdverbs,
-        "More Tenses" to onMoreTenses
+        "Adjectives and Adverbs" to onAdjectivesAdverbs
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -112,6 +101,7 @@ fun TutorialScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
+                    .verticalScroll(rememberScrollState())
                     .padding(horizontal = 16.dp, vertical = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
@@ -128,15 +118,19 @@ private fun ButtonGrid(buttons: List<Pair<String, () -> Unit>>) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         buttons.chunked(2).forEach { row ->
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                // A lone button in the last row spans the full width.
                 row.forEach { (label, onClick) ->
                     Button(
                         onClick = onClick,
                         modifier = Modifier
                             .weight(1f)
-                            .height(52.dp),
+                            .fillMaxHeight()
+                            .heightIn(min = 52.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Black,
                             contentColor = Color.White
@@ -145,13 +139,10 @@ private fun ButtonGrid(buttons: List<Pair<String, () -> Unit>>) {
                         Text(
                             text = label,
                             textAlign = TextAlign.Center,
-                            maxLines = 2,
+                            maxLines = 3,
                             style = MaterialTheme.typography.labelMedium
                         )
                     }
-                }
-                if (row.size == 1) {
-                    Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }

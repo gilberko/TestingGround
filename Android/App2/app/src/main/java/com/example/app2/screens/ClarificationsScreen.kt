@@ -76,7 +76,27 @@ private val tenseEntries = listOf(
             ClarExample("Ela lia enquanto ele dormia.", "She was reading while he was sleeping."),
             ClarExample("A casa era pequena mas acolhedora.", "The house was small but cosy.")
         ),
-        note = "Often sets the scene or background in a story, while the Perfeito Simples narrates the foreground events."
+        note = "Often sets the scene or background in a story, while the Perfeito Simples narrates the foreground events. For \"was doing\" at one specific moment, European Portuguese usually prefers estava a + infinitive — see the next card."
+    ),
+    ClarTenseEntry(
+        name = "Estar (Imperfeito) + a + Infinitivo — Pretérito Imperfeito Contínuo",
+        englishEquivalent = "Past Progressive — \"was / were doing\"",
+        whenToUse = "An action that was actively in progress at a specific moment in the past — often the moment when something else happened (that interrupting event goes in the Perfeito Simples).\n\n" +
+            "Formation: estar in the Imperfeito + a + infinitive:\n" +
+            "eu estava · tu estavas · ele/ela/você estava · nós estávamos · eles/elas/vocês estavam  + a + falar / comer / partir\n\n" +
+            "The \"a\" is the plain preposition — no accent, no apostrophe (not \"à\"). This is the European Portuguese pattern; Brazilian Portuguese uses the gerund instead (estava falando).",
+        signal = "\"I was in the middle of doing this at that exact moment.\"",
+        triggers = "quando + Perfeito (quando ele ligou…), naquele momento, àquela hora, ontem às oito, enquanto",
+        examples = listOf(
+            ClarExample("Estava a ler quando a luz foi abaixo.", "I was reading when the power went out."),
+            ClarExample("O que estavas a fazer ontem às oito?", "What were you doing yesterday at eight?"),
+            ClarExample("Estávamos a falar sobre isso quando ele entrou.", "We were talking about that when he came in."),
+            ClarExample("Ela estava a trabalhar quando recebeu a notícia.", "She was working when she got the news.")
+        ),
+        note = "Imperfeito vs. this construction:\n" +
+            "• Plain Imperfeito → habits, repeated actions, \"used to\", background description: Jogava futebol todos os sábados. (I used to play football every Saturday.)\n" +
+            "• Estava a + infinitive → one action in progress at a particular moment: Estava a jogar futebol quando começou a chover. (I was playing football when it started to rain.)\n" +
+            "Nuance: the plain Imperfeito CAN also describe an ongoing action (Ela lia enquanto ele dormia), so the line isn't absolute — but estava a + infinitive makes the \"right at that moment\" meaning explicit and is what people normally say in everyday European Portuguese. See also Tenses → Pretérito Imperfeito Contínuo."
     ),
     ClarTenseEntry(
         name = "Conjuntivo Presente",
