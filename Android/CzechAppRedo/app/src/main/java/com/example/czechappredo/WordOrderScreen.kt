@@ -113,7 +113,7 @@ fun WordOrderScreen(navController: NavController) {
             WORow("Já jsem se díval. ✔\nJá se jsem díval. ✘", "I was watching.", "the past / conditional helper (jsem, bych...) comes BEFORE se in the cluster, never between se and the verb")
             WORow("Já bych se díval. ✔\nJá se bych díval. ✘", "I would watch.", "same for the conditional helper")
             WORow("Já si ho koupím. ✔\nJá ho si koupím. ✘", "I'll buy it.", "pronoun clitics come after se / si, not before")
-            WORow("Petr se včera oženil. ✔\nPetr včera se oženil. ✘", "Petr got married yesterday.", "se must be 2nd, right after the first constituent — not 3rd. (You may hear it in careless speech, but it's not standard.)")
+            WORow("Petr se včera oženil. ✔\nPetr včera se oženil. ✘", "Petr got married yesterday.", "in a neutral sentence se goes right after the first constituent (Petr), not 3rd. Exception: after a conjunction like že, both orders occur — že se Petr rozhodl and že Petr se rozhodl")
             WORow("Se dívám. ✘", "—", "se can never start a clause — use Dívám se.")
             WORow("Máma řekla, že se můžu dívat. ✔\nMáma se řekla, že můžu dívat. ✘", "Mom said I can watch.", "se can climb out of an infinitive, but never out of its own clause")
             WORow("Já se nebojím. ✔\nJá se ne bojím. ✘", "I'm not afraid.", "ne- is a prefix written together with the verb, so it can't be split off into the gap")
@@ -124,7 +124,10 @@ fun WordOrderScreen(navController: NavController) {
             WORow("Já si nové auto koupím.", "I'll buy myself a new car.", "subject 1st → si → object in the gap → verb")
             WORow("Já si ho koupím.", "I'll buy it (for myself).", "object replaced by a pronoun clitic → si ho → verb")
             WORow("Musím si to rozmyslet.", "I have to think it over.", "si climbs from rozmyslet si to follow musím")
-            WONote("se and si normally don't appear together in one clitic cluster — when a combination of verbs would call for both, standard Czech usually keeps just one of them.")
+            WONote("When two verbs in one sentence each have a reflexive, it depends which ones meet:")
+            WORow("Přinutili se smát.", "They forced themselves to laugh.", "se + se: one se is usually dropped (přinutit se + smát se). Keeping both is not wrong — and both must stay if dropping one changes the meaning: Snažím se nezlobit se. (I try not to be angry) vs Snažím se nezlobit. (I try not to be naughty)")
+            WORow("Dovolujeme si obrátit se na Vás.", "We take the liberty of contacting you.", "se + si: NEITHER can be dropped — both stay (si with dovolit si, se with obrátit se)")
+            WONote("Usually only one reflexive climbs to the clitic slot and the other stays with its infinitive, as above. When se and si do end up in the same cluster, the usual order is se si.")
 
             WOTable(
                 verb = "Summary — the order of a clause with se / si",
