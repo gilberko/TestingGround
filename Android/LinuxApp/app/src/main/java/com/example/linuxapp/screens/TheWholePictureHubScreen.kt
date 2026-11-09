@@ -45,7 +45,8 @@ fun TheWholePictureHubScreen(
     onProcessScheduling: () -> Unit,
     onRcuGracePeriod: () -> Unit,
     onPreemption: () -> Unit,
-    onInterruptTriggering: () -> Unit
+    onInterruptTriggering: () -> Unit,
+    onUserModeDebugging: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -96,7 +97,7 @@ fun TheWholePictureHubScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     WholePictureButton(
-                        label = "Process\nScheduling",
+                        label = "Process Scheduling\nAnd Waiting",
                         onClick = onProcessScheduling,
                         modifier = Modifier.weight(1f)
                     )
@@ -122,6 +123,12 @@ fun TheWholePictureHubScreen(
                         modifier = Modifier.weight(1f)
                     )
                 }
+                Spacer(Modifier.height(8.dp))
+                WholePictureButton(
+                    label = "Debugging User\nMode Programs",
+                    onClick = onUserModeDebugging,
+                    modifier = Modifier.fillMaxWidth()
+                )
                 Spacer(Modifier.height(8.dp))
             }
         }

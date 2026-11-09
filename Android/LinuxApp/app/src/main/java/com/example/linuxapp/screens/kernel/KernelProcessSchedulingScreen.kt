@@ -30,7 +30,7 @@ fun KernelProcessSchedulingScreen(onBack: () -> Unit) {
             TopAppBar(
                 title = {
                     Text(
-                        "Process Scheduling",
+                        "Process Scheduling And Waiting",
                         color = Color(0xFF00FF41),
                         fontFamily = FontFamily.Monospace,
                         fontSize = 16.sp

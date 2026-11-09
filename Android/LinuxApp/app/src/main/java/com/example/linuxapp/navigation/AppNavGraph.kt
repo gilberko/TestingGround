@@ -126,6 +126,7 @@ import com.example.linuxapp.screens.kernel.SymbolsTracingDebuggingHubScreen
 import com.example.linuxapp.screens.kernel.RcuGracePeriodScreen
 import com.example.linuxapp.screens.kernel.PreemptionScreen
 import com.example.linuxapp.screens.kernel.InterruptTriggeringScreen
+import com.example.linuxapp.screens.kernel.UserModeDebuggingFlowScreen
 import com.example.linuxapp.screens.LinuxCommandsHubScreen
 import com.example.linuxapp.screens.ebpf.EbpfModifyReturnScreen
 import com.example.linuxapp.screens.permissions.ElfFileFormatScreen
@@ -290,6 +291,7 @@ sealed class Screen(val route: String) {
     object FlowsRcuGracePeriod         : Screen("flows_rcu_grace_period")
     object FlowsPreemption             : Screen("flows_preemption")
     object FlowsInterruptTriggering    : Screen("flows_interrupt_triggering")
+    object FlowsUserModeDebugging      : Screen("flows_user_mode_debugging")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -397,6 +399,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.FlowsInterruptTriggering.route) {
             InterruptTriggeringScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.FlowsUserModeDebugging.route) {
+            UserModeDebuggingFlowScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.LinuxDistributions.route) {
             LinuxDistributionsScreen(onBack = { navController.popBackStack() })
@@ -708,7 +713,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onProcessScheduling = { navController.navigate(Screen.KernelProcessSchedulingWhole.route) },
                 onRcuGracePeriod = { navController.navigate(Screen.FlowsRcuGracePeriod.route) },
                 onPreemption = { navController.navigate(Screen.FlowsPreemption.route) },
-                onInterruptTriggering = { navController.navigate(Screen.FlowsInterruptTriggering.route) }
+                onInterruptTriggering = { navController.navigate(Screen.FlowsInterruptTriggering.route) },
+                onUserModeDebugging = { navController.navigate(Screen.FlowsUserModeDebugging.route) }
             )
         }
         composable(Screen.KernelProcessSchedulingWhole.route) {
