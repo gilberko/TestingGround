@@ -131,5 +131,44 @@ fun DictionaryScreen(navController: NavController) {
                 modifier = Modifier.weight(1f)
             ) { Text("Places and Events") }
         }
+            Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_clothes") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Clothes") }
+            Button(
+                onClick = { navController.navigate("dict_body") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Body") }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_medical") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Medical") }
+            Button(
+                onClick = { navController.navigate("dict_money") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Money") }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_hobbies") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Hobbies") }
+            Button(
+                onClick = { navController.navigate("dict_government_army") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Government and Army") }
+        }
     }
 }

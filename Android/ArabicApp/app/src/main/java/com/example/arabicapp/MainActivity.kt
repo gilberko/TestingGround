@@ -78,6 +78,12 @@ import com.example.arabicapp.screens.SimpleConjugatedVerbsScreen
 import com.example.arabicapp.screens.DirectionsDialogueScreen
 import com.example.arabicapp.screens.ImperativeScreen
 import com.example.arabicapp.screens.PlacesAndEventsScreen
+import com.example.arabicapp.screens.ClothesScreen
+import com.example.arabicapp.screens.BodyScreen
+import com.example.arabicapp.screens.MedicalScreen
+import com.example.arabicapp.screens.MoneyScreen
+import com.example.arabicapp.screens.HobbiesScreen
+import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -345,6 +351,36 @@ fun AppNavigation() {
         composable("dict_places_events") {
             ScreenWithBackButton(title = "Places and Events", onBack = { navController.popBackStack() }) {
                 PlacesAndEventsScreen()
+            }
+        }
+        composable("dict_clothes") {
+            ScreenWithBackButton(title = "Clothes", onBack = { navController.popBackStack() }) {
+                ClothesScreen()
+            }
+        }
+        composable("dict_body") {
+            ScreenWithBackButton(title = "Body", onBack = { navController.popBackStack() }) {
+                BodyScreen()
+            }
+        }
+        composable("dict_medical") {
+            ScreenWithBackButton(title = "Medical", onBack = { navController.popBackStack() }) {
+                MedicalScreen()
+            }
+        }
+        composable("dict_money") {
+            ScreenWithBackButton(title = "Money", onBack = { navController.popBackStack() }) {
+                MoneyScreen()
+            }
+        }
+        composable("dict_hobbies") {
+            ScreenWithBackButton(title = "Hobbies", onBack = { navController.popBackStack() }) {
+                HobbiesScreen()
+            }
+        }
+        composable("dict_government_army") {
+            ScreenWithBackButton(title = "Government and Army", onBack = { navController.popBackStack() }) {
+                GovernmentArmyScreen()
             }
         }
         composable("comparisons") {
