@@ -133,6 +133,9 @@ class MainActivity : ComponentActivity() {
                 composable("passive_voice") { PassiveVoiceScreen(navController) }
                 composable("traveling") { TravelingScreen(navController) }
                 composable("super_powers_magic") { SuperPowersAndMagicScreen(navController) }
+                composable("government_army") { GovernmentAndArmyScreen(navController) }
+                composable("clothes") { ClothesScreen(navController) }
+                composable("hobbies") { HobbiesScreen(navController) }
                 composable("dialogue_family_trip") { FamilyTripDialogueScreen(navController) }
                 composable("dialogue_swe_bugs") { SoftwareEngineeringBugsDialogueScreen(navController) }
                 composable("dialogue_car_trouble") { CarTroubleDialogueScreen(navController) }
@@ -379,6 +382,9 @@ fun DictionaryHubScreen(navController: NavController) {
             "Need To, Have To, Allowed" to "need_have_allowed",
             "Traveling" to "traveling",
             "Super Powers and Magic" to "super_powers_magic",
+            "Government and Army" to "government_army",
+            "Clothes" to "clothes",
+            "Hobbies" to "hobbies",
             "Everyday" to "everyday"
         )
         Column(
