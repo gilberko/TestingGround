@@ -82,6 +82,37 @@ fun PassiveVoiceScreen(navController: NavController) {
             PVNote("This -i / -y / -a three-way split is exactly the same pattern already used for the past-tense l-participle in Learning → Past Tense (dělali / dělaly / dělala) — same rule, same shape, just a different participle.")
             PVNote("A few more participles for practice: otevřít→otevřen (opened), zavřít→zavřen (closed), koupit→koupen (bought), postavit→postaven (built), ukončit→ukončen (ended/concluded).")
 
+            PVSection("-án, -en or -t?")
+            PVNote("Short answer: yes, it is essentially a rule. The ending is decided by the verb's infinitive / conjugation class, not chosen freely. -at verbs give -án; -it, -et and -ět verbs give -en / -ěn; a small closed group gives -t.")
+
+            PVRow("-at → -án  (always)", "dělat → dělán · napsat → napsán · zavolat → zavolán · poslat → poslán · brát → brán · psát → psán")
+            PVRow("-ovat → -ován", "kupovat → kupován · organizovat → organizován")
+            PVRow("-it → -en", "koupit → koupen · postavit → postaven · opravit → opraven · učit → učen · řešit → řešen")
+            PVRow("-et / -ět → -en / -ěn", "vidět → viděn · slyšet → slyšen · držet → držen · trpět → trpěn")
+            PVNote("So there is no -at verb that gives -en, and no -it / -et verb that gives -án. The vowel of the infinitive (a vs i/e) is the reliable signal.")
+
+            PVSection("The -en Group: Consonant Changes")
+            PVNote("Not a strict rule but the very common behaviour: before -en the last consonant of an -it verb often softens. Learn the pattern, then check the dictionary for any specific verb.")
+            PVRow("-dit → -zen", "narodit → narozen (born) · vyhodit → vyhozen (thrown out / fired) · probudit → probuzen")
+            PVRow("-tit → -cen", "vrátit → vrácen · zaplatit → zaplacen · ztratit → ztracen")
+            PVRow("-sit → -šen", "nosit → nošen · vyhlásit → vyhlášen")
+            PVRow("-zit → -žen", "srazit → sražen (knocked down) · zarazit → zaražen")
+            PVRow("-stit → -štěn", "pustit → puštěn · čistit → čištěn · opustit → opuštěn")
+            PVRow("-nit → -něn", "změnit → změněn · zachránit → zachráněn (n stays, but the spelling becomes -ěn)")
+            PVRow("no change after b, p, v, m, č, š, ř and most others", "koupit → koupen · postavit → postaven · zlomit → zlomen · učit → učen · řešit → řešen")
+
+            PVSection("The -t Group")
+            PVNote("A small, closed set: mostly one-syllable -ít / -ýt roots, many -nout verbs and the -jmout / -čít / -vzít family. Here the participle ends in -t instead of -n.")
+            PVRow("one-syllable -ít / -ýt", "pít → pit · zabít → zabit · umýt → umyt · krýt → kryt · šít → šit")
+            PVRow("-nout", "zapomenout → zapomenut · zahnout → zahnut · rozhodnout → rozhodnut (also rozhodnuto)")
+            PVRow("-jmout / -čít / vzít", "přijmout → přijat · najmout → najat · začít → začat · vzít → vzat")
+            PVNote("Some -nout verbs use -en instead: vytisknout → vytištěn, zasáhnout → zasažen. So -nout leans to -t but is the least predictable group.")
+
+            PVSection("Other -en Verbs")
+            PVRow("-řít → -řen", "otevřít → otevřen · zavřít → zavřen · utřít → utřen")
+            PVRow("-st / -ct (consonant stems)", "přečíst → přečten · nést → nesen · vést → veden · říct → řečen · péct → pečen")
+            PVNote("The same three-way split shows up in the long adjective forms used before a noun: napsaný dopis (-aný), opravené auto (-ený), zapomenutý deštník (-tý).")
+
             PVSection("Which One To Use?")
             PVRow("se-passive", "everyday, general/habitual statements, no specific agent — pairs naturally with imperfective verbs")
             PVRow("n/t-participle passive", "a specific event or result, any tense, and it can name an agent (instrumental) if needed")

@@ -52,6 +52,12 @@ fun SuperPowersAndMagicScreen(navController: NavController) {
             SMRow("čarodějnice", "witch")
             SMRow("superhrdina", "superhero")
             SMRow("superzloduch", "supervillain")
+            SMRow("postava", "character (in a story, film, comic)", "f. — hlavní postava = main character. Don't confuse with charakter = someone's personality / moral character.")
+            SMRow("čaroděj / černokněžník", "sorcerer", "čaroděj is the general word (sorcerer / wizard); černokněžník is a dark sorcerer / warlock (lit. \"black-book man\"). Also mág = mage.")
+            SMRow("vlkodlak", "werewolf")
+            SMRow("upír", "vampire", "also vampýr")
+            SMRow("mumie", "mummy", "f. — also used for an Egyptian mummy in a museum")
+            SMRow("zombie", "zombie", "usually not declined (ta zombie / ty zombie); colloquially also zombík")
 
             SMSection("Core Concepts")
             SMRow("kouzlo", "magic (a spell/trick)")
@@ -61,6 +67,30 @@ fun SuperPowersAndMagicScreen(navController: NavController) {
             SMRow("kouzelná hůlka", "magic wand")
             SMRow("elektřina", "electricity")
             SMRow("blesk", "lightning")
+            SMRow("identita", "identity", "tajná identita = secret identity")
+
+            SMSection("Costume, Gear and Weapons")
+            SMRow("plášť", "cape / cloak", "m. — a superhero's cape. pláštěnka = raincoat.")
+            SMRow("hůlka", "wand", "f. — also a small stick; kouzelná hůlka = magic wand")
+            SMRow("helma / přilba", "helmet", "helma is the everyday word; přilba is more formal / technical")
+            SMRow("koruna", "crown", "f. — also the Czech currency (koruna česká, Kč)")
+            SMRow("štít", "shield")
+            SMRow("meč", "sword")
+            SMRow("luk", "bow (the weapon)")
+            SMRow("šíp", "arrow", "šipka = an arrow sign / pointer (→)")
+            SMRow("luk a šípy", "bow and arrow(s)", "Czech normally says the arrows in plural")
+            SMRow("silové pole", "force field")
+
+            SMSection("Qualities")
+            SMNote("These are adjectives: -ý (masc.) / -á (fem.) / -é (neut.), e.g. silný muž, silná žena, silné zvíře.")
+            SMRow("silný", "strong")
+            SMRow("síla", "strength / force", "f.")
+            SMRow("nadlidský", "superhuman", "nadlidská síla = superhuman strength")
+            SMRow("neporazitelný", "invincible / unbeatable")
+            SMRow("nesmrtelný", "immortal", "nesmrtelnost (f.) = immortality")
+            SMRow("neviditelný", "invisible", "neviditelnost (f.) = invisibility")
+            SMRow("pružný / elastický", "elastic / stretchy", "pružný is the everyday word (also = flexible); elastický is more technical")
+            SMRow("odolný", "durable / resistant", "voděodolný = water-resistant; odolný vůči ohni = fire-resistant")
 
             SMSection("Abilities — Movement")
             SMRow("létat", "to fly")
@@ -81,6 +111,8 @@ fun SuperPowersAndMagicScreen(navController: NavController) {
             SMRow("číst myšlenky", "to read minds")
             SMRow("ovládat něčí mysl", "to control someone's mind")
             SMRow("ovládat předměty myslí / telekineze", "to control objects (telekinesis)")
+            SMRow("ovládání mysli", "mind control", "the noun — from ovládat (to control) + mysl (mind, genitive mysli)")
+            SMRow("telekineze", "telekinesis", "f.")
             SMRow("zastavit čas", "to freeze time")
             SMRow("vrátit čas", "to reverse time")
 
@@ -99,6 +131,17 @@ private fun SMSection(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(text = text, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = ButtonBlue)
     Spacer(modifier = Modifier.height(6.dp))
+}
+
+@Composable
+private fun SMNote(text: String) {
+    Text(
+        text = text,
+        fontSize = 13.sp,
+        fontStyle = FontStyle.Italic,
+        color = Color.Gray,
+        modifier = Modifier.padding(vertical = 2.dp)
+    )
 }
 
 @Composable
