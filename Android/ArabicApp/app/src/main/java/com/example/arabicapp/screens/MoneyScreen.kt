@@ -50,7 +50,7 @@ fun MoneyScreen() {
         MNWord("loan — قرض — 2ard")
         MNInfo("m · 2: قرضين 2ardein · pl: قروض 2ruud")
         MNWord("mortgage — رهن عقاري — rahn 3a2aari  (formal);  everyday: قرض سكن — 2ard sakan (housing loan)")
-        MNSmall("Palestinians in Israel often just say משכנתא mashkanta, the Hebrew word.")
+        MNSmall("Arabic speakers in Israel borrow many Hebrew words for work, banking and government, so you may also hear the Hebrew משכנתא mashkanta; how common it is varies.")
         MNWord("interest — فايدة — faayde;  interest rate: سعر الفايدة — si3r el-faayde")
         MNWord("account — حساب — 7saab;  bank account: حساب بنك — 7saab bank")
         MNExample("akhadt 2ard min el-bank — أخدت قرض من البنك — I took a loan from the bank.")

@@ -65,7 +65,7 @@ fun ClothesScreen() {
         CLInfo("m · 2: كبوتين kabbuutein · pl: كبابيت kabaabiit")
         CLWord("jacket — جاكيت — jakeet")
         CLInfo("m · 2: جاكيتين jakeetein · pl: جاكيتات jakeetaat")
-        CLWord("cape / cloak — عباية — 3abaaye  (a traditional long cloak, also the women's abaya);  a superhero cape: كاب — kaab (loanword, usage varies)")
+        CLWord("cape / cloak — عباية — 3abaaye  (formal عباءة — 3abaa2a);  the same word covers a traditional long cloak, the women's abaya and a superhero's cape")
         CLInfo("f · 2: عبايتين 3abaaytein · pl: عبايات 3abaayaat")
         CLWord("scarf — شال — shaal;  winter scarf (Lebanese/Syrian): لفحة — laf7a;  headscarf: حجاب — 7ijaab / منديل — mandiil")
         CLInfo("m · 2: شالين shaalein · pl: شالات shaalaat")

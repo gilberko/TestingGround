@@ -125,7 +125,8 @@ fun GovernmentArmyScreen() {
         GAWord("colonel — عقيد — 3aqiid")
         GAWord("brigadier — عميد — 3amiid")
         GAWord("major general — لواء — liwaa2")
-        GAWord("general — فريق — fariiq (lieutenant general);  full general: فريق أول — fariiq awwal (Jordan, Syria; Syria also uses عماد — 3imaad);  everyday: جنرال — jeneraal")
+        GAWord("general — Jordan: فريق — fariiq (lieutenant general), فريق أول — fariiq awwal (general);  Syria: عماد — 3imaad (lieutenant general), عماد أول — 3imaad awwal (general);  everyday: جنرال — jeneraal")
+        GAWord("field marshal (the top rank) — مشير — mushiir")
         GAWord("commander — قائد — qaa2id;  commander-in-chief: القائد العام — el-qaa2id el-3aam")
         GAExample("huwwe naqiib bil-jeish — هو نقيب بالجيش — He is a captain in the army.")
 
