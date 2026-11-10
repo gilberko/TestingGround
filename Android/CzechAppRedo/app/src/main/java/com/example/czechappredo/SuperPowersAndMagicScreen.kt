@@ -53,11 +53,11 @@ fun SuperPowersAndMagicScreen(navController: NavController) {
             SMRow("superhrdina", "superhero")
             SMRow("superzloduch", "supervillain")
             SMRow("postava", "character (in a story, film, comic)", "f. — hlavní postava = main character. Don't confuse with charakter = someone's personality / moral character.")
-            SMRow("čaroděj / černokněžník", "sorcerer", "čaroděj is the general word (sorcerer / wizard); černokněžník is a dark sorcerer / warlock (lit. \"black-book man\"). Also mág = mage.")
+            SMRow("čaroděj / černokněžník", "sorcerer", "čaroděj is the general word (sorcerer / wizard); černokněžník is a dark sorcerer / warlock (from černá kniha, the \"black book\" of magic). Also mág = mage.")
             SMRow("vlkodlak", "werewolf")
             SMRow("upír", "vampire", "also vampýr")
             SMRow("mumie", "mummy", "f. — also used for an Egyptian mummy in a museum")
-            SMRow("zombie", "zombie", "usually not declined (ta zombie / ty zombie); colloquially also zombík")
+            SMRow("zombie", "zombie", "a loanword whose gender and declension vary in real usage (ten / ta zombie), often left undeclined; colloquially zombík")
 
             SMSection("Core Concepts")
             SMRow("kouzlo", "magic (a spell/trick)")
