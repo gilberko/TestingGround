@@ -84,6 +84,7 @@ import com.example.arabicapp.screens.MedicalScreen
 import com.example.arabicapp.screens.MoneyScreen
 import com.example.arabicapp.screens.HobbiesScreen
 import com.example.arabicapp.screens.GovernmentArmyScreen
+import com.example.arabicapp.screens.ArtsMediaScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -381,6 +382,11 @@ fun AppNavigation() {
         composable("dict_government_army") {
             ScreenWithBackButton(title = "Government and Army", onBack = { navController.popBackStack() }) {
                 GovernmentArmyScreen()
+            }
+        }
+        composable("dict_arts_media") {
+            ScreenWithBackButton(title = "Arts and Media", onBack = { navController.popBackStack() }) {
+                ArtsMediaScreen()
             }
         }
         composable("comparisons") {

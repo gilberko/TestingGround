@@ -3,6 +3,7 @@ package com.example.arabicapp.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -169,6 +170,16 @@ fun DictionaryScreen(navController: NavController) {
                 onClick = { navController.navigate("dict_government_army") },
                 modifier = Modifier.weight(1f)
             ) { Text("Government and Army") }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_arts_media") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Arts and Media") }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }
