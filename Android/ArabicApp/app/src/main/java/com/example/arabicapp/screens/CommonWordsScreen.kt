@@ -56,6 +56,9 @@ fun CommonWordsScreen() {
         CWBodyText("    formal friend: صديق — sadii2 (f: صديقة — sadii2a) · pl أصدقاء asdi2aa2")
         CWBodyText("boyfriend — صاحب — saa7ib;  girlfriend — صاحبة — saa7be")
         CWBodyText("    also حبيب 7abiib / حبيبة 7abiibe (my love: 7abiibi / 7abiibti); young people often just say boyfriend / girlfriend in English. saa7ib alone can also mean a plain friend; context decides")
+        CWBodyText("    Hebrew slang סחבק (sachbak) comes from Arabic صاحبك saa7bak = \"your friend\" (saa7ib + -ak \"your\", said to a man). In Hebrew it means pal / buddy, and very often the speaker himself — \"yours truly\": סחבק יסדר את זה = I'll handle it")
+        CWBodyText("    forms: صاحبي saa7bi = my friend · صاحبك saa7bak = your (m) friend · صاحبك saa7bik = your (f) friend · صاحبه saa7bo = his friend · صاحبها saa7bha = her friend")
+        CWBodyText("    root ص-ح-ب = to accompany; saa7ib also means owner: صاحب المطعم saa7ib il-maT3am = the restaurant owner")
         CWBodyText("fiancé — خطيب — khatiib;  fiancée — خطيبة — khatiibe")
         CWBodyText("    m · pl خطاب khuTTaab  |  engagement: خطبة — khuTbe;  they got engaged: انخطبوا — inkhaTabu")
         CWBodyText("husband — جوز — jooz;  formal: زوج — zooj")
@@ -245,7 +248,7 @@ fun CommonWordsScreen() {
 private fun CWSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -258,7 +261,7 @@ private fun CWSectionHeader(text: String) {
 @Composable
 private fun CWBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

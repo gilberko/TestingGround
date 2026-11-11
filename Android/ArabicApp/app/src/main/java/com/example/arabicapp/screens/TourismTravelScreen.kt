@@ -97,7 +97,7 @@ fun TourismTravelScreen() {
 private fun TTSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -110,7 +110,7 @@ private fun TTSectionHeader(text: String) {
 @Composable
 private fun TTWord(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
@@ -120,7 +120,7 @@ private fun TTWord(text: String) {
 @Composable
 private fun TTInfo(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 1.dp)
     )
@@ -129,7 +129,7 @@ private fun TTInfo(text: String) {
 @Composable
 private fun TTExample(text: String) {
     Text(
-        text = "    e.g. $text",
+        text = fixArabizi("    e.g. $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -139,7 +139,7 @@ private fun TTExample(text: String) {
 @Composable
 private fun TTSmall(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodySmall,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -153,7 +153,7 @@ private fun TTNote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

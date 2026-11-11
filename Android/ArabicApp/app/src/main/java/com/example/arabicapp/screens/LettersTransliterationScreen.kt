@@ -157,7 +157,7 @@ private fun LTLetterCard(row: LTRow) {
             )
             Column {
                 Text(
-                    text = "${row.name}  →  ${row.arabizi}",
+                    text = fixArabizi("${row.name}  →  ${row.arabizi}"),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -174,7 +174,7 @@ private fun LTLetterCard(row: LTRow) {
 private fun LTSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -187,7 +187,7 @@ private fun LTSectionHeader(text: String) {
 @Composable
 private fun LTBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

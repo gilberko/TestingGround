@@ -277,7 +277,7 @@ fun QuestionsScreen() {
 private fun QSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -291,7 +291,7 @@ private fun QSectionHeader(text: String) {
 private fun QSubHeader(text: String) {
     Spacer(modifier = Modifier.height(10.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold,
         color = MaterialTheme.colorScheme.primary
@@ -302,7 +302,7 @@ private fun QSubHeader(text: String) {
 @Composable
 private fun QBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -311,7 +311,7 @@ private fun QBodyText(text: String) {
 @Composable
 private fun QAnswer(text: String) {
     Text(
-        text = "    → $text",
+        text = fixArabizi("    → $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -321,7 +321,7 @@ private fun QAnswer(text: String) {
 @Composable
 private fun QExample(text: String) {
     Text(
-        text = "    e.g. $text",
+        text = fixArabizi("    e.g. $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -336,7 +336,7 @@ private fun QNote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

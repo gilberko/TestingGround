@@ -163,7 +163,7 @@ fun ImperativeScreen() {
 private fun ImpSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -176,7 +176,7 @@ private fun ImpSectionHeader(text: String) {
 @Composable
 private fun ImpBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

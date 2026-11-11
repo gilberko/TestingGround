@@ -139,7 +139,7 @@ fun GovernmentArmyScreen() {
 private fun GASectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -152,7 +152,7 @@ private fun GASectionHeader(text: String) {
 @Composable
 private fun GAWord(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
@@ -162,7 +162,7 @@ private fun GAWord(text: String) {
 @Composable
 private fun GAInfo(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 1.dp)
     )
@@ -171,7 +171,7 @@ private fun GAInfo(text: String) {
 @Composable
 private fun GAExample(text: String) {
     Text(
-        text = "    e.g. $text",
+        text = fixArabizi("    e.g. $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -181,7 +181,7 @@ private fun GAExample(text: String) {
 @Composable
 private fun GASmall(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodySmall,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -195,7 +195,7 @@ private fun GANote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

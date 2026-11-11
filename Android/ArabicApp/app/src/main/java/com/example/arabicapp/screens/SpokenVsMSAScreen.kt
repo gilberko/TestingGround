@@ -142,7 +142,7 @@ fun SpokenVsMSAScreen() {
 private fun SectionHeader2(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -155,7 +155,7 @@ private fun SectionHeader2(text: String) {
 @Composable
 private fun BodyText2(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

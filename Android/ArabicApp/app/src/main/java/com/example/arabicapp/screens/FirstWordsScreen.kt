@@ -144,7 +144,7 @@ fun FirstWordsScreen() {
 private fun FWSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -157,7 +157,7 @@ private fun FWSectionHeader(text: String) {
 @Composable
 private fun FWWord(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
@@ -167,7 +167,7 @@ private fun FWWord(text: String) {
 @Composable
 private fun FWInfo(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 1.dp)
     )
@@ -176,7 +176,7 @@ private fun FWInfo(text: String) {
 @Composable
 private fun FWExample(text: String) {
     Text(
-        text = "    e.g. $text",
+        text = fixArabizi("    e.g. $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -186,7 +186,7 @@ private fun FWExample(text: String) {
 @Composable
 private fun FWSmall(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodySmall,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -200,7 +200,7 @@ private fun FWNote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

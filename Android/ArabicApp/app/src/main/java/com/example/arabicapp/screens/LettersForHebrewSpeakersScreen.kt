@@ -280,9 +280,9 @@ private fun HEBLetterRow(num: String, arabic: String, name: String, heb: String,
     ) {
         Text(num, modifier = Modifier.weight(0.4f), style = MaterialTheme.typography.bodySmall)
         Text(arabic, modifier = Modifier.weight(0.6f), style = MaterialTheme.typography.bodyMedium)
-        Text(name, modifier = Modifier.weight(1.2f), style = MaterialTheme.typography.bodySmall)
+        Text(fixArabizi(name), modifier = Modifier.weight(1.2f), style = MaterialTheme.typography.bodySmall)
         Text(heb, modifier = Modifier.weight(1.0f), style = MaterialTheme.typography.bodySmall)
-        Text(forms, modifier = Modifier.weight(2.8f), style = MaterialTheme.typography.bodySmall)
+        Text(fixArabizi(forms), modifier = Modifier.weight(2.8f), style = MaterialTheme.typography.bodySmall)
     }
 }
 
@@ -290,7 +290,7 @@ private fun HEBLetterRow(num: String, arabic: String, name: String, heb: String,
 private fun HEBSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -303,7 +303,7 @@ private fun HEBSectionHeader(text: String) {
 @Composable
 private fun HEBBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

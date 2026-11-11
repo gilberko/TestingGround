@@ -113,7 +113,7 @@ fun ConstructStateScreen() {
 private fun CSSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -126,7 +126,7 @@ private fun CSSectionHeader(text: String) {
 @Composable
 private fun CSSubHeader(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 10.dp, bottom = 2.dp)
@@ -136,7 +136,7 @@ private fun CSSubHeader(text: String) {
 @Composable
 private fun CSBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -145,7 +145,7 @@ private fun CSBodyText(text: String) {
 @Composable
 private fun CSExample(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -155,7 +155,7 @@ private fun CSExample(text: String) {
 @Composable
 private fun CSSmall(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodySmall,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -169,7 +169,7 @@ private fun CSNote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

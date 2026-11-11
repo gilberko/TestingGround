@@ -142,7 +142,7 @@ fun PlacesAndEventsScreen() {
 private fun PESectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -155,7 +155,7 @@ private fun PESectionHeader(text: String) {
 @Composable
 private fun PEWord(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
@@ -165,7 +165,7 @@ private fun PEWord(text: String) {
 @Composable
 private fun PEInfo(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 1.dp)
     )
@@ -174,7 +174,7 @@ private fun PEInfo(text: String) {
 @Composable
 private fun PEExample(text: String) {
     Text(
-        text = "    e.g. $text",
+        text = fixArabizi("    e.g. $text"),
         style = MaterialTheme.typography.bodyMedium,
         fontStyle = FontStyle.Italic,
         modifier = Modifier.padding(vertical = 1.dp)
@@ -184,7 +184,7 @@ private fun PEExample(text: String) {
 @Composable
 private fun PESmall(text: String) {
     Text(
-        text = "    $text",
+        text = fixArabizi("    $text"),
         style = MaterialTheme.typography.bodySmall,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -198,7 +198,7 @@ private fun PENote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

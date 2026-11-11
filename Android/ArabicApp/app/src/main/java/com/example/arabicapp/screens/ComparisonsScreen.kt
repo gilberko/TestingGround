@@ -178,7 +178,7 @@ fun ComparisonsScreen() {
 private fun CmpSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -192,7 +192,7 @@ private fun CmpSectionHeader(text: String) {
 private fun CmpSubHeader(text: String) {
     Spacer(modifier = Modifier.height(8.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold
     )
@@ -202,7 +202,7 @@ private fun CmpSubHeader(text: String) {
 @Composable
 private fun CmpBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -211,8 +211,8 @@ private fun CmpBodyText(text: String) {
 @Composable
 private fun CmpExample(translit: String, ar: String, en: String) {
     Column(modifier = Modifier.padding(vertical = 3.dp)) {
-        Text(text = "$ar — $translit", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
-        Text(text = "    $en", style = MaterialTheme.typography.bodyMedium)
+        Text(text = fixArabizi("$ar — $translit"), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+        Text(text = fixArabizi("    $en"), style = MaterialTheme.typography.bodyMedium)
     }
 }
 
@@ -224,7 +224,7 @@ private fun CmpNote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )

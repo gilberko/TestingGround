@@ -610,7 +610,7 @@ fun SimpleConjugatedVerbsScreen() {
 private fun CVSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -624,7 +624,7 @@ private fun CVSectionHeader(text: String) {
 private fun CVSubHeader(text: String) {
     Spacer(modifier = Modifier.height(8.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Italic,
@@ -635,7 +635,7 @@ private fun CVSubHeader(text: String) {
 @Composable
 private fun CVBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

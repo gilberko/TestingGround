@@ -469,14 +469,14 @@ fun CommonVerbsScreen() {
 private fun CVVerbCard(v: CommonVerbEntry) {
     Column(modifier = Modifier.padding(bottom = 12.dp)) {
         Text(
-            text = "${v.en} — ${v.ar} — ${v.tr}",
+            text = fixArabizi("${v.en} — ${v.ar} — ${v.tr}"),
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(vertical = 2.dp)
         )
         v.note?.let {
             Text(
-                text = "  ($it)",
+                text = fixArabizi("  ($it)"),
                 style = MaterialTheme.typography.bodySmall,
                 fontStyle = FontStyle.Italic
             )
@@ -492,7 +492,7 @@ private fun CVVerbCard(v: CommonVerbEntry) {
                 modifier = Modifier.padding(top = 4.dp)
             )
             ex.split("\n").forEach { line ->
-                Text(text = "    • $line", style = MaterialTheme.typography.bodySmall)
+                Text(text = fixArabizi("    • $line"), style = MaterialTheme.typography.bodySmall)
             }
         }
     }
@@ -507,7 +507,7 @@ private fun CVFormLine(person: String, forms: List<Pair<String, String>>) {
             forms.forEachIndexed { i, (label, form) ->
                 if (i > 0) append(" · ")
                 append("$label ")
-                append(form)
+                append(fixArabizi(form))
             }
         },
         style = MaterialTheme.typography.bodySmall,
@@ -519,7 +519,7 @@ private fun CVFormLine(person: String, forms: List<Pair<String, String>>) {
 private fun CVSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -532,7 +532,7 @@ private fun CVSectionHeader(text: String) {
 @Composable
 private fun CVBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

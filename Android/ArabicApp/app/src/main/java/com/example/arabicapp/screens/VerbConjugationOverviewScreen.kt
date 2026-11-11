@@ -236,7 +236,7 @@ fun VerbConjugationOverviewScreen() {
 private fun VCOSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(20.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.fillMaxWidth()
@@ -250,7 +250,7 @@ private fun VCOSectionHeader(text: String) {
 private fun VCOSubHeader(text: String) {
     Spacer(modifier = Modifier.height(8.dp))
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold
     )
@@ -260,7 +260,7 @@ private fun VCOSubHeader(text: String) {
 @Composable
 private fun VCOBodyText(text: String) {
     Text(
-        text = text,
+        text = fixArabizi(text),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
@@ -273,7 +273,7 @@ private fun VCONote(text: String) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Text(
-            text = text,
+            text = fixArabizi(text),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(12.dp)
         )
