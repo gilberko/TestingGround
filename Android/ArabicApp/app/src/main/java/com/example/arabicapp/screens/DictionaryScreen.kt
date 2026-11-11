@@ -179,6 +179,19 @@ fun DictionaryScreen(navController: NavController) {
                 onClick = { navController.navigate("dict_arts_media") },
                 modifier = Modifier.weight(1f)
             ) { Text("Arts and Media") }
+            Button(
+                onClick = { navController.navigate("dict_math_engineering") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Math and Engineering") }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_tourism_travel") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Tourism and Traveling") }
             Spacer(modifier = Modifier.weight(1f))
         }
     }

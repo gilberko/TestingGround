@@ -69,6 +69,11 @@ fun ClothesScreen() {
         CLInfo("f · 2: عبايتين 3abaaytein · pl: عبايات 3abaayaat")
         CLWord("scarf — شال — shaal;  winter scarf (Lebanese/Syrian): لفحة — laf7a;  headscarf: حجاب — 7ijaab / منديل — mandiil")
         CLInfo("m · 2: شالين shaalein · pl: شالات shaalaat")
+        CLWord("raincoat — كبوت شتا — kabbuut shita  (formal: معطف مطر — mi3Taf maTar)")
+        CLWord("umbrella — شمسية — shamsiyye  (for rain or sun);  formal: مظلة — maDalle")
+        CLInfo("f · 2: شمسيتين shamsiytein · pl: شماسي shamaasi")
+        CLWord("handkerchief — محرمة — ma7rame  (cloth);  a paper tissue: محرمة ورق — ma7ramet wara2 / just ma7rame")
+        CLInfo("f · 2: محرمتين ma7ramtein · pl: محارم ma7aarim (a box of tissues: 3ilbet ma7aarim)")
         CLExample("ilbas el-kabbuut, barra bard — البس الكبوت، برا برد — Put on your coat, it's cold outside.")
 
         CLSectionHeader("Nightwear and Underwear")
