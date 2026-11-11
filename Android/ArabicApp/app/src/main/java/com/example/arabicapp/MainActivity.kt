@@ -85,6 +85,7 @@ import com.example.arabicapp.screens.MoneyScreen
 import com.example.arabicapp.screens.HobbiesScreen
 import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.screens.ArtsMediaScreen
+import com.example.arabicapp.screens.ConstructStateScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -327,6 +328,11 @@ fun AppNavigation() {
         composable("letters_transliteration") {
             ScreenWithBackButton(title = "Letters Transliteration", onBack = { navController.popBackStack() }) {
                 LettersTransliterationScreen()
+            }
+        }
+        composable("construct_state") {
+            ScreenWithBackButton(title = "Construct State", onBack = { navController.popBackStack() }) {
+                ConstructStateScreen()
             }
         }
         composable("verb_conjugation_overview") {

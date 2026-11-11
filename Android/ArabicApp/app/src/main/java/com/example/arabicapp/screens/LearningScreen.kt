@@ -70,6 +70,9 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("verb_conjugation_overview") }, modifier = Modifier.weight(1f)) { Text("Verb Conjugation Overview") }
             Button(onClick = { navController.navigate("nouns_singular_plural") }, modifier = Modifier.weight(1f)) { Text("Nouns - Singular and Plural") }
         }
-        Button(onClick = { navController.navigate("comparisons") }, modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) { Text("Comparisons") }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("comparisons") }, modifier = Modifier.weight(1f)) { Text("Comparisons") }
+            Button(onClick = { navController.navigate("construct_state") }, modifier = Modifier.weight(1f)) { Text("Construct State") }
+        }
     }
 }
