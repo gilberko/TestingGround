@@ -260,7 +260,8 @@ private val dailyLifeVerbs = listOf(
     CommonVerbEntry("to eat", "أكل", "akal",
         iPres = "باكل baakol", iPast = "أكلت akalt", iFut = "رح آكل ra7 aakol",
         mPres = "بتاكل btaakol", mPast = "أكلت akalt", mImp = "كُل kul",
-        fPres = "بتاكلي btaakli", fPast = "أكلتِ akalti", fImp = "كُلي kuli"),
+        fPres = "بتاكلي btaakli", fPast = "أكلتِ akalti", fImp = "كُلي kuli",
+        note = "Lebanese (often Syrian too): the past akalt (I / you m) is usually said with a short helping vowel, akal(e)t, stressed a-KAL-et. Lebanese you (f) is often heard as akalte. Don't confuse it with she ate = akalit / akalet, stressed on the first a (A-ka-let). Palestinian keeps akalt / akalti"),
     CommonVerbEntry("to drink", "شرب", "shirib",
         iPres = "بشرب bashrab", iPast = "شربت shiribt", iFut = "رح اشرب ra7 ashrab",
         mPres = "بتشرب btishrab", mPast = "شربت shiribt", mImp = "اشرب ishrab",
@@ -421,6 +422,7 @@ fun CommonVerbsScreen() {
         CVBodyText("• \"I\" has the same form for a man and a woman in Arabic, so it gets a single line: present, past and future.")
         CVBodyText("• Future = رح ra7 + the present without b-.")
         CVBodyText("• Forms shown are Palestinian. Syrian/Lebanese often say bi- for \"I\" (ana bishrab instead of bashrab); bigger differences are given in the note.")
+        CVBodyText("• Past tense in Lebanon: a short helping e often breaks the consonants at the end, so akalt sounds like akal(e)t and shribt like shrebet. The spelling doesn't change.")
 
         CVSectionHeader("Have and Want (not regular verbs)")
         CVBodyText("\"To have\" and \"to want\" are not real verbs in spoken Arabic. They are pseudo-verbs: a little word plus the possessive ending you already know from 3indi / beiti (-i me, -ak you m, -ik you f).")

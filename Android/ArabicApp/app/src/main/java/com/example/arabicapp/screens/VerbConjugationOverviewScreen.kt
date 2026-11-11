@@ -110,8 +110,10 @@ fun VerbConjugationOverviewScreen() {
         Spacer(modifier = Modifier.height(8.dp))
         VCOSubHeader("Masculine vs feminine")
         VCOBodyText("• you (m) akalt vs you (f) akalti — again the woman's form adds -i.")
-        VCOBodyText("• he akal vs she akalat — \"he\" is the bare verb; \"she\" adds -at (also heard as akalit).")
+        VCOBodyText("• he akal vs she akalat — \"he\" is the bare verb; \"she\" adds -at (also heard as akalit; Syrian/Lebanese: akalet).")
         VCOBodyText("• Watch out: \"I\" and \"you (m)\" are the same word (akalt).")
+        VCONote("Lebanese pronunciation: akalt usually sounds like akal(e)t (a-KAL-et). A very short, unstressed e slips in between the last two consonants, and the spelling doesn't change. Palestinians say akalt. Don't confuse it with Lebanese \"she ate\", akalit / akalet, which is stressed on the first syllable: A-ka-let.")
+        VCONote("Other differences: in Lebanon you (f) is often heard as akalte instead of akalti. \"She\" is akalat / akalit in Palestine and akalet in Syria and Lebanon; it's the same ending with a different vowel. \"He\" (akal) is the same everywhere.")
         Spacer(modifier = Modifier.height(8.dp))
         VCOBodyText("Negative: ما أكلتش — ma akaltish — I didn't eat.")
 
