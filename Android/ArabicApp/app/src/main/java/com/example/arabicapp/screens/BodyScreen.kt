@@ -83,7 +83,8 @@ fun BodyScreen() {
         BDWord("butt / buttocks (polite) — مؤخرة — mu2akhkhara  (the neutral, polite / medical word)")
         BDWord("ass (rude) — طيز — Tiiz")
         BDSmall("Tiiz is the everyday word but it is vulgar — fine among close friends, rude in polite company. In polite speech say mu2akhkhara, or just point and say min wara (from behind).")
-        BDWord("groin — منطقة العانة — manTi2et el-3aane  (medical);  inguinal area: الأربية — el-urbiyye")
+        BDWord("groin — الأُربية — el-urbiyye  (medical; e.g. فتق إربي fat2 irbi = inguinal hernia);  classical: مغبن — maghban")
+        BDWord("pubic area — العانة — el-3aane  (medical)")
         BDSmall("In polite everyday speech people avoid naming it and say bein el-ijrein (between the legs) or just ta7t (down there).")
         BDExample("dahri biyooja3ni — ضهري بيوجعني — My back hurts.")
 
@@ -103,7 +104,7 @@ fun BodyScreen() {
         BDInfo("m · 2: كفين kaffein · pl: كفوف kfuuf")
         BDSmall("Hebrew parallel: כף kaf (כף יד).")
         BDWord("armpit — باط — baaT;  formal: إبط — ibT")
-        BDInfo("m · 2: باطين baaTein · pl: باطات baaTaat")
+        BDInfo("m · 2: باطين baaTein (both armpits)  — under my arm: تحت باطي ta7t baaTi")
         BDExample("ighsil iideik 2abl el-akl — اغسل إيديك قبل الأكل — Wash your hands before eating.")
 
         BDSectionHeader("Legs and Feet")
@@ -113,7 +114,7 @@ fun BodyScreen() {
         BDWord("foot (when you need to be specific) — قدم — 2adam;  sole of the foot: باطن الإجر — baatin el-ijr")
         BDInfo("2adam: m · 2: قدمين 2admein · pl: أقدام a2daam")
         BDWord("thigh — فخد — fakhd  (formal فخذ fakhdh)")
-        BDInfo("m · 2: فخدين fakhdein · pl: فخاد fkhaad")
+        BDInfo("m · 2: فخدين fakhdein (both thighs) · pl (formal): أفخاذ afkhaadh")
         BDWord("knee — ركبة — rukbe")
         BDInfo("f · 2: ركبتين rukubtein · pl: ركب rukab")
         BDSmall("Hebrew parallel: ברך berech.")

@@ -70,7 +70,7 @@ fun TourismTravelScreen() {
         TTWord("train station — محطة قطار — m7aTTet 2iTaar")
         TTWord("to rent a car — أجّر سيارة — ajjar sayyaara;  formal: استأجر — ista2jar")
         TTWord("car rental — تأجير سيارات — ta2jiir sayyaaraat")
-        TTWord("driver's license — رخصة سواقة — rukhSet swaa2a  (formal: رخصة قيادة — rukhSet 2iyaade)")
+        TTWord("driver's license — رخصة سواقة — rukhSet swaa2a  (formal: رخصة قيادة — rukhSet 2iyaade);  in Lebanon also heard: دفتر سواقة — daftar swaa2a")
         TTWord("elevator — مصعد — maS3ad;  Lebanese/Syrian: أسانسير — asanseer")
         TTExample("wein m7aTTet el-baaS? — وين محطة الباص؟ — Where is the bus stop?")
 

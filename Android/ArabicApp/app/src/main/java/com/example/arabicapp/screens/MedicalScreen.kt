@@ -45,7 +45,7 @@ fun MedicalScreen() {
         MDInfo("f · 2: صيدليتين Saydaliytein · pl: صيدليات Saydaliyyaat")
         MDWord("pharmacist — صيدلي — Saydali  (f: صيدلانية — Saydalaaniyye);  formal m: صيدلاني — Saydalaani")
         MDSmall("Saydaliyye can mean both 'pharmacy' and 'female pharmacist', so for a woman people usually say Saydalaaniyye (or simply doktoora).")
-        MDWord("prescription — وصفة — waSfe  (formal: وصفة طبية — waSfe Tibbiyye);  Lebanese/Syrian also: روشتة — roshetta")
+        MDWord("prescription — وصفة — waSfe  (formal: وصفة طبية — waSfe Tibbiyye);  Egyptian: روشتة — roshetta (from Italian ricetta), understood in the Levant from Egyptian TV")
         MDInfo("f · 2: وصفتين waSiftein · pl: وصفات waSfaat")
         MDExample("laazim nruu7 3al-tawaari2 — لازم نروح عالطوارئ — We have to go to the emergency room.")
 

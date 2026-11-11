@@ -121,7 +121,7 @@ fun PlacesAndEventsScreen() {
         PESectionHeader("Sport and Fun")
         PEWord("stadium — ملعب — mal3ab  (also any sports field / playground);  big stadium: ستاد — staad")
         PEInfo("m · 2: ملعبين mal3abein · pl: ملاعب malaa3ib")
-        PEWord("theme park / amusement park — مدينة ملاهي — madiinet malaahi  (lit. city of amusements);  also لونا بارك — luuna baark")
+        PEWord("theme park / amusement park — مدينة ملاهي — madiinet malaahi  (lit. city of amusements);  some parks are just called by their English / brand name, like لونا بارك luuna baark")
         PEWord("water park — أكوا بارك — akwa baark;  formal: حديقة مائية — 7adii2a maa2iyye")
         PEWord("adventure park — حديقة مغامرات — 7adii2et mughaamaraat")
         PEExample("ra7 naakhud el-wlaad 3a madiinet el-malaahi — رح ناخد الولاد على مدينة الملاهي — We'll take the kids to the amusement park.")

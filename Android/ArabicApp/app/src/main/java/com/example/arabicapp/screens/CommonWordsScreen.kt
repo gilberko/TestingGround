@@ -206,7 +206,7 @@ fun CommonWordsScreen() {
         CWBodyText("reindeer — رنة — ranne;  also أيّل الرنة — ayyil er-ranne")
         CWBodyText("buffalo — جاموس — jaamuus  (water buffalo);  American bison: بيسون — biisoon")
         CWBodyText("    m, collective · one: جاموسة jaamuuse")
-        CWBodyText("fox — ثعلب — ta3lab  (ث → t in Palestinian)")
+        CWBodyText("fox — ثعلب — ta3lab  (ث → t in Palestinian);  Palestinian rural also: حصيني — 7uSeini")
         CWBodyText("    m · pl: ثعالب ta3aalib")
         CWBodyText("lion — أسد — asad;  lioness: لبوة — labwe")
         CWBodyText("    m · pl: أسود usuud  (Asad is also a common name)")
