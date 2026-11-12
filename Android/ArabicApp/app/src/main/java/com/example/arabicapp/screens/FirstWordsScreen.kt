@@ -104,9 +104,14 @@ fun FirstWordsScreen() {
 
         FWSectionHeader("Prices")
         FWWord("What is the price of this? — شو سعر هاد؟ — shu si3r hada? (m thing) / شو سعر هادي؟ — shu si3r hadi? (f thing)")
+        FWSmall("si3r hada is a construct (iDaafa): si3r 'price' + hada 'this' = 'the price of this'. si3r takes no el- — it's already definite through what follows (like Hebrew smichut). hada / hadi = this;  hadaak / hadiik = that.")
+        FWWord("What's the price? — شو السعر؟ — shu es-si3r?")
+        FWWord("What's its price? — شو سعره؟ — shu si3ro? (m) / شو سعرها؟ — shu si3rha? (f);  Lebanese style: shu si3ra? (f)")
+        FWSmall("Why no el- in si3ro / si3rha / si3ra? The ending -o / -ha / -a ('its') already makes the noun definite, and Arabic never puts el- together with a possessive ending (es-si3ra is wrong). Same as Hebrew: מחירו / מחירה, never המחירו. Use el- only when there's no ending: shu es-si3r? = 'what's the price?'")
         FWWord("How much does it cost? — قديش بكلّف؟ — 2addeish bikallif? (m) / قديش بتكلّف؟ — 2addeish bitkallif? (f)")
         FWWord("How much is it? — قديش حقّه؟ — 2addeish 7a22o? (m) / قديش حقّها؟ — 2addeish 7a22ha? (f);  also قديش سعره؟ — 2addeish si3ro? / si3rha?")
-        FWSmall("Here m / f refer to the THING you're asking about (el-ktaab is m, el-blouze is f), not to the person you're talking to. 2addeish 7a22o is the most common way at the market in Palestine, Syria and Lebanon.")
+        FWWord("How much is it? (Lebanese) — قدّيه حقّه؟ — 2addeh 7a22o? (m) / قدّيه حقّها؟ — 2addeh 7a22a? (f)")
+        FWSmall("Here m / f refer to the THING you're asking about (el-ktaab is m, el-blouze is f), not to the person you're talking to. 2addeish 7a22o is the most common way at the market in Palestine, Syria and Lebanon. 2addeh (often written 'adde' / 'addeh') is the Lebanese short form of 2addeish. Lebanese also tends to drop the h of -ha ('her / its'), so 7a22a = 7a22ha and si3ra = si3rha.")
 
         FWSectionHeader("Greetings")
         FWWord("hi / hello — مرحبا — marhaba;  أهلا — ahlan;  هلا — hala  (Lebanese also hai)")

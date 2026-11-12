@@ -195,6 +195,7 @@ fun QuestionsScreen() {
 
         QSectionHeader("How Much / How Many — قديش / كم (2addeish / kam)")
         QBodyText("قديش — 2addeish — How much / How many (Palestinian and Levantine colloquial)")
+        QBodyText("قدّيه — 2addeh — Lebanese short form of 2addeish (2addeh 7a22o? — how much is it? · 2addeh betriid? — how much do you want? (to a taxi driver))")
         QBodyText("كم — kam — How many (more formal, also used in colloquial, usually before a noun)")
         Spacer(modifier = Modifier.height(8.dp))
         QBodyText("Examples:")
@@ -202,6 +203,7 @@ fun QuestionsScreen() {
         QBodyText("• 2addeish es-saa3a? — قديش الساعة؟ — What time is it?")
         QBodyText("• kam walad 3indak? — كم ولد عندك؟ — How many children do you have?")
         QBodyText("• 2addeish 3umrak? / 3umrik? — قديش عمرك؟ — How old are you? (m / f)")
+        QBodyText("• 2addeh 7a22a? / shu si3ra? — قدّيه حقّا؟ / شو سعرا؟ — How much is it? / What's its price? (Lebanese, f item; = 2addeish 7a22ha? / shu si3rha?)")
         QSubHeader("Sample answers")
         QAnswer("khamsiin shekel — خمسين شيكل — Fifty shekels.")
         QAnswer("es-saa3a tlaate w-nuss — الساعة تلاتة ونص — It's half past three.")
@@ -265,7 +267,7 @@ fun QuestionsScreen() {
         QBodyText("مين (miin) — Who")
         QBodyText("كيف (kiif) — How")
         QBodyText("ليش (leish) — Why")
-        QBodyText("قديش / كم (2addeish / kam) — How much / How many")
+        QBodyText("قديش / قدّيه / كم (2addeish / 2addeh (Leb) / kam) — How much / How many")
         Spacer(modifier = Modifier.height(4.dp))
         QBodyText("Answers: ah / aywa (yes) · la2 (no) · sa77 / mazbuut (correct) · akiid / tab3an (sure) · yimkin (maybe) · 3al-aghlab (probably) · 3al-aghlab la2 (probably not) · ma ba3rif (I don't know) · mish faahim/faahme (I don't understand) · mish mit2akkid/mit2akkde (I'm not sure)")
 
