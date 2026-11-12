@@ -77,7 +77,7 @@ fun LearningScreen(navController: NavController) {
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("every_some") }, modifier = Modifier.weight(1f)) { Text("Every, Some, . . .") }
-            Spacer(modifier = Modifier.weight(1f))
+            Button(onClick = { navController.navigate("numbers_learning") }, modifier = Modifier.weight(1f)) { Text("Numbers") }
         }
     }
 }

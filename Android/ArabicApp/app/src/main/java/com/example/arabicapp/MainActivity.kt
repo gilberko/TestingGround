@@ -48,6 +48,7 @@ import com.example.arabicapp.screens.HubBackground
 import com.example.arabicapp.screens.LearningScreen
 import com.example.arabicapp.screens.NegationScreen
 import com.example.arabicapp.screens.NumbersScreen
+import com.example.arabicapp.screens.NumbersLearningScreen
 import com.example.arabicapp.screens.ObjectPronounsScreen
 import com.example.arabicapp.screens.PassiveVoiceScreen
 import com.example.arabicapp.screens.PastTenseScreen
@@ -336,6 +337,11 @@ fun AppNavigation() {
         composable("every_some") {
             ScreenWithBackButton(title = "Every, Some, . . .", onBack = { navController.popBackStack() }) {
                 EverySomeScreen()
+            }
+        }
+        composable("numbers_learning") {
+            ScreenWithBackButton(title = "Numbers", onBack = { navController.popBackStack() }) {
+                NumbersLearningScreen()
             }
         }
         composable("construct_state") {
