@@ -86,6 +86,7 @@ import com.example.arabicapp.screens.HobbiesScreen
 import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.screens.ArtsMediaScreen
 import com.example.arabicapp.screens.ConstructStateScreen
+import com.example.arabicapp.screens.EverySomeScreen
 import com.example.arabicapp.screens.MathEngineeringScreen
 import com.example.arabicapp.screens.TourismTravelScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
@@ -330,6 +331,11 @@ fun AppNavigation() {
         composable("letters_transliteration") {
             ScreenWithBackButton(title = "Letters Transliteration", onBack = { navController.popBackStack() }) {
                 LettersTransliterationScreen()
+            }
+        }
+        composable("every_some") {
+            ScreenWithBackButton(title = "Every, Some, . . .", onBack = { navController.popBackStack() }) {
+                EverySomeScreen()
             }
         }
         composable("construct_state") {

@@ -3,6 +3,7 @@ package com.example.arabicapp.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -73,6 +74,10 @@ fun LearningScreen(navController: NavController) {
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("comparisons") }, modifier = Modifier.weight(1f)) { Text("Comparisons") }
             Button(onClick = { navController.navigate("construct_state") }, modifier = Modifier.weight(1f)) { Text("Construct State") }
+        }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("every_some") }, modifier = Modifier.weight(1f)) { Text("Every, Some, . . .") }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

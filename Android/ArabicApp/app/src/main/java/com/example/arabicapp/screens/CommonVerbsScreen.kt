@@ -112,7 +112,7 @@ private val movementVerbs = listOf(
 
 private val toBeVerbs = listOf(
     CommonVerbEntry("to be", "كان", "kaan",
-        note = "In the present there is no verb, just like Hebrew: ana ta3baan = I (am) tired. The present form bakuun is used for habits, after biddi / laazim, and for \"will be\". " +
+        note = "In the present there is no verb, just like Hebrew: ana ta3baan = I (am) tired. The present form bakuun is used for habits (what you usually are), after biddi / laazim, and for \"will be\": ana ta3baan = I'm tired (right now), but bakuun ta3baan = I'm (usually) tired. See the habit examples below. " +
             "Yes, كان يا ما كان kaan ya ma kaan (\"once upon a time\") uses this same kaan. It's usually read as \"there was, or there wasn't\" (ما = not). " +
             "False friend: Hebrew כאן (here) sounds like Arabic كان (was). \"Here\" in Arabic is هون hon",
         iPres = "بكون bakuun", iPast = "كنت kunt", iFut = "رح اكون ra7 akuun",
@@ -120,6 +120,15 @@ private val toBeVerbs = listOf(
         fPres = "بتكوني btkuuni", fPast = "كنتِ kunti", fImp = "كوني kuuni",
         example = "كنت في البيت — kunt fil-beit — I was at home\n" +
             "بكرا رح اكون بالشغل — bukra ra7 akuun bish-shughl — Tomorrow I'll be at work\n" +
+            "Habits (bakuun = I'm usually):\n" +
+            "كل يوم بكون بالشغل الساعة تسعة — kull yoom bakuun bish-shughl es-saa3a tis3a — Every day I'm at work at nine\n" +
+            "دايماً بكون تعبان بعد الشغل — daayman bakuun ta3baan ba3d esh-shughl — I'm always tired after work\n" +
+            "بالصيف بكون الجو شوب — bis-seif bikuun ej-jaw shoob — In summer the weather is (usually) hot\n" +
+            "لمّا بشرب قهوة بكون مبسوط — lamma bashrab 2ahwe bakuun mabsuut — When I drink coffee I'm happy\n" +
+            "يوم الجمعة ما بكون بالبيت — yoom ej-jum3a ma bakuun bil-beit — On Fridays I'm not at home\n" +
+            "After biddi / laazim (no b-):\n" +
+            "بدّي اكون دكتور — biddi akuun daktoor — I want to be a doctor\n" +
+            "لازم تكون هون بكرا — laazim tkuun hon bukra — You (m) have to be here tomorrow\n" +
             "كون منيح — kuun mnii7 — Be good (to a man)\n" +
             "كان يا ما كان — kaan ya ma kaan — Once upon a time"),
 )
@@ -345,6 +354,22 @@ private val shoppingVerbs = listOf(
 )
 
 private val actionVerbs = listOf(
+    CommonVerbEntry("to start / to begin (להתחיל)", "بلّش", "ballash",
+        note = "The everyday word in Palestinian, Syrian and Lebanese. بدأ bada2 is formal / MSA. Start doing something = ballash + a verb without b-: ballasht ashtghil = I started working. Start work = ballash esh-shughl",
+        iPres = "ببلّش baballesh", iPast = "بلّشت ballasht", iFut = "رح ابلّش ra7 aballesh",
+        mPres = "بتبلّش btballesh", mPast = "بلّشت ballasht", mImp = "بلّش ballesh",
+        fPres = "بتبلّشي btballshi", fPast = "بلّشتِ ballashti", fImp = "بلّشي ballshi",
+        example = "بلّشت الشغل الساعة تمانية — ballasht esh-shughl es-saa3a tmaanye — I started work at eight\n" +
+            "الفيلم بلّش — el-film ballash — The film has started\n" +
+            "بلّش تحكي! — ballesh ti7ki! — Start talking! (to a man)"),
+    CommonVerbEntry("to finish / to end (לסיים)", "خلّص", "khallas",
+        note = "Finish something = khallas. It ended / it's over (no object) = خلص khilis: el-film khilis. خلص! khalas! = enough / that's it / done (Hebrew slang חלאס comes from it)",
+        iPres = "بخلّص bakhalles", iPast = "خلّصت khallast", iFut = "رح اخلّص ra7 akhalles",
+        mPres = "بتخلّص btkhalles", mPast = "خلّصت khallast", mImp = "خلّص khalles",
+        fPres = "بتخلّصي btkhallsi", fPast = "خلّصتِ khallasti", fImp = "خلّصي khallsi",
+        example = "خلّصت الشغل — khallast esh-shughl — I finished work\n" +
+            "لمّا تخلّص، تعال — lamma tkhalles, ta3aal — When you finish, come (to a man)\n" +
+            "الفيلم خلص — el-film khilis — The film is over"),
     CommonVerbEntry("to open", "فتح", "fata7",
         iPres = "بفتح bafta7", iPast = "فتحت fata7t", iFut = "رح افتح ra7 afta7",
         mPres = "بتفتح btifta7", mPast = "فتحت fata7t", mImp = "افتح ifta7",
