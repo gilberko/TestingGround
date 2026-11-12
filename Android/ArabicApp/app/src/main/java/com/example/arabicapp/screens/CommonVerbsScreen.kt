@@ -59,10 +59,20 @@ private val movementVerbs = listOf(
         mPres = "بتسوق bitsuu2", mPast = "سقت su2t", mImp = "سوق suu2",
         fPres = "بتسوقي bitsuu2i", fPast = "سقتِ su2ti", fImp = "سوقي suu2i"),
     CommonVerbEntry("to stop / to stand", "وقف", "wi2if",
-        note = "Same word; context distinguishes: \"o2af!\" = Stop! / \"wi2if 3ala rijleih\" = standing on his feet",
+        note = "Same word; context distinguishes: \"o2af!\" = Stop! / \"wi2if 3ala rijleih\" = standing on his feet. Stop someone / something (a car, a taxi) = وقّف wa22af: wa22if hon! = stop here!",
         iPres = "بوقف bo2af", iPast = "وقفت wi2ift", iFut = "رح اوقف ra7 o2af",
         mPres = "بتوقف bto2af", mPast = "وقفت wi2ift", mImp = "اوقف o2af",
         fPres = "بتوقفي bto2afi", fPast = "وقفتِ wi2ifti", fImp = "اوقفي o2afi"),
+    CommonVerbEntry("to turn (right / left)", "لفّ", "laff",
+        note = "liff 3al-yamiin / liff 3ash-shmaal = turn right / turn left. Syrian/Lebanese also برم baram: brom 3al-yamiin. In a taxi you'll also hear خود يمين khud yamiin = take a right",
+        iPres = "بلفّ baliff", iPast = "لفّيت laffeet", iFut = "رح الفّ ra7 aliff",
+        mPres = "بتلفّ btliff", mPast = "لفّيت laffeet", mImp = "لفّ liff",
+        fPres = "بتلفّي btliffi", fPast = "لفّيتِ laffeeti", fImp = "لفّي liffi"),
+    CommonVerbEntry("to continue / to keep going", "كمّل", "kammal",
+        note = "kammel dughri = keep going straight. ضلّ dall + verb = keep doing something: dallak maashi = keep going",
+        iPres = "بكمّل bakammel", iPast = "كمّلت kammalt", iFut = "رح اكمّل ra7 akammel",
+        mPres = "بتكمّل btkammel", mPast = "كمّلت kammalt", mImp = "كمّل kammel",
+        fPres = "بتكمّلي btkammli", fPast = "كمّلتِ kammalti", fImp = "كمّلي kammli"),
     CommonVerbEntry("to jump", "نطّ", "natt",
         note = "Everyday word in Palestinian and Syrian/Lebanese; قفز 2afaz is the formal/MSA word",
         iPres = "بنطّ banott", iPast = "نطّيت natteet", iFut = "رح انطّ ra7 anott",
@@ -98,6 +108,20 @@ private val movementVerbs = listOf(
         iPres = "بطلع batla3", iPast = "طلعت tli3t", iFut = "رح اطلع ra7 atla3",
         mPres = "بتطلع btitla3", mPast = "طلعت tli3t", mImp = "اطلع itla3",
         fPres = "بتطلعي btitla3i", fPast = "طلعتِ tli3ti", fImp = "اطلعي itla3i"),
+)
+
+private val toBeVerbs = listOf(
+    CommonVerbEntry("to be", "كان", "kaan",
+        note = "In the present there is no verb, just like Hebrew: ana ta3baan = I (am) tired. The present form bakuun is used for habits, after biddi / laazim, and for \"will be\". " +
+            "Yes, كان يا ما كان kaan ya ma kaan (\"once upon a time\") uses this same kaan. It's usually read as \"there was, or there wasn't\" (ما = not). " +
+            "False friend: Hebrew כאן (here) sounds like Arabic كان (was). \"Here\" in Arabic is هون hon",
+        iPres = "بكون bakuun", iPast = "كنت kunt", iFut = "رح اكون ra7 akuun",
+        mPres = "بتكون btkuun", mPast = "كنت kunt", mImp = "كون kuun",
+        fPres = "بتكوني btkuuni", fPast = "كنتِ kunti", fImp = "كوني kuuni",
+        example = "كنت في البيت — kunt fil-beit — I was at home\n" +
+            "بكرا رح اكون بالشغل — bukra ra7 akuun bish-shughl — Tomorrow I'll be at work\n" +
+            "كون منيح — kuun mnii7 — Be good (to a man)\n" +
+            "كان يا ما كان — kaan ya ma kaan — Once upon a time"),
 )
 
 private val haveWantVerbs = listOf(
@@ -191,6 +215,16 @@ private val communicationVerbs = listOf(
         iPres = "بشكر bashkur", iPast = "شكرت shakart", iFut = "رح اشكر ra7 ashkur",
         mPres = "بتشكر btushkur", mPast = "شكرت shakart", mImp = "اشكر ushkur",
         fPres = "بتشكري btushkri", fPast = "شكرتِ shakarti", fImp = "اشكري ushkri"),
+    CommonVerbEntry("to ask", "سأل", "sa2al",
+        note = "Ask someone = sa2al + the person: is2alo = ask him. Ask for something / request / order = طلب talab",
+        iPres = "بسأل bas2al", iPast = "سألت sa2alt", iFut = "رح اسأل ra7 as2al",
+        mPres = "بتسأل btis2al", mPast = "سألت sa2alt", mImp = "اسأل is2al",
+        fPres = "بتسألي btis2ali", fPast = "سألتِ sa2alti", fImp = "اسألي is2ali"),
+    CommonVerbEntry("to answer", "جاوب", "jaawab",
+        note = "Reply / answer the phone = ردّ radd (3ala): ma radd 3alayy = he didn't answer me",
+        iPres = "بجاوب bajaawib", iPast = "جاوبت jaawabt", iFut = "رح اجاوب ra7 ajaawib",
+        mPres = "بتجاوب btjaawib", mPast = "جاوبت jaawabt", mImp = "جاوب jaawib",
+        fPres = "بتجاوبي btjaawbi", fPast = "جاوبتِ jaawabti", fImp = "جاوبي jaawbi"),
     CommonVerbEntry("to call someone on the phone", "اتّصل ب", "ittasal b-",
         note = "Literally \"connected with\". Very common alternative: رنّ على rann 3ala (\"rang\"), e.g. رنّيت عليه ranneet 3alei = I called him",
         iPres = "بتّصل battasel", iPast = "اتّصلت ittasalt", iFut = "رح اتّصل ra7 attasel",
@@ -245,6 +279,11 @@ private val mindVerbs = listOf(
         iPres = "بصدّق basadde2", iPast = "صدّقت sadda2t", iFut = "رح اصدّق ra7 asadde2",
         mPres = "بتصدّق btsadde2", mPast = "صدّقت sadda2t", mImp = "صدّق sadde2",
         fPres = "بتصدّقي btsad2i", fPast = "صدّقتِ sadda2ti", fImp = "صدّقي sad2i"),
+    CommonVerbEntry("to understand", "فهم", "fihim",
+        note = "fhimt? = got it? / ma fhimt = I didn't understand. Syrian/Lebanese past: fhemet",
+        iPres = "بفهم bafham", iPast = "فهمت fhimt", iFut = "رح افهم ra7 afham",
+        mPres = "بتفهم btifham", mPast = "فهمت fhimt", mImp = "افهم ifham",
+        fPres = "بتفهمي btifhami", fPast = "فهمتِ fhimti", fImp = "افهمي ifhami"),
     CommonVerbEntry("to forget", "نسي", "nisi",
         iPres = "بنسى bansa", iPast = "نسيت niseet", iFut = "رح انسى ra7 ansa",
         mPres = "بتنسى btinsa", mPast = "نسيت niseet", mImp = "انسى insa",
@@ -287,6 +326,11 @@ private val dailyLifeVerbs = listOf(
         iPres = "بطفّي bataffi", iPast = "طفّيت taffeet", iFut = "رح اطفّي ra7 ataffi",
         mPres = "بتطفّي btaffi", mPast = "طفّيت taffeet", mImp = "طفّي taffi",
         fPres = "بتطفّي btaffi (same as m)", fPast = "طفّيتِ taffeeti", fImp = "طفّي taffi (same as m)"),
+    CommonVerbEntry("to behave / to act", "تصرّف", "tsarraf",
+        note = "Behave nicely = tsarraf mnii7. The other meaning of Hebrew נהוג, \"it's customary\", = el-3aade inno… (عادة 3aade = custom / habit)",
+        iPres = "بتصرّف batsarraf", iPast = "تصرّفت tsarraft", iFut = "رح اتصرّف ra7 atsarraf",
+        mPres = "بتتصرّف btitsarraf", mPast = "تصرّفت tsarraft", mImp = "تصرّف tsarraf",
+        fPres = "بتتصرّفي btitsarrafi", fPast = "تصرّفتِ tsarrafti", fImp = "تصرّفي tsarrafi"),
 )
 
 private val shoppingVerbs = listOf(
@@ -309,6 +353,26 @@ private val actionVerbs = listOf(
         iPres = "بسكّر basakker", iPast = "سكّرت sakkart", iFut = "رح اسكّر ra7 asakker",
         mPres = "بتسكّر btsakker", mPast = "سكّرت sakkart", mImp = "سكّر sakker",
         fPres = "بتسكّري btsakkri", fPast = "سكّرتِ sakkarti", fImp = "سكّري sakkri"),
+    CommonVerbEntry("to lock", "قفل", "2afal",
+        note = "A lock = قفل 2ifl, key = مفتاح miftaa7. People also just say sakker el-baab bil-miftaa7 = lock the door (lit. close it with the key)",
+        iPres = "بقفل ba2fil", iPast = "قفلت 2afalt", iFut = "رح اقفل ra7 a2fil",
+        mPres = "بتقفل bti2fil", mPast = "قفلت 2afalt", mImp = "اقفل i2fil",
+        fPres = "بتقفلي bti2fli", fPast = "قفلتِ 2afalti", fImp = "اقفلي i2fli"),
+    CommonVerbEntry("to give back / to return (something)", "رجّع", "rajja3",
+        note = "The doubled-middle form of rija3 (to come back) means to bring back, the same idea as Hebrew לחזור → להחזיר",
+        iPres = "برجّع barajje3", iPast = "رجّعت rajja3t", iFut = "رح ارجّع ra7 arajje3",
+        mPres = "بترجّع btrajje3", mPast = "رجّعت rajja3t", mImp = "رجّع rajje3",
+        fPres = "بترجّعي btraj3i", fPast = "رجّعتِ rajja3ti", fImp = "رجّعي raj3i"),
+    CommonVerbEntry("to try", "جرّب", "jarrab",
+        note = "Also try on clothes and taste food. Try hard / attempt = حاول 7aawal",
+        iPres = "بجرّب bajarreb", iPast = "جرّبت jarrabt", iFut = "رح اجرّب ra7 ajarreb",
+        mPres = "بتجرّب btjarreb", mPast = "جرّبت jarrabt", mImp = "جرّب jarreb",
+        fPres = "بتجرّبي btjarrbi", fPast = "جرّبتِ jarrabti", fImp = "جرّبي jarrbi"),
+    CommonVerbEntry("to help", "ساعد", "saa3ad",
+        note = "ممكن تساعدني؟ mumken tsaa3idni? = Can you help me?",
+        iPres = "بساعد basaa3ed", iPast = "ساعدت saa3adt", iFut = "رح اساعد ra7 asaa3ed",
+        mPres = "بتساعد btsaa3ed", mPast = "ساعدت saa3adt", mImp = "ساعد saa3ed",
+        fPres = "بتساعدي btsaa3di", fPast = "ساعدتِ saa3adti", fImp = "ساعدي saa3di"),
     CommonVerbEntry("to take", "أخد", "akhad",
         note = "Syrian/Lebanese imperative: khood / khédi",
         iPres = "باخد baakhod", iPast = "أخدت akhadt", iFut = "رح آخد ra7 aakhod",
@@ -423,6 +487,9 @@ fun CommonVerbsScreen() {
         CVBodyText("• Future = رح ra7 + the present without b-.")
         CVBodyText("• Forms shown are Palestinian. Syrian/Lebanese often say bi- for \"I\" (ana bishrab instead of bashrab); bigger differences are given in the note.")
         CVBodyText("• Past tense in Lebanon: a short helping e often breaks the consonants at the end, so akalt sounds like akal(e)t and shribt like shrebet. The spelling doesn't change.")
+
+        CVSectionHeader("To Be")
+        toBeVerbs.forEach { CVVerbCard(it) }
 
         CVSectionHeader("Have and Want (not regular verbs)")
         CVBodyText("\"To have\" and \"to want\" are not real verbs in spoken Arabic. They are pseudo-verbs: a little word plus the possessive ending you already know from 3indi / beiti (-i me, -ak you m, -ik you f).")
