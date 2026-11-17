@@ -256,7 +256,7 @@ private val duvGroups = listOf(
                     "Ouço música no carro." to "I listen to music in the car.",
                     "Não te ouço bem." to "I can't hear you well."
                 ),
-                "eu ouço (irregular 1st person)."
+                "eu ouço (irregular 1st person); oiço is also very common in EP."
             ),
             DuvVerb(
                 "escrever", "to write",

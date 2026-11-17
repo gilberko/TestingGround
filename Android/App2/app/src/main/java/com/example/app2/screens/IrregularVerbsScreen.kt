@@ -159,10 +159,10 @@ private val irrVerbs = listOf(
         IrrTense.PERF to "dei deste deu demos destes deram",
         IrrTense.IMPF to "dava davas dava dávamos dáveis davam",
         IrrTense.FUT to "darei darás dará daremos dareis darão",
-        IrrTense.IMP_POS to "— dá dê demos dai deem",
-        IrrTense.IMP_NEG to "— dês dê demos deis deem",
+        IrrTense.IMP_POS to "— dá dê dêmos dai deem",
+        IrrTense.IMP_NEG to "— dês dê dêmos deis deem",
         IrrTense.COND to "daria darias daria daríamos daríeis dariam",
-        IrrTense.CPRES to "dê dês dê demos deis deem",
+        IrrTense.CPRES to "dê dês dê dêmos deis deem",
         IrrTense.CIMPF to "desse desses desse déssemos désseis dessem",
         IrrTense.CFUT to "der deres der dermos derdes derem"
     ),
@@ -274,7 +274,7 @@ private val allIrr = listOf("ser", "estar", "ir", "vir", "sair", "poder", "saber
 private val irrTenseInfos = listOf(
     IrrTenseInfo(
         IrrTense.PRES, allIrr, emptyList(),
-        "ficar and chegar are regular here (fico, chego). Many irregular verbs are irregular only in the eu form: faço, digo, trago, posso, saio, vejo."
+        "ficar and chegar are regular here (fico, chego). For several verbs the main irregularity is the eu form (faço, digo, trago, posso, saio, vejo, ouço), plus the short ele forms diz, faz, traz. ser, estar, ir, ter, vir and dar are irregular throughout."
     ),
     IrrTenseInfo(
         IrrTense.PERF, allIrr, listOf("ficar", "chegar"),
@@ -290,7 +290,7 @@ private val irrTenseInfos = listOf(
     ),
     IrrTenseInfo(
         IrrTense.IMP_POS, allIrr, listOf("ficar", "chegar"),
-        "tu form = the ele form of the present (diz, faz, traz, vem, tem, vai, fica). você / nós / vocês forms come from the subjunctive present (diga, digamos, digam). The vós form (sede, ide, vinde) is archaic. poder's imperative is practically unused; the forms are shown only for completeness."
+        "tu form = the ele form of the present (diz, faz, traz, vem, tem, vai, fica), except ser: sê. você / nós / vocês forms come from the subjunctive present (diga, digamos, digam). The vós form (sede, ide, vinde) is archaic. poder's imperative is practically unused; the forms are shown only for completeness."
     ),
     IrrTenseInfo(
         IrrTense.IMP_NEG, allIrr, listOf("ficar", "chegar"),
@@ -302,7 +302,7 @@ private val irrTenseInfos = listOf(
     ),
     IrrTenseInfo(
         IrrTense.CPRES, allIrr, listOf("ficar", "chegar"),
-        "Most are built from the eu form of the present minus -o: faço → faça, digo → diga, tenho → tenha, venho → venha, posso → possa. Fully irregular: seja, esteja, vá, saiba, dê. ficar / chegar: fique, chegue."
+        "Most are built from the eu form of the present minus -o: faço → faça, digo → diga, tenho → tenha, venho → venha, posso → possa. Fully irregular: seja, esteja, vá, saiba, dê. ficar / chegar: fique, chegue. EP writes dêmos (nós) to tell it apart from the past demos; the accent is optional under the 1990 spelling agreement and BP writes demos."
     ),
     IrrTenseInfo(
         IrrTense.CIMPF, allIrr.filter { it != "sair" }, listOf("sair"),
