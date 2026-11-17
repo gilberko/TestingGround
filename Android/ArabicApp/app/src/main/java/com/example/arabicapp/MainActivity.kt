@@ -88,6 +88,9 @@ import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.screens.ArtsMediaScreen
 import com.example.arabicapp.screens.ConstructStateScreen
 import com.example.arabicapp.screens.EverySomeScreen
+import com.example.arabicapp.screens.AdjectivesAdverbsOverviewScreen
+import com.example.arabicapp.screens.WeatherScreen
+import com.example.arabicapp.screens.RealEstateScreen
 import com.example.arabicapp.screens.MathEngineeringScreen
 import com.example.arabicapp.screens.TourismTravelScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
@@ -332,6 +335,21 @@ fun AppNavigation() {
         composable("letters_transliteration") {
             ScreenWithBackButton(title = "Letters Transliteration", onBack = { navController.popBackStack() }) {
                 LettersTransliterationScreen()
+            }
+        }
+        composable("adjectives_adverbs_overview") {
+            ScreenWithBackButton(title = "Overview of Adjectives and Adverbs", onBack = { navController.popBackStack() }) {
+                AdjectivesAdverbsOverviewScreen()
+            }
+        }
+        composable("dict_weather") {
+            ScreenWithBackButton(title = "The Weather", onBack = { navController.popBackStack() }) {
+                WeatherScreen()
+            }
+        }
+        composable("dict_real_estate") {
+            ScreenWithBackButton(title = "Real Estate", onBack = { navController.popBackStack() }) {
+                RealEstateScreen()
             }
         }
         composable("every_some") {
