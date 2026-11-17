@@ -83,52 +83,15 @@ private val phrases = listOf(
     )
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PortuguesePhrasesScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Portuguese Phrases") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
+    DictScreenScaffold(title = "Portuguese Phrases", onBack = onBack) {
+        item {
+            DictCategoryCard(
+                title = "Idioms & Expressions",
+                entries = phrases.map { DictWord(it.phrase, it.meaning, note = "Literal: ${it.literal}") },
+                stacked = true
             )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(phrases) { entry ->
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(
-                        modifier = Modifier.padding(12.dp),
-                        verticalArrangement = Arrangement.spacedBy(6.dp)
-                    ) {
-                        Text(
-                            text = entry.phrase,
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontStyle = FontStyle.Italic,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "Literal: ${entry.literal}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Text(
-                            text = entry.meaning,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                }
-            }
         }
     }
 }

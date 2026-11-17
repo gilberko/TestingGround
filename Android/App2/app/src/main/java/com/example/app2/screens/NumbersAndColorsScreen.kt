@@ -26,8 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 private data class NacNumberEntry(val numeral: Int, val cardinal: String, val ordinal: String)
-private data class NacColorEntry(val pt: String, val en: String, val note: String = "")
-private data class NacColorCategory(val title: String, val entries: List<NacColorEntry>)
 
 private val nacSingleDigits = listOf(
     NacNumberEntry(0, "zero", "—"),
@@ -56,43 +54,43 @@ private val nacTens = listOf(
 )
 
 private val nacColorCategories = listOf(
-    NacColorCategory(
+    DictCategory(
         "Basic Colors",
         listOf(
-            NacColorEntry("vermelho / vermelha", "red", "gender-variable"),
-            NacColorEntry("azul", "blue", "invariable"),
-            NacColorEntry("verde", "green", "invariable"),
-            NacColorEntry("amarelo / amarela", "yellow", "gender-variable"),
-            NacColorEntry("laranja", "orange", "invariable"),
-            NacColorEntry("roxo / roxa", "purple", "gender-variable"),
-            NacColorEntry("cor-de-rosa", "pink", "invariable"),
-            NacColorEntry("castanho / castanha", "brown", "gender-variable"),
-            NacColorEntry("preto / preta", "black", "gender-variable"),
-            NacColorEntry("branco / branca", "white", "gender-variable"),
-            NacColorEntry("cinzento / cinzenta", "grey", "gender-variable"),
-            NacColorEntry("cinza", "grey (alt.)", "invariable, informal")
+            DictWord("vermelho / vermelha", "red", "gender-variable"),
+            DictWord("azul", "blue", "invariable"),
+            DictWord("verde", "green", "invariable"),
+            DictWord("amarelo / amarela", "yellow", "gender-variable"),
+            DictWord("laranja", "orange", "invariable"),
+            DictWord("roxo / roxa", "purple", "gender-variable"),
+            DictWord("cor-de-rosa", "pink", "invariable"),
+            DictWord("castanho / castanha", "brown", "gender-variable"),
+            DictWord("preto / preta", "black", "gender-variable"),
+            DictWord("branco / branca", "white", "gender-variable"),
+            DictWord("cinzento / cinzenta", "grey", "gender-variable"),
+            DictWord("cinza", "grey (alt.)", "invariable, informal")
         )
     ),
-    NacColorCategory(
+    DictCategory(
         "Shades & Modifiers",
         listOf(
-            NacColorEntry("claro / clara", "light (e.g. azul claro)", "gender-variable"),
-            NacColorEntry("escuro / escura", "dark (e.g. verde escuro)", "gender-variable"),
-            NacColorEntry("vivo / viva", "bright", "gender-variable"),
-            NacColorEntry("pálido / pálida", "pale", "gender-variable")
+            DictWord("claro / clara", "light (e.g. azul claro)", "gender-variable"),
+            DictWord("escuro / escura", "dark (e.g. verde escuro)", "gender-variable"),
+            DictWord("vivo / viva", "bright", "gender-variable"),
+            DictWord("pálido / pálida", "pale", "gender-variable")
         )
     ),
-    NacColorCategory(
+    DictCategory(
         "More Colors",
         listOf(
-            NacColorEntry("bege", "beige", "invariable"),
-            NacColorEntry("bordeaux", "burgundy / wine", "invariable"),
-            NacColorEntry("dourado / dourada", "golden", "gender-variable"),
-            NacColorEntry("prateado / prateada", "silver", "gender-variable"),
-            NacColorEntry("creme", "cream", "invariable"),
-            NacColorEntry("turquesa", "turquoise", "invariable"),
-            NacColorEntry("lilás", "lilac", "invariable"),
-            NacColorEntry("índigo", "indigo", "invariable")
+            DictWord("bege", "beige", "invariable"),
+            DictWord("bordeaux", "burgundy / wine", "invariable"),
+            DictWord("dourado / dourada", "golden", "gender-variable"),
+            DictWord("prateado / prateada", "silver", "gender-variable"),
+            DictWord("creme", "cream", "invariable"),
+            DictWord("turquesa", "turquoise", "invariable"),
+            DictWord("lilás", "lilac", "invariable"),
+            DictWord("índigo", "indigo", "invariable")
         )
     )
 )
@@ -129,7 +127,7 @@ fun NumbersAndColorsScreen(onBack: () -> Unit) {
             item {
                 ElevatedCard(modifier = Modifier.fillMaxWidth()) {
                     Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("Notes", style = MaterialTheme.typography.titleSmall)
+                        Text("Notes", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                         Text(
                             text = "* cem is used for exactly 100; cento is used in compounds (e.g. cento e um = 101).",
                             style = MaterialTheme.typography.bodySmall,
@@ -150,40 +148,7 @@ fun NumbersAndColorsScreen(onBack: () -> Unit) {
                     }
                 }
             }
-            items(nacColorCategories) { category ->
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Text(text = category.title, style = MaterialTheme.typography.titleMedium)
-                        category.entries.forEach { entry ->
-                            Column(modifier = Modifier.fillMaxWidth()) {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Text(
-                                        text = entry.pt,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontStyle = FontStyle.Italic,
-                                        modifier = Modifier.weight(1f)
-                                    )
-                                    Text(
-                                        text = entry.en,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-                                if (entry.note.isNotEmpty()) {
-                                    Text(
-                                        text = entry.note,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            items(nacColorCategories) { DictCategoryCard(it) }
         }
     }
 }
@@ -192,7 +157,7 @@ fun NumbersAndColorsScreen(onBack: () -> Unit) {
 private fun NacNumberCard(title: String, entries: List<NacNumberEntry>) {
     ElevatedCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(12.dp)) {
-            Text(text = title, style = MaterialTheme.typography.titleMedium)
+            Text(text = title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(text = "#", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(0.15f))

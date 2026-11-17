@@ -53,7 +53,8 @@ fun TutorialScreen(
     onNegation: () -> Unit,
     onSomeNoneAll: () -> Unit,
     onConnectors: () -> Unit,
-    onAdjectivesAdverbs: () -> Unit
+    onAdjectivesAdverbs: () -> Unit,
+    onPossessives: () -> Unit
 ) {
     val buttons = listOf(
         "Verbs And Tenses" to onVerbsAndTenses,
@@ -68,7 +69,8 @@ fun TutorialScreen(
         "Negation" to onNegation,
         "Some, None, All" to onSomeNoneAll,
         "Yet, Already & Others" to onConnectors,
-        "Adjectives and Adverbs" to onAdjectivesAdverbs
+        "Adjectives and Adverbs" to onAdjectivesAdverbs,
+        "Possessives" to onPossessives
     )
 
     Box(modifier = Modifier.fillMaxSize()) {

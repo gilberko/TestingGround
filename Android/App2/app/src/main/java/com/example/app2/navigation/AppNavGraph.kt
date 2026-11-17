@@ -56,6 +56,8 @@ import com.example.app2.screens.PortuguesePhrasesScreen
 import com.example.app2.screens.CookingScreen
 import com.example.app2.screens.NegationScreen
 import com.example.app2.screens.ParaPorAScreen
+import com.example.app2.screens.PossessivesScreen
+import com.example.app2.screens.DictUsefulVerbsScreen
 import com.example.app2.screens.AuthorsThoughtsScreen
 import com.example.app2.screens.HomeImprovementScreen
 import com.example.app2.screens.VerbsAndTensesScreen
@@ -155,6 +157,8 @@ sealed class Screen(val route: String) {
     object TutorialMoreTenses : Screen("tutorial_more_tenses")
     object TutorialVerbsAndTenses : Screen("tutorial_verbs_and_tenses")
     object TutorialParaPorA : Screen("tutorial_para_por_a")
+    object TutorialPossessives : Screen("tutorial_possessives")
+    object DictUsefulVerbs : Screen("dict_useful_verbs")
     object ConjugationTables : Screen("conjugation_tables")
     object ConjTablePresentIndicative : Screen("conj_table_present_indicative")
     object ConjTablePastIndicative : Screen("conj_table_past_indicative")
@@ -237,7 +241,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onNegation = { navController.navigate(Screen.TutorialNegation.route) },
                 onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConnectors = { navController.navigate(Screen.DictConnectors.route) },
-                onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) }
+                onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) },
+                onPossessives = { navController.navigate(Screen.TutorialPossessives.route) }
             )
         }
         composable(Screen.TutorialVerbsAndTenses.route) {
@@ -262,6 +267,12 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialParaPorA.route) {
             ParaPorAScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialPossessives.route) {
+            PossessivesScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.DictUsefulVerbs.route) {
+            DictUsefulVerbsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.TutorialNegation.route) {
             NegationScreen(onBack = { navController.popBackStack() })
@@ -293,7 +304,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSports = { navController.navigate(Screen.DictSports.route) },
                 onCountries = { navController.navigate(Screen.DictCountries.route) },
                 onCasualExpressions = { navController.navigate(Screen.DictCasualExpressions.route) },
-                onBodyAndHealth = { navController.navigate(Screen.DictBodyAndHealth.route) }
+                onBodyAndHealth = { navController.navigate(Screen.DictBodyAndHealth.route) },
+                onUsefulVerbs = { navController.navigate(Screen.DictUsefulVerbs.route) }
             )
         }
         composable(Screen.DictColors.route) {

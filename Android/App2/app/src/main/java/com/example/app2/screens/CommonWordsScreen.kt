@@ -24,355 +24,319 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
-private data class WordEntry(val pt: String, val en: String, val gender: String = "")
-private data class WordCategory(val title: String, val entries: List<WordEntry>)
 
 private val wordCategories = listOf(
-    WordCategory(
+    DictCategory(
         "House / Home",
         listOf(
-            WordEntry("casa", "house / home", "(f)"),
-            WordEntry("apartamento", "apartment / flat", "(m)"),
-            WordEntry("quarto", "bedroom / room", "(m)"),
-            WordEntry("sala", "living room", "(f)"),
-            WordEntry("cozinha", "kitchen", "(f)"),
-            WordEntry("casa de banho", "bathroom", "(f)"),
-            WordEntry("jardim", "garden", "(m)"),
-            WordEntry("garagem", "garage", "(f)"),
-            WordEntry("janela", "window", "(f)"),
-            WordEntry("porta", "door", "(f)"),
-            WordEntry("parede", "wall", "(f)"),
-            WordEntry("tecto", "ceiling", "(m)"),
-            WordEntry("chão", "floor / ground", "(m)"),
-            WordEntry("escadas", "stairs", "(f)"),
-            WordEntry("cama", "bed", "(f)"),
-            WordEntry("sofá", "sofa", "(m)"),
-            WordEntry("mesa", "table", "(f)"),
-            WordEntry("cadeira", "chair", "(f)"),
-            WordEntry("armário", "wardrobe / cupboard", "(m)"),
-            WordEntry("frigorífico", "fridge", "(m)"),
-            WordEntry("fogão", "cooker / stove", "(m)"),
-            WordEntry("chave", "key", "(f)"),
-            WordEntry("lâmpada", "lamp / light bulb", "(f)"),
-            WordEntry("cortina", "curtain", "(f)"),
-            WordEntry("tapete", "carpet / rug", "(m)"),
-            WordEntry("espelho", "mirror", "(m)"),
-            WordEntry("toalha", "towel", "(f)"),
-            WordEntry("almofada", "pillow / cushion", "(f)"),
-            WordEntry("sanita", "toilet", "(f)"),
-            WordEntry("elevador", "elevator / lift", "(m)"),
-            WordEntry("congelador", "freezer", "(m)"),
-            WordEntry("forno", "oven", "(m)"),
-            WordEntry("micro-ondas", "microwave", "(m)"),
-            WordEntry("lençóis", "sheets", "(m pl)"),
-            WordEntry("máquina de lavar (roupa)", "washing machine", "(f)"),
-            WordEntry("máquina de secar (roupa)", "tumble dryer", "(f)"),
-            WordEntry("ar condicionado", "air conditioner", "(m)")
+            DictWord("casa", "house / home", gender = "(f)"),
+            DictWord("apartamento", "apartment / flat", gender = "(m)"),
+            DictWord("quarto", "bedroom / room", gender = "(m)"),
+            DictWord("sala", "living room", gender = "(f)"),
+            DictWord("cozinha", "kitchen", gender = "(f)"),
+            DictWord("casa de banho", "bathroom", gender = "(f)"),
+            DictWord("jardim", "garden", gender = "(m)"),
+            DictWord("garagem", "garage", gender = "(f)"),
+            DictWord("janela", "window", gender = "(f)"),
+            DictWord("porta", "door", gender = "(f)"),
+            DictWord("parede", "wall", gender = "(f)"),
+            DictWord("tecto", "ceiling", gender = "(m)"),
+            DictWord("chão", "floor / ground", gender = "(m)"),
+            DictWord("escadas", "stairs", gender = "(f)"),
+            DictWord("cama", "bed", gender = "(f)"),
+            DictWord("sofá", "sofa", gender = "(m)"),
+            DictWord("mesa", "table", gender = "(f)"),
+            DictWord("cadeira", "chair", gender = "(f)"),
+            DictWord("armário", "wardrobe / cupboard", gender = "(m)"),
+            DictWord("frigorífico", "fridge", gender = "(m)"),
+            DictWord("fogão", "cooker / stove", gender = "(m)"),
+            DictWord("chave", "key", gender = "(f)"),
+            DictWord("lâmpada", "lamp / light bulb", gender = "(f)"),
+            DictWord("cortina", "curtain", gender = "(f)"),
+            DictWord("tapete", "carpet / rug", gender = "(m)"),
+            DictWord("espelho", "mirror", gender = "(m)"),
+            DictWord("toalha", "towel", gender = "(f)"),
+            DictWord("almofada", "pillow / cushion", gender = "(f)"),
+            DictWord("sanita", "toilet", gender = "(f)"),
+            DictWord("elevador", "elevator / lift", gender = "(m)"),
+            DictWord("congelador", "freezer", gender = "(m)"),
+            DictWord("forno", "oven", gender = "(m)"),
+            DictWord("micro-ondas", "microwave", gender = "(m)"),
+            DictWord("lençóis", "sheets", gender = "(m pl)"),
+            DictWord("máquina de lavar (roupa)", "washing machine", gender = "(f)"),
+            DictWord("máquina de secar (roupa)", "tumble dryer", gender = "(f)"),
+            DictWord("ar condicionado", "air conditioner", gender = "(m)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Home — Actions & Phrases",
         listOf(
-            WordEntry("Abrir a janela", "Open the window"),
-            WordEntry("Fechar a janela", "Close the window"),
-            WordEntry("Abrir a porta", "Open the door"),
-            WordEntry("Trancar a porta", "Lock the door"),
-            WordEntry("Lavar a louça", "Do the dishes"),
-            WordEntry("Limpar o quarto", "Clean the room"),
-            WordEntry("Mudar / trocar os lençóis", "Change the sheets"),
-            WordEntry("O apartamento fica no segundo andar.", "The apartment is on the second floor.")
+            DictWord("Abrir a janela", "Open the window"),
+            DictWord("Fechar a janela", "Close the window"),
+            DictWord("Abrir a porta", "Open the door"),
+            DictWord("Trancar a porta", "Lock the door"),
+            DictWord("Lavar a louça", "Do the dishes"),
+            DictWord("Limpar o quarto", "Clean the room"),
+            DictWord("Mudar / trocar os lençóis", "Change the sheets"),
+            DictWord("O apartamento fica no segundo andar.", "The apartment is on the second floor.")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Yes, No & Uncertainty",
         listOf(
-            WordEntry("sim", "yes"),
-            WordEntry("não", "no"),
-            WordEntry("claro / com certeza", "sure / of course"),
-            WordEntry("talvez", "maybe (+ conjuntivo)"),
-            WordEntry("se calhar", "perhaps / probably (informal EP)"),
-            WordEntry("não sei", "I don't know"),
-            WordEntry("não tenho a certeza", "I'm not sure")
+            DictWord("sim", "yes"),
+            DictWord("não", "no"),
+            DictWord("claro / com certeza", "sure / of course"),
+            DictWord("talvez", "maybe (+ conjuntivo)"),
+            DictWord("se calhar", "perhaps / probably (informal EP)"),
+            DictWord("não sei", "I don't know"),
+            DictWord("não tenho a certeza", "I'm not sure")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Questions & Answers",
         listOf(
-            WordEntry("pergunta", "question", "(f)"),
-            WordEntry("resposta", "answer", "(f)"),
-            WordEntry("porquê? / porque é que…?", "why?"),
-            WordEntry("porque", "because"),
-            WordEntry("quando", "when"),
-            WordEntry("até quando?", "until when?"),
-            WordEntry("desde quando?", "since when?"),
-            WordEntry("onde", "where"),
-            WordEntry("para onde / aonde", "to where"),
-            WordEntry("de onde", "from where"),
-            WordEntry("como", "how"),
-            WordEntry("quanto / quanta", "how much"),
-            WordEntry("quantos / quantas", "how many"),
-            WordEntry("o que / o quê?", "what"),
-            WordEntry("O que é isto?", "What is this?")
+            DictWord("pergunta", "question", gender = "(f)"),
+            DictWord("resposta", "answer", gender = "(f)"),
+            DictWord("porquê? / porque é que…?", "why?"),
+            DictWord("porque", "because"),
+            DictWord("quando", "when"),
+            DictWord("até quando?", "until when?"),
+            DictWord("desde quando?", "since when?"),
+            DictWord("onde", "where"),
+            DictWord("para onde / aonde", "to where"),
+            DictWord("de onde", "from where"),
+            DictWord("como", "how"),
+            DictWord("quanto / quanta", "how much"),
+            DictWord("quantos / quantas", "how many"),
+            DictWord("o que / o quê?", "what"),
+            DictWord("O que é isto?", "What is this?")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Quantity, Frequency & Negatives",
         listOf(
-            WordEntry("nem ___ nem ___", "neither ___ nor ___"),
-            WordEntry("nenhum destes / nenhuma destas", "neither / none of these"),
-            WordEntry("um destes / uma destas", "one of these"),
-            WordEntry("cada / todos os, todas as", "every"),
-            WordEntry("alguns / algumas", "a few / some"),
-            WordEntry("um pouco / um bocado", "a bit"),
-            WordEntry("muitos / muitas", "many"),
-            WordEntry("raramente", "rarely"),
-            WordEntry("muitas vezes / frequentemente", "often"),
-            WordEntry("sempre que / todas as vezes", "every time"),
-            WordEntry("todos os dias", "every day"),
-            WordEntry("sempre", "always"),
-            WordEntry("nunca", "never"),
-            WordEntry("nada", "nothing"),
-            WordEntry("em lado nenhum", "nowhere"),
-            WordEntry("ninguém", "no one / nobody")
+            DictWord("nem ___ nem ___", "neither ___ nor ___"),
+            DictWord("nenhum destes / nenhuma destas", "neither / none of these"),
+            DictWord("um destes / uma destas", "one of these"),
+            DictWord("cada / todos os, todas as", "every"),
+            DictWord("alguns / algumas", "a few / some"),
+            DictWord("um pouco / um bocado", "a bit"),
+            DictWord("muitos / muitas", "many"),
+            DictWord("raramente", "rarely"),
+            DictWord("muitas vezes / frequentemente", "often"),
+            DictWord("sempre que / todas as vezes", "every time"),
+            DictWord("todos os dias", "every day"),
+            DictWord("sempre", "always"),
+            DictWord("nunca", "never"),
+            DictWord("nada", "nothing"),
+            DictWord("em lado nenhum", "nowhere"),
+            DictWord("ninguém", "no one / nobody")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Food & Dining",
         listOf(
-            WordEntry("comida", "food", "(f)"),
-            WordEntry("prato", "plate / dish", "(m)"),
-            WordEntry("faca", "knife", "(f)"),
-            WordEntry("garfo", "fork", "(m)"),
-            WordEntry("colher", "spoon", "(f)"),
-            WordEntry("copo", "glass / cup", "(m)"),
-            WordEntry("garrafa", "bottle", "(f)"),
-            WordEntry("água", "water", "(f)"),
-            WordEntry("vinho", "wine", "(m)"),
-            WordEntry("cerveja", "beer", "(f)"),
-            WordEntry("pão", "bread", "(m)"),
-            WordEntry("manteiga", "butter", "(f)"),
-            WordEntry("queijo", "cheese", "(m)"),
-            WordEntry("carne", "meat", "(f)"),
-            WordEntry("peixe", "fish", "(m)"),
-            WordEntry("frango", "chicken", "(m)"),
-            WordEntry("ovo", "egg", "(m)"),
-            WordEntry("arroz", "rice", "(m)"),
-            WordEntry("batata", "potato", "(f)"),
-            WordEntry("salada", "salad", "(f)"),
-            WordEntry("sopa", "soup", "(f)"),
-            WordEntry("fruta", "fruit", "(f)"),
-            WordEntry("legumes", "vegetables", "(m)"),
-            WordEntry("sal", "salt", "(m)"),
-            WordEntry("açúcar", "sugar", "(m)"),
-            WordEntry("azeite", "olive oil", "(m)"),
-            WordEntry("café", "coffee", "(m)"),
-            WordEntry("conta", "bill", "(f)")
+            DictWord("comida", "food", gender = "(f)"),
+            DictWord("prato", "plate / dish", gender = "(m)"),
+            DictWord("faca", "knife", gender = "(f)"),
+            DictWord("garfo", "fork", gender = "(m)"),
+            DictWord("colher", "spoon", gender = "(f)"),
+            DictWord("copo", "glass / cup", gender = "(m)"),
+            DictWord("garrafa", "bottle", gender = "(f)"),
+            DictWord("água", "water", gender = "(f)"),
+            DictWord("vinho", "wine", gender = "(m)"),
+            DictWord("cerveja", "beer", gender = "(f)"),
+            DictWord("pão", "bread", gender = "(m)"),
+            DictWord("manteiga", "butter", gender = "(f)"),
+            DictWord("queijo", "cheese", gender = "(m)"),
+            DictWord("carne", "meat", gender = "(f)"),
+            DictWord("peixe", "fish", gender = "(m)"),
+            DictWord("frango", "chicken", gender = "(m)"),
+            DictWord("ovo", "egg", gender = "(m)"),
+            DictWord("arroz", "rice", gender = "(m)"),
+            DictWord("batata", "potato", gender = "(f)"),
+            DictWord("salada", "salad", gender = "(f)"),
+            DictWord("sopa", "soup", gender = "(f)"),
+            DictWord("fruta", "fruit", gender = "(f)"),
+            DictWord("legumes", "vegetables", gender = "(m)"),
+            DictWord("sal", "salt", gender = "(m)"),
+            DictWord("açúcar", "sugar", gender = "(m)"),
+            DictWord("azeite", "olive oil", gender = "(m)"),
+            DictWord("café", "coffee", gender = "(m)"),
+            DictWord("conta", "bill", gender = "(f)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Transport",
         listOf(
-            WordEntry("carro", "car", "(m)"),
-            WordEntry("autocarro", "bus", "(m)"),
-            WordEntry("comboio", "train", "(m)"),
-            WordEntry("metro", "metro / underground", "(m)"),
-            WordEntry("avião", "aeroplane", "(m)"),
-            WordEntry("barco", "boat", "(m)"),
-            WordEntry("bicicleta", "bicycle", "(f)"),
-            WordEntry("mota", "motorbike", "(f)"),
-            WordEntry("táxi", "taxi", "(m)"),
-            WordEntry("paragem", "bus stop", "(f)"),
-            WordEntry("estação", "station", "(f)"),
-            WordEntry("aeroporto", "airport", "(m)"),
-            WordEntry("bilhete", "ticket", "(m)"),
-            WordEntry("passagem", "passage / ticket", "(f)"),
-            WordEntry("bagagem", "luggage", "(f)"),
-            WordEntry("mala", "suitcase / bag", "(f)"),
-            WordEntry("mapa", "map", "(m)"),
-            WordEntry("semáforo", "traffic light", "(m)"),
-            WordEntry("estrada", "road", "(f)"),
-            WordEntry("rua", "street", "(f)"),
-            WordEntry("avenida", "avenue", "(f)"),
-            WordEntry("ponte", "bridge", "(f)"),
-            WordEntry("gasolina", "petrol", "(f)"),
-            WordEntry("parque de estacionamento", "car park", "(m)")
+            DictWord("carro", "car", gender = "(m)"),
+            DictWord("autocarro", "bus", gender = "(m)"),
+            DictWord("comboio", "train", gender = "(m)"),
+            DictWord("metro", "metro / underground", gender = "(m)"),
+            DictWord("avião", "aeroplane", gender = "(m)"),
+            DictWord("barco", "boat", gender = "(m)"),
+            DictWord("bicicleta", "bicycle", gender = "(f)"),
+            DictWord("mota", "motorbike", gender = "(f)"),
+            DictWord("táxi", "taxi", gender = "(m)"),
+            DictWord("paragem", "bus stop", gender = "(f)"),
+            DictWord("estação", "station", gender = "(f)"),
+            DictWord("aeroporto", "airport", gender = "(m)"),
+            DictWord("bilhete", "ticket", gender = "(m)"),
+            DictWord("passagem", "passage / ticket", gender = "(f)"),
+            DictWord("bagagem", "luggage", gender = "(f)"),
+            DictWord("mala", "suitcase / bag", gender = "(f)"),
+            DictWord("mapa", "map", gender = "(m)"),
+            DictWord("semáforo", "traffic light", gender = "(m)"),
+            DictWord("estrada", "road", gender = "(f)"),
+            DictWord("rua", "street", gender = "(f)"),
+            DictWord("avenida", "avenue", gender = "(f)"),
+            DictWord("ponte", "bridge", gender = "(f)"),
+            DictWord("gasolina", "petrol", gender = "(f)"),
+            DictWord("parque de estacionamento", "car park", gender = "(m)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Entertainment",
         listOf(
-            WordEntry("televisão", "television", "(f)"),
-            WordEntry("filme", "film", "(m)"),
-            WordEntry("música", "music", "(f)"),
-            WordEntry("livro", "book", "(m)"),
-            WordEntry("jornal", "newspaper", "(m)"),
-            WordEntry("revista", "magazine", "(f)"),
-            WordEntry("concerto", "concert", "(m)"),
-            WordEntry("teatro", "theatre", "(m)"),
-            WordEntry("cinema", "cinema", "(m)"),
-            WordEntry("jogo", "game", "(m)"),
-            WordEntry("computador", "computer", "(m)"),
-            WordEntry("telemóvel", "mobile phone", "(m)"),
-            WordEntry("internet", "internet", "(f)"),
-            WordEntry("canção", "song", "(f)"),
-            WordEntry("rádio", "radio", "(m)"),
-            WordEntry("dança", "dance", "(f)"),
-            WordEntry("festa", "party", "(f)"),
-            WordEntry("férias", "holidays / vacation", "(f)"),
-            WordEntry("passeio", "walk / outing", "(m)"),
-            WordEntry("praia", "beach", "(f)"),
-            WordEntry("piscina", "swimming pool", "(f)"),
-            WordEntry("desporto", "sport", "(m)"),
-            WordEntry("futebol", "football", "(m)")
+            DictWord("televisão", "television", gender = "(f)"),
+            DictWord("filme", "film", gender = "(m)"),
+            DictWord("música", "music", gender = "(f)"),
+            DictWord("livro", "book", gender = "(m)"),
+            DictWord("jornal", "newspaper", gender = "(m)"),
+            DictWord("revista", "magazine", gender = "(f)"),
+            DictWord("concerto", "concert", gender = "(m)"),
+            DictWord("teatro", "theatre", gender = "(m)"),
+            DictWord("cinema", "cinema", gender = "(m)"),
+            DictWord("jogo", "game", gender = "(m)"),
+            DictWord("computador", "computer", gender = "(m)"),
+            DictWord("telemóvel", "mobile phone", gender = "(m)"),
+            DictWord("internet", "internet", gender = "(f)"),
+            DictWord("canção", "song", gender = "(f)"),
+            DictWord("rádio", "radio", gender = "(m)"),
+            DictWord("dança", "dance", gender = "(f)"),
+            DictWord("festa", "party", gender = "(f)"),
+            DictWord("férias", "holidays / vacation", gender = "(f)"),
+            DictWord("passeio", "walk / outing", gender = "(m)"),
+            DictWord("praia", "beach", gender = "(f)"),
+            DictWord("piscina", "swimming pool", gender = "(f)"),
+            DictWord("desporto", "sport", gender = "(m)"),
+            DictWord("futebol", "football", gender = "(m)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Places",
         listOf(
-            WordEntry("hotel", "hotel", "(m)"),
-            WordEntry("restaurante", "restaurant", "(m)"),
-            WordEntry("hospital", "hospital", "(m)"),
-            WordEntry("banco", "bank", "(m)"),
-            WordEntry("farmácia", "pharmacy", "(f)"),
-            WordEntry("supermercado", "supermarket", "(m)"),
-            WordEntry("mercado", "market", "(m)"),
-            WordEntry("loja", "shop / store", "(f)"),
-            WordEntry("escola", "school", "(f)"),
-            WordEntry("universidade", "university", "(f)"),
-            WordEntry("biblioteca", "library", "(f)"),
-            WordEntry("museu", "museum", "(m)"),
-            WordEntry("igreja", "church", "(f)"),
-            WordEntry("correios", "post office", "(m)"),
-            WordEntry("polícia", "police", "(f)"),
-            WordEntry("câmara municipal", "town hall", "(f)"),
-            WordEntry("cidade", "city", "(f)"),
-            WordEntry("vila", "town", "(f)"),
-            WordEntry("aldeia", "village", "(f)"),
-            WordEntry("país", "country", "(m)"),
-            WordEntry("campo", "countryside / field", "(m)"),
-            WordEntry("parque", "park", "(m)"),
-            WordEntry("praça", "square / plaza", "(f)")
+            DictWord("hotel", "hotel", gender = "(m)"),
+            DictWord("restaurante", "restaurant", gender = "(m)"),
+            DictWord("hospital", "hospital", gender = "(m)"),
+            DictWord("banco", "bank", gender = "(m)"),
+            DictWord("farmácia", "pharmacy", gender = "(f)"),
+            DictWord("supermercado", "supermarket", gender = "(m)"),
+            DictWord("mercado", "market", gender = "(m)"),
+            DictWord("loja", "shop / store", gender = "(f)"),
+            DictWord("escola", "school", gender = "(f)"),
+            DictWord("universidade", "university", gender = "(f)"),
+            DictWord("biblioteca", "library", gender = "(f)"),
+            DictWord("museu", "museum", gender = "(m)"),
+            DictWord("igreja", "church", gender = "(f)"),
+            DictWord("correios", "post office", gender = "(m)"),
+            DictWord("polícia", "police", gender = "(f)"),
+            DictWord("câmara municipal", "town hall", gender = "(f)"),
+            DictWord("cidade", "city", gender = "(f)"),
+            DictWord("vila", "town", gender = "(f)"),
+            DictWord("aldeia", "village", gender = "(f)"),
+            DictWord("país", "country", gender = "(m)"),
+            DictWord("campo", "countryside / field", gender = "(m)"),
+            DictWord("parque", "park", gender = "(m)"),
+            DictWord("praça", "square / plaza", gender = "(f)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "People & Family",
         listOf(
-            WordEntry("homem", "man", "(m)"),
-            WordEntry("mulher", "woman", "(f)"),
-            WordEntry("criança", "child", "(f)"),
-            WordEntry("bebé", "baby", "(m)"),
-            WordEntry("rapaz", "boy", "(m)"),
-            WordEntry("rapariga", "girl", "(f)"),
-            WordEntry("pai", "father", "(m)"),
-            WordEntry("mãe", "mother", "(f)"),
-            WordEntry("filho", "son", "(m)"),
-            WordEntry("filha", "daughter", "(f)"),
-            WordEntry("irmão", "brother", "(m)"),
-            WordEntry("irmã", "sister", "(f)"),
-            WordEntry("avô", "grandfather", "(m)"),
-            WordEntry("avó", "grandmother", "(f)"),
-            WordEntry("tio", "uncle", "(m)"),
-            WordEntry("tia", "aunt", "(f)"),
-            WordEntry("primo / prima", "cousin", "(m/f)"),
-            WordEntry("marido", "husband", "(m)"),
-            WordEntry("esposa", "wife", "(f)"),
-            WordEntry("amigo / amiga", "friend", "(m/f)"),
-            WordEntry("colega", "colleague", "(m/f)"),
-            WordEntry("vizinho / vizinha", "neighbour", "(m/f)"),
-            WordEntry("pessoa", "person", "(f)"),
-            WordEntry("família", "family", "(f)")
+            DictWord("homem", "man", gender = "(m)"),
+            DictWord("mulher", "woman", gender = "(f)"),
+            DictWord("criança", "child", gender = "(f)"),
+            DictWord("bebé", "baby", gender = "(m)"),
+            DictWord("rapaz", "boy", gender = "(m)"),
+            DictWord("rapariga", "girl", gender = "(f)"),
+            DictWord("pai", "father", gender = "(m)"),
+            DictWord("mãe", "mother", gender = "(f)"),
+            DictWord("filho", "son", gender = "(m)"),
+            DictWord("filha", "daughter", gender = "(f)"),
+            DictWord("irmão", "brother", gender = "(m)"),
+            DictWord("irmã", "sister", gender = "(f)"),
+            DictWord("avô", "grandfather", gender = "(m)"),
+            DictWord("avó", "grandmother", gender = "(f)"),
+            DictWord("tio", "uncle", gender = "(m)"),
+            DictWord("tia", "aunt", gender = "(f)"),
+            DictWord("primo / prima", "cousin", gender = "(m/f)"),
+            DictWord("marido", "husband", gender = "(m)"),
+            DictWord("esposa", "wife", gender = "(f)"),
+            DictWord("amigo / amiga", "friend", gender = "(m/f)"),
+            DictWord("colega", "colleague", gender = "(m/f)"),
+            DictWord("vizinho / vizinha", "neighbour", gender = "(m/f)"),
+            DictWord("pessoa", "person", gender = "(f)"),
+            DictWord("família", "family", gender = "(f)")
         )
     ),
-    WordCategory(
+    DictCategory(
         "Body",
         listOf(
-            WordEntry("cabeça", "head", "(f)"),
-            WordEntry("rosto / cara", "face", "(m)"),
-            WordEntry("olho", "eye", "(m)"),
-            WordEntry("ouvido / orelha", "ear (inner / outer)", "(m)"),
-            WordEntry("nariz", "nose", "(m)"),
-            WordEntry("boca", "mouth", "(f)"),
-            WordEntry("dente", "tooth", "(m)"),
-            WordEntry("língua", "tongue", "(f)"),
-            WordEntry("pescoço", "neck", "(m)"),
-            WordEntry("ombro", "shoulder", "(m)"),
-            WordEntry("braço", "arm", "(m)"),
-            WordEntry("mão", "hand", "(f)"),
-            WordEntry("dedo", "finger", "(m)"),
-            WordEntry("peito", "chest", "(m)"),
-            WordEntry("costas", "back", "(f)"),
-            WordEntry("barriga", "belly / stomach", "(f)"),
-            WordEntry("perna", "leg", "(f)"),
-            WordEntry("joelho", "knee", "(m)"),
-            WordEntry("pé", "foot", "(m)"),
-            WordEntry("coração", "heart", "(m)"),
-            WordEntry("pulmão", "lung", "(m)"),
-            WordEntry("estômago", "stomach", "(m)"),
-            WordEntry("pele", "skin", "(f)"),
-            WordEntry("cabelo", "hair", "(m)")
+            DictWord("cabeça", "head", gender = "(f)"),
+            DictWord("rosto / cara", "face", gender = "(m)"),
+            DictWord("olho", "eye", gender = "(m)"),
+            DictWord("ouvido / orelha", "ear (inner / outer)", gender = "(m)"),
+            DictWord("nariz", "nose", gender = "(m)"),
+            DictWord("boca", "mouth", gender = "(f)"),
+            DictWord("dente", "tooth", gender = "(m)"),
+            DictWord("língua", "tongue", gender = "(f)"),
+            DictWord("pescoço", "neck", gender = "(m)"),
+            DictWord("ombro", "shoulder", gender = "(m)"),
+            DictWord("braço", "arm", gender = "(m)"),
+            DictWord("mão", "hand", gender = "(f)"),
+            DictWord("dedo", "finger", gender = "(m)"),
+            DictWord("peito", "chest", gender = "(m)"),
+            DictWord("costas", "back", gender = "(f)"),
+            DictWord("barriga", "belly / stomach", gender = "(f)"),
+            DictWord("perna", "leg", gender = "(f)"),
+            DictWord("joelho", "knee", gender = "(m)"),
+            DictWord("pé", "foot", gender = "(m)"),
+            DictWord("coração", "heart", gender = "(m)"),
+            DictWord("pulmão", "lung", gender = "(m)"),
+            DictWord("estômago", "stomach", gender = "(m)"),
+            DictWord("pele", "skin", gender = "(f)"),
+            DictWord("cabelo", "hair", gender = "(m)")
+        )
+    ),
+    DictCategory(
+        "Writing & Punctuation",
+        listOf(
+            DictWord("o texto", "text", gender = "(m)"),
+            DictWord("a história", "story", gender = "(f)"),
+            DictWord("a piada", "joke", note = "anedota (f) is also common in EP; contar uma piada = to tell a joke", gender = "(f)"),
+            DictWord("o parágrafo", "paragraph", gender = "(m)"),
+            DictWord("a carta", "letter (mail)", note = "o correio = the mail / post office", gender = "(f)"),
+            DictWord("a letra", "letter (of the alphabet)", note = "also handwriting and song lyrics", gender = "(f)"),
+            DictWord("a palavra", "word", gender = "(f)"),
+            DictWord("a frase", "sentence", gender = "(f)"),
+            DictWord("o ponto", "point / dot", gender = "(m)"),
+            DictWord("o ponto final", "full stop / period", gender = "(m)"),
+            DictWord("a vírgula", "comma", note = "also the decimal point: 2,5 = dois vírgula cinco", gender = "(f)"),
+            DictWord("o ponto de exclamação", "exclamation mark", gender = "(m)"),
+            DictWord("o ponto de interrogação", "question mark", gender = "(m)"),
+            DictWord("os parênteses", "parentheses / brackets", note = "singular: o parêntese (or o parêntesis)", gender = "(m pl)"),
+            DictWord("as aspas", "quotation marks", note = "entre aspas = in quotes", gender = "(f pl)"),
+            DictWord("os dois pontos", "colon ( : )", gender = "(m pl)"),
+            DictWord("o ponto e vírgula", "semicolon ( ; )", gender = "(m)")
         )
     )
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommonWordsScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Common Words") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(innerPadding),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(wordCategories) { category ->
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Text(
-                            text = category.title,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        category.entries.forEach { entry ->
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Row(
-                                    modifier = Modifier.weight(1f),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(
-                                        text = entry.pt,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontStyle = FontStyle.Italic
-                                    )
-                                    if (entry.gender.isNotEmpty()) {
-                                        Text(
-                                            text = " ${entry.gender}",
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                }
-                                Text(
-                                    text = entry.en,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    DictScreenScaffold(title = "Common Words", onBack = onBack) {
+        items(wordCategories) { DictCategoryCard(it) }
     }
 }

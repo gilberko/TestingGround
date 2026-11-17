@@ -24,153 +24,151 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-private data class SportEntry(val pt: String, val en: String, val note: String = "")
-private data class SportCategory(val title: String, val entries: List<SportEntry>)
 
 private val sportCategories = listOf(
-    SportCategory(
+    DictCategory(
         "Venues & Facilities",
         listOf(
-            SportEntry("estádio", "stadium"),
-            SportEntry("ringue", "ring"),
-            SportEntry("campo", "field / pitch"),
-            SportEntry("piscina", "pool"),
-            SportEntry("ginásio", "gym"),
-            SportEntry("court / tribunal", "court"),
-            SportEntry("pista", "track"),
-            SportEntry("pavilhão desportivo", "sports hall")
+            DictWord("estádio", "stadium"),
+            DictWord("ringue", "ring"),
+            DictWord("campo", "field / pitch"),
+            DictWord("piscina", "pool"),
+            DictWord("ginásio", "gym"),
+            DictWord("court / tribunal", "court"),
+            DictWord("pista", "track"),
+            DictWord("pavilhão desportivo", "sports hall")
         )
     ),
-    SportCategory(
+    DictCategory(
         "People",
         listOf(
-            SportEntry("árbitro", "referee"),
-            SportEntry("treinador", "coach"),
-            SportEntry("atleta", "athlete"),
-            SportEntry("equipa", "team"),
-            SportEntry("jogador", "player"),
-            SportEntry("adversário", "opponent"),
-            SportEntry("adepto / fã", "fan / supporter"),
-            SportEntry("capitão", "captain")
+            DictWord("árbitro", "referee"),
+            DictWord("treinador", "coach"),
+            DictWord("atleta", "athlete"),
+            DictWord("equipa", "team"),
+            DictWord("jogador", "player"),
+            DictWord("adversário", "opponent"),
+            DictWord("adepto / fã", "fan / supporter"),
+            DictWord("capitão", "captain")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Equipment",
         listOf(
-            SportEntry("bola", "ball"),
-            SportEntry("raquete", "racket"),
-            SportEntry("rede", "net"),
-            SportEntry("equipamento", "equipment"),
-            SportEntry("capacete", "helmet"),
-            SportEntry("luvas", "gloves"),
-            SportEntry("calções", "shorts"),
-            SportEntry("chuteiras", "football boots / cleats")
+            DictWord("bola", "ball"),
+            DictWord("raquete", "racket"),
+            DictWord("rede", "net"),
+            DictWord("equipamento", "equipment"),
+            DictWord("capacete", "helmet"),
+            DictWord("luvas", "gloves"),
+            DictWord("calções", "shorts"),
+            DictWord("chuteiras", "football boots / cleats")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Actions",
         listOf(
-            SportEntry("treinar", "to train"),
-            SportEntry("correr", "to run"),
-            SportEntry("ganhar", "to win"),
-            SportEntry("perder", "to lose"),
-            SportEntry("empatar", "to draw / tie"),
-            SportEntry("competir", "to compete"),
-            SportEntry("marcar (um golo)", "to score (a goal)"),
-            SportEntry("arbitrar", "to referee"),
-            SportEntry("lesionar-se", "to get injured"),
-            SportEntry("jogar futebol", "to play soccer"),
-            SportEntry("jogar golfe", "to play golf")
+            DictWord("treinar", "to train"),
+            DictWord("correr", "to run"),
+            DictWord("ganhar", "to win"),
+            DictWord("perder", "to lose"),
+            DictWord("empatar", "to draw / tie"),
+            DictWord("competir", "to compete"),
+            DictWord("marcar (um golo)", "to score (a goal)"),
+            DictWord("arbitrar", "to referee"),
+            DictWord("lesionar-se", "to get injured"),
+            DictWord("jogar futebol", "to play soccer"),
+            DictWord("jogar golfe", "to play golf")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Sports",
         listOf(
-            SportEntry("atletismo", "athletics"),
-            SportEntry("luta livre / wrestling", "wrestling"),
-            SportEntry("futebol", "soccer / football"),
-            SportEntry("basquetebol", "basketball"),
-            SportEntry("râguebi", "rugby"),
-            SportEntry("golfe", "golf"),
-            SportEntry("ténis", "tennis"),
-            SportEntry("natação", "swimming"),
-            SportEntry("salto com vara", "pole vaulting"),
-            SportEntry("levantamento de pesos", "weight lifting"),
-            SportEntry("ciclismo", "cycling"),
-            SportEntry("boxe", "boxing"),
-            SportEntry("ginástica", "gymnastics"),
-            SportEntry("vela", "sailing"),
-            SportEntry("futebol americano", "american football"),
-            SportEntry("curling", "curling"),
-            SportEntry("esqui", "skiing"),
-            SportEntry("patinagem no gelo", "ice skating"),
-            SportEntry("surf", "surfing"),
-            SportEntry("paddle surf / stand-up paddle", "paddle board surfing"),
-            SportEntry("caiaque / canoagem", "kayaking")
+            DictWord("atletismo", "athletics"),
+            DictWord("luta livre / wrestling", "wrestling"),
+            DictWord("futebol", "soccer / football"),
+            DictWord("basquetebol", "basketball"),
+            DictWord("râguebi", "rugby"),
+            DictWord("golfe", "golf"),
+            DictWord("ténis", "tennis"),
+            DictWord("natação", "swimming"),
+            DictWord("salto com vara", "pole vaulting"),
+            DictWord("levantamento de pesos", "weight lifting"),
+            DictWord("ciclismo", "cycling"),
+            DictWord("boxe", "boxing"),
+            DictWord("ginástica", "gymnastics"),
+            DictWord("vela", "sailing"),
+            DictWord("futebol americano", "american football"),
+            DictWord("curling", "curling"),
+            DictWord("esqui", "skiing"),
+            DictWord("patinagem no gelo", "ice skating"),
+            DictWord("surf", "surfing"),
+            DictWord("paddle surf / stand-up paddle", "paddle board surfing"),
+            DictWord("caiaque / canoagem", "kayaking")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Competitions & Results",
         listOf(
-            SportEntry("jogo / partida", "match / game"),
-            SportEntry("torneio", "tournament"),
-            SportEntry("concurso / prova", "contest / event"),
-            SportEntry("empate", "draw / tie"),
-            SportEntry("vitória", "victory"),
-            SportEntry("derrota", "defeat"),
-            SportEntry("campeão", "champion"),
-            SportEntry("recorde", "record"),
-            SportEntry("medalha", "medal"),
-            SportEntry("troféu", "trophy"),
-            SportEntry("classificação", "standings / ranking"),
-            SportEntry("taça", "cup"),
-            SportEntry("mundial / campeonato do mundo", "world cup"),
-            SportEntry("liga", "league"),
-            SportEntry("vencedor", "winner"),
-            SportEntry("medalha de ouro", "gold medal"),
-            SportEntry("medalha de prata", "silver medal"),
-            SportEntry("medalha de bronze", "bronze medal"),
-            SportEntry("pódio", "podium"),
-            SportEntry("Jogos Olímpicos", "olympics")
+            DictWord("jogo / partida", "match / game"),
+            DictWord("torneio", "tournament"),
+            DictWord("concurso / prova", "contest / event"),
+            DictWord("empate", "draw / tie"),
+            DictWord("vitória", "victory"),
+            DictWord("derrota", "defeat"),
+            DictWord("campeão", "champion"),
+            DictWord("recorde", "record"),
+            DictWord("medalha", "medal"),
+            DictWord("troféu", "trophy"),
+            DictWord("classificação", "standings / ranking"),
+            DictWord("taça", "cup"),
+            DictWord("mundial / campeonato do mundo", "world cup"),
+            DictWord("liga", "league"),
+            DictWord("vencedor", "winner"),
+            DictWord("medalha de ouro", "gold medal"),
+            DictWord("medalha de prata", "silver medal"),
+            DictWord("medalha de bronze", "bronze medal"),
+            DictWord("pódio", "podium"),
+            DictWord("Jogos Olímpicos", "olympics")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Soccer & Officiating",
         listOf(
-            SportEntry("substituição", "substitution"),
-            SportEntry("suplente", "substitute player"),
-            SportEntry("estar no banco", "sitting on the bench"),
-            SportEntry("fora de jogo", "offside"),
-            SportEntry("grande penalidade / pénalti", "penalty kick"),
-            SportEntry("VAR", "VAR (video assistant referee)"),
-            SportEntry("consultar o VAR", "checking the VAR"),
-            SportEntry("falta", "foul"),
-            SportEntry("driblar", "to dribble"),
-            SportEntry("lesão", "injury")
+            DictWord("substituição", "substitution"),
+            DictWord("suplente", "substitute player"),
+            DictWord("estar no banco", "sitting on the bench"),
+            DictWord("fora de jogo", "offside"),
+            DictWord("grande penalidade / pénalti", "penalty kick"),
+            DictWord("VAR", "VAR (video assistant referee)"),
+            DictWord("consultar o VAR", "checking the VAR"),
+            DictWord("falta", "foul"),
+            DictWord("driblar", "to dribble"),
+            DictWord("lesão", "injury")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Basketball & Tennis",
         listOf(
-            SportEntry("afundanço", "dunk", "European Portuguese; Brazilian Portuguese says \"enterrada\""),
-            SportEntry("cesto", "basket (the score / hoop)"),
-            SportEntry("aro", "hoop / rim"),
-            SportEntry("set", "set"),
-            SportEntry("desempate", "tie breaker"),
-            SportEntry("ponto de jogo", "game point"),
-            SportEntry("ponto / pontos", "point / points"),
-            SportEntry("bola de ténis", "tennis ball"),
-            SportEntry("raquete de ténis", "tennis racket")
+            DictWord("afundanço", "dunk", "European Portuguese; Brazilian Portuguese says \"enterrada\""),
+            DictWord("cesto", "basket (the score / hoop)"),
+            DictWord("aro", "hoop / rim"),
+            DictWord("set", "set"),
+            DictWord("desempate", "tie breaker"),
+            DictWord("ponto de jogo", "game point"),
+            DictWord("ponto / pontos", "point / points"),
+            DictWord("bola de ténis", "tennis ball"),
+            DictWord("raquete de ténis", "tennis racket")
         )
     ),
-    SportCategory(
+    DictCategory(
         "Race Day & Equipment",
         listOf(
-            SportEntry("taco de basebol", "baseball bat"),
-            SportEntry("corrida", "race"),
-            SportEntry("pista de corrida", "racetrack"),
-            SportEntry("tempo morto", "time out"),
-            SportEntry(
+            DictWord("taco de basebol", "baseball bat"),
+            DictWord("corrida", "race"),
+            DictWord("pista de corrida", "racetrack"),
+            DictWord("tempo morto", "time out"),
+            DictWord(
                 "Às suas marcas, prontos, já!",
                 "On your marks, get set, go!",
                 "official athletics uses a starting pistol rather than saying \"go\" out loud"
@@ -179,80 +177,9 @@ private val sportCategories = listOf(
     )
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SportsScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Sports") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(sportCategories, key = { it.title }) { category ->
-                SportCategoryCard(category)
-            }
-        }
-    }
-}
-
-@Composable
-private fun SportCategoryCard(category: SportCategory) {
-    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = category.title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            category.entries.forEach { entry ->
-                SportRow(entry)
-            }
-        }
-    }
-}
-
-@Composable
-private fun SportRow(entry: SportEntry) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 2.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = entry.pt,
-                style = MaterialTheme.typography.bodySmall,
-                fontStyle = FontStyle.Italic
-            )
-            if (entry.note.isNotEmpty()) {
-                Text(
-                    text = entry.note,
-                    style = MaterialTheme.typography.labelSmall,
-                    fontStyle = FontStyle.Italic,
-                    color = MaterialTheme.colorScheme.tertiary
-                )
-            }
-        }
-        Text(
-            text = entry.en,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.weight(1f)
-        )
+    DictScreenScaffold(title = "Sports", onBack = onBack) {
+        items(sportCategories) { DictCategoryCard(it) }
     }
 }

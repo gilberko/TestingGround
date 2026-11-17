@@ -23,171 +23,115 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
-private data class MovementEntry(val pt: String, val en: String, val note: String = "")
-private data class MovementCategory(val title: String, val entries: List<MovementEntry>)
 
 private val movementCategories = listOf(
-    MovementCategory(
+    DictCategory(
         "Cardinal Directions",
         listOf(
-            MovementEntry("norte", "north"),
-            MovementEntry("sul", "south"),
-            MovementEntry("este / leste", "east"),
-            MovementEntry("oeste", "west"),
-            MovementEntry("nordeste", "northeast"),
-            MovementEntry("noroeste", "northwest"),
-            MovementEntry("sudeste", "southeast"),
-            MovementEntry("sudoeste", "southwest")
+            DictWord("norte", "north"),
+            DictWord("sul", "south"),
+            DictWord("este / leste", "east"),
+            DictWord("oeste", "west"),
+            DictWord("nordeste", "northeast"),
+            DictWord("noroeste", "northwest"),
+            DictWord("sudeste", "southeast"),
+            DictWord("sudoeste", "southwest")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Direction",
         listOf(
-            MovementEntry("em frente", "forwards / ahead"),
-            MovementEntry("para trás", "backwards"),
-            MovementEntry("à esquerda", "left"),
-            MovementEntry("à direita", "right"),
-            MovementEntry("em frente / a direito", "straight ahead")
+            DictWord("em frente", "forwards / ahead"),
+            DictWord("para trás", "backwards"),
+            DictWord("à esquerda", "left"),
+            DictWord("à direita", "right"),
+            DictWord("em frente / a direito", "straight ahead")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Vertical",
         listOf(
-            MovementEntry("para cima", "up / upwards"),
-            MovementEntry("para baixo", "down / downwards"),
-            MovementEntry("acima", "above"),
-            MovementEntry("abaixo", "below")
+            DictWord("para cima", "up / upwards"),
+            DictWord("para baixo", "down / downwards"),
+            DictWord("acima", "above"),
+            DictWord("abaixo", "below")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Relative Position",
         listOf(
-            MovementEntry("dentro", "inside / in"),
-            MovementEntry("fora", "outside / out"),
-            MovementEntry("perto", "near / close"),
-            MovementEntry("longe", "far / away"),
-            MovementEntry("ao lado", "beside / next to"),
-            MovementEntry("em volta", "around"),
-            MovementEntry("entre", "between"),
-            MovementEntry("através", "through / across"),
-            MovementEntry("ao fundo", "at the back / at the end")
+            DictWord("dentro", "inside / in"),
+            DictWord("fora", "outside / out"),
+            DictWord("perto", "near / close"),
+            DictWord("longe", "far / away"),
+            DictWord("ao lado", "beside / next to"),
+            DictWord("em volta", "around"),
+            DictWord("entre", "between"),
+            DictWord("através", "through / across"),
+            DictWord("ao fundo", "at the back / at the end")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Motion Verbs",
         listOf(
-            MovementEntry("avançar", "to advance / go forward"),
-            MovementEntry("recuar", "to go back / reverse"),
-            MovementEntry("virar", "to turn"),
-            MovementEntry("parar", "to stop"),
-            MovementEntry("continuar", "to continue / go on")
+            DictWord("avançar", "to advance / go forward"),
+            DictWord("recuar", "to go back / reverse"),
+            DictWord("virar", "to turn"),
+            DictWord("parar", "to stop"),
+            DictWord("continuar", "to continue / go on")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Giving Directions",
         listOf(
-            MovementEntry("virar à esquerda", "turn left"),
-            MovementEntry("virar à direita", "turn right"),
-            MovementEntry("voltar atrás", "turn back"),
-            MovementEntry("dar a volta / virar-se", "turn around"),
-            MovementEntry("continuar em frente", "continue straight"),
-            MovementEntry("seguir os sinais / seguir as placas", "follow the signs"),
-            MovementEntry("siga-me", "follow me"),
-            MovementEntry("siga-o", "follow him"),
-            MovementEntry("siga-a", "follow her"),
-            MovementEntry("consultar o mapa", "check the map"),
-            MovementEntry("usar o GPS", "use GPS"),
-            MovementEntry("usar o Google Maps", "use Google Maps"),
-            MovementEntry("usar o Waze", "use Waze")
+            DictWord("virar à esquerda", "turn left"),
+            DictWord("virar à direita", "turn right"),
+            DictWord("voltar atrás", "turn back"),
+            DictWord("dar a volta / virar-se", "turn around"),
+            DictWord("continuar em frente", "continue straight"),
+            DictWord("seguir os sinais / seguir as placas", "follow the signs"),
+            DictWord("siga-me", "follow me"),
+            DictWord("siga-o", "follow him"),
+            DictWord("siga-a", "follow her"),
+            DictWord("consultar o mapa", "check the map"),
+            DictWord("usar o GPS", "use GPS"),
+            DictWord("usar o Google Maps", "use Google Maps"),
+            DictWord("usar o Waze", "use Waze")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Inside Buildings",
         listOf(
-            MovementEntry("apanhar o elevador", "take the elevator"),
-            MovementEntry("apanhar as escadas rolantes", "take the escalators"),
-            MovementEntry("apanhar as escadas", "take the stairs"),
-            MovementEntry(
+            DictWord("apanhar o elevador", "take the elevator"),
+            DictWord("apanhar as escadas rolantes", "take the escalators"),
+            DictWord("apanhar as escadas", "take the stairs"),
+            DictWord(
                 "primeiro andar",
                 "first floor",
                 "EP follows the UK convention: rés-do-chão is the ground floor, primeiro andar is one level above it (≈ US \"2nd floor\")"
             ),
-            MovementEntry("segundo andar", "second floor"),
-            MovementEntry("cave", "basement"),
-            MovementEntry("sair do edifício", "exit the building"),
-            MovementEntry("entrar no edifício", "enter the building"),
-            MovementEntry("subir ao 3º andar", "climb to the 3rd floor")
+            DictWord("segundo andar", "second floor"),
+            DictWord("cave", "basement"),
+            DictWord("sair do edifício", "exit the building"),
+            DictWord("entrar no edifício", "enter the building"),
+            DictWord("subir ao 3º andar", "climb to the 3rd floor")
         )
     ),
-    MovementCategory(
+    DictCategory(
         "Transport & Traffic",
         listOf(
-            MovementEntry("apanhar o autocarro", "take a bus"),
-            MovementEntry("apanhar um táxi", "take a taxi / cab"),
-            MovementEntry("ir de carro até / conduzir até", "drive to"),
-            MovementEntry("engarrafamento", "traffic jam"),
-            MovementEntry("estar preso no trânsito / estar preso num engarrafamento", "to be stuck in traffic")
+            DictWord("apanhar o autocarro", "take a bus"),
+            DictWord("apanhar um táxi", "take a taxi / cab"),
+            DictWord("ir de carro até / conduzir até", "drive to"),
+            DictWord("engarrafamento", "traffic jam"),
+            DictWord("estar preso no trânsito / estar preso num engarrafamento", "to be stuck in traffic")
         )
     )
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovementScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Movement") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(innerPadding),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(movementCategories) { category ->
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Text(
-                            text = category.title,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        category.entries.forEach { entry ->
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Column(modifier = Modifier.weight(1f)) {
-                                    Text(
-                                        text = entry.pt,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontStyle = FontStyle.Italic
-                                    )
-                                    if (entry.note.isNotEmpty()) {
-                                        Text(
-                                            text = entry.note,
-                                            style = MaterialTheme.typography.labelSmall,
-                                            fontStyle = FontStyle.Italic,
-                                            color = MaterialTheme.colorScheme.tertiary
-                                        )
-                                    }
-                                }
-                                Text(
-                                    text = entry.en,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    DictScreenScaffold(title = "Movement", onBack = onBack) {
+        items(movementCategories) { DictCategoryCard(it) }
     }
 }

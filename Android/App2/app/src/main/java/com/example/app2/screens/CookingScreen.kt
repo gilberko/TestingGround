@@ -24,266 +24,181 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-private data class CookingEntry(val en: String, val pt: String, val notes: String = "")
 
 private val coffeeAndDrinks = listOf(
-    CookingEntry("bica", "bica", "EP espresso shot"),
-    CookingEntry("to grind", "moer"),
-    CookingEntry("ground coffee", "café moído"),
-    CookingEntry("ground beans", "grãos moídos"),
-    CookingEntry("to brew", "preparar / fazer"),
-    CookingEntry("to roast (coffee)", "torrar"),
-    CookingEntry("tea", "chá"),
-    CookingEntry("green tea", "chá verde"),
-    CookingEntry("milk", "leite"),
-    CookingEntry("soy", "soja")
+    DictWord("bica", "bica", "EP espresso shot"),
+    DictWord("moer", "to grind"),
+    DictWord("café moído", "ground coffee"),
+    DictWord("grãos moídos", "ground beans"),
+    DictWord("preparar / fazer", "to brew"),
+    DictWord("torrar", "to roast (coffee)"),
+    DictWord("chá", "tea"),
+    DictWord("chá verde", "green tea"),
+    DictWord("leite", "milk"),
+    DictWord("soja", "soy")
 )
 
 private val cookingVerbs = listOf(
-    CookingEntry("to cook", "cozinhar"),
-    CookingEntry("to boil", "ferver"),
-    CookingEntry("to fry", "fritar"),
-    CookingEntry("to stir", "mexer"),
-    CookingEntry("to simmer", "cozinhar em lume brando"),
-    CookingEntry("to freeze", "congelar"),
-    CookingEntry("to bake", "cozer no forno"),
-    CookingEntry("deep fry", "fritar em óleo abundante"),
-    CookingEntry("to mash", "fazer puré"),
-    CookingEntry("to cut", "cortar"),
-    CookingEntry("to whisk", "bater"),
-    CookingEntry("to roast (meat/veg)", "assar"),
-    CookingEntry("to dry", "secar"),
-    CookingEntry("to mix", "misturar"),
-    CookingEntry("to mix in", "incorporar"),
-    CookingEntry("to add", "adicionar / juntar"),
-    CookingEntry("to break", "partir"),
-    CookingEntry("to stew", "guisar"),
-    CookingEntry("to extract", "extrair"),
-    CookingEntry("to pre-heat", "pré-aquecer"),
-    CookingEntry("to fill", "encher / rechear"),
-    CookingEntry("to remove", "retirar"),
-    CookingEntry("to squeeze", "espremer"),
-    CookingEntry("let it rest", "deixar repousar"),
-    CookingEntry("the dough rises", "a massa cresce / levedar")
+    DictWord("cozinhar", "to cook"),
+    DictWord("ferver", "to boil"),
+    DictWord("fritar", "to fry"),
+    DictWord("mexer", "to stir"),
+    DictWord("cozinhar em lume brando", "to simmer"),
+    DictWord("congelar", "to freeze"),
+    DictWord("cozer no forno", "to bake"),
+    DictWord("fritar em óleo abundante", "deep fry"),
+    DictWord("fazer puré", "to mash"),
+    DictWord("cortar", "to cut"),
+    DictWord("bater", "to whisk"),
+    DictWord("assar", "to roast (meat/veg)"),
+    DictWord("secar", "to dry"),
+    DictWord("misturar", "to mix"),
+    DictWord("incorporar", "to mix in"),
+    DictWord("adicionar / juntar", "to add"),
+    DictWord("partir", "to break"),
+    DictWord("guisar", "to stew"),
+    DictWord("extrair", "to extract"),
+    DictWord("pré-aquecer", "to pre-heat"),
+    DictWord("encher / rechear", "to fill"),
+    DictWord("retirar", "to remove"),
+    DictWord("espremer", "to squeeze"),
+    DictWord("deixar repousar", "let it rest"),
+    DictWord("a massa cresce / levedar", "the dough rises")
 )
 
 private val kitchenEquipment = listOf(
-    CookingEntry("pan", "frigideira"),
-    CookingEntry("skillet", "frigideira de ferro"),
-    CookingEntry("pot", "panela"),
-    CookingEntry("stove", "fogão"),
-    CookingEntry("freezer", "congelador"),
-    CookingEntry("oven", "forno"),
-    CookingEntry("microwave", "microondas"),
-    CookingEntry("blender", "liquidificador / varinha mágica", "varinha mágica = EP immersion blender"),
-    CookingEntry("mixer", "batedeira"),
-    CookingEntry("knife", "faca"),
-    CookingEntry("fork", "garfo"),
-    CookingEntry("spoon", "colher"),
-    CookingEntry("table spoon", "colher de sopa"),
-    CookingEntry("tea spoon", "colher de chá"),
-    CookingEntry("measurement cup", "copo medidor")
+    DictWord("frigideira", "pan"),
+    DictWord("frigideira de ferro", "skillet"),
+    DictWord("panela", "pot"),
+    DictWord("fogão", "stove"),
+    DictWord("congelador", "freezer"),
+    DictWord("forno", "oven"),
+    DictWord("microondas", "microwave"),
+    DictWord("liquidificador / varinha mágica", "blender", "varinha mágica = EP immersion blender"),
+    DictWord("batedeira", "mixer"),
+    DictWord("faca", "knife"),
+    DictWord("garfo", "fork"),
+    DictWord("colher", "spoon"),
+    DictWord("colher de sopa", "table spoon"),
+    DictWord("colher de chá", "tea spoon"),
+    DictWord("copo medidor", "measurement cup")
 )
 
 private val pantryAndSpices = listOf(
-    CookingEntry("oil", "óleo"),
-    CookingEntry("olive oil", "azeite"),
-    CookingEntry("canola oil", "óleo de colza"),
-    CookingEntry("vinegar", "vinagre"),
-    CookingEntry("butter", "manteiga"),
-    CookingEntry("salt", "sal"),
-    CookingEntry("black pepper", "pimenta preta"),
-    CookingEntry("white pepper", "pimenta branca"),
-    CookingEntry("paprika", "colorau / páprica"),
-    CookingEntry("cinnamon", "canela"),
-    CookingEntry("parsley", "salsa"),
-    CookingEntry("garlic", "alho"),
-    CookingEntry("basil", "manjericão"),
-    CookingEntry("powder", "pó"),
-    CookingEntry("cornflour", "farinha de milho / amido de milho")
+    DictWord("óleo", "oil"),
+    DictWord("azeite", "olive oil"),
+    DictWord("óleo de colza", "canola oil"),
+    DictWord("vinagre", "vinegar"),
+    DictWord("manteiga", "butter"),
+    DictWord("sal", "salt"),
+    DictWord("pimenta preta", "black pepper"),
+    DictWord("pimenta branca", "white pepper"),
+    DictWord("colorau / páprica", "paprika"),
+    DictWord("canela", "cinnamon"),
+    DictWord("salsa", "parsley"),
+    DictWord("alho", "garlic"),
+    DictWord("manjericão", "basil"),
+    DictWord("pó", "powder"),
+    DictWord("farinha de milho / amido de milho", "cornflour")
 )
 
 private val baking = listOf(
-    CookingEntry("dough", "massa"),
-    CookingEntry("fermentation", "fermentação"),
-    CookingEntry("yeast", "levedura / fermento"),
-    CookingEntry("baking powder", "fermento em pó"),
-    CookingEntry("flour", "farinha"),
-    CookingEntry("wheat", "trigo"),
-    CookingEntry("corn", "milho"),
-    CookingEntry("without gluten", "sem glúten"),
-    CookingEntry("allergen", "alergénio"),
-    CookingEntry("pre-heated oven", "forno pré-aquecido")
+    DictWord("massa", "dough"),
+    DictWord("fermentação", "fermentation"),
+    DictWord("levedura / fermento", "yeast"),
+    DictWord("fermento em pó", "baking powder"),
+    DictWord("farinha", "flour"),
+    DictWord("trigo", "wheat"),
+    DictWord("milho", "corn"),
+    DictWord("sem glúten", "without gluten"),
+    DictWord("alergénio", "allergen"),
+    DictWord("forno pré-aquecido", "pre-heated oven")
 )
 
 private val waterAndTemperature = listOf(
-    CookingEntry("boiling water", "água a ferver"),
-    CookingEntry("cold water", "água fria"),
-    CookingEntry("ice cold", "gelado/a")
+    DictWord("água a ferver", "boiling water"),
+    DictWord("água fria", "cold water"),
+    DictWord("gelado/a", "ice cold")
 )
 
 private val produceAndFruits = listOf(
-    CookingEntry("onion", "cebola"),
-    CookingEntry("mushrooms", "cogumelos"),
-    CookingEntry("sweet potato", "batata-doce"),
-    CookingEntry("potato", "batata"),
-    CookingEntry("tomato", "tomate"),
-    CookingEntry("lettuce", "alface"),
-    CookingEntry("lemon", "limão"),
-    CookingEntry("orange", "laranja"),
-    CookingEntry("apple", "maçã"),
-    CookingEntry("pear", "pêra"),
-    CookingEntry("peach", "pêssego"),
-    CookingEntry("eggs", "ovos"),
-    CookingEntry("sugar", "açúcar")
+    DictWord("cebola", "onion"),
+    DictWord("cogumelos", "mushrooms"),
+    DictWord("batata-doce", "sweet potato"),
+    DictWord("batata", "potato"),
+    DictWord("tomate", "tomato"),
+    DictWord("alface", "lettuce"),
+    DictWord("limão", "lemon"),
+    DictWord("laranja", "orange"),
+    DictWord("maçã", "apple"),
+    DictWord("pêra", "pear"),
+    DictWord("pêssego", "peach"),
+    DictWord("ovos", "eggs"),
+    DictWord("açúcar", "sugar")
 )
 
 private val dairyAndFats = listOf(
-    CookingEntry("cream", "natas"),
-    CookingEntry("cheese", "queijo"),
-    CookingEntry("cheddar", "queijo cheddar"),
-    CookingEntry("mozzarella", "mozzarella"),
-    CookingEntry("chocolate", "chocolate"),
-    CookingEntry("vanilla", "baunilha")
+    DictWord("natas", "cream"),
+    DictWord("queijo", "cheese"),
+    DictWord("queijo cheddar", "cheddar"),
+    DictWord("mozzarella", "mozzarella"),
+    DictWord("chocolate", "chocolate"),
+    DictWord("baunilha", "vanilla")
 )
 
 private val meatAndProteins = listOf(
-    CookingEntry("meat", "carne"),
-    CookingEntry("steak", "bife"),
-    CookingEntry("ground beef", "carne picada"),
-    CookingEntry("turkey", "peru"),
-    CookingEntry("chicken", "frango"),
-    CookingEntry("sausage", "salsicha"),
-    CookingEntry("hot dogs", "cachorros quentes")
+    DictWord("carne", "meat"),
+    DictWord("bife", "steak"),
+    DictWord("carne picada", "ground beef"),
+    DictWord("peru", "turkey"),
+    DictWord("frango", "chicken"),
+    DictWord("salsicha", "sausage"),
+    DictWord("cachorros quentes", "hot dogs")
 )
 
 private val breadAndPastry = listOf(
-    CookingEntry("bread", "pão"),
-    CookingEntry("pastry", "pastelaria / massa"),
-    CookingEntry("puff pastry", "massa folhada"),
-    CookingEntry("dessert", "sobremesa")
+    DictWord("pão", "bread"),
+    DictWord("pastelaria / massa", "pastry"),
+    DictWord("massa folhada", "puff pastry"),
+    DictWord("sobremesa", "dessert")
 )
 
 private val stateAdjectives = listOf(
-    CookingEntry("fried", "frito/a"),
-    CookingEntry("boiled", "cozido/a"),
-    CookingEntry("mashed", "em puré"),
-    CookingEntry("cooked", "cozinhado/a"),
-    CookingEntry("raw", "cru/crua")
+    DictWord("frito/a", "fried"),
+    DictWord("cozido/a", "boiled"),
+    DictWord("em puré", "mashed"),
+    DictWord("cozinhado/a", "cooked"),
+    DictWord("cru/crua", "raw")
 )
 
 private val tasteAndTexture = listOf(
-    CookingEntry("sweet", "doce"),
-    CookingEntry("sour", "azedo/a"),
-    CookingEntry("spicy", "picante"),
-    CookingEntry("savory", "salgado/a"),
-    CookingEntry("salty", "salgado/a")
+    DictWord("doce", "sweet"),
+    DictWord("azedo/a", "sour"),
+    DictWord("picante", "spicy"),
+    DictWord("salgado/a", "savory"),
+    DictWord("salgado/a", "salty")
 )
 
 private val general = listOf(
-    CookingEntry("stew", "guisado"),
-    CookingEntry("ingredients", "ingredientes")
+    DictWord("guisado", "stew"),
+    DictWord("ingredientes", "ingredients")
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CookingScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Cooking") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            item { SectionHeader("Coffee & Hot Drinks") }
-            items(coffeeAndDrinks) { CookingCard(it) }
-
-            item { SectionHeader("Cooking Verbs") }
-            items(cookingVerbs) { CookingCard(it) }
-
-            item { SectionHeader("Kitchen Equipment") }
-            items(kitchenEquipment) { CookingCard(it) }
-
-            item { SectionHeader("Pantry & Spices") }
-            items(pantryAndSpices) { CookingCard(it) }
-
-            item { SectionHeader("Baking") }
-            items(baking) { CookingCard(it) }
-
-            item { SectionHeader("Water & Temperature") }
-            items(waterAndTemperature) { CookingCard(it) }
-
-            item { SectionHeader("Produce & Fruits") }
-            items(produceAndFruits) { CookingCard(it) }
-
-            item { SectionHeader("Dairy & Sweets") }
-            items(dairyAndFats) { CookingCard(it) }
-
-            item { SectionHeader("Meat & Proteins") }
-            items(meatAndProteins) { CookingCard(it) }
-
-            item { SectionHeader("Bread & Pastry") }
-            items(breadAndPastry) { CookingCard(it) }
-
-            item { SectionHeader("State (Adjectives)") }
-            items(stateAdjectives) { CookingCard(it) }
-
-            item { SectionHeader("Taste & Texture") }
-            items(tasteAndTexture) { CookingCard(it) }
-
-            item { SectionHeader("General") }
-            items(general) { CookingCard(it) }
-        }
-    }
-}
-
-@Composable
-private fun SectionHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleSmall,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(top = 8.dp, bottom = 2.dp)
-    )
-}
-
-@Composable
-private fun CookingCard(entry: CookingEntry) {
-    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(10.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            Text(
-                text = entry.en,
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = entry.pt,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            if (entry.notes.isNotEmpty()) {
-                Text(
-                    text = entry.notes,
-                    style = MaterialTheme.typography.bodySmall,
-                    fontStyle = FontStyle.Italic,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-        }
+    DictScreenScaffold(title = "Cooking", onBack = onBack) {
+        item { DictCategoryCard("Coffee & Hot Drinks", coffeeAndDrinks) }
+        item { DictCategoryCard("Cooking Verbs", cookingVerbs) }
+        item { DictCategoryCard("Kitchen Equipment", kitchenEquipment) }
+        item { DictCategoryCard("Pantry & Spices", pantryAndSpices) }
+        item { DictCategoryCard("Baking", baking) }
+        item { DictCategoryCard("Water & Temperature", waterAndTemperature) }
+        item { DictCategoryCard("Produce & Fruits", produceAndFruits) }
+        item { DictCategoryCard("Dairy & Sweets", dairyAndFats) }
+        item { DictCategoryCard("Meat & Proteins", meatAndProteins) }
+        item { DictCategoryCard("Bread & Pastry", breadAndPastry) }
+        item { DictCategoryCard("State (Adjectives)", stateAdjectives) }
+        item { DictCategoryCard("Taste & Texture", tasteAndTexture) }
+        item { DictCategoryCard("General", general) }
     }
 }

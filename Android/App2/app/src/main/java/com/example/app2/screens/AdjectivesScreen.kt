@@ -23,136 +23,89 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 
-private data class AdjectiveEntry(val pt: String, val en: String)
-private data class AdjectiveCategory(val title: String, val entries: List<AdjectiveEntry>)
 
 private val adjectiveCategories = listOf(
-    AdjectiveCategory(
+    DictCategory(
         "Size & Quantity",
         listOf(
-            AdjectiveEntry("grande", "big / large"),
-            AdjectiveEntry("pequeno / pequena", "small"),
-            AdjectiveEntry("longo / longa", "long"),
-            AdjectiveEntry("curto / curta", "short"),
-            AdjectiveEntry("alto / alta", "tall / high"),
-            AdjectiveEntry("baixo / baixa", "short / low"),
-            AdjectiveEntry("largo / larga", "wide"),
-            AdjectiveEntry("estreito / estreita", "narrow"),
-            AdjectiveEntry("gordo / gorda", "fat"),
-            AdjectiveEntry("magro / magra", "thin"),
-            AdjectiveEntry("muito / muita", "much / many"),
-            AdjectiveEntry("pouco / pouca", "little / few")
+            DictWord("grande", "big / large"),
+            DictWord("pequeno / pequena", "small"),
+            DictWord("longo / longa", "long"),
+            DictWord("curto / curta", "short"),
+            DictWord("alto / alta", "tall / high"),
+            DictWord("baixo / baixa", "short / low"),
+            DictWord("largo / larga", "wide"),
+            DictWord("estreito / estreita", "narrow"),
+            DictWord("gordo / gorda", "fat"),
+            DictWord("magro / magra", "thin"),
+            DictWord("muito / muita", "much / many"),
+            DictWord("pouco / pouca", "little / few")
         )
     ),
-    AdjectiveCategory(
+    DictCategory(
         "Quality & Appearance",
         listOf(
-            AdjectiveEntry("bonito / bonita", "beautiful / pretty"),
-            AdjectiveEntry("feio / feia", "ugly"),
-            AdjectiveEntry("novo / nova", "new / young"),
-            AdjectiveEntry("velho / velha", "old"),
-            AdjectiveEntry("limpo / limpa", "clean"),
-            AdjectiveEntry("sujo / suja", "dirty"),
-            AdjectiveEntry("rápido / rápida", "fast"),
-            AdjectiveEntry("lento / lenta", "slow"),
-            AdjectiveEntry("fácil", "easy"),
-            AdjectiveEntry("difícil", "difficult"),
-            AdjectiveEntry("barato / barata", "cheap"),
-            AdjectiveEntry("caro / cara", "expensive")
+            DictWord("bonito / bonita", "beautiful / pretty"),
+            DictWord("feio / feia", "ugly"),
+            DictWord("novo / nova", "new / young"),
+            DictWord("velho / velha", "old"),
+            DictWord("limpo / limpa", "clean"),
+            DictWord("sujo / suja", "dirty"),
+            DictWord("rápido / rápida", "fast"),
+            DictWord("lento / lenta", "slow"),
+            DictWord("fácil", "easy"),
+            DictWord("difícil", "difficult"),
+            DictWord("barato / barata", "cheap"),
+            DictWord("caro / cara", "expensive")
         )
     ),
-    AdjectiveCategory(
+    DictCategory(
         "Feelings & Character",
         listOf(
-            AdjectiveEntry("feliz", "happy"),
-            AdjectiveEntry("triste", "sad"),
-            AdjectiveEntry("cansado / cansada", "tired"),
-            AdjectiveEntry("doente", "sick / ill"),
-            AdjectiveEntry("ocupado / ocupada", "busy"),
-            AdjectiveEntry("livre", "free"),
-            AdjectiveEntry("simpático / simpática", "friendly / nice"),
-            AdjectiveEntry("antipático / antipática", "unfriendly"),
-            AdjectiveEntry("inteligente", "intelligent"),
-            AdjectiveEntry("estúpido / estúpida", "stupid"),
-            AdjectiveEntry("forte", "strong"),
-            AdjectiveEntry("fraco / fraca", "weak")
+            DictWord("feliz", "happy"),
+            DictWord("triste", "sad"),
+            DictWord("cansado / cansada", "tired"),
+            DictWord("doente", "sick / ill"),
+            DictWord("ocupado / ocupada", "busy"),
+            DictWord("livre", "free"),
+            DictWord("simpático / simpática", "friendly / nice"),
+            DictWord("antipático / antipática", "unfriendly"),
+            DictWord("inteligente", "intelligent"),
+            DictWord("estúpido / estúpida", "stupid"),
+            DictWord("forte", "strong"),
+            DictWord("fraco / fraca", "weak")
         )
     ),
-    AdjectiveCategory(
+    DictCategory(
         "Temperature & Condition",
         listOf(
-            AdjectiveEntry("quente", "hot"),
-            AdjectiveEntry("frio / fria", "cold"),
-            AdjectiveEntry("fresco / fresca", "cool / fresh"),
-            AdjectiveEntry("húmido / húmida", "humid"),
-            AdjectiveEntry("seco / seca", "dry"),
-            AdjectiveEntry("aberto / aberta", "open"),
-            AdjectiveEntry("fechado / fechada", "closed"),
-            AdjectiveEntry("cheio / cheia", "full"),
-            AdjectiveEntry("vazio / vazia", "empty")
+            DictWord("quente", "hot"),
+            DictWord("frio / fria", "cold"),
+            DictWord("fresco / fresca", "cool / fresh"),
+            DictWord("húmido / húmida", "humid"),
+            DictWord("seco / seca", "dry"),
+            DictWord("aberto / aberta", "open"),
+            DictWord("fechado / fechada", "closed"),
+            DictWord("cheio / cheia", "full"),
+            DictWord("vazio / vazia", "empty")
         )
     ),
-    AdjectiveCategory(
+    DictCategory(
         "Togetherness & State",
         listOf(
-            AdjectiveEntry("sozinho / sozinha", "alone, lonely"),
-            AdjectiveEntry("acompanhado / acompanhada", "accompanied, not alone"),
-            AdjectiveEntry("isolado / isolada", "isolated"),
-            AdjectiveEntry("solitário / solitária", "solitary, lonely"),
-            AdjectiveEntry("junto / junta", "together, next to"),
-            AdjectiveEntry("separado / separada", "separated, apart")
+            DictWord("sozinho / sozinha", "alone, lonely"),
+            DictWord("acompanhado / acompanhada", "accompanied, not alone"),
+            DictWord("isolado / isolada", "isolated"),
+            DictWord("solitário / solitária", "solitary, lonely"),
+            DictWord("junto / junta", "together, next to"),
+            DictWord("separado / separada", "separated, apart")
         )
     )
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdjectivesScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Adjectives") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(innerPadding),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            items(adjectiveCategories) { category ->
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Text(
-                            text = category.title,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        category.entries.forEach { entry ->
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Text(
-                                    text = entry.pt,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontStyle = FontStyle.Italic,
-                                    modifier = Modifier.weight(1f)
-                                )
-                                Text(
-                                    text = entry.en,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    DictScreenScaffold(title = "Adjectives", onBack = onBack) {
+        items(adjectiveCategories) { DictCategoryCard(it) }
     }
 }

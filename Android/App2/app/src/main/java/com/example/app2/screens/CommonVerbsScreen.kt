@@ -73,7 +73,7 @@ fun CommonVerbsScreen(onBack: () -> Unit) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
                 contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 item {
                     ElevatedCard(modifier = Modifier.fillMaxWidth()) {
@@ -84,9 +84,13 @@ fun CommonVerbsScreen(onBack: () -> Unit) {
                         )
                     }
                 }
-                items(verbs, key = { it.infinitive }) { verb ->
-                    VerbRow(verb)
-                    HorizontalDivider()
+                items(
+                    verbs.groupBy { it.infinitive.first().uppercaseChar() }.toList(),
+                    key = { it.first }
+                ) { (letter, group) ->
+                    DictCardShell(title = letter.toString()) {
+                        group.forEach { verb -> VerbRow(verb) }
+                    }
                 }
             }
         }
@@ -100,7 +104,7 @@ private fun VerbRow(verb: Verb) {
         .removeSuffix("_irregular")
 
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 6.dp),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -108,7 +112,7 @@ private fun VerbRow(verb: Verb) {
             Text(
                 text = verb.infinitive,
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold
+                fontStyle = FontStyle.Italic
             )
             Text(
                 text = typeDisplay,
@@ -119,7 +123,6 @@ private fun VerbRow(verb: Verb) {
         Text(
             text = verb.english,
             style = MaterialTheme.typography.bodyMedium,
-            fontStyle = FontStyle.Italic,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }

@@ -25,144 +25,71 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-private data class VacEntry(val pt: String, val en: String, val note: String = "")
 
 private val beachWords = listOf(
-    VacEntry("a praia", "beach"),
-    VacEntry("o mar", "the sea"),
-    VacEntry("o oceano", "the ocean"),
-    VacEntry("a areia", "sand"),
-    VacEntry("o sol", "the sun"),
-    VacEntry("a piscina", "the pool"),
-    VacEntry("nadar", "to swim"),
-    VacEntry("mergulhar", "to dive"),
-    VacEntry("fazer snorkel", "to snorkel"),
-    VacEntry("fazer surf", "to surf"),
-    VacEntry("a prancha de surf", "surfboard"),
-    VacEntry("o nadador-salvador / a nadadora-salvadora", "lifeguard", "EP term")
+    DictWord("a praia", "beach"),
+    DictWord("o mar", "the sea"),
+    DictWord("o oceano", "the ocean"),
+    DictWord("a areia", "sand"),
+    DictWord("o sol", "the sun"),
+    DictWord("a piscina", "the pool"),
+    DictWord("nadar", "to swim"),
+    DictWord("mergulhar", "to dive"),
+    DictWord("fazer snorkel", "to snorkel"),
+    DictWord("fazer surf", "to surf"),
+    DictWord("a prancha de surf", "surfboard"),
+    DictWord("o nadador-salvador / a nadadora-salvadora", "lifeguard", "EP term")
 )
 
 private val accommodationWords = listOf(
-    VacEntry("o hotel", "hotel"),
-    VacEntry("a pensão", "guesthouse", "EP term; also: a hospedaria"),
-    VacEntry("o/a hóspede", "guest"),
-    VacEntry("o pequeno-almoço", "breakfast", "EP term — BP: o café da manhã"),
-    VacEntry("o bufete", "buffet", "also written: o buffet")
+    DictWord("o hotel", "hotel"),
+    DictWord("a pensão", "guesthouse", "EP term; also: a hospedaria"),
+    DictWord("o/a hóspede", "guest"),
+    DictWord("o pequeno-almoço", "breakfast", "EP term — BP: o café da manhã"),
+    DictWord("o bufete", "buffet", "also written: o buffet")
 )
 
 private val gettingAroundWords = listOf(
-    VacEntry("o táxi", "taxi"),
-    VacEntry("o barco", "boat"),
-    VacEntry("um passeio de barco", "a boat ride")
+    DictWord("o táxi", "taxi"),
+    DictWord("o barco", "boat"),
+    DictWord("um passeio de barco", "a boat ride")
 )
 
 private val clothingWords = listOf(
-    VacEntry("o fato de banho", "bathing suit / swimsuit", "EP term — covers both"),
-    VacEntry("o biquíni", "bikini"),
-    VacEntry("o protetor solar", "sunscreen"),
-    VacEntry("a t-shirt", "t-shirt"),
-    VacEntry("as sandálias", "sandals")
+    DictWord("o fato de banho", "bathing suit / swimsuit", "EP term — covers both"),
+    DictWord("o biquíni", "bikini"),
+    DictWord("o protetor solar", "sunscreen"),
+    DictWord("a t-shirt", "t-shirt"),
+    DictWord("as sandálias", "sandals")
 )
 
 private val activitiesWords = listOf(
-    VacEntry("as férias", "vacation / holiday", "always plural in PT"),
-    VacEntry("fazer turismo", "sightseeing", "lit. to do tourism"),
-    VacEntry("o/a turista", "tourist"),
-    VacEntry("a atração turística", "tourist attraction"),
-    VacEntry("o parque aquático", "water park"),
-    VacEntry("o parque de diversões", "amusement park"),
-    VacEntry("os tobogãs aquáticos", "water slides"),
-    VacEntry("a montanha-russa", "roller coaster"),
-    VacEntry("esquiar", "to ski"),
-    VacEntry("as pistas", "the slopes"),
-    VacEntry("os bilhetes", "tickets")
+    DictWord("as férias", "vacation / holiday", "always plural in PT"),
+    DictWord("fazer turismo", "sightseeing", "lit. to do tourism"),
+    DictWord("o/a turista", "tourist"),
+    DictWord("a atração turística", "tourist attraction"),
+    DictWord("o parque aquático", "water park"),
+    DictWord("o parque de diversões", "amusement park"),
+    DictWord("os tobogãs aquáticos", "water slides"),
+    DictWord("a montanha-russa", "roller coaster"),
+    DictWord("esquiar", "to ski"),
+    DictWord("as pistas", "the slopes"),
+    DictWord("os bilhetes", "tickets")
 )
 
 private val descriptionsWords = listOf(
-    VacEntry("divertido/a", "fun / enjoyable"),
-    VacEntry("cheio/a / lotado/a", "crowded")
+    DictWord("divertido/a", "fun / enjoyable"),
+    DictWord("cheio/a / lotado/a", "crowded")
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VacationScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Vacation") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            item { VacWordCard("At the Beach", beachWords) }
-            item { VacWordCard("Accommodation", accommodationWords) }
-            item { VacWordCard("Getting Around", gettingAroundWords) }
-            item { VacWordCard("Clothing & Gear", clothingWords) }
-            item { VacWordCard("Activities & Attractions", activitiesWords) }
-            item { VacWordCard("Feelings & Descriptions", descriptionsWords) }
-        }
-    }
-}
-
-@Composable
-private fun VacWordCard(title: String, entries: List<VacEntry>) {
-    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-            HorizontalDivider(modifier = Modifier.padding(vertical = 2.dp))
-
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    "Portuguese",
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.weight(1.1f),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Text(
-                    "English",
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.weight(0.9f),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            entries.forEach { entry ->
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.weight(1.1f)) {
-                        Text(entry.pt, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.SemiBold)
-                        if (entry.note.isNotEmpty()) {
-                            Text(
-                                entry.note,
-                                style = MaterialTheme.typography.labelSmall,
-                                fontStyle = FontStyle.Italic,
-                                color = MaterialTheme.colorScheme.tertiary
-                            )
-                        }
-                    }
-                    Text(
-                        entry.en,
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.weight(0.9f),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            }
-        }
+    DictScreenScaffold(title = "Vacation", onBack = onBack) {
+        item { DictCategoryCard("At the Beach", beachWords) }
+        item { DictCategoryCard("Accommodation", accommodationWords) }
+        item { DictCategoryCard("Getting Around", gettingAroundWords) }
+        item { DictCategoryCard("Clothing & Gear", clothingWords) }
+        item { DictCategoryCard("Activities & Attractions", activitiesWords) }
+        item { DictCategoryCard("Feelings & Descriptions", descriptionsWords) }
     }
 }

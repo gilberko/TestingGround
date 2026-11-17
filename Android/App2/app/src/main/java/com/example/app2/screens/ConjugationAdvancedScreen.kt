@@ -242,6 +242,13 @@ fun ConjugationAdvancedScreen(onBack: () -> Unit) {
                 AdvTenseCard(entry)
             }
 
+            item { AdvPpIntroCard() }
+            item { AdvPpAgreementCard() }
+            item { AdvPpIrregularCard() }
+            item { AdvPpDoubleCard() }
+            item { AdvPassiveVerbsCard() }
+            item { AdvSePassiveCard() }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }
@@ -392,5 +399,298 @@ private fun AdvConjugationRow(subject: String, ar: String, er: String, ir: Strin
         Text(text = ar, style = style, fontWeight = fontWeight, modifier = Modifier.weight(1f))
         Text(text = er, style = style, fontWeight = fontWeight, modifier = Modifier.weight(1f))
         Text(text = ir, style = style, fontWeight = fontWeight, modifier = Modifier.weight(1f))
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Past participle + passive voice
+// ─────────────────────────────────────────────────────────────────────────────
+
+private data class AdvPpAgreeRow(val verb: String, val ms: String, val fs: String, val mp: String, val fp: String, val example: String, val exampleEn: String)
+
+private val advPpAgreeRows = listOf(
+    AdvPpAgreeRow("fechar", "fechado", "fechada", "fechados", "fechadas", "As lojas estão fechadas.", "The shops are closed."),
+    AdvPpAgreeRow("vender", "vendido", "vendida", "vendidos", "vendidas", "A casa foi vendida.", "The house was sold."),
+    AdvPpAgreeRow("partir", "partido", "partida", "partidos", "partidas", "Os copos ficaram partidos.", "The glasses ended up broken."),
+    AdvPpAgreeRow("abrir", "aberto", "aberta", "abertos", "abertas", "A janela está aberta.", "The window is open."),
+    AdvPpAgreeRow("escrever", "escrito", "escrita", "escritos", "escritas", "Os livros foram escritos por ela.", "The books were written by her."),
+    AdvPpAgreeRow("fazer", "feito", "feita", "feitos", "feitas", "As camas já estão feitas.", "The beds are already made.")
+)
+
+private val advPpIrregular = listOf(
+    "fazer" to "feito", "dizer" to "dito", "escrever" to "escrito", "ver" to "visto",
+    "vir" to "vindo", "pôr" to "posto", "abrir" to "aberto", "cobrir" to "coberto",
+    "ganhar" to "ganho", "gastar" to "gasto", "pagar" to "pago", "descobrir" to "descoberto"
+)
+
+private data class AdvPpDouble(val verb: String, val regular: String, val short: String, val note: String = "")
+
+private val advPpDoubles = listOf(
+    AdvPpDouble("aceitar", "aceitado", "aceite", "EP; BP aceito"),
+    AdvPpDouble("entregar", "entregado", "entregue"),
+    AdvPpDouble("matar", "matado", "morto"),
+    AdvPpDouble("prender", "prendido", "preso"),
+    AdvPpDouble("acender", "acendido", "aceso"),
+    AdvPpDouble("imprimir", "imprimido", "impresso"),
+    AdvPpDouble("eleger", "elegido", "eleito"),
+    AdvPpDouble("limpar", "limpado", "limpo"),
+    AdvPpDouble("salvar", "salvado", "salvo")
+)
+
+private data class AdvPassiveVerb(val verb: String, val role: String, val examples: List<Pair<String, String>>, val works: Boolean)
+
+private val advPassiveVerbs = listOf(
+    AdvPassiveVerb(
+        "ser + participle",
+        "The true passive: describes the ACTION being done. The doer (agent) is introduced with por (pelo / pela / pelos / pelas).",
+        listOf(
+            "A ponte foi construída em 1966." to "The bridge was built in 1966.",
+            "O ladrão foi preso pela polícia." to "The thief was arrested by the police.",
+            "As cartas serão entregues amanhã." to "The letters will be delivered tomorrow."
+        ),
+        true
+    ),
+    AdvPassiveVerb(
+        "estar + participle",
+        "The RESULTING STATE after an action. Usually no agent.",
+        listOf(
+            "A porta está fechada." to "The door is closed. (state now)",
+            "O jantar já está feito." to "Dinner is already made.",
+            "Compare: A porta foi fechada às dez." to "The door was closed at ten. (the action, so ser)"
+        ),
+        true
+    ),
+    AdvPassiveVerb(
+        "ficar + participle",
+        "A CHANGE of state: became / got / ended up. Very common in speech for feelings and results.",
+        listOf(
+            "Fiquei surpreendido." to "I was (got) surprised.",
+            "O carro ficou estragado." to "The car got damaged / ended up broken.",
+            "A reunião ficou marcada para segunda." to "The meeting got scheduled for Monday."
+        ),
+        true
+    ),
+    AdvPassiveVerb(
+        "andar / continuar / vir / ir + participle",
+        "Less common, but possible: a continuing or accompanying state.",
+        listOf(
+            "Ando preocupado." to "I've been worried (lately).",
+            "A loja continua fechada." to "The shop is still closed.",
+            "Ele veio acompanhado." to "He came accompanied (with someone).",
+            "O pacote vai embrulhado." to "The parcel goes wrapped."
+        ),
+        true
+    ),
+    AdvPassiveVerb(
+        "tornar-se + participle",
+        "NOT a passive auxiliary. tornar-se = to become, and takes adjectives; a participle works only when it acts as an adjective.",
+        listOf(
+            "Ele tornou-se conhecido." to "He became well known. (conhecido used as an adjective)",
+            "Tornou-se médico." to "He became a doctor.",
+            "✗ A casa tornou-se vendida." to "(wrong; say: A casa foi vendida.)"
+        ),
+        false
+    ),
+    AdvPassiveVerb(
+        "mudar / mudar-se + participle",
+        "NOT a passive auxiliary. mudar = to change, mudar-se = to move (house). They don't combine with a participle to make a passive.",
+        listOf(
+            "Mudei-me para o Porto." to "I moved to Porto.",
+            "O horário foi mudado." to "The schedule was changed. (the passive of mudar uses ser)"
+        ),
+        false
+    )
+)
+
+@Composable
+private fun AdvPpCardShell(title: String, subtitle: String = "", content: @Composable () -> Unit) {
+    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            if (subtitle.isNotEmpty()) {
+                Text(
+                    subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            content()
+        }
+    }
+}
+
+@Composable
+private fun AdvPpLabel(text: String) {
+    Text(
+        text,
+        style = MaterialTheme.typography.labelSmall,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(top = 6.dp)
+    )
+}
+
+@Composable
+private fun AdvPpNote(text: String) {
+    Text(
+        text,
+        style = MaterialTheme.typography.bodySmall,
+        fontStyle = FontStyle.Italic,
+        color = MaterialTheme.colorScheme.tertiary,
+        modifier = Modifier.padding(top = 4.dp)
+    )
+}
+
+@Composable
+private fun AdvPpExample(pt: String, en: String) {
+    Text(
+        text = buildAnnotatedString {
+            withStyle(SpanStyle(fontStyle = FontStyle.Italic)) { append(pt) }
+            append("  —  $en")
+        },
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+}
+
+@Composable
+private fun AdvPpIntroCard() {
+    AdvPpCardShell("The Past Participle (Particípio Passado)", "The -ed form: closed, sold, written") {
+        Text(
+            "• It is used (1) with ter to make compound tenses, (2) with ser / estar / ficar to make the passive, and (3) as an adjective.",
+            style = MaterialTheme.typography.bodySmall
+        )
+        AdvPpLabel("How to form it (regular verbs):")
+        AdvConjugationRow("", "-ar → -ado", "-er → -ido", "-ir → -ido", isHeader = true)
+        AdvConjugationRow("", "falar → falado", "vender → vendido", "partir → partido", isHeader = false)
+        AdvConjugationRow("", "fechar → fechado", "comer → comido", "dormir → dormido", isHeader = false)
+        AdvConjugationRow("", "comprar → comprado", "beber → bebido", "sair → saído", isHeader = false)
+        AdvPpLabel("With ter: the participle NEVER changes")
+        AdvPpExample("Tenho falado muito com ela.", "I've been talking to her a lot.")
+        AdvPpExample("Ela tinha fechado as janelas.", "She had closed the windows. (fechado, not fechadas)")
+        AdvPpLabel("With ser / estar / ficar, or as an adjective: it AGREES")
+        AdvPpExample("As janelas estão fechadas.", "The windows are closed. (f. pl.)")
+        AdvPpExample("um bolo feito em casa", "a homemade cake")
+        AdvPpNote("See also More Tenses → Voz Passiva.")
+    }
+}
+
+@Composable
+private fun AdvPpAgreementCard() {
+    AdvPpCardShell("Participle Agreement", "masculine / feminine × singular / plural: it follows the noun it describes") {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            listOf("verb", "m. sg.", "f. sg.", "m. pl.", "f. pl.").forEachIndexed { i, h ->
+                Text(
+                    h,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(if (i == 0) 0.9f else 1f)
+                )
+            }
+        }
+        advPpAgreeRows.forEach { row ->
+            Column(modifier = Modifier.padding(vertical = 2.dp)) {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(row.verb, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(0.9f))
+                    listOf(row.ms, row.fs, row.mp, row.fp).forEach {
+                        Text(it, style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, modifier = Modifier.weight(1f))
+                    }
+                }
+                AdvPpExample(row.example, row.exampleEn)
+            }
+        }
+        AdvPpLabel("More examples:")
+        AdvPpExample("O contrato foi assinado.", "The contract was signed. (m. sg.)")
+        AdvPpExample("A carta foi enviada ontem.", "The letter was sent yesterday. (f. sg.)")
+        AdvPpExample("Os documentos estão traduzidos.", "The documents are translated. (m. pl.)")
+        AdvPpExample("As mesas estão reservadas.", "The tables are reserved. (f. pl.)")
+    }
+}
+
+@Composable
+private fun AdvPpIrregularCard() {
+    AdvPpCardShell("Irregular Past Participles", "These don't follow -ado / -ido. They still agree: feito / feita / feitos / feitas") {
+        advPpIrregular.chunked(2).forEach { pair ->
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                pair.forEach { (verb, pp) ->
+                    Text(
+                        text = buildAnnotatedString {
+                            append("$verb → ")
+                            withStyle(SpanStyle(fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic)) { append(pp) }
+                        },
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                if (pair.size == 1) Spacer(modifier = Modifier.weight(1f))
+            }
+        }
+        AdvPpNote("In EP, ganho / gasto / pago are used with ter too: Já tinha pago a conta. (I had already paid the bill.)")
+    }
+}
+
+@Composable
+private fun AdvPpDoubleCard() {
+    AdvPpCardShell("Verbs With Two Participles", "Regular form → with ter / haver · short form → with ser / estar / ficar") {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            listOf("verb", "with ter", "with ser / estar").forEach {
+                Text(it, style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            }
+        }
+        advPpDoubles.forEach { d ->
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(d.verb, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                Text(d.regular, style = MaterialTheme.typography.bodySmall, fontStyle = FontStyle.Italic, modifier = Modifier.weight(1f))
+                Text(
+                    if (d.note.isEmpty()) d.short else "${d.short} (${d.note})",
+                    style = MaterialTheme.typography.bodySmall,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+        AdvPpLabel("Examples:")
+        AdvPpExample("Eles tinham aceitado a proposta.", "They had accepted the proposal. (ter)")
+        AdvPpExample("A proposta foi aceite.", "The proposal was accepted. (ser)")
+        AdvPpExample("A encomenda já está entregue.", "The order has already been delivered. (estar)")
+        AdvPpExample("A luz está acesa.", "The light is on. (estar + aceso / acesa)")
+        AdvPpNote("In everyday EP speech the short form is also heard with ter (tinha aceite, tinha entregue); both occur. With ser / estar, use the short form.")
+    }
+}
+
+@Composable
+private fun AdvPassiveVerbsCard() {
+    AdvPpCardShell("Which Verbs Make the Passive?", "verb + past participle, the participle agreeing with the subject") {
+        advPassiveVerbs.forEachIndexed { index, v ->
+            if (index > 0) HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            Text(
+                text = (if (v.works) "✓ " else "✗ ") + v.verb,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                color = if (v.works) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+            )
+            Text(v.role, style = MaterialTheme.typography.bodySmall)
+            v.examples.forEach { (pt, en) -> AdvPpExample(pt, en) }
+        }
+    }
+}
+
+@Composable
+private fun AdvSePassiveCard() {
+    AdvPpCardShell("The se Passive (Passiva Sintética)", "Very common in signs, ads and general statements; no agent") {
+        Text(
+            "• verb (3rd person) + se. The verb agrees with the thing: singular → vende-se, plural → vendem-se.",
+            style = MaterialTheme.typography.bodySmall
+        )
+        AdvPpExample("Vende-se casa.", "House for sale.")
+        AdvPpExample("Vendem-se casas.", "Houses for sale.")
+        AdvPpExample("Aluga-se apartamento.", "Apartment for rent.")
+        AdvPpExample("Fala-se inglês.", "English spoken (here).")
+        AdvPpExample("Aqui não se aceitam cartões.", "Cards aren't accepted here.")
+        AdvPpNote("Equivalent with ser: A casa é vendida. But the se form sounds much more natural for general statements.")
     }
 }
