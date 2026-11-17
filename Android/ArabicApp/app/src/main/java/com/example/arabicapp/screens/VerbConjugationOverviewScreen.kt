@@ -281,7 +281,7 @@ fun VerbConjugationOverviewScreen() {
         VCOBodyText("• مسافر msaafir — traveling, a traveler (Form III saafar)")
         VCOBodyText("• مسكّر msakkar / msakkra — closed (Form II sakkar = to close)")
         VCOBodyText("• مرتّب mrattab / mrattabe — tidy, neat (Form II rattab = to tidy up)")
-        VCOBodyText("• متجوّز mitjawwiz / mitjawwze — married (Form V tjawwaz)")
+        VCOBodyText("• متجوّز mitjawwiz / mitjawwze — married (Form V tjawwaz);  also متزوّج mitzawwij (from tzawwaj)")
         VCOBodyText("• مستعجل mista3jil / mista3jle — in a hurry (Form X ista3jal)")
         VCOBodyText("• مستأجر mista2jir — tenant (Form X ista2jar = to rent)")
         VCOBodyText("• مصوّر mSawwir — photographer (Form II Sawwar = to photograph)")

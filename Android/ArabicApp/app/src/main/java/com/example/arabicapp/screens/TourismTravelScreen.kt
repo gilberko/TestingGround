@@ -114,7 +114,7 @@ fun TourismTravelScreen() {
         TTWord("attractions — أماكن سياحية — amaakin siyaa7iyye  (lit. tourist places)")
         TTWord("square / plaza / open common area — ساحة — saa7a")
         TTInfo("f · 2: ساحتين saa7tein · pl: ساحات saa7aat")
-        TTSmall("Yes, saa7a is the word for a town square, a plaza or any open shared space: a courtyard, a school yard (ساحة المدرسة — saa7et el-madrase) or a parking area. Famous ones: ساحة الشهداء — saa7et esh-shuhada (Martyrs' Square, Beirut), ساحة المهد — saa7et el-mahd (Manger Square, Bethlehem). Formal / Egyptian also: ميدان — midaan.")
+        TTSmall("Yes, saa7a is the word for a town square, a plaza or any open shared space: a courtyard, a school yard (ساحة المدرسة — saa7et el-madrase) or a parking area. Famous one: ساحة الشهداء — saa7et esh-shuhada (Martyrs' Square, Beirut). The other word for a big city square is ميدان — midaan (more formal, and the usual word in Egypt): Manger Square in Bethlehem is officially ميدان المهد — midaan el-mahd.")
         TTExample("ntlaa2a bis-saa7a ba3d saa3a — منتلاقى بالساحة بعد ساعة — We'll meet at the square in an hour.")
         TTWord("sightseeing / a tour — جولة سياحية — jawle siyaa7iyye")
         TTWord("diving — غطس — ghaTs;  to dive: غطس — ghaTas / yighTas")
