@@ -90,6 +90,7 @@ import com.example.arabicapp.screens.ConstructStateScreen
 import com.example.arabicapp.screens.EverySomeScreen
 import com.example.arabicapp.screens.AdjectivesAdverbsOverviewScreen
 import com.example.arabicapp.screens.WeatherScreen
+import com.example.arabicapp.screens.VerbFormsScreen
 import com.example.arabicapp.screens.RealEstateScreen
 import com.example.arabicapp.screens.MathEngineeringScreen
 import com.example.arabicapp.screens.TourismTravelScreen
@@ -342,13 +343,18 @@ fun AppNavigation() {
                 AdjectivesAdverbsOverviewScreen()
             }
         }
+        composable("verb_forms") {
+            ScreenWithBackButton(title = "Verb Forms", onBack = { navController.popBackStack() }) {
+                VerbFormsScreen()
+            }
+        }
         composable("dict_weather") {
             ScreenWithBackButton(title = "The Weather", onBack = { navController.popBackStack() }) {
                 WeatherScreen()
             }
         }
         composable("dict_real_estate") {
-            ScreenWithBackButton(title = "Real Estate", onBack = { navController.popBackStack() }) {
+            ScreenWithBackButton(title = "Homes, Apartments and Real Estate", onBack = { navController.popBackStack() }) {
                 RealEstateScreen()
             }
         }

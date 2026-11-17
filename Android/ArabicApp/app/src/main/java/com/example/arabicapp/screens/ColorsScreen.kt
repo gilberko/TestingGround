@@ -98,6 +98,17 @@ fun ColorsScreen() {
         ColBodyText("feminine: رمادية — ramadiyye")
         ColBodyText("Example: سحاب رمادي (sa7ab ramadi = gray cloud)")
 
+        ColSectionHeader("Gold, Silver and Bronze")
+        ColBodyText("These are made from the metal's name + -i (like بنّي bunni from bunn). Feminine adds -iyye, and they don't have the short af3al plural.")
+        ColBodyText("gold (color): ذهبي — dahabi (m) / ذهبية — dahabiyye (f) · plural: dahabiyye")
+        ColBodyText("   the metal: ذهب — dahab")
+        ColBodyText("silver (color): فضّي — fuDDi (m) / فضّية — fuDDiyye (f) · plural: fuDDiyye")
+        ColBodyText("   the metal: فضّة — fuDDa")
+        ColBodyText("bronze (color): برونزي — bronzi (m) / برونزية — bronziyye (f) · plural: bronziyye")
+        ColBodyText("   the metal: برونز — bronz")
+        ColBodyText("Examples: سيارة فضّية (sayyara fuDDiyye = silver car), ساعة ذهب (saa3a dahab = gold watch, made of gold) vs ساعة ذهبية (saa3a dahabiyye = gold-colored watch)")
+        ColBodyText("Medals: ميدالية ذهبية (midaaliyye dahabiyye = gold medal), فضّية (fuDDiyye = silver), برونزية (bronziyye = bronze)")
+
         ColSectionHeader("Examples in Context")
         ColBodyText("بيت أبيض — beit abyad — white house")
         ColBodyText("سيارة حمرا — sayyara 7amra — red car")
