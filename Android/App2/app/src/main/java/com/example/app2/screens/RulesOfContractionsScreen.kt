@@ -62,6 +62,8 @@ private val rocSections = listOf(
                 name = "Do we have to keep the hyphen (-)?",
                 subtitle = "Yes — always, when the pronoun comes after or inside the verb",
                 points = listOf(
+                    "Why this matters so much in European Portuguese: in a plain affirmative sentence EP puts the pronoun AFTER the verb (Comprei-o. Vi-a.), " +
+                        "while Brazil usually puts it before (Eu o comprei). So EP speakers meet these changes all the time",
                     "Pronoun AFTER the verb (ênclise): hyphen is mandatory — comprá-lo, dá-me, levanta-te",
                     "Pronoun INSIDE the verb (mesóclise, future/conditional): two hyphens — comprá-lo-ei, dar-te-ia",
                     "Pronoun BEFORE the verb (próclise): NO hyphen — não o comprei, já te disse",
@@ -226,7 +228,7 @@ private val rocSections = listOf(
                     "por + o, a, os, as → pelo, pela, pelos, pelas (old form \"per\" + lo)",
                     "a + o, a, os, as → ao, à, aos, às",
                     "With um/uma: em + um → num, numa (very common in EP); de + um → dum, duma (optional, more informal); a + um → never contracts (a um)",
-                    "para does not contract in writing (para o) — \"pro\" is speech only"
+                    "para does not contract in writing (para o, para a). In fast European Portuguese speech para o sounds like \"pró\" and para a like \"pra\" — informal speech only, don't write it in normal texts"
                 ),
                 examples = listOf(
                     RocExample("Venho de o Porto.", "Venho do Porto.", "I come from Porto.", "de + o → do."),
@@ -305,7 +307,9 @@ private val rocSections = listOf(
                     "com + nós → connosco (EP spelling with -sc-; Brazil writes conosco)",
                     "com + vós → convosco",
                     "com + ele, ela, eles, elas → NO contraction: com ele, com ela",
-                    "Exception (grammarians disagree): before todos, mesmos, próprios, outros or a number, \"com nós\" / \"com vós\" is used — com nós todos, com nós dois. Many speakers say connosco todos too."
+                    "In Portugal connosco is the correct, everyday form at every level (formal and informal). \"com a gente\" is colloquial only",
+                    "\"com nós\" is wrong on its own — accepted only when followed by a number or a word like próprios/mesmos: com nós dois, com nós próprios (Ciberdúvidas). " +
+                        "For \"with all of us\" grammarians disagree (com nós todos vs connosco todos); the safe everyday EP choice is com todos nós"
                 ),
                 examples = listOf(
                     RocExample("Vens com mim?", "Vens comigo?", "Are you coming with me?", "com + mim → comigo."),
@@ -373,7 +377,7 @@ private val rocSections = listOf(
                 ),
                 examples = listOf(
                     RocExample("dormir → eu dormo", "eu durmo", "I sleep", "o → u in the eu form only (tu dormes)."),
-                    RocExample("sentir → eu sento", "eu sinto", "I feel", "e → i (eu sento = I sit down, from sentar!)."),
+                    RocExample("sentir → eu sento", "eu sinto", "I feel", "e → i. Careful: eu sento(-me) is from sentar (to sit) — sento-me = I sit down."),
                     RocExample("preferir → eu prefero", "eu prefiro", "I prefer", "e → i."),
                     RocExample("vestir → eu vesto", "eu visto", "I wear / I dress", "e → i."),
                     RocExample("subir → ele sube", "ele sobe", "he goes up", "u → o in tu/ele/eles."),
@@ -427,17 +431,20 @@ private val rocSections = listOf(
                     "-s + o/a: s drops, o → lo",
                     "-m + o/a (eles): add n — comprarem-no",
                     "The r inside (compraRmos) stays, because it's not the last letter",
-                    "Hyphen: mandatory"
+                    "Hyphen: mandatory",
+                    "BUT in European Portuguese the usual choice here is to put the pronoun BEFORE the infinitive: para o comprarmos, para eles o fazerem. " +
+                        "The forms with the pronoun after (comprarmo-lo) are correct but sound formal/bookish — recognise them, prefer the other order when speaking"
                 ),
                 examples = listOf(
-                    RocExample("para comprarmos o", "para comprarmo-lo", "for us to buy it", "-s dropped, o → lo."),
-                    RocExample("para comprares o", "para comprare-lo", "for you to buy it", "-s dropped."),
-                    RocExample("até fazermos a", "até fazermo-la", "until we do it", "-s dropped."),
-                    RocExample("para comprarem o", "para comprarem-no", "for them to buy it", "-m: o → no (rule 2)."),
-                    RocExample("É para comprarmos o hoje.", "É para comprarmo-lo hoje.", "We're supposed to buy it today.", "")
+                    RocExample("para comprarmos o", "para comprarmo-lo", "for us to buy it", "-s dropped, o → lo. (Everyday EP: para o comprarmos.)"),
+                    RocExample("para comprares o", "para comprare-lo", "for you to buy it", "-s dropped. (Everyday EP: para o comprares.)"),
+                    RocExample("até fazermos a", "até fazermo-la", "until we do it", "-s dropped. (Everyday EP: até a fazermos.)"),
+                    RocExample("para comprarem o", "para comprarem-no", "for them to buy it", "-m: o → no (rule 2). (Everyday EP: para o comprarem.)"),
+                    RocExample("É para comprarmos o hoje.", "É para o comprarmos hoje.", "We're supposed to buy it today.", "The natural EP sentence: pronoun before the infinitive, no change to the verb at all.")
                 ),
-                accentNote = "NO accent is added: the stress stays on -MAR- / -RE- / -ZER-, which is not the last syllable (comprarmo, comprare). " +
-                    "Compare the plain infinitive comprar → comprá-lo: there the stressed a becomes the last letter, so it needs á."
+                accentNote = "NO accent is added: the stress stays where it was — comPRARmo-lo, comPRAre-lo, faZERmo-la — which is not the last syllable. " +
+                    "Compare the plain infinitive comprar → comprá-lo: there the stressed a becomes the last letter, so it needs á.",
+                note = "European Portuguese norm (Gramática do Português, Gulbenkian, as cited by Ciberdúvidas): after a preposition the inflected infinitive takes the pronoun before it — \"para eles o fazerem\"."
             )
         )
     ),
@@ -450,7 +457,7 @@ private val rocSections = listOf(
                 points = listOf(
                     "Here de does not belong to \"o João\" — it belongs to the whole clause \"o João chegar\"",
                     "o João / ela is the SUBJECT of the infinitive (who arrives? João), and a subject is not normally preceded by a preposition",
-                    "So the norm (school, formal writing, Ciberdúvidas-style advice) keeps them separate: de o, de a, de ele, em o…",
+                    "So the norm (normative grammars, school, formal writing) keeps them separate: de o, de a, de ele, em o…",
                     "Test: is there an infinitive right after, and is the noun/pronoun the one doing it? → don't contract",
                     "Reality check: in speech and informal writing the contracted form (antes do João chegar) is extremely common, and some grammarians tolerate it — but the separate form is the safe written choice"
                 ),
@@ -475,7 +482,8 @@ private val rocSections = listOf(
                     RocExample("Pensei na convidar.", "Pensei em a convidar.", "I thought about inviting her.", "a = her."),
                     RocExample("Acabei pelos ajudar.", "Acabei por os ajudar.", "I ended up helping them.", "os = them.")
                 ),
-                note = "You can also write these with the pronoun after the infinitive: Gostava de vê-lo. Pensei em convidá-la. Both orders are correct in EP."
+                note = "Both orders are correct after a preposition: Gostava de o ver = Gostava de vê-lo; Pensei em a convidar = Pensei em convidá-la. " +
+                    "Putting the pronoun first (de o ver) is very typical of European Portuguese — and when you do, remember it never contracts."
             )
         )
     ),
@@ -489,8 +497,7 @@ private val rocSections = listOf(
                     "se, me, te, lhe, lhes, nos, vos attach with a hyphen but the verb stays whole",
                     "No letter drops, no accent is added",
                     "Hyphen: mandatory, same as with o/a",
-                    "ONE exception: a nós verb form (ending -mos) + nos (reflexive/us) drops its -s: levantamos + nos → levantamo-nos",
-                    "Same for the old vós imperative/forms + vos (rare today)"
+                    "ONE exception: a nós verb form (ending -mos) + nos drops its -s: levantamos + nos → levantamo-nos"
                 ),
                 examples = listOf(
                     RocExample("fazê-se", "fazer-se", "to become / to be done", "se doesn't remove the r."),
