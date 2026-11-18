@@ -94,6 +94,9 @@ import com.example.arabicapp.screens.VerbFormsScreen
 import com.example.arabicapp.screens.RealEstateScreen
 import com.example.arabicapp.screens.MathEngineeringScreen
 import com.example.arabicapp.screens.TourismTravelScreen
+import com.example.arabicapp.screens.ReadingExamplesScreen
+import com.example.arabicapp.screens.ReadingSentencesScreen
+import com.example.arabicapp.screens.ReadingWordsScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -134,6 +137,23 @@ fun AppNavigation() {
                 HubBackground {
                     DictionaryScreen(navController)
                 }
+            }
+        }
+        composable("reading_examples") {
+            ScreenWithBackButton(title = "Examples Of Reading In Arabic", onBack = { navController.popBackStack() }) {
+                HubBackground {
+                    ReadingExamplesScreen(navController)
+                }
+            }
+        }
+        composable("reading_words") {
+            ScreenWithBackButton(title = "Reading — Words", onBack = { navController.popBackStack() }) {
+                ReadingWordsScreen()
+            }
+        }
+        composable("reading_sentences") {
+            ScreenWithBackButton(title = "Reading — Sentences", onBack = { navController.popBackStack() }) {
+                ReadingSentencesScreen()
             }
         }
         composable("practice_letters") {
@@ -500,6 +520,12 @@ fun HomeScreen(navController: NavController) {
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 ) {
                     Text("Simple Dictionary")
+                }
+                Button(
+                    onClick = { navController.navigate("reading_examples") },
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                ) {
+                    Text("Examples Of Reading In Arabic")
                 }
                 Button(
                     onClick = { navController.navigate("practice_letters") },
