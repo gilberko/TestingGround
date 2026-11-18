@@ -54,7 +54,8 @@ fun TutorialScreen(
     onSomeNoneAll: () -> Unit,
     onConnectors: () -> Unit,
     onAdjectivesAdverbs: () -> Unit,
-    onPossessives: () -> Unit
+    onPossessives: () -> Unit,
+    onRulesOfContractions: () -> Unit
 ) {
     val buttons = listOf(
         "Verbs And Tenses" to onVerbsAndTenses,
@@ -63,6 +64,7 @@ fun TutorialScreen(
         "More About Prepositions" to onMorePrepositions,
         "Para vs Por vs A" to onParaPorA,
         "Object Pronouns (Clitics)" to onCliticPronouns,
+        "Rules Of Contractions And Changes In Writing" to onRulesOfContractions,
         "Comparisons" to onComparisons,
         "Questions" to onQuestions,
         "This, That, Here & There" to onDemonstratives,

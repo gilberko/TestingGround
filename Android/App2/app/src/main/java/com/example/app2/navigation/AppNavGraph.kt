@@ -21,6 +21,7 @@ import com.example.app2.screens.NumbersScreen
 import com.example.app2.screens.PrepositionsScreen
 import com.example.app2.screens.PronunciationScreen
 import com.example.app2.screens.TimeExpressionsScreen
+import com.example.app2.screens.RulesOfContractionsScreen
 import com.example.app2.screens.TutorialScreen
 import com.example.app2.screens.DictionaryScreen
 import com.example.app2.screens.ColorsScreen
@@ -158,6 +159,7 @@ sealed class Screen(val route: String) {
     object TutorialVerbsAndTenses : Screen("tutorial_verbs_and_tenses")
     object TutorialParaPorA : Screen("tutorial_para_por_a")
     object TutorialPossessives : Screen("tutorial_possessives")
+    object TutorialRulesOfContractions : Screen("tutorial_rules_of_contractions")
     object DictUsefulVerbs : Screen("dict_useful_verbs")
     object ConjugationTables : Screen("conjugation_tables")
     object ConjTablePresentIndicative : Screen("conj_table_present_indicative")
@@ -242,7 +244,8 @@ fun AppNavGraph(navController: NavHostController) {
                 onSomeNoneAll = { navController.navigate(Screen.DictSomeNoneAll.route) },
                 onConnectors = { navController.navigate(Screen.DictConnectors.route) },
                 onAdjectivesAdverbs = { navController.navigate(Screen.TutorialAdjectivesAdverbs.route) },
-                onPossessives = { navController.navigate(Screen.TutorialPossessives.route) }
+                onPossessives = { navController.navigate(Screen.TutorialPossessives.route) },
+                onRulesOfContractions = { navController.navigate(Screen.TutorialRulesOfContractions.route) }
             )
         }
         composable(Screen.TutorialVerbsAndTenses.route) {
@@ -267,6 +270,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
         composable(Screen.TutorialParaPorA.route) {
             ParaPorAScreen(onBack = { navController.popBackStack() })
+        }
+        composable(Screen.TutorialRulesOfContractions.route) {
+            RulesOfContractionsScreen(onBack = { navController.popBackStack() })
         }
         composable(Screen.TutorialPossessives.route) {
             PossessivesScreen(onBack = { navController.popBackStack() })
