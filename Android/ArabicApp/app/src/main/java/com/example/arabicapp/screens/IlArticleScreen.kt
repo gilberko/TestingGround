@@ -105,7 +105,8 @@ fun IlArticleScreen() {
         ILExample("**biddi l-ktaab** — بدّي الكتاب — I want the book  ·  **khalliina n2uul l-7a22** — let's tell the truth")
         ILExample("Said slowly / on its own: **el-beit**, **el-ktaab** — the full el- comes back.")
         ILBody("Lebanese works the other way too: when the article would land between consonants, Lebanese **adds** a short vowel to keep the l audible (**le-ktaab**, see section 7).")
-        ILNote("Checked: sources agree that in fast and connected speech the article's vowel drops and it sounds attached to the previous word (UC Davis Arabic Without Walls; Levantine grammar examples such as shifna l-bēt). They also agree the l is kept before moon letters. None of them describes the l itself weakening or disappearing before moon letters, so we can't confirm that part. What's confirmed is that the whole article becomes very short and easy to miss. Ask your teacher which of the two she meant.")
+        ILNote("Checked: sources agree that in fast and connected speech the article's vowel drops and it sounds attached to the previous word (UC Davis Arabic Without Walls; Levantine grammar examples such as shifna l-bēt). They also agree the l is kept before moon letters. None of them describes the l itself weakening or disappearing before moon letters, so we can't confirm that part. What's confirmed is that the whole article becomes very short and easy to miss.")
+        ILNote("Personal note: I remember my teacher saying that the l of il- is very light, almost unheard. I'm aware I may have misunderstood her: the sources above say the l is fully pronounced before moon letters and fully gone (replaced by a doubled letter) before sun letters. She may have meant the short, vowel-less l- of fast speech. Open question to ask her in a future lesson.")
 
         // 9
         ILSection("9. The i of il- Merges Into the Previous Word")
