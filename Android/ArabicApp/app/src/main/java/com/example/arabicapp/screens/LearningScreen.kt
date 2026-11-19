@@ -44,31 +44,19 @@ fun LearningScreen(navController: NavController) {
             Button(onClick = { navController.navigate("object_pronouns") }, modifier = Modifier.weight(1f)) { Text("Object Pronouns") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("past_tense") }, modifier = Modifier.weight(1f)) { Text("Past Tense") }
-            Button(onClick = { navController.navigate("future_tense") }, modifier = Modifier.weight(1f)) { Text("Future Tense") }
+            Button(onClick = { navController.navigate("verbs_tenses") }, modifier = Modifier.weight(1f)) { Text("Verbs And Tenses") }
+            Button(onClick = { navController.navigate("exists_have_want") }, modifier = Modifier.weight(1f)) { Text("Exists, Have, Want") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("adjectives") }, modifier = Modifier.weight(1f)) { Text("Adjectives") }
             Button(onClick = { navController.navigate("adverbs") }, modifier = Modifier.weight(1f)) { Text("Adverbs") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("conditions") }, modifier = Modifier.weight(1f)) { Text("Conditions") }
             Button(onClick = { navController.navigate("letters_for_hebrew") }, modifier = Modifier.weight(1f)) { Text("The Letters for Hebrew Speakers") }
-        }
-        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("prepositions") }, modifier = Modifier.weight(1f)) { Text("Prepositions") }
-            Button(onClick = { navController.navigate("passive_voice") }, modifier = Modifier.weight(1f)) { Text("Passive Voice") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("present_tense") }, modifier = Modifier.weight(1f)) { Text("Present Tense") }
-            Button(onClick = { navController.navigate("continuous") }, modifier = Modifier.weight(1f)) { Text("Continuous") }
-        }
-        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("imperative") }, modifier = Modifier.weight(1f)) { Text("Imperative") }
             Button(onClick = { navController.navigate("letters_transliteration") }, modifier = Modifier.weight(1f)) { Text("Letters Transliteration") }
-        }
-        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { navController.navigate("verb_conjugation_overview") }, modifier = Modifier.weight(1f)) { Text("Verb Conjugation Overview") }
             Button(onClick = { navController.navigate("nouns_singular_plural") }, modifier = Modifier.weight(1f)) { Text("Nouns - Singular and Plural") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -81,7 +69,7 @@ fun LearningScreen(navController: NavController) {
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("adjectives_adverbs_overview") }, modifier = Modifier.weight(1f)) { Text("Overview of Adjectives and Adverbs") }
-            Button(onClick = { navController.navigate("verb_forms") }, modifier = Modifier.weight(1f)) { Text("Verb Forms") }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

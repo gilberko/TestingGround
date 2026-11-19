@@ -97,6 +97,10 @@ import com.example.arabicapp.screens.TourismTravelScreen
 import com.example.arabicapp.screens.ReadingExamplesScreen
 import com.example.arabicapp.screens.ReadingSentencesScreen
 import com.example.arabicapp.screens.ReadingWordsScreen
+import com.example.arabicapp.screens.FirstDateDialogueScreen
+import com.example.arabicapp.screens.TrainStationDialogueScreen
+import com.example.arabicapp.screens.VerbsTensesScreen
+import com.example.arabicapp.screens.ExistsHaveWantScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -471,6 +475,28 @@ fun AppNavigation() {
         composable("tech_interview_dialogue") {
             ScreenWithBackButton(title = "Tech Interview", onBack = { navController.popBackStack() }) {
                 TechInterviewDialogueScreen()
+            }
+        }
+        composable("first_date_dialogue") {
+            ScreenWithBackButton(title = "First Date", onBack = { navController.popBackStack() }) {
+                FirstDateDialogueScreen()
+            }
+        }
+        composable("train_station_dialogue") {
+            ScreenWithBackButton(title = "Train Station", onBack = { navController.popBackStack() }) {
+                TrainStationDialogueScreen()
+            }
+        }
+        composable("verbs_tenses") {
+            ScreenWithBackButton(title = "Verbs And Tenses", onBack = { navController.popBackStack() }) {
+                HubBackground {
+                    VerbsTensesScreen(navController)
+                }
+            }
+        }
+        composable("exists_have_want") {
+            ScreenWithBackButton(title = "Exists, Have, Want", onBack = { navController.popBackStack() }) {
+                ExistsHaveWantScreen()
             }
         }
     }

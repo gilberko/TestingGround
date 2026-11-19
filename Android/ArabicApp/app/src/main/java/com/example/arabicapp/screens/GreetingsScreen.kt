@@ -127,6 +127,13 @@ fun GreetingsScreen() {
         GrBodyText("  Reply: الحمدلله — el-7amdilla / منيحة — mnii7a (my health is good) / Allah ysallmak (m) / ysallmik (f) — thanks for caring")
         Spacer(modifier = Modifier.height(8.dp))
 
+        GrBodyText("على راسي — 3ala raasi — Gladly! / At your service!  (lit. \"on my head\")")
+        GrBodyText("  When: the answer to a request or a favor you're asked for: \"can you bring me…?\" → \"3ala raasi!\" = with pleasure, consider it done. Same for a man or a woman (it's about \"my\" head).")
+        GrBodyText("  Full form: على راسي وعيني — 3ala raasi w 3eini — \"on my head and my eye\" (even warmer). Lebanese often sound it as 3a raase w 3eine.")
+        GrBodyText("  Also heard: على عيني — 3ala 3eini — \"on my eye\", and من عيوني — min 3yuuni — \"from my eyes\" = gladly (both affectionate).")
+        GrBodyText("  Note: warm and respectful, often said to elders, guests or customers. Save it for real requests; for every tiny thing it loses its charm.")
+        Spacer(modifier = Modifier.height(8.dp))
+
         GrBodyText("شكرا — shukran — Thank you  (same to a man or a woman; Lebanese also say merci)")
         GrBodyText("  Replies, and when to use each:")
         GrBodyText("  تكرم — tikram (to a man) / tikrami, Leb. tikrame (to a woman) — the warm, most typical Levantine \"you're welcome\" (lit. \"be honored\" / for you, anything)")
@@ -331,7 +338,7 @@ private fun GrSectionHeader(text: String) {
 @Composable
 private fun GrBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldTermLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )
