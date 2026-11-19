@@ -101,6 +101,7 @@ import com.example.arabicapp.screens.FirstDateDialogueScreen
 import com.example.arabicapp.screens.TrainStationDialogueScreen
 import com.example.arabicapp.screens.VerbsTensesScreen
 import com.example.arabicapp.screens.ExistsHaveWantScreen
+import com.example.arabicapp.screens.IlArticleScreen
 import com.example.arabicapp.ui.theme.ArabicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -497,6 +498,11 @@ fun AppNavigation() {
         composable("exists_have_want") {
             ScreenWithBackButton(title = "Exists, Have, Want", onBack = { navController.popBackStack() }) {
                 ExistsHaveWantScreen()
+            }
+        }
+        composable("il_article") {
+            ScreenWithBackButton(title = "il — The Definite Article", onBack = { navController.popBackStack() }) {
+                IlArticleScreen()
             }
         }
     }
