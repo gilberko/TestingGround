@@ -99,6 +99,13 @@ fun IlArticleScreen() {
         ILBody("Hebrew has something similar: in **הַשֶּׁמֶשׁ** the dagesh in ש after ה- is the same kind of doubling. The difference: Hebrew ה- doubles almost every following letter (except the gutturals א ה ח ע ר), while Arabic doubles only the sun letters. A common theory says the Hebrew article was once *hal-* with its l assimilated, but that is a reconstruction, not a proven fact.")
         ILBody("What **does** become very light, or disappears, is the **vowel** of il-: in fast speech and after another vowel it's often just a quick l- or a doubled consonant: **fi l-beit**, **3a-s-suu2**.")
         ILNote("So you probably understood the right idea: you don't hear an l, and the article is very short. The precise way to say it: the l disappears, and what's left is a doubled consonant — a slightly longer s / sh / t etc. That doubling is the only trace of \"the\", so it's worth hearing it: es-sayyaara (the car) vs sayyaara (a car).")
+        ILSub("And before moon letters, in fast speech?")
+        ILBody("Another thing your teacher may have meant: **before moon letters the l is still pronounced**, but in fast, connected speech the article loses its vowel and shrinks to a bare **l-** glued to the end of the previous word. Because it's just one short consonant with no vowel of its own, it's easy to miss. It sounds light, but it's there:")
+        ILExample("**shifna l-beit** — شفنا البيت — we saw the house  (not \"shifna el-beit\": the e drops, only a quick l is left)")
+        ILExample("**biddi l-ktaab** — بدّي الكتاب — I want the book  ·  **khalliina n2uul l-7a22** — let's tell the truth")
+        ILExample("Said slowly / on its own: **el-beit**, **el-ktaab** — the full el- comes back.")
+        ILBody("Lebanese works the other way too: when the article would land between consonants, Lebanese **adds** a short vowel to keep the l audible (**le-ktaab**, see section 7).")
+        ILNote("Checked: sources agree that in fast and connected speech the article's vowel drops and it sounds attached to the previous word (UC Davis Arabic Without Walls; Levantine grammar examples such as shifna l-bēt). They also agree the l is kept before moon letters. None of them describes the l itself weakening or disappearing before moon letters, so we can't confirm that part. What's confirmed is that the whole article becomes very short and easy to miss. Ask your teacher which of the two she meant.")
 
         // 9
         ILSection("9. The i of il- Merges Into the Previous Word")
