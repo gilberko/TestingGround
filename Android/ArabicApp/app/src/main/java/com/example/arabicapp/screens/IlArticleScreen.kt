@@ -73,7 +73,7 @@ fun IlArticleScreen() {
         ILBody("The l of il- is pronounced before some letters and swallowed before others. The 28 letters split into two groups of 14, named after the words **ish-shams** (the sun — l swallowed) and **il-qamar** (the moon — l pronounced).")
         ILSub("☀ Sun letters — the l disappears and the letter is doubled")
         ILBody("**ت t · ث t/s · د d · ذ d/z · ر r · ز z · س s · ش sh · ص S · ض D · ط T · ظ Z · ل l · ن n**")
-        ILNote("Tip: they're all made with the tip of the tongue near the teeth — the same place as l, so the l just merges into them.")
+        ILNote("Tip: they're all made with the tip or front of the tongue (teeth, gums, just behind them) — the same area as l, so the l just merges into them.")
         ILExample("**es-sayyaara** — السيارة — the car  ·  **esh-shams** — الشمس — the sun  ·  **en-naas** — الناس — the people")
         ILExample("**et-tuffaa7** — التفاح — the apples  ·  **ed-dinya** — الدنيا — the world  ·  **er-raas** — الراس — the head  ·  **eT-Taawle** — الطاولة — the table")
         ILSub("☾ Moon letters — the l is said")
@@ -88,7 +88,7 @@ fun IlArticleScreen() {
         ILBody("**Yes** — the sun / moon rule works the same everywhere in the Levant (and in MSA). The differences are small:")
         ILBody("• **ج (j)** — a moon letter in MSA, but in the Levant it usually behaves as a **sun letter** for speakers who say it as \"zh\" (most Lebanese, Syrians and many Palestinians): **ij-jaaj** / **ej-jum3a** (the chicken / Friday). Speakers who say \"dj\" (e.g. some Palestinians, Jordanians) often keep the l: **il-djaaj**. Both are heard.")
         ILBody("• **The vowel:** Palestinian **il-**, Lebanese/Syrian **el-**; both often just **l-** after a vowel (section 9).")
-        ILBody("• **Before two consonants** Lebanese and Syrian often say **le- / li-**: **le-ktaab** — the book, **li-mdiir** — the manager (instead of il-ktaab), to avoid three consonants in a row.")
+        ILBody("• **Before two consonants** Levantine speakers (you'll notice it most in Lebanese and Syrian) often say **le- / li-**: **le-ktaab** — the book, **li-mdiir** — the manager (instead of il-ktaab), to avoid three consonants in a row.")
         ILNote("Sources: adrosverse (Palestinian-Jordanian definite article), Lebanese Arabic Institute, Wikipedia (Levantine Arabic grammar). The ج behaviour varies by speaker — listen to your teacher.")
 
         // 8
@@ -96,7 +96,7 @@ fun IlArticleScreen() {
         ILBody("**The l is completely gone** — it doesn't become a light l. It turns into a copy of the next consonant, so that consonant is **doubled** (held a little longer):")
         ILExample("السيارة = **es-sayyaara** → said \"ess-sayyaara\", not \"el-sayyaara\" and not \"e-sayyaara\"")
         ILExample("الشمس = **esh-shams** → the sh is held longer: \"esh-sh-ams\"")
-        ILBody("Hebrew has the same thing: in **הַשֶּׁמֶשׁ** the dagesh in ש after ה- is exactly this doubling.")
+        ILBody("Hebrew has something similar: in **הַשֶּׁמֶשׁ** the dagesh in ש after ה- is the same kind of doubling. The difference: Hebrew ה- doubles almost every following letter (except the gutturals א ה ח ע ר), while Arabic doubles only the sun letters. A common theory says the Hebrew article was once *hal-* with its l assimilated, but that is a reconstruction, not a proven fact.")
         ILBody("What **does** become very light, or disappears, is the **vowel** of il-: in fast speech and after another vowel it's often just a quick l- or a doubled consonant: **fi l-beit**, **3a-s-suu2**.")
         ILNote("So you probably understood the right idea: you don't hear an l, and the article is very short. The precise way to say it: the l disappears, and what's left is a doubled consonant — a slightly longer s / sh / t etc. That doubling is the only trace of \"the\", so it's worth hearing it: es-sayyaara (the car) vs sayyaara (a car).")
 
