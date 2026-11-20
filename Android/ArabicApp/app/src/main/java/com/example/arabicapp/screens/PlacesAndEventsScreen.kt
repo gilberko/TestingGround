@@ -48,7 +48,7 @@ fun PlacesAndEventsScreen() {
         PEInfo("m · 2: شارعين shaar3ein · pl: شوارع shawaari3")
         PEWord("boulevard / avenue — جادّة — jaadde  (formal, mostly in street names);  everyday: شارع عريض — shaari3 3ariiD (a wide street)")
         PEWord("corner — زاوية — zaawye;  also: ناصية — naaSye;  قرنة — 2urne (Leb 2orne)")
-        PEWord("building — بناية — binaaye;  also: عمارة — 3imaara")
+        PEWord("building — بناية — binaaye;  also: عمارة — 3amaara")
         PEInfo("f · 2: بنايتين binaaytein · pl: بنايات binaayaat")
 
         PESectionHeader("Nature and the Outdoors")
@@ -71,7 +71,7 @@ fun PlacesAndEventsScreen() {
         PEInfo("m · pl: محيطات mu7iiTaat")
         PEWord("zoo — حديقة حيوانات — 7adii2et 7ayawaanaat;  everyday: جنينة الحيوانات — jneinet el-7ayawaanaat")
         PEWord("pool — بركة سباحة — birket sbaa7a;  short: بركة — birke;  Leb also: بيسين — pisiin")
-        PEInfo("birke: f · pl: برك birak · Wiktionary (South Levantine): birke = swimming pool, also pond · pisiin (from French piscine): commonly heard")
+        PEInfo("birke: f · pl: برك birak · Wiktionary (South Levantine): birke = swimming pool, also pond · pisiin (from French piscine) is the usual Lebanese word (lebanese-arabic.com: ta3a nrou7 3al piscine);  also مسبح — masba7")
         PEWord("resort — منتجع — muntaja3")
         PEInfo("m · pl: منتجعات muntaja3aat")
 
