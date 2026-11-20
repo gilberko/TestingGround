@@ -205,6 +205,22 @@ fun NumbersLearningScreen() {
         NLNote("\"at\" = 3a-s-saa3a (3ala + es-saa3a), or just es-saa3a. Order: \"at\" + time + part of the day — the part of the day always comes last. 21:30 is for timetables, not speech.")
 
         NLSectionHeader("Yesterday, Tomorrow, Ago, In … Minutes")
+        NLSubHeader("Day, Night and the Parts of the Day")
+        NLBody("day — **يوم — yoom**  ·  m · 2: yoomein · pl: iyyaam")
+        NLBody("daytime — **نهار — nhaar**  ·  during the day: **bin-nhaar**")
+        NLBody("night (night-time) — **ليل — leil**  ·  at night: **bil-leil**")
+        NLBody("a night — **ليلة — leile**  ·  f · 2: leiltein · pl: layaali")
+        NLBody("morning — **صبح — Sub7**  (also صباح Sabaa7, as in Sabaa7 el-kheir)")
+        NLBody("noon — **ضهر — Duhr**  ·  at noon: **eD-Duhr**")
+        NLBody("afternoon — **بعد الضهر — ba3d eD-Duhr**  (lit. \"after noon\")")
+        NLBody("evening — **مسا — masa**  (as in masa el-kheir)  ·  in the evening: **el-masa**")
+        NLSubHeader("Today, tonight, this morning, this evening")
+        NLExample("today — اليوم — **el-yoom**")
+        NLExample("tonight — الليلة — **el-leile**:  شو عامل الليلة؟ — shu 3aamil el-leile? — What are you doing tonight? (to m)")
+        NLExample("this morning — اليوم الصبح — **el-yoom eS-Sub7**  ·  or just eS-Sub7 with a past verb:  شفته الصبح — shuftu eS-Sub7 — I saw him this morning")
+        NLExample("this evening — اليوم المسا — **el-yoom el-masa**  ·  also: هالمسا — **hal-masa**")
+        NLNote("el-leile = tonight (this particular night), bil-leil = at night in general (b7ibb a2ra bil-leil — I like to read at night). hal-masa is commonly heard, not confirmed by a source.")
+
         NLSubHeader("The days around today")
         NLBody("today — **اليوم — el-yoom**")
         NLBody("tomorrow — **بكرا — bukra**")
@@ -221,6 +237,8 @@ fun NumbersLearningScreen() {
 
         NLSubHeader("Ago — 2abl (before) + the time")
         NLExample("a week ago — قبل جمعة — **2abl jum3a**  ·  Leb also: من جمعة — **min jem3a**")
+        NLExample("2 days ago — قبل يومين — **2abl yoomein**  (dual)")
+        NLExample("5 days ago — قبل خمس تيّام — **2abl khams-t-iyyaam**  (the t before iyyaam, see Counting above)")
         NLExample("2 minutes ago — قبل دقيقتين — **2abl da2ii2tein**  (dual)")
         NLExample("5 minutes ago — قبل خمس دقايق — **2abl khams da2aaye2**  (3–10: short number + plural)")
         NLExample("a little while ago / just now — من شوي — **min shwayy**")
@@ -312,7 +330,7 @@ fun NumbersLearningScreen() {
         NLBody("7. Year = sanet + the whole number: sanet alf w-tis3miyye w-tis3iin (1990), sanet alfein w-sitte w-3ishriin (2026)")
         NLBody("8. Date = number + month: awwal / tnein / khamse w-3ishriin niisaan")
         NLBody("9. Seasons: shita, rabii3, Seif, khariif · raas es-sane = New Year · awwal / aakhir esh-shahar = start / end of the month")
-        NLBody("10. bukra / mbaari7 · next = ej-jaay(e) · ago = 2abl + time · in = ba3d + time · about = shi / 7awaali / ta2riiban · give or take = zaayid naa2iS")
+        NLBody("10. yoom / leile · el-yoom / el-leile (tonight) · bukra / mbaari7 · next = ej-jaay(e) · ago = 2abl + time (2abl yoomein) · in = ba3d + time · about = shi / 7awaali / ta2riiban · give or take = zaayid naa2iS")
 
         Spacer(modifier = Modifier.height(24.dp))
     }

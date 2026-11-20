@@ -205,7 +205,10 @@ fun DictionaryScreen(navController: NavController) {
                 onClick = { navController.navigate("dict_real_estate") },
                 modifier = Modifier.weight(1f)
             ) { Text("Homes, Apartments and Real Estate") }
-            Spacer(modifier = Modifier.weight(1f))
+            Button(
+                onClick = { navController.navigate("dict_work_office") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Work and Office") }
         }
     }
 }

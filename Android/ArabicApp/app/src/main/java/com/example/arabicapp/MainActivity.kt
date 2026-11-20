@@ -91,6 +91,7 @@ import com.example.arabicapp.screens.EverySomeScreen
 import com.example.arabicapp.screens.ExamplesScreen
 import com.example.arabicapp.screens.DirectionsExamplesScreen
 import com.example.arabicapp.screens.PrepositionsExamplesScreen
+import com.example.arabicapp.screens.WorkOfficeScreen
 import com.example.arabicapp.screens.ThisThatHereThereScreen
 import com.example.arabicapp.screens.AdjectivesAdverbsOverviewScreen
 import com.example.arabicapp.screens.WeatherScreen
@@ -487,6 +488,11 @@ fun AppNavigation() {
         composable("dict_tourism_travel") {
             ScreenWithBackButton(title = "Tourism and Traveling", onBack = { navController.popBackStack() }) {
                 TourismTravelScreen()
+            }
+        }
+        composable("dict_work_office") {
+            ScreenWithBackButton(title = "Work and Office", onBack = { navController.popBackStack() }) {
+                WorkOfficeScreen()
             }
         }
         composable("comparisons") {
