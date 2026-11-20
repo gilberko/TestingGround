@@ -76,6 +76,18 @@ fun DirectionsExamplesScreen() {
             "at the roundabout: عند الدوّار — 3and ed-dawwaar",
             note = "Tal3a = a way out / turn-off (from Tili3, go out). The formal word for an exit is مخرج makhraj: khood el-makhraj et-taani. Tal3a for a roundabout exit is commonly heard; not confirmed by a dictionary source."
         )
+        ExItem(
+            "Enter the roundabout.",
+            "(m) فوت عالدوّار — __fuut 3ad-dawwaar__",
+            "(f) فوتي عالدوّار — __fuuti 3ad-dawwaar__",
+            note = "dawwaar = roundabout (Palestinian, Syrian, Lebanese; Lebanese also formal مستديرة mustadiira). faat / yfuut = go in, enter — the same verb as entering a building. fuut 3ad-dawwaar is commonly heard; not confirmed by a source."
+        )
+        ExItem(
+            "At the roundabout, take the 2nd exit.",
+            "(m) عند الدوّار خود الطلعة التانية — __3and ed-dawwaar__ __khood eT-Tal3a et-taanye__",
+            "(f) عند الدوّار خودي الطلعة التانية — __3and ed-dawwaar__ __khoodi eT-Tal3a et-taanye__",
+            "formal: … خود المخرج التاني — khood __el-makhraj et-taani__"
+        )
 
         ExSection("Turning and Where Things Are")
         ExItem(
@@ -119,6 +131,31 @@ fun DirectionsExamplesScreen() {
 
         ExSection("Inside a Building")
         ExItem(
+            "Enter the building.",
+            "(m) فوت عالبناية — __fuut 3al-binaaye__",
+            "(f) فوتي عالبناية — __fuuti 3al-binaaye__  ·  (pl) فوتوا — __fuutu__",
+            note = "faat / yfuut 3a- = go into, enter (everyday Levantine; already in Common Verbs). Formal: ادخل udkhul. building = بناية binaaye."
+        )
+        ExItem(
+            "Exit the building.",
+            "(m) اطلع من البناية — __iTla3 min el-binaaye__",
+            "(f) اطلعي من البناية — __iTla3i min el-binaaye__  ·  (pl) اطلعوا — __iTla3u__",
+            note = "Tili3 min = go out of. The same verb iTla3 also means \"go up\" (iTla3 3a-T-Taabi2 = go up to the floor) — min (out of) vs 3a- (up to) tells you which."
+        )
+        ExItem(
+            "Take the elevator.",
+            "(m) خود المصعد — __khood el-maS3ad__  ·  Leb/Syr: خود الأسانسير — __khood el-asanseer__",
+            "(f) خودي المصعد — __khoodi el-maS3ad__",
+            "also: اطلع بالمصعد — __iTla3 bil-maS3ad__ (go up by elevator) · انزل بالأسانسير — __inzil bil-asanseer__ (go down by elevator)"
+        )
+        ExItem(
+            "Take the escalators.",
+            "(m) خود الدرج الكهربائي — __khood ed-daraj el-kahrabaa2i__",
+            "(f) خودي الدرج الكهربائي — __khoodi ed-daraj el-kahrabaa2i__",
+            "or: اطلع عالدرج الكهربائي — __iTla3 3ad-daraj el-kahrabaa2i__",
+            note = "Lit. \"the electric stairs\" (daraj = stairs). درج كهربائي / درج متحرّك (moving stairs) is the dictionary term (WordReference); I didn't find a source for a more colloquial word. Arabic usually says it in the singular — \"the escalator\"."
+        )
+        ExItem(
             "Go up to the 3rd floor.",
             "(m) اطلع عالطابق التالت — __iTla3__ 3a-T-Taabi2 et-taalit",
             "(f) اطلعي عالطابق التالت — __iTla3i__ 3a-T-Taabi2 et-taalit"
@@ -133,6 +170,7 @@ fun DirectionsExamplesScreen() {
         ExSection("Quick Word List")
         ExBody("**لفّ — liff** — turn  ·  **كمّل — kammil** — continue  ·  **دغري — dughri** — straight")
         ExBody("**يمين — yamiin** — right  ·  **شمال — shmaal** — left  ·  **عاليمين / عالشمال — 3al-yamiin / 3a-sh-shmaal** — on the right / left")
+        ExBody("**فوت — fuut** — go in  ·  **اطلع من — iTla3 min** — go out of  ·  **خود — khood** — take  ·  **دوّار — dawwaar** — roundabout  ·  **مصعد / أسانسير — maS3ad / asanseer** — elevator")
         ExBody("**وقّف — wa22if** — stop  ·  **ارجع — irja3** — go back  ·  **اطلع — iTla3** — go up  ·  **انزل — inzil** — go down")
         ExBody("**على مهلك — 3ala mahlak** — slowly, easy  ·  **أسرع — asra3** — faster  ·  **دير بالك — diir baalak** — careful")
         ExBody("**بعد — ba3d** — after (+ noun)  ·  **بعد ما — ba3d ma** — after (+ verb)  ·  **لحتى — la-7atta** — until")
