@@ -29,10 +29,10 @@ fun ThisThatHereThereScreen() {
     ) {
         // 1
         DEMSection("1. This — Near")
-        DEMBody("Palestinian first, then Lebanese/Syrian. All of them mean \"this\" (Hebrew זה / זאת / אלה).")
-        DEMBody("**m:** **هادا / هاد — haada / haad**  ·  Leb/Syr **هيدا — hayda**")
-        DEMBody("**f:** **هادي / هاي — haadi / haay**  ·  Leb/Syr **هيدي — haydi**")
-        DEMBody("**pl:** **هدول — hadool**  ·  Leb/Syr **هيدول — hayduul**  (Lebanese also heard: **هودي — hawdi**)")
+        DEMBody("Palestinian and Syrian (Damascus) share the haada set; Lebanese uses the hayda set. All of them mean \"this\" (Hebrew זה / זאת / אלה).")
+        DEMBody("**m:** **هادا / هاد — haada / haad**  ·  Leb **هيدا — hayda**")
+        DEMBody("**f:** **هادي / هاي — haadi / haay**  ·  Leb **هيدي — haydi**")
+        DEMBody("**pl:** **هدول — hadool**  ·  Leb **هودي — hawdi** (Beirut also **هول — hol**)")
         DEMExample("**haada** beiti — هادا بيتي — this is my house  ·  Leb **hayda** beiti")
         DEMExample("**haadi** binti — هادي بنتي — this is my daughter  ·  Leb **haydi** binti")
         DEMExample("**hadool** wlaadi — هدول ولادي — these are my children")
@@ -40,9 +40,9 @@ fun ThisThatHereThereScreen() {
 
         // 2
         DEMSection("2. That — Far")
-        DEMBody("**m:** **هداك — hadaak**  ·  Leb/Syr **هيداك — haydaak**")
-        DEMBody("**f:** **هديك — hadiik**  ·  Leb/Syr **هيديك — haydiik**")
-        DEMBody("**pl:** **هدولاك — hadoolaak**  ·  Leb/Syr **هيدوليك — hayduulik**  (Lebanese also heard: **هوديك — hawdiik**)")
+        DEMBody("**m:** **هداك — hadaak**  ·  Leb **هيداك — haydaak** (also heard **hiidak**)")
+        DEMBody("**f:** **هديك — hadiik**  ·  Leb **هيديك — haydiik**")
+        DEMBody("**pl:** **هدولاك — hadoolaak**  ·  Leb **هوديك — hawdiik** (also **holiik**)")
         DEMExample("**hadaak** el-walad — هداك الولد — that boy")
         DEMExample("**hadiik** el-bint — هديك البنت — that girl")
         DEMExample("**hadoolaak** en-naas — هدولاك الناس — those people")
@@ -50,11 +50,11 @@ fun ThisThatHereThereScreen() {
 
         // 3
         DEMSection("3. Here and There")
-        DEMBody("**here:** **هون — hoon**  (Lebanese also **hawn**)")
-        DEMBody("**there / over there:** **هناك — hunaak / hnaak**  ·  Leb/Syr **هنيك — hniik / honiik**")
+        DEMBody("**here:** **هون — hoon**  (Lebanese **hon**)")
+        DEMBody("**there / over there:** **هناك — hunaak / hnaak**  ·  Leb **هونيك — honiik** (also heard **hniik**)")
         DEMExample("ta3a la-**hoon** — تعا لهون — come here")
         DEMExample("ana min **hoon** — أنا من هون — I'm from here")
-        DEMExample("ruu7 la-**hunaak** — روح لهناك — go there  ·  Leb ruu7 la-**hniik**")
+        DEMExample("ruu7 la-**hunaak** — روح لهناك — go there  ·  Leb ruu7 la-**honiik**")
         DEMExample("el-maT3am **hunaak**, janb el-bank — المطعم هناك، جنب البنك — the restaurant is over there, next to the bank")
         DEMExample("**hoon** w **hunaak** — هون وهناك — here and there")
         DEMExample("mish **hoon** — مش هون — not here (he isn't here)")
@@ -101,9 +101,9 @@ fun ThisThatHereThereScreen() {
 
         // 7
         DEMSection("7. Quick Reference")
-        DEMBody("this: **haada** (m) · **haadi / haay** (f) · **hadool** (pl)  —  Leb **hayda · haydi · hayduul**")
-        DEMBody("that: **hadaak** (m) · **hadiik** (f) · **hadoolaak** (pl)  —  Leb **haydaak · haydiik · hayduulik**")
-        DEMBody("here: **hoon**  ·  there: **hunaak / hnaak** (Leb **hniik**)")
+        DEMBody("this: **haada** (m) · **haadi / haay** (f) · **hadool** (pl)  —  Leb **hayda · haydi · hawdi**")
+        DEMBody("that: **hadaak** (m) · **hadiik** (f) · **hadoolaak** (pl)  —  Leb **haydaak · haydiik · hawdiik**")
+        DEMBody("here: **hoon**  ·  there: **hunaak / hnaak** (Leb **honiik**)")
         DEMBody("this + the: **hal-** (hal-beit, has-sayyaara)")
         DEMBody("-k = farther away: real, it comes from Classical Arabic — but only for these words, and the vowels change too.")
 

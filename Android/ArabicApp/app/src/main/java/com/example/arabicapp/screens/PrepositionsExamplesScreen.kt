@@ -38,9 +38,9 @@ fun PrepositionsExamplesScreen() {
         )
         ExItem(
             "The money is in the wallet.",
-            "المصاري __بالمحفظة__ — el-maSaari __bil__-ma7faZa",
-            "or: المصاري __في__ المحفظة — el-maSaari __fi__ el-ma7faZa",
-            note = "b- (بـ) and fi (في) both mean \"in\"; b- is the everyday one and glues onto the word (b + el- = bil-). Wallet: ma7faZa; Lebanese/Syrian also جزدان jizdaan (commonly heard; not confirmed by a dictionary source)."
+            "المصاري __بالجزدان__ — el-maSaari __bij__-juzdaan",
+            "or: المصاري __في__ الجزدان — el-maSaari __fi__ ej-juzdaan",
+            note = "b- (بـ) and fi (في) both mean \"in\"; b- is the everyday one and glues onto the word (b + el- = bil-). Wallet: جزدان — Palestinian juzdaan, Lebanese jizdeen (Wiktionary, Lingualism); formal محفظة ma7faZa."
         )
         ExItem(
             "The dog is between the table and the chair.",
@@ -68,8 +68,8 @@ fun PrepositionsExamplesScreen() {
         ExSection("Movement — Into, Out Of, To, From")
         ExItem(
             "Put the money in the wallet.",
-            "(m) حطّ المصاري __بالمحفظة__ — 7uTT el-maSaari __bil__-ma7faZa",
-            "(f) حطّي المصاري __بالمحفظة__ — 7uTTi el-maSaari __bil__-ma7faZa"
+            "(m) حطّ المصاري __بالجزدان__ — 7uTT el-maSaari __bij__-juzdaan",
+            "(f) حطّي المصاري __بالجزدان__ — 7uTTi el-maSaari __bij__-juzdaan"
         )
         ExItem(
             "Take the money out of your pocket.",
@@ -102,7 +102,7 @@ fun PrepositionsExamplesScreen() {
             "He is going without you.",
             "رايح __بلاك__ — raayi7 __balaak__ (to m)  ·  __balaaki__ (to f)",
             "also: رايح __بدونك__ — raayi7 __biduunak__",
-            note = "bala / biduun = without; with a pronoun ending: balaak, biduunak (without you). balaak is commonly heard; biduunak is the safe, clear form."
+            note = "bala / biduun = without; with a pronoun ending: balaak, biduunak (without you). balaak / balaaki is everyday Levantine (WordReference, thelevantongue)."
         )
         ExItem(
             "Give it to Johnny.",
@@ -187,12 +187,12 @@ fun PrepositionsExamplesScreen() {
             "He is saving money for a guitar.",
             "بيوفّر مصاري __لجيتار__ — biwaffir maSaari __la__-gitaar",
             "also: بيوفّر مصاري __عشان__ الجيتار — biwaffir maSaari __3ashaan__ el-gitaar",
-            note = "waffar / biwaffir = save (money, time, effort). la- and 3ashaan + a noun = \"for\"."
+            note = "waffar / biwaffir = save (money, time, effort) — widely understood. The colloquial Levantine word for saving up money is حوّش 7awwash: bi7awwish maSaari (lit. \"collects\"). la- and 3ashaan + a noun = \"for\"."
         )
         ExItem(
             "He is saving money to buy a guitar.",
             "بيوفّر مصاري __عشان__ يشتري جيتار — biwaffir maSaari __3ashaan__ yishtri gitaar",
-            "Leb: … __تا__ يشتري — __ta__ yishtri  ·  Syr: … __منشان__ يشتري — __minshaan__ yishtri",
+            "Leb: … __تا__ يشتري — __ta__ yishtri (commonly heard)  ·  Syr: … __منشان__ يشتري — __minshaan__ yishtri",
             note = "3ashaan + a verb WITHOUT b- = \"in order to\" (yishtri, not biyishtri) — compare 3ashaan + noun above."
         )
         ExItem(

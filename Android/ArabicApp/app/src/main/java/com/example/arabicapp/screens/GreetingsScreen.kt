@@ -44,8 +44,8 @@ fun GreetingsScreen() {
         GrBodyText("**سيّداتي سادتي — sayyidaati saadati** (also **سيّداتي وسادتي — sayyidaati w-saadati**) — ladies and gentlemen. Formal Arabic (MSA): speeches, TV, announcements.")
         GrBodyText("  Singular, also formal: **سيّدي — sayyidi** — sir  ·  **سيّدتي — sayyidti** — madam (lit. \"my master / my lady\")")
         GrBodyText("  In everyday speech people don't say ya sayyidi. A polite stranger is addressed like this:")
-        GrBodyText("  **يا أستاذ — ya 2ustaaz** (Leb **ya estaaz**) — to a man: sir (lit. \"teacher\"; used for any respectable man — a clerk, a waiter, a customer)")
-        GrBodyText("  **يا مدام — ya madaam** — to a woman: madam  ·  **يا ستّ — ya sitt** — lady (more traditional)")
+        GrBodyText("  **يا أستاذ — ya 2ustaaz** (Leb **ya estaaz**) — to a man: sir (lit. \"teacher\"; for a man who looks like an office / white-collar worker). To a waiter or a workman, men often say **يا معلّم — ya m3allem** (casual, man to man).")
+        GrBodyText("  **يا مدام — ya madaam** — to a (married-looking) woman: madam  ·  **يا آنسة — ya aanse** — to a young unmarried woman: miss  ·  **يا ستّ — ya sitt** — lady (traditional; not confirmed by a source)")
         GrBodyText("  **يا أخي الكريم — ya akhi el-kariim** / **الأخ الكريم — el-akh el-kariim** — \"(my) honourable brother\": a formal-polite way to address a man you don't know — probably what you heard. I didn't find a source describing it, but karim (generous, noble) is the usual polite adjective in such titles.")
         GrBodyText("  e.g. **law samaHt ya 2ustaaz**, wein el-ma7atta? — Excuse me, sir, where's the station?")
 
@@ -53,7 +53,7 @@ fun GreetingsScreen() {
         GrBodyText("**To Older People**")
         GrBodyText("  **يا عمّو — ya 3ammo** / **يا عمّي — ya 3ammi** — to an older man, even a stranger (a shopkeeper, a neighbour, a taxi driver); lit. \"uncle\". Also **3amm + name**: 3amm Hasan.")
         GrBodyText("  **يا خالة — ya khaale** / **يا خالتو — ya khaalto** — to an older woman you don't know; lit. \"aunt\" (mother's sister).")
-        GrBodyText("  **يا حاجّ — ya 7ajj** / **يا حاجّة — ya 7ajje** — to a respected elderly man / woman (lit. someone who made the pilgrimage, but used for any older person).")
+        GrBodyText("  **يا حاجّ — ya 7ajj** / **يا حاجّة — ya 7ajje** — to a respected elderly man / woman (lit. someone who made the pilgrimage, but used for any older person — only for people who are clearly older, roughly 50+, or it sounds rude).")
         GrBodyText("  To your own grandparents: **يا سيدو — ya sido** / **يا جدّو — ya jiddo** (grandpa) · **يا تيتا — ya teta** / **يا ستّي — ya sitti** (grandma).")
         GrBodyText("  e.g. **tfaDDal ya 7ajje**, u23odi hoon — Please, ma'am, sit here (offering your seat).")
 
@@ -68,7 +68,7 @@ fun GreetingsScreen() {
         Spacer(modifier = Modifier.height(12.dp))
         GrBodyText("**From Older People to Younger Ones**")
         GrBodyText("  **يا ابني — ya ibni** — my son  ·  **يا بنتي — ya binti** — my daughter — an older person to any young person, not only their own child.")
-        GrBodyText("  Reverse address (commonly heard): parents and grandparents call the child by their OWN title — a mother says **ya mama** to her son, a grandfather says **ya sido** to his grandson, an uncle says **ya 3ammo** to his niece. It means \"my dear\", not \"mother\" or \"grandpa\".")
+        GrBodyText("  Reverse address: parents call the child by their OWN title — a mother says **ya mama** to her son, a father says **ya baba** to his daughter. It means \"my dear\", not \"mother\" or \"father\". Grandparents and uncles are also reported to do it (**ya sido**, **ya 3ammo**), but that is less documented.")
         GrBodyText("  e.g. **ta3a la-hoon ya sido** — come here, sweetie (grandpa to a grandchild).")
 
         GrSectionHeader("Festive and Special Occasion Greetings")
