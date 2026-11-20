@@ -15,8 +15,8 @@ android {
         applicationId = "com.example.arabicapp"
         minSdk = 34
         targetSdk = 36
-        versionCode = 35
-        versionName = "5.5"
+        versionCode = 36
+        versionName = "5.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

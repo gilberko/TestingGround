@@ -88,6 +88,7 @@ import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.screens.ArtsMediaScreen
 import com.example.arabicapp.screens.ConstructStateScreen
 import com.example.arabicapp.screens.EverySomeScreen
+import com.example.arabicapp.screens.ThisThatHereThereScreen
 import com.example.arabicapp.screens.AdjectivesAdverbsOverviewScreen
 import com.example.arabicapp.screens.WeatherScreen
 import com.example.arabicapp.screens.VerbFormsScreen
@@ -389,7 +390,7 @@ fun AppNavigation() {
             }
         }
         composable("numbers_learning") {
-            ScreenWithBackButton(title = "Numbers", onBack = { navController.popBackStack() }) {
+            ScreenWithBackButton(title = "Numbers and Time", onBack = { navController.popBackStack() }) {
                 NumbersLearningScreen()
             }
         }
@@ -503,6 +504,11 @@ fun AppNavigation() {
         composable("il_article") {
             ScreenWithBackButton(title = "il — The Definite Article", onBack = { navController.popBackStack() }) {
                 IlArticleScreen()
+            }
+        }
+        composable("this_that_here_there") {
+            ScreenWithBackButton(title = "This and That, Here and There", onBack = { navController.popBackStack() }) {
+                ThisThatHereThereScreen()
             }
         }
     }

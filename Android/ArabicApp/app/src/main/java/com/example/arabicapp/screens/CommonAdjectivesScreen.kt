@@ -31,7 +31,7 @@ fun CommonAdjectivesScreen() {
         CABodyText("كتير — ktiir — very (מאוד): usually AFTER → حلو كتير — 7ilu ktiir;  also heard before (esp. Lebanese/Syrian) → كتير حلو — ktiir 7ilu")
         CABodyText("شوي — shwayy — a bit (קצת): usually BEFORE → شوي تعبان — shwayy ta3baan — a bit tired")
         CABodyText("عن جد — 3an jadd — really (ממש): before the adjective → عن جد حلو — 3an jadd 7ilu — really nice;  or doubled: حلو كتير كتير — 7ilu ktiir ktiir")
-        CABodyText("زيادة — zyaade — too (after) · مش كتير — mish ktiir — not very (before) · جداً — jiddan — very (formal, always after)")
+        CABodyText("**زيادة — zyaade** — too (after) · **مش كتير — mish ktiir** — not very (before) · **جداً — jiddan** — very (formal, always after)")
         CABodyText("    e.g. הספר הזה ממש מוגזם → الكتاب هاد عن جد مبالغ فيه — el-ktaab haad 3an jadd mbaalagh fii  ·  everyday: الكتاب هاد زيادة كتير — el-ktaab haad zyaade ktiir")
 
         CASectionHeader("Size and Dimensions")
@@ -74,7 +74,7 @@ fun CommonAdjectivesScreen() {
         CABodyText("مسلّي / مسلّية (msalli / msalliye) — amusing / entertaining (משעשע)")
         CABodyText("مخيف / مخيفة (mukhiif / mukhiife) — scary / frightening (מפחיד)")
         CABodyText("    everyday verb: بخوّف — bikhawwif — it scares: el-film bikhawwif — the movie is scary")
-        CABodyText("stressful (מלחיץ) — no common one-word adjective; people say بيوتّر — biwattir — \"it stresses (you)\" or مضغوط — madghuut —\"stressed / under pressure\" for the person")
+        CABodyText("stressful (מלחיץ) — no common one-word adjective; people say **بيوتّر — biwattir** — \"it stresses (you)\" or **مضغوط — madghuut** — \"stressed / under pressure\" for the person")
         CABodyText("    e.g. esh-shughl biwattir — the work is stressful · ana madghuut — I'm stressed (forms vary by region)")
 
         CASectionHeader("Colors")
@@ -154,7 +154,7 @@ private fun CASectionHeader(text: String) {
 @Composable
 private fun CABodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

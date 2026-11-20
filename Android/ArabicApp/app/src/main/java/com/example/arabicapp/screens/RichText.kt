@@ -59,3 +59,33 @@ internal fun boldTermLine(s: String): String {
     }
     return AR_ARABIZI_PAIR.replace(s) { m -> "**${m.groupValues[1]}** — **${m.groupValues[2]}**" }
 }
+
+// Arabizi head of a segment: everything before a "(" note, trimmed.
+private val ARABIZI_HEAD = Regex("^(.*?)(\\s*\\(.*)?$")
+
+// Bolds the headword of a dictionary line. Two formats:
+//   "كبير / كبيرة (kbir / kbiire) — big"  → the whole Arabic+(arabizi) head before the first " — "
+//   "كتير — ktiir — very …"                → the first two parts
+//   "man — رجّال — rajjal  (note)"          → the Arabic and the arabizi (each ";  "-separated
+//                                            segment handled separately; the "(note)" stays plain)
+// Indented lines (sub-notes, info lines) and lines with manual markup are left alone.
+internal fun boldHeadwordLine(s: String): String {
+    if (s.contains("**") || s.contains("__") || s.startsWith(" ") || !s.contains(" — ")) return s
+    val parts = s.split(" — ")
+    if (ARABIC_CHAR.containsMatchIn(parts[0])) {
+        return if (parts.size >= 3 && !parts[0].contains("(") && !ARABIC_CHAR.containsMatchIn(parts[1]))
+            "**${parts[0]}** — **${parts[1]}** — " + parts.drop(2).joinToString(" — ")
+        else "**${parts[0]}** — " + parts.drop(1).joinToString(" — ")
+    }
+    return s.split(";  ").joinToString(";  ") { seg ->
+        val p = seg.split(" — ", limit = 3)
+        if (p.size == 3 && !ARABIC_CHAR.containsMatchIn(p[0]) && ARABIC_CHAR.containsMatchIn(p[1]) &&
+            !ARABIC_CHAR.containsMatchIn(p[2].take(1))
+        ) {
+            val head = ARABIZI_HEAD.find(p[2])!!.groupValues[1].trimEnd()
+            val rest = p[2].substring(head.length)
+            if (head.isBlank()) "${p[0]} — **${p[1]}** — ${p[2]}"
+            else "${p[0]} — **${p[1]}** — **$head**$rest"
+        } else AR_ARABIZI_PAIR.replace(seg) { m -> "**${m.groupValues[1]}** — **${m.groupValues[2]}**" }
+    }
+}

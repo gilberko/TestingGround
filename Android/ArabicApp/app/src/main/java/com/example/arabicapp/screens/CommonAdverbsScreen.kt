@@ -153,7 +153,7 @@ private fun CADSectionHeader(text: String) {
 @Composable
 private fun CADBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

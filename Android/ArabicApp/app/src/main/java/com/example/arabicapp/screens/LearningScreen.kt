@@ -65,11 +65,15 @@ fun LearningScreen(navController: NavController) {
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("every_some") }, modifier = Modifier.weight(1f)) { Text("Every, Some, . . .") }
-            Button(onClick = { navController.navigate("numbers_learning") }, modifier = Modifier.weight(1f)) { Text("Numbers") }
+            Button(onClick = { navController.navigate("numbers_learning") }, modifier = Modifier.weight(1f)) { Text("Numbers and Time") }
         }
         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Button(onClick = { navController.navigate("adjectives_adverbs_overview") }, modifier = Modifier.weight(1f)) { Text("Overview of Adjectives and Adverbs") }
             Button(onClick = { navController.navigate("il_article") }, modifier = Modifier.weight(1f)) { Text("il — The Definite Article") }
+        }
+        Row(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Button(onClick = { navController.navigate("this_that_here_there") }, modifier = Modifier.weight(1f)) { Text("This and That, Here and There") }
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

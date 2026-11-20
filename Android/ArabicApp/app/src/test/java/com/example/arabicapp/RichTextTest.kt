@@ -2,6 +2,7 @@ package com.example.arabicapp
 
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import com.example.arabicapp.screens.boldHeadwordLine
 import com.example.arabicapp.screens.boldTermLine
 import com.example.arabicapp.screens.richText
 import org.junit.Assert.assertEquals
@@ -30,6 +31,31 @@ class RichTextTest {
         "  Reply: **الله يسلمك** — **Allah ysallmak** (to a man) / x",
         boldTermLine("  Reply: الله يسلمك — Allah ysallmak (to a man) / x")
     )
+
+    @Test fun headwordAdjectiveFormat() = assertEquals(
+        "**كبير / كبيرة (kbir / kbiire)** — big / large",
+        boldHeadwordLine("كبير / كبيرة (kbir / kbiire) — big / large")
+    )
+
+    @Test fun headwordArabicArabiziFormat() = assertEquals(
+        "**كتير** — **ktiir** — very (מאוד)",
+        boldHeadwordLine("كتير — ktiir — very (מאוד)")
+    )
+
+    @Test fun headwordEnglishFirstFormat() = assertEquals(
+        "wife — **مرة** — **mara**  (my wife: مرتي — marti);  boyfriend — **صاحب** — **saa7ib**",
+        boldHeadwordLine("wife — مرة — mara  (my wife: مرتي — marti);  boyfriend — صاحب — saa7ib")
+    )
+
+    @Test fun headwordSlashArabizi() = assertEquals(
+        "father — **أبو / بابا** — **abu / baba**",
+        boldHeadwordLine("father — أبو / بابا — abu / baba")
+    )
+
+    @Test fun headwordIndentedUntouched() {
+        val s = "    m · 2: رجّالين rajjalein · pl: رجال rjaal"
+        assertEquals(s, boldHeadwordLine(s))
+    }
 
     @Test fun englishOnlyLineUntouched() {
         val s = "Most of these are call-and-response — a fixed reply."
