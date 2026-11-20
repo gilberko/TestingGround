@@ -75,8 +75,8 @@ fun PrepositionsExamplesScreen() {
         ExItem(
             "The cat is out of the house.",
             "البسّة __برّا__ البيت — el-bisse __barra__ el-beit",
-            "also: البسّة __برّات__ البيت — el-bisse __barraat__ el-beit  (commonly heard before a noun)",
-            note = "No separate \"of\": barra + the noun directly — compare Hebrew מחוץ לבית, which needs ל."
+            "also: البسّة __بريت__ البيت — el-bisse __barriit__ el-beit  (Palestinian preposition form)",
+            note = "No separate \"of\": barra + the noun directly — compare Hebrew מחוץ לבית, which needs ל. barra / juwwa (outside / inside) and barriit (outside of) are listed in Wiktionary's South Levantine entries."
         )
         ExItem(
             "Go inside!",
