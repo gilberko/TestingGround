@@ -88,6 +88,9 @@ import com.example.arabicapp.screens.GovernmentArmyScreen
 import com.example.arabicapp.screens.ArtsMediaScreen
 import com.example.arabicapp.screens.ConstructStateScreen
 import com.example.arabicapp.screens.EverySomeScreen
+import com.example.arabicapp.screens.ExamplesScreen
+import com.example.arabicapp.screens.DirectionsExamplesScreen
+import com.example.arabicapp.screens.PrepositionsExamplesScreen
 import com.example.arabicapp.screens.ThisThatHereThereScreen
 import com.example.arabicapp.screens.AdjectivesAdverbsOverviewScreen
 import com.example.arabicapp.screens.WeatherScreen
@@ -143,6 +146,23 @@ fun AppNavigation() {
                 HubBackground {
                     DictionaryScreen(navController)
                 }
+            }
+        }
+        composable("examples") {
+            ScreenWithBackButton(title = "Examples", onBack = { navController.popBackStack() }) {
+                HubBackground {
+                    ExamplesScreen(navController)
+                }
+            }
+        }
+        composable("examples_directions") {
+            ScreenWithBackButton(title = "Examples — Directions", onBack = { navController.popBackStack() }) {
+                DirectionsExamplesScreen()
+            }
+        }
+        composable("examples_prepositions") {
+            ScreenWithBackButton(title = "Examples — Prepositions", onBack = { navController.popBackStack() }) {
+                PrepositionsExamplesScreen()
             }
         }
         composable("reading_examples") {
@@ -560,10 +580,10 @@ fun HomeScreen(navController: NavController) {
                     Text("Simple Dictionary")
                 }
                 Button(
-                    onClick = { navController.navigate("reading_examples") },
+                    onClick = { navController.navigate("examples") },
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 ) {
-                    Text("Examples Of Reading In Arabic")
+                    Text("Examples")
                 }
                 Button(
                     onClick = { navController.navigate("practice_letters") },
