@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -62,6 +63,62 @@ fun TransportationScreen() {
         TrBodyText("bus ticket — تذكرة باص — tazkaret bas")
         TrBodyText("    f · 2: تذكرتين باص tazkartein bas · pl: تذاكر باص tazaakir bas")
 
+        TrSectionHeader("Roads and Streets")
+        TrWord("**road** — **طريق** — **Tarii2**")
+        TrInfo("m/f · pl: طرق Turu2 · on the way: bi-T-Tarii2")
+        TrWord("**street** — **شارع** — **shaari3**")
+        TrInfo("m · 2: شارعين shaar3ein · pl: شوارع shawaari3")
+        TrWord("**traffic jam** — **أزمة سير** — **azmet seir**;  short: **أزمة** — **azme** (Pal/Jordanian)")
+        TrWord("Leb/Syr: **عجقة** — **3aj2a**;  also: **زحمة** — **zaHme** (crowding, traffic)")
+        TrSmall("3aj2a is Lebanese/Syrian and azmet seir Jordanian (thelevantongue); zaHme / zaHmet seir is listed for South Levantine (Wiktionary). Palestinians use azme and zaHme.")
+        TrExample("fi azme kbiire 3a-T-Tarii2 — في أزمة كبيرة عالطريق — There's a big traffic jam on the road.")
+        TrWord("**roundabout** — **دوّار** — **dawwaar**")
+        TrInfo("m · pl: دوّارات dawwaaraat")
+        TrWord("**corner** — **زاوية** — **zaawye**;  also: **قرنة** — **2urne** (Leb 2orne)")
+        TrInfo("at the corner of the street: 3a zaawyet esh-shaari3 / 3a 2urnet esh-shaari3 · 2urne: commonly heard, not confirmed by a source")
+        TrWord("**bridge** — **جسر** — **jisr**")
+        TrInfo("m · 2: جسرين jisrein · pl: جسور jsuur")
+        TrWord("**tunnel** — **نفق** — **nafa2**")
+        TrInfo("m · pl: أنفاق anfaa2")
+        TrWord("**traffic light** — **إشارة** — **ishaara**;  Leb also: **ضو** — **Daww** (lit. \"light\")")
+        TrInfo("f · pl: إشارات ishaaraat · at the light, turn right: 3and el-ishaara liff yamiin · red light: ishaara 7amra")
+        TrWord("**traffic signs** — **إشارات مرور** — **ishaaraat muruur**;  also: **شاخصات** — **shaakhiSaat** (formal)")
+        TrWord("**speed limit** — **حدّ السرعة** — **7add es-sur3a**;  also: **السرعة المسموحة** — **es-sur3a el-masmuu7a** (the allowed speed)")
+
+        TrSectionHeader("Getting Around")
+        TrWord("**to go by foot / on foot** — **مشي** — **mashi**;  also: **عالإجرين** — **3al-ijrein** (on the feet)")
+        TrExample("baruu7 mashi — بروح مشي — I'm going on foot.")
+        TrWord("**to go by car** — **بالسيارة** — **bis-sayyaara**")
+        TrExample("baruu7 bis-sayyaara — بروح بالسيارة — I'm going by car.  ·  by bus: bil-baaS · by train: bil-2iTaar")
+        TrWord("**public transportation** — **مواصلات عامّة** — **muwaaSalaat 3aamme**;  everyday: **المواصلات** — **el-muwaaSalaat**")
+        TrWord("**shuttle** — **شاتل** — **shattel**")
+        TrSmall("shattel (from English) is commonly heard, not confirmed by a source. Don't confuse it with servees (سرفيس): in Lebanon and Palestine that's a shared taxi on a fixed route.")
+
+        TrSectionHeader("Directions While Driving")
+        TrWord("**turn right** — **لفّ يمين** — **liff yamiin**  (f: liffi yamiin;  Leb/Syr: brom 3al-yamiin)")
+        TrWord("**turn left** — **لفّ شمال** — **liff shmaal**  (f: liffi shmaal)")
+        TrWord("**continue straight** — **كمّل دغري** — **kammil dughri**  (f: kammli dughri;  Leb kammel deghri)")
+        TrWord("**go back** — **ارجع** — **irja3**  (f: irja3i)")
+        TrWord("**turn back / reverse** — **ارجع لورا** — **irja3 la-wara**  (f: irja3i la-wara)")
+        TrWord("**make a U-turn** — **اعمل يو-تيرن** — **i3mal yu-tern**;  also: **لفّ وارجع** — **liff w-irja3**")
+        TrSmall("yu-tern (from English) and liff w-irja3 are commonly heard, not confirmed by a source.")
+        TrWord("**drive faster** — **سوق أسرع** — **suu2 asra3**  (f: suu2i asra3)")
+        TrWord("**drive slower** — **سوق أبطأ** — **suu2 abTa2**;  everyday: **على مهلك** — **3ala mahlak** (take it easy;  f: 3ala mahlik;  Leb 3a mahlak)")
+        TrExample("shwayy shwayy, fi raadaar! — شوي شوي، في رادار! — Slow down, there's a speed camera!")
+        TrSmall("These match Examples → Directions, which has more full sentences.")
+
+        TrSectionHeader("People and Papers")
+        TrWord("**police officer** — **شرطي / شرطية** — **shurTi** (m) / **shurTiyye** (f);  everyday: **بوليس** — **booliis**")
+        TrInfo("pl: شرطة shurTa (the police) · Leb: درك — darak (gendarmerie)")
+        TrWord("**pilot** — **طيّار / طيّارة** — **Tayyaar** (m) / **Tayyaara** (f)")
+        TrInfo("pl: طيّارين Tayyaariin · Tayyaara also means \"plane\" — context decides")
+        TrWord("**steward** — **مضيف** — **muDiif**  ·  **stewardess** — **مضيفة** — **muDiife**")
+        TrInfo("flight attendant (formal): مضيف طيران — muDiif Tayaraan / مضيفة طيران — muDiifet Tayaraan")
+        TrWord("**driving license** — **رخصة سواقة** — **rukhSet swaa2a**;  formal: **رخصة قيادة** — **rukhSet qiyaade**")
+        TrInfo("Leb: دفتر سواقة — daftar swaa2a · to get a license: Talla3 rukhSa")
+        TrWord("**speeding ticket** — **مخالفة سرعة** — **mukhaalafet sur3a**;  Leb also: **ضبط** — **Dabt**")
+        TrInfo("ticket / fine: مخالفة — mukhaalafe (f · pl mukhaalafaat) · I got a ticket: akalt mukhaalafe (lit. \"I ate a ticket\") · Dabt and akalt: commonly heard, not confirmed by a source")
+
         Spacer(modifier = Modifier.height(24.dp))
     }
 }
@@ -78,6 +135,43 @@ private fun TrSectionHeader(text: String) {
     Spacer(modifier = Modifier.height(8.dp))
     HorizontalDivider()
     Spacer(modifier = Modifier.height(8.dp))
+}
+
+@Composable
+private fun TrWord(text: String) {
+    Text(
+        text = richText(text),
+        style = MaterialTheme.typography.bodyMedium,
+        modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
+    )
+}
+
+@Composable
+private fun TrInfo(text: String) {
+    Text(
+        text = fixArabizi("    $text"),
+        style = MaterialTheme.typography.bodyMedium,
+        modifier = Modifier.padding(vertical = 1.dp)
+    )
+}
+
+@Composable
+private fun TrExample(text: String) {
+    Text(
+        text = fixArabizi("    e.g. $text"),
+        style = MaterialTheme.typography.bodyMedium,
+        fontStyle = FontStyle.Italic,
+        modifier = Modifier.padding(vertical = 1.dp)
+    )
+}
+
+@Composable
+private fun TrSmall(text: String) {
+    Text(
+        text = fixArabizi("    $text"),
+        style = MaterialTheme.typography.bodySmall,
+        modifier = Modifier.padding(vertical = 2.dp)
+    )
 }
 
 @Composable
