@@ -198,6 +198,47 @@ fun NumbersLearningScreen() {
         NLExample("نصّ الليل — nuSS el-leil — midnight:  es-saa3a tna3sh bil-leil / nuSS el-leil")
         NLNote("\"At\" a time: just put the time after the verb, or use 3ala / 3a: bniltii2i 3a-s-saa3a tamaanye — we'll meet at eight. 24-hour times (21:00) appear on timetables and in official announcements, not in conversation.")
 
+        NLSubHeader("At 9:30 in the Morning / in the Evening")
+        NLExample("at 9:30 in the morning — عالساعة تسعة ونصّ الصبح — **3a-s-saa3a tis3a w-nuSS eS-Sub7**")
+        NLExample("at 9:30 in the evening — عالساعة تسعة ونصّ المسا — **3a-s-saa3a tis3a w-nuSS el-masa**  (later at night: … bil-leil)")
+        NLExample("منلتقي بكرا عالساعة تسعة ونصّ المسا — mniltii2i bukra 3a-s-saa3a tis3a w-nuSS el-masa — We'll meet tomorrow at 9:30 in the evening")
+        NLNote("\"at\" = 3a-s-saa3a (3ala + es-saa3a), or just es-saa3a. Order: \"at\" + time + part of the day — the part of the day always comes last. 21:30 is for timetables, not speech.")
+
+        NLSectionHeader("Yesterday, Tomorrow, Ago, In … Minutes")
+        NLSubHeader("The days around today")
+        NLBody("today — **اليوم — el-yoom**")
+        NLBody("tomorrow — **بكرا — bukra**")
+        NLBody("yesterday — **مبارح — mbaari7**  (Lebanese mbéri7)")
+        NLBody("the day after tomorrow — **بعد بكرا — ba3d bukra**")
+        NLBody("the day before yesterday — **أوّل مبارح — awwal mbaari7**")
+
+        NLSubHeader("Next week, next month — ej-jaay (the coming)")
+        NLExample("next week — الجمعة الجاية — **ej-jum3a ej-jaaye**  ·  or: الأسبوع الجاي — **el-usbuu3 ej-jaay**  (Leb: ej-jem3a ej-jéye)")
+        NLExample("next month — الشهر الجاي — **esh-shahar ej-jaay**")
+        NLExample("next year — السنة الجاية — **es-sane ej-jaaye**")
+        NLExample("last week — الجمعة الماضية — **ej-jum3a el-maaDye**  ·  last month — الشهر الماضي — **esh-shahar el-maaDi**")
+        NLNote("In Levantine jum3a means both \"Friday\" and \"week\"; usbuu3 is the formal word for week, also used in speech. jaay / jaaye (coming) and maaDi / maaDye (past) agree with the noun's gender, like adjectives.")
+
+        NLSubHeader("Ago — 2abl (before) + the time")
+        NLExample("a week ago — قبل جمعة — **2abl jum3a**  ·  Leb also: من جمعة — **min jem3a**")
+        NLExample("2 minutes ago — قبل دقيقتين — **2abl da2ii2tein**  (dual)")
+        NLExample("5 minutes ago — قبل خمس دقايق — **2abl khams da2aaye2**  (3–10: short number + plural)")
+        NLExample("a little while ago / just now — من شوي — **min shwayy**")
+        NLNote("Same idea and word order as Hebrew לפני שבוע. min + time (\"since\") is also used for \"ago\", especially in Lebanese (commonly heard).")
+
+        NLSubHeader("In (from now) — ba3d (after) + the time")
+        NLExample("in 10 minutes — بعد عشر دقايق — **ba3d 3ashar da2aaye2**")
+        NLExample("الباص بيطلع بعد خمس دقايق — el-baaS biTla3 ba3d khams da2aaye2 — The bus leaves in 5 minutes")
+        NLNote("Arabic says \"after 10 minutes\", like Hebrew בעוד עשר דקות — not b- / fi (in).")
+
+        NLSubHeader("About, More or Less, Give or Take")
+        NLBody("about / approximately — **تقريبًا — ta2riiban**  ·  **حوالي — 7awaali**  ·  casual: **شي — shi** before the number")
+        NLExample("in about 20 minutes — بعد شي عشرين دقيقة — **ba3d shi 3ishriin da2ii2a**  ·  or: ba3d 7awaali 3ishriin da2ii2a")
+        NLExample("about 20 minutes ago — قبل شي عشرين دقيقة — **2abl shi 3ishriin da2ii2a**  ·  or: 2abl 3ishriin da2ii2a ta2riiban")
+        NLExample("more or less — تقريبًا — **ta2riiban**:  خلّصت تقريبًا — khallaSt ta2riiban — I'm more or less done")
+        NLExample("give or take — زايد ناقص — **zaayid naa2iS** (lit. \"plus minus\"):  عشرين دقيقة زايد ناقص خمسة — 3ishriin da2ii2a zaayid naa2iS khamse — 20 minutes, give or take five")
+        NLNote("20 minutes = 3ishriin da2ii2a — singular noun after 11 and up. ta2riiban and 7awaali are in the dictionary (Wiktionary, South Levantine); shi + number and zaayid naa2iS are commonly heard, not confirmed by a dictionary source. aktar aw a2all (\"more or less\", word for word) is understood but sounds translated.")
+
         NLSectionHeader("Years, Months and Dates")
         NLSubHeader("Years — one big number")
         NLBody("A year is read like any big number (thousands, then hundreds, then ones, then tens), usually after **سنة — sanet** (\"the year of\", sane in construct):")
@@ -271,6 +312,7 @@ fun NumbersLearningScreen() {
         NLBody("7. Year = sanet + the whole number: sanet alf w-tis3miyye w-tis3iin (1990), sanet alfein w-sitte w-3ishriin (2026)")
         NLBody("8. Date = number + month: awwal / tnein / khamse w-3ishriin niisaan")
         NLBody("9. Seasons: shita, rabii3, Seif, khariif · raas es-sane = New Year · awwal / aakhir esh-shahar = start / end of the month")
+        NLBody("10. bukra / mbaari7 · next = ej-jaay(e) · ago = 2abl + time · in = ba3d + time · about = shi / 7awaali / ta2riiban · give or take = zaayid naa2iS")
 
         Spacer(modifier = Modifier.height(24.dp))
     }

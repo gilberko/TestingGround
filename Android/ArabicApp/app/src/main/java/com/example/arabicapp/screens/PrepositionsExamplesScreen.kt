@@ -65,6 +65,32 @@ fun PrepositionsExamplesScreen() {
             note = "near = 2ariib MIN, far = b3iid 3AN (also b3iid min) — learn them with their preposition, like Hebrew קרוב ל / רחוק מ."
         )
 
+        ExSection("In and Out — Inside, Outside")
+        ExItem(
+            "The cat is in the house.",
+            "البسّة __بالبيت__ — el-bisse __bil__-beit",
+            "or: البسّة __جوّا__ البيت — el-bisse __juwwa__ el-beit  (inside the house)",
+            note = "bil- (b + el-) is the everyday \"in\"; juwwa = inside — it stresses that the cat is indoors."
+        )
+        ExItem(
+            "The cat is out of the house.",
+            "البسّة __برّا__ البيت — el-bisse __barra__ el-beit",
+            "also: البسّة __برّات__ البيت — el-bisse __barraat__ el-beit  (commonly heard before a noun)",
+            note = "No separate \"of\": barra + the noun directly — compare Hebrew מחוץ לבית, which needs ל."
+        )
+        ExItem(
+            "Go inside!",
+            "(m) فوت __جوّا__ — fuut __juwwa__",
+            "(f) فوتي __جوّا__ — fuuti __juwwa__",
+            note = "faat / yfuut = go in, enter (as in \"the dog came in\" below). udkhul (ادخل) is also common."
+        )
+        ExItem(
+            "Go outside!",
+            "(m) اطلع __برّا__ — iTla3 __barra__",
+            "(f) اطلعي __برّا__ — iTla3i __barra__",
+            note = "Tili3 / yiTla3 = go out (also go up). Said sharply, iTla3 barra! — or just barra! — means \"Get out!\"."
+        )
+
         ExSection("Movement — Into, Out Of, To, From")
         ExItem(
             "Put the money in the wallet.",
@@ -222,6 +248,7 @@ fun PrepositionsExamplesScreen() {
 
         ExSection("Quick Reference")
         ExBody("**على / عـ — 3ala / 3a-** — on; to (a place)  ·  **تحت — ta7t** — under  ·  **بـ / في — b- / fi** — in")
+        ExBody("**جوّا — juwwa** — inside, in  ·  **برّا — barra** — outside, out (of)")
         ExBody("**بين — bein** — between  ·  **ورا — wara** — behind  ·  **قدّام — 2uddaam** — in front of  ·  **جنب — janb** — next to")
         ExBody("**قريب من — 2ariib min** — near  ·  **بعيد عن — b3iid 3an** — far from  ·  **من — min** — from, out of")
         ExBody("**لـ — la-** — to (a person / place)  ·  **مع — ma3** — with  ·  **بلا / بدون — bala / biduun** — without  ·  **عن — 3an** — about")
