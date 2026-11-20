@@ -282,7 +282,7 @@ fun LearningHubScreen(navController: NavController) {
             "Present Tense Verb Conjugation" to "present_tense",
             "Verbs Of Movement" to "verbs_of_movement",
             "Prepositions" to "prepositions",
-            "Questions" to "questions",
+            "Questions and Answers" to "questions",
             "Adjectives" to "adjectives",
             "This and That" to "this_and_that",
             "Possessive Pronouns" to "possessive_pronouns",
