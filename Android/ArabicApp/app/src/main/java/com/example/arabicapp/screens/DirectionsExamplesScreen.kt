@@ -134,7 +134,7 @@ fun DirectionsExamplesScreen() {
             "Enter the building.",
             "(m) فوت عالبناية — __fuut 3al-binaaye__",
             "(f) فوتي عالبناية — __fuuti 3al-binaaye__  ·  (pl) فوتوا — __fuutu__",
-            note = "faat / yfuut 3a- = go into, enter (everyday Levantine; already in Common Verbs). Formal: ادخل udkhul. building = بناية binaaye."
+            note = "faat / bifuut 3a- = go into, enter (Wiktionary, Wikibooks Levantine; Lebanese and northern Palestinian especially). Also common, esp. central Palestinian: ادخل — __udkhul__ (f udkhuli). building = بناية binaaye."
         )
         ExItem(
             "Exit the building.",
@@ -144,16 +144,17 @@ fun DirectionsExamplesScreen() {
         )
         ExItem(
             "Take the elevator.",
-            "(m) خود المصعد — __khood el-maS3ad__  ·  Leb/Syr: خود الأسانسير — __khood el-asanseer__",
-            "(f) خودي المصعد — __khoodi el-maS3ad__",
-            "also: اطلع بالمصعد — __iTla3 bil-maS3ad__ (go up by elevator) · انزل بالأسانسير — __inzil bil-asanseer__ (go down by elevator)"
+            "(m) خود الأسانسير — __khood el-asanseer__  ·  formal: خود المصعد — __khood el-maS3ad__",
+            "(f) خودي الأسانسير — __khoodi el-asanseer__",
+            "also: اطلع بالأسانسير — __iTla3 bil-asanseer__ (go up by elevator) · انزل بالأسانسير — __inzil bil-asanseer__ (go down by elevator)",
+            note = "asanseer (from French ascenseur; Syrian aSanSeer) is the everyday word; maS3ad is the formal / written word (arwords, HiNative). Some Palestinians reportedly say asansel."
         )
         ExItem(
             "Take the escalators.",
             "(m) خود الدرج الكهربائي — __khood ed-daraj el-kahrabaa2i__",
             "(f) خودي الدرج الكهربائي — __khoodi ed-daraj el-kahrabaa2i__",
             "or: اطلع عالدرج الكهربائي — __iTla3 3ad-daraj el-kahrabaa2i__",
-            note = "Lit. \"the electric stairs\" (daraj = stairs). درج كهربائي / درج متحرّك (moving stairs) is the dictionary term (WordReference); I didn't find a source for a more colloquial word. Arabic usually says it in the singular — \"the escalator\"."
+            note = "Lit. \"the electric stairs\" — daraj is the Levantine word for stairs, so this is the natural Levantine form. Dictionaries give درج كهربائي / درج متحرّك (moving stairs) and the formal سلّم متحرّك sullam mutaHarrik; Egyptian says sellem kahraba (WordReference). I didn't find a source for an everyday Levantine word. Arabic usually says it in the singular — \"the escalator\"."
         )
         ExItem(
             "Go up to the 3rd floor.",
@@ -170,7 +171,7 @@ fun DirectionsExamplesScreen() {
         ExSection("Quick Word List")
         ExBody("**لفّ — liff** — turn  ·  **كمّل — kammil** — continue  ·  **دغري — dughri** — straight")
         ExBody("**يمين — yamiin** — right  ·  **شمال — shmaal** — left  ·  **عاليمين / عالشمال — 3al-yamiin / 3a-sh-shmaal** — on the right / left")
-        ExBody("**فوت — fuut** — go in  ·  **اطلع من — iTla3 min** — go out of  ·  **خود — khood** — take  ·  **دوّار — dawwaar** — roundabout  ·  **مصعد / أسانسير — maS3ad / asanseer** — elevator")
+        ExBody("**فوت — fuut** — go in  ·  **اطلع من — iTla3 min** — go out of  ·  **خود — khood** — take  ·  **دوّار — dawwaar** — roundabout  ·  **أسانسير / مصعد — asanseer / maS3ad** — elevator")
         ExBody("**وقّف — wa22if** — stop  ·  **ارجع — irja3** — go back  ·  **اطلع — iTla3** — go up  ·  **انزل — inzil** — go down")
         ExBody("**على مهلك — 3ala mahlak** — slowly, easy  ·  **أسرع — asra3** — faster  ·  **دير بالك — diir baalak** — careful")
         ExBody("**بعد — ba3d** — after (+ noun)  ·  **بعد ما — ba3d ma** — after (+ verb)  ·  **لحتى — la-7atta** — until")
