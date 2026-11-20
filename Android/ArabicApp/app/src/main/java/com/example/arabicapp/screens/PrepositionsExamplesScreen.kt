@@ -182,6 +182,44 @@ fun PrepositionsExamplesScreen() {
             note = "2abl + noun (2abl el-madrase) · 2abl ma + verb (2abl ma saa2 = before he drove). Arabic says \"before he drove\", not \"before driving\"."
         )
 
+        ExSection("Purpose, Means and Comparison — For, To, By, Than")
+        ExItem(
+            "He is saving money for a guitar.",
+            "بيوفّر مصاري __لجيتار__ — biwaffir maSaari __la__-gitaar",
+            "also: بيوفّر مصاري __عشان__ الجيتار — biwaffir maSaari __3ashaan__ el-gitaar",
+            note = "waffar / biwaffir = save (money, time, effort). la- and 3ashaan + a noun = \"for\"."
+        )
+        ExItem(
+            "He is saving money to buy a guitar.",
+            "بيوفّر مصاري __عشان__ يشتري جيتار — biwaffir maSaari __3ashaan__ yishtri gitaar",
+            "Leb: … __تا__ يشتري — __ta__ yishtri  ·  Syr: … __منشان__ يشتري — __minshaan__ yishtri",
+            note = "3ashaan + a verb WITHOUT b- = \"in order to\" (yishtri, not biyishtri) — compare 3ashaan + noun above."
+        )
+        ExItem(
+            "He is saving money by going less to restaurants.",
+            "بيوفّر مصاري __إنّه__ بيروح أقلّ عالمطاعم — biwaffir maSaari __inno__ biruu7 a2all 3al-maTaa3im",
+            "more formal: … __عن طريق__ إنّه بيروح أقلّ عالمطاعم — … __3an Tarii2__ inno biruu7 a2all 3al-maTaa3im",
+            note = "Arabic has no \"by + -ing\". You say \"(the fact) that he goes less\" — inno + a full verb. 3an Tarii2 = lit. \"by way of\". The short inno form is commonly heard; not confirmed by a source."
+        )
+        ExItem(
+            "He gave more money than that.",
+            "أعطى مصاري __أكتر من__ هيك — a3Ta maSaari __aktar min__ heik"
+        )
+        ExItem(
+            "He gave me less money than that.",
+            "أعطاني مصاري __أقلّ من__ هيك — a3Taani maSaari __a2all min__ heik",
+            note = "\"than\" = min, right after the comparative — like Hebrew יותר מ / פחות מ. heik here = \"that (amount)\". With a number: aktar min miit shekel — more than 100 shekels."
+        )
+        ExItem(
+            "He is taller than you.",
+            "هو __أطول منّك__ — huwwe __atwal minnak__ (to m)  ·  __minnik__ (to f)"
+        )
+        ExItem(
+            "He is shorter than you.",
+            "هو __أقصر منّك__ — huwwe __a2sar minnak__ (to m)  ·  __minnik__ (to f)",
+            note = "The af3al form doesn't change for gender: hiyye atwal minnak — she is taller than you. More in Learning → Comparisons."
+        )
+
         ExSection("Quick Reference")
         ExBody("**على / عـ — 3ala / 3a-** — on; to (a place)  ·  **تحت — ta7t** — under  ·  **بـ / في — b- / fi** — in")
         ExBody("**بين — bein** — between  ·  **ورا — wara** — behind  ·  **قدّام — 2uddaam** — in front of  ·  **جنب — janb** — next to")
@@ -189,6 +227,7 @@ fun PrepositionsExamplesScreen() {
         ExBody("**لـ — la-** — to (a person / place)  ·  **مع — ma3** — with  ·  **بلا / بدون — bala / biduun** — without  ·  **عن — 3an** — about")
         ExBody("**لحاله — la7aalo** — alone  ·  **لحدّ — la-7add** — until  ·  **من … لـ — min … la-** — from … to")
         ExBody("**لأنّه — la2inno** / **عشان — 3ashaan** — because  ·  **عشان هيك / لهيك — 3ashaan heik / la-heik** — therefore")
+        ExBody("**لـ / عشان — la- / 3ashaan** — for, in order to  ·  **عن طريق — 3an Tarii2** — by (means of)  ·  **أكتر / أقلّ من — aktar / a2all min** — more / less than")
         ExBody("**قبل / قبل ما — 2abl / 2abl ma** — before  ·  **بعد / بعد ما — ba3d / ba3d ma** — after  ·  **و + pronoun — w-ana…** — while")
 
         Spacer(modifier = Modifier.height(24.dp))
