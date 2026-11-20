@@ -81,7 +81,7 @@ fun PrepositionsScreen() {
         PrepTerm("NEVERTHELESS / EVEN SO — مع هيك (ma3 hek) / رغم هيك (raghm hek)")
         PrepBodyText("• **مع هيك** (**ma3 hek**) — lit. \"with this\" = even so, still · **رغم هيك** (**raghm hek**) — despite this · formal: **مع ذلك** (**ma3a dhaalik**)")
         PrepBodyText("• كان تعبان, **ومع هيك** إجا عالشغل — kan ta3baan, **w-ma3 hek** ija 3ash-shughl — he was tired; **nevertheless**, he came to work")
-        PrepBodyText("• Compare **ma3 inno** (above): ma3 inno + a sentence = even though; ma3 hek on its own = nevertheless (\"with that\").")
+        PrepBodyText("• Compare **ma3 inno** (above): ma3 inno + a sentence = even though; ma3 hek on its own = nevertheless (\"with that\"). ma3 hek, gheir hek, ba3d hek and 2abl hek are commonly heard; dictionaries only list 3ashaan hek.")
         Spacer(modifier = Modifier.height(8.dp))
         PrepTerm("MOREOVER / IN ADDITION — وكمان (w-kamaan) / وغير هيك (w-gheir hek) / بالإضافة لـ (bil-iDaafe la-)")
         PrepBodyText("• **وكمان** (**w-kamaan**) — and also, and on top of that — the everyday way (kamaan = also, too)")
