@@ -98,13 +98,15 @@ fun GreetingsScreen(navController: NavController) {
             // ── Good Wishes — Have a Good Day / Weekend ───────────────────
             GRSection("Good Wishes — Have a Good Day / Weekend")
             GRRow("Hezký den! / Přeji hezký den.", "Have a nice day!", "said when parting; přeji = I wish. Formal: Přeji Vám hezký den.")
+            GRRow("Měj hezký den! / Mějte hezký den!", "Have a nice day!", "informal / formal; common (shops, messages, emails), but often felt to be a calque of English 'Have a nice day' — more traditional: Hezký den! / Přeji hezký den.")
+            GRRow("Krásný den! / Měj(te) krásný den!", "Have a lovely day!", "krásný = beautiful; a warmer version of hezký. Also: Přeji krásný den.")
             GRRow("Mějte se hezky! / Měj se hezky!", "Take care! / Have a good one!", "formal / informal; very common goodbye. Short form: Mějte se! / Měj se!")
             GRRow("Hezký víkend! / Přeji hezký víkend.", "Have a good weekend!", "typical on a Friday afternoon")
             GRRow("Hezký večer!", "Have a nice evening!")
             GRRow("Dobrou chuť!", "Enjoy your meal! / Bon appétit!", "said before eating")
             GRRow("Šťastnou cestu!", "Have a good trip!")
             GRRow("Hodně štěstí!", "Good luck!", "lit. 'a lot of luck'")
-            GRNote("Most of these wishes are in the accusative, because an implied přeji (I wish) stands in front: (Přeji) hezký den. (Přeji) šťastnou cestu. (Přeji) dobrou chuť. Exceptions: Hodně štěstí! uses the genitive after hodně (a lot of), and Mějte se hezky! is an imperative (lit. \"Have yourselves nicely!\").")
+            GRNote("Most of these wishes are in the accusative, because an implied přeji (I wish) stands in front: (Přeji) hezký den. (Přeji) šťastnou cestu. (Přeji) dobrou chuť. Exceptions: Hodně štěstí! uses the genitive after hodně (a lot of), and Mějte se hezky! is an imperative (lit. \"Have yourselves nicely!\"). Měj(te) hezký den! is also an imperative — of mít (to have) — with hezký den in the accusative.")
 
             // ── Letter and Email Writing ──────────────────────────────────
             GRSection("Letter and Email Writing")

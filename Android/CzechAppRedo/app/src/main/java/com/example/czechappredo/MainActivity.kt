@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
                 composable("nouns_demonstratives") { NounsAndDemonstrativesScreen(navController) }
                 composable("cases") { CasesScreen(navController) }
                 composable("noun_conjugation_by_endings") { NounConjugationByEndingsScreen(navController) }
+                composable("verbs_tenses") { VerbsAndTensesHubScreen(navController) }
                 composable("present_tense") { PresentTenseVerbConjugationScreen(navController) }
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
@@ -282,26 +283,76 @@ fun LearningHubScreen(navController: NavController) {
             "About Nouns And Basic Demonstratives" to "nouns_demonstratives",
             "Cases" to "cases",
             "Noun Conjugation By Endings" to "noun_conjugation_by_endings",
-            "Present Tense Verb Conjugation" to "present_tense",
+            "Verbs and Tenses" to "verbs_tenses",
             "Verbs Of Movement" to "verbs_of_movement",
             "Prepositions" to "prepositions",
             "Questions and Answers" to "questions",
             "Adjectives" to "adjectives",
             "This and That" to "this_and_that",
             "Possessive Pronouns" to "possessive_pronouns",
-            "Negation" to "negation",
-            "Future Tense" to "future_tense",
-            "Past Tense" to "past_tense",
             "Adverbs" to "adverbs",
             "Object Pronouns" to "object_pronouns",
             "Reflexive Verbs + SE + SI + ..." to "reflexive_verbs",
             "Someone, Somewhere, Everyone, Everywhere..." to "someone_somewhere",
             "Many and Few" to "many_and_few",
-            "Imperative" to "imperative",
-            "Conditions" to "conditions",
             "Connecting Sentences" to "connecting_sentences",
             "Comparisons" to "comparisons",
-            "Word Order In A Sentence" to "word_order",
+            "Word Order In A Sentence" to "word_order"
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 16.dp, vertical = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            learningItems.chunked(2).forEach { pair ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    pair.forEach { (label, route) ->
+                        DictNavButton(label = label, modifier = Modifier.weight(1f)) {
+                            navController.navigate(route)
+                        }
+                    }
+                    if (pair.size == 1) Spacer(modifier = Modifier.weight(1f))
+                }
+            }
+        }
+    }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun VerbsAndTensesHubScreen(navController: NavController) {
+    HubBackground {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Verbs and Tenses", fontSize = 18.sp, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            )
+        },
+        containerColor = Color.Transparent
+    ) { innerPadding ->
+        val verbItems = listOf(
+            "Present Tense Verb Conjugation" to "present_tense",
+            "Past Tense" to "past_tense",
+            "Future Tense" to "future_tense",
+            "Conditions" to "conditions",
+            "Imperative" to "imperative",
+            "Negation" to "negation",
             "Prefixes and Perfective Verbs" to "prefixes_perfective",
             "Passive Voice" to "passive_voice"
         )
@@ -313,7 +364,7 @@ fun LearningHubScreen(navController: NavController) {
                 .padding(horizontal = 16.dp, vertical = 32.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            learningItems.chunked(2).forEach { pair ->
+            verbItems.chunked(2).forEach { pair ->
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxWidth()

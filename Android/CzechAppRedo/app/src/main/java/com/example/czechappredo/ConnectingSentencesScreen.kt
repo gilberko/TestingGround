@@ -117,6 +117,9 @@ fun ConnectingSentencesScreen(navController: NavController) {
             CSSRow("Řekni mi to, abych věděl/a.", "Tell me so that I know.")
             CSSRow("Mluvte pomaleji, abychom rozuměli.", "Speak more slowly so that we understand.")
             CSSNote("aby fuses a + by + person ending — the same endings as the conditional: abych = aby+ch (1sg), abys = aby+s (2sg), abychom = aby+chom (1pl), abyste = aby+ste (2pl). The main verb before aby can be any tense; the verb inside the aby-clause always uses the l-form.")
+            CSSNote("Like Russian чтобы: aby works almost exactly like чтобы — it expresses purpose (in order to) and also follows verbs of wanting, asking and telling (Chci, abys přišel = Я хочу, чтобы ты пришёл), and in both languages the verb takes the past-tense / l-form. Two differences: (1) with the same subject Russian switches to the infinitive (Я учусь, чтобы улучшиться), but Czech still uses aby + l-form (Učím se, abych se zlepšil); (2) Czech fuses the person into aby (abych, abys, abychom, abyste), while Russian adds a separate pronoun (чтобы я, чтобы ты...).")
+            CSSRow("Chci, abys přišel/přišla.", "I want you to come. (≈ Я хочу, чтобы ты пришёл.)")
+            CSSRow("Řekl mi, abych počkal/a.", "He told me to wait. (≈ Он сказал мне, чтобы я подождал.)")
 
             // ── In Addition / On Top of That ──────────────────────────────
             CSSSection("In Addition / On Top of That")
