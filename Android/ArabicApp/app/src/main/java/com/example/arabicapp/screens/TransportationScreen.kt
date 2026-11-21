@@ -196,7 +196,7 @@ private fun TrSmall(text: String) {
 @Composable
 private fun TrBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

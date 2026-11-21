@@ -51,7 +51,7 @@ fun MoneyScreen() {
         MNWord("cost / its price — حقّه — 7a22o (m thing) / حقّها — 7a22ha (f thing);  Lebanese: 7a22a (your \"7a2a\")")
         MNWord("How much does it cost? — قديش حقّه؟ — 2addeish 7a22o?;  Lebanese: قدّيه حقّها؟ — 2addeh 7a22a? (your \"ade 7a2a?\")")
         MNWord("What's its price? — شو سعرها؟ — shu si3rha? (f thing);  Lebanese style: shu si3ra? (your \"shu se3ra?\")")
-        MNWord("price — سعر — si3r;  its price (f): سعرها — si3rha / Lebanese si3ra")
+        MNWord("price — **سعر** — **si3r**;  its price (f): **سعرها** — **si3rha** / Lebanese **si3ra**")
         MNSmall("In Lebanese the h of -ha often drops: 7a22ha → 7a22a, si3rha → si3ra. So \"ade 7a2a\" is 2addeh 7a22a. More on this: Simple Dictionary → First Words → Prices.")
         MNExample("2addeh 7a22a hal-kanze? — قدّيه حقّها هالكنزة؟ — How much is this sweater? (Lebanese)")
         MNWord("I don't have change — ما معي فراطة — ma ma3i fraata")
@@ -138,9 +138,8 @@ private fun MNSectionHeader(text: String) {
 @Composable
 private fun MNWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

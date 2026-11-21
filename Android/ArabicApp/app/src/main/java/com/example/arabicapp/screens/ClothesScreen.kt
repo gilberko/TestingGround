@@ -72,7 +72,7 @@ fun ClothesScreen() {
         CLWord("raincoat — كبوت شتا — kabbuut shita  (formal: معطف مطر — mi3Taf maTar)")
         CLWord("umbrella — شمسية — shamsiyye  (for rain or sun);  formal: مظلة — maDalle")
         CLInfo("f · 2: شمسيتين shamsiytein · pl: شماسي shamaasi")
-        CLWord("handkerchief — محرمة — ma7rame  (cloth);  a paper tissue: محرمة ورق — ma7ramet wara2 / just ma7rame")
+        CLWord("handkerchief — **محرمة** — **ma7rame**  (cloth);  a paper tissue: **محرمة ورق** — **ma7ramet wara2** / just **ma7rame**")
         CLInfo("f · 2: محرمتين ma7ramtein · pl: محارم ma7aarim (a box of tissues: 3ilbet ma7aarim)")
         CLExample("ilbas el-kabbuut, barra bard — البس الكبوت، برا برد — Put on your coat, it's cold outside.")
 
@@ -132,9 +132,8 @@ private fun CLSectionHeader(text: String) {
 @Composable
 private fun CLWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

@@ -84,7 +84,7 @@ fun HobbiesScreen() {
         HBExample("3am nrammim el-beit — عم نرمم البيت — We're renovating the house.")
 
         HBSectionHeader("Wine and Coffee")
-        HBWord("wine — نبيد — nbiid  (formal نبيذ nabiiz)")
+        HBWord("wine — **نبيد** — **nbiid**  (formal **نبيذ** **nabiiz**)")
         HBWord("winery — معمل نبيد — ma3mal nbiid  (lit. wine factory)")
         HBWord("vineyard — كرم — karm")
         HBSmall("Hebrew parallel: כרם kerem (vineyard). Well-known Levantine wineries include Cremisan near Beit Jala and Ksara in Lebanon's Bekaa valley.")
@@ -127,9 +127,8 @@ private fun HBSectionHeader(text: String) {
 @Composable
 private fun HBWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

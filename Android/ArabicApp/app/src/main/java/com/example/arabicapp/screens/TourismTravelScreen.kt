@@ -143,9 +143,8 @@ private fun TTSectionHeader(text: String) {
 @Composable
 private fun TTWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

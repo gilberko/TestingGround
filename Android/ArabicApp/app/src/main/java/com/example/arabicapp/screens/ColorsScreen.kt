@@ -25,9 +25,9 @@ fun ColorsScreen() {
         ColSectionHeader("How Colors Work as Adjectives")
         ColBodyText("In Arabic, a color adjective comes AFTER the noun it describes and must agree with it in gender and number.")
         Spacer(modifier = Modifier.height(8.dp))
-        ColBodyText("Masculine singular: أبيض (abyad)")
-        ColBodyText("Feminine singular: بيضا (bayda)  — most colors add an 'a' sound")
-        ColBodyText("Plural (for things): بيض (bid)  — shorter, different vowel pattern")
+        ColBodyText("Masculine singular: **أبيض** (**abyad**)")
+        ColBodyText("Feminine singular: **بيضا** (**bayda**)  — most colors add an 'a' sound")
+        ColBodyText("Plural (for things): **بيض** (**bid**)  — shorter, different vowel pattern")
         Spacer(modifier = Modifier.height(8.dp))
         ColBodyText("Note: the \"classic\" masculine color form in Arabic has the pattern أَفْعَل (like أبيض، أحمر، أسود). The feminine drops the أ- prefix and adds -ا at the end. The plural uses a different vowel pattern. Colors ending in -i (like بني، زهري) behave differently — they just add -ة for feminine.")
 
@@ -89,7 +89,7 @@ fun ColorsScreen() {
         ColBodyText("Example: عنب بنفسجي (3inab banafsaji = purple grapes)")
 
         ColSectionHeader("Turquoise")
-        ColBodyText("تركواز — turkwaz")
+        ColBodyText("**تركواز** — **turkwaz**")
         ColBodyText("(Borrowed word — often used without inflection for both genders)")
         ColBodyText("Example: فيروزي (firuzi) is also used, from فيروز (firuz = turquoise stone)")
 
@@ -101,11 +101,11 @@ fun ColorsScreen() {
         ColSectionHeader("Gold, Silver and Bronze")
         ColBodyText("These are made from the metal's name + -i (like بنّي bunni from bunn). Feminine adds -iyye, and they don't have the short af3al plural.")
         ColBodyText("gold (color): ذهبي — dahabi (m) / ذهبية — dahabiyye (f) · plural: dahabiyye")
-        ColBodyText("   the metal: ذهب — dahab")
+        ColBodyText("   the metal: **ذهب** — **dahab**")
         ColBodyText("silver (color): فضّي — fuDDi (m) / فضّية — fuDDiyye (f) · plural: fuDDiyye")
-        ColBodyText("   the metal: فضّة — fuDDa")
+        ColBodyText("   the metal: **فضّة** — **fuDDa**")
         ColBodyText("bronze (color): برونزي — bronzi (m) / برونزية — bronziyye (f) · plural: bronziyye")
-        ColBodyText("   the metal: برونز — bronz")
+        ColBodyText("   the metal: **برونز** — **bronz**")
         ColBodyText("Examples: سيارة فضّية (sayyara fuDDiyye = silver car), ساعة ذهب (saa3a dahab = gold watch, made of gold) vs ساعة ذهبية (saa3a dahabiyye = gold-colored watch)")
         ColBodyText("Medals: ميدالية ذهبية (midaaliyye dahabiyye = gold medal), فضّية (fuDDiyye = silver), برونزية (bronziyye = bronze)")
 
@@ -139,7 +139,7 @@ private fun ColSectionHeader(text: String) {
 @Composable
 private fun ColBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

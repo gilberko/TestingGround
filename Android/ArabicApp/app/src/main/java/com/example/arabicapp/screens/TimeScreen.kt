@@ -48,7 +48,7 @@ fun TimeScreen() {
         TmSectionHeader("Times of Day")
         TmBodyText("morning — صباح — saba7")
         TmBodyText("    m · pl: صباحات saba7aat (mornings) · dual rarely used")
-        TmBodyText("noon / midday — ضهر — duhr  (also: نص النهار, nuss el-nahar = middle of the day)")
+        TmBodyText("noon / midday — **ضهر** — **duhr**  (also: **نص النهار**, **nuss el-nahar** = middle of the day)")
         TmBodyText("    m · uncountable")
         TmBodyText("afternoon — بعد الضهر — ba3d el-duhr  (literally: after noon)")
         TmBodyText("evening — مسا — masa")
@@ -92,7 +92,7 @@ fun TimeScreen() {
         TmBodyText("a long time — وقت طويل — wa2t tawil")
         TmBodyText("a short time — وقت قصير — wa2t 2asir")
         TmBodyText("right now — هلق — halla2  (Levantine: now, right this moment)")
-        TmBodyText("soon — بعدين شوي — ba3dein shwai  (a little after; also: قريباً, 2ariban = soon)")
+        TmBodyText("soon — **بعدين شوي** — **ba3dein shwai**  (a little after; also: **قريباً**, **2ariban** = soon)")
         TmBodyText("later — بعدين — ba3dein  (later / afterwards)")
         TmBodyText("already — بالفعل — bil-fi3l  (already done; also: already in the sense of \"by now\": هلق هلق = now now)")
 
@@ -166,7 +166,7 @@ private fun TmSectionHeader(text: String) {
 @Composable
 private fun TmBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

@@ -168,9 +168,8 @@ private fun PCWSectionHeader(text: String) {
 @Composable
 private fun PCWBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

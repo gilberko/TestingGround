@@ -36,7 +36,7 @@ fun FirstWordsScreen() {
         FWExample("inta mnii7? (m) / inti mnii7a? (f) — إنت منيح؟ / إنتِ منيحة؟ — Are you well?")
         FWWord("he — هو — huwwe  (Lebanese/Syrian also huwwe / hu)")
         FWWord("she — هي — hiyye  (Lebanese/Syrian also hiyye / hi)")
-        FWWord("we — إحنا — i7na  (same for men and women;  Lebanese ni7na — نحنا)")
+        FWWord("we — **إحنا** — **i7na**  (same for men and women;  Lebanese **نحنا** — **ni7na**)")
         FWWord("you (plural) — إنتو — intu  (same for men and women)")
         FWWord("they — همّ — humme  (Palestinian;  also humma)  /  هنّي — hinne  (Lebanese/Syrian)  — same for men and women")
         FWNote("Masculine vs feminine: in the singular, 'you' has two forms (inta / inti) and 'he/she' are different words (huwwe / hiyye). In the plural, spoken Levantine Arabic uses ONE form for both genders: i7na, intu, humme/hinne cover men, women and mixed groups.\nMSA (formal Arabic) still has separate forms — antum (m) / antunna (f), hum (m) / hunna (f) — you'll see them in writing and news, but not in everyday speech.")
@@ -64,7 +64,7 @@ fun FirstWordsScreen() {
         FWExample("shai willa 2ahwe? — شاي ولّا قهوة؟ — Tea or coffee?")
         FWWord("not — مش — mish (before adjectives, nouns;  Lebanese also mush);  ما — ma (before verbs)")
         FWExample("mish ta3baan — مش تعبان — not tired  ·  ma ba3rif — ما بعرف — I don't know")
-        FWWord("I don't know — ما بعرف — ma ba3rif;  مش عارف / مش عارفة — mish 3aarif (m) / mish 3aarfe (f)")
+        FWWord("I don't know — **ما بعرف** — **ma ba3rif**;  **مش عارف** / **مش عارفة** — **mish 3aarif** (m) / **mish 3aarfe** (f)")
         FWWord("question — سؤال — su2aal")
         FWInfo("m · 2: سؤالين su2aalein · pl: أسئلة as2ile")
         FWWord("answer — جواب — jawaab")
@@ -88,7 +88,7 @@ fun FirstWordsScreen() {
         FWWord("still (עדיין) — لسّا — lissa  (Palestinian/Jordanian);  بعد — ba3d + ending  (Lebanese/Syrian)")
         FWExample("lissa naayim — لسّا نايم — He's still asleep.  ·  Lebanese: ba3do naayim — بعدو نايم")
         FWSmall("Lebanese/Syrian ba3d takes a person ending: ba3dni (I'm still), ba3dak/ba3dik (you're still), ba3do (he), ba3da (she), ba3dkon (you pl.).")
-        FWWord("not yet (עדיין לא) — لسّا ما + past — lissa ma …;  Lebanese/Syrian بعد ما — ba3d ma …")
+        FWWord("not yet (עדיין לא) — **لسّا ما** + past — **lissa ma** …;  Lebanese/Syrian **بعد ما** — **ba3d ma** …")
         FWExample("lissa ma akalt — لسّا ما أكلت — I haven't eaten yet.  ·  Lebanese: ba3d ma akalt")
         FWExample("Short answer: \"lissa\" — لسّا — Not yet.")
         FWWord("already (כבר) — خلص — khalas (after the verb, \"done\");  صار — saar + past (\"it has come to\")")
@@ -273,7 +273,7 @@ fun FirstWordsScreen() {
         FWWord("thank you — شكراً — shukran;  يسلمو — yislamu (very common, warm);  Lebanese also ميرسي — merci")
         FWExample("reply: 3afwan — عفواً — You're welcome.")
         FWWord("please — من فضلك — min fadlak (to m) / min fadlik (to f);  لو سمحت — law sama7t (to m) / law sama7ti (to f)")
-        FWWord("What do you want? — شو بدّك؟ — shu biddak? (to m) / shu biddik? (to f);  Palestinian also eish biddak?")
+        FWWord("What do you want? — **شو بدّك؟** — **shu biddak?** (to m) / **shu biddik?** (to f);  Palestinian also **eish biddak?**")
         FWWord("I want ___ — بدّي ___ — biddi ___  (same for a man and a woman)")
         FWExample("biddi 2ahwe, min fadlak — بدّي قهوة، من فضلك — I want a coffee, please.")
         FWExample("biddi aruu7 3al-beit — بدّي أروح عالبيت — I want to go home.")
@@ -304,9 +304,8 @@ private fun FWSectionHeader(text: String) {
 @Composable
 private fun FWWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }

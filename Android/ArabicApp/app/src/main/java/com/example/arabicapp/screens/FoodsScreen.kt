@@ -190,7 +190,7 @@ fun FoodsScreen() {
         FdBodyText("    مفروم simply means 'minced': لحمة مفرومة la7me mafruume = minced meat")
         FdBodyText("maqluube — مقلوبة — ma2luube  (Palestinian: rice, eggplant or cauliflower and chicken cooked in one pot, then flipped upside down onto a tray; ma2luube = 'upside-down')")
         FdBodyText("musakhkhan — مسخّن — msakhkhan  (Palestinian national dish: taboon bread covered with onions cooked in olive oil and sumac, with roast chicken on top)")
-        FdBodyText("stuffed vine leaves — ورق دوالي — wara2 dawaali  (also ورق عنب wara2 3inab; rolled around rice, sometimes with meat)")
+        FdBodyText("stuffed vine leaves — **ورق دوالي** — **wara2 dawaali**  (also **ورق عنب** **wara2 3inab**; rolled around rice, sometimes with meat)")
         FdBodyText("shawarma — شاورما — shaawarma  (meat or chicken roasted on a vertical spit, sliced into bread)")
         FdBodyText("sfiha — صفيحة — sfii7a  (small open pies topped with minced meat, onion and tomato; Lebanese/Syrian, also Palestinian)")
         FdBodyText("    f · pl: صفايح sfaaye7")
@@ -559,7 +559,7 @@ private fun FdSectionHeader(text: String) {
 @Composable
 private fun FdBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

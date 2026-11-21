@@ -152,7 +152,7 @@ private fun JoSectionHeader(text: String) {
 @Composable
 private fun JoBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

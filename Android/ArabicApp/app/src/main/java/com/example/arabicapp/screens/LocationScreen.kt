@@ -50,7 +50,7 @@ fun LocationScreen() {
         LcBodyText("Note — dughri / deghri (دغري, from Turkish doğru = straight): the middle letter is غ gh, a voiced sound at the back of the throat, close to the French / Israeli-Hebrew r (ר). That's why Lebanese deghri can sound like \"derre\". In Palestinian dughri it follows a u, and in fast speech it can sound almost like a g (\"dug-ri\"), but it is still غ. Only the first vowel differs by region.")
 
         LcSectionHeader("Basic Directions of Movement")
-        LcBodyText("forward / straight ahead — قدام — 2uddam  (also: دغري, doghri = straight, from Turkish doğru)")
+        LcBodyText("forward / straight ahead — **قدام** — **2uddam**  (also: **دغري**, **doghri** = straight, from Turkish doğru)")
         LcBodyText("backward / back — وراء — wara2  (also: للوراء, lil-wara2 = go back)")
         LcBodyText("straight — دغري — doghri  (Levantine; a very common word for \"straight ahead\")")
         LcBodyText("left — شمال — shmal  (direction; also used for the cardinal direction north)")
@@ -74,12 +74,12 @@ fun LocationScreen() {
         LcBodyText("at the end of — على آخر — 3ala akhir  (e.g. على آخر الشارع = at the end of the street)")
 
         LcSectionHeader("Near and Far")
-        LcBodyText("near / close — 2rib — قريب  (m); قريبة (2ribe) f")
-        LcBodyText("far — بعيد — b3id  (m); بعيدة (b3ide) f")
+        LcBodyText("near / close — **2rib** — **قريب**  (m); **قريبة** (**2ribe**) f")
+        LcBodyText("far — **بعيد** — **b3id**  (m); **بعيدة** (**b3ide**) f")
         LcBodyText("nearby — هون قريب — hon 2rib  (here nearby / just around here)")
         LcBodyText("it's nearby — هي قريبة — hiyye 2ribe  (f subject) / هو قريب (huwe 2rib) m subject")
-        LcBodyText("it's far — هي بعيدة — hiyye b3ide  (f); هو بعيد (huwe b3id) m")
-        LcBodyText("near you — 3andak — عندك  (near you / at your place — m); عندك (3andik) f")
+        LcBodyText("it's far — **هي بعيدة** — **hiyye b3ide**  (f); **هو بعيد** (**huwe b3id**) m")
+        LcBodyText("near you — **3andak** — **عندك**  (near you / at your place — m); **عندك** (**3andik**) f")
         LcBodyText("  Note: عندك (3indak) literally means \"at your place\" but is used for \"near you\" in context")
         LcBodyText("far from here — بعيد من هون — b3id min hon")
         LcBodyText("not far — مش بعيد — mish b3id")
@@ -104,15 +104,15 @@ fun LocationScreen() {
         LcBodyText("  فوت هون (fut hon) = come in here / get in here")
         LcBodyText("get out / exit — اطلع — utla3  (Levantine imperative: go out / get out)")
         LcBodyText("  اطلع من هون (utla3 min hon) = get out of here")
-        LcBodyText("come — تعال — ta3al  (imperative to a man); تعالي (ta3ali) to a woman")
-        LcBodyText("go — روح — ru7  (imperative to a man); روحي (ru7i) to a woman")
+        LcBodyText("come — **تعال** — **ta3al**  (imperative to a man); **تعالي** (**ta3ali**) to a woman")
+        LcBodyText("go — **روح** — **ru7**  (imperative to a man); **روحي** (**ru7i**) to a woman")
         LcBodyText("here — هون — hon  (Levantine; MSA: هنا / huna)")
-        LcBodyText("there — هناك — hunak  (also: هونيك / honik in Levantine)")
+        LcBodyText("there — **هناك** — **hunak**  (also: **هونيك** / **honik** in Levantine)")
         LcBodyText("this way — من هون — min hon  (from here / this way)")
         LcBodyText("that way — من هناك — min hunak  (that way / from there)")
         LcBodyText("where? — وين — wein?  (Levantine; MSA: أين / ain)")
         LcBodyText("where is...? — وين...؟ — wein...?  (e.g. وين المطعم؟ = where is the restaurant?)")
-        LcBodyText("I am lost — أنا تايه — ana tayeh  (m); أنا تايهة (ana tayhe) f")
+        LcBodyText("I am lost — **أنا تايه** — **ana tayeh**  (m); **أنا تايهة** (**ana tayhe**) f")
 
         Spacer(modifier = Modifier.height(24.dp))
     }
@@ -135,7 +135,7 @@ private fun LcSectionHeader(text: String) {
 @Composable
 private fun LcBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

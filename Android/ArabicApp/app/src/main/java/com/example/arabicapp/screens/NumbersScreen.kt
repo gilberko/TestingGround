@@ -104,7 +104,7 @@ fun NumbersScreen() {
         NumBodyText("• awwal walad — أوّل ولد — the first boy")
 
         NumSectionHeader("Negative Numbers")
-        NumBodyText("To express negative numbers, use ناقص (na2is, \"minus\") before the number.")
+        NumBodyText("To express negative numbers, use **ناقص** (**na2is**, \"minus\") before the number.")
         Spacer(modifier = Modifier.height(4.dp))
         NumBodyText("ناقص — na2is — minus")
         Spacer(modifier = Modifier.height(8.dp))
@@ -113,7 +113,7 @@ fun NumbersScreen() {
         NumBodyText("• -10 — ناقص عشرة — na2is 3ashara")
         NumBodyText("• -3 degrees — تلاتة تحت الصفر — talate ta7t is-sifr (three below zero)")
         Spacer(modifier = Modifier.height(4.dp))
-        NumBodyText("تحت الصفر (ta7t is-sifr, \"below zero\") is also commonly used for temperatures.")
+        NumBodyText("**تحت الصفر** (**ta7t is-sifr**, \"below zero\") is also commonly used for temperatures.")
 
         NumSectionHeader("Do Numbers Change for Masculine / Feminine?")
         NumBodyText("Only 1 and 2. (Full explanation: Learning The Language → Numbers.)")
@@ -153,7 +153,7 @@ private fun NumSectionHeader(text: String) {
 @Composable
 private fun NumBodyText(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.padding(vertical = 2.dp)
     )

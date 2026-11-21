@@ -113,7 +113,7 @@ fun BodyScreen() {
         BDSmall("Hebrew parallel: רגל regel (leg/foot) — same root as rijl.")
         BDWord("foot (when you need to be specific) — قدم — 2adam;  sole of the foot: باطن الإجر — baatin el-ijr")
         BDInfo("2adam: m · 2: قدمين 2admein · pl: أقدام a2daam")
-        BDWord("thigh — فخد — fakhd  (formal فخذ fakhdh)")
+        BDWord("thigh — **فخد** — **fakhd**  (formal **فخذ** **fakhdh**)")
         BDInfo("m · 2: فخدين fakhdein (both thighs) · pl (formal): أفخاذ afkhaadh")
         BDWord("knee — ركبة — rukbe")
         BDInfo("f · 2: ركبتين rukubtein · pl: ركب rukab")
@@ -160,9 +160,8 @@ private fun BDSectionHeader(text: String) {
 @Composable
 private fun BDWord(text: String) {
     Text(
-        text = fixArabizi(text),
+        text = richText(boldHeadwordLine(text)),
         style = MaterialTheme.typography.bodyMedium,
-        fontWeight = FontWeight.SemiBold,
         modifier = Modifier.padding(top = 6.dp, bottom = 2.dp)
     )
 }
