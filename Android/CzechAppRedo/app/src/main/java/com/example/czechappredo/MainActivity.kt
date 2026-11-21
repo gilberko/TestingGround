@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
                 composable("basic_words") { BasicWordsScreen(navController) }
                 composable("greetings") { GreetingsScreen(navController) }
                 composable("small_talk") { SmallTalkScreen(navController) }
+                composable("writing_speaking") { WritingSpeakingScreen(navController) }
                 composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
                 composable("places") { PlacesScreen(navController) }
                 composable("verbs_of_movement") { VerbsOfMovementScreen(navController) }
@@ -354,6 +355,7 @@ fun DictionaryHubScreen(navController: NavController) {
         val items = listOf(
             "Greetings" to "greetings",
             "Small Talk" to "small_talk",
+            "Writing And Speaking" to "writing_speaking",
             "Basic Words and Expressions" to "basic_words",
             "Jobs & Professions" to "jobs_professions",
             "Places" to "places",
