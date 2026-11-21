@@ -267,7 +267,7 @@ fun PrepositionsScreen(navController: NavController) {
                 "Při jídle se nemluví." to "You don't talk while eating.")
             PPRow("za", "+ Gen", "during / in the time of (an era — formal)",
                 "Za války žili na venkově." to "During the war they lived in the countryside.",
-                "Za komunismu se nesmělo cestovat." to "Under communism you weren't allowed to travel.")
+                "Za komunismu se nesmělo volně cestovat na Západ." to "Under communism you weren't allowed to travel freely to the West.")
             PPRow("přes", "+ Acc", "over / through (a period) / more than",
                 "Zůstal přes noc." to "He stayed overnight.",
                 "Přes léto pracuju." to "Over the summer I work.",
@@ -375,7 +375,7 @@ fun PrepositionsScreen(navController: NavController) {
                 "Pršelo, a proto jsme zůstali doma." to "It was raining, and therefore we stayed home.")
             PPRow("takže / tedy", NO_CASE, "so / thus",
                 "Je pozdě, takže jdu domů." to "It's late, so I'm going home.",
-                "Nemáš čas, tedy půjdu sám." to "You don't have time, so I'll go alone.")
+                "Nemáš čas, půjdu tedy sám." to "You don't have time, so I'll go alone.")
             PPRow("navíc / kromě toho", NO_CASE, "moreover / in addition to that / besides",
                 "Byt je velký a navíc levný." to "The flat is big and moreover cheap.",
                 "Kromě toho umí i vařit." to "In addition to that, he can cook too.")

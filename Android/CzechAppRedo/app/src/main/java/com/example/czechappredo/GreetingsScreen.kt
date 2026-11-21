@@ -104,7 +104,7 @@ fun GreetingsScreen(navController: NavController) {
             GRRow("Dobrou chuť!", "Enjoy your meal! / Bon appétit!", "said before eating")
             GRRow("Šťastnou cestu!", "Have a good trip!")
             GRRow("Hodně štěstí!", "Good luck!", "lit. 'a lot of luck'")
-            GRNote("These are all in the accusative — an implied přeji (I wish) stands in front: (Přeji) hezký den. (Přeji) šťastnou cestu.")
+            GRNote("Most of these wishes are in the accusative, because an implied přeji (I wish) stands in front: (Přeji) hezký den. (Přeji) šťastnou cestu. (Přeji) dobrou chuť. Exceptions: Hodně štěstí! uses the genitive after hodně (a lot of), and Mějte se hezky! is an imperative (lit. \"Have yourselves nicely!\").")
 
             // ── Letter and Email Writing ──────────────────────────────────
             GRSection("Letter and Email Writing")

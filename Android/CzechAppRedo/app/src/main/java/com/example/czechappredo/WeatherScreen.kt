@@ -72,7 +72,7 @@ fun WeatherScreen(navController: NavController) {
             WERow("Prší.", "It's raining.", "impersonal — no subject needed. Venku prší. = It's raining outside.")
             WERow("Přestalo pršet.", "The rain stopped.", "lit. 'It stopped raining' — přestat (to stop) + infinitive, neuter past -o")
             WERow("vlhkost (vzduchu)", "humidity", "f. — vzduch = air; vlhkost vzduchu = air humidity")
-            WERow("Je vlhko.", "It's humid.", "predicative form, like Je teplo.")
+            WERow("Je vlhko.", "It's humid.", "predicative form, like Je teplo. vlhko also means 'damp': V pokoji je vlhko. = The room is damp.")
             WERow("Je dusno.", "It's muggy / sultry.", "hot, humid and stuffy — typical before a summer storm")
             WERow("led", "ice", "m.")
             WERow("náledí", "black ice / glaze ice", "n. — a thin layer of ice on roads and pavements")
