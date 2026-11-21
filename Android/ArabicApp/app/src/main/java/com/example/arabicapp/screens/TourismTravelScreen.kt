@@ -99,7 +99,7 @@ fun TourismTravelScreen() {
         TTWord("sorry — آسف — aasif (m speaker) / آسفة — aasfe (f speaker)")
         TTWord("never mind / it's OK — معلش — ma3leesh  (more uses: First Words → Courtesy)")
         TTWord("you're welcome / excuse me / pardon? — عفواً — 3afwan")
-        TTSmall("Three uses: 1) the reply to shukran (\"you're welcome\"); 2) \"excuse me\" to get past someone or get attention; 3) \"pardon?\" when you didn't hear. In fast speech it can sound like 3afwen or 3afoun. It's neutral and understood everywhere. As a reply to thanks, Lebanese and Syrians more often say tikram or walaw (see Greetings → Everyday Courtesy).")
+        TTSmall("Three uses: 1) the reply to shukran (\"you're welcome\"); 2) \"excuse me\" to get past someone or get attention; 3) \"pardon?\" when you didn't hear. In fast speech it can sound like 3afwen or 3afoun. It's neutral and understood everywhere. As a reply to thanks, Lebanese and Syrians more often say tikram or walaw (see Politeness and Greetings → Everyday Courtesy).")
         TTExample("shukran! — 3afwan — شكراً! — عفواً — Thanks! — You're welcome.")
         TTExample("fi 3indkum ghurfe la-leile wa7de? — في عندكم غرفة لليلة وحدة؟ — Do you have a room for one night?")
 

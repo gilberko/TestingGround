@@ -61,6 +61,8 @@ import com.example.arabicapp.screens.SubjectPronounsScreen
 import com.example.arabicapp.screens.ColorsScreen
 import com.example.arabicapp.screens.FoodsScreen
 import com.example.arabicapp.screens.GreetingsScreen
+import com.example.arabicapp.screens.SmallTalkScreen
+import com.example.arabicapp.screens.CommonExpressionsScreen
 import com.example.arabicapp.screens.LettersForHebrewSpeakersScreen
 import com.example.arabicapp.screens.LocationScreen
 import com.example.arabicapp.screens.PracticeLettersEnToArScreen
@@ -294,8 +296,18 @@ fun AppNavigation() {
             }
         }
         composable("greetings") {
-            ScreenWithBackButton(title = "Common Greetings and Expressions", onBack = { navController.popBackStack() }) {
+            ScreenWithBackButton(title = "Politeness and Greetings", onBack = { navController.popBackStack() }) {
                 GreetingsScreen()
+            }
+        }
+        composable("dict_small_talk") {
+            ScreenWithBackButton(title = "Small Talk", onBack = { navController.popBackStack() }) {
+                SmallTalkScreen()
+            }
+        }
+        composable("dict_common_expressions") {
+            ScreenWithBackButton(title = "Common Expressions", onBack = { navController.popBackStack() }) {
+                CommonExpressionsScreen()
             }
         }
         composable("foods_eating") {

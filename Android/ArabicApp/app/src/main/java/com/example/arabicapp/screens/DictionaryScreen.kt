@@ -74,7 +74,20 @@ fun DictionaryScreen(navController: NavController) {
             Button(
                 onClick = { navController.navigate("greetings") },
                 modifier = Modifier.weight(1f)
-            ) { Text("Common Greetings and Expressions") }
+            ) { Text("Politeness and Greetings") }
+            Button(
+                onClick = { navController.navigate("dict_small_talk") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Small Talk") }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Button(
+                onClick = { navController.navigate("dict_common_expressions") },
+                modifier = Modifier.weight(1f)
+            ) { Text("Common Expressions") }
             Button(
                 onClick = { navController.navigate("foods_eating") },
                 modifier = Modifier.weight(1f)

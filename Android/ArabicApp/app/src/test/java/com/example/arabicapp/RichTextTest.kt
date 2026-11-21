@@ -43,7 +43,7 @@ class RichTextTest {
     )
 
     @Test fun headwordEnglishFirstFormat() = assertEquals(
-        "wife — **مرة** — **mara**  (my wife: مرتي — marti);  boyfriend — **صاحب** — **saa7ib**",
+        "wife — **مرة** — **mara**  (my wife: **مرتي** — **marti**);  boyfriend — **صاحب** — **saa7ib**",
         boldHeadwordLine("wife — مرة — mara  (my wife: مرتي — marti);  boyfriend — صاحب — saa7ib")
     )
 

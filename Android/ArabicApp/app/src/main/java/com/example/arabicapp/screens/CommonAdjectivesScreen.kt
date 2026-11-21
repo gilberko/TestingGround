@@ -131,7 +131,7 @@ fun CommonAdjectivesScreen() {
         CABodyText("خايف / خايفة (khaayif / khaayfe) — afraid / scared")
         CABodyText("متوتر / متوترة (mitawwatir / mitawwatire) — anxious / tense / nervous")
         CABodyText("زاهق / زاهقة (zaahi2 / zaahi2a) — bored  (qaf → glottal stop)")
-        CABodyText("مسبسط / مسبسطة — very relaxed / unbothered (colloquial, humorous)")
+        CABodyText("مبسوط / مبسوطة (mabsuuT / mabsuuTa) — very relaxed / unbothered (colloquial)")
 
         Spacer(modifier = Modifier.height(24.dp))
     }
