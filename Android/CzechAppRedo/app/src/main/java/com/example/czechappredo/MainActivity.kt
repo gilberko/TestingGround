@@ -46,6 +46,8 @@ class MainActivity : ComponentActivity() {
                 composable("present_tense") { PresentTenseVerbConjugationScreen(navController) }
                 composable("dictionary") { DictionaryHubScreen(navController) }
                 composable("basic_words") { BasicWordsScreen(navController) }
+                composable("greetings") { GreetingsScreen(navController) }
+                composable("small_talk") { SmallTalkScreen(navController) }
                 composable("jobs_professions") { JobsAndProfessionsScreen(navController) }
                 composable("places") { PlacesScreen(navController) }
                 composable("verbs_of_movement") { VerbsOfMovementScreen(navController) }
@@ -350,7 +352,9 @@ fun DictionaryHubScreen(navController: NavController) {
         containerColor = Color.Transparent
     ) { innerPadding ->
         val items = listOf(
-            "Basic Words, Expressions & Greetings" to "basic_words",
+            "Greetings" to "greetings",
+            "Small Talk" to "small_talk",
+            "Basic Words and Expressions" to "basic_words",
             "Jobs & Professions" to "jobs_professions",
             "Places" to "places",
             "Useful Conjugated Verbs" to "useful_verbs",

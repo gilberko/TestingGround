@@ -50,6 +50,12 @@ fun WeatherScreen(navController: NavController) {
             WERow("zima", "winter / cold", "f. — same word for both: Je zima. = It's cold. / It's winter. (context distinguishes)")
             WERow("podzim", "autumn / fall", "m.")
 
+            WESection("Asking About the Weather")
+            WERow("Jaké je počasí?", "How is the weather?", "Jaké je venku počasí? = What's the weather like outside?")
+            WERow("předpověď počasí", "weather forecast", "f. — předpověď = forecast / prediction")
+            WERow("Jaká je předpověď na dnešek?", "What is the forecast for today?", "na dnešek = for today (also: na dnes)")
+            WERow("Jaká je předpověď na zítra?", "What is the forecast for tomorrow?")
+
             WESection("Weather Conditions (Počasí)")
             WERow("počasí", "weather", "n.")
             WERow("slunečno", "it's sunny", "predicative form — used with je: Je slunečno.")
@@ -61,6 +67,18 @@ fun WeatherScreen(navController: NavController) {
             WERow("bouřka", "thunderstorm", "f.")
             WERow("mlha", "fog", "f.")
             WERow("duha", "rainbow", "f.")
+
+            WESection("Rain, Humidity and Ice")
+            WERow("Prší.", "It's raining.", "impersonal — no subject needed. Venku prší. = It's raining outside.")
+            WERow("Přestalo pršet.", "The rain stopped.", "lit. 'It stopped raining' — přestat (to stop) + infinitive, neuter past -o")
+            WERow("vlhkost (vzduchu)", "humidity", "f. — vzduch = air; vlhkost vzduchu = air humidity")
+            WERow("Je vlhko.", "It's humid.", "predicative form, like Je teplo.")
+            WERow("Je dusno.", "It's muggy / sultry.", "hot, humid and stuffy — typical before a summer storm")
+            WERow("led", "ice", "m.")
+            WERow("náledí", "black ice / glaze ice", "n. — a thin layer of ice on roads and pavements")
+            WERow("namrzlá silnice / zledovatělá silnice", "icy road", "namrzlý = frozen over; zledovatělý = iced up. Silnice je namrzlá. = The road is icy.")
+            WERow("kluzký / kluzká / kluzké", "slippery", "Je kluzko. = It's slippery (out).")
+            WERow("kluzká silnice", "slippery road", "Pozor, silnice je kluzká! = Careful, the road is slippery!")
 
             WESection("Temperature (Teplota)")
             WERow("teplota", "temperature", "f.")

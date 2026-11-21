@@ -237,7 +237,7 @@ fun FoodScreen(navController: NavController) {
             FONote("Sugar and cinnamon alone: cukr (sugar, m.) — instrumental: s cukrem. skořice (cinnamon, f.) — instrumental: se skořicí. Both use the instrumental case with preposition s/se.")
 
             FOSection("Ordering")
-            FORow("dám si", "I'll have (ordering)", "literally 'I'll give myself'; see Basic Words for full explanation")
+            FORow("dám si", "I'll have (ordering)", "literally 'I'll give myself'; see Small Talk → Common Phrases for full explanation")
             FORow("jídelní lístek", "menu (the printed menu card)", "m. — also commonly just called menu (borrowed word)")
             FORow("menu", "set menu / today's lunch special", "n. — in Czech restaurants, 'menu' often means a fixed-price lunch deal")
 
