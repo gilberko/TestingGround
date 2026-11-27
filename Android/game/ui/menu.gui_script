@@ -26,7 +26,7 @@ local function build(self)
 		add("CONTINUE  (LEVEL " .. ST.unlocked .. "/" .. Lv.COUNT .. ")", "menu_continue", vmath.vector4(0.2, 0.6, 0.4, 1))
 	end
 	add(A.saved and "CHANGE AGENT LOOK" or "DESIGN YOUR AGENT", "menu_design", U.BTN2)
-	U.text(self.nodes, 640, 40, "Keys: arrows/WASD move & climb, DOWN hides behind desks, SPACE jumps, ESC pauses", 0.3,
+	U.text(self.nodes, 640, 40, "Keys: arrows/WASD move & climb, DOWN hides at desks, SPACE jumps, E shield, F kick, ESC pauses", 0.3,
 		vmath.vector4(0.7, 0.72, 0.8, 1))
 end
 

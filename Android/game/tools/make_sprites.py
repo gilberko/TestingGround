@@ -30,7 +30,7 @@ def rect(d, r, c):
 
 # ---------------------------------------------------------------- people ---
 W_, S_, D_ = (255, 255, 255, 255), (196, 196, 196, 255), (140, 140, 140, 255)
-POSES = ["stand", "walk1", "walk2", "jump", "climb1", "climb2", "duck", "shoot"]
+POSES = ["stand", "walk1", "walk2", "jump", "climb1", "climb2", "duck", "kick", "shield", "shoot"]
 
 
 def geo(pose):
@@ -73,6 +73,20 @@ def geo(pose):
         g["hands"] = [(19, 23, 20, 25)]
         g["legs"] = [(8, 30, 17, 32)]
         g["shoes"] = [(5, 33, 10, 35), (14, 33, 19, 35)]
+    elif pose == "kick":
+        # standing on the back leg, front leg kicked out straight ahead
+        g["head"] = (7, 3)
+        g["torso"] = (6, 12, 15, 22)
+        g["arms"] = [(3, 12, 5, 18), (16, 12, 18, 17)]
+        g["hands"] = [(2, 18, 3, 19), (18, 18, 19, 19)]
+        g["legs"] = [(7, 23, 10, 32), (11, 22, 15, 25), (16, 21, 21, 24)]
+        g["shoes"] = [(7, 33, 11, 35), (22, 19, 23, 25)]
+    elif pose == "shield":
+        # front arm held out at chest height (the shield sprite sits on it)
+        g["arms"] = [(5, 12, 6, 20), (16, 13, 20, 15)]
+        g["hands"] = [(5, 21, 6, 22), (21, 13, 21, 15)]
+        g["legs"] = [(7, 23, 10, 32), (13, 23, 16, 32)]
+        g["shoes"] = [(6, 33, 10, 35), (13, 33, 17, 35)]
     elif pose == "shoot":
         g["arms"] = [(5, 12, 6, 20), (16, 14, 20, 16)]
         g["hands"] = [(5, 21, 6, 22), (21, 14, 21, 16)]
@@ -239,7 +253,7 @@ def build_people():
     boss = dict(base, body="m", skin=(215, 170, 140, 255), hair=(200, 200, 205, 255), hair_style="buzz",
                 jacket=(110, 30, 130, 255), pants=(60, 20, 75, 255), tie=(230, 180, 40, 255),
                 acc="shades", gun=True)
-    for pose in ("stand", "shoot"):
+    for pose in ("stand", "shoot", "jump"):
         save(draw_person(pose, boss), "boss_" + pose, 3)
 
 
@@ -387,6 +401,22 @@ def build_fx_ui():
     rect(d, (0, 0, 7, 2), (255, 140, 20, 255))
     rect(d, (2, 1, 7, 1), (255, 250, 180, 255))
     save(img, "bullet", 2)
+    # round agent shield: red/white rings, blue centre, white star (16x16 -> 32x32)
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    d.ellipse([0, 0, 15, 15], fill=(200, 30, 45, 255))
+    d.ellipse([2, 2, 13, 13], fill=(240, 240, 245, 255))
+    d.ellipse([4, 4, 11, 11], fill=(200, 30, 45, 255))
+    d.ellipse([5, 5, 10, 10], fill=(30, 60, 170, 255))
+    d.polygon([(7.5, 5.6), (8.2, 7.2), (9.9, 7.3), (8.6, 8.4), (9.0, 10.0), (7.5, 9.1), (6.0, 10.0), (6.4, 8.4), (5.1, 7.3), (6.8, 7.2)],
+              fill=(255, 255, 255, 255))
+    rect(d, (4, 1, 6, 1), (255, 140, 150, 255))   # shine
+    save(img, "shield", 2)
+    # crate splinters
+    for i, c in enumerate(((170, 120, 60, 255), (120, 80, 40, 255))):
+        img = Image.new("RGBA", (5, 3), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+        rect(d, (0, 0, 4, 2), c)
+        rect(d, (0, 0, 4, 0), (200, 150, 80, 255))
+        save(img, "splinter%d" % (i + 1), 2)
     # muzzle flash
     img = Image.new("RGBA", (6, 6), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
     d.polygon([(0, 3), (5, 0), (4, 3), (5, 5)], fill=(255, 220, 80, 255))
@@ -439,6 +469,18 @@ def build_fx_ui():
     d.polygon([(2, 9), (8, 3), (14, 9), (11, 9), (8, 6), (5, 9)], fill=(255, 255, 255, 255))
     d.polygon([(2, 14), (8, 8), (14, 14), (11, 14), (8, 11), (5, 14)], fill=(255, 255, 255, 255))
     save(img, "ui_jump", 3)
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    d.ellipse([1, 1, 14, 14], fill=(255, 255, 255, 255))
+    d.ellipse([3, 3, 12, 12], fill=(0, 0, 0, 0))
+    d.ellipse([5, 5, 10, 10], fill=(255, 255, 255, 255))
+    save(img, "ui_shield", 3)
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    rect(d, (3, 1, 7, 8), (255, 255, 255, 255))     # leg
+    rect(d, (3, 9, 13, 13), (255, 255, 255, 255))   # boot
+    rect(d, (12, 8, 14, 12), (255, 255, 255, 255))  # toe
+    for y in (4, 7, 10):                            # motion lines
+        rect(d, (15, y, 15, y + 1), (255, 255, 255, 255))
+    save(img, "ui_kick", 3)
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
     rect(d, (4, 3, 6, 12), (255, 255, 255, 255))
     rect(d, (9, 3, 11, 12), (255, 255, 255, 255))

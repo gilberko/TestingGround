@@ -16,6 +16,10 @@ M.PW = 26                -- player box width
 M.PH = 64                -- player box height (standing)
 M.HEARTS = 3
 M.INVULN = 1.6
+M.SHIELD_SPEED = 0.4     -- walking speed while holding the shield (fraction of RUN)
+M.KICK_TIME = 0.3        -- kick pose duration
+M.KICK_COOLDOWN = 0.45
+M.KICK_REACH = 40        -- how far past the player's box a kick reaches
 
 -- enemies
 M.BULLET_Y = 46          -- bullet height above the shooter's feet
@@ -24,6 +28,7 @@ M.BULLET_W = 16
 M.BULLET_H = 6
 M.SIGHT = 11 * 48        -- villain sight range (same floor)
 M.TURN_RANGE = 7 * 48    -- disguised bystander reveal range
+M.BOSS_JUMP_TIME = 0.85  -- boss leap between floors
 
 -- floor k (1-based) -> grid row of the slab the floor stands on (1-based rows from the bottom)
 function M.slab_row(k) return 1 + (k - 1) * M.FLOOR_STRIDE end

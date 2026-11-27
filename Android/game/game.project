@@ -1,6 +1,6 @@
 [project]
 title = Netta The Super Agent
-version = 1.0
+version = 1.1
 custom_resources = 
 
 [bootstrap]
@@ -46,7 +46,7 @@ max_count = 16
 
 [android]
 package = com.example.nettaagent
-version_code = 1
+version_code = 2
 minimum_sdk_version = 21
 app_icon_36x36 = /assets/icons/icon_36.png
 app_icon_48x48 = /assets/icons/icon_48.png

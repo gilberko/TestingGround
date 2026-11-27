@@ -35,6 +35,22 @@ key_trigger {
   action: "jump"
 }
 key_trigger {
+  input: KEY_E
+  action: "shield"
+}
+key_trigger {
+  input: KEY_Z
+  action: "shield"
+}
+key_trigger {
+  input: KEY_F
+  action: "kick"
+}
+key_trigger {
+  input: KEY_X
+  action: "kick"
+}
+key_trigger {
   input: KEY_ESC
   action: "pause"
 }

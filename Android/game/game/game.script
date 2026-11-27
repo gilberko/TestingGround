@@ -41,6 +41,8 @@ local function clear_world(self)
 	self.anims = {}
 	self.villains, self.bystanders, self.bullets, self.buttons, self.fx = {}, {}, {}, {}, {}
 	self.boss = nil
+	self.shield = nil
+	self.crates = {}
 	self.L = nil
 end
 
@@ -106,7 +108,8 @@ local function build_level(self, n, with_player)
 			local k = L.kind[(r - 1) * L.cols + c]
 			local x, y = C.col_x(c), (r - 0.5) * C.T
 			if k == "floor" or k == "roof" or k == "wall" or k == "crate" then
-				spawn(self, k, x, y, Z.solid)
+				local id = spawn(self, k, x, y, Z.solid)
+				if k == "crate" then self.crates[(r - 1) * L.cols + c] = id end
 			elseif k == "ladder" then
 				if (r - 1) % C.FLOOR_STRIDE == 0 then     -- hole through a slab
 					local id = spawn(self, "bg", x, y, Z.bg + 0.01)
@@ -152,7 +155,7 @@ local function build_level(self, n, with_player)
 		local pad = L.pads[math.random(#L.pads)]
 		local cfg = L.spec.boss
 		self.boss = { x = pad.x, y = pad.y, f = pad.f, pad = pad, state = "appear", t = 0.8, cfg = cfg,
-			facing = -1, burst = 0, gap = 0, shot = 0, low = false, hurt = 0 }
+			facing = -1, burst = 0, gap = 0, shot = 0, low = false, hurt = 0, away = 0 }
 		self.boss.id = spawn(self, "boss_stand", pad.x, pad.y + 54, Z.npc + 0.05)
 		go.set(spr(self.boss.id), "tint.w", 0)
 		go.animate(spr(self.boss.id), "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, 0.6)
@@ -166,6 +169,9 @@ local function build_level(self, n, with_player)
 		self.flip = nil
 		set_pose(self, "stand", false)
 		go.set_position(vmath.vector3(p.x, p.y, 0.2), PLAYER)
+		self.shield = spawn(self, "shield", p.x, p.y, Z.fx - 0.05)
+		msg.post(self.shield, "disable")
+		self.shield_on = false
 	else
 		self.p = nil
 		msg.post(PLAYER, "disable")
@@ -263,11 +269,19 @@ local function finish_level(self)
 		next_name = Lv.list[self.level + 1].name })
 end
 
-local function fail_level(self)
+local function fail_level(self, kind, delay)
 	ST.mode = "failed"
 	ST.clear_input()
 	set_player_alpha(self, 1)
-	show("overlay", "show", { kind = "failed", name = self.L.spec.name })
+	local data = { kind = kind or "failed", name = self.L.spec.name }
+	if delay then
+		local L = self.L
+		timer.delay(delay, false, function()
+			if self.L == L and ST.mode == "failed" then show("overlay", "show", data) end
+		end)
+	else
+		show("overlay", "show", data)
+	end
 end
 
 -- ------------------------------------------------------------------ combat
@@ -378,6 +392,19 @@ local function update_bullets(self, dt)
 		local c = math.floor(b.x / C.T) + 1
 		local r = math.floor(b.y / C.T) + 1
 		local gone = g:solid(c, r) or b.dist > 16 * C.T
+		-- the shield stops bullets that come at Netta's front
+		if not gone and p.shielding and ST.mode == "playing" and b.vx * p.facing < 0 then
+			local sx = p.x + p.facing * 20
+			if math.abs(b.x - sx) < 14 + math.abs(step) and b.y > p.y - 4 and b.y < p.y + C.PH + 4 then
+				gone = true
+				if self.autotest then print("AUTOTEST shield blocked a bullet") end
+				local fl = spawn(self, "blast", sx, b.y, Z.fx)
+				go.set_scale(0.25, fl)
+				go.animate(spr(fl), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.15, 0, function() remove(self, fl) end)
+				go.set_scale(1.15, self.shield)
+				go.animate(self.shield, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1, 1, 1), go.EASING_OUTQUAD, 0.12)
+			end
+		end
 		if not gone and not p.hidden and ST.mode == "playing"
 			and b.x + C.BULLET_W / 2 > x0 and b.x - C.BULLET_W / 2 < x1
 			and b.y + C.BULLET_H / 2 > y0 and b.y - C.BULLET_H / 2 < y1 then
@@ -397,6 +424,100 @@ local function update_bullets(self, dt)
 		end
 	end
 	self.bullets = keep
+end
+
+-- ------------------------------------------------------------------ kick
+local function impact(self, x, y)
+	local fl = spawn(self, "blast", x, y, Z.fx)
+	go.set_scale(0.3, fl)
+	go.animate(fl, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(0.6, 0.6, 1), go.EASING_OUTQUAD, 0.15)
+	go.animate(spr(fl), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.18, 0, function() remove(self, fl) end)
+end
+
+-- a bad guy goes down: falls over, fades and disappears
+local function knock_out(self, e, dir)
+	e.dead = true
+	remove(self, e.bubble)
+	e.bubble = nil
+	go.cancel_animations(spr(e.id), "tint")
+	go.set(spr(e.id), "tint", WHITE)
+	go.set_position(vmath.vector3(e.x, e.y + 24, Z.npc), e.id)
+	go.animate(e.id, "euler.z", go.PLAYBACK_ONCE_FORWARD, -dir * 90, go.EASING_OUTQUAD, 0.25)
+	go.animate(e.id, "position.x", go.PLAYBACK_ONCE_FORWARD, e.x + dir * 30, go.EASING_OUTQUAD, 0.25)
+	go.animate(spr(e.id), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.5, 0.35, function() remove(self, e.id) end)
+end
+
+local function break_crate(self, c, r)
+	local L = self.L
+	local key = (r - 1) * L.cols + c
+	S.break_crate(L.grid, L.kind, L.cols, c, r)
+	remove(self, self.crates[key])
+	self.crates[key] = nil
+	local cx, cy = C.col_x(c), (r - 0.5) * C.T
+	for _ = 1, 10 do
+		local d = spawn(self, "splinter" .. math.random(2), cx + math.random(-14, 14), cy + math.random(-14, 14), Z.fx)
+		local a = math.random() * math.pi
+		local dist = 40 + math.random() * 70
+		go.animate(d, "position", go.PLAYBACK_ONCE_FORWARD,
+			vmath.vector3(cx + math.cos(a) * dist, cy + math.sin(a) * dist * 0.7, Z.fx), go.EASING_OUTCUBIC, 0.5)
+		go.animate(d, "euler.z", go.PLAYBACK_ONCE_FORWARD, math.random(-540, 540), go.EASING_OUTCUBIC, 0.5)
+		go.animate(spr(d), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.55, 0, function() remove(self, d) end)
+	end
+end
+
+local function resolve_kick(self)
+	local p = self.p
+	local f = C.floor_of(p.y)
+	local hx, hy = p.x + p.facing * 34, p.y + 30
+	-- people first: the nearest one in reach on this floor
+	local best, best_d, kind
+	local function consider(e, k)
+		if not e.dead and e.f == f and S.in_kick_reach(p, e.x) then
+			local d = math.abs(e.x - p.x)
+			if not best_d or d < best_d then best, best_d, kind = e, d, k end
+		end
+	end
+	for _, v in ipairs(self.villains) do consider(v, "bad") end
+	for _, b in ipairs(self.bystanders) do
+		-- disguised villains are bad guys too, revealed or not
+		consider(b, (b.turn or b.state ~= "walk") and "bad" or "innocent")
+	end
+	local B = self.boss
+	if B and B.state == "fight" and B.f == f and S.in_kick_reach(p, B.x) then
+		local d = math.abs(B.x - p.x)
+		if not best_d or d < best_d then best, best_d, kind = B, d, "boss" end
+	end
+	if best then
+		if self.autotest then print("AUTOTEST kick hit " .. kind) end
+		impact(self, hx, hy)
+		if kind == "bad" then
+			knock_out(self, best, p.facing)
+		elseif kind == "boss" then
+			B.hurt = math.max(B.hurt, 0.15)      -- the boss shrugs a kick off
+		else
+			-- hurting an innocent person: disqualified
+			best.dead = true
+			go.animate(best.id, "euler.z", go.PLAYBACK_ONCE_FORWARD, -p.facing * 90, go.EASING_OUTQUAD, 0.25)
+			go.animate(best.id, "position", go.PLAYBACK_ONCE_FORWARD,
+				vmath.vector3(best.x + p.facing * 30, best.y + 24, Z.npc + 0.01), go.EASING_OUTQUAD, 0.25)
+			local bub = spawn(self, "exclaim", best.x + p.facing * 30, best.y + 70, Z.bubble)
+			go.animate(bub, "position.y", go.PLAYBACK_LOOP_PINGPONG, best.y + 76, go.EASING_INOUTSINE, 0.2)
+			fail_level(self, "disqualified", 1.0)
+		end
+		return
+	end
+	local c, r = S.kick_crate(p, self.L.grid, self.L.kind, self.L.cols)
+	if c then
+		if self.autotest then print("AUTOTEST kick broke crate " .. c .. "," .. r) end
+		impact(self, hx, hy)
+		break_crate(self, c, r)
+	end
+end
+
+local function drop_dead(list)
+	local keep = {}
+	for _, e in ipairs(list) do if not e.dead then keep[#keep + 1] = e end end
+	return keep
 end
 
 -- ------------------------------------------------------------------ boss
@@ -483,6 +604,33 @@ local function boss_pick_pad(self)
 	return cands[math.random(#cands)]
 end
 
+-- leap to a pad on another floor, preferring the floor the player is on
+local function boss_jump_pad(self)
+	local B, L = self.boss, self.L
+	local pf = C.floor_of(self.p.y)
+	local mine, other = {}, {}
+	for _, pad in ipairs(L.pads) do
+		if pad.f ~= B.f then
+			if pad.f == pf then mine[#mine + 1] = pad else other[#other + 1] = pad end
+		end
+	end
+	if #mine > 0 and (#other == 0 or math.random() < 0.8) then return mine[math.random(#mine)] end
+	if #other > 0 then return other[math.random(#other)] end
+	return nil
+end
+
+local function boss_start_jump(self, pad)
+	local B = self.boss
+	B.state = "jump"
+	B.burst = 0
+	B.jump = { x0 = B.x, y0 = B.y, pad = pad, t = 0, h = math.max(110, math.abs(pad.y - B.y) / 4 + 70) }
+	B.f = nil                                  -- in the air: not on any floor
+	B.facing = pad.x < B.x and -1 or 1
+	sprite.set_hflip(spr(B.id), B.facing < 0)
+	play(self, spr(B.id), "boss_jump")
+	if self.autotest then print("AUTOTEST boss jumps to floor " .. pad.f) end
+end
+
 local function update_boss(self, dt)
 	local B = self.boss
 	if not B or B.state == "dying" then return end
@@ -520,9 +668,35 @@ local function update_boss(self, dt)
 			end
 		end
 		play(self, url, "boss_" .. ((B.burst > 0 or B.shot < 0.35) and same_floor(self, B) and "shoot" or "stand"))
-		if B.t <= 0 then
-			B.state = "vanish"; B.t = 0.45; B.burst = 0
-			go.animate(url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.4)
+		-- the boss chases the player between floors
+		if same_floor(self, B) then B.away = 0 else B.away = B.away + dt end
+		local chase = B.away > (cfg.chase or 1.2) and B.burst == 0
+		if B.t <= 0 or chase then
+			local pad = math.random() < (cfg.jump_chance or 0.75) and boss_jump_pad(self)
+			if pad then
+				boss_start_jump(self, pad)
+			else
+				B.state = "vanish"; B.t = 0.45; B.burst = 0
+				go.animate(url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.4)
+			end
+			B.away = 0
+		end
+	elseif B.state == "jump" then
+		local J = B.jump
+		J.t = J.t + dt
+		local k = math.min(1, J.t / C.BOSS_JUMP_TIME)
+		B.x = J.x0 + (J.pad.x - J.x0) * k
+		B.y = J.y0 + (J.pad.y - J.y0) * k + J.h * 4 * k * (1 - k)
+		go.set_position(vmath.vector3(B.x, B.y + 54, Z.npc + 0.05), B.id)
+		if k >= 1 then
+			local pad = J.pad
+			B.pad, B.x, B.y, B.f = pad, pad.x, pad.y, pad.f
+			B.jump = nil
+			B.state = "fight"; B.t = cfg.stay; B.shot = cfg.land_shot or 0.5
+			local d = spawn(self, "blast", B.x, B.y + 6, Z.fx)
+			go.set_scale(vmath.vector3(0.6, 0.15, 1), d)
+			go.animate(d, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1.6, 0.25, 1), go.EASING_OUTQUAD, 0.25)
+			go.animate(spr(d), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.3, 0, function() remove(self, d) end)
 		end
 	elseif B.state == "vanish" then
 		if B.t <= 0 then
@@ -530,7 +704,7 @@ local function update_boss(self, dt)
 			B.pad, B.x, B.y, B.f = pad, pad.x, pad.y, pad.f
 			go.set_position(vmath.vector3(B.x, B.y + 54, Z.npc + 0.05), B.id)
 			go.animate(url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, 0.45)
-			B.state = "appear"; B.t = 0.6; B.shot = 0.4
+			B.state = "appear"; B.t = 0.6; B.shot = 0.4; B.away = 0
 		end
 	end
 end
@@ -540,15 +714,22 @@ local function update_player(self, dt)
 	local p = self.p
 	local inp = ST.input()
 	inp.jump = ST.jump_pressed
+	inp.kick = ST.kick_pressed
 	ST.jump_pressed = false
+	ST.kick_pressed = false
 	S.update(p, inp, dt, self.L.grid, self.L.desks)
+	if p.kicked then resolve_kick(self) end
 	local pose
-	if p.climbing then
+	if p.kick > 0 then
+		pose = "kick"
+	elseif p.climbing then
 		pose = p.moving and "climb" or "climb1"
 	elseif not p.grounded then
 		pose = "jump"
 	elseif p.ducking then
 		pose = "duck"
+	elseif p.shielding then
+		pose = "shield"
 	elseif p.moving then
 		pose = "walk"
 	else
@@ -556,6 +737,13 @@ local function update_player(self, dt)
 	end
 	set_pose(self, pose, (not p.climbing) and p.facing < 0)
 	go.set_position(vmath.vector3(p.x, p.y, 0.2), PLAYER)
+	if p.shielding ~= self.shield_on then
+		self.shield_on = p.shielding
+		msg.post(self.shield, p.shielding and "enable" or "disable")
+	end
+	if p.shielding then
+		go.set_position(vmath.vector3(p.x + p.facing * 20, p.y + 34, Z.fx - 0.05), self.shield)
+	end
 	if self.invuln > 0 then
 		self.invuln = self.invuln - dt
 		set_player_alpha(self, (self.invuln <= 0 or math.floor(self.invuln * 12) % 2 == 0) and 1 or 0.25)
@@ -581,14 +769,16 @@ function init(self)
 		start_level(self, 1)
 	elseif auto > 0 then
 		start_level(self, math.min(auto, Lv.COUNT))
-		-- debug screenshots: --config=netta.screen=pause|failed|complete
+		-- debug screenshots: --config=netta.screen=pause|failed|complete|designer|shield|kick
 		local screen = sys.get_config_string("netta.screen", "")
 		if screen ~= "" then
 			timer.delay(1.5, false, function()
 				if screen == "pause" then msg.post("#", "pause")
 				elseif screen == "failed" then fail_level(self)
 				elseif screen == "complete" then finish_level(self)
-				elseif screen == "designer" then open_designer(self, "pause") end
+				elseif screen == "designer" then open_designer(self, "pause")
+				elseif screen == "shield" then ST.keys.shield = true
+				elseif screen == "kick" then ST.kick_pressed = true end
 			end)
 		end
 	else
@@ -603,6 +793,8 @@ local function autotest(self, dt)
 	if ST.mode == "playing" then
 		ST.keys.right = true
 		if math.floor(at.t * 2) % 3 == 0 then ST.jump_pressed = true end
+		ST.keys.shield = math.floor(at.t * 3) % 4 == 1
+		if math.floor(at.t * 4) % 5 == 2 then ST.kick_pressed = true end
 		self.hearts = 3
 		if at.t > 2.5 then
 			if self.L.boss then
@@ -642,7 +834,9 @@ function update(self, dt)
 		if mode == "playing" then update_player(self, dt) end
 		local speed = self.L.spec.bullet_speed or 400
 		if mode == "playing" then
+			self.villains = drop_dead(self.villains)
 			for _, v in ipairs(self.villains) do update_shooter(self, v, dt, speed) end
+			self.bystanders = drop_dead(self.bystanders)
 		end
 		if mode == "playing" then
 			for _, b in ipairs(self.bystanders) do update_bystander(self, b, dt, speed) end

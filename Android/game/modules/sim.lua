@@ -11,7 +11,8 @@ local function col(x) return math.floor(x / T) + 1 end
 
 function M.new_player(x, y)
 	return { x = x, y = y, vx = 0, vy = 0, grounded = true, climbing = false, moving = false,
-		facing = 1, ducking = false, hidden = false, climb_dir = 0 }
+		facing = 1, ducking = false, hidden = false, climb_dir = 0,
+		shielding = false, kick = 0, kick_cd = 0, kicked = false }
 end
 
 -- feet resting on a solid cell or a ladder top at column lc?
@@ -77,13 +78,18 @@ local function update_climb(p, inp, dt, g)
 	end
 end
 
--- inp: { left, right, up, down, jump (pressed this frame) }
+-- inp: { left, right, up, down, shield (held), jump / kick (pressed this frame) }
 -- desks: list of { f, x }
+-- After the call p.kicked is true on the frame a kick lands (game.script resolves what it hit).
 function M.update(p, inp, dt, g, desks)
 	if dt > 1 / 30 then dt = 1 / 30 end
 	p.ducking = false
 	p.hidden = false
 	p.moving = false
+	p.shielding = false
+	p.kicked = false
+	if p.kick > 0 then p.kick = p.kick - dt end
+	if p.kick_cd > 0 then p.kick_cd = p.kick_cd - dt end
 
 	if not p.climbing then
 		if inp.up then
@@ -95,17 +101,32 @@ function M.update(p, inp, dt, g, desks)
 		end
 	end
 	if p.climbing then
+		p.kick = 0
 		update_climb(p, inp, dt, g)
 		return
 	end
 
 	local want = (inp.right and 1 or 0) - (inp.left and 1 or 0)
-	if want ~= 0 then p.facing = want end
+	if want ~= 0 and p.kick <= 0 then p.facing = want end
+	local speed = C.RUN
 	if p.grounded and inp.down then
 		p.ducking = true
 		want = 0
+	elseif inp.kick and p.kick_cd <= 0 then
+		p.kick = C.KICK_TIME
+		p.kick_cd = C.KICK_COOLDOWN
+		p.kicked = true
 	end
-	p.vx = want * C.RUN
+	if p.kick > 0 then
+		if p.grounded then want = 0 end        -- plant the feet for a kick (keep momentum in the air)
+	elseif inp.shield and not p.ducking then
+		p.shielding = true
+		speed = C.RUN * C.SHIELD_SPEED
+	end
+	if p.kick > 0 and not p.grounded then
+		want = p.vx > 0 and 1 or (p.vx < 0 and -1 or 0)
+	end
+	p.vx = want * speed
 	p.moving = want ~= 0
 	if inp.jump and p.grounded then
 		p.vy = C.JUMP_V
@@ -164,6 +185,32 @@ function M.update(p, inp, dt, g, desks)
 			end
 		end
 	end
+end
+
+-- Kick vs crates: the crate stack right in front of the player at body height.
+-- Returns the column and the row of the TOP crate of that stack (that is the one that breaks), or nil.
+function M.kick_crate(p, g, kind, cols)
+	local c = col(p.x + p.facing * (HALF + C.KICK_REACH * 0.5))
+	if c < 1 or c > cols then return nil end
+	local function crate(r) return g:solid(c, r) and kind[(r - 1) * cols + c] == "crate" end
+	for r = row(p.y + 1), row(p.y + C.PH - 1) do
+		if crate(r) then
+			while crate(r + 1) do r = r + 1 end
+			return c, r
+		end
+	end
+	return nil
+end
+
+function M.break_crate(g, kind, cols, c, r)
+	g:set(c, r, G.EMPTY)
+	kind[(r - 1) * cols + c] = nil
+end
+
+-- is a person standing at x on the player's floor inside the kick's reach?
+function M.in_kick_reach(p, x)
+	local d = (x - p.x) * p.facing
+	return d > -10 and d < HALF + C.KICK_REACH
 end
 
 -- AABB of the player's hit box

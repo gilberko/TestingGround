@@ -140,5 +140,50 @@ inp = { jump = true }
 for _ = 1, 60 do S.update(p, inp, 1 / 60, g); inp.jump = false; apex = math.max(apex, p.y - C.floor_y(1)) end
 check(apex > C.BULLET_Y + C.BULLET_H, "jump apex " .. apex .. " clears bullets")
 
+-- shield: slower walk, no ducking/hiding while shielding
+p = S.new_player(C.col_x(3), C.floor_y(1))
+run(p, { right = true, shield = true }, 0.5, g)
+check(p.shielding and math.abs(p.x - (C.col_x(3) + C.RUN * C.SHIELD_SPEED * 0.5)) < 3, "shield walk is slow (x=" .. p.x .. ")")
+p = S.new_player(C.col_x(3), C.floor_y(1))
+S.update(p, { shield = true, down = true }, 1 / 60, g)
+check(p.ducking and not p.shielding, "ducking drops the shield")
+-- kick: fires once, plants the feet, has a cooldown
+p = S.new_player(C.col_x(3), C.floor_y(1))
+S.update(p, { kick = true, right = true }, 1 / 60, g)
+check(p.kicked and p.kick > 0 and p.vx == 0, "kick lands and plants the feet")
+S.update(p, { kick = true }, 1 / 60, g)
+check(not p.kicked, "kick has a cooldown")
+run(p, {}, C.KICK_COOLDOWN + 0.05, g)
+S.update(p, { kick = true }, 1 / 60, g)
+check(p.kicked, "can kick again after the cooldown")
+-- kick a single crate (level 1, floor 1, column 14) -> destroyed, then the way is open
+p = S.new_player(C.col_x(12), C.floor_y(1))
+run(p, { right = true }, 1.0, g)
+local kc, kr = S.kick_crate(p, g, L.kind, L.cols)
+check(kc == 14 and kr == C.slab_row(1) + 1, "kick finds the single crate (" .. tostring(kc) .. "," .. tostring(kr) .. ")")
+S.break_crate(g, L.kind, L.cols, kc, kr)
+check(S.kick_crate(p, g, L.kind, L.cols) == nil, "nothing left to kick")
+run(p, { right = true }, 0.6, g)
+check(p.x > C.col_x(15), "walks through where the crate was (x=" .. p.x .. ")")
+-- kick a stack of 2 (level 3, floor 2, column 50) -> only the TOP crate breaks
+local L3 = Lv.build(3)
+p = S.new_player(C.col_x(48), C.floor_y(2))
+run(p, { right = true }, 1.0, L3.grid)
+local r0 = C.slab_row(2) + 1
+kc, kr = S.kick_crate(p, L3.grid, L3.kind, L3.cols)
+check(kc == 50 and kr == r0 + 1, "kick picks the top crate of a stack (" .. tostring(kc) .. "," .. tostring(kr) .. ")")
+S.break_crate(L3.grid, L3.kind, L3.cols, kc, kr)
+check(L3.grid:solid(50, r0) and not L3.grid:solid(50, r0 + 1), "bottom crate stays")
+kc, kr = S.kick_crate(p, L3.grid, L3.kind, L3.cols)
+check(kc == 50 and kr == r0, "second kick finds the remaining crate")
+-- walls are not kickable
+p = S.new_player(C.col_x(24), C.floor_y(1))
+run(p, { right = true }, 1.0, g)
+check(S.kick_crate(p, g, L.kind, L.cols) == nil, "walls cannot be kicked")
+-- kick reach (people)
+p = S.new_player(C.col_x(10), C.floor_y(1))
+check(S.in_kick_reach(p, p.x + 40) and not S.in_kick_reach(p, p.x + 80) and not S.in_kick_reach(p, p.x - 40),
+	"kick reach is in front only")
+
 print(fails == 0 and "ALL CHECKS PASSED" or (fails .. " CHECK(S) FAILED"))
 os.exit(fails == 0 and 0 or 1)

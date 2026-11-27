@@ -5,6 +5,9 @@
 -- A crate {f, c, h} is a stack of h boxes you can jump over (h = 1 or 2) - also stops bullets.
 -- A desk {f, c} covers columns c and c+1: hold DOWN behind it to hide.
 -- Villains {f, c, rate} shoot every `rate` seconds when you are on their floor and in sight.
+-- Boss: jump_chance = chance to leap to another floor (else teleport), chase = seconds on another floor before
+-- the boss leaps after the player, land_shot = delay before the first shot after landing.
+-- Kicking breaks the top crate of a stack, knocks out villains, and DISQUALIFIES you on an innocent bystander.
 -- Bystanders {f, c, turn=true} - turn=true ones are disguised villains; `turncoat_chance`
 -- additionally turns random bystanders (decided when the level starts).
 local C = require "modules.const"
@@ -55,7 +58,8 @@ M.list = {
 		walls = {},
 		buttons = { { 1, 11 }, { 1, 25 }, { 2, 2 }, { 2, 23 }, { 3, 3 }, { 3, 16 }, { 3, 24 } },
 		pads = { { 1, 18 }, { 2, 9 }, { 2, 17 }, { 3, 10 }, { 3, 22 } },
-		boss = { stay = 2.6, burst = 2, gap = 0.35, rate = 1.3, spread = false, bullet_speed = 400 },
+		boss = { stay = 2.6, burst = 2, gap = 0.35, rate = 1.3, spread = false, bullet_speed = 400,
+			jump_chance = 0.7, chase = 1.6, land_shot = 0.5 },
 		villains = {}, bystanders = {},
 	},
 	{ -- 5
@@ -100,7 +104,8 @@ M.list = {
 		walls = {},
 		buttons = { { 1, 17 }, { 1, 25 }, { 2, 7 }, { 2, 14 }, { 2, 24 }, { 3, 2 }, { 3, 10 }, { 3, 25 } },
 		pads = { { 1, 15 }, { 1, 19 }, { 2, 12 }, { 2, 19 }, { 3, 7 }, { 3, 17 } },
-		boss = { stay = 2.0, burst = 3, gap = 0.28, rate = 1.0, spread = true, bullet_speed = 470 },
+		boss = { stay = 2.0, burst = 3, gap = 0.28, rate = 1.0, spread = true, bullet_speed = 470,
+			jump_chance = 0.85, chase = 0.9, land_shot = 0.25 },
 		villains = {}, bystanders = {},
 	},
 }

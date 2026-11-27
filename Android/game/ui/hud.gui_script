@@ -38,6 +38,8 @@ function init(self)
 	control(self, "up", 990, 225, 125, "ui_up", gui.ANCHOR_RIGHT)
 	control(self, "down", 990, 80, 125, "ui_down", gui.ANCHOR_RIGHT)
 	control(self, "jump", 1160, 125, 175, "ui_jump", gui.ANCHOR_RIGHT)
+	control(self, "kick", 840, 225, 125, "ui_kick", gui.ANCHOR_RIGHT)
+	control(self, "shield", 840, 80, 125, "ui_shield", gui.ANCHOR_RIGHT)
 	self.visible = false
 	U.set_enabled(self.nodes, false)
 	self.held = {}
@@ -49,6 +51,7 @@ local function set_held(self, held)
 	for key, c in pairs(self.controls) do
 		local on = held[key] and true or false
 		if key == "jump" and on and not ST.touch.jump then ST.jump_pressed = true end
+		if key == "kick" and on and not ST.touch.kick then ST.kick_pressed = true end
 		ST.touch[key] = on
 		gui.set_color(c.node, vmath.vector4(1, 1, 1, on and 0.45 or 0.22))
 	end
@@ -84,7 +87,7 @@ function on_message(self, message_id, message)
 end
 
 local KEYS = { [hash("left")] = "left", [hash("right")] = "right", [hash("up")] = "up", [hash("down")] = "down",
-	[hash("jump")] = "jump" }
+	[hash("jump")] = "jump", [hash("shield")] = "shield", [hash("kick")] = "kick" }
 
 function on_input(self, action_id, action)
 	if not self.visible then return false end
@@ -102,6 +105,7 @@ function on_input(self, action_id, action)
 		if action.pressed then
 			ST.keys[k] = true
 			if k == "jump" then ST.jump_pressed = true end
+			if k == "kick" then ST.kick_pressed = true end
 		elseif action.released then
 			ST.keys[k] = false
 		end

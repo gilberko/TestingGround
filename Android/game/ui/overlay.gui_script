@@ -31,6 +31,10 @@ local function build(self, m)
 		title, color = "MISSION FAILED", vmath.vector4(1, 0.4, 0.4, 1)
 		sub = m.name
 		opts = { { "TRY AGAIN", "restart" }, { "MAIN MENU", "quit" } }
+	elseif kind == "disqualified" then
+		title, color = "DISQUALIFIED!", vmath.vector4(1, 0.4, 0.4, 1)
+		sub = "You hurt an innocent person. Agents protect people!"
+		opts = { { "TRY AGAIN", "restart" }, { "MAIN MENU", "quit" } }
 	else -- victory
 		title, color = "MISSION ACCOMPLISHED!", U.GOLD
 		sub = "Netta saved the day. The Mastermind is no more!"
