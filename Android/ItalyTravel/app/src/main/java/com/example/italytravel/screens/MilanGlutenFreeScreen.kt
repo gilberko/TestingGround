@@ -26,6 +26,23 @@ fun MilanGlutenFreeScreen(onBack: () -> Unit) {
         GroupHeader("Dedicated Gluten Free")
 
         PlaceEntry(
+            "Mama Eat (Milan)",
+            SAFETY to "The same gluten-free chain as in Rome (see Rome -> Gluten Free): every recipe is available gluten free (and lactose free), and each restaurant has two separate kitchens to avoid contamination; recognized by the AIC. Celiac reviewers say you can order anything - still say you are celiac.",
+            FOOD to "Italian restaurant and pizzeria: pizza, pasta, fried starters, mains and desserts.",
+            ABOUT to "Two branches reported in Milan (below). Very busy - book ahead in the evening. " +
+                "Don't confuse it with 'Procaccini', a different fine-dining restaurant across the street at Via Procaccini 33.",
+            HOURS to "Daily about 11:00 to midnight (listing; check before going)."
+        )
+        LabeledText(
+            "Procaccini - Via Giulio Cesare Procaccini 32",
+            "Region in Milan: Sempione / Chinatown area, north-west of the center (near Paolo Sarpi). Getting there: tram 10, 12 or 14 to Via Procaccini; or Metro M5 Monumentale / M2 Garibaldi, about 10-15 min walk. The best-known Milan branch."
+        )
+        LabeledText(
+            "Missori - Via Zebedia 9",
+            "Region in Milan: Centro Storico, near Piazza Missori, about 10 min walk south of the Duomo. Getting there: Metro M3 Missori, about 3 min walk. A newer branch - listed by the Gluto app, not confirmed on the official site; check before going."
+        )
+
+        PlaceEntry(
             "GluFree Bakery",
             SAFETY to "Dedicated - everything is gluten free, made in an AIC-certified bakery; most products are also lactose free.",
             FOOD to "Bakery, pastry shop and rosticceria (savoury snacks): bread, croissants (plain, pistachio, custard-filled), fruit tarts, muffins, cakes, savoury pastries, plus gluten-free beers. Sunday brunch reported.",

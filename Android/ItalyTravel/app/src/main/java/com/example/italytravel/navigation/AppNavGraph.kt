@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.italytravel.screens.MainScreen
+import com.example.italytravel.screens.MilanAttractionDetailScreen
+import com.example.italytravel.screens.MilanAttractionsScreen
 import com.example.italytravel.screens.MilanCoffeeScreen
 import com.example.italytravel.screens.MilanGlutenFreeScreen
 import com.example.italytravel.screens.MilanScreen
@@ -58,6 +60,10 @@ sealed class Screen(val route: String) {
     data object Milan : Screen("milan")
     data object MilanCoffee : Screen("milan_coffee")
     data object MilanGlutenFree : Screen("milan_gluten_free")
+    data object MilanAttractions : Screen("milan_attractions")
+    data object MilanAttraction : Screen("milan_attraction/{id}") {
+        fun routeFor(id: String) = "milan_attraction/$id"
+    }
 }
 
 @Composable
@@ -84,8 +90,21 @@ fun AppNavGraph(navController: NavHostController) {
             MilanScreen(
                 onBack = back,
                 onOpenCoffee = go(Screen.MilanCoffee),
-                onOpenGlutenFree = go(Screen.MilanGlutenFree)
+                onOpenGlutenFree = go(Screen.MilanGlutenFree),
+                onOpenAttractions = go(Screen.MilanAttractions)
             )
+        }
+        composable(Screen.MilanAttractions.route) {
+            MilanAttractionsScreen(
+                onBack = back,
+                onOpen = { id -> navController.navigate(Screen.MilanAttraction.routeFor(id)) }
+            )
+        }
+        composable(
+            Screen.MilanAttraction.route,
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { entry ->
+            MilanAttractionDetailScreen(id = entry.arguments?.getString("id").orEmpty(), onBack = back)
         }
         composable(Screen.MilanCoffee.route) { MilanCoffeeScreen(onBack = back) }
         composable(Screen.MilanGlutenFree.route) { MilanGlutenFreeScreen(onBack = back) }

@@ -26,9 +26,9 @@ fun RomeAttractionDetailScreen(id: String, onBack: () -> Unit) {
 
 /** Generic information screen for one entry of a data list (attractions, day trips). */
 @Composable
-fun AttractionDetailScreen(list: List<Attraction>, id: String, onBack: () -> Unit) {
+fun AttractionDetailScreen(list: List<Attraction>, id: String, onBack: () -> Unit, city: String = "Rome") {
     val attraction = list.firstOrNull { it.id == id }
-    InfoScreen(title = "Rome - ${attraction?.title ?: "Attraction"}", onBack = onBack) {
+    InfoScreen(title = "$city - ${attraction?.title ?: "Attraction"}", onBack = onBack) {
         if (attraction == null) {
             BodyText("Not found.")
             return@InfoScreen

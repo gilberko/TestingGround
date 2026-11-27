@@ -6,14 +6,16 @@ import androidx.compose.runtime.Composable
 fun MilanScreen(
     onBack: () -> Unit,
     onOpenCoffee: () -> Unit,
-    onOpenGlutenFree: () -> Unit
+    onOpenGlutenFree: () -> Unit,
+    onOpenAttractions: () -> Unit
 ) {
     MenuScreen(
         title = "Milan",
         onBack = onBack,
         items = listOf(
             "Coffee" to onOpenCoffee,
-            "Gluten Free" to onOpenGlutenFree
+            "Gluten Free" to onOpenGlutenFree,
+            "Attractions" to onOpenAttractions
         )
     )
 }
