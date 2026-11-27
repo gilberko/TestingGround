@@ -7,6 +7,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.italytravel.screens.MainScreen
+import com.example.italytravel.screens.MilanCoffeeScreen
+import com.example.italytravel.screens.MilanGlutenFreeScreen
+import com.example.italytravel.screens.MilanScreen
 import com.example.italytravel.screens.RomeAttractionDetailScreen
 import com.example.italytravel.screens.RomeAttractionsScreen
 import com.example.italytravel.screens.RomeCoffeeScreen
@@ -52,6 +55,9 @@ sealed class Screen(val route: String) {
     }
     data object RomeGeneralInfo : Screen("rome_general_information")
     data object RomeTransport : Screen("rome_public_transportation")
+    data object Milan : Screen("milan")
+    data object MilanCoffee : Screen("milan_coffee")
+    data object MilanGlutenFree : Screen("milan_gluten_free")
 }
 
 @Composable
@@ -68,8 +74,21 @@ fun AppNavGraph(navController: NavHostController) {
             })
         }
         composable(Screen.Main.route) {
-            MainScreen(onOpenRome = go(Screen.Rome), onOpenRideApps = go(Screen.RideApps))
+            MainScreen(
+                onOpenRome = go(Screen.Rome),
+                onOpenMilan = go(Screen.Milan),
+                onOpenRideApps = go(Screen.RideApps)
+            )
         }
+        composable(Screen.Milan.route) {
+            MilanScreen(
+                onBack = back,
+                onOpenCoffee = go(Screen.MilanCoffee),
+                onOpenGlutenFree = go(Screen.MilanGlutenFree)
+            )
+        }
+        composable(Screen.MilanCoffee.route) { MilanCoffeeScreen(onBack = back) }
+        composable(Screen.MilanGlutenFree.route) { MilanGlutenFreeScreen(onBack = back) }
         composable(Screen.Rome.route) {
             RomeScreen(
                 onBack = back,

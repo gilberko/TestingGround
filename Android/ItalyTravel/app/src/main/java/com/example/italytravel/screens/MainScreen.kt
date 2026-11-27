@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun MainScreen(
     onOpenRome: () -> Unit,
+    onOpenMilan: () -> Unit,
     onOpenRideApps: () -> Unit
 ) {
     AppBackground {
@@ -21,6 +22,7 @@ fun MainScreen(
                 MenuButtons(
                     items = listOf(
                         "Rome" to onOpenRome,
+                        "Milan" to onOpenMilan,
                         "Public Transportation Apps" to onOpenRideApps
                     ),
                     header = {

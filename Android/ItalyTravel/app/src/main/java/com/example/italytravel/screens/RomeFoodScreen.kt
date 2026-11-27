@@ -57,6 +57,28 @@ fun RomeFoodScreen(onBack: () -> Unit) {
                 "La Cannoleria Siciliana has some gluten-free cannoli but is not dedicated - not safe for celiacs."
         )
 
+        GroupHeader("Desserts")
+        PlaceEntry(
+            "Tiramisù",
+            WHAT to "Layers of savoiardi (ladyfinger biscuits) dipped in espresso, with a cream of mascarpone, egg and sugar, dusted with bitter cocoa. " +
+                "The name means 'pick me up'. It comes from north-east Italy (Veneto / Friuli - Treviso claims it, but the origin is disputed) and is now on almost every menu in Rome. " +
+                "It contains coffee and often a little liqueur - ask if it is for children.",
+            WHERE to "Pompi, Rome's famous 'kingdom of tiramisù', sold in single boxes in several flavours (classic, strawberry, pistachio and more): " +
+                "Via Albalonga 7 (San Giovanni, the historic shop), Via della Croce 82 (by the Spanish Steps), Via di Santa Maria in Via (near the Trevi Fountain), Via Cola di Rienzo (Prati) and Ponte Milvio. " +
+                "Also on most trattoria dessert menus, and at MYO gelateria (Campo de' Fiori).",
+            GF to "Pompi sells gluten-free (and lactose-free) tiramisù, about 5.50-6 euros; one reviewer was given the wrong variant, so tell the staff you are celiac and check the label. " +
+                "MYO (reported all gluten free) and the dedicated bakeries (New Food, La Pasticciera) - see Gluten Free."
+        )
+        PlaceEntry(
+            "Zabaglione (zabaione)",
+            WHAT to "A light, foamy cream of egg yolks and sugar whipped over hot water (bain-marie) with a sweet wine, usually Marsala. " +
+                "Eaten warm in a glass with biscuits, poured cold over fruit or berries, or as a gelato flavour (gelato allo zabaione). " +
+                "Zabaglione al caffè also exists: espresso (or moka coffee) replaces the Marsala, so it is alcohol free - mostly a home-made variant, sometimes on restaurant dessert menus; ask for it.",
+            WHERE to "Fiocco di Neve gelateria near the Pantheon (Via del Pantheon 51) is famous for its zabaione gelato, often topped with whipped cream (panna). " +
+                "Warm zabaglione appears on some trattoria dessert menus, especially in winter.",
+            GF to "The cream itself is naturally gluten free (eggs, sugar, wine) - but the biscuits served with it are not. Fiocco di Neve is 100% gluten free, cones included."
+        )
+
         GroupHeader("Pasta")
         BodyText(
             "Rome's famous pastas are simple: a few ingredients - guanciale (cured pork cheek), pecorino romano, black pepper, egg, tomato. Typical shapes are tonnarelli, rigatoni, spaghetti and bucatini. " +
