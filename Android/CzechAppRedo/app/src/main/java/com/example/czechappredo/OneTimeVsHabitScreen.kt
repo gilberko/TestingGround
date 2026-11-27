@@ -190,7 +190,8 @@ fun OneTimeVsHabitScreen(navController: NavController) {
             OTHRow("chodit s někým", "to date someone",
                 example = "Chodí spolu dva roky.", translation = "They've been dating for two years.")
             OTHRow("negative imperative", "\"don't go\" uses chodit",
-                example = "Jdi domů! · Nechoď tam!", translation = "Go home! · Don't go there!")
+                example = "Jdi domů! · Nechoď tam! · Pojď sem! · Nechoď sem!", translation = "Go home! · Don't go there! · Come here! · Don't come here!")
+            OTHNote("\"Nejdi\" and \"nepojď\" aren't used — the negative of jdi and of pojď is nechoď / nechoďte. Same with jet: jeď! → nejezdi! / nejezděte!")
 
             OTHSection("The Same Pattern With jet / jezdit / jezdívat")
             OTHRow("jet", "one trip — future pojedu",
@@ -228,11 +229,11 @@ fun OneTimeVsHabitScreen(navController: NavController) {
                 example = "Ukazuje nám cestu.", translation = "He's showing us the way.")
             OTHNote("⚠ dávat is NOT \"used to give\" — it's simply the imperfective of dát. Its iterative is the rare dávávat.")
             OTHSub("3. -ovat as a plain verb class — no aspect meaning at all")
-            OTHNote("pracovat (work), studovat (study), milovat (love), potřebovat (need), telefonovat (phone), fotografovat (photograph). These are just verbs that happen to end in -ovat (conjugated -uju / -uje). They are not habitual and not derived from anything.")
+            OTHNote("pracovat (work), studovat (study), milovat (love), potřebovat (need), telefonovat (phone), fotografovat (photograph). These are just verbs that happen to end in -ovat (conjugated -uju / -uje). They are not habitual and not made from another verb.")
             OTHSub("How to Tell Them Apart")
             OTHNote("• Unprefixed imperfective base + -ávat / -ívat with a long vowel (dělat → dělávat) → iterative = habit / used to.")
             OTHNote("• A perfective (usually prefixed) base + -ávat / -ívat / -ovat (prodat → prodávat, přepsat → přepisovat) → ordinary imperfective.")
-            OTHNote("• Not derived from anything (pracovat, studovat) → just a verb class.")
+            OTHNote("• Not made from another verb (pracovat from práce, studovat a loanword) → just a verb class.")
 
             // 9. Perfective vs imperfective
             OTHSection("Is This Perfective vs Imperfective?")
@@ -246,7 +247,7 @@ fun OneTimeVsHabitScreen(navController: NavController) {
             OTHRow("jít → vyjít (pf) → vycházet (impf)", "to go out / rise",
                 example = "Vyšli jsme ven. · Slunce vychází v šest.", translation = "We went outside. · The sun rises at six.")
             OTHNote("Prefixed forms of jít are perfective and get their imperfective partner from -cházet (related to chodit). The future of plain jít is půjdu.")
-            OTHNote("⚠ pojď / pojďte = \"come (on)!\" (imperative), but the infinitive pojít means \"to die\" — of animals (Pes pošel. = The dog died).")
+            OTHNote("⚠ pojď / pojďte = \"come (on)!\" (imperative), but the infinitive pojít means \"to die\" — of animals, a synonym of uhynout (Pes pošel. = The dog died).")
             OTHNote("You can't make an iterative straight from a perfective: there is no \"habit\" form of udělat. You go through the imperfective: udělat → dělat → dělávat. See also Prefixes and Perfective Verbs.")
 
             // 10. Q&A
