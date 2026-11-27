@@ -136,6 +136,7 @@ class MainActivity : ComponentActivity() {
                 composable("prefixes_perfective") { PrefixesAndPerfectiveScreen(navController) }
                 composable("passive_voice") { PassiveVoiceScreen(navController) }
                 composable("one_time_vs_habit") { OneTimeVsHabitScreen(navController) }
+                composable("verb_word_families") { VerbWordFamiliesScreen(navController) }
                 composable("traveling") { TravelingScreen(navController) }
                 composable("super_powers_magic") { SuperPowersAndMagicScreen(navController) }
                 composable("government_army") { GovernmentAndArmyScreen(navController) }
@@ -285,6 +286,7 @@ fun LearningHubScreen(navController: NavController) {
             "Cases" to "cases",
             "Noun Conjugation By Endings" to "noun_conjugation_by_endings",
             "Verbs and Tenses" to "verbs_tenses",
+            "Verbs and Related Nouns, Adjectives, Adverbs" to "verb_word_families",
             "Prepositions" to "prepositions",
             "Questions and Answers" to "questions",
             "Adjectives" to "adjectives",
