@@ -1,0 +1,105 @@
+-- Character designer: pick Netta's look. Used from the main menu and from the pause menu.
+local A = require "modules.appearance"
+local ST = require "modules.state"
+local U = require "modules.ui"
+
+local GAME = "/game#game"
+local LAYER_IDS = { "skin", "suit", "det", "hair", "acc" }
+
+local function refresh(self)
+	local layers = A.layers()
+	for i, l in ipairs(layers) do
+		local n = self.preview[i]
+		if l.prefix then
+			gui.set_enabled(n, true)
+			local anim = l.prefix .. "_" .. self.pose
+			gui.play_flipbook(n, anim)
+			gui.set_color(n, l.tint)
+		else
+			gui.set_enabled(n, false)
+		end
+	end
+	for _, r in ipairs(self.rows) do
+		gui.set_text(r.value, A.value_name(r.key))
+	end
+end
+
+function init(self)
+	self.nodes, self.rows, self.buttons = {}, {}, {}
+	self.preview = {}
+	self.pose = "walk"
+	U.backdrop(self.nodes, vmath.vector4(0.05, 0.06, 0.11, 0.94))
+	U.text(self.nodes, 640, 665, "DESIGN YOUR AGENT", 0.9, U.GOLD)
+	-- preview stage
+	U.box(self.nodes, 300, 360, 330, 420, vmath.vector4(0.12, 0.14, 0.24, 1))
+	U.box(self.nodes, 300, 190, 260, 26, vmath.vector4(0.25, 0.27, 0.4, 1))
+	for i = 1, #LAYER_IDS do
+		self.preview[i] = U.box(self.nodes, 300, 349, 48 * 4, 72 * 4, U.WHITE, "skin_f_stand")
+	end
+	self.name = U.text(self.nodes, 300, 545, "AGENT NETTA", 0.6)
+	-- pose buttons under the preview
+	local poses = { { "WALK", "walk" }, { "STAND", "stand" }, { "DUCK", "duck" }, { "CLIMB", "climb" } }
+	for i, p in ipairs(poses) do
+		local b = U.button(self.nodes, 300 + (i - 2.5) * 82, 120, 76, 44, p[1], U.BTN2, 0.3)
+		b.pose = p[2]
+		self.buttons[#self.buttons + 1] = b
+	end
+	-- category rows
+	local y = 560
+	for _, c in ipairs(A.cats) do
+		U.text(self.nodes, 680, y, c.label, 0.45, vmath.vector4(0.75, 0.8, 1, 1))
+		local l = U.button(self.nodes, 830, y, 70, 58, "<", U.BTN, 0.7)
+		l.key, l.dir = c.key, -1
+		local r = U.button(self.nodes, 1170, y, 70, 58, ">", U.BTN, 0.7)
+		r.key, r.dir = c.key, 1
+		local v = U.text(self.nodes, 1000, y, "", 0.5)
+		self.rows[#self.rows + 1] = { key = c.key, value = v }
+		self.buttons[#self.buttons + 1] = l
+		self.buttons[#self.buttons + 1] = r
+		y = y - 75
+	end
+	self.done = U.button(self.nodes, 1000, 90, 360, 76, "DONE", vmath.vector4(0.2, 0.65, 0.35, 1), 0.65)
+	self.visible = false
+	U.set_enabled(self.nodes, false)
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("show") then
+		self.visible = true
+		self.opened = ST.frame
+		U.set_enabled(self.nodes, true)
+		gui.set_text(self.done.label, message.after == "start" and "START MISSION" or "DONE")
+		refresh(self)
+	elseif message_id == hash("hide") then
+		self.visible = false
+		U.set_enabled(self.nodes, false)
+	end
+end
+
+function on_input(self, action_id, action)
+	if not self.visible then return false end
+	if (action_id == hash("back") or action_id == hash("pause")) and action.pressed then
+		msg.post(GAME, "designer_done")
+		return true
+	end
+	local x, y = U.tap(action_id, action)
+	if not x or self.opened == ST.frame then return false end
+	if U.hit(self.done, x, y) then
+		U.flash(self.done)
+		msg.post(GAME, "designer_done")
+		return true
+	end
+	for _, b in ipairs(self.buttons) do
+		if U.hit(b, x, y) then
+			U.flash(b)
+			if b.key then
+				A.cycle(b.key, b.dir)
+			else
+				self.pose = b.pose
+			end
+			refresh(self)
+			return true
+		end
+	end
+	return false
+end

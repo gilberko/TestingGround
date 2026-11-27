@@ -1,0 +1,91 @@
+-- Pause menu and result panels (level complete, boss defeated, mission failed, victory).
+local ST = require "modules.state"
+local U = require "modules.ui"
+
+local GAME = "/game#game"
+
+function init(self)
+	self.nodes = {}
+	self.buttons = {}
+	self.visible = false
+end
+
+local function build(self, m)
+	U.clear(self.nodes)
+	self.buttons = {}
+	local kind = m.kind
+	local title, sub, color
+	local opts
+	if kind == "pause" then
+		title, color = "PAUSED", U.WHITE
+		opts = { { "RESUME", "resume" }, { "CHANGE LOOK", "change_look" }, { "RESTART LEVEL", "restart" }, { "MAIN MENU", "quit" } }
+	elseif kind == "complete" then
+		title, color = "LEVEL COMPLETE!", U.GOLD
+		sub = "Next: " .. (m.next_name or "")
+		opts = { { "NEXT LEVEL", "next" }, { "MAIN MENU", "quit" } }
+	elseif kind == "boss" then
+		title, color = "BOSS DEFEATED!", U.GOLD
+		sub = "Next: " .. (m.next_name or "")
+		opts = { { "NEXT LEVEL", "next" }, { "MAIN MENU", "quit" } }
+	elseif kind == "failed" then
+		title, color = "MISSION FAILED", vmath.vector4(1, 0.4, 0.4, 1)
+		sub = m.name
+		opts = { { "TRY AGAIN", "restart" }, { "MAIN MENU", "quit" } }
+	else -- victory
+		title, color = "MISSION ACCOMPLISHED!", U.GOLD
+		sub = "Netta saved the day. The Mastermind is no more!"
+		opts = { { "MAIN MENU", "quit" } }
+	end
+	U.backdrop(self.nodes, vmath.vector4(0, 0, 0, 0.55))
+	local h = 200 + #opts * 90
+	U.box(self.nodes, 640, 360, 700, h + 6, vmath.vector4(0, 0, 0, 0.7))
+	U.box(self.nodes, 640, 360, 694, h, U.PANEL)
+	local top = 360 + h / 2
+	U.text(self.nodes, 640, top - 60, title, 0.95, color)
+	if sub then U.text(self.nodes, 640, top - 115, sub, 0.42) end
+	local y = top - 190
+	for i, o in ipairs(opts) do
+		local b = U.button(self.nodes, 640, y, 420, 70, o[1], i == 1 and U.BTN or U.BTN2, 0.6)
+		b.msg = o[2]
+		self.buttons[#self.buttons + 1] = b
+		y = y - 90
+	end
+	if kind ~= "pause" then
+		-- little entrance animation
+		for _, n in ipairs(self.nodes) do
+			local p = gui.get_position(n)
+			gui.set_position(n, vmath.vector3(p.x, p.y + 40, 0))
+			gui.animate(n, "position.y", p.y, gui.EASING_OUTBACK, 0.35)
+		end
+	end
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("show") then
+		build(self, message)
+		self.visible = true
+		self.opened = ST.frame
+	elseif message_id == hash("hide") then
+		U.clear(self.nodes)
+		self.buttons = {}
+		self.visible = false
+	end
+end
+
+function on_input(self, action_id, action)
+	if not self.visible then return false end
+	if (action_id == hash("pause") or action_id == hash("back")) and action.pressed and ST.mode == "paused" then
+		msg.post(GAME, "resume")
+		return true
+	end
+	local x, y = U.tap(action_id, action)
+	if not x or self.opened == ST.frame then return false end
+	for _, b in ipairs(self.buttons) do
+		if U.hit(b, x, y) then
+			U.flash(b)
+			msg.post(GAME, b.msg)
+			return true
+		end
+	end
+	return false
+end

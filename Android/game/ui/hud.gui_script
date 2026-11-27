@@ -1,0 +1,144 @@
+-- HUD: hearts, level name, boss counter, pause button and the on-screen touch controls.
+-- Also reads the keyboard (desktop testing) and writes everything into modules/state.lua.
+local ST = require "modules.state"
+local U = require "modules.ui"
+
+local GAME = "/game#game"
+
+local function control(self, key, x, y, size, icon, xanchor)
+	local c = U.box(self.nodes, x, y, size, size, vmath.vector4(1, 1, 1, 0.22), "ui_circle")
+	local i = U.box(self.nodes, x, y, size * 0.5, size * 0.5, vmath.vector4(1, 1, 1, 0.85), icon)
+	for _, n in ipairs({ c, i }) do
+		gui.set_xanchor(n, xanchor)
+		gui.set_yanchor(n, gui.ANCHOR_BOTTOM)
+	end
+	self.controls[key] = { node = c, icon = i }
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.nodes, self.controls, self.hearts = {}, {}, {}
+	for i = 1, 3 do
+		local h = U.box(self.nodes, 40 + (i - 1) * 46, 680, 30, 27, U.WHITE, "heart")
+		gui.set_scale(h, vmath.vector3(1.3, 1.3, 1))
+		gui.set_xanchor(h, gui.ANCHOR_LEFT); gui.set_yanchor(h, gui.ANCHOR_TOP)
+		self.hearts[i] = h
+	end
+	self.title = U.text(self.nodes, 640, 692, "", 0.42)
+	gui.set_yanchor(self.title, gui.ANCHOR_TOP)
+	self.boss = U.text(self.nodes, 640, 650, "", 0.5, U.GOLD)
+	gui.set_yanchor(self.boss, gui.ANCHOR_TOP)
+	local pb = U.box(self.nodes, 1225, 668, 72, 72, vmath.vector4(1, 1, 1, 0.25), "ui_circle")
+	local pi = U.box(self.nodes, 1225, 668, 40, 40, U.WHITE, "ui_pause")
+	for _, n in ipairs({ pb, pi }) do gui.set_xanchor(n, gui.ANCHOR_RIGHT); gui.set_yanchor(n, gui.ANCHOR_TOP) end
+	self.pause_btn = { node = pb }
+
+	control(self, "left", 105, 105, 150, "ui_left", gui.ANCHOR_LEFT)
+	control(self, "right", 275, 105, 150, "ui_right", gui.ANCHOR_LEFT)
+	control(self, "up", 990, 225, 125, "ui_up", gui.ANCHOR_RIGHT)
+	control(self, "down", 990, 80, 125, "ui_down", gui.ANCHOR_RIGHT)
+	control(self, "jump", 1160, 125, 175, "ui_jump", gui.ANCHOR_RIGHT)
+	self.visible = false
+	U.set_enabled(self.nodes, false)
+	self.held = {}
+	self.has_touch = false
+	self.mouse_down = false
+end
+
+local function set_held(self, held)
+	for key, c in pairs(self.controls) do
+		local on = held[key] and true or false
+		if key == "jump" and on and not ST.touch.jump then ST.jump_pressed = true end
+		ST.touch[key] = on
+		gui.set_color(c.node, vmath.vector4(1, 1, 1, on and 0.45 or 0.22))
+	end
+end
+
+local function held_at(self, held, x, y)
+	for key, c in pairs(self.controls) do
+		if gui.pick_node(c.node, x, y) then held[key] = true end
+	end
+end
+
+function update(self, dt)
+	if not self.visible then return end
+	for i = 1, 3 do gui.play_flipbook(self.hearts[i], i <= ST.hearts and "heart" or "heart_empty") end
+	gui.set_text(self.title, ST.level_name)
+	if ST.boss then
+		gui.set_text(self.boss, ("BUTTONS  %d / %d"):format(ST.presses, ST.presses_needed))
+	else
+		gui.set_text(self.boss, "")
+	end
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("show") then
+		self.visible = true
+		U.set_enabled(self.nodes, true)
+		set_held(self, {})
+	elseif message_id == hash("hide") then
+		self.visible = false
+		U.set_enabled(self.nodes, false)
+		set_held(self, {})
+	end
+end
+
+local KEYS = { [hash("left")] = "left", [hash("right")] = "right", [hash("up")] = "up", [hash("down")] = "down",
+	[hash("jump")] = "jump" }
+
+function on_input(self, action_id, action)
+	if not self.visible then return false end
+	local playing = ST.mode == "playing"
+	-- keyboard / Android back
+	if action_id == hash("pause") or action_id == hash("back") then
+		if action.pressed then
+			if playing then msg.post(GAME, "pause") elseif ST.mode == "paused" then msg.post(GAME, "resume") end
+		end
+		return true
+	end
+	local k = action_id and KEYS[action_id]
+	if k then
+		if not playing then ST.keys[k] = false; return false end
+		if action.pressed then
+			ST.keys[k] = true
+			if k == "jump" then ST.jump_pressed = true end
+		elseif action.released then
+			ST.keys[k] = false
+		end
+		return true
+	end
+	if not playing then return false end
+	-- touch controls (multi-touch on devices)
+	if action_id == hash("multitouch") and action.touch then
+		self.has_touch = true
+		local held = {}
+		for _, t in ipairs(action.touch) do
+			if t.pressed and gui.pick_node(self.pause_btn.node, t.x, t.y) then
+				msg.post(GAME, "pause")
+				set_held(self, {})
+				return true
+			end
+			if not t.released then held_at(self, held, t.x, t.y) end
+		end
+		set_held(self, held)
+		return true
+	end
+	-- mouse (desktop): only when no touch screen has been seen
+	if not self.has_touch and (action_id == hash("click") or action_id == nil) then
+		if action_id == hash("click") then
+			if action.pressed then
+				if gui.pick_node(self.pause_btn.node, action.x, action.y) then
+					msg.post(GAME, "pause")
+					return true
+				end
+				self.mouse_down = true
+			elseif action.released then
+				self.mouse_down = false
+			end
+		end
+		local held = {}
+		if self.mouse_down then held_at(self, held, action.x, action.y) end
+		set_held(self, held)
+	end
+	return false
+end

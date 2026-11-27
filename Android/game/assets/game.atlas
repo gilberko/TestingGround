@@ -1,0 +1,854 @@
+images {
+  image: "/assets/images/skin_m_stand.png"
+}
+images {
+  image: "/assets/images/skin_m_walk1.png"
+}
+images {
+  image: "/assets/images/skin_m_walk2.png"
+}
+images {
+  image: "/assets/images/skin_m_jump.png"
+}
+images {
+  image: "/assets/images/skin_m_climb1.png"
+}
+images {
+  image: "/assets/images/skin_m_climb2.png"
+}
+images {
+  image: "/assets/images/skin_m_duck.png"
+}
+images {
+  image: "/assets/images/suit_m_stand.png"
+}
+images {
+  image: "/assets/images/suit_m_walk1.png"
+}
+images {
+  image: "/assets/images/suit_m_walk2.png"
+}
+images {
+  image: "/assets/images/suit_m_jump.png"
+}
+images {
+  image: "/assets/images/suit_m_climb1.png"
+}
+images {
+  image: "/assets/images/suit_m_climb2.png"
+}
+images {
+  image: "/assets/images/suit_m_duck.png"
+}
+images {
+  image: "/assets/images/det_m_stand.png"
+}
+images {
+  image: "/assets/images/det_m_walk1.png"
+}
+images {
+  image: "/assets/images/det_m_walk2.png"
+}
+images {
+  image: "/assets/images/det_m_jump.png"
+}
+images {
+  image: "/assets/images/det_m_climb1.png"
+}
+images {
+  image: "/assets/images/det_m_climb2.png"
+}
+images {
+  image: "/assets/images/det_m_duck.png"
+}
+images {
+  image: "/assets/images/skin_f_stand.png"
+}
+images {
+  image: "/assets/images/skin_f_walk1.png"
+}
+images {
+  image: "/assets/images/skin_f_walk2.png"
+}
+images {
+  image: "/assets/images/skin_f_jump.png"
+}
+images {
+  image: "/assets/images/skin_f_climb1.png"
+}
+images {
+  image: "/assets/images/skin_f_climb2.png"
+}
+images {
+  image: "/assets/images/skin_f_duck.png"
+}
+images {
+  image: "/assets/images/suit_f_stand.png"
+}
+images {
+  image: "/assets/images/suit_f_walk1.png"
+}
+images {
+  image: "/assets/images/suit_f_walk2.png"
+}
+images {
+  image: "/assets/images/suit_f_jump.png"
+}
+images {
+  image: "/assets/images/suit_f_climb1.png"
+}
+images {
+  image: "/assets/images/suit_f_climb2.png"
+}
+images {
+  image: "/assets/images/suit_f_duck.png"
+}
+images {
+  image: "/assets/images/det_f_stand.png"
+}
+images {
+  image: "/assets/images/det_f_walk1.png"
+}
+images {
+  image: "/assets/images/det_f_walk2.png"
+}
+images {
+  image: "/assets/images/det_f_jump.png"
+}
+images {
+  image: "/assets/images/det_f_climb1.png"
+}
+images {
+  image: "/assets/images/det_f_climb2.png"
+}
+images {
+  image: "/assets/images/det_f_duck.png"
+}
+images {
+  image: "/assets/images/hair_short_stand.png"
+}
+images {
+  image: "/assets/images/hair_short_walk1.png"
+}
+images {
+  image: "/assets/images/hair_short_walk2.png"
+}
+images {
+  image: "/assets/images/hair_short_jump.png"
+}
+images {
+  image: "/assets/images/hair_short_climb1.png"
+}
+images {
+  image: "/assets/images/hair_short_climb2.png"
+}
+images {
+  image: "/assets/images/hair_short_duck.png"
+}
+images {
+  image: "/assets/images/hair_long_stand.png"
+}
+images {
+  image: "/assets/images/hair_long_walk1.png"
+}
+images {
+  image: "/assets/images/hair_long_walk2.png"
+}
+images {
+  image: "/assets/images/hair_long_jump.png"
+}
+images {
+  image: "/assets/images/hair_long_climb1.png"
+}
+images {
+  image: "/assets/images/hair_long_climb2.png"
+}
+images {
+  image: "/assets/images/hair_long_duck.png"
+}
+images {
+  image: "/assets/images/hair_pony_stand.png"
+}
+images {
+  image: "/assets/images/hair_pony_walk1.png"
+}
+images {
+  image: "/assets/images/hair_pony_walk2.png"
+}
+images {
+  image: "/assets/images/hair_pony_jump.png"
+}
+images {
+  image: "/assets/images/hair_pony_climb1.png"
+}
+images {
+  image: "/assets/images/hair_pony_climb2.png"
+}
+images {
+  image: "/assets/images/hair_pony_duck.png"
+}
+images {
+  image: "/assets/images/hair_spiky_stand.png"
+}
+images {
+  image: "/assets/images/hair_spiky_walk1.png"
+}
+images {
+  image: "/assets/images/hair_spiky_walk2.png"
+}
+images {
+  image: "/assets/images/hair_spiky_jump.png"
+}
+images {
+  image: "/assets/images/hair_spiky_climb1.png"
+}
+images {
+  image: "/assets/images/hair_spiky_climb2.png"
+}
+images {
+  image: "/assets/images/hair_spiky_duck.png"
+}
+images {
+  image: "/assets/images/hair_buzz_stand.png"
+}
+images {
+  image: "/assets/images/hair_buzz_walk1.png"
+}
+images {
+  image: "/assets/images/hair_buzz_walk2.png"
+}
+images {
+  image: "/assets/images/hair_buzz_jump.png"
+}
+images {
+  image: "/assets/images/hair_buzz_climb1.png"
+}
+images {
+  image: "/assets/images/hair_buzz_climb2.png"
+}
+images {
+  image: "/assets/images/hair_buzz_duck.png"
+}
+images {
+  image: "/assets/images/acc_shades_stand.png"
+}
+images {
+  image: "/assets/images/acc_shades_walk1.png"
+}
+images {
+  image: "/assets/images/acc_shades_walk2.png"
+}
+images {
+  image: "/assets/images/acc_shades_jump.png"
+}
+images {
+  image: "/assets/images/acc_shades_climb1.png"
+}
+images {
+  image: "/assets/images/acc_shades_climb2.png"
+}
+images {
+  image: "/assets/images/acc_shades_duck.png"
+}
+images {
+  image: "/assets/images/acc_ear_stand.png"
+}
+images {
+  image: "/assets/images/acc_ear_walk1.png"
+}
+images {
+  image: "/assets/images/acc_ear_walk2.png"
+}
+images {
+  image: "/assets/images/acc_ear_jump.png"
+}
+images {
+  image: "/assets/images/acc_ear_climb1.png"
+}
+images {
+  image: "/assets/images/acc_ear_climb2.png"
+}
+images {
+  image: "/assets/images/acc_ear_duck.png"
+}
+images {
+  image: "/assets/images/acc_beret_stand.png"
+}
+images {
+  image: "/assets/images/acc_beret_walk1.png"
+}
+images {
+  image: "/assets/images/acc_beret_walk2.png"
+}
+images {
+  image: "/assets/images/acc_beret_jump.png"
+}
+images {
+  image: "/assets/images/acc_beret_climb1.png"
+}
+images {
+  image: "/assets/images/acc_beret_climb2.png"
+}
+images {
+  image: "/assets/images/acc_beret_duck.png"
+}
+images {
+  image: "/assets/images/villain_stand.png"
+}
+images {
+  image: "/assets/images/villain_walk1.png"
+}
+images {
+  image: "/assets/images/villain_walk2.png"
+}
+images {
+  image: "/assets/images/villain_shoot.png"
+}
+images {
+  image: "/assets/images/by1_stand.png"
+}
+images {
+  image: "/assets/images/by1_walk1.png"
+}
+images {
+  image: "/assets/images/by1_walk2.png"
+}
+images {
+  image: "/assets/images/by1_shoot.png"
+}
+images {
+  image: "/assets/images/by2_stand.png"
+}
+images {
+  image: "/assets/images/by2_walk1.png"
+}
+images {
+  image: "/assets/images/by2_walk2.png"
+}
+images {
+  image: "/assets/images/by2_shoot.png"
+}
+images {
+  image: "/assets/images/by3_stand.png"
+}
+images {
+  image: "/assets/images/by3_walk1.png"
+}
+images {
+  image: "/assets/images/by3_walk2.png"
+}
+images {
+  image: "/assets/images/by3_shoot.png"
+}
+images {
+  image: "/assets/images/by4_stand.png"
+}
+images {
+  image: "/assets/images/by4_walk1.png"
+}
+images {
+  image: "/assets/images/by4_walk2.png"
+}
+images {
+  image: "/assets/images/by4_shoot.png"
+}
+images {
+  image: "/assets/images/by5_stand.png"
+}
+images {
+  image: "/assets/images/by5_walk1.png"
+}
+images {
+  image: "/assets/images/by5_walk2.png"
+}
+images {
+  image: "/assets/images/by5_shoot.png"
+}
+images {
+  image: "/assets/images/boss_stand.png"
+}
+images {
+  image: "/assets/images/boss_shoot.png"
+}
+images {
+  image: "/assets/images/floor.png"
+}
+images {
+  image: "/assets/images/roof.png"
+}
+images {
+  image: "/assets/images/wall.png"
+}
+images {
+  image: "/assets/images/crate.png"
+}
+images {
+  image: "/assets/images/bg.png"
+}
+images {
+  image: "/assets/images/bg_window.png"
+}
+images {
+  image: "/assets/images/bg_picture.png"
+}
+images {
+  image: "/assets/images/bg_logo.png"
+}
+images {
+  image: "/assets/images/ladder.png"
+}
+images {
+  image: "/assets/images/desk.png"
+}
+images {
+  image: "/assets/images/door.png"
+}
+images {
+  image: "/assets/images/button_off.png"
+}
+images {
+  image: "/assets/images/button_on.png"
+}
+images {
+  image: "/assets/images/button_done.png"
+}
+images {
+  image: "/assets/images/pad.png"
+}
+images {
+  image: "/assets/images/plant.png"
+}
+images {
+  image: "/assets/images/cooler.png"
+}
+images {
+  image: "/assets/images/bullet.png"
+}
+images {
+  image: "/assets/images/flash.png"
+}
+images {
+  image: "/assets/images/exclaim.png"
+}
+images {
+  image: "/assets/images/heart.png"
+}
+images {
+  image: "/assets/images/heart_empty.png"
+}
+images {
+  image: "/assets/images/debris1.png"
+}
+images {
+  image: "/assets/images/debris2.png"
+}
+images {
+  image: "/assets/images/debris3.png"
+}
+images {
+  image: "/assets/images/debris4.png"
+}
+images {
+  image: "/assets/images/blast.png"
+}
+images {
+  image: "/assets/images/ui_circle.png"
+}
+images {
+  image: "/assets/images/ui_left.png"
+}
+images {
+  image: "/assets/images/ui_right.png"
+}
+images {
+  image: "/assets/images/ui_up.png"
+}
+images {
+  image: "/assets/images/ui_down.png"
+}
+images {
+  image: "/assets/images/ui_jump.png"
+}
+images {
+  image: "/assets/images/ui_pause.png"
+}
+images {
+  image: "/assets/images/ui_white.png"
+}
+animations {
+  id: "skin_m_walk"
+  images {
+    image: "/assets/images/skin_m_walk1.png"
+  }
+  images {
+    image: "/assets/images/skin_m_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "skin_m_climb"
+  images {
+    image: "/assets/images/skin_m_climb1.png"
+  }
+  images {
+    image: "/assets/images/skin_m_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "suit_m_walk"
+  images {
+    image: "/assets/images/suit_m_walk1.png"
+  }
+  images {
+    image: "/assets/images/suit_m_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "suit_m_climb"
+  images {
+    image: "/assets/images/suit_m_climb1.png"
+  }
+  images {
+    image: "/assets/images/suit_m_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "det_m_walk"
+  images {
+    image: "/assets/images/det_m_walk1.png"
+  }
+  images {
+    image: "/assets/images/det_m_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "det_m_climb"
+  images {
+    image: "/assets/images/det_m_climb1.png"
+  }
+  images {
+    image: "/assets/images/det_m_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "skin_f_walk"
+  images {
+    image: "/assets/images/skin_f_walk1.png"
+  }
+  images {
+    image: "/assets/images/skin_f_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "skin_f_climb"
+  images {
+    image: "/assets/images/skin_f_climb1.png"
+  }
+  images {
+    image: "/assets/images/skin_f_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "suit_f_walk"
+  images {
+    image: "/assets/images/suit_f_walk1.png"
+  }
+  images {
+    image: "/assets/images/suit_f_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "suit_f_climb"
+  images {
+    image: "/assets/images/suit_f_climb1.png"
+  }
+  images {
+    image: "/assets/images/suit_f_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "det_f_walk"
+  images {
+    image: "/assets/images/det_f_walk1.png"
+  }
+  images {
+    image: "/assets/images/det_f_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "det_f_climb"
+  images {
+    image: "/assets/images/det_f_climb1.png"
+  }
+  images {
+    image: "/assets/images/det_f_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "hair_short_walk"
+  images {
+    image: "/assets/images/hair_short_walk1.png"
+  }
+  images {
+    image: "/assets/images/hair_short_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "hair_short_climb"
+  images {
+    image: "/assets/images/hair_short_climb1.png"
+  }
+  images {
+    image: "/assets/images/hair_short_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "hair_long_walk"
+  images {
+    image: "/assets/images/hair_long_walk1.png"
+  }
+  images {
+    image: "/assets/images/hair_long_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "hair_long_climb"
+  images {
+    image: "/assets/images/hair_long_climb1.png"
+  }
+  images {
+    image: "/assets/images/hair_long_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "hair_pony_walk"
+  images {
+    image: "/assets/images/hair_pony_walk1.png"
+  }
+  images {
+    image: "/assets/images/hair_pony_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "hair_pony_climb"
+  images {
+    image: "/assets/images/hair_pony_climb1.png"
+  }
+  images {
+    image: "/assets/images/hair_pony_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "hair_spiky_walk"
+  images {
+    image: "/assets/images/hair_spiky_walk1.png"
+  }
+  images {
+    image: "/assets/images/hair_spiky_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "hair_spiky_climb"
+  images {
+    image: "/assets/images/hair_spiky_climb1.png"
+  }
+  images {
+    image: "/assets/images/hair_spiky_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "hair_buzz_walk"
+  images {
+    image: "/assets/images/hair_buzz_walk1.png"
+  }
+  images {
+    image: "/assets/images/hair_buzz_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "hair_buzz_climb"
+  images {
+    image: "/assets/images/hair_buzz_climb1.png"
+  }
+  images {
+    image: "/assets/images/hair_buzz_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "acc_shades_walk"
+  images {
+    image: "/assets/images/acc_shades_walk1.png"
+  }
+  images {
+    image: "/assets/images/acc_shades_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "acc_shades_climb"
+  images {
+    image: "/assets/images/acc_shades_climb1.png"
+  }
+  images {
+    image: "/assets/images/acc_shades_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "acc_ear_walk"
+  images {
+    image: "/assets/images/acc_ear_walk1.png"
+  }
+  images {
+    image: "/assets/images/acc_ear_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "acc_ear_climb"
+  images {
+    image: "/assets/images/acc_ear_climb1.png"
+  }
+  images {
+    image: "/assets/images/acc_ear_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "acc_beret_walk"
+  images {
+    image: "/assets/images/acc_beret_walk1.png"
+  }
+  images {
+    image: "/assets/images/acc_beret_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+}
+animations {
+  id: "acc_beret_climb"
+  images {
+    image: "/assets/images/acc_beret_climb1.png"
+  }
+  images {
+    image: "/assets/images/acc_beret_climb2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "villain_walk"
+  images {
+    image: "/assets/images/villain_walk1.png"
+  }
+  images {
+    image: "/assets/images/villain_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "by1_walk"
+  images {
+    image: "/assets/images/by1_walk1.png"
+  }
+  images {
+    image: "/assets/images/by1_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "by2_walk"
+  images {
+    image: "/assets/images/by2_walk1.png"
+  }
+  images {
+    image: "/assets/images/by2_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "by3_walk"
+  images {
+    image: "/assets/images/by3_walk1.png"
+  }
+  images {
+    image: "/assets/images/by3_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "by4_walk"
+  images {
+    image: "/assets/images/by4_walk1.png"
+  }
+  images {
+    image: "/assets/images/by4_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+animations {
+  id: "by5_walk"
+  images {
+    image: "/assets/images/by5_walk1.png"
+  }
+  images {
+    image: "/assets/images/by5_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 6
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

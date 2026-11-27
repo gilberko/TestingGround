@@ -1,0 +1,38 @@
+name: "main"
+instances {
+  id: "game"
+  prototype: "/game/game.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+}
+instances {
+  id: "player"
+  prototype: "/game/player.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.2
+  }
+}
+instances {
+  id: "camera"
+  prototype: "/game/camera.go"
+  position {
+    x: 640.0
+    y: 312.0
+    z: 10.0
+  }
+}
+instances {
+  id: "ui"
+  prototype: "/ui/ui.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+}
+scale_along_z: 0

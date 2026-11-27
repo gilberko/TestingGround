@@ -1,0 +1,62 @@
+-- Main menu (shown over a slowly panning view of the first building).
+local A = require "modules.appearance"
+local ST = require "modules.state"
+local Lv = require "modules.levels"
+local U = require "modules.ui"
+
+local GAME = "/game#game"
+
+local function build(self)
+	U.clear(self.nodes)
+	self.buttons = {}
+	U.backdrop(self.nodes, vmath.vector4(0.03, 0.04, 0.09, 0.62))
+	local t1 = U.text(self.nodes, 640, 600, "NETTA", 2.1, U.GOLD)
+	gui.animate(t1, "scale", vmath.vector3(2.2, 2.2, 1), gui.EASING_INOUTSINE, 1.2, 0, nil, gui.PLAYBACK_LOOP_PINGPONG)
+	U.text(self.nodes, 640, 500, "THE SUPER AGENT", 0.95)
+	U.text(self.nodes, 640, 452, "Top secret. Reach the exit. Dodge the bullets.", 0.38, vmath.vector4(0.8, 0.85, 1, 1))
+	local y = 360
+	local function add(label, m, color)
+		local b = U.button(self.nodes, 640, y, 460, 74, label, color, 0.6)
+		b.msg = m
+		self.buttons[#self.buttons + 1] = b
+		y = y - 95
+	end
+	add("NEW GAME", "menu_new", U.BTN)
+	if ST.unlocked > 1 and ST.unlocked <= Lv.COUNT then
+		add("CONTINUE  (LEVEL " .. ST.unlocked .. "/" .. Lv.COUNT .. ")", "menu_continue", vmath.vector4(0.2, 0.6, 0.4, 1))
+	end
+	add(A.saved and "CHANGE AGENT LOOK" or "DESIGN YOUR AGENT", "menu_design", U.BTN2)
+	U.text(self.nodes, 640, 40, "Keys: arrows/WASD move & climb, DOWN hides behind desks, SPACE jumps, ESC pauses", 0.3,
+		vmath.vector4(0.7, 0.72, 0.8, 1))
+end
+
+function init(self)
+	self.nodes, self.buttons = {}, {}
+	self.visible = false
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("show") then
+		build(self)
+		self.visible = true
+		self.opened = ST.frame
+	elseif message_id == hash("hide") then
+		U.clear(self.nodes)
+		self.buttons = {}
+		self.visible = false
+	end
+end
+
+function on_input(self, action_id, action)
+	if not self.visible then return false end
+	local x, y = U.tap(action_id, action)
+	if not x or self.opened == ST.frame then return false end
+	for _, b in ipairs(self.buttons) do
+		if U.hit(b, x, y) then
+			U.flash(b)
+			msg.post(GAME, b.msg)
+			return true
+		end
+	end
+	return false
+end

@@ -1,0 +1,716 @@
+-- Netta The Super Agent: game controller.
+-- Builds levels from modules/levels.lua, simulates player / villains / bystanders / bullets / boss,
+-- drives the camera and switches between menu, designer, playing, paused and result screens.
+local C = require "modules.const"
+local Lv = require "modules.levels"
+local S = require "modules.sim"
+local A = require "modules.appearance"
+local ST = require "modules.state"
+
+local FACTORY = "#sprite_factory"
+local PLAYER = "/player"
+local CAMERA = "/camera"
+local LAYERS = { "skin", "suit", "det", "hair", "acc" }
+local WHITE = vmath.vector4(1, 1, 1, 1)
+
+local Z = { bg = -0.9, decor = -0.75, door = -0.7, ladder = -0.5, solid = -0.4, pad = -0.35, button = -0.3,
+	npc = 0.0, desk = 0.4, bullet = 0.5, fx = 0.6, bubble = 0.7 }
+
+-- ------------------------------------------------------------------ helpers
+local function spr(id) return msg.url(nil, id, "sprite") end
+
+local function spawn(self, anim, x, y, z)
+	local id = factory.create(FACTORY, vmath.vector3(x, y, z))
+	sprite.play_flipbook(spr(id), hash(anim))
+	self.live[id] = true
+	return id
+end
+
+local function remove(self, id)
+	if id and self.live[id] then
+		self.live[id] = nil
+		go.delete(id)
+	end
+end
+
+local function clear_world(self)
+	local ids = {}
+	for id in pairs(self.live) do ids[#ids + 1] = id end
+	if #ids > 0 then go.delete(ids) end
+	self.live = {}
+	self.anims = {}
+	self.villains, self.bystanders, self.bullets, self.buttons, self.fx = {}, {}, {}, {}, {}
+	self.boss = nil
+	self.L = nil
+end
+
+local function show(gui_name, kind, data)
+	msg.post("/ui#" .. gui_name, kind or "show", data or {})
+end
+
+local function play(self, url, anim)
+	-- only restart a flipbook when it actually changes
+	local key = tostring(url)
+	if self.anims[key] ~= anim then
+		self.anims[key] = anim
+		sprite.play_flipbook(url, hash(anim))
+	end
+end
+
+-- ------------------------------------------------------------------ player look
+local function refresh_look(self)
+	self.layers = A.layers()
+	for _, l in ipairs(self.layers) do
+		local url = msg.url(nil, PLAYER, l.id)
+		if l.prefix then
+			msg.post(url, "enable")
+			go.set(url, "tint", l.tint)
+		else
+			msg.post(url, "disable")
+		end
+	end
+	self.pose = nil
+end
+
+local function set_pose(self, pose, flip)
+	if pose ~= self.pose then
+		self.pose = pose
+		for _, l in ipairs(self.layers) do
+			if l.prefix then sprite.play_flipbook(msg.url(nil, PLAYER, l.id), hash(l.prefix .. "_" .. pose)) end
+		end
+	end
+	if flip ~= self.flip then
+		self.flip = flip
+		for _, id in ipairs(LAYERS) do sprite.set_hflip(msg.url(nil, PLAYER, id), flip) end
+	end
+end
+
+local function set_player_alpha(self, a)
+	for _, l in ipairs(self.layers) do
+		if l.prefix then go.set(msg.url(nil, PLAYER, l.id), "tint.w", a) end
+	end
+end
+
+-- ------------------------------------------------------------------ level building
+local function build_level(self, n, with_player)
+	clear_world(self)
+	local L = Lv.build(n)
+	self.L = L
+	local tint = vmath.vector4(L.spec.tint[1], L.spec.tint[2], L.spec.tint[3], 1)
+	for _, b in ipairs(L.bg) do
+		local id = spawn(self, b.name, b.x, b.y, Z.bg)
+		go.set(spr(id), "tint", tint)
+	end
+	for r = 1, L.rows do
+		for c = 1, L.cols do
+			local k = L.kind[(r - 1) * L.cols + c]
+			local x, y = C.col_x(c), (r - 0.5) * C.T
+			if k == "floor" or k == "roof" or k == "wall" or k == "crate" then
+				spawn(self, k, x, y, Z.solid)
+			elseif k == "ladder" then
+				if (r - 1) % C.FLOOR_STRIDE == 0 then     -- hole through a slab
+					local id = spawn(self, "bg", x, y, Z.bg + 0.01)
+					go.set(spr(id), "tint", vmath.vector4(0.35, 0.35, 0.42, 1))
+				end
+				spawn(self, "ladder", x, y, Z.ladder)
+			end
+		end
+	end
+	for _, d in ipairs(L.decor) do spawn(self, d.name, d.x, d.y + 24, Z.decor) end
+	for _, d in ipairs(L.desks) do spawn(self, "desk", d.x, d.y + 26, Z.desk) end
+	if L.door then spawn(self, "door", L.door.x, L.door.y + 48, Z.door) end
+
+	for _, v in ipairs(L.villains) do
+		local e = { x = v.x, y = v.y, f = v.f, rate = v.rate, timer = 0.8 + math.random() * v.rate,
+			prefix = "villain", facing = -1, armed = true, recoil = 0 }
+		e.id = spawn(self, "villain_stand", e.x, e.y + 36, Z.npc)
+		sprite.set_hflip(spr(e.id), true)
+		self.villains[#self.villains + 1] = e
+	end
+	local chance = L.spec.turncoat_chance or 0
+	for _, b in ipairs(L.bystanders) do
+		local e = { x = b.x, x0 = b.x, y = b.y, f = b.f, prefix = "by" .. b.variant,
+			turn = b.turn or (math.random() < chance), dir = math.random() < 0.5 and -1 or 1,
+			state = "walk", pause = 0, rate = 1.8, timer = 0.9, recoil = 0, armed = false }
+		e.facing = e.dir
+		e.id = spawn(self, e.prefix .. "_walk", e.x, e.y + 36, Z.npc + 0.01)
+		self.bystanders[#self.bystanders + 1] = e
+	end
+	if L.boss then
+		for _, p in ipairs(L.pads) do spawn(self, "pad", p.x, p.y + 4, Z.pad) end
+		-- 5 different buttons in random order
+		local idx = {}
+		for i = 1, #L.buttons do idx[i] = i end
+		for i = #idx, 2, -1 do local j = math.random(i); idx[i], idx[j] = idx[j], idx[i] end
+		for i, b in ipairs(L.buttons) do
+			local e = { x = b.x, y = b.y, f = b.f, state = "off" }
+			e.id = spawn(self, "button_off", b.x, b.y + 18, Z.button)
+			self.buttons[i] = e
+		end
+		self.order = {}
+		for i = 1, Lv.PRESSES do self.order[i] = idx[i] end
+		local pad = L.pads[math.random(#L.pads)]
+		local cfg = L.spec.boss
+		self.boss = { x = pad.x, y = pad.y, f = pad.f, pad = pad, state = "appear", t = 0.8, cfg = cfg,
+			facing = -1, burst = 0, gap = 0, shot = 0, low = false, hurt = 0 }
+		self.boss.id = spawn(self, "boss_stand", pad.x, pad.y + 54, Z.npc + 0.05)
+		go.set(spr(self.boss.id), "tint.w", 0)
+		go.animate(spr(self.boss.id), "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, 0.6)
+	end
+
+	if with_player then
+		local p = S.new_player(L.start.x, L.start.y)
+		self.p = p
+		msg.post(PLAYER, "enable")
+		refresh_look(self)
+		self.flip = nil
+		set_pose(self, "stand", false)
+		go.set_position(vmath.vector3(p.x, p.y, 0.2), PLAYER)
+	else
+		self.p = nil
+		msg.post(PLAYER, "disable")
+	end
+end
+
+-- ------------------------------------------------------------------ camera
+local function camera_target(self, x)
+	local L = self.L
+	local ww, wh = window.get_size()
+	local half = 640
+	if ww and wh and wh > 0 then half = math.max(640, 360 * ww / wh) end
+	if L.width <= half * 2 then
+		x = L.width / 2
+	else
+		x = math.max(half, math.min(L.width - half, x))
+	end
+	return x, L.height / 2
+end
+
+local function update_camera(self, dt, snap)
+	if not self.L then return end
+	local tx, ty
+	if self.p then
+		tx, ty = camera_target(self, self.p.x + self.p.facing * 80)
+	else
+		self.pan = (self.pan or 0) + dt
+		local L = self.L
+		tx, ty = camera_target(self, L.width / 2 + math.sin(self.pan * 0.12) * (L.width / 2))
+	end
+	local pos = go.get_position(CAMERA)
+	if snap then
+		pos.x, pos.y = tx, ty
+	else
+		local k = math.min(1, dt * 6)
+		pos.x = pos.x + (tx - pos.x) * k
+		pos.y = pos.y + (ty - pos.y) * k
+	end
+	go.set_position(pos, CAMERA)
+end
+
+-- ------------------------------------------------------------------ flow
+local function set_hud(self)
+	ST.hearts = self.hearts
+	ST.level = self.level
+	ST.level_name = self.L.spec.name
+	ST.boss = self.L.boss and true or false
+	ST.presses = self.presses or 0
+	ST.presses_needed = Lv.PRESSES
+end
+
+local function start_level(self, n)
+	self.level = n
+	self.hearts = C.HEARTS
+	self.invuln = 0
+	self.presses = 0
+	self.end_timer = nil
+	build_level(self, n, true)
+	update_camera(self, 0, true)
+	ST.clear_input()
+	set_hud(self)
+	ST.mode = "playing"
+	show("menu", "hide"); show("designer", "hide"); show("overlay", "hide")
+	show("hud", "show")
+end
+
+local function to_menu(self)
+	ST.mode = "menu"
+	build_level(self, 1, false)
+	update_camera(self, 0, true)
+	show("hud", "hide"); show("overlay", "hide"); show("designer", "hide")
+	show("menu", "show")
+end
+
+local function open_designer(self, after)
+	self.designer_after = after
+	ST.mode = "designer"
+	show("menu", "hide"); show("overlay", "hide")
+	show("designer", "show", { after = after })
+end
+
+local function finish_level(self)
+	ST.mode = "complete"
+	ST.clear_input()
+	if self.level >= Lv.COUNT then
+		ST.unlocked = 1
+		ST.save()
+		ST.mode = "victory"
+		show("overlay", "show", { kind = "victory" })
+		return
+	end
+	ST.unlocked = math.max(ST.unlocked, self.level + 1)
+	ST.save()
+	show("overlay", "show", { kind = self.L.boss and "boss" or "complete", name = self.L.spec.name,
+		next_name = Lv.list[self.level + 1].name })
+end
+
+local function fail_level(self)
+	ST.mode = "failed"
+	ST.clear_input()
+	set_player_alpha(self, 1)
+	show("overlay", "show", { kind = "failed", name = self.L.spec.name })
+end
+
+-- ------------------------------------------------------------------ combat
+local function fire(self, x, y, dir, speed)
+	local b = { x = x, y = y, vx = dir * speed, dist = 0 }
+	b.id = spawn(self, "bullet", x, y, Z.bullet)
+	if dir < 0 then sprite.set_hflip(spr(b.id), true) end
+	self.bullets[#self.bullets + 1] = b
+	local fl = spawn(self, "flash", x - dir * 6, y, Z.fx)
+	if dir < 0 then sprite.set_hflip(spr(fl), true) end
+	timer.delay(0.07, false, function() remove(self, fl) end)
+end
+
+local function hurt_player(self)
+	if self.invuln > 0 or ST.mode ~= "playing" then return end
+	self.hearts = self.hearts - 1
+	ST.hearts = self.hearts
+	self.invuln = C.INVULN
+	if self.hearts <= 0 then
+		fail_level(self)
+	end
+end
+
+local function same_floor(self, e)
+	local p = self.p
+	return C.floor_of(p.y) == e.f and not p.climbing
+end
+
+-- villain-like shooter (villains and revealed bystanders)
+local function update_shooter(self, e, dt, speed)
+	local p = self.p
+	local dx = p.x - e.x
+	local sees = same_floor(self, e) and math.abs(dx) < C.SIGHT
+	if e.recoil > 0 then e.recoil = e.recoil - dt end
+	if sees then
+		local face = dx < 0 and -1 or 1
+		if face ~= e.facing then
+			e.facing = face
+			sprite.set_hflip(spr(e.id), face < 0)
+		end
+		e.timer = e.timer - dt
+		if e.timer <= 0 then
+			fire(self, e.x + e.facing * 26, e.y + C.BULLET_Y, e.facing, speed)
+			e.timer = e.rate * (0.85 + math.random() * 0.3)
+			e.recoil = 0.25
+		end
+	else
+		e.timer = math.max(e.timer, 0.7)
+	end
+	local aiming = sees and (e.timer < 0.45 or e.recoil > 0)
+	play(self, spr(e.id), e.prefix .. (aiming and "_shoot" or "_stand"))
+end
+
+local function update_bystander(self, e, dt, speed)
+	local p = self.p
+	if e.state == "walk" then
+		if e.pause > 0 then
+			e.pause = e.pause - dt
+			play(self, spr(e.id), e.prefix .. "_stand")
+		else
+			local nx = e.x + e.dir * 45 * dt
+			local ahead = self.L.grid:box_solid(nx + e.dir * 14, e.y + 4, nx + e.dir * 14, e.y + 40)
+			if ahead or math.abs(nx - e.x0) > 2.5 * C.T then
+				e.dir = -e.dir
+				if math.random() < 0.5 then e.pause = 0.6 + math.random() * 1.5 end
+			else
+				e.x = nx
+			end
+			e.facing = e.dir
+			sprite.set_hflip(spr(e.id), e.dir < 0)
+			play(self, spr(e.id), e.prefix .. "_walk")
+		end
+		if e.turn and p and same_floor(self, e) and math.abs(p.x - e.x) < C.TURN_RANGE then
+			e.state = "alert"
+			e.t = 0.75
+			e.facing = p.x < e.x and -1 or 1
+			sprite.set_hflip(spr(e.id), e.facing < 0)
+			play(self, spr(e.id), e.prefix .. "_stand")
+			e.bubble = spawn(self, "exclaim", e.x + 4, e.y + 92, Z.bubble)
+			go.animate(e.bubble, "position.y", go.PLAYBACK_LOOP_PINGPONG, e.y + 98, go.EASING_INOUTSINE, 0.2)
+		end
+	elseif e.state == "alert" then
+		e.t = e.t - dt
+		local k = 0.5 + 0.5 * math.cos(e.t * 30)
+		go.set(spr(e.id), "tint", vmath.vector4(1, k, k, 1))
+		if e.t <= 0 then
+			go.set(spr(e.id), "tint", WHITE)
+			remove(self, e.bubble)
+			e.bubble = nil
+			e.state = "armed"
+			e.timer = 0.45
+		end
+	elseif e.state == "armed" then
+		update_shooter(self, e, dt, speed)
+	end
+	go.set_position(vmath.vector3(e.x, e.y + 36, Z.npc + 0.01), e.id)
+end
+
+local function update_bullets(self, dt)
+	local p = self.p
+	local g = self.L.grid
+	local x0, y0, x1, y1 = S.hitbox(p)
+	local keep = {}
+	for _, b in ipairs(self.bullets) do
+		local step = b.vx * dt
+		b.x = b.x + step
+		b.dist = b.dist + math.abs(step)
+		local c = math.floor(b.x / C.T) + 1
+		local r = math.floor(b.y / C.T) + 1
+		local gone = g:solid(c, r) or b.dist > 16 * C.T
+		if not gone and not p.hidden and ST.mode == "playing"
+			and b.x + C.BULLET_W / 2 > x0 and b.x - C.BULLET_W / 2 < x1
+			and b.y + C.BULLET_H / 2 > y0 and b.y - C.BULLET_H / 2 < y1 then
+			gone = true
+			if self.invuln <= 0 then
+				hurt_player(self)
+				local fl = spawn(self, "blast", b.x, b.y, Z.fx)
+				go.set_scale(0.35, fl)
+				timer.delay(0.12, false, function() remove(self, fl) end)
+			end
+		end
+		if gone then
+			remove(self, b.id)
+		else
+			go.set_position(vmath.vector3(b.x, b.y, Z.bullet), b.id)
+			keep[#keep + 1] = b
+		end
+	end
+	self.bullets = keep
+end
+
+-- ------------------------------------------------------------------ boss
+local function explode_boss(self)
+	local B = self.boss
+	B.state = "dying"
+	for _, b in ipairs(self.bullets) do remove(self, b.id) end
+	self.bullets = {}
+	local cx, cy = B.x, B.y + 54
+	go.animate(spr(B.id), "tint", go.PLAYBACK_LOOP_PINGPONG, vmath.vector4(1, 0.3, 0.2, 1), go.EASING_LINEAR, 0.08)
+	for i = 0, 6 do
+		timer.delay(i * 0.22, false, function()
+			if not self.L then return end
+			local bl = spawn(self, "blast", cx + math.random(-50, 50), cy + math.random(-50, 50), Z.fx)
+			go.set_scale(0.2, bl)
+			go.animate(bl, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(1.4, 1.4, 1), go.EASING_OUTQUAD, 0.45)
+			go.animate(spr(bl), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.45, 0, function() remove(self, bl) end)
+		end)
+	end
+	timer.delay(1.6, false, function()
+		if not self.L or not self.boss then return end
+		remove(self, B.id)
+		for i = 1, 36 do
+			local d = spawn(self, "debris" .. math.random(4), cx, cy, Z.fx)
+			local a = math.random() * math.pi * 2
+			local dist = 80 + math.random() * 260
+			go.animate(d, "position", go.PLAYBACK_ONCE_FORWARD,
+				vmath.vector3(cx + math.cos(a) * dist, cy + math.sin(a) * dist, Z.fx), go.EASING_OUTCUBIC, 1.0)
+			go.animate(d, "euler.z", go.PLAYBACK_ONCE_FORWARD, math.random(-720, 720), go.EASING_OUTCUBIC, 1.0)
+			go.animate(spr(d), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 1.1, 0, function() remove(self, d) end)
+		end
+		local big = spawn(self, "blast", cx, cy, Z.fx)
+		go.set_scale(0.5, big)
+		go.animate(big, "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(3.2, 3.2, 1), go.EASING_OUTQUAD, 0.7)
+		go.animate(spr(big), "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INQUAD, 0.8, 0, function() remove(self, big) end)
+	end)
+	self.end_timer = 3.0
+end
+
+local function press_button(self, idx)
+	local b = self.buttons[idx]
+	b.state = "done"
+	go.cancel_animations(b.id, "scale")
+	go.set_scale(1, b.id)
+	sprite.play_flipbook(spr(b.id), hash("button_done"))
+	self.presses = self.presses + 1
+	ST.presses = self.presses
+	local B = self.boss
+	B.hurt = 0.5
+	if self.presses >= Lv.PRESSES then
+		explode_boss(self)
+	else
+		if B.state == "fight" then B.t = math.min(B.t, 0.3) end
+	end
+end
+
+local function update_buttons(self)
+	if self.presses >= Lv.PRESSES then return end
+	local idx = self.order[self.presses + 1]
+	local b = self.buttons[idx]
+	if b.state == "off" then
+		b.state = "on"
+		sprite.play_flipbook(spr(b.id), hash("button_on"))
+		go.animate(b.id, "scale", go.PLAYBACK_LOOP_PINGPONG, vmath.vector3(1.15, 1.15, 1), go.EASING_INOUTSINE, 0.4)
+	end
+	local p = self.p
+	if same_floor(self, b) and p.grounded and math.abs(p.x - b.x) < 30 then
+		press_button(self, idx)
+	end
+end
+
+local function boss_pick_pad(self)
+	local B, L = self.boss, self.L
+	local pf = C.floor_of(self.p.y)
+	local cands = {}
+	if math.random() < 0.6 then
+		for _, pad in ipairs(L.pads) do
+			if pad.f == pf and pad ~= B.pad then cands[#cands + 1] = pad end
+		end
+	end
+	if #cands == 0 then
+		for _, pad in ipairs(L.pads) do if pad ~= B.pad then cands[#cands + 1] = pad end end
+	end
+	return cands[math.random(#cands)]
+end
+
+local function update_boss(self, dt)
+	local B = self.boss
+	if not B or B.state == "dying" then return end
+	local cfg = B.cfg
+	local url = spr(B.id)
+	if B.hurt > 0 then
+		B.hurt = B.hurt - dt
+		local k = (math.floor(B.hurt * 20) % 2 == 0) and 0.3 or 1
+		go.set(url, "tint", vmath.vector4(1, k, k, go.get(url, "tint.w")))
+		if B.hurt <= 0 then go.set(url, "tint", vmath.vector4(1, 1, 1, go.get(url, "tint.w"))) end
+	end
+	B.t = B.t - dt
+	if B.state == "appear" then
+		if B.t <= 0 then B.state = "fight"; B.t = cfg.stay; B.shot = 0.5 end
+	elseif B.state == "fight" then
+		local p = self.p
+		local face = p.x < B.x and -1 or 1
+		if face ~= B.facing then B.facing = face; sprite.set_hflip(url, face < 0) end
+		if same_floor(self, B) then
+			if B.burst > 0 then
+				B.gap = B.gap - dt
+				if B.gap <= 0 then
+					local h = C.BULLET_Y
+					if cfg.spread then
+						B.low = not B.low
+						if B.low then h = C.BULLET_LOW_Y end
+					end
+					fire(self, B.x + B.facing * 40, B.y + h, B.facing, cfg.bullet_speed)
+					B.burst = B.burst - 1
+					B.gap = cfg.gap
+				end
+			else
+				B.shot = B.shot - dt
+				if B.shot <= 0 then B.burst = cfg.burst; B.gap = 0; B.shot = cfg.rate end
+			end
+		end
+		play(self, url, "boss_" .. ((B.burst > 0 or B.shot < 0.35) and same_floor(self, B) and "shoot" or "stand"))
+		if B.t <= 0 then
+			B.state = "vanish"; B.t = 0.45; B.burst = 0
+			go.animate(url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.4)
+		end
+	elseif B.state == "vanish" then
+		if B.t <= 0 then
+			local pad = boss_pick_pad(self)
+			B.pad, B.x, B.y, B.f = pad, pad.x, pad.y, pad.f
+			go.set_position(vmath.vector3(B.x, B.y + 54, Z.npc + 0.05), B.id)
+			go.animate(url, "tint.w", go.PLAYBACK_ONCE_FORWARD, 1, go.EASING_LINEAR, 0.45)
+			B.state = "appear"; B.t = 0.6; B.shot = 0.4
+		end
+	end
+end
+
+-- ------------------------------------------------------------------ main update
+local function update_player(self, dt)
+	local p = self.p
+	local inp = ST.input()
+	inp.jump = ST.jump_pressed
+	ST.jump_pressed = false
+	S.update(p, inp, dt, self.L.grid, self.L.desks)
+	local pose
+	if p.climbing then
+		pose = p.moving and "climb" or "climb1"
+	elseif not p.grounded then
+		pose = "jump"
+	elseif p.ducking then
+		pose = "duck"
+	elseif p.moving then
+		pose = "walk"
+	else
+		pose = "stand"
+	end
+	set_pose(self, pose, (not p.climbing) and p.facing < 0)
+	go.set_position(vmath.vector3(p.x, p.y, 0.2), PLAYER)
+	if self.invuln > 0 then
+		self.invuln = self.invuln - dt
+		set_player_alpha(self, (self.invuln <= 0 or math.floor(self.invuln * 12) % 2 == 0) and 1 or 0.25)
+	end
+	-- reached the exit?
+	local d = self.L.door
+	if d and ST.mode == "playing" and p.grounded and C.floor_of(p.y) == d.f and math.abs(p.x - d.x) < 22 then
+		finish_level(self)
+	end
+end
+
+function init(self)
+	math.randomseed(os.time())
+	self.live, self.anims = {}, {}
+	self.layers = {}
+	A.load()
+	ST.load()
+	self.frame = 0
+	self.autotest = sys.get_config_int("netta.autotest", 0) == 1
+	local auto = sys.get_config_int("netta.autostart", 0)
+	if self.autotest then
+		self.at = { t = 0, step = 0 }
+		start_level(self, 1)
+	elseif auto > 0 then
+		start_level(self, math.min(auto, Lv.COUNT))
+		-- debug screenshots: --config=netta.screen=pause|failed|complete
+		local screen = sys.get_config_string("netta.screen", "")
+		if screen ~= "" then
+			timer.delay(1.5, false, function()
+				if screen == "pause" then msg.post("#", "pause")
+				elseif screen == "failed" then fail_level(self)
+				elseif screen == "complete" then finish_level(self)
+				elseif screen == "designer" then open_designer(self, "pause") end
+			end)
+		end
+	else
+		to_menu(self)
+	end
+end
+
+-- autotest: drives every level and screen for a smoke run (`--config=netta.autotest=1`)
+local function autotest(self, dt)
+	local at = self.at
+	at.t = at.t + dt
+	if ST.mode == "playing" then
+		ST.keys.right = true
+		if math.floor(at.t * 2) % 3 == 0 then ST.jump_pressed = true end
+		self.hearts = 3
+		if at.t > 2.5 then
+			if self.L.boss then
+				if self.presses < Lv.PRESSES and at.t > 2.5 + self.presses * 0.3 then
+					press_button(self, self.order[self.presses + 1])
+				end
+			else
+				finish_level(self)
+			end
+		end
+	elseif at.t > 6 and ST.mode ~= "playing" then
+		at.t = 0
+		at.step = at.step + 1
+		print("AUTOTEST level " .. self.level .. " done, mode=" .. ST.mode)
+		if ST.mode == "victory" then
+			open_designer(self, "menu")
+			A.cycle("body", 1); A.cycle("hair", 1); A.cycle("acc", 1)
+			refresh_look(self)
+			timer.delay(1, false, function()
+				to_menu(self)
+				timer.delay(1.5, false, function() print("AUTOTEST DONE"); sys.exit(0) end)
+			end)
+			at.t = -1000
+		else
+			ST.keys.right = false
+			start_level(self, self.level + 1)
+		end
+	end
+end
+
+function update(self, dt)
+	self.frame = self.frame + 1
+	ST.frame = self.frame
+	if self.autotest then autotest(self, dt) end
+	local mode = ST.mode
+	if mode == "playing" or mode == "complete" or mode == "failed" or mode == "victory" then
+		if mode == "playing" then update_player(self, dt) end
+		local speed = self.L.spec.bullet_speed or 400
+		if mode == "playing" then
+			for _, v in ipairs(self.villains) do update_shooter(self, v, dt, speed) end
+		end
+		if mode == "playing" then
+			for _, b in ipairs(self.bystanders) do update_bystander(self, b, dt, speed) end
+			update_bullets(self, dt)
+			if self.boss then
+				update_boss(self, dt)
+				update_buttons(self)
+			end
+		end
+		if self.end_timer and mode == "playing" then
+			self.end_timer = self.end_timer - dt
+			if self.end_timer <= 0 then
+				self.end_timer = nil
+				finish_level(self)
+			end
+		end
+		update_camera(self, dt)
+	elseif mode == "menu" or mode == "designer" then
+		if self.L and not self.p then
+			for _, b in ipairs(self.bystanders) do
+				if b.state == "walk" then update_bystander(self, b, dt, 0) end
+			end
+			update_camera(self, dt)
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("menu_new") then
+		if A.saved then start_level(self, 1) else open_designer(self, "start") end
+		self.pending_level = 1
+	elseif message_id == hash("menu_continue") then
+		start_level(self, math.min(ST.unlocked, Lv.COUNT))
+	elseif message_id == hash("menu_design") then
+		open_designer(self, "menu")
+	elseif message_id == hash("look_changed") then
+		if self.p then refresh_look(self); set_pose(self, "stand", self.flip) end
+	elseif message_id == hash("designer_done") then
+		A.save()
+		show("designer", "hide")
+		local after = self.designer_after
+		if after == "start" then
+			start_level(self, self.pending_level or 1)
+		elseif after == "pause" then
+			refresh_look(self)
+			ST.mode = "paused"
+			show("overlay", "show", { kind = "pause" })
+		else
+			to_menu(self)
+		end
+	elseif message_id == hash("pause") then
+		if ST.mode == "playing" then
+			ST.mode = "paused"
+			ST.clear_input()
+			show("overlay", "show", { kind = "pause" })
+		end
+	elseif message_id == hash("resume") then
+		if ST.mode == "paused" then
+			ST.mode = "playing"
+			show("overlay", "hide")
+		end
+	elseif message_id == hash("change_look") then
+		open_designer(self, "pause")
+	elseif message_id == hash("restart") then
+		start_level(self, self.level)
+	elseif message_id == hash("next") then
+		start_level(self, math.min(self.level + 1, Lv.COUNT))
+	elseif message_id == hash("quit") then
+		to_menu(self)
+	end
+end
