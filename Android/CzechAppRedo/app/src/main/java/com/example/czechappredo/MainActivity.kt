@@ -135,6 +135,7 @@ class MainActivity : ComponentActivity() {
                 composable("all_together_feminine") { AllTogetherGenderScreen(navController, ATGender.FEMININE) }
                 composable("prefixes_perfective") { PrefixesAndPerfectiveScreen(navController) }
                 composable("passive_voice") { PassiveVoiceScreen(navController) }
+                composable("one_time_vs_habit") { OneTimeVsHabitScreen(navController) }
                 composable("traveling") { TravelingScreen(navController) }
                 composable("super_powers_magic") { SuperPowersAndMagicScreen(navController) }
                 composable("government_army") { GovernmentAndArmyScreen(navController) }
@@ -284,7 +285,6 @@ fun LearningHubScreen(navController: NavController) {
             "Cases" to "cases",
             "Noun Conjugation By Endings" to "noun_conjugation_by_endings",
             "Verbs and Tenses" to "verbs_tenses",
-            "Verbs Of Movement" to "verbs_of_movement",
             "Prepositions" to "prepositions",
             "Questions and Answers" to "questions",
             "Adjectives" to "adjectives",
@@ -354,6 +354,8 @@ fun VerbsAndTensesHubScreen(navController: NavController) {
             "Imperative" to "imperative",
             "Negation" to "negation",
             "Prefixes and Perfective Verbs" to "prefixes_perfective",
+            "One Time vs Habit" to "one_time_vs_habit",
+            "Verbs Of Movement" to "verbs_of_movement",
             "Passive Voice" to "passive_voice"
         )
         Column(
