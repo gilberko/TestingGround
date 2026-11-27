@@ -191,7 +191,7 @@ fun OneTimeVsHabitScreen(navController: NavController) {
                 example = "Chodí spolu dva roky.", translation = "They've been dating for two years.")
             OTHRow("negative imperative", "\"don't go\" uses chodit",
                 example = "Jdi domů! · Nechoď tam! · Pojď sem! · Nechoď sem!", translation = "Go home! · Don't go there! · Come here! · Don't come here!")
-            OTHNote("\"Nejdi\" and \"nepojď\" aren't used — the negative of jdi and of pojď is nechoď / nechoďte. Same with jet: jeď! → nejezdi! / nejezděte!")
+            OTHNote("The normal negative of both jdi and pojď is nechoď / nechoďte (\"nepojď\" isn't used; \"nejdi\" is rare at best). Same with jet: jeď! → nejezdi! / nejezděte!")
 
             OTHSection("The Same Pattern With jet / jezdit / jezdívat")
             OTHRow("jet", "one trip — future pojedu",
